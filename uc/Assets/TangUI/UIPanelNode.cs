@@ -170,7 +170,7 @@ namespace TangUI
     
 
         if (!gameObject.activeSelf)
-          SetActive (gameObject, true);
+          SetActive (true);
 
       } else {
         throw new Exception ("Can not attach to previous node.");
