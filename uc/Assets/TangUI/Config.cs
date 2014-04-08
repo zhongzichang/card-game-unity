@@ -15,7 +15,7 @@ namespace TangUI
     {
       get
 	{
-	  return  Tang.Config.U3D_RES_DIR + Tang.Config.DIR_SEP + PANEL_DIR;
+	  return  Tang.Config.U3D_PREFAB_DIR + Tang.Config.DIR_SEP + PANEL_DIR;
 	}
     }
   }

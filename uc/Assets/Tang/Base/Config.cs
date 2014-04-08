@@ -19,7 +19,7 @@ namespace Tang
 
     public const bool DEBUG = true;
     public static string resDirName = "Tang";
-    public const string U3D_RES_DIR = "Resources";
+    public const string U3D_PREFAB_DIR = "prefabs";
     public static int fps = 10;
     public static ResourceStream resourceStream = ResourceStream.INNER;
     public const string DIR_SEP = "/";

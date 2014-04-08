@@ -109,7 +109,7 @@ namespace TangUI
 
     private void StartLoadRes()
     {
-      if (Config.use_packed_res)
+      if (!Config.use_packed_res)
 	LoadResComplete(null);
       else
 	{
@@ -122,7 +122,7 @@ namespace TangUI
     {	
       UnityEngine.Object assets = null;
       if (www == null)
-	assets = Resources.Load(Config.PANEL_PATH + name);
+	assets = Resources.Load(Config.PANEL_PATH + Tang.Config.DIR_SEP + name);
       else
 	assets = www.assetBundle.Load(name);
       gameObject = GameObject.Instantiate(assets) as GameObject;
