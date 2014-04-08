@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_summon_red.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{51,27}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{51,27}}</string>
+                <key>sourceSize</key>
+                <string>{51,27}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_summon_red.png</string>
+            <key>size</key>
+            <string>{55,31}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:0345c5aee9884f7b959487547bb28fdc:a739f6dbf016075fe917dfd5d1887384:04106ec8e2d0247590b52e3e2ac163f3$</string>
+            <key>textureFileName</key>
+            <string>battletext_summon_red.png</string>
+        </dict>
+    </dict>
+</plist>

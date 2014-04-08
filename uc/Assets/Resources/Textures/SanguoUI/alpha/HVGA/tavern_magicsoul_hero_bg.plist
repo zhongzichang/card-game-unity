@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>tavern_magicsoul_hero_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{65,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{65,65}}</string>
+                <key>sourceSize</key>
+                <string>{65,65}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>tavern_magicsoul_hero_bg.png</string>
+            <key>size</key>
+            <string>{69,69}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f22ab978e8881c9e7b3bdb7a958d5e09:193842ff7c6792f4f9947b6bd8232afd:5661303290c4e7f2a304e86496ae9001$</string>
+            <key>textureFileName</key>
+            <string>tavern_magicsoul_hero_bg.png</string>
+        </dict>
+    </dict>
+</plist>

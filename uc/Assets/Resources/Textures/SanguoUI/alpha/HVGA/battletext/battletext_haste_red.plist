@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_haste_red.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{52,27}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{52,27}}</string>
+                <key>sourceSize</key>
+                <string>{52,27}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_haste_red.png</string>
+            <key>size</key>
+            <string>{56,31}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:b953354d14552d0c32b761935df6f907:39dba83aabe1388e7eb182f41097c520:0520fb50d5500f3c6519ec07bb0da98d$</string>
+            <key>textureFileName</key>
+            <string>battletext_haste_red.png</string>
+        </dict>
+    </dict>
+</plist>

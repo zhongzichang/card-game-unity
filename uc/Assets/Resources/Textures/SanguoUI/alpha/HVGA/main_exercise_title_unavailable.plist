@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>main_exercise_title_unavailable.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{129,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{129,33}}</string>
+                <key>sourceSize</key>
+                <string>{129,33}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>main_exercise_title_unavailable.png</string>
+            <key>size</key>
+            <string>{133,37}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:225ebf5dcad7e3022f2654f657e1f7ca:f72de5f57678b487d01c344141a7caa3:2061e6ab96e629807309e0ccc02610a3$</string>
+            <key>textureFileName</key>
+            <string>main_exercise_title_unavailable.png</string>
+        </dict>
+    </dict>
+</plist>

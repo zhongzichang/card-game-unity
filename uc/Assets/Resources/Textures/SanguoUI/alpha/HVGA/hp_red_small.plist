@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>hp_red_small.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{89,11}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{89,11}}</string>
+                <key>sourceSize</key>
+                <string>{89,11}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>hp_red_small.png</string>
+            <key>size</key>
+            <string>{93,15}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:999da72884ca1eb2970d2363f47ce7b5:d95c6b67d76e924d73fdd0f785cc016d:5125679c61433962443c48a01f4fd195$</string>
+            <key>textureFileName</key>
+            <string>hp_red_small.png</string>
+        </dict>
+    </dict>
+</plist>

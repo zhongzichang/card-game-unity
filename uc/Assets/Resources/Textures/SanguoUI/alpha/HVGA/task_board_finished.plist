@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>task_board_finished.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{638,123}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{638,123}}</string>
+                <key>sourceSize</key>
+                <string>{638,123}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>task_board_finished.png</string>
+            <key>size</key>
+            <string>{642,127}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:d4308bde8ebcadb5c7e452de7942460f:7c4c6714a306e907243495a34767ae85:db0f8fbc93a60a879ce62b1f89b3d286$</string>
+            <key>textureFileName</key>
+            <string>task_board_finished.png</string>
+        </dict>
+    </dict>
+</plist>

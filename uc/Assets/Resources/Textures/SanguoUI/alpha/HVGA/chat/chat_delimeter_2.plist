@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>chat_delimeter_2.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{728,86}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{728,86}}</string>
+                <key>sourceSize</key>
+                <string>{728,86}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>chat_delimeter_2.png</string>
+            <key>size</key>
+            <string>{732,90}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:37095e72ebf4eb10e7d26cfba97043a0:c773ff42aa08da9baf0d0701597dbe3e:7a32cecf743c94e81d0eafe8fa3fcc49$</string>
+            <key>textureFileName</key>
+            <string>chat_delimeter_2.png</string>
+        </dict>
+    </dict>
+</plist>

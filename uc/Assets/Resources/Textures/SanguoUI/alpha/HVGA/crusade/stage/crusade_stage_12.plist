@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>crusade_stage_12.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{211,182}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{211,182}}</string>
+                <key>sourceSize</key>
+                <string>{211,182}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>crusade_stage_12.png</string>
+            <key>size</key>
+            <string>{215,186}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:bcc5dff6230dd7506c64d42f0a39c27a:31a6c62ad6b6eca027ce37925ecbc7fb:366cb1719375a6f020f3eb19a06c28ad$</string>
+            <key>textureFileName</key>
+            <string>crusade_stage_12.png</string>
+        </dict>
+    </dict>
+</plist>

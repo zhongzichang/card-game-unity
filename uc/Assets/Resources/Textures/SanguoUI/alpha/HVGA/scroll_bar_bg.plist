@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>scroll_bar_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{3,349}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{3,349}}</string>
+                <key>sourceSize</key>
+                <string>{3,349}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>scroll_bar_bg.png</string>
+            <key>size</key>
+            <string>{7,353}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:d76781b4a7dc403037880d79378919c8:b82e09904d317a7f0d4045b8f7f330fa:f12bb1c7be3a1c09d7ecd07d64e234f0$</string>
+            <key>textureFileName</key>
+            <string>scroll_bar_bg.png</string>
+        </dict>
+    </dict>
+</plist>

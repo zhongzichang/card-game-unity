@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>main_arena_title_press.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{129,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{129,33}}</string>
+                <key>sourceSize</key>
+                <string>{129,33}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>main_arena_title_press.png</string>
+            <key>size</key>
+            <string>{133,37}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f7da28fecd035b22241f8c7c906ff4fd:d7f491c78671c6b2d55adfee088d52dc:1d16f7afe9b73f8f81f84849681c2d85$</string>
+            <key>textureFileName</key>
+            <string>main_arena_title_press.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_physical_immune_red.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{99,28}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{99,28}}</string>
+                <key>sourceSize</key>
+                <string>{99,28}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_physical_immune_red.png</string>
+            <key>size</key>
+            <string>{103,32}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:99c1fef58024b0473a8dc0f1454421bf:b61d5e176b79c838bdb0e9216bc30b59:4a69442dd710225b366b40a43806c574$</string>
+            <key>textureFileName</key>
+            <string>battletext_physical_immune_red.png</string>
+        </dict>
+    </dict>
+</plist>

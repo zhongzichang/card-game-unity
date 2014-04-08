@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>shop_gold_icon.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{46,44}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{46,44}}</string>
+                <key>sourceSize</key>
+                <string>{46,44}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>shop_gold_icon.png</string>
+            <key>size</key>
+            <string>{50,48}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:31135ff5a027fd05659ef555a50aa706:6bbe6ad675c6eaa5952687e1e7b11dea:055f254b4d85d3c4711c6c010f5d15d5$</string>
+            <key>textureFileName</key>
+            <string>shop_gold_icon.png</string>
+        </dict>
+    </dict>
+</plist>

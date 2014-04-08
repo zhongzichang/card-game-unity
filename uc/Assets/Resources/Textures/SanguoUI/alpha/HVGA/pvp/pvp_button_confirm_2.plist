@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>pvp_button_confirm_2.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{126,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{126,75}}</string>
+                <key>sourceSize</key>
+                <string>{126,75}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>pvp_button_confirm_2.png</string>
+            <key>size</key>
+            <string>{130,79}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:3042df02bf2cf7784a85253d6cc8d9ed:bd30794183070343fbc8708dc2e9e543:9dadb43fa7f4f9c87ae6ff3d2a116786$</string>
+            <key>textureFileName</key>
+            <string>pvp_button_confirm_2.png</string>
+        </dict>
+    </dict>
+</plist>

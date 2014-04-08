@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>herodetail-skill-tip.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{345,101}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{345,101}}</string>
+                <key>sourceSize</key>
+                <string>{345,101}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>herodetail-skill-tip.png</string>
+            <key>size</key>
+            <string>{349,105}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:a3430294044f33cbdd1ff5b265cfd0ff:1975e114ebd989c8e73fd094d878d953:4932c8fecc796852499fd97e16592a57$</string>
+            <key>textureFileName</key>
+            <string>herodetail-skill-tip.png</string>
+        </dict>
+    </dict>
+</plist>

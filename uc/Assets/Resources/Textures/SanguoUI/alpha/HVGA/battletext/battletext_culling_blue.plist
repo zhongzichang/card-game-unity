@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_culling_blue.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{97,27}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{97,27}}</string>
+                <key>sourceSize</key>
+                <string>{97,27}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_culling_blue.png</string>
+            <key>size</key>
+            <string>{101,31}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:b281c2cdcccd357c658039085ce564ec:c716bbcc52a7cb94f52ae4bebc55c002:a5a1ba65a0c435f56c791aafdda17543$</string>
+            <key>textureFileName</key>
+            <string>battletext_culling_blue.png</string>
+        </dict>
+    </dict>
+</plist>

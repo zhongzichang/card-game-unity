@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>chat_shade.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{736,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{736,33}}</string>
+                <key>sourceSize</key>
+                <string>{736,33}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>chat_shade.png</string>
+            <key>size</key>
+            <string>{740,37}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c91725eaec4e4821fc098aff88a2321f:d4e2800e52c402dd46824e8858797163:18e894934845ca3861c1429fc5c723ca$</string>
+            <key>textureFileName</key>
+            <string>chat_shade.png</string>
+        </dict>
+    </dict>
+</plist>

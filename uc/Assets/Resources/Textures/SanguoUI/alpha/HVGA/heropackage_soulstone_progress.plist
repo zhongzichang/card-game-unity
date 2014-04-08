@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>heropackage_soulstone_progress.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{185,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{185,34}}</string>
+                <key>sourceSize</key>
+                <string>{185,34}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>heropackage_soulstone_progress.png</string>
+            <key>size</key>
+            <string>{189,38}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:3ec46d2a033564698e8bc4ca787d81c1:4b533bb779d47d7d74c638dab2cb2833:593d1e0d148bc1774705ce3d97236039$</string>
+            <key>textureFileName</key>
+            <string>heropackage_soulstone_progress.png</string>
+        </dict>
+    </dict>
+</plist>

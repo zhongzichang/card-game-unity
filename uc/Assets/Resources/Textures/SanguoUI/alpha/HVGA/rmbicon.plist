@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>rmbicon.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{47,45}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{47,45}}</string>
+                <key>sourceSize</key>
+                <string>{47,45}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>rmbicon.png</string>
+            <key>size</key>
+            <string>{51,49}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:94a512dca021d364dc905884cf2e2fa3:e3f99472bea7d6d8f48b34268146f01d:50714088b42cf7f0cd8d3c70a057bab5$</string>
+            <key>textureFileName</key>
+            <string>rmbicon.png</string>
+        </dict>
+    </dict>
+</plist>

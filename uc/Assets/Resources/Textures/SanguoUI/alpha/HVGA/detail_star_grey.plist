@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>detail_star_grey.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{70,71}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{70,71}}</string>
+                <key>sourceSize</key>
+                <string>{70,71}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>detail_star_grey.png</string>
+            <key>size</key>
+            <string>{74,75}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:1e6b462f848ddc73f0901ae88f62eba3:1a2064ffbef0b9b9be65feea07ea81d0:11591dfb7d09cfed6787928254d6b9c7$</string>
+            <key>textureFileName</key>
+            <string>detail_star_grey.png</string>
+        </dict>
+    </dict>
+</plist>

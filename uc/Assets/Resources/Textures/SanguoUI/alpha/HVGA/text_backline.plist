@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>text_backline.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{55,92}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{55,92}}</string>
+                <key>sourceSize</key>
+                <string>{55,92}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>text_backline.png</string>
+            <key>size</key>
+            <string>{59,96}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:edcaaac101c9fede7bc3ca16ec07c1b9:bde4c97c64749fc3fa94f6f56bbfafd0:c5424f84be53c6983c064ab089797372$</string>
+            <key>textureFileName</key>
+            <string>text_backline.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>task_vit_icon_2.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{33,43}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{33,43}}</string>
+                <key>sourceSize</key>
+                <string>{33,43}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>task_vit_icon_2.png</string>
+            <key>size</key>
+            <string>{37,47}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ff9df84a0c8e261a3aa26048d83242e9:4b1bb6e95690ebb690b8984de878b259:28731e2c2f4bced0aa9e5017e29ba310$</string>
+            <key>textureFileName</key>
+            <string>task_vit_icon_2.png</string>
+        </dict>
+    </dict>
+</plist>

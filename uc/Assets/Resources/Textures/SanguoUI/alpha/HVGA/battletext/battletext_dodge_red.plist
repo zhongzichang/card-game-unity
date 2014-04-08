@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_dodge_red.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{51,27}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{51,27}}</string>
+                <key>sourceSize</key>
+                <string>{51,27}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_dodge_red.png</string>
+            <key>size</key>
+            <string>{55,31}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:fce0767fe752bb02f4c891c903b6efab:866f3d57f1ab6eea58957fd982b5c574:2cfb98936b5261fd499e44d80de0a17d$</string>
+            <key>textureFileName</key>
+            <string>battletext_dodge_red.png</string>
+        </dict>
+    </dict>
+</plist>

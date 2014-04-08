@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>herodetail_name_frame_3.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{196,55}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{196,55}}</string>
+                <key>sourceSize</key>
+                <string>{196,55}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>herodetail_name_frame_3.png</string>
+            <key>size</key>
+            <string>{200,59}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:1cac969061e597d3d33eb62d715cbb18:0613ad22a7094cc46bfe0f8a726f6cb0:2e4be638cd2dc889f8e10bf7875f42f8$</string>
+            <key>textureFileName</key>
+            <string>herodetail_name_frame_3.png</string>
+        </dict>
+    </dict>
+</plist>

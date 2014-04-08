@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>shop_hot.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{61,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{61,30}}</string>
+                <key>sourceSize</key>
+                <string>{61,30}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>shop_hot.png</string>
+            <key>size</key>
+            <string>{65,34}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:5e51fb0ee1b7681cd46b35f5a158120c:94776ce4a0aeb2c018e0942e9bf33952:bb198063235949c7df7d54b2d87f04fd$</string>
+            <key>textureFileName</key>
+            <string>shop_hot.png</string>
+        </dict>
+    </dict>
+</plist>

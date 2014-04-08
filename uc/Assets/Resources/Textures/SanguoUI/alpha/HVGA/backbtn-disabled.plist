@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>backbtn-disabled.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{74,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{74,75}}</string>
+                <key>sourceSize</key>
+                <string>{74,75}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>backbtn-disabled.png</string>
+            <key>size</key>
+            <string>{78,79}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ae9ab2a418fbc6f73af627e5798e7b98:6670cea9c67b81efd493338c3abf4407:70bde9581e312b07541eb32e93f346ec$</string>
+            <key>textureFileName</key>
+            <string>backbtn-disabled.png</string>
+        </dict>
+    </dict>
+</plist>

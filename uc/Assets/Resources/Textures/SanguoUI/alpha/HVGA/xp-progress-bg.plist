@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>xp-progress-bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{94,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{94,29}}</string>
+                <key>sourceSize</key>
+                <string>{94,29}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>xp-progress-bg.png</string>
+            <key>size</key>
+            <string>{98,33}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:d42441c80da0a5504d63ed8ee83f1e7c:950a92cd3e8fdd11305872f1965528e0:1c547316edfd191a60546a96a57a6a00$</string>
+            <key>textureFileName</key>
+            <string>xp-progress-bg.png</string>
+        </dict>
+    </dict>
+</plist>

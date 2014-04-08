@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>nextchap.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{55,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{55,75}}</string>
+                <key>sourceSize</key>
+                <string>{55,75}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>nextchap.png</string>
+            <key>size</key>
+            <string>{59,79}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:2f34ccd0e2ab3ea6c3e6a1b174d02f86:adc9031e483dee52800efd4c4094e4d5:436686fce07545bffab5771a6c3979dc$</string>
+            <key>textureFileName</key>
+            <string>nextchap.png</string>
+        </dict>
+    </dict>
+</plist>

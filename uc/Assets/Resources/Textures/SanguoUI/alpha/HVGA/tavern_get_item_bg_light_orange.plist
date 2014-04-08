@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>tavern_get_item_bg_light_orange.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{230,231}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{230,231}}</string>
+                <key>sourceSize</key>
+                <string>{230,231}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>tavern_get_item_bg_light_orange.png</string>
+            <key>size</key>
+            <string>{234,235}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f9037a93bd2e8caf2170fd29ab014312:0438e562aa1c453974a952c1e1e0cb97:3ed9769803a61806cdb02a580862f751$</string>
+            <key>textureFileName</key>
+            <string>tavern_get_item_bg_light_orange.png</string>
+        </dict>
+    </dict>
+</plist>

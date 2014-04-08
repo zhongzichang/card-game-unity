@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>classbtn.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{134,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{134,75}}</string>
+                <key>sourceSize</key>
+                <string>{134,75}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>classbtn.png</string>
+            <key>size</key>
+            <string>{138,79}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:7a7ad758eafdb23b3e7580116cc562c6:f661a07ae5f2ecc474f25990ef35e25a:3a2be6d0567261866d4ca7f8e0c193d5$</string>
+            <key>textureFileName</key>
+            <string>classbtn.png</string>
+        </dict>
+    </dict>
+</plist>

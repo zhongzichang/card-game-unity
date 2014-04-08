@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>elitetoggle-ns.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{129,67}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{129,67}}</string>
+                <key>sourceSize</key>
+                <string>{129,67}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>elitetoggle-ns.png</string>
+            <key>size</key>
+            <string>{133,71}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:eb066ce22f57be6d6e584c22876fd1a0:e55cc14a206036cb61bed0bab21709b7:e7fe707eea7855382afc1cdf0cb7ae1e$</string>
+            <key>textureFileName</key>
+            <string>elitetoggle-ns.png</string>
+        </dict>
+    </dict>
+</plist>

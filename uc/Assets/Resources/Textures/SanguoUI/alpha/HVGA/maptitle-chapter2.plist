@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>maptitle-chapter2.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{515,103}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{515,103}}</string>
+                <key>sourceSize</key>
+                <string>{515,103}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>maptitle-chapter2.png</string>
+            <key>size</key>
+            <string>{519,107}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:55f3c53015621fc81e391358539aa433:905ecdff3dd27a5c285fd882cd4fb0b4:1de92240be1876ec9a8dc0f2f6affd2c$</string>
+            <key>textureFileName</key>
+            <string>maptitle-chapter2.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>package_exp_bar_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{178,21}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{178,21}}</string>
+                <key>sourceSize</key>
+                <string>{178,21}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>package_exp_bar_bg.png</string>
+            <key>size</key>
+            <string>{182,25}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:8f267efd4f1d1b3ed8aabf9b586e3e72:ed0c5794ecffa55c6f8938528f7a9ba5:034f41089fb1094ba1944177c40183df$</string>
+            <key>textureFileName</key>
+            <string>package_exp_bar_bg.png</string>
+        </dict>
+    </dict>
+</plist>

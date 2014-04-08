@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>equipupgrade_progress_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{842,24}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{842,24}}</string>
+                <key>sourceSize</key>
+                <string>{842,24}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>equipupgrade_progress_bg.png</string>
+            <key>size</key>
+            <string>{846,28}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c0fa85f922fafd3eb1bcb592c5860302:8aa4514a1a4875698f245f19acc18a66:c19488741a7d4c171c68a891731baa7a$</string>
+            <key>textureFileName</key>
+            <string>equipupgrade_progress_bg.png</string>
+        </dict>
+    </dict>
+</plist>

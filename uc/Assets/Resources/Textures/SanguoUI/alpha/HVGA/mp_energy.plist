@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>mp_energy.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{78,11}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{78,11}}</string>
+                <key>sourceSize</key>
+                <string>{78,11}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>mp_energy.png</string>
+            <key>size</key>
+            <string>{82,15}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:5693e690061a5905b2c4ab9d7c76ac95:ff97f90f96d0cf5dea1097ed5d563a79:e6cbaf87acb6801fa13151097c103c8f$</string>
+            <key>textureFileName</key>
+            <string>mp_energy.png</string>
+        </dict>
+    </dict>
+</plist>

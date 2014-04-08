@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>heroselect_evolution_star.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{21,23}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{21,23}}</string>
+                <key>sourceSize</key>
+                <string>{21,23}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>heroselect_evolution_star.png</string>
+            <key>size</key>
+            <string>{25,27}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:e8f4d1311cbd1ad972b7573868d149a3:ba8fcc7689760ee1ee435d128503c1d6:7f245624724722cc098150633eb3e6e9$</string>
+            <key>textureFileName</key>
+            <string>heroselect_evolution_star.png</string>
+        </dict>
+    </dict>
+</plist>

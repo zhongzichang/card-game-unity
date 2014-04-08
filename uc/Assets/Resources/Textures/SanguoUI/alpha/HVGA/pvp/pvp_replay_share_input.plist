@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>pvp_replay_share_input.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{473,59}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{473,59}}</string>
+                <key>sourceSize</key>
+                <string>{473,59}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>pvp_replay_share_input.png</string>
+            <key>size</key>
+            <string>{477,63}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f67e48d4c625283ab5574b3df973b42e:f557315c6775fbac1a179e5eacbbdefa:18992f3ca297f7c485ad82357a0beae1$</string>
+            <key>textureFileName</key>
+            <string>pvp_replay_share_input.png</string>
+        </dict>
+    </dict>
+</plist>
