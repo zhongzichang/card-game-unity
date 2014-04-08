@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>playerinfo_button_red_1.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{140,67}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{140,67}}</string>
+                <key>sourceSize</key>
+                <string>{140,67}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>playerinfo_button_red_1.png</string>
+            <key>size</key>
+            <string>{144,71}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:0ff6a24184cbfb852a0aa05de89388da:85910a387970193a07eb61901bd94497:a4fbbcdda50c3988fa99e0f08ef21513$</string>
+            <key>textureFileName</key>
+            <string>playerinfo_button_red_1.png</string>
+        </dict>
+    </dict>
+</plist>

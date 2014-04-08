@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>equip_craft_4.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{242,39}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{242,39}}</string>
+                <key>sourceSize</key>
+                <string>{242,39}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>equip_craft_4.png</string>
+            <key>size</key>
+            <string>{246,43}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:65c4895941192b6752fe5c10699882b2:02c64494eb8615643e9f4bc9c93c64f6:75c01a0c76471998db4a810c16b2bfe0$</string>
+            <key>textureFileName</key>
+            <string>equip_craft_4.png</string>
+        </dict>
+    </dict>
+</plist>

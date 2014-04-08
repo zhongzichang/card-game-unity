@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>pvp_rank_1st_light.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{145,143}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{145,143}}</string>
+                <key>sourceSize</key>
+                <string>{145,143}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>pvp_rank_1st_light.png</string>
+            <key>size</key>
+            <string>{149,147}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:8680d7c4e39e2596627a95cc0eec6ee7:4a351b76a70be0c0b43a6dc644b45c91:be865f01b4a698481fe775f79fb9ca98$</string>
+            <key>textureFileName</key>
+            <string>pvp_rank_1st_light.png</string>
+        </dict>
+    </dict>
+</plist>

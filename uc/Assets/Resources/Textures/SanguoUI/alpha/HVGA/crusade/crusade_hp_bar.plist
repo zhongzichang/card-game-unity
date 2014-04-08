@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>crusade_hp_bar.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{75,10}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,10}}</string>
+                <key>sourceSize</key>
+                <string>{75,10}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>crusade_hp_bar.png</string>
+            <key>size</key>
+            <string>{79,14}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:6c854a736784477f3414caf70118518f:facf707fe14e3997f65cc6de71ff9bb2:3d46617f7df581f747b619aa52152c61$</string>
+            <key>textureFileName</key>
+            <string>crusade_hp_bar.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>portraitredmask.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{131,131}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{131,131}}</string>
+                <key>sourceSize</key>
+                <string>{131,131}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>portraitredmask.png</string>
+            <key>size</key>
+            <string>{135,135}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f69e0926fe9d40ea98a5b2f8d02565d9:265046870bdd7dcd5b917551789b90fa:65c52eb01e94395b2e00e52d8b5290af$</string>
+            <key>textureFileName</key>
+            <string>portraitredmask.png</string>
+        </dict>
+    </dict>
+</plist>

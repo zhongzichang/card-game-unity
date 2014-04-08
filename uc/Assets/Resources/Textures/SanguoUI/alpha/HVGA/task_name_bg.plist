@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>task_name_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{422,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{422,34}}</string>
+                <key>sourceSize</key>
+                <string>{422,34}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>task_name_bg.png</string>
+            <key>size</key>
+            <string>{426,38}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:8f13394dc077c50327f00b62f453c516:72ac15fc7221474c2375636aa7e508cc:37194dc2e1980c50777fa338ffa6005f$</string>
+            <key>textureFileName</key>
+            <string>task_name_bg.png</string>
+        </dict>
+    </dict>
+</plist>

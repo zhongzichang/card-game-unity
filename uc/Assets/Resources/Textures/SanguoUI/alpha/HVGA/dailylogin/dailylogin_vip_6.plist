@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>dailylogin_vip_6.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{71,25}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{71,25}}</string>
+                <key>sourceSize</key>
+                <string>{71,25}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>dailylogin_vip_6.png</string>
+            <key>size</key>
+            <string>{75,29}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:1b66e5d3251b93cd32961d85d4826813:0948603c91678765bac821a1f0ddc522:c19c2899c3a8b70a255dbb2e55d20229$</string>
+            <key>textureFileName</key>
+            <string>dailylogin_vip_6.png</string>
+        </dict>
+    </dict>
+</plist>

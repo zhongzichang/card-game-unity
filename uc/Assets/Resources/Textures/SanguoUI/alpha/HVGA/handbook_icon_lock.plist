@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>handbook_icon_lock.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{86,86}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{86,86}}</string>
+                <key>sourceSize</key>
+                <string>{86,86}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>handbook_icon_lock.png</string>
+            <key>size</key>
+            <string>{90,90}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:b8a50cfc771b748e32205cf7f0c925e7:6c16ac840b8d3301cea75e50f70f0a2d:40e0f2387e67e3b427daf343f2856aba$</string>
+            <key>textureFileName</key>
+            <string>handbook_icon_lock.png</string>
+        </dict>
+    </dict>
+</plist>

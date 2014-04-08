@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>shop_talk_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{227,74}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{227,74}}</string>
+                <key>sourceSize</key>
+                <string>{227,74}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>shop_talk_bg.png</string>
+            <key>size</key>
+            <string>{231,78}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:b886486511c86f52ddb47d3aacd83f97:611f738559a6d50e19d1f20a0a193415:c41d3b5c087c95f1ccdfd31c470af600$</string>
+            <key>textureFileName</key>
+            <string>shop_talk_bg.png</string>
+        </dict>
+    </dict>
+</plist>

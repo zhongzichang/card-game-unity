@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>main_tavern_title_press.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{129,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{129,33}}</string>
+                <key>sourceSize</key>
+                <string>{129,33}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>main_tavern_title_press.png</string>
+            <key>size</key>
+            <string>{133,37}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:b9d922b174d0a27ddc1e09c766ddb7de:1b097a0da657884cf16a1f23c3c5a656:e11cfe3977534565a3b1b1056aee4d9f$</string>
+            <key>textureFileName</key>
+            <string>main_tavern_title_press.png</string>
+        </dict>
+    </dict>
+</plist>

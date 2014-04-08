@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>dialogue_bottom_shadow.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{2,367}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{2,367}}</string>
+                <key>sourceSize</key>
+                <string>{2,367}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>dialogue_bottom_shadow.png</string>
+            <key>size</key>
+            <string>{6,371}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f89e6265927c0984154c76929baa8441:424f54413a58a693c1fab5c5fe7e8c62:55a71fa3ebd27bd10db0c1209ebb0230$</string>
+            <key>textureFileName</key>
+            <string>dialogue_bottom_shadow.png</string>
+        </dict>
+    </dict>
+</plist>

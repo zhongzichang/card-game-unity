@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>herobucket-halo.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{172,176}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{172,176}}</string>
+                <key>sourceSize</key>
+                <string>{172,176}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>herobucket-halo.png</string>
+            <key>size</key>
+            <string>{176,180}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:6bd0fc86299466b56210b537259e0f0d:6e63030fa2267dfe937af763446d9126:06ae4c59894d17879870ed663356798a$</string>
+            <key>textureFileName</key>
+            <string>herobucket-halo.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>herodetail_soulstone_icon.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{42,49}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{42,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>herodetail_soulstone_icon.png</string>
+            <key>size</key>
+            <string>{46,53}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c947dd04785e0f4288333e08761c5e1e:13f8de2268b43484f6a5469d5d6a2842:a4fb437facb09554a712eaabc6633e3d$</string>
+            <key>textureFileName</key>
+            <string>herodetail_soulstone_icon.png</string>
+        </dict>
+    </dict>
+</plist>

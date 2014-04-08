@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>handbook_equip_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{148,139}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{148,139}}</string>
+                <key>sourceSize</key>
+                <string>{148,139}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>handbook_equip_bg.png</string>
+            <key>size</key>
+            <string>{152,143}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:600b86a8e1837d3ec74fff4c6a6bda71:b6535ce36e6ba21ea9c90b3f4a408699:85df97be89ea7cb430e5e814f1ba0588$</string>
+            <key>textureFileName</key>
+            <string>handbook_equip_bg.png</string>
+        </dict>
+    </dict>
+</plist>

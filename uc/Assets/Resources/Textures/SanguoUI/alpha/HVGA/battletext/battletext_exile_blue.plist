@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_exile_blue.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{51,27}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{51,27}}</string>
+                <key>sourceSize</key>
+                <string>{51,27}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_exile_blue.png</string>
+            <key>size</key>
+            <string>{55,31}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:2d286ffbb844aa31a800bd410daf83f9:23101d1aba7a7cc3c488202f519698de:08b8593b8ad464ce158073b5a3ceeb01$</string>
+            <key>textureFileName</key>
+            <string>battletext_exile_blue.png</string>
+        </dict>
+    </dict>
+</plist>

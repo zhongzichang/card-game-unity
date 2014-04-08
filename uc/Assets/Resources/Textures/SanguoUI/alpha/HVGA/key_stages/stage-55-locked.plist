@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>stage-55-locked.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{211,195}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{211,195}}</string>
+                <key>sourceSize</key>
+                <string>{211,195}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>stage-55-locked.png</string>
+            <key>size</key>
+            <string>{215,199}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:6093f0c8b5e2cd1358e4bc0a7f28b787:30e288d35b04f2be6f8ec21d7fc85595:aaec7c3148e098c7223b6a7f1dde6dbd$</string>
+            <key>textureFileName</key>
+            <string>stage-55-locked.png</string>
+        </dict>
+    </dict>
+</plist>

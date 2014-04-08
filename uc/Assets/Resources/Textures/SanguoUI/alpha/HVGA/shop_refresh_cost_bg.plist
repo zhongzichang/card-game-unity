@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>shop_refresh_cost_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{88,46}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{88,46}}</string>
+                <key>sourceSize</key>
+                <string>{88,46}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>shop_refresh_cost_bg.png</string>
+            <key>size</key>
+            <string>{92,50}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:6da0d4cb26052528a0a06382eacd5630:32c72c140ae27fdf406f27c7d8a0680b:b2b9914a50031b0695951fa7f863f377$</string>
+            <key>textureFileName</key>
+            <string>shop_refresh_cost_bg.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>fortune.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{206,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{206,48}}</string>
+                <key>sourceSize</key>
+                <string>{206,48}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>fortune.png</string>
+            <key>size</key>
+            <string>{210,52}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:0b6d1f68f5cb2403c59df24cf47613e7:84241e022454eec8d18d6e47097d9c89:a10e78386e1ca369f309277ac17b8e46$</string>
+            <key>textureFileName</key>
+            <string>fortune.png</string>
+        </dict>
+    </dict>
+</plist>

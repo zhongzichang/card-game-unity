@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>crusade_box_gold_light.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{127,108}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{127,108}}</string>
+                <key>sourceSize</key>
+                <string>{127,108}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>crusade_box_gold_light.png</string>
+            <key>size</key>
+            <string>{131,112}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:2cb9d4162515fbaa079e52b1c0c423f8:eaade99568ecad6d1474d8703c94e174:7787f782b71af9b9a7b246dbada00e24$</string>
+            <key>textureFileName</key>
+            <string>crusade_box_gold_light.png</string>
+        </dict>
+    </dict>
+</plist>

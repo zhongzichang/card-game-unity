@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>stagecircle_skeleton4.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{48,51}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{48,51}}</string>
+                <key>sourceSize</key>
+                <string>{48,51}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>stagecircle_skeleton4.png</string>
+            <key>size</key>
+            <string>{52,55}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:438374a9832ce047e43044679541f388:4055cbc51579bdeeb08d0cf7641a04b0:7b15be211a639a694dc9ce415f84aa9f$</string>
+            <key>textureFileName</key>
+            <string>stagecircle_skeleton4.png</string>
+        </dict>
+    </dict>
+</plist>

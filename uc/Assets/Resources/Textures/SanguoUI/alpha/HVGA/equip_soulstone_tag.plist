@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>equip_soulstone_tag.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{23,26}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{23,26}}</string>
+                <key>sourceSize</key>
+                <string>{23,26}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>equip_soulstone_tag.png</string>
+            <key>size</key>
+            <string>{27,30}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c6cebd049d86cddcefabcfec213d1fce:a4fe1d23ad8e07cc527e654f5505d2df:2353e5a9e38305fa038781ea3941388b$</string>
+            <key>textureFileName</key>
+            <string>equip_soulstone_tag.png</string>
+        </dict>
+    </dict>
+</plist>

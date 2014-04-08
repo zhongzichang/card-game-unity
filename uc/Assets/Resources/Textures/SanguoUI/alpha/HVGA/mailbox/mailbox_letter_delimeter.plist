@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>mailbox_letter_delimeter.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{351,5}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{351,5}}</string>
+                <key>sourceSize</key>
+                <string>{351,5}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>mailbox_letter_delimeter.png</string>
+            <key>size</key>
+            <string>{355,9}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:0160f9cca5996ce085a986de8a8651e4:69d855b05738e31c7fb7a67a8df8d9cc:61fae6a6c39d6a22f4b2d6fb85ea5d3f$</string>
+            <key>textureFileName</key>
+            <string>mailbox_letter_delimeter.png</string>
+        </dict>
+    </dict>
+</plist>

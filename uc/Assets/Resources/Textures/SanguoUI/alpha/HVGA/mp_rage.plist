@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>mp_rage.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{104,13}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{104,13}}</string>
+                <key>sourceSize</key>
+                <string>{104,13}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>mp_rage.png</string>
+            <key>size</key>
+            <string>{108,17}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:e14154c3e279555cb5b379c9eb001446:c4fe37a9cf3ac1db06607c44728ca712:c9f82f5800759153d20f98ad49bd670b$</string>
+            <key>textureFileName</key>
+            <string>mp_rage.png</string>
+        </dict>
+    </dict>
+</plist>

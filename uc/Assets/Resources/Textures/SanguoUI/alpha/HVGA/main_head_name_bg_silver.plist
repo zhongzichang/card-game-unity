@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>main_head_name_bg_silver.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{164,47}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{164,47}}</string>
+                <key>sourceSize</key>
+                <string>{164,47}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>main_head_name_bg_silver.png</string>
+            <key>size</key>
+            <string>{168,51}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ae8ca6704eebd9861257c010eb04a9de:b539b0116266f529f3911967de4cc239:456713b0c1fd4b6344c5ac50e1c46f83$</string>
+            <key>textureFileName</key>
+            <string>main_head_name_bg_silver.png</string>
+        </dict>
+    </dict>
+</plist>

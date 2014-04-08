@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>main_shortcut_board.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{106,91}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{106,91}}</string>
+                <key>sourceSize</key>
+                <string>{106,91}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>main_shortcut_board.png</string>
+            <key>size</key>
+            <string>{110,95}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:1c48af84997d32197b9df1f2d79939d6:bfd240746b2e535f55e8e9feb9e6b674:7c887e94cb14ceb05beae75de097d843$</string>
+            <key>textureFileName</key>
+            <string>main_shortcut_board.png</string>
+        </dict>
+    </dict>
+</plist>

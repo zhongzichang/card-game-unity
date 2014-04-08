@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>load_flower.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{35,35}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{35,35}}</string>
+                <key>sourceSize</key>
+                <string>{35,35}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>load_flower.png</string>
+            <key>size</key>
+            <string>{39,39}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:24881b44713286ee72710e3282d412e2:aa74c6baf218e3d712cc7e8bc9ee6d57:939213b7ac4f20dd3e3fb091b49f5fdf$</string>
+            <key>textureFileName</key>
+            <string>load_flower.png</string>
+        </dict>
+    </dict>
+</plist>

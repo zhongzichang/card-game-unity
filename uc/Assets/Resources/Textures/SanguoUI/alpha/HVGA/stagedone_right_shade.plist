@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>stagedone_right_shade.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{24,98}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{24,98}}</string>
+                <key>sourceSize</key>
+                <string>{24,98}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>stagedone_right_shade.png</string>
+            <key>size</key>
+            <string>{28,102}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:4e26516474dd558d83a992d84305c4f6:86f409a7c352d06085489be8f479ee2d:56e954fa2e1280ebdadb13180fd8d926$</string>
+            <key>textureFileName</key>
+            <string>stagedone_right_shade.png</string>
+        </dict>
+    </dict>
+</plist>

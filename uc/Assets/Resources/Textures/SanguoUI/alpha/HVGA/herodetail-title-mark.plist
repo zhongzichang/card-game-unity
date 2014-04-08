@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>herodetail-title-mark.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{289,15}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{289,15}}</string>
+                <key>sourceSize</key>
+                <string>{289,15}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>herodetail-title-mark.png</string>
+            <key>size</key>
+            <string>{293,19}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:cef6359b010dfb26ccc3453582fec885:71e23ffb8ca4d7270b4b2a82d174a7d6:de934e95bd674915c51a6e91663efddb$</string>
+            <key>textureFileName</key>
+            <string>herodetail-title-mark.png</string>
+        </dict>
+    </dict>
+</plist>

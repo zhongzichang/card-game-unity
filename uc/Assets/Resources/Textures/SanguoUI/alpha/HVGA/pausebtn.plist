@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>pausebtn.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{74,75}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{74,75}}</string>
+                <key>sourceSize</key>
+                <string>{74,75}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>pausebtn.png</string>
+            <key>size</key>
+            <string>{78,79}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:76ac196547270e24ad8dfb78f0d32b03:9010b1a27114e27226a55ff99334cdd5:0d5ed927c072bf6b5c208470a3ffb02c$</string>
+            <key>textureFileName</key>
+            <string>pausebtn.png</string>
+        </dict>
+    </dict>
+</plist>

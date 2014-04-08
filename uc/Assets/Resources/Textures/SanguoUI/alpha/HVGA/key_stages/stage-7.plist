@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>stage-7.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{210,193}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{210,193}}</string>
+                <key>sourceSize</key>
+                <string>{210,193}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>stage-7.png</string>
+            <key>size</key>
+            <string>{214,197}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ea644ed7d74af489092432daa008e722:add5cd5a9a6b77b013cec22cc93c0db3:d94f26a470bfab8d6dd5af2f5cb08557$</string>
+            <key>textureFileName</key>
+            <string>stage-7.png</string>
+        </dict>
+    </dict>
+</plist>

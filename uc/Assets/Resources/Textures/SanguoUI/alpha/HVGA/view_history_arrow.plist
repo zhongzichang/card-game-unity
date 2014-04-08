@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>view_history_arrow.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{14,19}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{14,19}}</string>
+                <key>sourceSize</key>
+                <string>{14,19}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>view_history_arrow.png</string>
+            <key>size</key>
+            <string>{18,23}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:220e5ab23d7bb7a8f09615d46b8023a1:d524e266d296d25ac64e30528bb74379:f7822c5ed8fcabf39bfbfa04d84fef79$</string>
+            <key>textureFileName</key>
+            <string>view_history_arrow.png</string>
+        </dict>
+    </dict>
+</plist>

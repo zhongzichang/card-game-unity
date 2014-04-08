@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>failed_light.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{385,359}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{385,359}}</string>
+                <key>sourceSize</key>
+                <string>{385,359}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>failed_light.png</string>
+            <key>size</key>
+            <string>{389,363}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:4bc31baf982d7f17aa316e9ed73fb034:fc246a3ec434687b313fc35059d38507:bd2e73760c2b24fbdaaebf9e67b764f1$</string>
+            <key>textureFileName</key>
+            <string>failed_light.png</string>
+        </dict>
+    </dict>
+</plist>

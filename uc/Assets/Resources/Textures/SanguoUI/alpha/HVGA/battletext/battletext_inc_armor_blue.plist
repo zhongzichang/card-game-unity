@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battletext_inc_armor_blue.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{99,28}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{99,28}}</string>
+                <key>sourceSize</key>
+                <string>{99,28}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battletext_inc_armor_blue.png</string>
+            <key>size</key>
+            <string>{103,32}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:d44b776b32e6b089b9b05f31d7e16917:a188a43985bdcd0037c4219bad3ed4ab:7fe307ea1a2b14eb9a7c81eb8aaa2778$</string>
+            <key>textureFileName</key>
+            <string>battletext_inc_armor_blue.png</string>
+        </dict>
+    </dict>
+</plist>

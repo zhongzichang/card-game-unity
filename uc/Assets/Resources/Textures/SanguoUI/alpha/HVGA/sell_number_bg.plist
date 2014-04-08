@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>sell_number_bg.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{326,62}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{326,62}}</string>
+                <key>sourceSize</key>
+                <string>{326,62}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>sell_number_bg.png</string>
+            <key>size</key>
+            <string>{330,66}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:54c4811a2e86c76ce1e5eb6a1493e3a7:0930ebe2b9e2c060e38a106aa19def92:54914442adb74e0e9f0f082c7ffcff19$</string>
+            <key>textureFileName</key>
+            <string>sell_number_bg.png</string>
+        </dict>
+    </dict>
+</plist>

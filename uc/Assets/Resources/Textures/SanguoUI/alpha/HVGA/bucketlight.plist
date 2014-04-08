@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>bucketlight.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{172,176}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{172,176}}</string>
+                <key>sourceSize</key>
+                <string>{172,176}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>bucketlight.png</string>
+            <key>size</key>
+            <string>{176,180}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:882b6fd9f24c7f9e243c71df2f5181a2:bc35a90d8161ae8b4e2786984aa8dc8f:3d2dad6f26bd955d0c15e90dc5ccd5a5$</string>
+            <key>textureFileName</key>
+            <string>bucketlight.png</string>
+        </dict>
+    </dict>
+</plist>

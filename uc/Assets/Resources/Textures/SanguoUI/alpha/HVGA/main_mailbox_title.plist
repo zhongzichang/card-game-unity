@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>main_mailbox_title.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{129,33}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{129,33}}</string>
+                <key>sourceSize</key>
+                <string>{129,33}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>main_mailbox_title.png</string>
+            <key>size</key>
+            <string>{133,37}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c58bc251c32381a89df1e1f2fb2fb2bd:007906a5ec0300229b50c7c637a03215:1d9d7b18f4c4e0c63839098deab8aeb0$</string>
+            <key>textureFileName</key>
+            <string>main_mailbox_title.png</string>
+        </dict>
+    </dict>
+</plist>

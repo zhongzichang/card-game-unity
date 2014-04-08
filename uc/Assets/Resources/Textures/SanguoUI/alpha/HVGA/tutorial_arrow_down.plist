@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>tutorial_arrow_down.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{65,46}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{65,46}}</string>
+                <key>sourceSize</key>
+                <string>{65,46}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>tutorial_arrow_down.png</string>
+            <key>size</key>
+            <string>{69,50}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:45e9339aa765685a9e4f2de716dc754e:f70e8f10bbdd84d47dbfb8baee8e62b2:cd60c763c2adb5d63d761889d8b2e238$</string>
+            <key>textureFileName</key>
+            <string>tutorial_arrow_down.png</string>
+        </dict>
+    </dict>
+</plist>

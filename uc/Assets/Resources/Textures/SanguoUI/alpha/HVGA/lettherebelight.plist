@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>lettherebelight.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{385,385}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{385,385}}</string>
+                <key>sourceSize</key>
+                <string>{385,385}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>lettherebelight.png</string>
+            <key>size</key>
+            <string>{389,389}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:854db8d328af31646a3cb90b0be0fbf7:dabb81fef8fbd3517acbde38ce157e10:21e0f2f96fbf947c18ff5617ec3ec593$</string>
+            <key>textureFileName</key>
+            <string>lettherebelight.png</string>
+        </dict>
+    </dict>
+</plist>

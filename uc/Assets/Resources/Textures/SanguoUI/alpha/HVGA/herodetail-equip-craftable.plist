@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>herodetail-equip-craftable.pvr.ccz</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{75,27}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{75,27}}</string>
+                <key>sourceSize</key>
+                <string>{75,27}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>herodetail-equip-craftable.png</string>
+            <key>size</key>
+            <string>{79,31}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:6cdf972c85a61aeb152ab162e676d451:1ccc014e127cd6dcb5e1a6f2ddabe308:9a76baead62e7b4e6263d8f9cbe63829$</string>
+            <key>textureFileName</key>
+            <string>herodetail-equip-craftable.png</string>
+        </dict>
+    </dict>
+</plist>
