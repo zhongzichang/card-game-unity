@@ -3,49 +3,50 @@ using System.Collections;
 
 namespace TangUI
 {
- public class UifwTest : MonoBehaviour
-  {
+	public class UifwTest : MonoBehaviour
+	{
 
-    UIAnchor anchor;
-    UIPanelNodeManager mgr;
+		UIAnchor anchor;
+		UIPanelNodeManager mgr;
 
-    // Use this for initialization
-    void Start ()
-    {
+		// Use this for initialization
+		void Start ()
+		{
 
-      anchor = GetComponent<UIAnchor> ();
+			anchor = GetComponent<UIAnchor> ();
 
-      if (anchor != null) {
-        mgr = new UIPanelNodeManager (anchor);
+			if (anchor != null) {
+				mgr = new UIPanelNodeManager (anchor);
 
-      }
+			}
 
   
-    }
+		}
   
-    void OnGUI ()
-    {
-      if (GUI.Button (new Rect (10, 10, 150, 100), "Back")) {
+		void OnGUI ()
+		{
+			if (GUI.Button (new Rect (10, 10, 150, 100), "Back")) {
 
-        if (mgr != null) {
-          mgr.Back ();
-        }
+				if (mgr != null) {
+					mgr.Back ();
+				}
 
-      }
+			}
 
-      if (GUI.Button (new Rect (200, 10, 150, 100), "New Role Panel")) {
-        if (mgr != null) {
-          mgr.LazyOpen ("WindowPanel", UIPanelNode.OpenMode.ADDITIVE, "test param");
-        }
-      }
+			if (GUI.Button (new Rect (200, 10, 150, 100), "New Role Panel")) {
+				if (mgr != null) {
+					mgr.LazyOpen ("WindowPanel", UIPanelNode.OpenMode.ADDITIVE, "test param");
+				}
+			}
 
-      if (GUI.Button (new Rect (400, 10, 150, 100), "New Skill Panel")) {
-        if (mgr != null) {
-          mgr.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.ADDITIVE);
-        }
-      }
+			if (GUI.Button (new Rect (400, 10, 150, 100), "New Skill Panel")) {
+				if (mgr != null) {
+					mgr.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.ADDITIVE);
+				}
+			}
+
+		}
 
 	}
-
 }
 
