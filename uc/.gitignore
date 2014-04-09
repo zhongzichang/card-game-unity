@@ -3,6 +3,7 @@
 [Oo]bj/
 [Ll]ibrary/
 Temp/
+ProjectSettings/
 
 # mstest test results
 TestResults
