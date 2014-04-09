@@ -15,6 +15,9 @@ TestResults
 *.suo
 *.user
 *.sln.docstates
+*.csproj
+*.sln
+*.userprefs
 
 # Build results
 [Dd]ebug/
