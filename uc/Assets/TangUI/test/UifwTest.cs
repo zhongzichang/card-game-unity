@@ -38,12 +38,6 @@ namespace TangUI
 				}
 			}
 
-//			if (GUI.Button (new Rect (400, 10, 150, 100), "New Skill Panel")) {
-//				if (mgr != null) {
-//					mgr.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.OVERRIDE);
-//				}
-//			}
-
 		}
 
 	}
