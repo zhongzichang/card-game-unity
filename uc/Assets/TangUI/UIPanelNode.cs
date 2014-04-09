@@ -156,9 +156,9 @@ namespace TangUI
         transform.localRotation = Quaternion.identity;
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
-        if (null != panel)
-          panel.depth = context.depth;
-
+        if (null != panel){
+          NGUITools.AdjustDepth(gameObject, context.depth*100);
+        }
         // assign param
         MonoBehaviour script = gameObject.GetComponent (name) as MonoBehaviour;
         if (script != null) {
@@ -170,7 +170,7 @@ namespace TangUI
     
 
         if (!gameObject.activeSelf)
-          SetActive (gameObject, true);
+          SetActive (true);
 
       } else {
         throw new Exception ("Can not attach to previous node.");
