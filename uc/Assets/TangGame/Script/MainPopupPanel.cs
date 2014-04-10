@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangUI;
 
 public class MainPopupPanel : MonoBehaviour {
 
 	public GameObject MainPopupButton;
 	public GameObject HeroMenu;
 	public GameObject BagMenu;
-	public GameObject DebrisMenu;
+	public GameObject FragmentsMenu;
 	public GameObject TaskMenu;
 	public GameObject ActivityMenu;
 
@@ -14,7 +15,9 @@ public class MainPopupPanel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		UIEventListener.Get (HeroMenu.gameObject).onClick += OnHeroMenuClick;
-
+		UIEventListener.Get (BagMenu.gameObject).onClick += OnBagMenuClick;
+		UIEventListener.Get (FragmentsMenu.gameObject).onClick += OnDebrisMenuClick;
+//		UIEventListener.Get (TaskMenu.gameObject).onClick += OnTaskMenuClick;
 
 		mainPopupToggle = MainPopupButton.GetComponent<UIToggle>();
 	}
@@ -25,9 +28,19 @@ public class MainPopupPanel : MonoBehaviour {
 	}
 	// when hero menu click show hero panel
 	void OnHeroMenuClick(GameObject obj){
-		TangGame.UIContext.mgr.LazyOpen ("HeroViewPanel");
+		TangGame.UIContext.mgr.LazyOpen ("HeroViewPanel",UIPanelNode.OpenMode.ADDITIVE);
 		this.CloseMenu ();
 	}
+	void OnBagMenuClick(GameObject obj){
+		TangGame.UIContext.mgr.LazyOpen("WindowPanel" ,UIPanelNode.OpenMode.ADDITIVE);
+		this.CloseMenu ();
+	}
+	void OnDebrisMenuClick(GameObject obj){
+		TangGame.UIContext.mgr.LazyOpen ("QuestLogPanel" , UIPanelNode.OpenMode.REPLACE);
+		this.CloseMenu ();
+	}
+
+
 
 	// Close current Menu!
 	void CloseMenu(){

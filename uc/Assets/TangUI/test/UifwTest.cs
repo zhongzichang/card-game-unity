@@ -28,20 +28,14 @@ namespace TangUI
 			if (GUI.Button (new Rect (10, 10, 150, 100), "Back")) {
 
 				if (mgr != null) {
-					mgr.Back ();
+					TangGame.UIContext.mgr.Back ();
 				}
 
 			}
 
-			if (GUI.Button (new Rect (200, 10, 150, 100), "New Role Panel")) {
+			if (GUI.Button (new Rect (200, 10, 150, 100), "New Main Popup Panel")) {
 				if (mgr != null) {
-					mgr.LazyOpen ("WindowPanel", UIPanelNode.OpenMode.ADDITIVE, "test param");
-				}
-			}
-
-			if (GUI.Button (new Rect (400, 10, 150, 100), "New Skill Panel")) {
-				if (mgr != null) {
-					mgr.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.ADDITIVE);
+					mgr.LazyOpen ("MainPopupPanel", UIPanelNode.OpenMode.ADDITIVE, "test param");
 				}
 			}
 
