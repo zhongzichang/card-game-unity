@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PureMVC.Interfaces;
+using PureMVC.Patterns;
 
 public class HeroViewPanel : MonoBehaviour
 {
@@ -15,6 +17,16 @@ public class HeroViewPanel : MonoBehaviour
 	public GameObject HeroUnlock;
 	private UIToggle lastToggle = null;
 	private Dictionary<int,HeroItem> heroItems = new Dictionary<int, HeroItem>();
+	private HeroViewPanelMediator mediator;
+
+	void Awake(){
+		mediator = new HeroViewPanelMediator ();
+		Facade.Instance.RegisterMediator (mediator);
+	}
+
+	public class HeroViewPanelMediator : Mediator{
+
+	}
 
 	// Use this for initialization
 	void Start ()
