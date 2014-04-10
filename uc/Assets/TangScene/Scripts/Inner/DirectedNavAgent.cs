@@ -6,12 +6,14 @@ namespace TangScene {
 
   public class DirectedNavAgent : MonoBehaviour {
 
+    private Transform myTransform;
+
     // speed
     public float speed;
     // stopping distance
     public float stoppingDistance;
     // destination
-    public Vector3 destination{
+    public Vector3 destination {
       private set;
       get;
     }
@@ -25,12 +27,24 @@ namespace TangScene {
 
   	// Use this for initialization
   	void Start () {
-  	  
+      myTransform = transform;
   	}
   	
   	// Update is called once per frame
-  	void Update () {
-  	  
+  	void LateUpdate () {
+
+  	  if ( hasPath ) {
+
+        float distance = Vector3.Distance (myTransform.localPosition, destination);
+        float fraction = Time.deltaTime * speed / distance;
+
+        if (distance < stoppingDistance) {
+          ResetPath();
+        } else {
+          myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
+                                                    destination, fraction);
+        }
+      }
   	}
 
 

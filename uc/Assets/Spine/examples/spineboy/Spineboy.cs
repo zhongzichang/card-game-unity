@@ -30,9 +30,16 @@ using UnityEngine;
 using System.Collections;
 using Spine;
 using System;
+using TangScene;
 
+[RequireComponent(typeof(DirectedNavigable))]
+[RequireComponent(typeof(CharacterStatusBhvr))]
 public class Spineboy : MonoBehaviour {
+
 	SkeletonAnimation skeletonAnimation;
+
+  DirectedNavigable navigable;
+  CharacterStatusBhvr csBhvr;
 
 	public void Start () {
 		// Get the SkeletonAnimation component for the GameObject this script is attached to.
@@ -43,7 +50,22 @@ public class Spineboy : MonoBehaviour {
 		skeletonAnimation.state.AddAnimation(0, "jump", false, 0);
 		// Queue walk to be looped on track 0 after the jump animation.
 		skeletonAnimation.state.AddAnimation(0, "walk", true, 0);
+
+    navigable = GetComponent<DirectedNavigable>();
+    if( navigable != null ){
+      //navigable.m_speed = 200;
+      navigable.NavTo(1000);
+    }
+    csBhvr = GetComponent<CharacterStatusBhvr>();
+    csBhvr.statusStartHandler += OnCharacterStatusChanged;
+
 	}
+
+  public void OnCharacterStatusChanged(CharacterStatus cs){
+    if( cs == CharacterStatus.idle ) {
+      skeletonAnimation.state.SetAnimation(0, "jump", true);
+    }
+  }
 	
 	public void Event (Spine.AnimationState state, int trackIndex, Spine.Event e) {
 		Debug.Log(trackIndex + " " + state.GetCurrent(trackIndex) + ": event " + e + ", " + e.Int);

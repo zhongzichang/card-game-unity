@@ -3,7 +3,6 @@
  * Date: 2013/9/13
  * Author: zzc
  */
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,41 +38,39 @@ namespace Tang
       Enqueue (filepath, completedHandler, failureHandler, null);
     }
 
-    public static int UncompletedCount
-    {
-      get
-	{
-	  return waitingQueue.Count + loadingQueue.Count;
-	}
+    public static int UncompletedCount {
+      get {
+        return waitingQueue.Count + loadingQueue.Count;
+      }
     }
 
     public static void Enqueue (string filepath, 
-				LoadCompleted completedHandler, 
-				LoadFailure failureHandler,
-				LoadBegan beganHandler)
+        LoadCompleted completedHandler, 
+        LoadFailure failureHandler,
+        LoadBegan beganHandler)
     {
 
       waitingQueue.Enqueue (filepath);
       
       if (completedHandler != null) {
-	if (completedHandlerTable.ContainsKey (filepath))
-	  completedHandlerTable [filepath] += completedHandler;
-	else
-	  completedHandlerTable.Add (filepath, completedHandler);
+        if (completedHandlerTable.ContainsKey (filepath))
+          completedHandlerTable [filepath] += completedHandler;
+        else
+          completedHandlerTable.Add (filepath, completedHandler);
       }
       
       if (failureHandler != null) {
-	if (failureHandlerTable.ContainsKey (filepath))
-	  failureHandlerTable [filepath] += failureHandler;
-	else
-	  failureHandlerTable.Add (filepath, failureHandler);
+        if (failureHandlerTable.ContainsKey (filepath))
+          failureHandlerTable [filepath] += failureHandler;
+        else
+          failureHandlerTable.Add (filepath, failureHandler);
       }
 
       if (beganHandler != null) {
-	if (beganHandlerTable.ContainsKey (filepath))
-	  beganHandlerTable [filepath] += beganHandler;
-	else
-	  beganHandlerTable.Add (filepath, beganHandler);
+        if (beganHandlerTable.ContainsKey (filepath))
+          beganHandlerTable [filepath] += beganHandler;
+        else
+          beganHandlerTable.Add (filepath, beganHandler);
       }
     }
 
@@ -87,57 +84,58 @@ namespace Tang
       LoadBegan loadBeganHandler = null;
 
       if (filepath != null) {
-	// take out delegate methods
-	if (completedHandlerTable.ContainsKey (filepath))
-	  loadCompletedHandler = completedHandlerTable [filepath];
-	if (failureHandlerTable.ContainsKey (filepath))
-	  loadFailureHandler = failureHandlerTable [filepath];
-	if (beganHandlerTable.ContainsKey (filepath))
-	  loadBeganHandler = beganHandlerTable [filepath];
-	completedHandlerTable.Remove (filepath);
-	failureHandlerTable.Remove (filepath);
-	beganHandlerTable.Remove (filepath);
+        // take out delegate methods
+        if (completedHandlerTable.ContainsKey (filepath))
+          loadCompletedHandler = completedHandlerTable [filepath];
+        if (failureHandlerTable.ContainsKey (filepath))
+          loadFailureHandler = failureHandlerTable [filepath];
+        if (beganHandlerTable.ContainsKey (filepath))
+          loadBeganHandler = beganHandlerTable [filepath];
+        completedHandlerTable.Remove (filepath);
+        failureHandlerTable.Remove (filepath);
+        beganHandlerTable.Remove (filepath);
 
-	if (loadedTable.ContainsKey (filepath)) {
-	  if (loadBeganHandler != null)
-	    loadBeganHandler (loadedTable [filepath]);
+        if (loadedTable.ContainsKey (filepath)) {
+          if (loadBeganHandler != null)
+            loadBeganHandler (loadedTable [filepath]);
 
-	  // have loaded
-	  if (loadCompletedHandler != null)
-	    loadCompletedHandler (loadedTable [filepath]);
-	} else {
-	  // ready load
-	  loadingQueue.Enqueue (filepath);
-	  WWW www = new WWW (filepath);
-	  loadingWWW = www;
-	  lastProgress = 0F;
-	  if (loadBeganHandler != null)
-	    loadBeganHandler (www);
+          // have loaded
+          if (loadCompletedHandler != null)
+            loadCompletedHandler (loadedTable [filepath]);
+        } else {
+          // ready load
+          loadingQueue.Enqueue (filepath);
+          WWW www = new WWW (filepath);
+          loadingWWW = www;
+          lastProgress = 0F;
+          if (loadBeganHandler != null)
+            loadBeganHandler (www);
 
-	  yield return www;
-	  loadingWWW = null;
-	  if (www.error == null) {
-	    // load success
-	    loadedTable.Add (filepath, www);
-	    if (loadCompletedHandler != null)
-	      loadCompletedHandler (www);
-	  } else {
-	    // load failure
-	    if (loadFailureHandler != null)
-	      loadFailureHandler (www);
-	  }
-	  loadingQueue.Dequeue ();
-	}
+          yield return www;
+          loadingWWW = null;
+          if (www.error == null) {
+            // load success
+            loadedTable.Add (filepath, www);
+            if (loadCompletedHandler != null)
+              loadCompletedHandler (www);
+          } else {
+            // load failure
+            if (loadFailureHandler != null)
+              loadFailureHandler (www);
+          }
+          loadingQueue.Dequeue ();
+          www.Dispose();
+        }
       }
     }
 
     void Update ()
     {
       if (loadingQueue.Count == 0 && waitingQueue.Count > 0)
-	StartCoroutine (Load ());
+        StartCoroutine (Load ());
 
       if (loadingWWW != null && (loadingWWW.progress - lastProgress) > NOTIFY_SPAN) {
-	Facade.Instance.SendNotification (NtftNames.TANG_WWW_PROGRESS, loadingWWW);
+        Facade.Instance.SendNotification (NtftNames.TANG_WWW_PROGRESS, loadingWWW);
       }
       
     }
