@@ -12,6 +12,7 @@ namespace TangLevel
 {
   public class SubLevel
   {
+    public int id;
 
     public string resName;
 
@@ -23,4 +24,3 @@ namespace TangLevel
     }
   }
 }
-

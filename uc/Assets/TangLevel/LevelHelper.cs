@@ -11,10 +11,13 @@ using System;
 using UnityEngine;
 using TS = TangScene;
 
+
 namespace TangLevel
 {
   public class LevelHelper
   {
+
+    public static int resRemain = 0;
 
     public static Level CurrentLevel{
       get;
@@ -29,13 +32,17 @@ namespace TangLevel
 
     public static void LoadSubLevel(SubLevel subLevel){
 
-
-
+      resRemain++;
+      Tang.AssetBundleLoader.LoadAsync(subLevel.resName, OnLoadCompleted);
+      Hero[] heros = subLevel.enemyGroup.heros;
+      for(int i=0; i<heros.Length; i++ ){
+        Tang.AssetBundleLoader.LoadAsync(heros[i].resName, OnLoadCompleted);
+      }
     }
 
 
-    public static void OnLevelCompleted(){
-
+    public static void OnLoadCompleted(AssetBundle ab){
+      resRemain--;
     }
 
     

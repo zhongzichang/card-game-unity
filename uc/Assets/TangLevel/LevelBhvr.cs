@@ -17,6 +17,11 @@ namespace TangLevel
     // Update is called once per frame
     void Update ()
     {
+
+      if( LevelContext.IsWaitingForEnten && LevelContext.IsNextSubLevelResReady ){
+        // enter sub level
+
+      }
   
     }
   }
