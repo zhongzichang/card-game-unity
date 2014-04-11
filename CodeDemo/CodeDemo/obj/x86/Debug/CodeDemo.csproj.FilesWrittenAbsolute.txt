@@ -1,0 +1,5 @@
+/Users/zhongzichang/Projects/CodeDemo/CodeDemo/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/zhongzichang/Projects/CodeDemo/CodeDemo/bin/Debug/CodeDemo.exe.mdb
+/Users/zhongzichang/Projects/CodeDemo/CodeDemo/bin/Debug/CodeDemo.exe
+/Users/zhongzichang/Projects/CodeDemo/CodeDemo/obj/x86/Debug/CodeDemo.exe
+/Users/zhongzichang/Projects/CodeDemo/CodeDemo/obj/x86/Debug/CodeDemo.exe.mdb

@@ -1,0 +1,42 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="CodeDemo/TangConvert/SpineToDragonBones.cs">
+    <Files>
+      <File FileName="CodeDemo/Program.cs" Line="15" Column="70" />
+      <File FileName="CodeDemo/TangConvert/DbAnimation.cs" Line="22" Column="5" />
+      <File FileName="CodeDemo/TangConvert/SpineToDragonBones.cs" Line="89" Column="44" />
+      <File FileName="CodeDemo/TangConvert/DbAnimation.cs.meta" Line="1" Column="1" />
+      <File FileName="CodeDemo/TangConvert/DbArmature.cs" Line="21" Column="5" />
+      <File FileName="CodeDemo/TangConvert/DbBone.cs" Line="9" Column="38" />
+      <File FileName="CodeDemo/TangConvert/DbTransform.cs" Line="20" Column="23" />
+      <File FileName="CodeDemo/TangConvert/DbTimeline.cs" Line="19" Column="19" />
+      <File FileName="CodeDemo/TangConvert/DbSlot.cs" Line="20" Column="32" />
+      <File FileName="CodeDemo/TangConvert/DbSkin.cs" Line="17" Column="26" />
+      <File FileName="CodeDemo/TangConvert/DbFrame.cs" Line="17" Column="29" />
+      <File FileName="CodeDemo/TangConvert/DbDisplay.cs" Line="18" Column="24" />
+      <File FileName="CodeDemo/TangConvert/DbColorTransform.cs" Line="22" Column="22" />
+      <File FileName="CodeDemo/TangConvert/SpineAnimation.cs" Line="18" Column="38" />
+      <File FileName="CodeDemo/TangConvert/SpineRotate.cs" Line="17" Column="18" />
+      <File FileName="CodeDemo/TangConvert/SpineSkeleton.cs" Line="8" Column="21" />
+      <File FileName="CodeDemo/TangConvert/SpineSkin.cs" Line="15" Column="24" />
+      <File FileName="CodeDemo/TangConvert/SpineBone.cs" Line="25" Column="30" />
+      <File FileName="CodeDemo/TangConvert/DragonBones.cs" Line="20" Column="27" />
+      <File FileName="CodeDemo/LitJson/JsonWriter.cs" Line="369" Column="41" />
+      <File FileName="CodeDemo/LitJson/JsonMapper.cs" Line="366" Column="51" />
+      <File FileName="CodeDemo/TangConvert/SpineScale.cs" Line="18" Column="24" />
+      <File FileName="CodeDemo/TangConvert/SpineSlot.cs" Line="23" Column="34" />
+      <File FileName="CodeDemo/TangConvert/SpineTranslate.cs" Line="13" Column="30" />
+      <File FileName="../sg-revo/uc/Assets/Editor/LitJson/JsonReader.cs" Line="415" Column="7" />
+      <File FileName="CodeDemo/JsonSample.cs" Line="17" Column="32" />
+      <File FileName="../sg-revo/uc/Assets/TangGame/Scripts/UI/Panel/MainPopupPanel.cs" Line="40" Column="39" />
+      <File FileName="CodeDemo/TangConvert/DragonBonesToSpine.cs" Line="24" Column="25" />
+      <File FileName="../sg-revo/uc/Assets/TangUI/Config.cs" Line="26" Column="2" />
+      <File FileName="../sg-revo/uc/Assets/Editor/TangConvert/DragonBones.cs" Line="21" Column="5" />
+      <File FileName="CodeDemo/TangConvert/SpineTimeline.cs" Line="16" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
