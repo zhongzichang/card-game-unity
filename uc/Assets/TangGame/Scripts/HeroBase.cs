@@ -2,16 +2,27 @@
 using System.Collections;
 
 public class HeroBase{
+	//英雄id
 	private long id;
+	//英雄配置id
 	private int configId;
+	//英雄名字
 	private string heroName;
+	//英雄图标
 	private string heroAvatar;
+	//英雄等级
 	private int level;
+	//英雄品阶等级
 	private HeroesRankEnum heroesRank;
+	//英雄属性 力量／敏捷／智力
 	private HeroPropertyEnum heroPropertyType;
+	//英雄是否解锁
 	private bool islock;
+	//碎片当前数量
 	private int fragmentsCount;
+	//碎片当前最大数量
 	private int fragmentsCountMax;
+	//英雄位置类型，前中后
 	private HeroLocationEnum heroLocation;
 
 	public long Id {
