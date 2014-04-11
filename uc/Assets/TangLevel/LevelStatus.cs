@@ -10,17 +10,9 @@
 using System;
 namespace TangLevel
 {
-  public class SubLevel
+  public enum LevelStatus
   {
-    public int id;
 
-    public string resName;
-
-    public Group enemyGroup;
-
-    public SubLevel ()
-    {
-
-    }
   }
 }
+

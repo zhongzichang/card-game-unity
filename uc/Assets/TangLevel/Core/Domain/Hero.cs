@@ -12,6 +12,8 @@ namespace TangLevel
 {
   public class Hero
   {
+    
+    public string resName;
 
     public int strength;
     public int intelligence;
@@ -21,7 +23,6 @@ namespace TangLevel
     public int mp;
 
     public int grade;
-
 
     public Hero ()
     {

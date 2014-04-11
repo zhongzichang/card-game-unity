@@ -10,17 +10,34 @@
 using System;
 namespace TangLevel
 {
-  public class SubLevel
+  public class LevelContext
   {
-    public int id;
 
-    public string resName;
-
-    public Group enemyGroup;
-
-    public SubLevel ()
-    {
-
+    public static Level CurrentLevel {
+      get;
+      set;
     }
+
+    public static SubLevel CurrentSubLevel {
+      get;
+      set;
+    }
+
+    public static SubLevel NextSubLevel {
+      get;
+      set;
+    }
+
+    public static bool IsNextSubLevelResReady {
+      get;
+      set;
+    }
+
+    public static bool IsWaitingForEnten {
+      get;
+      set;
+    }
+
   }
 }
+
