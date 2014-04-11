@@ -9,20 +9,14 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace TangConvert
 {
-  [DataContract]
   public class DragonBones
   {
-    [DataMember]
     public string name;
-    [DataMember]
     public int frameRate;
-    [DataMember]
     public string version;
-    [DataMember]
     public List<DbArmature> armature;
 
   }
