@@ -18,6 +18,7 @@ TestResults
 *.csproj
 *.sln
 *.userprefs
+*.DS_Store
 
 # Build results
 [Dd]ebug/
