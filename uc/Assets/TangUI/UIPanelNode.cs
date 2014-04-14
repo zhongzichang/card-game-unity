@@ -1,5 +1,5 @@
 /**
- * UI Panel Manager
+ * UI Panel Node
  * Author: zzc
  * Date: 2014/4/3
  */
@@ -132,6 +132,9 @@ namespace TangUI
 
     }
 
+    /// <summary>
+    /// 显示 Panel
+    /// </summary>
     private void Show ()
     {
 
@@ -148,8 +151,6 @@ namespace TangUI
         preNode.nextNode = this;
 
         context.currentNode = this;
-        context.depth++;
-
         Transform transform = gameObject.transform;
         transform.parent = context.anchor.transform;
         transform.localPosition = Vector3.zero;
@@ -157,8 +158,10 @@ namespace TangUI
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
         if (null != panel){
-          NGUITools.AdjustDepth(gameObject, context.depth*100);
+          NGUITools.AdjustDepth(gameObject, context.depth*1000);
         }
+        context.depth++;
+
         // assign param
         MonoBehaviour script = gameObject.GetComponent (name) as MonoBehaviour;
         if (script != null) {
@@ -177,6 +180,9 @@ namespace TangUI
       }
     }
 
+    /// <summary>
+    /// 删除该 Panel
+    /// </summary>
     public void Remove ()
     {
       if (!(this is UIPanelRoot)) {
@@ -194,6 +200,9 @@ namespace TangUI
       }
     }
 
+    /// <summary>
+    /// 隐藏该 Panel
+    /// </summary>
     public void Hide ()
     {
       if (!(this is UIPanelRoot)) {
