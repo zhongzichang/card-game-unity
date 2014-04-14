@@ -12,7 +12,6 @@ namespace TangUI
 {
   public class UIPanelNode
   {
-
     public enum OpenMode
     {
       ADDITIVE,
@@ -21,27 +20,22 @@ namespace TangUI
     }
 
     private UIPanelNodeContext m_context;
-
     /// <summary>
     ///   Node Name
     /// </summary>
     public string name;
-
     /// <summary>
     ///   Previous Node
     /// </summary>
     public UIPanelNode preNode;
-
     /// <summary>
     ///   Next Node
     /// </summary>
     public UIPanelNode nextNode;
-
     /// <summary>
     ///   GameObject
     /// </summary>
     public GameObject gameObject;
-
     /// <summary>
     ///   Replace
     /// </summary>
@@ -51,7 +45,6 @@ namespace TangUI
     ///   Open Mode
     /// </summary>
     public OpenMode openMode;
-
     /// <summary>
     ///   Body
     /// </summary>
@@ -69,7 +62,7 @@ namespace TangUI
         this.preNode = m_context.currentNode;
       }
     }
-    
+
     public UIPanelNode ()
     {
       
@@ -157,8 +150,8 @@ namespace TangUI
         transform.localRotation = Quaternion.identity;
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
-        if (null != panel){
-          NGUITools.AdjustDepth(gameObject, context.depth*1000);
+        if (null != panel) {
+          NGUITools.AdjustDepth (gameObject, context.depth * 1000);
         }
         context.depth++;
 
@@ -209,6 +202,5 @@ namespace TangUI
         SetActive (false);
       }
     }
-
   }
 }

@@ -8,7 +8,7 @@ namespace TangUI
 {
   public class UIPanelRoot : UIPanelNode
   {
-    public UIPanelRoot()
+    public UIPanelRoot ()
     {
       this.name = "root";
     }
