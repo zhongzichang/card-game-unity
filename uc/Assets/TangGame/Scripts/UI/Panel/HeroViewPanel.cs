@@ -153,7 +153,7 @@ namespace TangGame
 
 		void AddHeroItem (HeroBase data)
 		{
-			HeroItem item = Resources.Load<HeroItem> (UIContext.getWeightsPath(UIContext.HERO_ITEM_NAME));
+			HeroItem item = Resources.Load<HeroItem> (UIContext.getWidgetsPath(UIContext.HERO_ITEM_NAME));
 			if (data.Islock) {
 				item = NGUITools.AddChild (HeroLocking, item.gameObject).GetComponent<HeroItem> ();
 
