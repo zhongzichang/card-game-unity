@@ -23,7 +23,7 @@ namespace TangGame
 
 		public static UIPanelNodeManager mgr; 
 
-		public static string getWeightsPath(string weightName){
+		public static string getWidgetsPath(string weightName){
 			return TangUI.Config.WIDGET_PATH + "/" + weightName;
 		}
 	}
