@@ -9,7 +9,6 @@ namespace TangUI
 {
   public class UIPanelNodeManager
   {
-
     private UIPanelNodeContext context;
 
     public UIPanelNodeManager (UIAnchor anchor)
@@ -52,6 +51,5 @@ namespace TangUI
     
       }
     }
-    
   }
 }
