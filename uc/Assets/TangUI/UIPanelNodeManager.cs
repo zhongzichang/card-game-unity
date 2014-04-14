@@ -10,6 +10,7 @@ namespace TangUI
   public class UIPanelNodeManager
   {
 
+    private static int baseDepth = 0;
     private UIPanelNodeContext context;
 
     public UIPanelNodeManager (UIAnchor anchor)
@@ -22,6 +23,8 @@ namespace TangUI
       this.context.currentNode = root;
       this.context.cache = new UIPanelCache ();
       this.context.anchor = anchor;
+      //this.context.depth = baseDepth;
+      //baseDepth += 1000;
     }
 
     public void LazyOpen (string name)
