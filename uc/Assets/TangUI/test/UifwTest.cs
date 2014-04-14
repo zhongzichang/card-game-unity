@@ -35,7 +35,7 @@ namespace TangUI
 
 			if (GUI.Button (new Rect (200, 10, 150, 100), "New Main Popup Panel")) {
 				if (mgr != null) {
-					mgr.LazyOpen (TangGame.UINtftNames.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, "test param");
+					mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, "test param");
 				}
 			}
 

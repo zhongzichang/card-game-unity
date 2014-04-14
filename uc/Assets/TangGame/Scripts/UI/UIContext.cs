@@ -12,11 +12,20 @@ using TangUI;
 
 namespace TangGame
 {
-		public class UIContext
-		{
+	public class UIContext
+	{
 
-				public static UIPanelNodeManager mgr; 
-				
+		// ****************** panels *******************
+		public const string MAIN_POPUP_PANEL_NAME = "MainPopupPanel";
+		public const string HERO_VIEW_PANEL_NAME = "HeroViewPanel";
+
+		public const string HERO_ITEM_NAME = "HeroItem";
+
+		public static UIPanelNodeManager mgr; 
+
+		public static string getWeightsPath(string weightName){
+			return TangUI.Config.WIDGET_PATH + "/" + weightName;
 		}
+	}
 }
 
