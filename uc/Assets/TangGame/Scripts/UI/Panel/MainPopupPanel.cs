@@ -33,7 +33,7 @@ namespace TangGame
 		// when hero menu click show hero panel
 		void OnHeroMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgr.LazyOpen (UINtftNames.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
+			TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
 			this.CloseMenu ();
 		}
 
