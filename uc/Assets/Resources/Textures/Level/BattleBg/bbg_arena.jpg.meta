@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6574cf0fbbe56471e835f76769b649f4
+guid: a31369e58538d40f8b5f8d2708ddd3af
 labels:
 - Uni2D_SourceTexture
 TextureImporter:
@@ -26,16 +26,16 @@ TextureImporter:
   maxTextureSize: 4096
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
-  alignment: 0
+  spriteMeshType: 0
+  alignment: 6
   spritePivot: {x: .5, y: .5}
   spritePixelsToUnits: 100
   alphaIsTransparency: 0
