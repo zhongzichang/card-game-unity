@@ -39,6 +39,10 @@ namespace Tang
       table.Add (ab.name, ab);
     }
 
+    public void Remove(string name){
+      table.Remove (name);
+    }
+
     public AssetBundle this [string name]
     {
       get{

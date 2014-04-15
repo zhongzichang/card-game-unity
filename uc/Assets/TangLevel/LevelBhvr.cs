@@ -9,15 +9,16 @@ namespace TangLevel
     // Use this for initialization
     void Start ()
     {
+      Config.MockData ();
     }
     // Update is called once per frame
     void Update ()
     {
 
-      if (LevelContext.IsWaitingForEnten && LevelContext.IsNextSubLevelResReady) {
+      //if (LevelContext.IsWaitingForEnten && LevelContext.IsNextSubLevelResReady) {
         // enter sub level
 
-      }
+      // }
   
     }
 
@@ -26,7 +27,7 @@ namespace TangLevel
       if (GUI.Button (new Rect (10, 10, 150, 100), "Load Level")) {
 
         LevelController.CurrentLevelId = 1;
-        LevelController.LoadNextSubLevel ();
+        LevelController.LoadTargetSubLevelRes();
 
       }
 
