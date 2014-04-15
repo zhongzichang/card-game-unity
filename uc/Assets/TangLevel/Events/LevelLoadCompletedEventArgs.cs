@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace AssemblyCSharp
+namespace TangLevel
 {
-  public class LevelLoadCompletedEventArgs
+  public class LevelLoadCompletedEventArgs : EventArgs
   {
     public LevelLoadCompletedEventArgs ()
     {

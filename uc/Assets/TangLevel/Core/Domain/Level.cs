@@ -13,6 +13,13 @@ namespace TangLevel
     public SubLevel[] subLeves;
 
 
+    public Level(){
+    }
+
+    public Level(int id, string name){
+      this.id = id;
+      this.name = name;
+    }
 
   }
 }

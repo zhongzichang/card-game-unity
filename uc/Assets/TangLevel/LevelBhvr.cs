@@ -25,18 +25,20 @@ namespace TangLevel
     {
       if (GUI.Button (new Rect (10, 10, 150, 100), "Load Level")) {
 
-
+        LevelController.CurrentLevelId = 1;
+        LevelController.LoadNextSubLevel ();
 
       }
 
       if (GUI.Button (new Rect (200, 10, 150, 100), "Enter Level")) {
 
+        LevelController.EnterNextSubLevel ();
 
       }
 
       if (GUI.Button (new Rect (400, 10, 150, 100), " Left Level")) {
 
-
+        LevelController.LeftLevel ();
       }
 
     }
