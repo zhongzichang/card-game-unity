@@ -10,7 +10,10 @@ namespace TangLevel
 
     }
 
-    public GameObject NewInstance(string name){
+    public GameObject LazyInstance(string name){
+
+
+
       return null;
     }
   }

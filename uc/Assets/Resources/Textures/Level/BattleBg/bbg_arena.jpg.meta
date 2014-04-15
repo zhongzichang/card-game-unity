@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: 409ab0e9ca9104165b782c64f5d7d297
+guid: a31369e58538d40f8b5f8d2708ddd3af
+labels:
+- Uni2D_SourceTexture
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -20,8 +22,8 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -32,12 +34,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 6
   spritePivot: {x: .5, y: .5}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 1
-  textureType: 8
+  alphaIsTransparency: 0
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites: []
