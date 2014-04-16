@@ -9,12 +9,12 @@ namespace TangDragonBones
   public class CharacterData
   {
     public SkeletonData skeletonData;
-    public AtlasData atlasData;
+    public TextureAtlas textAtlas;
 
-    public CharacterData (SkeletonData skeletonData, AtlasData atlasData)
+    public CharacterData (SkeletonData skeletonData, TextureAtlas textAtlas)
     {
       this.skeletonData = skeletonData;
-      this.atlasData = atlasData;
+      this.textAtlas = textAtlas;
     }
   }
 }

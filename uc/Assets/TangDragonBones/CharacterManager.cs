@@ -42,29 +42,34 @@ namespace TangDragonBones
 
         string name = requireQueue.Dequeue ();
 
-        Texture textureAssets = Cache.textureTable [name];
-        CharacterData data = Cache.characterDataTable [name];
-
         // 确认数据和资源在缓存中
-        if (textureAssets != null && data != null) {
+        if (Cache.characterDataTable.ContainsKey (name)) {
+
+          CharacterData data = Cache.characterDataTable [name];
 
           if (factory.GetSkeletonData (name) == null) {
             factory.AddSkeletonData (data.skeletonData, data.skeletonData.Name);
           }
 
           if (factory.GetTextureAtlas (name) == null) {
-            factory.AddTextureAtlas (new TextureAtlas (textureAssets, data.atlasData));
+            factory.AddTextureAtlas (data.textAtlas);
           }
 
           Armature armature = factory.BuildArmature ("centaur/charactor", null, "charactor_all");
-          armature.AdvanceTime (0f);
-          WorldClock.Clock.Add (armature);
-          //armature.Animation.GotoAndPlay ("run", -1, -1, 0);
+          GameObject heroObj = new GameObject ();
+          heroObj.SetActive (false);
+          heroObj.name = armature.Name;
+          DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
+          bhvr.armature = armature;
+          Add (heroObj);
 
-          GameObject gobj = (armature.Display as UnityArmatureDisplay).Display as GameObject;
-          gobj.transform.position = Vector3.zero;
-          gobj.SetActive (false);
-          Add (gobj);
+          // 发出通知事件，游戏对象已经准备完毕
+          if (RaiseLoadedEvent != null)
+            RaiseLoadedEvent (null, EventArgs.Empty);
+
+        } else {
+
+          Debug.LogError ("DragonBones res " + name + " not ready.");
 
         }
       }
@@ -82,7 +87,7 @@ namespace TangDragonBones
     public static void LazyLoad (string name)
     {
 
-      if (Cache.gobjTable.ContainsKey (name)) {
+      if (Cache.characterDataTable.ContainsKey (name) ) {
 
         // 有了
         OnResReady (name);
@@ -91,7 +96,7 @@ namespace TangDragonBones
 
         // 从资源包下载
         string path = Tang.ResourceUtils.GetAbFilePath (name);
-        Tang.AssetBundleLoader.LoadAsync (name, OnResLoaded);
+        Tang.AssetBundleLoader.LoadAsync (name, OnAbLoaded);
 
       } else {
 
@@ -100,27 +105,36 @@ namespace TangDragonBones
       }
     }
 
-    private static void OnResLoaded (AssetBundle ab)
+    /// <summary>
+    /// 从 AssetBundle 加载资源
+    /// </summary>
+    /// <param name="ab">Ab.</param>
+    private static void OnAbLoaded (AssetBundle ab)
     {
+      Debug.Log ("OnResLoaded");
       if (ab != null) {
 
-        UnityEngine.Object assets = ab.Load (ab.name);
+        string atlasFilepath = ab.name + "_atlas.json";
+        string textureFilepath = ab.name + "_texture";
+        string skeletonFilepath = ab.name + "_skeleton.json";
 
-        if (assets != null) {
-          GameObject gobj = GameObject.Instantiate (assets) as GameObject;
-          gobj.SetActive (false);
-          gobj.name = assets.name;
-          Add (gobj);
-          // 资源已准备完毕
-          OnResReady (assets.name);
+        TextAsset atlasAssets = ab.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
+        Texture textureAssets = ab.Load (textureFilepath, typeof(Texture)) as Texture;
+        TextAsset skeletonAssets = ab.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
+
+        if (atlasAssets != null && textureAssets != null && skeletonAssets != null) {
+          SetUp (ab.name, atlasAssets, textureAssets, skeletonAssets);
         }
       }
 
     }
 
+    /// <summary>
+    /// 从本地 Resources 文件夹中加载资源
+    /// </summary>
+    /// <param name="name">Name.</param>
     private static void ResourceLoad (string name)
     {
-
       Debug.Log ("ResourceLoad");
 
       string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas.json";
@@ -132,41 +146,51 @@ namespace TangDragonBones
       TextAsset skeletonAssets = Resources.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
 
       if (atlasAssets != null && textureAssets != null && skeletonAssets != null) {
-
-        Debug.Log ("resource load success");
-
-        // 内容加载成功
-        //read and parse skeleton josn into SkeletonData
-        TextReader reader = new StringReader (skeletonAssets.text);
-        Dictionary<string, System.Object> skeletonRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
-        SkeletonData skeletonData = ObjectDataParser.ParseSkeletonData (skeletonRawData);
-
-        //read and parse texture atlas josn into TextureAtlas
-        reader = new StringReader (atlasAssets.text);
-        Dictionary<string, System.Object> atlasRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
-        AtlasData atlasData = AtlasDataParser.ParseAtlasData (atlasRawData);
-
-
-        if (skeletonData != null && atlasData != null) {
-          Cache.characterDataTable.Add (name, new CharacterData (skeletonData, atlasData));
-        }
-
-        Cache.textureTable.Add (name, textureAssets);
-
-        // 将游戏对象创建请求放入队列中，在 Update 方法中完成创建
-        requireQueue.Enqueue (name);
-
-        // 发出通知
-        OnResReady (name);
+        SetUp (name, atlasAssets, textureAssets, skeletonAssets);
       }
 
     }
 
+    private static void SetUp (string name, TextAsset atlasAssets, Texture textureAssets, TextAsset skeletonAssets)
+    {
+
+      Debug.Log ("SetUp");
+
+      // 内容加载成功
+
+      // 分析 skeleton 数据
+      // read and parse skeleton josn into SkeletonData
+      TextReader reader = new StringReader (skeletonAssets.text);
+      Dictionary<string, System.Object> skeletonRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
+      SkeletonData skeletonData = ObjectDataParser.ParseSkeletonData (skeletonRawData);
+
+      // 分析 Atlas 数据
+      // read and parse texture atlas josn into TextureAtlas
+      reader = new StringReader (atlasAssets.text);
+      Dictionary<string, System.Object> atlasRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
+      AtlasData atlasData = AtlasDataParser.ParseAtlasData (atlasRawData);
+
+      // 保存数据到缓存中
+      if (skeletonData != null && atlasData != null) {
+        Cache.characterDataTable.Add (name, new CharacterData (skeletonData, new TextureAtlas(textureAssets, atlasData)));
+      }
+
+      // 资源准备完毕
+      OnResReady (name);
+    }
+
+    /// <summary>
+    /// 资源准备完毕
+    /// </summary>
+    /// <param name="name">Name.</param>
     private static void OnResReady (string name)
     {
-      if (RaiseLoadedEvent != null)
-        RaiseLoadedEvent (null, EventArgs.Empty);
+
+      // 将游戏对象创建请求放入队列中，在 Update 方法中完成创建
+      requireQueue.Enqueue (name);
+
     }
+
 
     /// <summary>
     /// 获取一个游戏对象－没有被使用的
