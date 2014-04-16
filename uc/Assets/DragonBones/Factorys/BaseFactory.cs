@@ -35,6 +35,7 @@ namespace DragonBones.Factorys
     {
 
       _dataDic = new Dictionary<string, SkeletonData> ();
+      _textureAtlasDic = new Dictionary<string, TextureAtlas> ();
 
     }
 
@@ -65,10 +66,6 @@ namespace DragonBones.Factorys
 		 */
     public void AddTextureAtlas (TextureAtlas textureAtlas, string name = null)
     {
-      if (_textureAtlasDic == null) {
-        _textureAtlasDic = new Dictionary<string, TextureAtlas> ();
-
-      }
 
       if (textureAtlas == null) {
         throw new ArgumentException ();
