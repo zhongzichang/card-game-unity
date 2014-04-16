@@ -49,7 +49,9 @@ namespace DragonBones.Factorys
 		 */
     public TextureAtlas GetTextureAtlas (string name)
     {
-      return _textureAtlasDic [name];
+      if (_textureAtlasDic.ContainsKey (name))
+        return _textureAtlasDic [name];
+      return null;
     }
 
     /**
