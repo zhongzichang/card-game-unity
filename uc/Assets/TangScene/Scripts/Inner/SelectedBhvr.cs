@@ -10,29 +10,26 @@ using PureMVC.Interfaces;
 
 namespace TangScene
 {
-  
   public class SelectedBhvr : MonoBehaviour
   {
-    
     private long actorId = 0;
-    
-    void Awake(){
-      ActorBhvr actorBhvr = GetComponent<ActorBhvr>();
-      if( actorBhvr != null ){
+
+    void Awake ()
+    {
+      ActorBhvr actorBhvr = GetComponent<ActorBhvr> ();
+      if (actorBhvr != null) {
         actorId = actorBhvr.id;
       }
     }
-    
-    
 
-    void OnEnable()
+    void OnEnable ()
     {
-      Facade.Instance.SendNotification(NtftNames.ACTOR_SELECTED, actorId);
+      Facade.Instance.SendNotification (NtftNames.ACTOR_SELECTED, actorId);
     }
 
-    void OnDisable()
+    void OnDisable ()
     {
-      Facade.Instance.SendNotification(NtftNames.ACTOR_UNSELECTED, actorId);
+      Facade.Instance.SendNotification (NtftNames.ACTOR_UNSELECTED, actorId);
     }
   }
 }

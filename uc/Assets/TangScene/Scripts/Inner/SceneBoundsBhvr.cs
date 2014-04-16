@@ -1,19 +1,16 @@
 using UnityEngine;
 
-
 namespace TangScene
 {
-  
   public class SceneBoundsBhvr : MonoBehaviour
   {
     public Rect bounds;
     public float colliderThickness = 10.0F;
-		
     // Sea Green For the Win!
     private Color sceneViewDisplayColor = new Color (0.20F, 0.74F, 0.27F, 0.50F);
-		
-		
-    void OnDrawGizmos () {
+
+    void OnDrawGizmos ()
+    {
 
       Gizmos.color = sceneViewDisplayColor;
       Vector3 lowerLeft = new Vector3 (bounds.xMin, 0F, -bounds.yMax);
@@ -26,8 +23,9 @@ namespace TangScene
       Gizmos.DrawLine (upperRight, lowerRight);
       Gizmos.DrawLine (lowerRight, lowerLeft);
     }
-		
-    void Start () {
+
+    void Start ()
+    {
 
       GameObject createdBoundaries = new GameObject ("Created Boundaries");
       createdBoundaries.transform.parent = transform;
@@ -61,6 +59,5 @@ namespace TangScene
       boxCollider.center = new Vector3 (bounds.x + bounds.width * 0.5F, 0.0F, -(bounds.yMax - colliderThickness * 0.5F));
 
     }
-
   }
 }

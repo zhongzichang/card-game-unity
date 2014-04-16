@@ -8,7 +8,6 @@ namespace TangScene
 {
   public class Texts
   {
-    
     public const string SCENE = "scene";
     public const string STAGE = "stage";
     public const string PORTAL = "portal";
@@ -19,6 +18,5 @@ namespace TangScene
     public const string CAMERA = "camera";
     public const string MAIN_CAMERA = "MainCamera";
     public const string SPECIAL_EFFECT = "specialEffect";
-
   }
 }

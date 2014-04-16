@@ -11,38 +11,33 @@ using Tang;
 
 namespace TangScene
 {
-
-  [ RequireComponent( typeof(SpriteAnimate) ) ]
+  [ RequireComponent (typeof(SpriteAnimate))]
   public class PlayOnActive : MonoBehaviour
   {
-
     private SpriteAnimation spriteAnimation = null;
 
-    void Awake()
+    void Awake ()
     {
-      SpriteAnimate spriteAnimate = GetComponent<SpriteAnimate>();
-      if( spriteAnimate != null )
-	{
-	  spriteAnimation = spriteAnimate.spriteAnimation;
-	  spriteAnimation.playOnStart = true;
+      SpriteAnimate spriteAnimate = GetComponent<SpriteAnimate> ();
+      if (spriteAnimate != null) {
+        spriteAnimation = spriteAnimate.spriteAnimation;
+        spriteAnimation.playOnStart = true;
 
-	}
+      }
 
       
     }
-    
-    void OnEnable()
+
+    void OnEnable ()
     {
-      if( spriteAnimation != null )
-	spriteAnimation.Play();
+      if (spriteAnimation != null)
+        spriteAnimation.Play ();
     }
 
-    void OnDisable()
+    void OnDisable ()
     {
-      if( spriteAnimation != null )
-	spriteAnimation.Stop();
+      if (spriteAnimation != null)
+        spriteAnimation.Stop ();
     }
-    
-
   }
 }

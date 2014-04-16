@@ -9,12 +9,8 @@ using UnityEngine;
 
 namespace TangScene
 {
-
   public class SkillEffectBhvr : MonoBehaviour
   {
-
     public SkillEffect skillEffect;
-
-    
   }
 }

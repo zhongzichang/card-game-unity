@@ -4,19 +4,16 @@ namespace TangScene
 {
   public class TsBhvr : MonoBehaviour
   {
-
- 
-    void Start()
+    void Start ()
     {
 
-      DontDestroyOnLoad(gameObject);
+      DontDestroyOnLoad (gameObject);
  
     }
 
-    void OnApplicationQuit()
+    void OnApplicationQuit ()
     {
       Cache.isShuttingDown = true;
     }
- 
   }
 }

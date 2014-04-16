@@ -14,31 +14,26 @@ namespace TangScene
 {
   public class LevelBhvr : MonoBehaviour
   {
-
     public static LevelStatus status = LevelStatus.RUN;
-    public static AssetBundle sceneAssetBundle
-    {
+
+    public static AssetBundle sceneAssetBundle {
       get;
       private set;
     }
-    private static int sceneId = 0;
 
+    private static int sceneId = 0;
 
     #region Properties
 
-    public static int SceneId
-    {
-      get
-      {
+    public static int SceneId {
+      get {
         return sceneId;
       }
-      set
-      {
-        if( sceneId != value && status == LevelStatus.RUN )
-        {
+      set {
+        if (sceneId != value && status == LevelStatus.RUN) {
           sceneId = value;
           status = LevelStatus.NEXT;
-          Cache.Clear();
+          Cache.Clear ();
         }
       }
     }
@@ -47,72 +42,63 @@ namespace TangScene
 
     #region Private Method
 
-    private void LoadNewLevel()
+    private void LoadNewLevel ()
     {
 
-      if( Game.sceneTable.ContainsKey( sceneId ) )
-      {
-        LoadSceneAssetBundle();
-      }
-      else
-      {
-        LoadSceneGameFile();
+      if (Game.sceneTable.ContainsKey (sceneId)) {
+        LoadSceneAssetBundle ();
+      } else {
+        LoadSceneGameFile ();
       }
     }
-
     // load scene asset bundle
-    private void LoadSceneAssetBundle()
+    private void LoadSceneAssetBundle ()
     {
-      string filepath = ResourceUtils.GetSceneAssetBundleFilePath( sceneId );
-      ResourceLoader.Enqueue( filepath, OnSceneAssetBundleFileLoaded, OnLoadFailure );
+      string filepath = ResourceUtils.GetSceneAssetBundleFilePath (sceneId);
+      ResourceLoader.Enqueue (filepath, OnSceneAssetBundleFileLoaded, OnLoadFailure);
     }
-    
-
     // load scene config file
-    public void LoadSceneGameFile()
+    public void LoadSceneGameFile ()
     {
-      string filepath = ResourceUtils.GetSceneConfigFilePath( sceneId );
-      ResourceLoader.Enqueue( filepath, OnSceneGameFileLoaded, OnLoadFailure );
+      string filepath = ResourceUtils.GetSceneConfigFilePath (sceneId);
+      ResourceLoader.Enqueue (filepath, OnSceneGameFileLoaded, OnLoadFailure);
     }
-
     // callback on scene config file loaded
-    private void OnSceneGameFileLoaded(WWW www)
+    private void OnSceneGameFileLoaded (WWW www)
     {
-      if( Game.debug )
-        Debug.Log("OnSceneGameFileLoaded with sceneId " + sceneId + ".");
+      if (Game.debug)
+        Debug.Log ("OnSceneGameFileLoaded with sceneId " + sceneId + ".");
 
-      TextReader textReader = new StringReader(TextUtil.GetTextWithoutBOM(www.bytes));
-      Scene scene = XmlRootHelper.LoadXml<Scene>(textReader);
-      Game.sceneTable.Add(scene.id, scene);
-      LoadSceneAssetBundle();
-    }
-    
-    private void OnLoadFailure(WWW www)
-    {
-      Debug.Log("failure load WWW " + www.url);
+      TextReader textReader = new StringReader (TextUtil.GetTextWithoutBOM (www.bytes));
+      Scene scene = XmlRootHelper.LoadXml<Scene> (textReader);
+      Game.sceneTable.Add (scene.id, scene);
+      LoadSceneAssetBundle ();
     }
 
+    private void OnLoadFailure (WWW www)
+    {
+      Debug.Log ("failure load WWW " + www.url);
+    }
     // callback on scene asset bundle laoded
-    private void OnSceneAssetBundleFileLoaded(WWW www)
+    private void OnSceneAssetBundleFileLoaded (WWW www)
     {
-      if( Game.debug )
-        Debug.Log("OnSceneAssetBundleFileLoaded with sceneId " + sceneId + ".");
+      if (Game.debug)
+        Debug.Log ("OnSceneAssetBundleFileLoaded with sceneId " + sceneId + ".");
       sceneAssetBundle = www.assetBundle;
 
       status = LevelStatus.LOADED;
 
     }
-
     // init scene with scene config
-    private IEnumerator InitScene()
+    private IEnumerator InitScene ()
     {
 
-      string sceneName = ResourceUtils.GetSceneName(sceneId);
+      string sceneName = ResourceUtils.GetSceneName (sceneId);
 
-      AsyncOperation async = Application.LoadLevelAsync(sceneName);
+      AsyncOperation async = Application.LoadLevelAsync (sceneName);
       yield return async;
       
-      Game.factory.BuildScene(Game.sceneTable[sceneId]);
+      Game.factory.BuildScene (Game.sceneTable [sceneId]);
 
       status = LevelStatus.READY;
 
@@ -120,44 +106,37 @@ namespace TangScene
 
     #endregion
 
-
     #region Mono Method
 
-    void Start()
+    void Start ()
     {
       status = LevelStatus.RUN;
     }
 
-    void Update()
+    void Update ()
     {
-      if( LevelStatus.NEXT == status )
-      {
-        PureMVC.Patterns.Facade.Instance.SendNotification(TangScene.NtftNames.SCENE_LOADING, SceneId);
-        Facade.Instance.SendNotification(NtftNames.SCENE_LOAD_START, SceneId );
+      if (LevelStatus.NEXT == status) {
+        PureMVC.Patterns.Facade.Instance.SendNotification (TangScene.NtftNames.SCENE_LOADING, SceneId);
+        Facade.Instance.SendNotification (NtftNames.SCENE_LOAD_START, SceneId);
 
         // ready load new level
         status = LevelStatus.START;
-        LoadNewLevel();
+        LoadNewLevel ();
 
-      }
-      else if( LevelStatus.LOADED == status )
-      {
+      } else if (LevelStatus.LOADED == status) {
 
         status = LevelStatus.INIT;
-        StartCoroutine( InitScene() );
+        StartCoroutine (InitScene ());
         
-      }
-      else if( LevelStatus.READY == status && ResourceLoader.UncompletedCount == 0 )
-      {
+      } else if (LevelStatus.READY == status && ResourceLoader.UncompletedCount == 0) {
 
         status = LevelStatus.RUN;
-        Facade.Instance.SendNotification(NtftNames.SCENE_LOAD_COMPLETED , SceneId);
+        Facade.Instance.SendNotification (NtftNames.SCENE_LOAD_COMPLETED, SceneId);
 
       }
       
     }
 
     #endregion
-
   }
 }

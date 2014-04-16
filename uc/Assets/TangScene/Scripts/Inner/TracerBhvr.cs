@@ -9,7 +9,6 @@ using PureMVC.Patterns;
 
 namespace TangScene
 {
-
   /// <summary>
   ///   跟踪状态
   /// </summary>
@@ -20,30 +19,24 @@ namespace TangScene
     lost
   }
 
-  [RequireComponent(typeof(CharacterStatusBhvr))]
-  [RequireComponent(typeof(Navigable))]
+  [RequireComponent (typeof(CharacterStatusBhvr))]
+  [RequireComponent (typeof(Navigable))]
   public class TracerBhvr : MonoBehaviour
   {
     public const float DEFULT_CACHE_DISTANCE = 50F;
     public const float DEFAULT_START_DISTANCE = 200F;
     public const float MIN_CACHE_DISTANCE = 10F;
     public const float CHECK_PERIOD = 2F;
-    
-
     // 目标
     public Transform target;
-
     // 跟踪者ID
     [HideInInspector]
     public long tracerId;
     // 目标ID
     [HideInInspector]
     private long m_targetId;
-
     private float checkTime = 0F;
-
     private Vector3 targetLastPosition = Vector3.zero;
-
     // 目标ID，代码用
     public long targetId {
       get {
@@ -62,49 +55,40 @@ namespace TangScene
     ///   停止跟踪需要的距离
     /// </summary>
     public float cacheDistance;
-
     /// <summary>
     ///   启动跟踪需要的距离
     /// </summary>
     public float startDistance;
-
     private CharacterStatusBhvr characterStatusBhvr;
     private Navigable navigable;
     private TraceStatus traceStatus;
 
-
     public void TraceStart ()
     {
 
-      Reset();
+      Reset ();
 
       target = Cache.actors [targetId].transform;
       targetLastPosition = target.localPosition;
       traceStatus = TraceStatus.start;
 
 
-      if ( target != null && target.localScale != Vector3.zero)
-      {
+      if (target != null && target.localScale != Vector3.zero) {
 
         float distance = Vector3.Distance (transform.localPosition, target.localPosition);
 
-        if (distance < cacheDistance+20F)
-        {
-          Facade.Instance.SendNotification ( NtftNames.TRACE_RANGE_ENTER,
-                                            new TraceBean (tracerId, targetId));
+        if (distance < cacheDistance + 20F) {
+          Facade.Instance.SendNotification (NtftNames.TRACE_RANGE_ENTER,
+            new TraceBean (tracerId, targetId));
           traceStatus = TraceStatus.enter;
-        }
-        else
-        {
-          navigable.NavTo ( target.localPosition, cacheDistance );
+        } else {
+          navigable.NavTo (target.localPosition, cacheDistance);
         }
 
-      }
-      else
-      {
+      } else {
         traceStatus = TraceStatus.lost;
         Facade.Instance.SendNotification (NtftNames.TRACE_TARGET_LOST,
-                                          new TraceBean (tracerId, targetId));
+          new TraceBean (tracerId, targetId));
         this.enabled = false;
       }
       
@@ -122,24 +106,19 @@ namespace TangScene
       if (startDistance < cacheDistance)
         startDistance = cacheDistance * 2;
     }
-
-
     // 状态发生改变时回调
     private void OnStatusChange (CharacterStatus status)
     {
-      if (status == CharacterStatus.idle && traceStatus == TraceStatus.start && target != null)
-      {
+      if (status == CharacterStatus.idle && traceStatus == TraceStatus.start && target != null) {
         float distance = Vector3.Distance (transform.localPosition, target.localPosition);
 
-        if( distance <= cacheDistance + 20F )
-        {
+        if (distance <= cacheDistance + 20F) {
           Facade.Instance.SendNotification (NtftNames.TRACE_RANGE_ENTER, new TraceBean (tracerId, targetId));
           traceStatus = TraceStatus.enter;
           
         }
       }
     }
-
 
     void Awake ()
     {
@@ -153,16 +132,13 @@ namespace TangScene
     void Update ()
     {
 
-      if (target != null && target.localScale != Vector3.zero)
-      {
+      if (target != null && target.localScale != Vector3.zero) {
 
         checkTime += Time.deltaTime;
         
-        if( checkTime > CHECK_PERIOD )
-        {
+        if (checkTime > CHECK_PERIOD) {
           // 目标有效
-          if ( targetLastPosition != target.localPosition )
-          {
+          if (targetLastPosition != target.localPosition) {
             float distance = Vector3.Distance (transform.localPosition, target.localPosition);
             if (distance > startDistance)
               navigable.NavTo (target.localPosition, cacheDistance);
@@ -170,13 +146,11 @@ namespace TangScene
           checkTime = 0F;
         }
 
-      }
-      else
-      {
+      } else {
         // 目标无效
         traceStatus = TraceStatus.lost;
         Facade.Instance.SendNotification (NtftNames.TRACE_TARGET_LOST,
-                                          new TraceBean (tracerId, targetId));
+          new TraceBean (tracerId, targetId));
         this.enabled = false;
       }
       
@@ -186,11 +160,9 @@ namespace TangScene
     {
 
       // ensure contains
-      if ( Cache.actors.ContainsKey (targetId) )
-      {
+      if (Cache.actors.ContainsKey (targetId)) {
         characterStatusBhvr.statusStartHandler += OnStatusChange;
-      }
-      else
+      } else
         this.enabled = false;
 
     }
@@ -202,7 +174,5 @@ namespace TangScene
       Facade.Instance.SendNotification (NtftNames.TRACE_CANCEL, new TraceBean (tracerId, targetId));
 
     }
-
-
   }
 }

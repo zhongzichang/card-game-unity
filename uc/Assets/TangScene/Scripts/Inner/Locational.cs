@@ -12,13 +12,12 @@ namespace TangScene
 {
   public class Locational : MonoBehaviour
   {
-
     void OnTouch (TouchHit touchHit)
     {
 
       // 取消已选择角色的选中状态
       if (Cache.selectedActorId != 0)
-	Facade.Instance.NotifyObservers (new Notification (UnselectActorCmd.NAME));
+        Facade.Instance.NotifyObservers (new Notification (UnselectActorCmd.NAME));
       
       Facade.Instance.SendNotification (NtftNames.TOUCH_MAP, touchHit);
 

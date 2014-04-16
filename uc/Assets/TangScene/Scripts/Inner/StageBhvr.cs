@@ -2,24 +2,20 @@ using UnityEngine;
 
 namespace TangScene
 {
-  
-  [RequireComponent( typeof(Locational) )]
-  public class StageBhvr : MonoBehaviour {
-
+  [RequireComponent (typeof(Locational))]
+  public class StageBhvr : MonoBehaviour
+  {
     public int x;
     public int y;
     public int width;
     public int height;
     public string materialName;
-
     /*
     public const float CLICK_EXPIRE = 0.3F; // second
     private bool mouseDownAvailable = false;
     private float mouseDownRemain = 0F;
     
     */
-
-
     /*
 
     void Update()
@@ -63,7 +59,6 @@ namespace TangScene
 //	}
     } // m.OnMouseUp
     */
-
   }
 }
 
