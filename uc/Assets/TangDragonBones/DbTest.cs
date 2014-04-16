@@ -1,12 +1,15 @@
 ﻿using System;
+using UnityEngine;
 
-namespace AssemblyCSharp
+namespace TangDragonBones
 {
-  public class DbTest
+  public class DbTest : MonoBehaviour
   {
-    public DbTest ()
-    {
+
+    void Start(){
+      CharacterManager.LazyLoad ("bird");
     }
+
   }
 }
 
