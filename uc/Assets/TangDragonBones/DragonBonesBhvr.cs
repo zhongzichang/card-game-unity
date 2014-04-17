@@ -9,13 +9,18 @@ namespace TangDragonBones
   public class DragonBonesBhvr : MonoBehaviour
   {
     public Armature armature;
+    public GameObject armatureGobj;
 
     void Start ()
     {
       Debug.Log ("start");
       if (armature != null) {
 
-        (armature.Display as UnityArmatureDisplay).Display.transform.parent = transform;
+        if (armatureGobj == null)
+          armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
+
+        armatureGobj.transform.parent = transform;
+        armatureGobj.transform.localPosition = Vector3.zero;
 
         armature.AdvanceTime (0f);
         armature.Animation.GotoAndPlay ("run", -1, -1, 0);
@@ -32,8 +37,12 @@ namespace TangDragonBones
     void OnEnable ()
     {
       Debug.Log ("enable");
-      if (armature != null)
+      if (armature != null) {
+        if (armatureGobj == null)
+          armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
+        armatureGobj.transform.localPosition = Vector3.zero;
         WorldClock.Clock.Add (armature);
+      }
     }
 
     void OnDestroy ()

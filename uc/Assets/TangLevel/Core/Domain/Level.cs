@@ -5,14 +5,21 @@ namespace TangLevel
 {
   public class Level
   {
+
+    // -- 关卡属性 --
+    #region Level Attributes
     public int id;
     public string name;
-
-    public Group playerGroup;
-
     public SubLevel[] subLeves;
+    #endregion
+
+    // -- 场景属性 --
+    #region Scene Attributes
+    public Group selfGroup;
+    #endregion
 
 
+    #region Constructor
     public Level(){
     }
 
@@ -20,6 +27,7 @@ namespace TangLevel
       this.id = id;
       this.name = name;
     }
+    #endregion
 
   }
 }
