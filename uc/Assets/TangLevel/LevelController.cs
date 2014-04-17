@@ -15,6 +15,11 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler RaiseSubLevelLoadedEvent;
 
+    /// <summary>
+    /// 子关卡需要的英雄游戏对象以及数量
+    /// </summary>
+    public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+    // 当前关卡ID
     private static int m_currentLevelId = 0;
 
     public static int CurrentLevelId {
@@ -22,7 +27,7 @@ namespace TangLevel
         // 获取当前关卡ID
         return m_currentLevelId;
       }
-      set {
+      private set {
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (value)) {
           m_currentLevelId = value;
@@ -32,10 +37,22 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// 挑战这个关卡
+    /// </summary>
+    /// <param name="levelId">关卡ID</param>
+    /// <param name="group">我方小组</param>
+    public static void ChallengeLevel (int levelId, Group group)
+    {
+      CurrentLevelId = levelId;
+      LevelContext.CurrentLevel.selfGroup = group;
+      LoadTargetSubLevelRes ();
+    }
+
+    /// <summary>
     /// 预加载指定关卡的资源
     /// </summary>
     /// <param name="levelId">Level identifier.</param>
-    public static void LoadTargetSubLevelRes ()
+    private static void LoadTargetSubLevelRes ()
     {
 
       SubLevel subLevel = LevelContext.TargetSubLevel;
@@ -86,9 +103,43 @@ namespace TangLevel
     /// </summary>
     private static void OnSubLevelResReady ()
     {
-      // 加载场景中的其他资源
-      foreach (Hero enemy in LevelContext.TargetSubLevel.enemyGroup.heros) {
-        TangDragonBones.CharacterManager.LazyLoad (enemy.resName);
+      Debug.Log ("OnSubLevelResReady");
+      // -- 加载场景中的其他资源 --
+
+      // -- 加载英雄 --
+      // 统计需要加载的英雄对象数量
+      requiredHeroGobjTable.Clear ();
+
+
+      // -- 统计敌方英雄资源 --
+      if (LevelContext.TargetSubLevel.enemyGroup != null) {
+        foreach (Hero hero in LevelContext.TargetSubLevel.enemyGroup.heros) {
+          if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
+            int count = requiredHeroGobjTable [hero.resName] + 1;
+            requiredHeroGobjTable [hero.resName] = count;
+          } else
+            requiredHeroGobjTable.Add (hero.resName, 1);
+        }
+      }
+
+      // -- 统计我方英雄资源 --
+      if (LevelContext.CurrentLevel.selfGroup != null) {
+        foreach (Hero hero in LevelContext.CurrentLevel.selfGroup.heros) {
+          if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
+            int count = requiredHeroGobjTable [hero.resName] + 1;
+            requiredHeroGobjTable [hero.resName] = count;
+          } else
+            requiredHeroGobjTable.Add (hero.resName, 1);
+        }
+      }
+
+      foreach (KeyValuePair<string, int> kvp in requiredHeroGobjTable) {
+        int has = HeroGobjManager.Size (kvp.Key);
+        if (has < kvp.Value) {
+          int need = kvp.Value - has;
+          Debug.Log ("need :" + need);
+          HeroGobjManager.LazyLoad (kvp.Key, need);
+        }
       }
 
       if (RaiseSubLevelLoadedEvent != null)
@@ -98,12 +149,8 @@ namespace TangLevel
     /// <summary>
     /// 进入下一个子关卡
     /// </summary>
-    public static void EnterNextSubLevel (Group selfGroup)
+    public static void EnterNextSubLevel ()
     {
-      // 检查参数
-      if (selfGroup == null || selfGroup.heros == null || selfGroup.heros.Length == 0)
-        return;
-
       // 创建背景
       GameObject bgGobj = GameObjectManager.FetchUnused (LevelContext.TargetSubLevel.resName);
       if (bgGobj != null) {
@@ -117,11 +164,11 @@ namespace TangLevel
       Debug.Log ("EnemyGroup Embattle.");
 
       // 我方小组列阵
-      Embattle (selfGroup, BattleSide.LEFT);
+      Embattle (LevelContext.CurrentLevel.selfGroup, BattleSide.LEFT);
       Debug.Log ("SelfGroup Embattle.");
 
       // 我方进场
-      foreach (Hero hero in selfGroup.heros) {
+      foreach (Hero hero in LevelContext.CurrentLevel.selfGroup.heros) {
         AddHeroToScene (hero);
       }
 
@@ -150,18 +197,6 @@ namespace TangLevel
       // 卸载场景人物
 
       LevelContext.InLevel = false;
-    }
-
-    public static void AddGroupToScene (Group group, BattleSide side)
-    {
-
-
-
-    }
-
-    public static void AddRightGroupToScene (Group group)
-    {
-
     }
 
     /// <summary>
@@ -197,7 +232,7 @@ namespace TangLevel
         }
 
         int offsety = 0;
-        origin = new Vector2 (2, 12);
+        origin = new Vector2 (0, 12);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
           // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
@@ -216,7 +251,7 @@ namespace TangLevel
         }
 
         // 对于第二列
-        origin = new Vector2 (-1, 8);
+        origin = new Vector2 (-3, 8);
         offsety = 0;
         for (int i = 0; i < column2.Count; i++) {
           // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;

@@ -106,6 +106,17 @@ namespace TangDragonBones
     }
 
     /// <summary>
+    /// 加载多个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
+    /// <param name="count">Count.</param>
+    public static void LazyLoad (string name, int count)
+    {
+      for (int i = 0; i < count; i++)
+        LazyLoad (name);
+    }
+
+    /// <summary>
     /// 从 AssetBundle 加载资源
     /// </summary>
     /// <param name="ab">Ab.</param>
@@ -239,6 +250,38 @@ namespace TangDragonBones
         Cache.gobjTable.Remove (name);
         Tang.AssetBundleLoader.Unload (name, all);
       }
+    }
+
+    /// <summary>
+    /// 有多少个游戏对象可用
+    /// </summary>
+    /// <param name="name">对象名称</param>
+    public static int SizeOfUnused (string name)
+    {
+      if (Cache.gobjTable.ContainsKey (name)) {
+        int size = 0;
+        List<GameObject> list = Cache.gobjTable [name];
+        foreach (GameObject o in list) {
+          if (!o.activeSelf)
+            size++;
+        }
+        return size;
+      }
+      return 0;
+    }
+
+    /// <summary>
+    /// 有多少个 GameObject
+    /// </summary>
+    /// <returns>The of.</returns>
+    /// <param name="name">Name.</param>
+    public static int SizeOf (string name)
+    {
+      if (Cache.gobjTable.ContainsKey (name)) {
+        List<GameObject> list = Cache.gobjTable [name];
+        return Cache.gobjTable [name].Count;
+      }
+      return 0;
     }
 
     #endregion

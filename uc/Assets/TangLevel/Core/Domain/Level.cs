@@ -15,7 +15,14 @@ namespace TangLevel
 
     // -- 场景属性 --
     #region Scene Attributes
+    /// <summary>
+    /// 我方小组
+    /// </summary>
     public Group selfGroup;
+    /// <summary>
+    /// 敌方所有 GameObject
+    /// </summary>
+    public List<GameObject> enemyGobjs = new List<GameObject>();
     #endregion
 
 

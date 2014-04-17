@@ -6,9 +6,23 @@ namespace TangLevel
 {
   public class HeroGobjManager
   {
+
+    /// <summary>
+    /// 加载一个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
     public static void LazyLoad (string name)
     {
+      TangDragonBones.CharacterManager.LazyLoad (name);
+    }
 
+    /// <summary>
+    /// 加载多个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
+    /// <param name="count">Count.</param>
+    public static void LazyLoad( string name, int count){
+      TangDragonBones.CharacterManager.LazyLoad (name, count);
     }
 
     /// <summary>
@@ -43,6 +57,23 @@ namespace TangLevel
 
       return gobj;
 
+    }
+
+    /// <summary>
+    /// 获取可用英雄对象的数量
+    /// </summary>
+    /// <returns>The of unused.</returns>
+    /// <param name="name">Name.</param>
+    public static int SizeOfUnused(string name){
+      return TangDragonBones.CharacterManager.SizeOfUnused (name);
+    }
+
+    /// <summary>
+    /// 获取已有英雄对象的数量
+    /// </summary>
+    /// <param name="name">Name.</param>
+    public static int Size(string name){
+      return TangDragonBones.CharacterManager.SizeOf (name);
     }
   }
 }
