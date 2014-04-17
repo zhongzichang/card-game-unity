@@ -12,6 +12,8 @@ public class HeroBase{
 	private string heroAvatar;
 	//英雄等级
 	private int level;
+	//英雄星级
+	private int evolve;
 	//英雄品阶等级
 	private HeroesRankEnum heroesRank;
 	//英雄属性 力量／敏捷／智力
@@ -25,6 +27,15 @@ public class HeroBase{
 	//英雄位置类型，前中后
 	private HeroLocationEnum heroLocation;
 
+	private int score;
+	private int exp;
+	private int expMax;
+
+
+
+	/***
+	 * 英雄唯一id
+	 * */
 	public long Id {
 		get {
 			return id;
@@ -33,7 +44,20 @@ public class HeroBase{
 			id = value;
 		}
 	}
-
+	/***
+	 * 英雄星级
+	 * */
+	public  int Evolve{
+		get{ 
+			return evolve;
+			}
+		set{
+			evolve = value;
+		}
+	}
+	/***
+	 * 英雄位置
+	 * */
 	public HeroLocationEnum HeroLocation {
 		get {
 			return heroLocation;
@@ -42,7 +66,9 @@ public class HeroBase{
 			heroLocation = value;
 		}
 	}
-
+	/***
+	 * 英雄配置id
+	 * */
 	public int ConfigId {
 		get {
 			return configId;
@@ -51,7 +77,9 @@ public class HeroBase{
 			configId = value;
 		}
 	}
-
+	/***
+	 * 英雄名字
+	 * */
 	public string HeroName {
 		get {
 			return heroName;
@@ -60,7 +88,9 @@ public class HeroBase{
 			heroName = value;
 		}
 	}
-
+	/***
+	 * 英雄等级
+	 * */
 	public int Level {
 		get {
 			return level;
@@ -69,6 +99,9 @@ public class HeroBase{
 			level = value;
 		}
 	}
+	/***
+	 * 英雄品阶
+	 */
 
 	public HeroesRankEnum HeroesRank {
 		get {
@@ -78,7 +111,9 @@ public class HeroBase{
 			heroesRank = value;
 		}
 	}
-
+	/***
+	 * 英雄头像
+	 */
 	public string HeroAvatar {
 		get {
 			return heroAvatar;
@@ -87,7 +122,9 @@ public class HeroBase{
 			heroAvatar = value;
 		}
 	}
-
+	/***
+	 * 英雄属性类型
+	 * */
 	public HeroPropertyEnum HeroPropertyType {
 		get {
 			return heroPropertyType;
@@ -96,7 +133,9 @@ public class HeroBase{
 			heroPropertyType = value;
 		}
 	}
-
+	/***
+	 * 英雄是否为解锁
+	 * */
 	public bool Islock {
 		get {
 			return islock;
@@ -105,7 +144,9 @@ public class HeroBase{
 			islock = value;
 		}
 	}
-
+	/***
+	 * 碎片数量
+	 * */
 	public int FragmentsCount {
 		get {
 			return fragmentsCount;
@@ -114,7 +155,9 @@ public class HeroBase{
 			fragmentsCount = value;
 		}
 	}
-
+	/***
+	 * 进化最大数量
+	 * */
 	public int FragmentsCountMax {
 		get {
 			return fragmentsCountMax;
