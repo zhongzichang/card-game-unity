@@ -5,9 +5,9 @@ namespace TangScene
 {
   public class HalfTransparentable : MonoBehaviour
   {
-    void OnHalfTransparent()
+    void OnHalfTransparent ()
     {
-      Debug.Log("OnHalfTransparent()");
+      Debug.Log ("OnHalfTransparent()");
     }
   }
 }

@@ -8,7 +8,7 @@ namespace TangLevel
     public int id;
     public string name;
 
-
+    public Group playerGroup;
 
     public SubLevel[] subLeves;
 

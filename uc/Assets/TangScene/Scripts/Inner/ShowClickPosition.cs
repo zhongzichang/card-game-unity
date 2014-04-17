@@ -13,17 +13,16 @@ namespace TangScene
     public Vector3 position = Vector3.zero;
     public Vector2 grid = Vector2.zero;
 
-    public void OnSceneClick(Vector3 position)
+    public void OnSceneClick (Vector3 position)
     {
       this.position = position;
-      this.grid = new Vector2( (int) position.x / Grid.WIDTH, 
-			       (int)( -position.z / Grid.HEIGHT ));
+      this.grid = new Vector2 ((int)position.x / Grid.WIDTH, 
+        (int)(-position.z / Grid.HEIGHT));
     }
 
-    void Start()
+    void Start ()
     {
       CommonDelegates.locationHandler += OnSceneClick;
     }
-
   }
 }

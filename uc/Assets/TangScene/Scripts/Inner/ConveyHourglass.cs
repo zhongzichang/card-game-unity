@@ -13,13 +13,10 @@ namespace TangScene
 {
   public class ConveyHourglass : MonoBehaviour
   {
-
     public const float TIME = 2F;
-    
     //private Vector3 lastPosition = Vector3.zero;
     //private Transform myTransform;
-
-    void Awake()
+    void Awake ()
     {
 
       //myTransform = transform;
@@ -27,16 +24,14 @@ namespace TangScene
       
     }
 
-
-    void OnEnable()
+    void OnEnable ()
     {
       //lastPosition = myTransform.localPosition;
     }
 
-    void OnDisable()
+    void OnDisable ()
     {
       
     }
-
   }
 }

@@ -50,6 +50,8 @@ namespace Tang
         LoadBegan beganHandler)
     {
 
+      Debug.Log ("Enqueue " + filepath);
+
       waitingQueue.Enqueue (filepath);
       
       if (completedHandler != null) {

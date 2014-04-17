@@ -8,38 +8,37 @@ using TangUtils;
 
 namespace TangScene
 {
-	[ExecuteInEditMode]
+  [ExecuteInEditMode]
   public class GridBhvr : MonoBehaviour
-	{
+  {
+    public delegate void GridChange (Point grid);
 
-		public delegate void GridChange (Point grid);
+    public GridChange gridChangeHandler;
+    public Point grid;
 
-		public GridChange gridChangeHandler;
-		public Point grid;
-    
-		void Start ()
-		{
-			grid = Grid.FromPosition (transform.localPosition);
-		}
+    void Start ()
+    {
+      grid = Grid.FromPosition (transform.localPosition);
+    }
 
-		void Update ()
-		{
-			Point current = Grid.FromPosition (transform.localPosition);
-			if (!grid.Equals (current)) {
+    void Update ()
+    {
+      Point current = Grid.FromPosition (transform.localPosition);
+      if (!grid.Equals (current)) {
 
-				grid = current;
+        grid = current;
 
-				if (gridChangeHandler != null)
-					gridChangeHandler (grid);
+        if (gridChangeHandler != null)
+          gridChangeHandler (grid);
 
-			}
-		}
-		void OnGUI ()
-		{
-			GUI.Label (new Rect (Screen.width - 120, Screen.height - 200, 100, 60), 
-		 " x:" + grid.x + " y:"+ grid.y);
+      }
+    }
 
-		}
+    void OnGUI ()
+    {
+      GUI.Label (new Rect (Screen.width - 120, Screen.height - 200, 100, 60), 
+        " x:" + grid.x + " y:" + grid.y);
 
-	}
+    }
+  }
 }

@@ -16,8 +16,6 @@ namespace Tang
 {
   public class AssetBundleLoader
   {
-
-
     public delegate void LoadCompleted (AssetBundle ab);
 
     public delegate void LoadFailure ();
@@ -36,7 +34,7 @@ namespace Tang
 
     public static void LoadAsync (string name, LoadCompleted loadCompleted)
     {
-      LoadAsync (name, loadCompleted);
+      LoadAsync (name, loadCompleted, null, null);
     }
 
     public static void LoadAsync (string name, LoadCompleted loadCompleted, LoadFailure loadFailure, LoadBegan loadBegan)
@@ -70,8 +68,11 @@ namespace Tang
 
     public static void Unload (string name, bool unloadAllLoadedObjects)
     {
-      if (cache.Contains (name))
-        cache [name].Unload (unloadAllLoadedObjects);
+      if (cache.Contains (name)) {
+        AssetBundle ab = cache [name];
+        ab.Unload (unloadAllLoadedObjects);
+        cache.Remove (name);
+      }
     }
 
     private static void OnWWWLoadCompleted (WWW www)
@@ -102,7 +103,6 @@ namespace Tang
         handler ();
       }
     }
-
   }
 }
 

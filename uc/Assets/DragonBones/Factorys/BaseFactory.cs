@@ -17,28 +17,29 @@ using Com.Viperstudio.Utils;
 
 namespace DragonBones.Factorys
 {
-	public abstract class BaseFactory
-	{
-		/** @private */
-		protected static Com.Viperstudio.Geom.Matrix _helpMatrix = new Com.Viperstudio.Geom.Matrix();
-		//private static const _loaderContext:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
-		/** @private */
-		protected Dictionary<string, TextureAtlas> _textureAtlasDic;
-		/** @private */
-		protected Dictionary<string, SkeletonData> _dataDic;
-		/** @private */
-		protected string _currentDataName;
-		/** @private */
-		protected string _currentTextureAtlasName;
-		
-	    public BaseFactory()
-		{
+  public abstract class BaseFactory
+  {
+    /** @private */
+    protected static Com.Viperstudio.Geom.Matrix _helpMatrix = new Com.Viperstudio.Geom.Matrix ();
+    //private static const _loaderContext:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
+    /** @private */
+    protected Dictionary<string, TextureAtlas> _textureAtlasDic;
+    /** @private */
+    protected Dictionary<string, SkeletonData> _dataDic;
+    /** @private */
+    protected string _currentDataName;
+    /** @private */
+    protected string _currentTextureAtlasName;
 
-			_dataDic = new Dictionary<string, SkeletonData> ();
+    public BaseFactory ()
+    {
 
-		}
+      _dataDic = new Dictionary<string, SkeletonData> ();
+      _textureAtlasDic = new Dictionary<string, TextureAtlas> ();
 
-		/**
+    }
+
+    /**
 		 * Return the TextureAtlas by that name.
 		 * @example 
 		 * <listing>
@@ -47,12 +48,14 @@ namespace DragonBones.Factorys
 		 * @param	The name of the TextureAtlas to return.
 		 * @return A textureAtlas.
 		 */
-		public TextureAtlas GetTextureAtlas(string name)
-		{
-			return _textureAtlasDic[name];
-		}
-		
-		/**
+    public TextureAtlas GetTextureAtlas (string name)
+    {
+      if (_textureAtlasDic.ContainsKey (name))
+        return _textureAtlasDic [name];
+      return null;
+    }
+
+    /**
 		 * Add a textureAtlas to this BaseFactory instance.
 		 * @example 
 		 * <listing>
@@ -61,31 +64,23 @@ namespace DragonBones.Factorys
 		 * @param	A textureAtlas to add to this BaseFactory instance.
 		 * @param	(optional) A name for this TextureAtlas.
 		 */
-		public void AddTextureAtlas(TextureAtlas textureAtlas, string name = null)
-		{
-			if(_textureAtlasDic == null)
-			{
-				_textureAtlasDic = new Dictionary<string, TextureAtlas>();
+    public void AddTextureAtlas (TextureAtlas textureAtlas, string name = null)
+    {
 
-			}
+      if (textureAtlas == null) {
+        throw new ArgumentException ();
+      }
+      if (name == null && textureAtlas is TextureAtlas) {
+        name = textureAtlas.Name;
+      }
+      if (name == null) {
+        throw new ArgumentException ("Unnamed data!");
+      }
 
-			if(textureAtlas==null)
-			{
-				throw new ArgumentException();
-			}
-			if(name==null && textureAtlas is TextureAtlas)
-			{
-				name = textureAtlas.Name;
-			}
-			if(name==null)
-			{
-				throw new ArgumentException("Unnamed data!");
-			}
+      _textureAtlasDic [name] = textureAtlas;
+    }
 
-			_textureAtlasDic[name] = textureAtlas;
-		}
-		
-		/**
+    /**
 		 * Remove a textureAtlas from this baseFactory instance.
 		 * @example 
 		 * <listing>
@@ -93,12 +88,12 @@ namespace DragonBones.Factorys
 		 * </listing>
 		 * @param	The name of the TextureAtlas to remove.
 		 */
-		public void RemoveTextureAtlas(string name)
-		{
-			 _textureAtlasDic.Remove(name);
-		}
+    public void RemoveTextureAtlas (string name)
+    {
+      _textureAtlasDic.Remove (name);
+    }
 
-		/**
+    /**
 		 * Returns a SkeletonData instance.
 		 * @example 
 		 * <listing>
@@ -107,12 +102,15 @@ namespace DragonBones.Factorys
 		 * @param	The name of an existing SkeletonData instance.
 		 * @return A SkeletonData instance with given name (if exist).
 		 */
-		public SkeletonData GetSkeletonData(string name)
-		{
-			return _dataDic[name];
-		}
-		
-		/**
+    public SkeletonData GetSkeletonData (string name)
+    {
+      if (_dataDic.ContainsKey (name))
+        return _dataDic [name];
+
+      return null;
+    }
+
+    /**
 		 * Add a SkeletonData instance to this BaseFactory instance.
 		 * @example 
 		 * <listing>
@@ -121,32 +119,28 @@ namespace DragonBones.Factorys
 		 * @param	A SkeletonData instance.
 		 * @param	(optional) A name for this SkeletonData instance.
 		 */
-		public void AddSkeletonData(SkeletonData data, string name = null)
-		{
-			if(data == null)
-			{
-				throw new ArgumentException();
-			}
+    public void AddSkeletonData (SkeletonData data, string name = null)
+    {
+      if (data == null) {
+        throw new ArgumentException ();
+      }
 
-			if (name == null) 
-			{
-				name = data.Name;
-			}
-			if(name == null)
-			{
-				throw new ArgumentException("Unnamed data!");
-			}
-			if(_dataDic.ContainsKey(name))
-			 if(_dataDic[name]!=null)
-			 {
+      if (name == null) {
+        name = data.Name;
+      }
+      if (name == null) {
+        throw new ArgumentException ("Unnamed data!");
+      }
+      if (_dataDic.ContainsKey (name))
+      if (_dataDic [name] != null) {
 				
-			 }
-			_dataDic[name] = data;
+      }
+      _dataDic [name] = data;
 
 
-		}
-		
-		/**
+    }
+
+    /**
 		 * Remove a SkeletonData instance from this BaseFactory instance.
 		 * @example 
 		 * <listing>
@@ -154,12 +148,12 @@ namespace DragonBones.Factorys
 		 * </listing>
 		 * @param	The name for the SkeletonData instance to remove.
 		 */
-		public void RemoveSkeletonData(string name)
-		{
-			 _dataDic.Remove(name);
-		}
-		
-		/**
+    public void RemoveSkeletonData (string name)
+    {
+      _dataDic.Remove (name);
+    }
+
+    /**
 		 * Return the TextureAtlas by that name.
 		 * @example 
 		 * <listing>
@@ -170,7 +164,7 @@ namespace DragonBones.Factorys
 		 */
 
 		
-		/**
+    /**
 		 * Cleans up resources used by this BaseFactory instance.
 		 * @example 
 		 * <listing>
@@ -178,32 +172,29 @@ namespace DragonBones.Factorys
 		 * </listing>
 		 * @param	(optional) Destroy all internal references.
 		 */
-		public void Dispose(bool disposeData = true)
-		{
-			if(disposeData)
-			{
-				foreach(KeyValuePair<string, SkeletonData> data in _dataDic)
-				{
-					(data.Value as SkeletonData).Dispose();
-					_dataDic.Remove(data.Key);
+    public void Dispose (bool disposeData = true)
+    {
+      if (disposeData) {
+        foreach (KeyValuePair<string, SkeletonData> data in _dataDic) {
+          (data.Value as SkeletonData).Dispose ();
+          _dataDic.Remove (data.Key);
 
-				}
+        }
 
-				foreach(KeyValuePair<string, TextureAtlas> textureAtlas in _textureAtlasDic)
-				{
-					(textureAtlas.Value as TextureAtlas).Dispose();
-					_dataDic.Remove(textureAtlas.Key);
-				}
+        foreach (KeyValuePair<string, TextureAtlas> textureAtlas in _textureAtlasDic) {
+          (textureAtlas.Value as TextureAtlas).Dispose ();
+          _dataDic.Remove (textureAtlas.Key);
+        }
 
 
-			}
-			_dataDic = null;
-			_textureAtlasDic = null;
-			_currentDataName = null;
-			_currentTextureAtlasName = null;
-		}
-		
-		/**
+      }
+      _dataDic = null;
+      _textureAtlasDic = null;
+      _currentDataName = null;
+      _currentTextureAtlasName = null;
+    }
+
+    /**
 		 * Build and returns a new Armature instance.
 		 * @example 
 		 * <listing>
@@ -216,165 +207,139 @@ namespace DragonBones.Factorys
 		 * @param	The name of this skin.
 		 * @return A Armature instance.
 		 */
-		public Armature BuildArmature(string armatureName, string animationName = null, string skeletonName = null, string textureAtlasName = null, string skinName = null)
-		{
-			SkeletonData data = null;
-			ArmatureData armatureData = null;
-			ArmatureData animationArmatureData = null;
-			if(skeletonName!=null)
-			{
-				data = _dataDic[skeletonName];
-				if(data!=null)
-				{
-					armatureData = data.GetArmatureData(armatureName);
-				}
-			}
-			else
-			{
-				foreach (KeyValuePair<string, SkeletonData> skeleton in _dataDic)
-				{
+    public Armature BuildArmature (string armatureName, string animationName = null, string skeletonName = null, string textureAtlasName = null, string skinName = null)
+    {
+      SkeletonData data = null;
+      ArmatureData armatureData = null;
+      ArmatureData animationArmatureData = null;
+      if (skeletonName != null) {
+        data = _dataDic [skeletonName];
+        if (data != null) {
+          armatureData = data.GetArmatureData (armatureName);
+        }
+      } else {
+        foreach (KeyValuePair<string, SkeletonData> skeleton in _dataDic) {
 
-					data = _dataDic[skeleton.Key];
-					armatureData = data.GetArmatureData(armatureName);
-					if(armatureData!=null)
-					{
-						break;
-					}
-				}
-			}
+          data = _dataDic [skeleton.Key];
+          armatureData = data.GetArmatureData (armatureName);
+          if (armatureData != null) {
+            break;
+          }
+        }
+      }
 			
-			if(armatureData == null)
-			{
-				return null;
-			}
+      if (armatureData == null) {
+        return null;
+      }
 			
-			_currentDataName = skeletonName;
+      _currentDataName = skeletonName;
 
-			if (textureAtlasName != null) {
-						_currentTextureAtlasName = textureAtlasName;
-				} else {
+      if (textureAtlasName != null) {
+        _currentTextureAtlasName = textureAtlasName;
+      } else {
 
-						_currentTextureAtlasName = skeletonName;
-				}
+        _currentTextureAtlasName = skeletonName;
+      }
 			
-			Armature armature = generateArmature();
-			armature.Name = armatureName;
-			Bone bone;
-			foreach(BoneData boneData in armatureData.BoneDataList)
-			{
+      Armature armature = generateArmature ();
+      armature.Name = armatureName;
+      Bone bone;
+      foreach (BoneData boneData in armatureData.BoneDataList) {
 
-				bone = new Bone();
-				bone.Name = boneData.Name;
-				bone.FixedRotation = boneData.FixedRotation;
-				bone.ScaleMode = boneData.ScaleMode;
-				bone.Origin.Copy(boneData.Transform);
+        bone = new Bone ();
+        bone.Name = boneData.Name;
+        bone.FixedRotation = boneData.FixedRotation;
+        bone.ScaleMode = boneData.ScaleMode;
+        bone.Origin.Copy (boneData.Transform);
 
-				if(armatureData.GetBoneData(boneData.Parent)!=null)
-				{
-					armature.AddBone(bone, boneData.Parent);
-				}
-				else
-				{
-					armature.AddBone(bone);
-				}
-			}
+        if (armatureData.GetBoneData (boneData.Parent) != null) {
+          armature.AddBone (bone, boneData.Parent);
+        } else {
+          armature.AddBone (bone);
+        }
+      }
 			
-			if(animationName!=null && animationName != armatureName)
-			{
-				animationArmatureData = data.GetArmatureData(animationName);
-				if(animationArmatureData == null)
-				{
-					foreach (KeyValuePair<string, SkeletonData> skeleton in _dataDic)
-					{
-						data = _dataDic[skeleton.Key];
-						animationArmatureData = data.GetArmatureData(animationName);
-						if(animationArmatureData!=null)
-						{
-							break;
-						}
-					}
-				}
-			}
+      if (animationName != null && animationName != armatureName) {
+        animationArmatureData = data.GetArmatureData (animationName);
+        if (animationArmatureData == null) {
+          foreach (KeyValuePair<string, SkeletonData> skeleton in _dataDic) {
+            data = _dataDic [skeleton.Key];
+            animationArmatureData = data.GetArmatureData (animationName);
+            if (animationArmatureData != null) {
+              break;
+            }
+          }
+        }
+      }
 
-			if(animationArmatureData!=null)
-			{
-				armature.Animation.AnimationDataList = animationArmatureData.AnimationDataList;
-			}
-			else
-			{
-				armature.Animation.AnimationDataList = armatureData.AnimationDataList;
-			}
+      if (animationArmatureData != null) {
+        armature.Animation.AnimationDataList = animationArmatureData.AnimationDataList;
+      } else {
+        armature.Animation.AnimationDataList = armatureData.AnimationDataList;
+      }
 			
-			SkinData skinData = armatureData.GetSkinData(skinName);
-			if(skinData == null)
-			{
-				throw new ArgumentException();
-			}
+      SkinData skinData = armatureData.GetSkinData (skinName);
+      if (skinData == null) {
+        throw new ArgumentException ();
+      }
 			
-			Slot slot;
-			DisplayData displayData;
-			Armature childArmature;
-			int i;
-			List<object> helpArray = new List<object>();
-			foreach(SlotData slotData in skinData.SlotDataList)
-			{
-				bone = armature.GetBone(slotData.Parent);
-				if(bone == null)
-				{
-					continue;
-				}
-				slot = generateSlot();
-				slot.Name = slotData.Name;
-				slot.BlendMode = slotData.BlendMode;
-				slot._originZOrder = slotData.ZOrder;
-				slot._dislayDataList = slotData.DisplayDataList;
+      Slot slot;
+      DisplayData displayData;
+      Armature childArmature;
+      int i;
+      List<object> helpArray = new List<object> ();
+      foreach (SlotData slotData in skinData.SlotDataList) {
+        bone = armature.GetBone (slotData.Parent);
+        if (bone == null) {
+          continue;
+        }
+        slot = generateSlot ();
+        slot.Name = slotData.Name;
+        slot.BlendMode = slotData.BlendMode;
+        slot._originZOrder = slotData.ZOrder;
+        slot._dislayDataList = slotData.DisplayDataList;
 				
-				helpArray.Clear();
-				i = slotData.DisplayDataList.Count;
-				while(i -- >0)
-				{
-					displayData = slotData.DisplayDataList[i];
+        helpArray.Clear ();
+        i = slotData.DisplayDataList.Count;
+        while (i-- > 0) {
+          displayData = slotData.DisplayDataList [i];
 					
-					switch(displayData.Type)
-					{
-					case DisplayData.ARMATURE:
-						childArmature = BuildArmature(displayData.Name, null, _currentDataName, _currentTextureAtlasName);
-						if(childArmature!=null)
-						{
-							helpArray.Insert(0, childArmature);
-						}
-						break;
-					case DisplayData.IMAGE:
-					default:
-						helpArray.Insert(0, generateDisplay(_textureAtlasDic[_currentTextureAtlasName], displayData.Name, displayData.Pivot.X, displayData.Pivot.Y));
-						break;
+          switch (displayData.Type) {
+          case DisplayData.ARMATURE:
+            childArmature = BuildArmature (displayData.Name, null, _currentDataName, _currentTextureAtlasName);
+            if (childArmature != null) {
+              helpArray.Insert (0, childArmature);
+            }
+            break;
+          case DisplayData.IMAGE:
+          default:
+            helpArray.Insert (0, generateDisplay (_textureAtlasDic [_currentTextureAtlasName], displayData.Name, displayData.Pivot.X, displayData.Pivot.Y));
+            break;
 						
-					}
-				}
-				slot.DisplayList = helpArray;
-				slot.changeDisplay(0);
-				bone.AddChild(slot);
-			}
+          }
+        }
+        slot.DisplayList = helpArray;
+        slot.changeDisplay (0);
+        bone.AddChild (slot);
+      }
 			
-			//
-			i = armature._boneList.Count;
-			while(i -- >0)
-			{
-				armature._boneList[i].update();
-			}
+      //
+      i = armature._boneList.Count;
+      while (i-- > 0) {
+        armature._boneList [i].update ();
+      }
 			
-			i = armature._slotList.Count;
-			while(i -- >0)
-			{
-				slot = armature._slotList[i];
-				slot.update();
-			}
-			armature.UpdateSlotsZOrder();
+      i = armature._slotList.Count;
+      while (i-- > 0) {
+        slot = armature._slotList [i];
+        slot.update ();
+      }
+      armature.UpdateSlotsZOrder ();
 			
-			return armature;
-		}
-		
-		/**
+      return armature;
+    }
+
+    /**
 		 * Return the TextureDisplay.
 		 * @example 
 		 * <listing>
@@ -386,68 +351,58 @@ namespace DragonBones.Factorys
 		 * @param	The registration pivotY position.
 		 * @return An Object.
 		 */
-		public Object GetTextureDisplay(string textureName, string textureAtlasName = null, float pivotX = float.NaN, float pivotY = float.NaN)
-		{
+    public Object GetTextureDisplay (string textureName, string textureAtlasName = null, float pivotX = float.NaN, float pivotY = float.NaN)
+    {
 
-			TextureAtlas textureAtlas = null;
-			if(textureAtlasName!=null)
-			{
-				textureAtlas = _textureAtlasDic[textureAtlasName];
-			}
-			if(textureAtlas==null && textureAtlasName==null)
-			{
-				foreach (KeyValuePair<string, TextureAtlas> atlas in _textureAtlasDic as Dictionary<string, TextureAtlas>)
-				{
-					textureAtlas = _textureAtlasDic[atlas.Key];
-					if(textureAtlas.GetRegion(textureName)!=null)
-					{
-						break;
-					}
-					textureAtlas = null;
-				}
-			}
-			if(textureAtlas!=null)
-			{
-				if(float.IsNaN(pivotX) || float.IsNaN(pivotY))
-				{
-					SkeletonData data = _dataDic[textureAtlasName];
-					if(data!=null)
-					{
-						Point pivot = data.GetSubTexturePivot(textureName);
-						if(pivot!=null)
-						{
-							pivotX = pivot.X;
-							pivotY = pivot.Y;
-						}
-					}
-				}
+      TextureAtlas textureAtlas = null;
+      if (textureAtlasName != null) {
+        textureAtlas = _textureAtlasDic [textureAtlasName];
+      }
+      if (textureAtlas == null && textureAtlasName == null) {
+        foreach (KeyValuePair<string, TextureAtlas> atlas in _textureAtlasDic as Dictionary<string, TextureAtlas>) {
+          textureAtlas = _textureAtlasDic [atlas.Key];
+          if (textureAtlas.GetRegion (textureName) != null) {
+            break;
+          }
+          textureAtlas = null;
+        }
+      }
+      if (textureAtlas != null) {
+        if (float.IsNaN (pivotX) || float.IsNaN (pivotY)) {
+          SkeletonData data = _dataDic [textureAtlasName];
+          if (data != null) {
+            Point pivot = data.GetSubTexturePivot (textureName);
+            if (pivot != null) {
+              pivotX = pivot.X;
+              pivotY = pivot.Y;
+            }
+          }
+        }
 				
-				return generateDisplay(textureAtlas, textureName, pivotX, pivotY);
-			}
-			return null;
-		}
-		
+        return generateDisplay (textureAtlas, textureName, pivotX, pivotY);
+      }
+      return null;
+    }
 
-		
-		/**
+    /**
 		 * Generates an Armature instance.
 		 * @return Armature An Armature instance.
 		 */
-		protected virtual Armature generateArmature()
-		{
-			return null;
-		}
-		
-		/**
+    protected virtual Armature generateArmature ()
+    {
+      return null;
+    }
+
+    /**
 		 * Generates an Slot instance.
 		 * @return Slot An Slot instance.
 		 */
-		protected virtual Slot generateSlot()
-		{
-			return null;
-		}
-		
-		/**
+    protected virtual Slot generateSlot ()
+    {
+      return null;
+    }
+
+    /**
 		 * Generates a DisplayObject
 		 * @param	textureAtlas The TextureAtlas.
 		 * @param	fullName A qualified name.
@@ -455,10 +410,10 @@ namespace DragonBones.Factorys
 		 * @param	pivotY A pivot y based value.
 		 * @return
 		 */
-		protected virtual Object generateDisplay(TextureAtlas textureAtlas, string fullName, float pivotX, float pivotY)
-		{
-			return null;
-		}
-	}
+    protected virtual Object generateDisplay (TextureAtlas textureAtlas, string fullName, float pivotX, float pivotY)
+    {
+      return null;
+    }
+  }
 }
 

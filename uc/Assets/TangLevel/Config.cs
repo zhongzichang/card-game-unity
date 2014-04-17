@@ -15,6 +15,8 @@ namespace TangLevel
   {
     public static bool use_packed_res = false;
 
+    public const string BATTLE_BG_PATH = "Prefabs/Level/BattleBg";
+
     public static Dictionary<int, Level> levelTable = new Dictionary<int, Level>();
 
     public static void MockData(){
@@ -23,10 +25,13 @@ namespace TangLevel
       level.id = 1;
       level.name = "Test Level 1";
 
+      level.subLeves = new SubLevel[3];
       for (int i = 1; i < 4; i++) {
-        SubLevel sl = new SubLevel ();
-        sl.id = i;
-        sl.resName = "bbg_arena";
+        SubLevel subLevel = new SubLevel ();
+        subLevel.id = i;
+        subLevel.resName = "bbg_arena";
+        level.subLeves [i - 1] = subLevel;
+
       }
 
       levelTable.Add (level.id, level);

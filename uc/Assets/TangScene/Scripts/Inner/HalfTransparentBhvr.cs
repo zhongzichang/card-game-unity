@@ -3,20 +3,18 @@ using System.Collections;
 
 namespace TangScene
 {
-
-  [RequireComponent( typeof(MeshCollider) ),
-   RequireComponent( typeof(Locational) )]
+  [RequireComponent (typeof(MeshCollider)),
+   RequireComponent (typeof(Locational))]
   public class HalfTransparentBhvr : MonoBehaviour
   {
-
     private MeshFilter mf;
     private MeshCollider mc;
-
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
 
-      mf = GetComponent<MeshFilter>();
-      mc = GetComponent<MeshCollider>();
+      mf = GetComponent<MeshFilter> ();
+      mc = GetComponent<MeshCollider> ();
 
       mc.isTrigger = true;
 
@@ -26,20 +24,18 @@ namespace TangScene
       mc.sharedMesh = mf.mesh;
 #endif
 
-      transform.localPosition = new Vector3(0,3,0);
+      transform.localPosition = new Vector3 (0, 3, 0);
 
     }
 
-    void OnTriggerEnter( Collider collider )
+    void OnTriggerEnter (Collider collider)
     {
-      collider.SendMessage("OnBecameHalfTransparent");
+      collider.SendMessage ("OnBecameHalfTransparent");
     }
 
-    void OnTriggerExit( Collider collider )
+    void OnTriggerExit (Collider collider)
     {
-      collider.SendMessage("OnBecameReal");
+      collider.SendMessage ("OnBecameReal");
     }
-
   }
-
 }

@@ -9,10 +9,9 @@ using TangUtils;
 namespace TangScene
 {
   [ExecuteInEditMode]
-  [RequireComponent(typeof(NavMeshAgent))]
+  [RequireComponent (typeof(NavMeshAgent))]
   public class Navigable : MonoBehaviour
   {
-
     public delegate void NextPositionChange (Vector3 nextPosition);
 
     public NextPositionChange nextPositionChangeHandle = null;
@@ -20,9 +19,10 @@ namespace TangScene
     public delegate void LocalPositionChange (Vector3 localPosition);
 
     public LocalPositionChange localPositionChangeHandle = null;
-    public const float CACHE_DISTANCE = 10F; // 距离目标人物等于小于这个距离的时候人物动作由跑动改为站立(run=>idle)
-    public static readonly Vector2 NOTIFIED_RANGE = new Vector2 (32F, 16F); // 摇杆操作，角色移动超过这个距离发通知（如果需要 nextPositionChangeHandle != null）
-
+    public const float CACHE_DISTANCE = 10F;
+    // 距离目标人物等于小于这个距离的时候人物动作由跑动改为站立(run=>idle)
+    public static readonly Vector2 NOTIFIED_RANGE = new Vector2 (32F, 16F);
+    // 摇杆操作，角色移动超过这个距离发通知（如果需要 nextPositionChangeHandle != null）
     public float m_speed = 240F;
     private NavMeshAgent agent;
     private CharacterStatusBhvr statusBhvr;
@@ -34,7 +34,6 @@ namespace TangScene
     private Vector3 m_nextPosition = Vector3.zero;
     private Vector3 lastRecordMovePosition = Vector3.zero;
     private int lastCornersLength = 0;
-    
     // 是不是使用摇杆类似的输入
     private bool isMove = false;
 
@@ -60,7 +59,6 @@ namespace TangScene
         }
       }
     }
-    
 
     /// <summary>
     ///   Navigate to a destination
@@ -99,7 +97,7 @@ namespace TangScene
 
         isMove = true;
 
-        agent.ResetPath();
+        agent.ResetPath ();
         Vector3 normalized = transform.TransformDirection (moveDirection).normalized;
         agent.Move (normalized * agent.speed * Time.deltaTime);
 
@@ -110,8 +108,8 @@ namespace TangScene
 
         Vector3 vector3 = transform.localPosition - lastRecordMovePosition;
 
-        if ((Mathf.Abs (vector3.x) - NOTIFIED_RANGE.x) > 0 || 
-          (Mathf.Abs (vector3.z) - NOTIFIED_RANGE.y) > 0) {
+        if ((Mathf.Abs (vector3.x) - NOTIFIED_RANGE.x) > 0 ||
+            (Mathf.Abs (vector3.z) - NOTIFIED_RANGE.y) > 0) {
           lastRecordMovePosition = transform.localPosition;
           NextPosition = transform.localPosition;
         }
@@ -119,10 +117,7 @@ namespace TangScene
       }
     }
 
-
-
-
-#region mono
+    #region mono
 
     void Start ()
     {
@@ -130,7 +125,7 @@ namespace TangScene
       // agent
       agent = GetComponent<NavMeshAgent> ();
       if (agent == null)
-        agent = gameObject.AddComponent<NavMeshAgent>();
+        agent = gameObject.AddComponent<NavMeshAgent> ();
       
       // initialize agent
       agent.radius = 0.5F;
@@ -164,10 +159,10 @@ namespace TangScene
         // status(run/idle) checking ------
 
         if (Vector2.Distance (new Vector2 (agent.destination.x,
-             agent.destination.z),
-             new Vector2 (transform.localPosition.x,
-             transform.localPosition.z)) - agent.stoppingDistance
-          < CACHE_DISTANCE) {
+              agent.destination.z),
+              new Vector2 (transform.localPosition.x,
+                transform.localPosition.z)) - agent.stoppingDistance
+            < CACHE_DISTANCE) {
 
           if (statusBhvr != null) {
             if (statusBhvr.Status == CharacterStatus.run) {
@@ -189,7 +184,7 @@ namespace TangScene
           NextPosition = agent.path.corners [1];
 
           EightDirection currentDirection = VectorUtils.Direction (transform.localPosition, 
-                      NextPosition);
+                                              NextPosition);
           // 调整角色方向
           if (directional.Direction != currentDirection)
             directional.Direction = currentDirection;
@@ -241,7 +236,7 @@ namespace TangScene
       float localPositionZ = Mathf.Round (transform.localPosition.z);
 
       if (lastPosition.x != localPositionX &&
-        lastPosition.z != localPositionZ) {
+          lastPosition.z != localPositionZ) {
         lastPosition = new Vector3 (localPositionX, transform.localPosition.y, localPositionZ);
         if (localPositionChangeHandle != null)
           localPositionChangeHandle (lastPosition);
@@ -250,6 +245,7 @@ namespace TangScene
       lastCheckPosition = transform.localPosition;
       
     }
-#endregion
+
+    #endregion
   }
 }
