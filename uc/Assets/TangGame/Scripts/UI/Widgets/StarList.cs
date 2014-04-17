@@ -16,7 +16,7 @@ public class StarList : UIGrid {
 		this.Flush ();
 	}
 
-	private void Flush(){
+	public void Flush(){
 		stars = new UISprite[countMax];
 		for (int i = 0; i < countMax; i++) {
 			UISprite item = NGUITools.AddChild(this.gameObject, star.gameObject).GetComponent<UISprite>();
