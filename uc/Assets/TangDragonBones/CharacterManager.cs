@@ -57,10 +57,10 @@ namespace TangDragonBones
 
           Armature armature = factory.BuildArmature ("centaur/charactor", null, "charactor_all");
           GameObject heroObj = new GameObject ();
-          heroObj.SetActive (false);
           heroObj.name = armature.Name;
           DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
           bhvr.armature = armature;
+          heroObj.SetActive (false);
           Add (heroObj);
 
           // 发出通知事件，游戏对象已经准备完毕
@@ -87,7 +87,7 @@ namespace TangDragonBones
     public static void LazyLoad (string name)
     {
 
-      if (Cache.characterDataTable.ContainsKey (name) ) {
+      if (Cache.characterDataTable.ContainsKey (name)) {
 
         // 有了
         OnResReady (name);
@@ -103,6 +103,17 @@ namespace TangDragonBones
         // 本地读取
         ResourceLoad (name);
       }
+    }
+
+    /// <summary>
+    /// 加载多个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
+    /// <param name="count">Count.</param>
+    public static void LazyLoad (string name, int count)
+    {
+      for (int i = 0; i < count; i++)
+        LazyLoad (name);
     }
 
     /// <summary>
@@ -172,7 +183,7 @@ namespace TangDragonBones
 
       // 保存数据到缓存中
       if (skeletonData != null && atlasData != null) {
-        Cache.characterDataTable.Add (name, new CharacterData (skeletonData, new TextureAtlas(textureAssets, atlasData)));
+        Cache.characterDataTable.Add (name, new CharacterData (skeletonData, new TextureAtlas (textureAssets, atlasData)));
       }
 
       // 资源准备完毕
@@ -190,7 +201,6 @@ namespace TangDragonBones
       requireQueue.Enqueue (name);
 
     }
-
 
     /// <summary>
     /// 获取一个游戏对象－没有被使用的
@@ -240,6 +250,38 @@ namespace TangDragonBones
         Cache.gobjTable.Remove (name);
         Tang.AssetBundleLoader.Unload (name, all);
       }
+    }
+
+    /// <summary>
+    /// 有多少个游戏对象可用
+    /// </summary>
+    /// <param name="name">对象名称</param>
+    public static int SizeOfUnused (string name)
+    {
+      if (Cache.gobjTable.ContainsKey (name)) {
+        int size = 0;
+        List<GameObject> list = Cache.gobjTable [name];
+        foreach (GameObject o in list) {
+          if (!o.activeSelf)
+            size++;
+        }
+        return size;
+      }
+      return 0;
+    }
+
+    /// <summary>
+    /// 有多少个 GameObject
+    /// </summary>
+    /// <returns>The of.</returns>
+    /// <param name="name">Name.</param>
+    public static int SizeOf (string name)
+    {
+      if (Cache.gobjTable.ContainsKey (name)) {
+        List<GameObject> list = Cache.gobjTable [name];
+        return Cache.gobjTable [name].Count;
+      }
+      return 0;
     }
 
     #endregion

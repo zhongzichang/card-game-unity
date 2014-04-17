@@ -30,6 +30,7 @@ using UnityEngine;
 using System.Collections;
 using Spine;
 using System;
+using TangLevel;
 using TangScene;
 
 [RequireComponent(typeof(DirectedNavigable))]

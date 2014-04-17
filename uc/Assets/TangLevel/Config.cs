@@ -19,24 +19,6 @@ namespace TangLevel
 
     public static Dictionary<int, Level> levelTable = new Dictionary<int, Level>();
 
-    public static void MockData(){
-
-      Level level = new Level ();
-      level.id = 1;
-      level.name = "Test Level 1";
-
-      level.subLeves = new SubLevel[3];
-      for (int i = 1; i < 4; i++) {
-        SubLevel subLevel = new SubLevel ();
-        subLevel.id = i;
-        subLevel.resName = "bbg_arena";
-        level.subLeves [i - 1] = subLevel;
-
-      }
-
-      levelTable.Add (level.id, level);
-    }
-
 
   }
 }

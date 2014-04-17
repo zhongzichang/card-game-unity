@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace TangScene
+namespace TangLevel
 {
   public class DirectedNavAgent : MonoBehaviour
   {
@@ -26,7 +26,7 @@ namespace TangScene
       myTransform = transform;
     }
     // Update is called once per frame
-    void LateUpdate ()
+    void Update ()
     {
 
       if (hasPath) {

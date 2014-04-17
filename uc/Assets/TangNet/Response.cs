@@ -10,71 +10,59 @@ using System;
 
 namespace TangNet
 {
-
-  [ System.AttributeUsage( System.AttributeTargets.Class ) ]
+  [ System.AttributeUsage (System.AttributeTargets.Class)]
   public class ResponseAttribute : System.Attribute
   {
     private string name;
-    public ResponseAttribute(string name)
+
+    public ResponseAttribute (string name)
     {
       this.name = name;
     }
 
-    public string GetName()
+    public string GetName ()
     {
       return name;
     }
   }
-
 
   /// <summary>
   /// Description of Response.
   /// </summary>
   public class Response
   {
-    
     public const short DEFAULT_STATUS_CODE = 0;
-
     private string name;
     private short statusCode;
 
-    public string Name
-    {
-      get
-        {
-	  return name;
-        }
-      set
-	{
-	  name = value;
-	}
+    public string Name {
+      get {
+        return name;
+      }
+      set {
+        name = value;
+      }
     }
 
-    public short StatusCode
-    {
-      get
-	{
-	  return statusCode;
-	}
-      set
-	{
-	  statusCode = value;
-	}
+    public short StatusCode {
+      get {
+        return statusCode;
+      }
+      set {
+        statusCode = value;
+      }
     }
 
-
-    public Response(string name)
+    public Response (string name)
     {
       this.name = name;
       this.statusCode = DEFAULT_STATUS_CODE;
     }
-    
 
-    public Response(string name, short statusCode)
+    public Response (string name, short statusCode)
     {
       this.name = name;
       this.statusCode = statusCode;
     }
-
   }
 }

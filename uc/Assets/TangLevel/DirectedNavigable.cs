@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TS = TangScene;
 
-namespace TangScene
+namespace TangLevel
 {
   [RequireComponent (typeof(DirectedNavAgent))]
   public class DirectedNavigable : MonoBehaviour
@@ -12,7 +13,8 @@ namespace TangScene
     // 摇杆操作，角色移动超过这个距离发通知（如果需要 nextPositionChangeHandle != null）
     public float m_speed = 240F;
     private DirectedNavAgent agent;
-    private CharacterStatusBhvr statusBhvr;
+    private TS.CharacterStatusBhvr statusBhvr;
+    private Transform myTransform;
 
     public float Speed {
       get {
@@ -64,7 +66,9 @@ namespace TangScene
       agent.stoppingDistance = 0F;
       
       // character status bhvr
-      statusBhvr = GetComponent<CharacterStatusBhvr> ();
+      statusBhvr = GetComponent<TS.CharacterStatusBhvr> ();
+
+      myTransform = transform;
 
     }
 
@@ -79,14 +83,14 @@ namespace TangScene
             < CACHE_DISTANCE) {
           
           if (statusBhvr != null) {
-            if (statusBhvr.Status == CharacterStatus.run) {
-              statusBhvr.Status = CharacterStatus.idle;
+            if (statusBhvr.Status == TS.CharacterStatus.run) {
+              statusBhvr.Status = TS.CharacterStatus.idle;
             }
           }
         } else {
           if (statusBhvr != null) {
-            if (statusBhvr.Status != CharacterStatus.run) {
-              statusBhvr.Status = CharacterStatus.run;
+            if (statusBhvr.Status != TS.CharacterStatus.run) {
+              statusBhvr.Status = TS.CharacterStatus.run;
             }
           }
         }
@@ -96,13 +100,18 @@ namespace TangScene
       
       else {
 
-
-        if (statusBhvr.Status == CharacterStatus.run)
-          statusBhvr.Status = CharacterStatus.idle;
-
+        if (statusBhvr != null) {
+          if (statusBhvr.Status == TS.CharacterStatus.run)
+            statusBhvr.Status = TS.CharacterStatus.idle;
+        }
       }
 
 
+    }
+
+    void LateUpdate(){
+      Vector3 pos = myTransform.localPosition;
+      myTransform.localPosition = new Vector3 (pos.x, pos.y, -pos.y);
     }
 
     #endregion
