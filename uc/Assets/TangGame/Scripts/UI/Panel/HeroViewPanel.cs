@@ -161,11 +161,10 @@ namespace TangGame
 				item = NGUITools.AddChild (HeroUnlock, item.gameObject).GetComponent<HeroItem> ();
 			}
 			heroItems.Add (data.ConfigId, item);
-			item.Data = data;
 			//TODO next code is test ,need remove;
 			data.HeroAvatar = item.HeroAvatarSprite.atlas.spriteList [item.Data.ConfigId].name;
 
-			item.Flush ();
+			item.Flush (data);
 		}
 
 		//Reposition the children on the next Update().

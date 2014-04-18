@@ -30,7 +30,7 @@ public class HeroBase
 	private int score;
 	private int exp;
 	private int expMax;
-	private int cardHeroName;
+	private string cardHeroName;
 	private string cardName;
 
 	/// <summary>
@@ -59,7 +59,7 @@ public class HeroBase
 	/// Gets or sets the name of the card hero.英雄图鉴上的名字图片
 	/// </summary>
 	/// <value>The name of the card hero.</value>
-	public int CardHeroName {
+	public string CardHeroName {
 		get {
 			return cardHeroName;
 		}
