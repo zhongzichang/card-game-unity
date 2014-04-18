@@ -31,7 +31,7 @@ namespace TangLevel
       group.heros = new Hero[5];
       for (int j = 0; j < 5; j++) {
         Hero hero = new Hero ();      
-        hero.resName = "bird";
+        hero.resName = "hero_zf";
         hero.attackDistance = j;
         group.heros [j] = hero;
       }

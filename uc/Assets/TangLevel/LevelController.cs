@@ -160,11 +160,11 @@ namespace TangLevel
 
       // 敌方小组列阵
       Group enemyGroup = LevelContext.TargetSubLevel.enemyGroup;
-      Embattle (enemyGroup, BattleSide.RIGHT);
+      Embattle (enemyGroup, BattleDirection.LEFT);
       Debug.Log ("EnemyGroup Embattle.");
 
       // 我方小组列阵
-      Embattle (LevelContext.CurrentLevel.selfGroup, BattleSide.LEFT);
+      Embattle (LevelContext.CurrentLevel.selfGroup, BattleDirection.RIGHT);
       Debug.Log ("SelfGroup Embattle.");
 
       // 我方进场
@@ -204,10 +204,15 @@ namespace TangLevel
     /// </summary>
     /// <param name="group">Group.</param>
     /// <param name="side">Side.</param>
-    public static void Embattle (Group group, BattleSide side)
+    public static void Embattle (Group group, BattleDirection direction)
     {
 
       Hero[] heros = group.heros;
+
+      // 调整英雄面对的方向
+      for (int i = 0; i < heros.Length; i++) {
+        heros [i].battleDirection = direction;
+      }
 
       // 根据攻击距离进行排序
       Array.Sort (heros, delegate(Hero hero1, Hero hero2) {
@@ -220,7 +225,7 @@ namespace TangLevel
       Vector2 origin = Vector2.zero;
       int stepx = 6; // 排与排之间的距离
 
-      if (BattleSide.LEFT == side) {
+      if (BattleDirection.RIGHT == direction) {
 
         // 分成两列
         for (int i = 0; i < heros.Length; i++) {

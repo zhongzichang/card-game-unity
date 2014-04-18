@@ -4,7 +4,7 @@ using TS = TangScene;
 
 namespace TangLevel
 {
-  [RequireComponent (typeof(DirectedNavAgent))]
+  [RequireComponent (typeof(DirectedNavAgent), typeof(Directional))]
   public class DirectedNavigable : MonoBehaviour
   {
     public const float CACHE_DISTANCE = 10F;
@@ -15,6 +15,7 @@ namespace TangLevel
     private DirectedNavAgent agent;
     private TS.CharacterStatusBhvr statusBhvr;
     private Transform myTransform;
+    private Directional directional;
 
     public float Speed {
       get {
@@ -70,6 +71,10 @@ namespace TangLevel
 
       myTransform = transform;
 
+      directional = GetComponent<Directional> ();
+      if (directional == null)
+        directional = gameObject.AddComponent<Directional> ();
+
     }
 
     void Update ()
@@ -109,7 +114,8 @@ namespace TangLevel
 
     }
 
-    void LateUpdate(){
+    void LateUpdate ()
+    {
       Vector3 pos = myTransform.localPosition;
       myTransform.localPosition = new Vector3 (pos.x, pos.y, -pos.y);
     }
