@@ -26,11 +26,14 @@ namespace TangLevel
 
     public static Group MockGroup ()
     {
+
       Group group = new Group ();
       group.heros = new Hero[5];
       for (int j = 0; j < 5; j++) {
-        Hero hero = new Hero ();
-        hero.resName = "bird";
+        Hero hero = new Hero ();      
+        hero.resName = "hero_zf";
+        hero.hp = 100;
+        hero.attackDistance = j;
         group.heros [j] = hero;
       }
       return group;

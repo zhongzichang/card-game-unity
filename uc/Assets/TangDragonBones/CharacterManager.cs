@@ -55,9 +55,13 @@ namespace TangDragonBones
             factory.AddTextureAtlas (data.textAtlas);
           }
 
-          Armature armature = factory.BuildArmature ("centaur/charactor", null, "charactor_all");
+          Armature armature = factory.BuildArmature (name, null, name);
           GameObject heroObj = new GameObject ();
           heroObj.name = armature.Name;
+          GameObject armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
+          armatureGobj.transform.parent = heroObj.transform;
+          armatureGobj.transform.localPosition = Vector3.zero;
+          armatureGobj.transform.localRotation = Quaternion.identity;
           DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
           bhvr.armature = armature;
           heroObj.SetActive (false);
@@ -106,6 +110,17 @@ namespace TangDragonBones
     }
 
     /// <summary>
+    /// 加载多个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
+    /// <param name="count">Count.</param>
+    public static void LazyLoad (string name, int count)
+    {
+      for (int i = 0; i < count; i++)
+        LazyLoad (name);
+    }
+
+    /// <summary>
     /// 从 AssetBundle 加载资源
     /// </summary>
     /// <param name="ab">Ab.</param>
@@ -114,9 +129,9 @@ namespace TangDragonBones
       Debug.Log ("OnResLoaded");
       if (ab != null) {
 
-        string atlasFilepath = ab.name + "_atlas.json";
+        string atlasFilepath = ab.name + "_atlas";
         string textureFilepath = ab.name + "_texture";
-        string skeletonFilepath = ab.name + "_skeleton.json";
+        string skeletonFilepath = ab.name + "_skeleton";
 
         TextAsset atlasAssets = ab.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
         Texture textureAssets = ab.Load (textureFilepath, typeof(Texture)) as Texture;
@@ -137,9 +152,9 @@ namespace TangDragonBones
     {
       Debug.Log ("ResourceLoad");
 
-      string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas.json";
+      string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas";
       string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_texture";
-      string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton.json";
+      string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton";
 
       TextAsset atlasAssets = Resources.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
       Texture textureAssets = Resources.Load (textureFilepath, typeof(Texture)) as Texture;
@@ -239,6 +254,38 @@ namespace TangDragonBones
         Cache.gobjTable.Remove (name);
         Tang.AssetBundleLoader.Unload (name, all);
       }
+    }
+
+    /// <summary>
+    /// 有多少个游戏对象可用
+    /// </summary>
+    /// <param name="name">对象名称</param>
+    public static int SizeOfUnused (string name)
+    {
+      if (Cache.gobjTable.ContainsKey (name)) {
+        int size = 0;
+        List<GameObject> list = Cache.gobjTable [name];
+        foreach (GameObject o in list) {
+          if (!o.activeSelf)
+            size++;
+        }
+        return size;
+      }
+      return 0;
+    }
+
+    /// <summary>
+    /// 有多少个 GameObject
+    /// </summary>
+    /// <returns>The of.</returns>
+    /// <param name="name">Name.</param>
+    public static int SizeOf (string name)
+    {
+      if (Cache.gobjTable.ContainsKey (name)) {
+        List<GameObject> list = Cache.gobjTable [name];
+        return Cache.gobjTable [name].Count;
+      }
+      return 0;
     }
 
     #endregion

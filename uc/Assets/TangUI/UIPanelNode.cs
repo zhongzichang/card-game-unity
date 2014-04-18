@@ -115,6 +115,7 @@ namespace TangUI
       gameObject = GameObject.Instantiate (assets) as GameObject;
 
       if (gameObject != null) {
+        gameObject.SetActive (false);
         gameObject.name = name;
         context.cache.Put (name, gameObject);
 

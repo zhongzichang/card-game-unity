@@ -6,9 +6,23 @@ namespace TangLevel
 {
   public class HeroGobjManager
   {
+
+    /// <summary>
+    /// 加载一个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
     public static void LazyLoad (string name)
     {
+      TangDragonBones.CharacterManager.LazyLoad (name);
+    }
 
+    /// <summary>
+    /// 加载多个英雄游戏对象
+    /// </summary>
+    /// <param name="hero">Hero.</param>
+    /// <param name="count">Count.</param>
+    public static void LazyLoad( string name, int count){
+      TangDragonBones.CharacterManager.LazyLoad (name, count);
     }
 
     /// <summary>
@@ -18,9 +32,7 @@ namespace TangLevel
     /// <param name="name">Name.</param>
     public static GameObject FetchUnused (Hero hero)
     {
-      // 因为资源名称定义没有标准化，先强制使用测试资源 centaur/charactor
-      string heroResName = "centaur/charactor";
-      GameObject gobj = TangDragonBones.CharacterManager.FetchUnused (heroResName);
+      GameObject gobj = TangDragonBones.CharacterManager.FetchUnused (hero.resName);
       if (gobj != null) {
         // DirectedNavigable
         DirectedNavigable navigable = gobj.GetComponent<DirectedNavigable> ();
@@ -36,13 +48,37 @@ namespace TangLevel
         HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
         if (heroBhvr == null) {
           heroBhvr = gobj.AddComponent<HeroBhvr> ();
-          heroBhvr.hero = hero;
         }
+        heroBhvr.hero = hero;
+        // Directional
+        Directional directional = gobj.GetComponent<Directional> ();
+        if (directional == null) {
+          directional = gobj.AddComponent<Directional> ();
+        }
+        directional.Direction = hero.battleDirection;
+
 
       }
 
       return gobj;
 
+    }
+
+    /// <summary>
+    /// 获取可用英雄对象的数量
+    /// </summary>
+    /// <returns>The of unused.</returns>
+    /// <param name="name">Name.</param>
+    public static int SizeOfUnused(string name){
+      return TangDragonBones.CharacterManager.SizeOfUnused (name);
+    }
+
+    /// <summary>
+    /// 获取已有英雄对象的数量
+    /// </summary>
+    /// <param name="name">Name.</param>
+    public static int Size(string name){
+      return TangDragonBones.CharacterManager.SizeOf (name);
     }
   }
 }

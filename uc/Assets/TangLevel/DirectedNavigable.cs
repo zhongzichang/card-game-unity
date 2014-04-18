@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TS = TangScene;
 
 namespace TangLevel
 {
-  [RequireComponent (typeof(DirectedNavAgent))]
+  [RequireComponent (typeof(DirectedNavAgent), typeof(Directional))]
   public class DirectedNavigable : MonoBehaviour
   {
     public const float CACHE_DISTANCE = 10F;
@@ -13,8 +12,9 @@ namespace TangLevel
     // 摇杆操作，角色移动超过这个距离发通知（如果需要 nextPositionChangeHandle != null）
     public float m_speed = 240F;
     private DirectedNavAgent agent;
-    private TS.CharacterStatusBhvr statusBhvr;
+    private HeroStatusBhvr statusBhvr;
     private Transform myTransform;
+    private Directional directional;
 
     public float Speed {
       get {
@@ -66,9 +66,13 @@ namespace TangLevel
       agent.stoppingDistance = 0F;
       
       // character status bhvr
-      statusBhvr = GetComponent<TS.CharacterStatusBhvr> ();
+      statusBhvr = GetComponent<HeroStatusBhvr> ();
 
       myTransform = transform;
+
+      directional = GetComponent<Directional> ();
+      if (directional == null)
+        directional = gameObject.AddComponent<Directional> ();
 
     }
 
@@ -83,14 +87,14 @@ namespace TangLevel
             < CACHE_DISTANCE) {
           
           if (statusBhvr != null) {
-            if (statusBhvr.Status == TS.CharacterStatus.run) {
-              statusBhvr.Status = TS.CharacterStatus.idle;
+            if (statusBhvr.Status == HeroStatus.run) {
+              statusBhvr.Status = HeroStatus.idle;
             }
           }
         } else {
           if (statusBhvr != null) {
-            if (statusBhvr.Status != TS.CharacterStatus.run) {
-              statusBhvr.Status = TS.CharacterStatus.run;
+            if (statusBhvr.Status != HeroStatus.run) {
+              statusBhvr.Status = HeroStatus.run;
             }
           }
         }
@@ -101,15 +105,16 @@ namespace TangLevel
       else {
 
         if (statusBhvr != null) {
-          if (statusBhvr.Status == TS.CharacterStatus.run)
-            statusBhvr.Status = TS.CharacterStatus.idle;
+          if (statusBhvr.Status == HeroStatus.run)
+            statusBhvr.Status = HeroStatus.idle;
         }
       }
 
 
     }
 
-    void LateUpdate(){
+    void LateUpdate ()
+    {
       Vector3 pos = myTransform.localPosition;
       myTransform.localPosition = new Vector3 (pos.x, pos.y, -pos.y);
     }

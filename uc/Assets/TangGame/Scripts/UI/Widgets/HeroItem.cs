@@ -14,6 +14,7 @@ public class HeroItem : MonoBehaviour {
 	public UISprite HeroType;
 	public UIGrid PropsGrid;
 	public UISprite[] Props;
+	public StarList starList;
 
 	private HeroBase data;
 	// Use this for initialization
@@ -30,25 +31,31 @@ public class HeroItem : MonoBehaviour {
 		get {
 			return data;
 		}
-		set {
-			data = value;
-		}
+//		set {
+//			data = value;
+//		}
 	}
 
 
-	public void Flush(){
-		UpHeroRank ();
-		UpHeroAvatarSprite ();
-		UpHeroName ();
-		Locked ();
-		UpLevel ();
-		UpHeroType ();
-		UpHeroFragments ();
+	public void Flush(HeroBase hero){
+		this.data = hero;
+		
+		//TODO next code is test ,need remove;
+		data.HeroAvatar = this.HeroAvatarSprite.atlas.spriteList [this.Data.ConfigId].name;
+
+		UpHeroRank ((int)data.HeroesRank);
+		UpHeroAvatarSprite (data.HeroAvatar);
+		UpHeroName (data.HeroName);
+		Locked (data.Islock);
+		UpLevel (data.Level);
+		UpHeroType (data.HeroPropertyType);
+		UpHeroFragments (data.FragmentsCount,data.FragmentsCountMax);
+		SetStarList (data.Evolve);
 	}
 
-	private void UpHeroType(){
+	private void UpHeroType(HeroPropertyEnum propertyType){
 		string resName = "icon_str";
-		switch(data.HeroPropertyType){
+		switch(propertyType){
 		case HeroPropertyEnum.STR:
 			resName = "icon_str";
 			break;
@@ -64,33 +71,37 @@ public class HeroItem : MonoBehaviour {
 	private void UpProps(){
 		//TODO upProps;
 	}
-	private void UpLevel(){
-		this.Level.text = data.Level.ToString();
+	private void UpLevel(int level){
+		this.Level.text = level.ToString();
 	}
-	private void UpHeroName(){
-		this.HeroName.text = data.HeroName;
+	private void UpHeroName(string heroName){
+		this.HeroName.text = heroName;
 	}
-	private void UpHeroRank(){
+	private void UpHeroRank(int heroRank){
 		string frameName;
-		frameName = "hero_icon_frame_" + (int)data.HeroesRank;
+		frameName = "hero_icon_frame_" + heroRank;
 		this.HeroAvatarFrame.spriteName = frameName;
 	}
 
-	private void UpHeroFragments(){
-		this.CountLabel.text = data.FragmentsCount + "/" + data.FragmentsCountMax;
+	private void UpHeroFragments(int fragmentsCount, int fragmentsCountMax){
+		this.CountLabel.text = fragmentsCount + "/" + fragmentsCount;
 		this.ForegroundSprite.fillAmount = (float)data.FragmentsCount / (float)data.FragmentsCountMax;
 	}
 
-	private void UpHeroAvatarSprite(){
-		HeroAvatarSprite.spriteName = data.HeroAvatar;
+	private void UpHeroAvatarSprite(string heroAvatar){
+		HeroAvatarSprite.spriteName = heroAvatar;
 	}
 
-	private void Locked(){
-		bool locked = data.Islock;
+	private void Locked(bool locked){
 		PropsGrid.gameObject.SetActive (!locked);
 		HeroPackageSoulstone.gameObject.SetActive (locked);
 		Level.gameObject.SetActive (!locked);
 	}
+	void SetStarList(int count){
+		starList.count = count;
+		starList.Flush ();
+	}
+	                 
 
 
 }

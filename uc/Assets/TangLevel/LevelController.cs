@@ -15,6 +15,11 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler RaiseSubLevelLoadedEvent;
 
+    /// <summary>
+    /// 子关卡需要的英雄游戏对象以及数量
+    /// </summary>
+    public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+    // 当前关卡ID
     private static int m_currentLevelId = 0;
 
     public static int CurrentLevelId {
@@ -22,7 +27,7 @@ namespace TangLevel
         // 获取当前关卡ID
         return m_currentLevelId;
       }
-      set {
+      private set {
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (value)) {
           m_currentLevelId = value;
@@ -32,10 +37,22 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// 挑战这个关卡
+    /// </summary>
+    /// <param name="levelId">关卡ID</param>
+    /// <param name="group">我方小组</param>
+    public static void ChallengeLevel (int levelId, Group group)
+    {
+      CurrentLevelId = levelId;
+      LevelContext.selfGroup = group;
+      LoadTargetSubLevelRes ();
+    }
+
+    /// <summary>
     /// 预加载指定关卡的资源
     /// </summary>
     /// <param name="levelId">Level identifier.</param>
-    public static void LoadTargetSubLevelRes ()
+    private static void LoadTargetSubLevelRes ()
     {
 
       SubLevel subLevel = LevelContext.TargetSubLevel;
@@ -45,7 +62,6 @@ namespace TangLevel
         OnSubLevelResReady ();
       } else if (Config.use_packed_res) {
         string name = LevelContext.CurrentSubLevel.resName;
-        string path = Tang.ResourceUtils.GetAbFilePath (name);
         Tang.AssetBundleLoader.LoadAsync (name, OnSubLevelLoaded);
       } else {
         OnSubLevelLoaded (null);
@@ -60,7 +76,7 @@ namespace TangLevel
     private static void OnSubLevelLoaded (AssetBundle ab)
     {
 
-      Debug.Log ("OnSubLevelLoaded");
+      //Debug.Log ("OnSubLevelLoaded");
 
       UnityEngine.Object assets = null;
       if (ab == null) {
@@ -86,9 +102,43 @@ namespace TangLevel
     /// </summary>
     private static void OnSubLevelResReady ()
     {
-      // 加载场景中的其他资源
-      foreach (Hero enemy in LevelContext.TargetSubLevel.enemyGroup.heros) {
-        TangDragonBones.CharacterManager.LazyLoad (enemy.resName);
+      //Debug.Log ("OnSubLevelResReady");
+      // -- 加载场景中的其他资源 --
+
+      // -- 加载英雄 --
+      // 统计需要加载的英雄对象数量
+      requiredHeroGobjTable.Clear ();
+
+
+      // -- 统计敌方英雄资源 --
+      if (LevelContext.TargetSubLevel.enemyGroup != null) {
+        foreach (Hero hero in LevelContext.TargetSubLevel.enemyGroup.heros) {
+          if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
+            int count = requiredHeroGobjTable [hero.resName] + 1;
+            requiredHeroGobjTable [hero.resName] = count;
+          } else
+            requiredHeroGobjTable.Add (hero.resName, 1);
+        }
+      }
+
+      // -- 统计我方英雄资源 --
+      if (LevelContext.selfGroup != null) {
+        foreach (Hero hero in LevelContext.selfGroup.heros) {
+          if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
+            int count = requiredHeroGobjTable [hero.resName] + 1;
+            requiredHeroGobjTable [hero.resName] = count;
+          } else
+            requiredHeroGobjTable.Add (hero.resName, 1);
+        }
+      }
+
+      foreach (KeyValuePair<string, int> kvp in requiredHeroGobjTable) {
+        int has = HeroGobjManager.Size (kvp.Key);
+        if (has < kvp.Value) {
+          int need = kvp.Value - has;
+          Debug.Log ("need :" + need);
+          HeroGobjManager.LazyLoad (kvp.Key, need);
+        }
       }
 
       if (RaiseSubLevelLoadedEvent != null)
@@ -98,31 +148,28 @@ namespace TangLevel
     /// <summary>
     /// 进入下一个子关卡
     /// </summary>
-    public static void EnterNextSubLevel (Group selfGroup)
+    public static void EnterNextSubLevel ()
     {
-      // 检查参数
-      if (selfGroup == null || selfGroup.heros == null || selfGroup.heros.Length == 0)
-        return;
-
       // 创建背景
       GameObject bgGobj = GameObjectManager.FetchUnused (LevelContext.TargetSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
+        //Debug.Log ("Background Created.");
       }
 
       // 敌方小组列阵
       Group enemyGroup = LevelContext.TargetSubLevel.enemyGroup;
-      Embattle (enemyGroup, BattleSide.RIGHT);
-      Debug.Log ("EnemyGroup Embattle.");
+      Embattle (enemyGroup, BattleDirection.LEFT);
+      //Debug.Log ("EnemyGroup Embattle.");
 
       // 我方小组列阵
-      Embattle (selfGroup, BattleSide.LEFT);
-      Debug.Log ("SelfGroup Embattle.");
+      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
+      //Debug.Log ("SelfGroup Embattle.");
 
       // 我方进场
-      foreach (Hero hero in selfGroup.heros) {
+      foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
+
       }
 
       // 敌方进场
@@ -152,27 +199,20 @@ namespace TangLevel
       LevelContext.InLevel = false;
     }
 
-    public static void AddGroupToScene (Group group, BattleSide side)
-    {
-
-
-
-    }
-
-    public static void AddRightGroupToScene (Group group)
-    {
-
-    }
-
     /// <summary>
     /// 列阵
     /// </summary>
     /// <param name="group">Group.</param>
     /// <param name="side">Side.</param>
-    public static void Embattle (Group group, BattleSide side)
+    public static void Embattle (Group group, BattleDirection direction)
     {
 
       Hero[] heros = group.heros;
+
+      // 调整英雄面对的方向
+      for (int i = 0; i < heros.Length; i++) {
+        heros [i].battleDirection = direction;
+      }
 
       // 根据攻击距离进行排序
       Array.Sort (heros, delegate(Hero hero1, Hero hero2) {
@@ -185,7 +225,7 @@ namespace TangLevel
       Vector2 origin = Vector2.zero;
       int stepx = 6; // 排与排之间的距离
 
-      if (BattleSide.LEFT == side) {
+      if (BattleDirection.RIGHT == direction) {
 
         // 分成两列
         for (int i = 0; i < heros.Length; i++) {
@@ -197,7 +237,7 @@ namespace TangLevel
         }
 
         int offsety = 0;
-        origin = new Vector2 (2, 12);
+        origin = new Vector2 (0, 12);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
           // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
@@ -216,7 +256,7 @@ namespace TangLevel
         }
 
         // 对于第二列
-        origin = new Vector2 (-1, 8);
+        origin = new Vector2 (-3, 8);
         offsety = 0;
         for (int i = 0; i < column2.Count; i++) {
           // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
@@ -300,10 +340,14 @@ namespace TangLevel
     public static void AddHeroToScene (Hero hero)
     {
 
-      GameObject enemyGobj = HeroGobjManager.FetchUnused (hero);
-      if (enemyGobj != null) {
-        enemyGobj.SetActive (true);
-        enemyGobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
+      GameObject gobj = HeroGobjManager.FetchUnused (hero);
+      if (gobj != null) {
+        gobj.SetActive (true);
+        gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
+        if (hero.battleDirection == BattleDirection.RIGHT)
+          LevelContext.selfGobjs.Add (gobj);
+        else
+          LevelContext.enemyGobjs.Add (gobj);
       }
     }
 
@@ -330,6 +374,47 @@ namespace TangLevel
     public static bool IsLastSubLevel ()
     {
       return false;
+    }
+
+    /// <summary>
+    /// 找距离最近的目标
+    /// </summary>
+    /// <returns>The target.</returns>
+    /// <param name="sourceGobj">Source gobj.</param>
+    public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
+    {
+
+      GameObject sgobj = sourceHeroBhvr.gameObject;
+      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
+        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+
+      Debug.Log (" ------- ol.Count = " + ol.Count);
+
+      return FindClosestTarget (sgobj, ol);
+    }
+
+    private static GameObject FindClosestTarget (GameObject sgobj, List<GameObject>  ol)
+    {
+      // 源对象的 x 坐标
+      float posx = sgobj.transform.localPosition.x;
+      // 最接近的对象
+      GameObject closestGobj = null;
+      // 最短的距离
+      float closestDistance = 0;
+      foreach (GameObject gobj in ol) {
+
+        if (closestGobj == null)
+          closestGobj = gobj;
+        else {
+          float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
+          if (distance > closestDistance) {
+            closestDistance = distance;
+            closestGobj = gobj;
+          }
+        }
+      }
+
+      return closestGobj;
     }
   }
 }
