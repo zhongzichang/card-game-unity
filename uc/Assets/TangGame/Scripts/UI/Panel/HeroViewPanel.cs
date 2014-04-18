@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
+using TangUI;
 
 namespace TangGame
 {
@@ -161,12 +162,16 @@ namespace TangGame
 				item = NGUITools.AddChild (HeroUnlock, item.gameObject).GetComponent<HeroItem> ();
 			}
 			heroItems.Add (data.ConfigId, item);
-			//TODO next code is test ,need remove;
-			data.HeroAvatar = item.HeroAvatarSprite.atlas.spriteList [item.Data.ConfigId].name;
-
 			item.Flush (data);
+			UIEventListener.Get (item.gameObject).onClick += ItemOnClick;
 		}
 
+		public void ItemOnClick(GameObject obj){
+			HeroItem item = obj.GetComponent<HeroItem> ();
+			if (item == null)
+				return;
+			TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE,item.Data);
+		}
 		//Reposition the children on the next Update().
 		void repositionNow ()
 		{

@@ -19,7 +19,8 @@ public class PictorialSubPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SetCardTexture (data.CardName);
+		//FIXME remove this code ,that only to test!
+		SetCardTexture ("card_bg_big_2");
 	}
 
 	

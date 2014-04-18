@@ -36,7 +36,12 @@ public class HeroItem : MonoBehaviour {
 	}
 
 
-	public void Flush(HeroBase data){
+	public void Flush(HeroBase hero){
+		this.data = hero;
+		
+		//TODO next code is test ,need remove;
+		data.HeroAvatar = this.HeroAvatarSprite.atlas.spriteList [this.Data.ConfigId].name;
+
 		UpHeroRank ((int)data.HeroesRank);
 		UpHeroAvatarSprite (data.HeroAvatar);
 		UpHeroName (data.HeroName);
