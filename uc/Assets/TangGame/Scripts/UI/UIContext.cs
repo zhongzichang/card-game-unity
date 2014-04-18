@@ -21,6 +21,7 @@ namespace TangGame
 		public const string HERO_INFO_PANEL_NAME = "HeroInfoPanel";
 
 		public const string HERO_ITEM_NAME = "HeroItem";
+		public const string SKILL_ITEM_NAME = "SkillItem";
 
 		public static UIPanelNodeManager mgr; 
 

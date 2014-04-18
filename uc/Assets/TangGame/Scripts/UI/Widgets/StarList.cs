@@ -17,6 +17,7 @@ public class StarList : UIGrid {
 	}
 
 	public void Flush(){
+		ClearAllStar ();
 		stars = new UISprite[countMax];
 		for (int i = 0; i < countMax; i++) {
 			UISprite item = NGUITools.AddChild(this.gameObject, star.gameObject).GetComponent<UISprite>();
@@ -26,6 +27,13 @@ public class StarList : UIGrid {
 		}
 		this.SetStarSpirteName ();
 		this.repositionNow = true;
+	}
+	void ClearAllStar(){
+		for (int i = 0; i< stars.Length; i ++) {
+			if(stars[i] is UISprite){
+				Destroy(stars[i].gameObject);
+			}
+		}
 	}
 	public void SetStarSpirteName(){
 		this.SetStarSpirteName (spriteN);

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class HeroBase
 {
 	//英雄id
@@ -32,7 +32,9 @@ public class HeroBase
 	private int expMax;
 	private string cardHeroName;
 	private string cardName;
+	private int skillNum;
 
+	public Dictionary<int,SkillBase> skillbases = new Dictionary<int, SkillBase> ();
 	/// <summary>
 	/// Gets or sets the Experience.
 	/// </summary>
@@ -43,6 +45,15 @@ public class HeroBase
 		}
 		set {
 			exp = value;
+		}
+	}
+
+	public int SkillNum {
+		get {
+			return skillNum;
+		}
+		set {
+			skillNum = value;
 		}
 	}
 

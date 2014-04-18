@@ -14,6 +14,7 @@ public class HeroItem : MonoBehaviour {
 	public UISprite HeroType;
 	public UIGrid PropsGrid;
 	public UISprite[] Props;
+	public StarList starList;
 
 	private HeroBase data;
 	// Use this for initialization
@@ -36,7 +37,12 @@ public class HeroItem : MonoBehaviour {
 	}
 
 
-	public void Flush(HeroBase data){
+	public void Flush(HeroBase hero){
+		this.data = hero;
+		
+		//TODO next code is test ,need remove;
+		data.HeroAvatar = this.HeroAvatarSprite.atlas.spriteList [this.Data.ConfigId].name;
+
 		UpHeroRank ((int)data.HeroesRank);
 		UpHeroAvatarSprite (data.HeroAvatar);
 		UpHeroName (data.HeroName);
@@ -44,6 +50,7 @@ public class HeroItem : MonoBehaviour {
 		UpLevel (data.Level);
 		UpHeroType (data.HeroPropertyType);
 		UpHeroFragments (data.FragmentsCount,data.FragmentsCountMax);
+		SetStarList (data.Evolve);
 	}
 
 	private void UpHeroType(HeroPropertyEnum propertyType){
@@ -90,6 +97,11 @@ public class HeroItem : MonoBehaviour {
 		HeroPackageSoulstone.gameObject.SetActive (locked);
 		Level.gameObject.SetActive (!locked);
 	}
+	void SetStarList(int count){
+		starList.count = count;
+		starList.Flush ();
+	}
+	                 
 
 
 }
