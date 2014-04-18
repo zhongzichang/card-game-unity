@@ -32,9 +32,7 @@ namespace TangLevel
     /// <param name="name">Name.</param>
     public static GameObject FetchUnused (Hero hero)
     {
-      // 因为资源名称定义没有标准化，先强制使用测试资源 centaur/charactor
-      string heroResName = "centaur/charactor";
-      GameObject gobj = TangDragonBones.CharacterManager.FetchUnused (heroResName);
+      GameObject gobj = TangDragonBones.CharacterManager.FetchUnused (hero.resName);
       if (gobj != null) {
         // DirectedNavigable
         DirectedNavigable navigable = gobj.GetComponent<DirectedNavigable> ();
@@ -50,8 +48,15 @@ namespace TangLevel
         HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
         if (heroBhvr == null) {
           heroBhvr = gobj.AddComponent<HeroBhvr> ();
-          heroBhvr.hero = hero;
         }
+        heroBhvr.hero = hero;
+        // Directional
+        Directional directional = gobj.GetComponent<Directional> ();
+        if (directional == null) {
+          directional = gobj.AddComponent<Directional> ();
+        }
+        directional.Direction = hero.battleDirection;
+
 
       }
 

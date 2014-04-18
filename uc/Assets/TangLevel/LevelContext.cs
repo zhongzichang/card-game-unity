@@ -13,6 +13,10 @@ namespace TangLevel
 {
   public class LevelContext
   {
+
+    // -- 关卡 --
+    #region Level
+
     public static bool InLevel {
       get;
       set;
@@ -65,6 +69,13 @@ namespace TangLevel
       get;
       set;
     }
+
+    #endregion
+
+    // -- 场景 --
+    #region Scene
+
+    #endregion
   }
 }
 

@@ -51,6 +51,11 @@ public class DynamicBindUtil
 		//遍历每一个public变量字段
 		foreach(FieldInfo ff in infos)
 		{
+
+      // 如果字段的名称等于 param，略过。param永远参数传递，不用于游戏对象赋值。
+      if( ff.Name.Equals("param" ) )
+        continue;
+
 			Transform[] tfs = obj.GetComponentsInChildren<Transform>(true);
 			bool isFind = false;
 			foreach (Transform tf in tfs)

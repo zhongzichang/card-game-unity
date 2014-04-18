@@ -64,6 +64,10 @@ namespace TangLevel
     /// 出生点
     /// </summary>
     public Vector2 birthPoint;
+    /// <summary>
+    /// 战斗方向
+    /// </summary>
+    public BattleDirection battleDirection;
     #endregion
 
 

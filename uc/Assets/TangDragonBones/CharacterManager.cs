@@ -55,9 +55,13 @@ namespace TangDragonBones
             factory.AddTextureAtlas (data.textAtlas);
           }
 
-          Armature armature = factory.BuildArmature ("centaur/charactor", null, "charactor_all");
+          Armature armature = factory.BuildArmature (name, null, name);
           GameObject heroObj = new GameObject ();
           heroObj.name = armature.Name;
+          GameObject armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
+          armatureGobj.transform.parent = heroObj.transform;
+          armatureGobj.transform.localPosition = Vector3.zero;
+          armatureGobj.transform.localRotation = Quaternion.identity;
           DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
           bhvr.armature = armature;
           heroObj.SetActive (false);
@@ -125,9 +129,9 @@ namespace TangDragonBones
       Debug.Log ("OnResLoaded");
       if (ab != null) {
 
-        string atlasFilepath = ab.name + "_atlas.json";
+        string atlasFilepath = ab.name + "_atlas";
         string textureFilepath = ab.name + "_texture";
-        string skeletonFilepath = ab.name + "_skeleton.json";
+        string skeletonFilepath = ab.name + "_skeleton";
 
         TextAsset atlasAssets = ab.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
         Texture textureAssets = ab.Load (textureFilepath, typeof(Texture)) as Texture;
@@ -148,9 +152,9 @@ namespace TangDragonBones
     {
       Debug.Log ("ResourceLoad");
 
-      string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas.json";
+      string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas";
       string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_texture";
-      string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton.json";
+      string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton";
 
       TextAsset atlasAssets = Resources.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
       Texture textureAssets = Resources.Load (textureFilepath, typeof(Texture)) as Texture;

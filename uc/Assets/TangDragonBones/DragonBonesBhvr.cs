@@ -16,14 +16,8 @@ namespace TangDragonBones
       Debug.Log ("start");
       if (armature != null) {
 
-        if (armatureGobj == null)
-          armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
-
-        armatureGobj.transform.parent = transform;
-        armatureGobj.transform.localPosition = Vector3.zero;
-
         armature.AdvanceTime (0f);
-        armature.Animation.GotoAndPlay ("run", -1, -1, 0);
+        armature.Animation.GotoAndPlay ("idle", -1, -1, 0);
       }
     }
 
@@ -38,9 +32,6 @@ namespace TangDragonBones
     {
       Debug.Log ("enable");
       if (armature != null) {
-        if (armatureGobj == null)
-          armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
-        armatureGobj.transform.localPosition = Vector3.zero;
         WorldClock.Clock.Add (armature);
       }
     }
