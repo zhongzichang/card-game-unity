@@ -33,8 +33,6 @@ namespace TangLevel
 
     // 当前子关卡
     private static int m_currentSubLevelIndex = 0;
-    private static int m_currentSubLevelId = 0;
-
     public static SubLevel CurrentSubLevel {
       get {
         if (m_currentLevel != null && m_currentLevel.subLeves.Length > m_currentSubLevelIndex) {
@@ -91,11 +89,37 @@ namespace TangLevel
     /// <summary>
     /// 活着的敌方英雄
     /// </summary>
-    public static List<GameObject> aliveEnemyGobjs = new List<GameObject> ();
+    private static List<GameObject> aliveEnemyGobjs = new List<GameObject> ();
+    public static List<GameObject> AliveEnemyGobjs{
+      get{
+        aliveEnemyGobjs.Clear ();
+        foreach (GameObject gobj in enemyGobjs) {
+          HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+          if (heroBhvr != null) {
+            if (heroBhvr.hero.hp > 0)
+              aliveEnemyGobjs.Add (gobj);
+          }
+        }
+        return aliveEnemyGobjs;
+      }
+    }
     /// <summary>
     /// 活着的我方英雄
     /// </summary>
-    public static List<GameObject> aliveSelfGobjs = new List<GameObject> ();
+    private static List<GameObject> aliveSelfGobjs = new List<GameObject> ();
+        public static List<GameObject> AliveSelfGobjs{
+      get{
+        aliveSelfGobjs.Clear ();
+        foreach (GameObject gobj in selfGobjs) {
+          HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+          if (heroBhvr != null) {
+            if (heroBhvr.hero.hp > 0)
+              aliveSelfGobjs.Add (gobj);
+          }
+        }
+        return aliveSelfGobjs;
+      }
+    }
 
     #endregion
   }

@@ -32,6 +32,7 @@ namespace TangLevel
 
         GameObject target = LevelController.FindClosestTarget (this);
         if (target != null) {
+          Debug.Log ("find target ----" + target.name);
           navigable.NavTo (target.transform.localScale.x);
         }
       }

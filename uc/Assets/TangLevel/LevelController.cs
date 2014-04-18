@@ -62,7 +62,6 @@ namespace TangLevel
         OnSubLevelResReady ();
       } else if (Config.use_packed_res) {
         string name = LevelContext.CurrentSubLevel.resName;
-        string path = Tang.ResourceUtils.GetAbFilePath (name);
         Tang.AssetBundleLoader.LoadAsync (name, OnSubLevelLoaded);
       } else {
         OnSubLevelLoaded (null);
@@ -170,6 +169,7 @@ namespace TangLevel
       // 我方进场
       foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
+
       }
 
       // 敌方进场
@@ -340,11 +340,14 @@ namespace TangLevel
     public static void AddHeroToScene (Hero hero)
     {
 
-      GameObject enemyGobj = HeroGobjManager.FetchUnused (hero);
-      if (enemyGobj != null) {
-        enemyGobj.SetActive (true);
-        enemyGobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
-
+      GameObject gobj = HeroGobjManager.FetchUnused (hero);
+      if (gobj != null) {
+        gobj.SetActive (true);
+        gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
+        if (hero.battleDirection == BattleDirection.RIGHT)
+          LevelContext.selfGobjs.Add (gobj);
+        else
+          LevelContext.enemyGobjs.Add (gobj);
       }
     }
 
@@ -381,11 +384,11 @@ namespace TangLevel
     public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
     {
 
-
       GameObject sgobj = sourceHeroBhvr.gameObject;
-      List<GameObject> ol = null;
-      ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
-          ? LevelContext.aliveEnemyGobjs : LevelContext.aliveSelfGobjs;
+      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
+        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+
+      Debug.Log (" ------- ol.Count = " + ol.Count);
 
       return FindClosestTarget (sgobj, ol);
     }

@@ -34,7 +34,7 @@ namespace TangLevel
         float distance = Vector3.Distance (myTransform.localPosition, destination);
         float fraction = Time.deltaTime * speed / distance;
 
-        if (distance < stoppingDistance) {
+        if (distance <= stoppingDistance - 0.001F) {
           ResetPath ();
         } else {
           myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
