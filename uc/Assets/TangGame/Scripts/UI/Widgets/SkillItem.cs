@@ -8,24 +8,36 @@ public class SkillItem : MonoBehaviour {
 	public UILabel Money;
 	public UILabel SkillLevel;
 	public UILabel SkillName;
+	public UILabel SkillDescription;
+	public UILabel SkillInfoLabel;
+
 	private SkillBase skill;
 	public void Flush(SkillBase skill){
 		this.skill = skill;
 //		SetSkillName (skill.config.name);
 //		SetMoney (skill.config.money);
 		SetSkillLv (skill.SkillLv);
+//		SetSkillInfoLabel (skill.config.description);
+//		SetSkillDescription(skill.config.info);
 	}
-	
-	public void SetSkillIncon(string skillIconName){
+
+	void SetSkillInfoLabel(string skillInfoLabel){
+		this.SkillInfoLabel.text = skillInfoLabel;
+	}
+	void SetSkillDescription(string skillDescription){
+		this.SkillDescription.text = skillDescription;
+	}
+
+	void SetSkillIncon(string skillIconName){
 		this.SkillIcon.spriteName = skillIconName;
 	}
-	public void SetMoney(string money){
+  void SetMoney(string money){
 		this.Money.text = money;
 	}
-	public void SetSkillName(string skillName){
+  void SetSkillName(string skillName){
 		this.SkillName.text = skillName;
 	}
-	public void SetSkillLv(int lv){
+	 void SetSkillLv(int lv){
 		this.SkillLevel.text = "lv." + lv;
 		//FIXME if skill > herolv addbutton will false;
 	}
