@@ -13,7 +13,7 @@ namespace TangDragonBones
 
     void Start ()
     {
-      Debug.Log ("start");
+      //Debug.Log ("start");
       if (armature != null) {
 
         armature.AdvanceTime (0f);
@@ -23,14 +23,13 @@ namespace TangDragonBones
 
     void OnDisable ()
     {
-      Debug.Log ("disable");
+      //Debug.Log ("disable");
       if (armature != null)
         WorldClock.Clock.Remove (armature);
     }
 
     void OnEnable ()
     {
-      Debug.Log ("enable");
       if (armature != null) {
         WorldClock.Clock.Add (armature);
       }
@@ -38,7 +37,7 @@ namespace TangDragonBones
 
     void OnDestroy ()
     {
-      Debug.Log ("destroy");
+      //Debug.Log ("destroy");
       if (armature != null)
         armature.Dispose ();
     }

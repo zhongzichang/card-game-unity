@@ -44,7 +44,7 @@ namespace TangLevel
     public static void ChallengeLevel (int levelId, Group group)
     {
       CurrentLevelId = levelId;
-      LevelContext.CurrentLevel.selfGroup = group;
+      LevelContext.selfGroup = group;
       LoadTargetSubLevelRes ();
     }
 
@@ -77,7 +77,7 @@ namespace TangLevel
     private static void OnSubLevelLoaded (AssetBundle ab)
     {
 
-      Debug.Log ("OnSubLevelLoaded");
+      //Debug.Log ("OnSubLevelLoaded");
 
       UnityEngine.Object assets = null;
       if (ab == null) {
@@ -103,7 +103,7 @@ namespace TangLevel
     /// </summary>
     private static void OnSubLevelResReady ()
     {
-      Debug.Log ("OnSubLevelResReady");
+      //Debug.Log ("OnSubLevelResReady");
       // -- 加载场景中的其他资源 --
 
       // -- 加载英雄 --
@@ -123,8 +123,8 @@ namespace TangLevel
       }
 
       // -- 统计我方英雄资源 --
-      if (LevelContext.CurrentLevel.selfGroup != null) {
-        foreach (Hero hero in LevelContext.CurrentLevel.selfGroup.heros) {
+      if (LevelContext.selfGroup != null) {
+        foreach (Hero hero in LevelContext.selfGroup.heros) {
           if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
             int count = requiredHeroGobjTable [hero.resName] + 1;
             requiredHeroGobjTable [hero.resName] = count;
@@ -155,20 +155,20 @@ namespace TangLevel
       GameObject bgGobj = GameObjectManager.FetchUnused (LevelContext.TargetSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
+        //Debug.Log ("Background Created.");
       }
 
       // 敌方小组列阵
       Group enemyGroup = LevelContext.TargetSubLevel.enemyGroup;
       Embattle (enemyGroup, BattleDirection.LEFT);
-      Debug.Log ("EnemyGroup Embattle.");
+      //Debug.Log ("EnemyGroup Embattle.");
 
       // 我方小组列阵
-      Embattle (LevelContext.CurrentLevel.selfGroup, BattleDirection.RIGHT);
-      Debug.Log ("SelfGroup Embattle.");
+      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
+      //Debug.Log ("SelfGroup Embattle.");
 
       // 我方进场
-      foreach (Hero hero in LevelContext.CurrentLevel.selfGroup.heros) {
+      foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
       }
 
@@ -344,6 +344,7 @@ namespace TangLevel
       if (enemyGobj != null) {
         enemyGobj.SetActive (true);
         enemyGobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
+
       }
     }
 
@@ -370,6 +371,47 @@ namespace TangLevel
     public static bool IsLastSubLevel ()
     {
       return false;
+    }
+
+    /// <summary>
+    /// 找距离最近的目标
+    /// </summary>
+    /// <returns>The target.</returns>
+    /// <param name="sourceGobj">Source gobj.</param>
+    public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
+    {
+
+
+      GameObject sgobj = sourceHeroBhvr.gameObject;
+      List<GameObject> ol = null;
+      ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
+          ? LevelContext.aliveEnemyGobjs : LevelContext.aliveSelfGobjs;
+
+      return FindClosestTarget (sgobj, ol);
+    }
+
+    private static GameObject FindClosestTarget (GameObject sgobj, List<GameObject>  ol)
+    {
+      // 源对象的 x 坐标
+      float posx = sgobj.transform.localPosition.x;
+      // 最接近的对象
+      GameObject closestGobj = null;
+      // 最短的距离
+      float closestDistance = 0;
+      foreach (GameObject gobj in ol) {
+
+        if (closestGobj == null)
+          closestGobj = gobj;
+        else {
+          float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
+          if (distance > closestDistance) {
+            closestDistance = distance;
+            closestGobj = gobj;
+          }
+        }
+      }
+
+      return closestGobj;
     }
   }
 }
