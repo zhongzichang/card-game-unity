@@ -9,7 +9,7 @@ namespace TangGame
 
 		public GameObject SkillNum;
 		public GameObject SkillNumTime;
-		public GameObject SkillGrid;
+		public GameObject SkillTable;
 		private HeroBase data;
 
 
@@ -49,7 +49,7 @@ namespace TangGame
 		void AddHeroItem (SkillBase skill)
 		{
 			SkillItem item = Resources.Load<SkillItem> (UIContext.getWidgetsPath (UIContext.SKILL_ITEM_NAME));
-			item = NGUITools.AddChild (SkillGrid, item.gameObject).GetComponent<SkillItem> ();
+			item = NGUITools.AddChild (SkillTable, item.gameObject).GetComponent<SkillItem> ();
 			item.Flush (skill);
 		}
 

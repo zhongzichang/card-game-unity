@@ -54,6 +54,7 @@ namespace TangGame
 				data.ConfigId = i;
 				data.HeroPropertyType = (HeroPropertyEnum)(i % 3 + 1);
 				data.HeroLocation = (HeroLocationEnum)(i % 3 + 1);
+				data.Evolve = i%5 + 1;
 				data.FragmentsCount = i;
 				data.FragmentsCountMax = 50;
 				if (i > 40) {
@@ -170,7 +171,9 @@ namespace TangGame
 			HeroItem item = obj.GetComponent<HeroItem> ();
 			if (item == null)
 				return;
-			TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE,item.Data);
+			if (!item.Data.Islock) {
+				TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, item.Data);
+			}
 		}
 		//Reposition the children on the next Update().
 		void repositionNow ()

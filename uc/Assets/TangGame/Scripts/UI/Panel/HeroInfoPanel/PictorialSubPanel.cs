@@ -49,6 +49,11 @@ public class PictorialSubPanel : MonoBehaviour {
 //		SetSkillGroup ();
 		SetCardTexture (data.CardName);
 		SetBackground ((int)data.HeroesRank);
+		SetStarList (data.Evolve);
+	}
+	void SetStarList(int count){
+		StarList.GetComponent<StarList> ().count = count;
+		StarList.GetComponent<StarList> ().Flush ();
 	}
 	/// <summary>
 	/// Sets the name of the hero.设置英雄名字
