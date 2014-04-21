@@ -7,7 +7,8 @@ namespace TangLevel
     idle,
     running,
     attack,
-    dead
+    dead,
+    skill
   }
 }
 

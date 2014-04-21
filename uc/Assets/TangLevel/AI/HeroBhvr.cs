@@ -45,7 +45,7 @@ namespace TangLevel
             //Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
           } else {
 
-            if (statusBhvr.Status != HeroStatus.attack) {
+            if (statusBhvr.Status != HeroStatus.skill) {
 
               // 发起攻击
               Attack (target);
@@ -61,7 +61,7 @@ namespace TangLevel
     void OnEnable ()
     {
       // 重新打开，状态设置为空闲
-      if (statusBhvr != null)
+      if( statusBhvr != null )
         statusBhvr.Status = HeroStatus.idle;
     }
 
@@ -78,7 +78,7 @@ namespace TangLevel
     {
 
       if (statusBhvr != null)
-        statusBhvr.Status = HeroStatus.attack;
+        statusBhvr.Status = HeroStatus.skill;
 
     }
 
