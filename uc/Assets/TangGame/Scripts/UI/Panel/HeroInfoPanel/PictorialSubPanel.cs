@@ -111,6 +111,11 @@ public class PictorialSubPanel : MonoBehaviour {
 		isChecked = !isChecked;
 		UIPlayTween pt = GetComponent<UIPlayTween> ();
 		pt.Play (true);
+		if(isChecked){
+			NGUITools.AdjustDepth(this.gameObject,10000);
+		}else{
+			NGUITools.AdjustDepth(this.gameObject,-10000);
+		}
 	}
 
 }

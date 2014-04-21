@@ -21,6 +21,15 @@ public class SkillItem : MonoBehaviour {
 //		SetSkillDescription(skill.config.info);
 	}
 
+	void OnTooltip(bool bl){
+		this.GetComponent<UIPlayTween> ().Play(true);
+
+	}
+	void OnHover (){
+//		this.GetComponent<UIPlayTween> ().Play(true);
+	}
+
+
 	void SetSkillInfoLabel(string skillInfoLabel){
 		this.SkillInfoLabel.text = skillInfoLabel;
 	}
