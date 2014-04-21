@@ -16,15 +16,15 @@ using DragonBones.Animation;
 using DragonBones.Objects;
 using DragonBones.Display;
 using DragonBones.Textures;
-using System.Collections.Generic;
 using Com.Viperstudio.Utils;
 using UnityEngine;
 
 namespace TangDragonBones
 {
-  public class CharacterManager : MonoBehaviour
+  public class DbgoManager : MonoBehaviour
   {
-    public static event EventHandler RaiseLoadedEvent;
+    public delegate void ResEventHandler(object sender, ResEventArgs a);
+    public static event ResEventHandler RaiseLoadedEvent;
 
     private static Queue<string> requireQueue = new Queue<string> ();
     private UnityFactory factory = null;
@@ -45,7 +45,7 @@ namespace TangDragonBones
         // 确认数据和资源在缓存中
         if (Cache.characterDataTable.ContainsKey (name)) {
 
-          CharacterData data = Cache.characterDataTable [name];
+          AvatarData data = Cache.characterDataTable [name];
 
           if (factory.GetSkeletonData (name) == null) {
             factory.AddSkeletonData (data.skeletonData, data.skeletonData.Name);
@@ -69,7 +69,7 @@ namespace TangDragonBones
 
           // 发出通知事件，游戏对象已经准备完毕
           if (RaiseLoadedEvent != null)
-            RaiseLoadedEvent (null, EventArgs.Empty);
+            RaiseLoadedEvent (null, new ResEventArgs(name));
 
         } else {
 
@@ -99,7 +99,6 @@ namespace TangDragonBones
       } else if (Config.use_packed_res) {
 
         // 从资源包下载
-        string path = Tang.ResourceUtils.GetAbFilePath (name);
         Tang.AssetBundleLoader.LoadAsync (name, OnAbLoaded);
 
       } else {
@@ -187,7 +186,7 @@ namespace TangDragonBones
 
       // 保存数据到缓存中
       if (skeletonData != null && atlasData != null) {
-        Cache.characterDataTable.Add (name, new CharacterData (skeletonData, new TextureAtlas (textureAssets, atlasData)));
+        Cache.characterDataTable.Add (name, new AvatarData (skeletonData, new TextureAtlas (textureAssets, atlasData)));
       }
 
       // 资源准备完毕
@@ -215,7 +214,7 @@ namespace TangDragonBones
 
       if (Cache.gobjTable.ContainsKey (name)) {
         foreach (GameObject gobj in Cache.gobjTable[name]) {
-          if (!gobj.activeSelf) {
+          if (gobj != null && !gobj.activeSelf) {
             gobj.SetActive (true);
             return gobj;
           }
@@ -250,8 +249,16 @@ namespace TangDragonBones
       string name = gobj.name;
       gobj.SetActive (false);
       if (all) {
+        // 从对象表中删除
+        if (Cache.gobjTable.ContainsKey (name)) {
+          Cache.gobjTable [name].Remove (gobj);
+          if (Cache.gobjTable [name].Count == 0) {
+            Cache.gobjTable.Remove (name);
+          }
+        }
+        // 销毁对象
         GameObject.Destroy (gobj);
-        Cache.gobjTable.Remove (name);
+        // 销毁资源包
         Tang.AssetBundleLoader.Unload (name, all);
       }
     }

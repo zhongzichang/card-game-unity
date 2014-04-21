@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using TS = TangScene;
+using TD = TangDragonBones;
 
 namespace TangLevel
 {
@@ -13,7 +14,7 @@ namespace TangLevel
     /// <param name="hero">Hero.</param>
     public static void LazyLoad (string name)
     {
-      TangDragonBones.CharacterManager.LazyLoad (name);
+      TD.DbgoManager.LazyLoad (name);
     }
 
     /// <summary>
@@ -22,7 +23,7 @@ namespace TangLevel
     /// <param name="hero">Hero.</param>
     /// <param name="count">Count.</param>
     public static void LazyLoad( string name, int count){
-      TangDragonBones.CharacterManager.LazyLoad (name, count);
+      TD.DbgoManager.LazyLoad (name, count);
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ namespace TangLevel
     /// <param name="name">Name.</param>
     public static GameObject FetchUnused (Hero hero)
     {
-      GameObject gobj = TangDragonBones.CharacterManager.FetchUnused (hero.resName);
+      GameObject gobj = TD.DbgoManager.FetchUnused (hero.resName);
       if (gobj != null) {
         // DirectedNavigable
         DirectedNavigable navigable = gobj.GetComponent<DirectedNavigable> ();
@@ -65,12 +66,21 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// 释放英雄游戏对象
+    /// </summary>
+    /// <param name="gobj">Gobj.</param>
+    /// <param name="all">If set to <c>true</c> 释放所占有的资源.</param>
+    public static void Release(GameObject gobj, bool all ){
+      TD.DbgoManager.Release (gobj, all);
+    }
+
+    /// <summary>
     /// 获取可用英雄对象的数量
     /// </summary>
     /// <returns>The of unused.</returns>
     /// <param name="name">Name.</param>
     public static int SizeOfUnused(string name){
-      return TangDragonBones.CharacterManager.SizeOfUnused (name);
+      return TD.DbgoManager.SizeOfUnused (name);
     }
 
     /// <summary>
@@ -78,7 +88,7 @@ namespace TangLevel
     /// </summary>
     /// <param name="name">Name.</param>
     public static int Size(string name){
-      return TangDragonBones.CharacterManager.SizeOf (name);
+      return TD.DbgoManager.SizeOf (name);
     }
   }
 }

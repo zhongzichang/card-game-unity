@@ -14,30 +14,31 @@ namespace TangLevel
     /// <param name="name">Name.</param>
     public static GameObject FetchUnused (string name)
     {
-
+      GameObject result = null;
       if (Cache.gobjTable.ContainsKey (name)) {
         foreach (GameObject gobj in Cache.gobjTable[name]) {
           if (!gobj.activeSelf) {
             gobj.SetActive (true);
-            return gobj;
+            result = gobj;
           }
         }
       }
 
-      return null;
+      return result;
     }
 
     /// <summary>
     /// Add the specified gobj.
     /// </summary>
     /// <param name="gobj">Gobj.</param>
-    public static void Add(GameObject gobj){
+    public static void Add (GameObject gobj)
+    {
       if (Cache.gobjTable.ContainsKey (gobj.name)) {
         Cache.gobjTable [gobj.name].Add (gobj);
       } else {
         List<GameObject> list = new List<GameObject> ();
         list.Add (gobj);
-        Cache.gobjTable.Add(gobj.name, list);
+        Cache.gobjTable.Add (gobj.name, list);
       }
     }
 
@@ -51,8 +52,13 @@ namespace TangLevel
       string name = gobj.name;
       gobj.SetActive (false);
       if (all) {
+        if (Cache.gobjTable.ContainsKey (name)) {
+          Cache.gobjTable [name].Remove (gobj);
+          if (Cache.gobjTable [name].Count == 0) {
+            Cache.gobjTable.Remove (name);
+          }
+        }
         GameObject.Destroy (gobj);
-        Cache.gobjTable.Remove (name);
         Tang.AssetBundleLoader.Unload (name, all);
       }
     }

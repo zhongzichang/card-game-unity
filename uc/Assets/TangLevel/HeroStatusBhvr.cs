@@ -25,9 +25,9 @@ namespace TangLevel
         spriteAnimate.lateLastFrameHandler += LateLastFrame;
         spriteAnimate.currentIndexChange += LateCurrentIndexChange;
       }
-
       actorBhvr = GetComponent<ActorBhvr> ();
 */
+
     }
 
     /// <summary>
@@ -40,7 +40,6 @@ namespace TangLevel
       set {
         if (m_status != value) {
 
-          HeroStatus before = m_status;
 
           if (statusEndHandler != null)
             statusEndHandler (m_status);

@@ -14,25 +14,38 @@ namespace TangLevel
 {
   public class LevelContext
   {
-
     // -- 关卡 --
+
     #region Level
 
+    /// <summary>
+    /// 是否在关卡里面
+    /// </summary>
+    /// <value><c>true</c> if in level; otherwise, <c>false</c>.</value>
     public static bool InLevel {
       get;
       set;
     }
 
-    // 当前关卡
+    /// <summary>
+    /// 子关卡状态
+    /// </summary>
+    public static LevelStatus subLevelStatus = LevelStatus.OUT;
     private static Level m_currentLevel = null;
-
+    /// <summary>
+    /// 当前关卡
+    /// </summary>
+    /// <value>The current level.</value>
     public static Level CurrentLevel {
       get{ return m_currentLevel; }
       set{ m_currentLevel = value; }
     }
 
-    // 当前子关卡
     private static int m_currentSubLevelIndex = 0;
+    /// <summary>
+    /// 当前子关卡
+    /// </summary>
+    /// <value>The current sub level.</value>
     public static SubLevel CurrentSubLevel {
       get {
         if (m_currentLevel != null && m_currentLevel.subLeves.Length > m_currentSubLevelIndex) {
@@ -41,8 +54,10 @@ namespace TangLevel
         return null;
       }
     }
-
-    // 下一个子关卡
+    /// <summary>
+    /// 下一个子关卡
+    /// </summary>
+    /// <value>The next sub level.</value>
     public static SubLevel NextSubLevel {
       get {
         if (m_currentLevel != null && m_currentLevel.subLeves.Length > m_currentSubLevelIndex + 1) {
@@ -52,13 +67,20 @@ namespace TangLevel
       }
     }
 
-    public static SubLevel TargetSubLevel{
-      get{
+    /// <summary>
+    /// 目标子关卡
+    /// </summary>
+    /// <value>The target sub level.</value>
+    public static SubLevel TargetSubLevel {
+      get {
         return InLevel ? NextSubLevel : CurrentSubLevel;
       }
     }
 
-    //
+    /// <summary>
+    /// 下一个子关卡是否已经准备完毕
+    /// </summary>
+    /// <value><c>true</c> if is next sub level res ready; otherwise, <c>false</c>.</value>
     public static bool IsNextSubLevelResReady {
       get;
       set;
@@ -69,15 +91,21 @@ namespace TangLevel
       set;
     }
 
+    /// <summary>
+    /// 我方小组(model)
+    /// </summary>
+    public static Group selfGroup;
+
     #endregion
 
     // -- 场景 --
+
     #region Scene
 
     /// <summary>
-    /// 我方小组
+    /// 游戏背景
     /// </summary>
-    public static Group selfGroup;
+    public static GameObject background;
     /// <summary>
     /// 敌方所有 GameObject
     /// </summary>
@@ -90,31 +118,38 @@ namespace TangLevel
     /// 活着的敌方英雄
     /// </summary>
     private static List<GameObject> aliveEnemyGobjs = new List<GameObject> ();
-    public static List<GameObject> AliveEnemyGobjs{
-      get{
+
+    public static List<GameObject> AliveEnemyGobjs {
+      get {
         aliveEnemyGobjs.Clear ();
-        foreach (GameObject gobj in enemyGobjs) {
-          HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
-          if (heroBhvr != null) {
-            if (heroBhvr.hero.hp > 0)
-              aliveEnemyGobjs.Add (gobj);
+        if (enemyGobjs.Count > 0) {
+          foreach (GameObject gobj in enemyGobjs) {
+            HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+            if (heroBhvr != null) {
+              if (heroBhvr.hero.hp > 0)
+                aliveEnemyGobjs.Add (gobj);
+            }
           }
         }
         return aliveEnemyGobjs;
       }
     }
+
     /// <summary>
     /// 活着的我方英雄
     /// </summary>
     private static List<GameObject> aliveSelfGobjs = new List<GameObject> ();
-        public static List<GameObject> AliveSelfGobjs{
-      get{
+
+    public static List<GameObject> AliveSelfGobjs {
+      get {
         aliveSelfGobjs.Clear ();
-        foreach (GameObject gobj in selfGobjs) {
-          HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
-          if (heroBhvr != null) {
-            if (heroBhvr.hero.hp > 0)
-              aliveSelfGobjs.Add (gobj);
+        if (selfGobjs.Count > 0) {
+          foreach (GameObject gobj in selfGobjs) {
+            HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+            if (heroBhvr != null) {
+              if (heroBhvr.hero.hp > 0)
+                aliveSelfGobjs.Add (gobj);
+            }
           }
         }
         return aliveSelfGobjs;
