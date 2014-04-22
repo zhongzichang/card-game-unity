@@ -5,9 +5,10 @@ namespace TangLevel
   public enum HeroStatus
   {
     idle,
-    run,
+    running,
     attack,
-    die
+    dead,
+    skill
   }
 }
 

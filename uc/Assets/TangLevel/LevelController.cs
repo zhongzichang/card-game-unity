@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using TDB = TangDragonBones;
 
 namespace TangLevel
 {
@@ -19,21 +20,13 @@ namespace TangLevel
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
-    // 当前关卡ID
-    private static int m_currentLevelId = 0;
 
-    public static int CurrentLevelId {
-      get {
-        // 获取当前关卡ID
-        return m_currentLevelId;
-      }
-      private set {
-        // 设置当前关卡
-        if (Config.levelTable.ContainsKey (value)) {
-          m_currentLevelId = value;
-          LevelContext.CurrentLevel = Config.levelTable [m_currentLevelId];
-        }
-      }
+    public static void Init ()
+    {
+
+      // 监听Dragonbone资源装载完毕事件
+      TDB.DbgoManager.RaiseLoadedEvent += OnDbResLoaded;
+      //TDB.DbgoManager.RaiseLoadedEvent.
     }
 
     /// <summary>
@@ -43,13 +36,26 @@ namespace TangLevel
     /// <param name="group">我方小组</param>
     public static void ChallengeLevel (int levelId, Group group)
     {
-      CurrentLevelId = levelId;
-      LevelContext.selfGroup = group;
-      LoadTargetSubLevelRes ();
+
+      // 确保不在关卡里面
+      if (!LevelContext.InLevel) {
+        // 设置当前关卡
+        if (Config.levelTable.ContainsKey (levelId)) {
+          LevelContext.CurrentLevel = Config.levelTable [levelId];
+        }
+        LevelContext.selfGroup = group;
+
+        // 判断目标子关卡的资源是否已经加载
+        if (LevelContext.subLevelStatus != LevelStatus.INTENT) {
+          // 试图加载
+          LevelContext.subLevelStatus = LevelStatus.INTENT;
+          LoadTargetSubLevelRes ();
+        }
+      }
     }
 
     /// <summary>
-    /// 预加载指定关卡的资源
+    /// 预加载目标子关卡的资源
     /// </summary>
     /// <param name="levelId">Level identifier.</param>
     private static void LoadTargetSubLevelRes ()
@@ -58,15 +64,15 @@ namespace TangLevel
       SubLevel subLevel = LevelContext.TargetSubLevel;
 
       if (Cache.gobjTable.ContainsKey (subLevel.resName)) {
-        // 资源已准备完毕
+        // 游戏背景资源已准备完毕
         OnSubLevelResReady ();
       } else if (Config.use_packed_res) {
+        // 使用 Assetbundle
         string name = LevelContext.CurrentSubLevel.resName;
         Tang.AssetBundleLoader.LoadAsync (name, OnSubLevelLoaded);
       } else {
         OnSubLevelLoaded (null);
       }
-
     }
 
     /// <summary>
@@ -77,7 +83,6 @@ namespace TangLevel
     {
 
       //Debug.Log ("OnSubLevelLoaded");
-
       UnityEngine.Object assets = null;
       if (ab == null) {
         string filepath = Config.BATTLE_BG_PATH + Tang.Config.DIR_SEP + LevelContext.TargetSubLevel.resName;
@@ -94,7 +99,6 @@ namespace TangLevel
         // 资源已准备完毕
         OnSubLevelResReady ();
       }
-
     }
 
     /// <summary>
@@ -109,40 +113,65 @@ namespace TangLevel
       // 统计需要加载的英雄对象数量
       requiredHeroGobjTable.Clear ();
 
-
+      // 临时英雄表
+      Dictionary<string, int> tmpHeroTable = new Dictionary<string, int> ();
       // -- 统计敌方英雄资源 --
       if (LevelContext.TargetSubLevel.enemyGroup != null) {
         foreach (Hero hero in LevelContext.TargetSubLevel.enemyGroup.heros) {
-          if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
-            int count = requiredHeroGobjTable [hero.resName] + 1;
-            requiredHeroGobjTable [hero.resName] = count;
+          if (tmpHeroTable.ContainsKey (hero.resName)) {
+            int count = tmpHeroTable [hero.resName] + 1;
+            tmpHeroTable [hero.resName] = count;
           } else
-            requiredHeroGobjTable.Add (hero.resName, 1);
+            tmpHeroTable.Add (hero.resName, 1);
         }
       }
 
       // -- 统计我方英雄资源 --
       if (LevelContext.selfGroup != null) {
         foreach (Hero hero in LevelContext.selfGroup.heros) {
-          if (requiredHeroGobjTable.ContainsKey (hero.resName)) {
-            int count = requiredHeroGobjTable [hero.resName] + 1;
-            requiredHeroGobjTable [hero.resName] = count;
+          if (tmpHeroTable.ContainsKey (hero.resName)) {
+            int count = tmpHeroTable [hero.resName] + 1;
+            tmpHeroTable [hero.resName] = count;
           } else
-            requiredHeroGobjTable.Add (hero.resName, 1);
+            tmpHeroTable.Add (hero.resName, 1);
         }
       }
 
-      foreach (KeyValuePair<string, int> kvp in requiredHeroGobjTable) {
+      foreach (KeyValuePair<string, int> kvp in tmpHeroTable) {
+        // 已有的英雄数量
         int has = HeroGobjManager.Size (kvp.Key);
         if (has < kvp.Value) {
           int need = kvp.Value - has;
-          Debug.Log ("need :" + need);
+          requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
         }
       }
+    }
 
-      if (RaiseSubLevelLoadedEvent != null)
-        RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
+    /// <summary>
+    /// DragonBones 资源记载后的回调，每加载一个调用一次
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private static void OnDbResLoaded (object sender, TDB.ResEventArgs args)
+    {
+
+      string name = args.Name;
+      if (requiredHeroGobjTable.ContainsKey (name)) {
+        requiredHeroGobjTable [name] = requiredHeroGobjTable [name] - 1;
+      }
+      bool loadedCompleted = true;
+      foreach (KeyValuePair<string, int> kvp in requiredHeroGobjTable) {
+        if (kvp.Value > 0) {
+          loadedCompleted = false;
+          break;
+        }
+      }
+      if (loadedCompleted) {
+        Debug.Log ("DragonBones Resource Loaded Completed.");
+        if (RaiseSubLevelLoadedEvent != null)
+          RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
+      }
     }
 
     /// <summary>
@@ -155,6 +184,7 @@ namespace TangLevel
       if (bgGobj != null) {
         bgGobj.SetActive (true);
         //Debug.Log ("Background Created.");
+        LevelContext.background = bgGobj;
       }
 
       // 敌方小组列阵
@@ -166,12 +196,17 @@ namespace TangLevel
       Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
       //Debug.Log ("SelfGroup Embattle.");
 
+
+      // 确保清场
+      LevelContext.enemyGobjs.Clear ();
+      LevelContext.selfGobjs.Clear ();
+
+
       // 我方进场
       foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
 
       }
-
       // 敌方进场
       foreach (Hero hero in enemyGroup.heros) {
         AddHeroToScene (hero);
@@ -180,6 +215,8 @@ namespace TangLevel
       // 设置关卡状态 InLevel
       if (!LevelContext.InLevel)
         LevelContext.InLevel = true;
+
+      LevelContext.subLevelStatus = LevelStatus.IN;
     }
 
     /// <summary>
@@ -188,15 +225,20 @@ namespace TangLevel
     public static void LeftLevel ()
     {
 
-      // 发出离开关卡通知
-
       // 卸载场景资源
+      if (LevelContext.background != null)
+        GameObjectManager.Release (LevelContext.background, true);
+      // 卸载场景人物
+      foreach (GameObject gobj in LevelContext.enemyGobjs) {
+        HeroGobjManager.Release (gobj, true);
+      }
+      foreach (GameObject gobj in LevelContext.selfGobjs) {
+        HeroGobjManager.Release (gobj, false);
+      }
 
       // 卸载背景
-
-      // 卸载场景人物
-
       LevelContext.InLevel = false;
+      // 发出离开关卡通知
     }
 
     /// <summary>
@@ -388,7 +430,7 @@ namespace TangLevel
       List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
         ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
 
-      Debug.Log (" ------- ol.Count = " + ol.Count);
+      //Debug.Log (" ------- sourceHeroBhvr.hero.battleDirection = " + sourceHeroBhvr.hero.battleDirection);
 
       return FindClosestTarget (sgobj, ol);
     }
@@ -407,7 +449,7 @@ namespace TangLevel
           closestGobj = gobj;
         else {
           float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
-          if (distance > closestDistance) {
+          if (distance < closestDistance) {
             closestDistance = distance;
             closestGobj = gobj;
           }

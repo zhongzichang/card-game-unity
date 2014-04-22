@@ -282,7 +282,8 @@ namespace DragonBones.Objects
 
 			if(frameObject.ContainsKey(ConstValues.A_HIDE))
 			{
-				frame.Visible = (uint)frameObject[ConstValues.A_HIDE] != 1;
+        //frame.Visible = (uint)frameObject[ConstValues.A_HIDE] != 1;
+        frame.Visible = (int.Parse(frameObject[ConstValues.A_HIDE].ToString()) != 1);
 			}
 			else
 			{

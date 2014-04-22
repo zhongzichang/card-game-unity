@@ -11,7 +11,7 @@ namespace TangLevel
     // stopping distance
     public float stoppingDistance;
     // destination
-    public Vector3 destination {
+    public float destination {
       private set;
       get;
     }
@@ -31,15 +31,21 @@ namespace TangLevel
 
       if (hasPath) {
 
-        float distance = Vector3.Distance (myTransform.localPosition, destination);
-        float fraction = Time.deltaTime * speed / distance;
-
-        if (distance <= stoppingDistance - 0.001F) {
+        // 如果已经到达目标位置
+        // 目标位置 - 当前位置 < stoppingDistance
+        Vector3 localPosition = myTransform.localPosition;
+        float distance = Mathf.Abs (destination - localPosition.x);
+        if (distance - stoppingDistance < 0.01F ) {
           ResetPath ();
+          //Debug.Log (distance + "-" + stoppingDistance);
         } else {
-          myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
-            destination, fraction);
+          float fraction = Time.deltaTime * speed / distance;
+          float offsetx = Mathf.Lerp (localPosition.x, destination, fraction);
+          //Debug.Log (""+"offsetx="+offsetx);
+          myTransform.localPosition = new Vector3( offsetx, 
+            localPosition.y, localPosition.z);
         }
+
       }
     }
 
@@ -48,7 +54,7 @@ namespace TangLevel
       hasPath = false;
     }
 
-    public void SetDestination (Vector3 destination)
+    public void SetDestination (float destination)
     {
       this.destination = destination;
       hasPath = true;

@@ -6,7 +6,11 @@ namespace TangLevel
   public class LevelBhvr : MonoBehaviour
   {
 
-    public static LevelStatus levelStatus;
+    void Start(){
+
+      LevelController.Init ();
+
+    }
 
     void Update ()
     {

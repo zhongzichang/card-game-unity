@@ -10,7 +10,7 @@ namespace TangLevel
     // 距离目标人物等于小于这个距离的时候人物动作由跑动改为站立(run=>idle)
     public static readonly Vector2 NOTIFIED_RANGE = new Vector2 (32F, 16F);
     // 摇杆操作，角色移动超过这个距离发通知（如果需要 nextPositionChangeHandle != null）
-    public float m_speed = 240F;
+    public float m_speed = 6F;
     private DirectedNavAgent agent;
     private HeroStatusBhvr statusBhvr;
     private Transform myTransform;
@@ -44,8 +44,7 @@ namespace TangLevel
       
       if (agent != null && agent.enabled) {
 
-        Vector3 fixedPosition = new Vector3 (x, transform.localPosition.z, transform.localPosition.z);
-        agent.SetDestination (fixedPosition);
+        agent.SetDestination (x);
         agent.stoppingDistance = stoppingDistance;
       }
       
@@ -82,30 +81,19 @@ namespace TangLevel
       if (agent.hasPath) {
         
         // status(run/idle) checking ------
-        
-        if (Mathf.Abs (agent.destination.x - transform.localPosition.x) - agent.stoppingDistance
-            < CACHE_DISTANCE) {
+
           
-          if (statusBhvr != null) {
-            if (statusBhvr.Status == HeroStatus.run) {
-              statusBhvr.Status = HeroStatus.idle;
-            }
-          }
-        } else {
-          if (statusBhvr != null) {
-            if (statusBhvr.Status != HeroStatus.run) {
-              statusBhvr.Status = HeroStatus.run;
-            }
+        if (statusBhvr != null) {
+          if (statusBhvr.Status != HeroStatus.running) {
+            statusBhvr.Status = HeroStatus.running;
           }
         }
 
         
-      } // if agent.hasPath
-      
-      else {
+      } else {
 
         if (statusBhvr != null) {
-          if (statusBhvr.Status == HeroStatus.run)
+          if (statusBhvr.Status == HeroStatus.running)
             statusBhvr.Status = HeroStatus.idle;
         }
       }

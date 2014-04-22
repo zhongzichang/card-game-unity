@@ -12,7 +12,7 @@ namespace TangLevel
 {
   public enum LevelStatus
   {
-    NONE, INTENT, READY, OUT, IN
+    OUT,  INTENT, READY, IN
   }
 }
 

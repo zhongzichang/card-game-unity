@@ -6,12 +6,12 @@ using DragonBones.Display;
 using DragonBones.Textures;
 namespace TangDragonBones
 {
-  public class CharacterData
+  public class AvatarData
   {
     public SkeletonData skeletonData;
     public TextureAtlas textAtlas;
 
-    public CharacterData (SkeletonData skeletonData, TextureAtlas textAtlas)
+    public AvatarData (SkeletonData skeletonData, TextureAtlas textAtlas)
     {
       this.skeletonData = skeletonData;
       this.textAtlas = textAtlas;

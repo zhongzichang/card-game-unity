@@ -29,11 +29,11 @@ namespace TangLevel
 
       Group group = new Group ();
       group.heros = new Hero[5];
-      for (int j = 0; j < 5; j++) {
+      for (int j = 0; j < group.heros.Length; j++) {
         Hero hero = new Hero ();      
         hero.resName = "hero_zf";
         hero.hp = 100;
-        hero.attackDistance = j;
+        hero.attackDistance = 1 ;
         group.heros [j] = hero;
       }
       return group;

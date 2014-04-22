@@ -7,7 +7,7 @@ namespace TangDragonBones
   {
 
     void Start(){
-      CharacterManager.LazyLoad ("bird");
+      DbgoManager.LazyLoad ("bird");
     }
 
   }
