@@ -25,7 +25,23 @@ namespace TangGame
 		public const string HERO_ITEM_NAME = "HeroItem";
 		public const string SKILL_ITEM_NAME = "SkillItem";
 
-		public static UIPanelNodeManager mgr; 
+		/// <summary>
+		/// The mgr center or center.
+		/// </summary>
+		public static UIPanelNodeManager mgrCoC; 
+		/// <summary>
+		/// The mgr Top right.
+		/// </summary>
+		public static UIPanelNodeManager mgrTR;
+		/// <summary>
+		/// The mgr Top or left.
+		/// </summary>
+		public static UIPanelNodeManager mgrTL;
+		/// <summary>
+		/// The mgr to top or top.
+		/// </summary>
+		public static UIPanelNodeManager mgrToT;
+
 
 		public static string getWidgetsPath(string weightName){
 			return TangUI.Config.WIDGET_PATH + "/" + weightName;
