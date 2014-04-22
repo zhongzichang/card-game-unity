@@ -17,7 +17,7 @@ namespace TangUI
 
 			if (anchor != null) {
 				mgr = new UIPanelNodeManager (anchor);
-
+				mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, "test param");
 			}
 
   
@@ -28,16 +28,16 @@ namespace TangUI
 			if (GUI.Button (new Rect (10, 10, 150, 100), "Back")) {
 
 				if (mgr != null) {
-					TangGame.UIContext.mgr.Back ();
+					TangGame.UIContext.mgrCoC.Back ();
 				}
 
 			}
 
-			if (GUI.Button (new Rect (200, 10, 150, 100), "New Main Popup Panel")) {
-				if (mgr != null) {
-					mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, "test param");
-				}
-			}
+//			if (GUI.Button (new Rect (200, 10, 150, 100), "New Main Popup Panel")) {
+//				if (mgr != null) {
+//					mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, "test param");
+//				}
+//			}
 
 		}
 

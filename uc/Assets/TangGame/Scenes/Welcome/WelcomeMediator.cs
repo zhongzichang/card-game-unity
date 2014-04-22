@@ -54,13 +54,13 @@ namespace TangGame
     private void HandlePreloadCompleted(INotification notification){
       WelcomeNetworkBhvr networkBehaviour = this.gameObject.GetComponent<WelcomeNetworkBhvr>();
       //TN.ConnectBean bean = notification.Body as TN.ConnectBean;
-      TangNet.TN.Connect(networkBehaviour.server, networkBehaviour.port);
-      //Facade.SendNotification(NtftNames.TG_LOADING_MESSAGE, LoadingLang.NETWORK_CONNECTING);
+			//TangNet.TN.Connect(networkBehaviour.server, networkBehaviour.port);
+			//Facade.SendNotification(NtftNames.TG_LOADING_MESSAGE, LoadingLang.NETWORK_CONNECTING);
+			Application.LoadLevel("Home");
     }
 
     private void HandleConnectSuccess( INotification notification )
     {
-      Application.LoadLevel("Home");
     }
 
     

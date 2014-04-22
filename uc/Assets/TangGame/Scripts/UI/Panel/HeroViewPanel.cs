@@ -172,7 +172,7 @@ namespace TangGame
 			if (item == null)
 				return;
 			if (!item.Data.Islock) {
-				TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, item.Data);
+				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, item.Data);
 			}
 		}
 		//Reposition the children on the next Update().
