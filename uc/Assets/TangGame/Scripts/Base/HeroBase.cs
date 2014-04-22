@@ -18,7 +18,7 @@ public class HeroBase
 	//英雄品阶等级
 	private HeroesRankEnum heroesRank;
 	//英雄属性 力量／敏捷／智力
-	private HeroPropertyEnum heroPropertyType;
+	private AttributeTypeEnum heroPropertyType;
 	//英雄是否解锁
 	private bool islock;
 	//碎片当前数量
@@ -200,7 +200,7 @@ public class HeroBase
 	/// Gets or sets the type of the hero property.英雄属性类型
 	/// </summary>
 	/// <value>The type of the hero property.</value>
-	public HeroPropertyEnum HeroPropertyType {
+	public AttributeTypeEnum HeroPropertyType {
 		get {
 			return heroPropertyType;
 		}
@@ -262,7 +262,7 @@ public class HeroBase
 	}
 }
 
-public enum HeroPropertyEnum
+public enum AttributeTypeEnum
 {
 	NONE,
 	STR,

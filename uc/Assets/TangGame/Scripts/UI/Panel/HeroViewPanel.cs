@@ -52,7 +52,7 @@ namespace TangGame
 				data = new HeroBase ();
 				data.HeroName = "god is a girl";
 				data.ConfigId = i;
-				data.HeroPropertyType = (HeroPropertyEnum)(i % 3 + 1);
+				data.HeroPropertyType = (AttributeTypeEnum)(i % 3 + 1);
 				data.HeroLocation = (HeroLocationEnum)(i % 3 + 1);
 				data.Evolve = i%5 + 1;
 				data.FragmentsCount = i;

@@ -64,16 +64,16 @@ public class PictorialSubPanel : MonoBehaviour {
 	/// <summary>
 	/// Sets the type of the property.设置英雄属性类型
 	/// </summary>
-	void SetPropertyType(HeroPropertyEnum type){
+	void SetPropertyType(AttributeTypeEnum type){
 		string resName = "icon_str";
 		switch(type){
-		case HeroPropertyEnum.STR:
+		case AttributeTypeEnum.STR:
 			resName = "icon_str";
 			break;
-		case HeroPropertyEnum.INT:
+		case AttributeTypeEnum.INT:
 			resName = "icon_int";
 			break;
-		case HeroPropertyEnum.AGI:
+		case AttributeTypeEnum.AGI:
 			resName = "icon_agi";
 			break;
 		}
