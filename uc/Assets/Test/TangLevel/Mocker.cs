@@ -28,7 +28,7 @@ namespace TangLevel
     {
 
       Group group = new Group ();
-      group.heros = new Hero[5];
+      group.heros = new Hero[1];
       for (int j = 0; j < group.heros.Length; j++) {
         Hero hero = new Hero ();      
         hero.resName = "hero_zf";
