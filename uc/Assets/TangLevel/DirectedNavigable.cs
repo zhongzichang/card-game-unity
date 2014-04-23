@@ -104,7 +104,7 @@ namespace TangLevel
     void LateUpdate ()
     {
       Vector3 pos = myTransform.localPosition;
-      myTransform.localPosition = new Vector3 (pos.x, pos.y, -pos.y);
+      myTransform.localPosition = new Vector3 (pos.x, pos.y, -(100-pos.y));
     }
 
     #endregion

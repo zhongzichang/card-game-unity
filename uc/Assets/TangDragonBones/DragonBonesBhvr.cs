@@ -21,7 +21,7 @@ namespace TangDragonBones
       if (armature != null) {
 
         armature.AdvanceTime (0f);
-        armature.Animation.GotoAndPlay ("idle", -1, -1, 0);
+        armature.Animation.GotoAndPlay (TL.HeroStatus.idle.ToString(), -1, -1, 0);
       }
 
       statusBhvr = GetComponent<TL.HeroStatusBhvr> ();
@@ -63,10 +63,10 @@ namespace TangDragonBones
     private void OnStatusStart(TL.HeroStatus status){
       switch (status) {
       case TL.HeroStatus.attack:
+        GotoAndPlay (status.ToString ());
         break;
       default:
         GotoAndPlay (status.ToString ());
-        //Debug.Log (status.ToString());
         break;
       }
     }
