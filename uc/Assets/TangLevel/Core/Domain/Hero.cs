@@ -55,6 +55,10 @@ namespace TangLevel
     /// 攻击距离
     /// </summary>
     public int attackDistance;
+    /// <summary>
+    /// 英雄的 AI，可以有多个
+    /// </summary>
+    public string[] ai;
     #endregion
 
 

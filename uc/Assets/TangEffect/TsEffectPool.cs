@@ -14,7 +14,6 @@ using TS = TangScene;
 namespace TangEffect
 {
   
-  
   public class TsEffectPool {
 
 

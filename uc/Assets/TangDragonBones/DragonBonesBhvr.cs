@@ -3,34 +3,15 @@ using UnityEngine;
 using DragonBones;
 using DragonBones.Animation;
 using DragonBones.Display;
-using TL = TangLevel;
 
 namespace TangDragonBones
 {
   public class DragonBonesBhvr : MonoBehaviour
   {
     public Armature armature;
-    //public GameObject armatureGobj;
-    public TL.HeroStatusBhvr statusBhvr;
 
     #region MonoBehaviour
 
-    void Start ()
-    {
-      //Debug.Log ("start");
-      if (armature != null) {
-
-        armature.AdvanceTime (0f);
-        armature.Animation.GotoAndPlay (TL.HeroStatus.idle.ToString(), -1, -1, 0);
-      }
-
-      statusBhvr = GetComponent<TL.HeroStatusBhvr> ();
-      if (statusBhvr == null) {
-        statusBhvr = gameObject.AddComponent<TL.HeroStatusBhvr> ();
-      }
-      statusBhvr.statusStartHandler += OnStatusStart;
-
-    }
 
     void OnDisable ()
     {
@@ -55,26 +36,10 @@ namespace TangDragonBones
 
     #endregion
 
-    #region Tang Callback
-    /// <summary>
-    /// 状态开始回调
-    /// </summary>
-    /// <param name="status">Status.</param>
-    private void OnStatusStart(TL.HeroStatus status){
-      switch (status) {
-      case TL.HeroStatus.attack:
-        GotoAndPlay (status.ToString ());
-        break;
-      default:
-        GotoAndPlay (status.ToString ());
-        break;
-      }
-    }
-    #endregion
 
-    #region private Methods
+    #region Public Methods
 
-    private void GotoAndPlay (string movementId)
+    public void GotoAndPlay (string movementId)
     {
       if (armature != null) {
         //armature.AdvanceTime (0f);

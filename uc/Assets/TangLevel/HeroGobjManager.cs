@@ -57,6 +57,16 @@ namespace TangLevel
           directional = gobj.AddComponent<Directional> ();
         }
         directional.Direction = hero.battleDirection;
+        // AI
+        if (hero.ai != null) {
+          foreach (string scriptName in hero.ai) {
+            Component component = gobj.AddComponent (scriptName);
+            if (component == null)
+            {
+              Debug.LogWarning("Fail to add AI Component - " + scriptName);
+            }
+          }
+        }
 
 
       }

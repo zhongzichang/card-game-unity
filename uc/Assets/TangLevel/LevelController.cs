@@ -168,7 +168,7 @@ namespace TangLevel
         }
       }
       if (loadedCompleted) {
-        Debug.Log ("DragonBones Resource Loaded Completed.");
+        //Debug.Log ("DragonBones Resource Loaded Completed.");
         if (RaiseSubLevelLoadedEvent != null)
           RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
       }
