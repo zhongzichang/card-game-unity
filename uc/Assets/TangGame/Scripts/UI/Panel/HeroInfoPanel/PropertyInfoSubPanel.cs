@@ -26,9 +26,9 @@ namespace TangGame.UI
 		{
 			this.data = data;
 			//FIXME 
-//		SetHeroInfo (data.);
-//		SetHeroDescription(data.)
-//		SetProperty(data.)
+			SetHeroInfo (data.Xml.hero_info);
+			SetHeroDescription (data.Xml.hero_tip);
+			SetProperty (data);
 		}
 
 		/// <summary>
@@ -51,9 +51,13 @@ namespace TangGame.UI
 		/// Sets the property.
 		/// </summary>
 		/// <param name="str">String.</param>
-		void SetProperty (string str)
+		void SetProperty (HeroBase herobase)
 		{
-			//FIXME 
+
+		}
+		void AddPropertyItem(string str, float num){
+			GameObject obj = NGUITools.AddChild (Property.gameObject,property.gameObject);
+//			obj
 		}
 	}
 }

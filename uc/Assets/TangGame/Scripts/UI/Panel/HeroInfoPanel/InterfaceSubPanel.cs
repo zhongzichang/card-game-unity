@@ -65,12 +65,16 @@ namespace TangGame.UI
 
 			SkillInfoButton.GetComponent<UIToggle> ().optionCanBeNone = true;
 			PictorialButton.GetComponent<UIToggle> ().optionCanBeNone = true;
+			UIEventListener.Get (AnimatorObj.gameObject).onClick += AnimatorObjOnClick;
 			UIEventListener.Get (PropertyInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (SkillInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (PictorialButton.gameObject).onClick += ToggleButtonOnClick;
 		}
 		void OnEnable(){
 			LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+		}
+		void OnDisable(){
+			TDB.DbgoManager.Release (dragonBonesBhvr.gameObject,true);
 		}
 		// Update is called once per frame
 		void Update ()
@@ -101,7 +105,7 @@ namespace TangGame.UI
 					dragonBonesBhvr.GotoAndPlay ("idle");
 				}
 				Renderer objRender = obj.transform.GetComponentInChildren<Renderer>();
-				objRender.material.renderQueue = GetComponent<UIPanel>().startingRenderQueue + 30;
+				objRender.material.renderQueue = GetComponent<UIPanel>().startingRenderQueue + 25;
 			}
 			return obj;
 		}
@@ -202,6 +206,15 @@ namespace TangGame.UI
 			starList.Flush ();
 		}
 
+		/// <summary>
+		/// 切换动画
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		void AnimatorObjOnClick(GameObject obj){
+			if (dragonBonesBhvr != null) {
+				dragonBonesBhvr.GotoAndPlay ("running");
+			}
+		}
 		/// <summary>
 		/// Sets the hero package soulstone.设置英雄碎片数量和比例条
 		/// </summary>

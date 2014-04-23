@@ -119,7 +119,7 @@ namespace TangGame.UI
 			}
 		}
 		public IEnumerator BackDepth() {
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(0.5f);
 			NGUITools.AdjustDepth (this.gameObject, -10000);
 		}
 
