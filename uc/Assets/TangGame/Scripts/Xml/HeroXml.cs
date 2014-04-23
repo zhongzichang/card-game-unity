@@ -11,6 +11,10 @@ namespace TangGame.Xml
 		/// </summary>
 		public int id;
 		/// <summary>
+		/// 英雄名称
+		/// </summary>
+		public string name;
+		/// <summary>
 		/// 是否再列表显示
 		/// </summary>
 		public short showView;
@@ -134,10 +138,6 @@ namespace TangGame.Xml
 		/// 图鉴的名字
 		/// </summary>
 		public string portrait;
-		/// <summary>
-		/// 碎片的头像名字
-		/// </summary>
-		public string fragments_avatar;
 	}
 
 	[XmlRoot("root")]
@@ -152,6 +152,10 @@ namespace TangGame.Xml
 			HeroRoot root = obj as HeroRoot;
 			foreach (HeroXml item in root.items) {
 				Config.heroXml [item.id] = item;
+				//TODO 先写到这个地方到时候再改
+				TangGame.UI.Base.HeroBase herobase = 	new TangGame.UI.Base.HeroBase ();
+				herobase.Xml = item;
+				TangGame.UI.Base.BaseCache.heroBeseDic.Add (item.id,herobase);
 			}
 		}
 	}

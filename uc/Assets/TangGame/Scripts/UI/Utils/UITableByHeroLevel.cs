@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using TangGame.UI;
+using TangGame.UI.Base;
 public class UITableByHeroLevel : UITable
 {
 	
@@ -9,10 +10,13 @@ public class UITableByHeroLevel : UITable
 
 		HeroBase Adata = a.GetComponent<HeroItem> ().Data;
 		HeroBase Bdata = b.GetComponent<HeroItem> ().Data;
+
 		int val = 0;
-		val = Bdata.Level.CompareTo (Adata.Level);
+		if (Bdata.Net.Equals(null) || Adata.Net.Equals(null) || Adata.Xml.Equals(null) || Bdata.Xml.Equals(null) )
+			return val;
+		val = Bdata.Net.level.CompareTo (Adata.Net.level);
 		if (val == 0) {
-			val = Bdata.HeroesRank.CompareTo(Adata.HeroesRank);
+			val = Bdata.Net.upgrade.CompareTo(Adata.Net.upgrade);
 		}
 
 		return val;

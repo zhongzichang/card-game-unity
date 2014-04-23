@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TangGame.Net
 {
-	public class HeroData
+	public class HeroNet
 	{
 		/// <summary>
 		/// The identifier.
