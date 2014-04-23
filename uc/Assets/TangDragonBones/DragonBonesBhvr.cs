@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using DragonBones;
 using DragonBones.Animation;
@@ -39,6 +40,10 @@ namespace TangDragonBones
 
     #region Public Methods
 
+    /// <summary>
+    /// 播放指定动作
+    /// </summary>
+    /// <param name="movementId">Movement identifier.</param>
     public void GotoAndPlay (string movementId)
     {
       if (armature != null) {
@@ -47,6 +52,20 @@ namespace TangDragonBones
       }
     }
 
+    /// <summary>
+    /// 播放下一个动作
+    /// </summary>
+    public void GotoAndPlayNext(){
+      if (armature != null) {
+        List<string> animationList = armature.Animation.AnimationList;
+        int index = animationList.IndexOf (armature.Animation.MovementID);
+        if (index >= animationList.Count - 1) {
+          index = 0;
+        }
+        GotoAndPlay (animationList[index]);
+        
+      }
+    }
     #endregion
   }
 }
