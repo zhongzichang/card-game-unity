@@ -44,19 +44,10 @@ namespace DragonBones.Display
     {
       //TODO: vetex updating
 
-      // zzc : make hidden available
-
-      if (Visible) {
-        for (int i = 0; i < 8; i += 2) {
-          _vertices [i] = _verticesOrigin [i] * matrix.A + _verticesOrigin [i + 1] * matrix.C + matrix.Tx;
-          _vertices [i + 1] = -(_verticesOrigin [i] * matrix.B + _verticesOrigin [i + 1] * matrix.D + matrix.Ty);
+      for (int i = 0; i < 8; i += 2) {
+        _vertices [i] = _verticesOrigin [i] * matrix.A + _verticesOrigin [i + 1] * matrix.C + matrix.Tx;
+        _vertices [i + 1] = -(_verticesOrigin [i] * matrix.B + _verticesOrigin [i + 1] * matrix.D + matrix.Ty);
 				                        
-        }
-      } else {
-
-        for (int i = 0; i < 8; i++) {
-          _vertices [i] = 0;
-        }
       }
 
     }
