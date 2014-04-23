@@ -152,7 +152,10 @@ namespace TangUI
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
         if (null != panel) {
-          NGUITools.AdjustDepth (gameObject, context.depth * 1000);
+          //NGUITools.AdjustDepth (gameObject, context.depth * 1000);
+          if (panel.renderQueue == UIPanel.RenderQueue.Automatic )
+            panel.renderQueue = UIPanel.RenderQueue.StartAt;
+          panel.startingRenderQueue = context.depth * 1000;
         }
         context.depth++;
 
