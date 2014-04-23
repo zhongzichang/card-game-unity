@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using TangUI;
+using TangGame.UI.Base;
 
-namespace TangGame
+namespace TangGame.UI
 {
 	public class HeroViewPanel : MonoBehaviour
 	{
@@ -33,6 +34,12 @@ namespace TangGame
 
 		}
 
+		void OnEnable(){
+			foreach (HeroItem item in heroItems.Values) {
+				item.Flush (item.Data);
+			}
+		}
+
 		// Use this for initialization
 		void Start ()
 		{
@@ -41,50 +48,51 @@ namespace TangGame
 			UIEventListener.Get (ToggleLater.gameObject).onClick += OnToggleLaterClick;
 			UIEventListener.Get (ToggleMedium.gameObject).onClick += OnToggleMediumClick;
 
-			this.TestData ();
+			TangGame.Net.HeroNet net = new TangGame.Net.HeroNet ();
+			net.id = 100001;
+			net.exp = 1000;
+			net.evolve = 3;
+			net.configId = 1001;
+			net.level = 3;
+			net.upgrade = 3;
+			TangGame.UI.Base.BaseCache.heroBeseDic [net.configId].Net = net;
 
+			this.LoadHeroAll ();
 		}
 
-		void TestData ()
-		{
-			HeroBase data;
-			for (int i=0; i<50; i++) {
-				data = new HeroBase ();
-				data.HeroName = "god is a girl";
-				data.ConfigId = i;
-				data.HeroPropertyType = (HeroPropertyEnum)(i % 3 + 1);
-				data.HeroLocation = (HeroLocationEnum)(i % 3 + 1);
-				data.Evolve = i%5 + 1;
-				data.FragmentsCount = i;
-				data.FragmentsCountMax = 50;
-				if (i > 40) {
-					data.Level = i % 4 + 1;
-					data.HeroesRank = (HeroesRankEnum)(i % 10 + 1);
-					data.Islock = false;
-				} else {
-					data.Islock = true;
-				}
-				this.AddHeroItem (data);
+		/// <summary>
+		/// 加载所有的英雄
+		/// </summary>
+		void LoadHeroAll(){
+			foreach(HeroBase herobase in TangGame.UI.Base.BaseCache.heroBeseDic.Values){
+				this.UpHeroItem (herobase);
 			}
 			this.repositionNow ();
 		}
+
 	
 		// Update is called once per frame
 		void Update ()
 		{
-		
+			
 		}
-	
+		/// <summary>
+		/// 根据英雄location属性来显示相应的item
+		/// </summary>
+		/// <param name="em">Em.</param>
 		void ShowItemByHeroLocation (HeroLocationEnum em)
 		{
 			foreach (HeroItem item in heroItems.Values) {
-				if (item.Data.HeroLocation.Equals (em)) {
+				if (item.Data.Xml.location.Equals (em)) {
 					item.gameObject.SetActive (true);
 				}
 			}
 			BackToTop ();
 		}
-
+		/// <summary>
+		/// 隐藏所有的item
+		/// </summary>
+		/// <param name="value">If set to <c>true</c> value.</param>
 		void HideAllItem (bool value)
 		{
 			foreach (HeroItem item in heroItems.Values) {
@@ -92,7 +100,9 @@ namespace TangGame
 			}
 			BackToTop ();
 		}
-
+		/// <summary>
+		/// 让view回到最顶层
+		/// </summary>
 		void BackToTop ()
 		{
 			this.HeroScrolBar.GetComponent <UIScrollBar> ().value = 0;
@@ -100,6 +110,10 @@ namespace TangGame
 
 
 	#region UIEventListener
+		/// <summary>
+		/// 显示中排按钮被点击
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		void OnToggleMediumClick (GameObject obj)
 		{
 			UIToggle tg = obj.GetComponent<UIToggle> ();
@@ -111,6 +125,10 @@ namespace TangGame
 			this.lastToggle = tg;
 		}
 
+		/// <summary>
+		/// 显示后排按钮被点击
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		void OnToggleLaterClick (GameObject obj)
 		{
 			UIToggle tg = obj.GetComponent<UIToggle> ();
@@ -123,6 +141,10 @@ namespace TangGame
 			this.lastToggle = tg;
 		}
 
+		/// <summary>
+		/// 显示前排按钮被点击
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		void OnToggleBeforeClick (GameObject obj)
 		{
 			UIToggle tg = obj.GetComponent<UIToggle> ();
@@ -134,7 +156,10 @@ namespace TangGame
 			this.repositionNow ();
 			this.lastToggle = tg;
 		}
-
+		/// <summary>
+		/// 显示全部按钮被点击
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		void OnToggleAllClick (GameObject obj)
 		{
 			UIToggle tg = obj.GetComponent<UIToggle> ();
@@ -153,6 +178,25 @@ namespace TangGame
 			}
 		}
 
+		/// <summary>
+		/// 更新某个
+		/// </summary>
+		/// <param name="herobase">Herobase.</param>
+		void UpHeroItem(HeroBase herobase){
+			if (heroItems.ContainsKey (herobase.Xml.id)) {
+				HeroItem item = heroItems [herobase.Xml.id];
+				if (item.transform.parent == HeroLocking.transform && !herobase.Islock) {
+					item.transform.parent = HeroUnlock.transform;
+				}
+				item.Flush (herobase);
+			} else {
+				AddHeroItem (herobase);
+			}
+		}
+		/// <summary>
+		/// Adds the hero item.
+		/// </summary>
+		/// <param name="data">Data.</param>
 		void AddHeroItem (HeroBase data)
 		{
 			HeroItem item = Resources.Load<HeroItem> (UIContext.getWidgetsPath(UIContext.HERO_ITEM_NAME));
@@ -162,7 +206,7 @@ namespace TangGame
 			} else {
 				item = NGUITools.AddChild (HeroUnlock, item.gameObject).GetComponent<HeroItem> ();
 			}
-			heroItems.Add (data.ConfigId, item);
+			heroItems.Add (data.Xml.id, item);
 			item.Flush (data);
 			UIEventListener.Get (item.gameObject).onClick += ItemOnClick;
 		}

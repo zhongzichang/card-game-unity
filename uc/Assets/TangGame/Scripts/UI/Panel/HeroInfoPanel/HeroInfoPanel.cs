@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.UI.Base;
 
-namespace TangGame
+namespace TangGame.UI
 {
 	public class HeroInfoPanel : MonoBehaviour
 	{

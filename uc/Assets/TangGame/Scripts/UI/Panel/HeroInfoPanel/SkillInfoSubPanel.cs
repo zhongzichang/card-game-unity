@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-namespace TangGame
+using TangGame.UI.Base;
+namespace TangGame.UI
 {
 	public class SkillInfoSubPanel : MonoBehaviour
 	{
@@ -15,9 +15,9 @@ namespace TangGame
 
 		public void Flush(HeroBase hero){
 			this.data = hero;
-			this.SetSkillNum (hero.SkillNum);
+//			this.SetSkillNum (hero.SkillNum);
 //			this.SetSkillNumTime (he);FIXME 
-			this.SetSkillGrid (hero.skillbases);
+//			this.SetSkillGrid (hero.skillbases);
 		}
 		/// <summary>
 		/// Sets the skill number.

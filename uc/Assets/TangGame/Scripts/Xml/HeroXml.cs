@@ -1,4 +1,6 @@
-﻿using System.Xml;
+﻿using TangUtils;
+using System.Xml;
+using UnityEngine;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
@@ -10,6 +12,10 @@ namespace TangGame.Xml
 		/// The identifier.
 		/// </summary>
 		public int id;
+		/// <summary>
+		/// 英雄名称
+		/// </summary>
+		public string name;
 		/// <summary>
 		/// 是否再列表显示
 		/// </summary>
@@ -134,24 +140,25 @@ namespace TangGame.Xml
 		/// 图鉴的名字
 		/// </summary>
 		public string portrait;
-		/// <summary>
-		/// 碎片的头像名字
-		/// </summary>
-		public string fragments_avatar;
 	}
 
 	[XmlRoot("root")]
+	[XmlLate ("hero")]
 	public class HeroRoot
 	{
 		[XmlElement("value")]
-		public List<HeroXml>
-			items = new List<HeroXml> ();
-
+		public List<HeroXml> items = new List<HeroXml> ();
 		public static void LateProcess (object obj)
 		{
 			HeroRoot root = obj as HeroRoot;
 			foreach (HeroXml item in root.items) {
+				
+				Debug.Log(item.name);
 				Config.heroXml [item.id] = item;
+				//TODO 先写到这个地方到时候再改
+				TangGame.UI.Base.HeroBase herobase = new TangGame.UI.Base.HeroBase ();
+				herobase.Xml = item;
+				TangGame.UI.Base.BaseCache.heroBeseDic.Add (item.id, herobase);
 			}
 		}
 	}
