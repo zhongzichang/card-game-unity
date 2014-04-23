@@ -17,6 +17,7 @@ namespace TangGame.UI
 		///图鉴按钮
 		public GameObject PictorialButton;
 		public GameObject AnimatorObj;
+		public GameObject Background;
 		///6个道具栏
 		public GameObject Props1;
 		public GameObject Props2;
@@ -44,6 +45,8 @@ namespace TangGame.UI
 		private HeroBase heroBase;
 		///星级列表
 		public GameObject StarList;
+
+		private TDB.DragonBonesBhvr dragonBonesBhvr;
 		private ArrayList propsSpirtes = new ArrayList ();
 
 		void Awake(){
@@ -76,22 +79,31 @@ namespace TangGame.UI
 		}
 
 		private void LoadAnimatorObj(string resName){
-			GameObject obj = TDB.DbgoManager.FetchUnused (resName);
-			if (obj != null) {
-				obj.transform.parent = AnimatorObj.transform;
-				obj.transform.localPosition = Vector3.zero;
-			} else {
+			GameObject obj = GetAvatar (resName);
+			if(obj == null) {
 				TDB.DbgoManager.LazyLoad (resName);
 			}
 
 		}
 
 		private void OnAvatarLoaded(object sender,TDB.ResEventArgs args){
-			GameObject obj = TDB.DbgoManager.FetchUnused (args.Name);
+			GetAvatar (args.Name);
+		}
+
+		private GameObject GetAvatar(string resName){
+			GameObject obj = TDB.DbgoManager.FetchUnused (resName);
 			if (obj != null) {
 				obj.transform.parent = AnimatorObj.transform;
 				obj.transform.localPosition = Vector3.zero;
+				obj.transform.localScale = new Vector3 (30, 30, 1);
+				dragonBonesBhvr = obj.GetComponent<TDB.DragonBonesBhvr> ();
+				if (dragonBonesBhvr != null) {
+					dragonBonesBhvr.GotoAndPlay ("idle");
+				}
+				Renderer objRender = obj.transform.GetComponentInChildren<Renderer>();
+				objRender.material.renderQueue = GetComponent<UIPanel>().startingRenderQueue + 30;
 			}
+			return obj;
 		}
 		/// <summary>
 		/// Refreshs the panel.刷新面板

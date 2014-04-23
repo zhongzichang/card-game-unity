@@ -115,8 +115,14 @@ namespace TangGame.UI
 			if (isChecked) {
 				NGUITools.AdjustDepth (this.gameObject, 10000);
 			} else {
-				NGUITools.AdjustDepth (this.gameObject, -10000);
+				StartCoroutine (BackDepth ());
 			}
 		}
+		public IEnumerator BackDepth() {
+			yield return new WaitForSeconds(1);
+			NGUITools.AdjustDepth (this.gameObject, -10000);
+		}
+
+
 	}
 }
