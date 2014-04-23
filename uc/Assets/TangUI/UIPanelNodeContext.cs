@@ -9,8 +9,7 @@ namespace TangUI
   public class UIPanelNodeContext
   {
     public UIPanelCache cache;
-    // 初始深度设置为 -2 ，0 保留给场景对象使用
-    public int depth = -2;
+    public int depth = 0;
     public UIAnchor anchor;
     private UIPanelNode m_currentNode;
 
