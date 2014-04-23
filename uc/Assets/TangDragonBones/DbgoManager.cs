@@ -21,18 +21,45 @@ using UnityEngine;
 
 namespace TangDragonBones
 {
+  /// <summary>
+  /// DragonBones 游戏对象管理器
+  /// </summary>
   public class DbgoManager : MonoBehaviour
   {
-    public delegate void ResEventHandler(object sender, ResEventArgs a);
+    /// <summary>
+    /// 需要预加载的骨架资源
+    /// </summary>
+    public LoadPair[] preloadArmatures;
+
+    public delegate void ResEventHandler (object sender,ResEventArgs a);
+
+    /// <summary>
+    /// 资源加载后将执行
+    /// </summary>
     public static event ResEventHandler RaiseLoadedEvent;
 
+    /// <summary>
+    /// 需加载的资源名称队列
+    /// </summary>
     private static Queue<string> requireQueue = new Queue<string> ();
+    /// <summary>
+    /// Armature Factory
+    /// </summary>
     private UnityFactory factory = null;
 
-    void Awake ()
+    #region Mono Methods
+
+    void Start ()
     {
       //Application.targetFrameRate = 30;
       factory = new UnityFactory ();
+
+      // 预加载
+      if (preloadArmatures != null) {
+        foreach (LoadPair p in preloadArmatures) {
+          PreResourceLoad (p);
+        }
+      }
     }
     // Update is called once per frame
     void Update ()
@@ -43,33 +70,16 @@ namespace TangDragonBones
         string name = requireQueue.Dequeue ();
 
         // 确认数据和资源在缓存中
-        if (Cache.characterDataTable.ContainsKey (name)) {
+        if (Cache.atlasDataTable.ContainsKey (name) &&
+            Cache.textureTable.ContainsKey (name) &&
+            Cache.skeletonDataTable.ContainsKey (name)) {
 
-          AvatarData data = Cache.characterDataTable [name];
-
-          if (factory.GetSkeletonData (name) == null) {
-            factory.AddSkeletonData (data.skeletonData, data.skeletonData.Name);
-          }
-
-          if (factory.GetTextureAtlas (name) == null) {
-            factory.AddTextureAtlas (data.textAtlas);
-          }
-
-          Armature armature = factory.BuildArmature (name, null, name);
-          GameObject heroObj = new GameObject ();
-          heroObj.name = armature.Name;
-          GameObject armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
-          armatureGobj.transform.parent = heroObj.transform;
-          armatureGobj.transform.localPosition = Vector3.zero;
-          armatureGobj.transform.localRotation = Quaternion.identity;
-          DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
-          bhvr.armature = armature;
-          heroObj.SetActive (false);
-          Add (heroObj);
+          // 创建一个游戏对象
+          Create (name);
 
           // 发出通知事件，游戏对象已经准备完毕
           if (RaiseLoadedEvent != null)
-            RaiseLoadedEvent (null, new ResEventArgs(name));
+            RaiseLoadedEvent (null, new ResEventArgs (name));
 
         } else {
 
@@ -82,6 +92,45 @@ namespace TangDragonBones
       WorldClock.Clock.AdvanceTime (Time.deltaTime);
     }
 
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// 创建一个游戏对象
+    /// </summary>
+    /// <param name="name">Name.</param>
+    private void Create (string name)
+    {
+
+      SkeletonData skeletonData = Cache.skeletonDataTable [name];
+      if (factory.GetSkeletonData (name) == null) {
+        factory.AddSkeletonData (skeletonData, skeletonData.Name);
+      }
+
+      AtlasData atlasData = Cache.atlasDataTable [name];
+      Texture texture = Cache.textureTable [name];
+      if (factory.GetTextureAtlas (name) == null) {
+        factory.AddTextureAtlas (new TextureAtlas (texture, atlasData));
+      }
+
+      Armature armature = factory.BuildArmature (name, null, name);
+      GameObject heroObj = new GameObject ();
+      heroObj.name = armature.Name;
+      GameObject armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
+      armatureGobj.name = "body";
+      armatureGobj.transform.parent = heroObj.transform;
+      armatureGobj.transform.localPosition = Vector3.zero;
+      armatureGobj.transform.localRotation = Quaternion.identity;
+      DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
+      bhvr.armature = armature;
+      heroObj.SetActive (false);
+      AddToCache (heroObj);
+
+    }
+
+    #endregion
+
     #region GameObject Methods
 
     /// <summary>
@@ -91,7 +140,9 @@ namespace TangDragonBones
     public static void LazyLoad (string name)
     {
 
-      if (Cache.characterDataTable.ContainsKey (name)) {
+      if (Cache.atlasDataTable.ContainsKey (name) &&
+          Cache.textureTable.ContainsKey (name) &&
+          Cache.skeletonDataTable.ContainsKey (name)) {
 
         // 有了
         OnResReady (name);
@@ -125,20 +176,28 @@ namespace TangDragonBones
     /// <param name="ab">Ab.</param>
     private static void OnAbLoaded (AssetBundle ab)
     {
-      Debug.Log ("OnResLoaded");
+      //Debug.Log ("OnAbLoaded");
       if (ab != null) {
 
-        string atlasFilepath = ab.name + "_atlas";
-        string textureFilepath = ab.name + "_texture";
-        string skeletonFilepath = ab.name + "_skeleton";
 
-        TextAsset atlasAssets = ab.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
-        Texture textureAssets = ab.Load (textureFilepath, typeof(Texture)) as Texture;
-        TextAsset skeletonAssets = ab.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
+        TextAsset atlasAssets = null;
+        Texture textureAssets = null;
+        TextAsset skeletonAssets = null;
 
-        if (atlasAssets != null && textureAssets != null && skeletonAssets != null) {
-          SetUp (ab.name, atlasAssets, textureAssets, skeletonAssets);
+        if (!Cache.atlasDataTable.ContainsKey (ab.name)) {
+          string atlasFilepath = ab.name + "_atlas";
+          atlasAssets = ab.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
         }
+        if (!Cache.textureTable.ContainsKey (ab.name)) {
+          string textureFilepath = ab.name + "_texture";
+          textureAssets = ab.Load (textureFilepath, typeof(Texture)) as Texture;
+        }
+        if (!Cache.skeletonDataTable.ContainsKey (ab.name)) {
+          string skeletonFilepath = ab.name + "_skeleton";
+          skeletonAssets = ab.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
+        }
+
+        SetUpAndCreate (ab.name, atlasAssets, textureAssets, skeletonAssets);
       }
 
     }
@@ -149,59 +208,125 @@ namespace TangDragonBones
     /// <param name="name">Name.</param>
     private static void ResourceLoad (string name)
     {
-      Debug.Log ("ResourceLoad");
 
-      string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas";
-      string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_texture";
-      string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton";
+      //Debug.Log ("ResourceLoad");
 
-      TextAsset atlasAssets = Resources.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
-      Texture textureAssets = Resources.Load (textureFilepath, typeof(Texture)) as Texture;
-      TextAsset skeletonAssets = Resources.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
+      TextAsset atlasAssets = null;
+      Texture textureAssets = null;
+      TextAsset skeletonAssets = null;
 
-      if (atlasAssets != null && textureAssets != null && skeletonAssets != null) {
-        SetUp (name, atlasAssets, textureAssets, skeletonAssets);
+      if (!Cache.atlasDataTable.ContainsKey (name)) {
+        string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas";
+        atlasAssets = Resources.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
+      }
+      if (!Cache.textureTable.ContainsKey (name)) {
+        string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_texture";
+        textureAssets = Resources.Load (textureFilepath, typeof(Texture)) as Texture;
+      }
+      if (!Cache.skeletonDataTable.ContainsKey (name)) {
+        string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton";
+        skeletonAssets = Resources.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
       }
 
-    }
+      SetUpAndCreate (name, atlasAssets, textureAssets, skeletonAssets); 
 
-    private static void SetUp (string name, TextAsset atlasAssets, Texture textureAssets, TextAsset skeletonAssets)
-    {
-
-      Debug.Log ("SetUp");
-
-      // 内容加载成功
-
-      // 分析 skeleton 数据
-      // read and parse skeleton josn into SkeletonData
-      TextReader reader = new StringReader (skeletonAssets.text);
-      Dictionary<string, System.Object> skeletonRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
-      SkeletonData skeletonData = ObjectDataParser.ParseSkeletonData (skeletonRawData);
-
-      // 分析 Atlas 数据
-      // read and parse texture atlas josn into TextureAtlas
-      reader = new StringReader (atlasAssets.text);
-      Dictionary<string, System.Object> atlasRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
-      AtlasData atlasData = AtlasDataParser.ParseAtlasData (atlasRawData);
-
-      // 保存数据到缓存中
-      if (skeletonData != null && atlasData != null) {
-        Cache.characterDataTable.Add (name, new AvatarData (skeletonData, new TextureAtlas (textureAssets, atlasData)));
-      }
-
-      // 资源准备完毕
-      OnResReady (name);
     }
 
     /// <summary>
-    /// 资源准备完毕
+    /// 预加载需要的数据，用于优化
     /// </summary>
-    /// <param name="name">Name.</param>
+    /// <param name="pair">Pair.</param>
+    private static void PreResourceLoad (LoadPair pair)
+    {
+
+      string name = pair.name;
+
+      if (name != null) {
+
+        TextAsset atlasAssets = null;
+        Texture textureAssets = null;
+        TextAsset skeletonAssets = null;
+
+        if (!Cache.atlasDataTable.ContainsKey (name)) {
+          string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas";
+          atlasAssets = Resources.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
+          Debug.Log (atlasFilepath);
+        }
+        if (!Cache.skeletonDataTable.ContainsKey (name)) {
+          string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton";
+          skeletonAssets = Resources.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
+          Debug.Log (skeletonFilepath);
+        }
+
+        if (pair.includeTexture && !Cache.textureTable.ContainsKey (name)) {
+          string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_texture";
+          textureAssets = Resources.Load (textureFilepath, typeof(Texture)) as Texture;
+          Debug.Log (textureFilepath);
+        }
+
+        SetUp (name, atlasAssets, textureAssets, skeletonAssets);
+      }
+    }
+
+    private static void SetUpAndCreate (string name, TextAsset atlasAssets, 
+                                        Texture textureAssets, TextAsset skeletonAssets)
+    {
+
+      SetUp (name, atlasAssets, textureAssets, skeletonAssets);
+      OnResReady (name);
+
+    }
+
     private static void OnResReady (string name)
     {
 
       // 将游戏对象创建请求放入队列中，在 Update 方法中完成创建
       requireQueue.Enqueue (name);
+    }
+
+    private static void SetUp (string name, TextAsset atlasAssets, 
+                               Texture textureAssets, TextAsset skeletonAssets)
+    {
+
+      //Debug.Log ("SetUp");
+
+      // 内容加载成功
+
+      TextReader reader = null;
+
+      // 分析 Atlas 数据
+      // read and parse texture atlas josn into TextureAtlas
+      if (atlasAssets != null) {
+        reader = new StringReader (atlasAssets.text);
+        Dictionary<string, System.Object> atlasRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
+        AtlasData atlasData = AtlasDataParser.ParseAtlasData (atlasRawData);
+        if (!Cache.atlasDataTable.ContainsKey (name)) {
+          Cache.atlasDataTable.Add (name, atlasData);
+        } else {
+          Debug.LogWarning ("DragonBones atlas data table already contains " + name);
+        }
+      }
+
+      if (textureAssets != null) {
+        if (!Cache.textureTable.ContainsKey (name)) {
+          Cache.textureTable.Add (name, textureAssets);
+        } else {
+          Debug.LogWarning ("DragonBones texture table already contains " + name);
+        }
+      }
+
+      // 分析 skeleton 数据
+      // read and parse skeleton josn into SkeletonData
+      if (skeletonAssets != null) {
+        reader = new StringReader (skeletonAssets.text);
+        Dictionary<string, System.Object> skeletonRawData = Json.Deserialize (reader) as Dictionary<string, System.Object>;
+        SkeletonData skeletonData = ObjectDataParser.ParseSkeletonData (skeletonRawData);
+        if (!Cache.skeletonDataTable.ContainsKey (name)) {
+          Cache.skeletonDataTable.Add (name, skeletonData);
+        } else {
+          Debug.LogWarning ("DragonBones skeleton data table already contains " + name);
+        }
+      }
 
     }
 
@@ -228,7 +353,7 @@ namespace TangDragonBones
     /// Add the specified gobj.
     /// </summary>
     /// <param name="gobj">Gobj.</param>
-    public static void Add (GameObject gobj)
+    public static void AddToCache (GameObject gobj)
     {
       if (Cache.gobjTable.ContainsKey (gobj.name)) {
         Cache.gobjTable [gobj.name].Add (gobj);
@@ -252,8 +377,10 @@ namespace TangDragonBones
         // 从对象表中删除
         if (Cache.gobjTable.ContainsKey (name)) {
           Cache.gobjTable [name].Remove (gobj);
+          // 如果该资源对应的游戏对象都已经删除了，则清空相应的资源
           if (Cache.gobjTable [name].Count == 0) {
             Cache.gobjTable.Remove (name);
+            Cache.textureTable.Remove (name);
           }
         }
         // 销毁对象

@@ -33,7 +33,8 @@ namespace TangLevel
         Hero hero = new Hero ();      
         hero.resName = "hero_zf";
         hero.hp = 100;
-        hero.attackDistance = 1 ;
+        hero.attackDistance = 5 ;
+        hero.ai = new string[]{"AutoFire"};
         group.heros [j] = hero;
       }
       return group;

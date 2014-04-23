@@ -5,11 +5,8 @@
  * Author: zzc
  *
  */
-
-namespace TangEffect
-{
-  public class NtftNames
-  {
+namespace TangEffect{
+  public class NtftNames{
     public const string HIT = "TE_HIT";
   }
 }
