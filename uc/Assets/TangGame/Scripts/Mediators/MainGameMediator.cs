@@ -13,7 +13,7 @@ using PureMVC.Patterns;
 using PureMVC.Interfaces;
 using System.Collections.Generic;
 using TS = TangScene;
-using TGN = TangGame.Net;
+//using TGN = TangGame.Net;
 using TE = TangEffect;
 
 namespace TangGame.View
@@ -48,7 +48,6 @@ namespace TangGame.View
       handleTable.Add (TangNet.NtftNames.TN_CONNECTION_CLOSE, HandleNetWorkClose);
 
       handleTable.Add (TS.NtftNames.SCENE_LOAD_COMPLETED, HandleSceneLoadCompleted);
-      handleTable.Add (TS.NtftNames.LEADING_ACTOR_MOVE, HandleLeadingHeroMove);
 
       handleTable.Add (TS.NtftNames.SCENE_LOAD_START, HandleSceneLoadStart);
       handleTable.Add (NtftNames.TG_LEADING_ACTOR_READY, HandleLeadingActorReady);
@@ -153,14 +152,6 @@ namespace TangGame.View
         uiRoot.AddComponent<DontDestroyOnLoad> ();
       }
 
-      //SendNotification (NotificationIDs.ID_EnableSceneClick);
-
-      //SendNotification (LeadingActorEnterSceneCmd.NAME);
-
-      TangNet.TN.Send (new TGN.SceneHeroRequest ());
-      TangNet.TN.Send (new TGN.SceneMonsterRequest ());
-      TangNet.TN.Send (new TGN.SceneNpcRequest ());
-
       SendNotification (NtftNames.TG_LOADING_END);
     }
 
@@ -184,17 +175,7 @@ namespace TangGame.View
       //GlobalFunction.SendPopMessage ("Socket 连接断开");
     }
 
-    /// <summary>
-    /// 别人告诉我我自己在移动，所以我要去做点事情
-    /// </summary>
-    /// <param name="notification"></param>
-    private void HandleLeadingHeroMove (INotification notification)
-    {
-      Vector3 posi = (Vector3)notification.Body;
-      TangUtils.Point point = TangUtils.GridUtil.Vector3ToPoint (posi);
-      TangNet.TN.Send (new TGN.HeroMoveRequest (point));
-    }
-
+    
 
     private void HandleSceneLoadStart (INotification notification)
     {

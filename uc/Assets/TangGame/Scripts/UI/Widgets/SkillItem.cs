@@ -12,6 +12,7 @@ public class SkillItem : MonoBehaviour {
 	public UILabel SkillInfoLabel;
 
 	private SkillBase skill;
+
 	public void Flush(SkillBase skill){
 		this.skill = skill;
 //		SetSkillName (skill.config.name);
@@ -29,6 +30,14 @@ public class SkillItem : MonoBehaviour {
 //		this.GetComponent<UIPlayTween> ().Play(true);
 	}
 
+	public SkillBase Skill {
+		get {
+			return skill;
+		}
+		set {
+			skill = value;
+		}
+	}
 
 	void SetSkillInfoLabel(string skillInfoLabel){
 		this.SkillInfoLabel.text = skillInfoLabel;

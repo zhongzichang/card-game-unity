@@ -6,61 +6,138 @@ namespace TangGame.Xml
 {
 	public class HeroXml
 	{
-
-//				一 一级属性
-//				英雄以一级属性区分职业特性，分别对应以下三项
-		public int strength;
-//				力量：增加物理攻击、生命、护甲
-		public int intelligence;
-//				智力：增加物理攻击、法术强度、魔抗
-		public int agility;
-//				敏捷：增加物理攻击、护甲、暴击
-//				
-//				二 延伸属性
-		public int hp;
-//				生命值：英雄初始生命值
-		public int attack_power;
-//				物理攻击力：英雄初始物理攻击力
-		public int spell_power;
-//				魔法强度：英雄初始魔法强度
-		public int physical_defense;
-//				物理护甲：英雄初始物理护甲
-		public int magic_defense;
-//				魔法抗性：英雄初始魔法抗性
-		public int physical_crit;
-//				物理暴击：英雄初始物理暴击
-		public int hp_re;
-//				生命回复：英雄初始生命回复
-		public int energy_re;
-//				能量回复：英雄初始能量回复
-		//TODO 升级经验
-//				升级经验：英雄初始经验及每级升级所需经验值
-		public int level;
-//				英雄等级：英雄初始初始等级
-		public int score;
-//				战斗力：英雄初始战斗力显示
-//				
-//				三 额外需求
+		/// <summary>
+		/// The identifier.
+		/// </summary>
 		public int id;
-//				编号：英雄编号
-		public string name;
-//				名称：英雄名字
-		public string info;
-//				描述：英雄的中文描述
-		public float atk_speed;
-//				攻击速度：英雄的攻击速度
-		public int atk_distance;
-//				攻击距离：英雄的攻击距离
+		/// <summary>
+		/// 是否再列表显示
+		/// </summary>
+		public short showView;
+		/// <summary>
+		/// 初始星级
+		/// </summary>
+		public int evolve;
+		/// <summary>
+		/// 英雄阵营
+		/// </summary>
+		public int camp;
+		/// <summary>
+		/// 英雄性别
+		/// </summary>
+		public int gender;
+		/// <summary>
+		/// 英雄属性类型，力量，智力，敏捷
+		/// </summary>
+		public int attribute_type;
+		/// <summary>
+		/// 前排，中排，后排
+		/// </summary>
 		public int location;
-//				英雄位置：英雄战斗中的位置，分为前，中，后排
-		public string pictorial;
-//				图鉴编号：调用英雄图鉴图片的编号
-		public int animation_id;
-//				动作编号：调用在查看英雄属性时的角色
-		public int ai_id;
-//				AI调用：调用英雄的技能释放AI
+		/// <summary>
+		/// 力量成长率
+		/// </summary>
+		public float strength_growth;
+		/// <summary>
+		/// 智力成长率
+		/// </summary>
+		public float intellect_growth;
+		/// <summary>
+		/// 敏捷成长率
+		/// </summary>
+		public float agile_growth;
+		/// <summary>
+		/// 力量
+		/// </summary>
+		public int strength;
+		/// <summary>
+		/// 智力
+		/// </summary>
+		public int intellect;
+		/// <summary>
+		/// 敏捷
+		/// </summary>
+		public int agile;
+		/// <summary>
+		/// 生命最大值
+		/// </summary>
+		public int hpMax;
+		/// <summary>
+		/// 物理攻击强度
+		/// </summary>
+		public int attack_damage;
+		/// <summary>
+		/// 法术攻击强度
+		/// </summary>
+		public int ability_power;
+		/// <summary>
+		/// 物理防御
+		/// </summary>
+		public int physical_defense;
+		/// <summary>
+		/// 法术防御
+		/// </summary>
+		public int magic_defense;
+		/// <summary>
+		/// 生命回复
+		/// </summary>
+		public int hp_recovery;
+		/// <summary>
+		/// 能量回复
+		/// </summary>
+		public int energy_recovery;
+		/// <summary>
+		/// 物理穿透
+		/// </summary>
+		public int physical_penetration;
+		/// <summary>
+		/// 法术穿透
+		/// </summary>
+		public int spell_penetration;
+		/// <summary>
+		/// 吸血等级
+		/// </summary>
+		public int bloodsucking_lv;
+		/// <summary>
+		/// 闪避
+		/// </summary>
+		public int dodge;
+		/// <summary>
+		/// 治疗加成
+		/// </summary>
+		public int addition_treatment;
+		/// <summary>
+		/// 进阶装备id列表
+		/// </summary>
+		public string equip_id_list;
+		/// <summary>
+		/// 技能id数组
+		/// </summary>
 		public string skill_ids;
-//				技能配置：英雄所拥有的技能编号
+		/// <summary>
+		/// 技能出手先后顺序
+		/// </summary>
+		public string shot_order;
+		/// <summary>
+		/// 英雄简介
+		/// </summary>
+		public string hero_info;
+		/// <summary>
+		/// 英雄标签
+		/// </summary>
+		public string hero_tip;
+		/// <summary>
+		/// 英雄头像资源名字
+		/// </summary>
+		public string avatar;
+		/// <summary>
+		/// 图鉴的名字
+		/// </summary>
+		public string portrait;
+		/// <summary>
+		/// 碎片的头像名字
+		/// </summary>
+		public string fragments_avatar;
 	}
 
 	[XmlRoot("root")]

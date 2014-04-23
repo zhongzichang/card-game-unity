@@ -33,19 +33,17 @@ namespace TangGame
 		// when hero menu click show hero panel
 		void OnHeroMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.OVERRIDE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.REPLACE);
 			this.CloseMenu ();
 		}
 
 		void OnBagMenuClick (GameObject obj)
 		{
-//			TangGame.UIContext.mgr.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
 			this.CloseMenu ();
 		}
 
 		void OnDebrisMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgr.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.OVERRIDE);
 			this.CloseMenu ();
 		}
 

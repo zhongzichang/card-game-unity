@@ -17,7 +17,7 @@ namespace TangGame
 			if (anchor != null) {
 				mgr = new UIPanelNodeManager (anchor);
 			}
-			UIContext.mgr = mgr;
+			UIContext.mgrCoC = mgr;
 		}
 	}
 }

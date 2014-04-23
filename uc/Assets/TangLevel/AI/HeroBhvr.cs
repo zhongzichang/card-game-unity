@@ -78,7 +78,7 @@ namespace TangLevel
     {
 
       if (statusBhvr != null)
-        statusBhvr.Status = HeroStatus.skill;
+        statusBhvr.Status = HeroStatus.attack;
 
     }
 
