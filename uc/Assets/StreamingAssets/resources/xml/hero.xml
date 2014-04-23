@@ -208,7 +208,7 @@
 		<camp>1</camp>
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
-		<location>2</location>
+		<location>3</location>
 		
 		<strength_growth>0.1</strength_growth>
 		<intellect_growth>0.2</intellect_growth>
@@ -248,7 +248,7 @@
 		<camp>1</camp>
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
-		<location>2</location>
+		<location>1</location>
 		
 		<strength_growth>0.1</strength_growth>
 		<intellect_growth>0.2</intellect_growth>
@@ -288,7 +288,7 @@
 		<camp>1</camp>
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
-		<location>2</location>
+		<location>3</location>
 		
 		<strength_growth>0.1</strength_growth>
 		<intellect_growth>0.2</intellect_growth>
@@ -328,7 +328,7 @@
 		<camp>1</camp>
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
-		<location>2</location>
+		<location>1</location>
 		
 		<strength_growth>0.1</strength_growth>
 		<intellect_growth>0.2</intellect_growth>

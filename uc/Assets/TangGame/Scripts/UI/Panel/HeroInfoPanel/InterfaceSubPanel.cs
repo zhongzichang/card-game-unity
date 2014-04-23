@@ -91,7 +91,7 @@ namespace TangGame.UI
 		}
 
 		private void OnAvatarLoaded(object sender,TDB.ResEventArgs args){
-			GetAvatar (args.Name);
+			GameObject obj = GetAvatar (args.Name);
 		}
 
 		private GameObject GetAvatar(string resName){
@@ -212,7 +212,7 @@ namespace TangGame.UI
 		/// <param name="obj">Object.</param>
 		void AnimatorObjOnClick(GameObject obj){
 			if (dragonBonesBhvr != null) {
-				dragonBonesBhvr.GotoAndPlay ("running");
+				dragonBonesBhvr.GotoAndPlayNext ();
 			}
 		}
 		/// <summary>

@@ -83,7 +83,7 @@ namespace TangGame.UI
 		void ShowItemByHeroLocation (HeroLocationEnum em)
 		{
 			foreach (HeroItem item in heroItems.Values) {
-				if (item.Data.Xml.location.Equals (em)) {
+				if (item.Data.Xml.location.Equals ((int)em)) {
 					item.gameObject.SetActive (true);
 				}
 			}

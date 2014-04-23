@@ -105,6 +105,14 @@ namespace TangGame.Xml
 		/// </summary>
 		public int bloodsucking_lv;
 		/// <summary>
+		/// 物理爆击
+		/// </summary>
+		public int physical_crit;
+		/// <summary>
+		/// 法术爆击
+		/// </summary>
+		public int magic_crit;
+		/// <summary>
 		/// 闪避
 		/// </summary>
 		public int dodge;

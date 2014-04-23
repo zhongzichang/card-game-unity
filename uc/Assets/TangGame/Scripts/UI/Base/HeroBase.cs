@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TangGame.Xml;
 using TangGame.Net;
+
 namespace TangGame.UI.Base
 {
 	public class HeroBase
@@ -25,6 +26,7 @@ namespace TangGame.UI.Base
 				net = value;
 			}
 		}
+
 		/// <summary>
 		/// 来自配置表的数据
 		/// </summary>
@@ -37,10 +39,8 @@ namespace TangGame.UI.Base
 				xml = value;
 			}
 		}
-	
 		//TODO skillList ,
 		//TODO propslist ,
-
 		/// <summary>
 		/// 力量成长率
 		/// </summary>
@@ -175,6 +175,24 @@ namespace TangGame.UI.Base
 				return xml.spell_penetration;
 			}
 		}
+		/// <summary>
+		/// 法术爆击
+		/// </summary>
+		/// <value>The spell crit.</value>
+		public int Magic_Crit {
+			get { 
+				return xml.magic_crit;
+			}
+		}
+		/// <summary>
+		/// 物理爆击
+		/// </summary>
+		/// <value>The physical_ crit.</value>
+		public int Physical_Crit{
+			get{ 
+				return xml.physical_crit;
+			}
+		}
 
 		/// <summary>
 		/// 吸血等级
@@ -202,21 +220,23 @@ namespace TangGame.UI.Base
 				return xml.addition_treatment;
 			}
 		}
+
 		/// <summary>
 		/// 战队战斗力
 		/// </summary>
-		public int Score{
-			get{
+		public int Score {
+			get {
 				//TODO 修正算法
 				return Net.level * (Net.evolve + Net.upgrade);
 			}
 		}
+
 		/// <summary>
 		/// 这个英雄是否解锁
 		/// </summary>
 		/// <value><c>true</c> if this instance is lock; otherwise, <c>false</c>.</value>
-		public bool Islock{
-			get{ 
+		public bool Islock {
+			get { 
 				if (Net.id == 0) {
 					return true;
 				} else {
@@ -225,7 +245,8 @@ namespace TangGame.UI.Base
 			}
 		}
 
-		public static HeroesRankEnum GetHeroesRankEnum(int rank){
+		public static HeroesRankEnum GetHeroesRankEnum (int rank)
+		{
 			float val = (float)Mathf.Sqrt ((float)(2 * rank + 0.25)) - (float)0.5;
 			return (HeroesRankEnum)(int)(val - 1);
 		}
@@ -235,10 +256,13 @@ namespace TangGame.UI.Base
 		/// </summary>
 		/// <returns>The rank color string.</returns>
 		/// <param name="rank">Rank.</param>
-		public static string GetRankColorStr(int rank){
-			return GetRankColorStr (GetHeroesRankEnum(rank));
+		public static string GetRankColorStr (int rank)
+		{
+			return GetRankColorStr (GetHeroesRankEnum (rank));
 		}
-		public static string GetRankColorStr(HeroesRankEnum rank){
+
+		public static string GetRankColorStr (HeroesRankEnum rank)
+		{
 			if (rank.Equals (HeroesRankEnum.WHITE)) {
 				return "white";
 			} else if (rank.Equals (HeroesRankEnum.GREEN)) {
