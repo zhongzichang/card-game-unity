@@ -58,7 +58,7 @@ namespace TangDragonBones
     public void GotoAndPlayNext(){
       if (armature != null) {
         List<string> animationList = armature.Animation.AnimationList;
-        int index = animationList.IndexOf (armature.Animation.MovementID);
+				int index = animationList.IndexOf (armature.Animation.MovementID);
         if (index >= animationList.Count - 1) {
           index = 0;
         }

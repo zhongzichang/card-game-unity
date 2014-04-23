@@ -65,6 +65,7 @@ namespace TangGame.UI
 
 			SkillInfoButton.GetComponent<UIToggle> ().optionCanBeNone = true;
 			PictorialButton.GetComponent<UIToggle> ().optionCanBeNone = true;
+
 			UIEventListener.Get (AnimatorObj.gameObject).onClick += AnimatorObjOnClick;
 			UIEventListener.Get (PropertyInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (SkillInfoButton.gameObject).onClick += ToggleButtonOnClick;
@@ -211,8 +212,10 @@ namespace TangGame.UI
 		/// </summary>
 		/// <param name="obj">Object.</param>
 		void AnimatorObjOnClick(GameObject obj){
+			Debug.Log ("点击是有效的");
 			if (dragonBonesBhvr != null) {
-				dragonBonesBhvr.GotoAndPlayNext ();
+//				dragonBonesBhvr.GotoAndPlayNext ();
+				dragonBonesBhvr.GotoAndPlay ("attack"); //FIXME that line code only for test
 			}
 		}
 		/// <summary>
