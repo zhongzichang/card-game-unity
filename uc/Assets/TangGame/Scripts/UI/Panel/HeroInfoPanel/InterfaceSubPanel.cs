@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI.Base;
-
+using TDB = TangDragonBones;
 namespace TangGame.UI
 {
 	public class InterfaceSubPanel : MonoBehaviour
@@ -16,6 +16,7 @@ namespace TangGame.UI
 		public GameObject SkillInfoButton;
 		///图鉴按钮
 		public GameObject PictorialButton;
+		public GameObject AnimatorObj;
 		///6个道具栏
 		public GameObject Props1;
 		public GameObject Props2;
@@ -44,6 +45,11 @@ namespace TangGame.UI
 		///星级列表
 		public GameObject StarList;
 		private ArrayList propsSpirtes = new ArrayList ();
+
+		void Awake(){
+			///注册英雄创建成功监听
+			TDB.DbgoManager.ResEventHandler += OnAvatarLoaded;
+		}
 		// Use this for initialization
 		void Start ()
 		{
@@ -60,12 +66,33 @@ namespace TangGame.UI
 			UIEventListener.Get (SkillInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (PictorialButton.gameObject).onClick += ToggleButtonOnClick;
 		}
+		void OnEnable(){
+			LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+		}
 		// Update is called once per frame
 		void Update ()
 		{
 
 		}
 
+		private void LoadAnimatorObj(string resName){
+			GameObject obj = TDB.DbgoManager.FetchUnused (resName);
+			if (obj != null) {
+				obj.transform.parent = AnimatorObj.transform;
+				obj.transform.localPosition = Vector3.zero;
+			} else {
+				TDB.DbgoManager.LazyLoad (resName);
+			}
+
+		}
+
+		private void OnAvatarLoaded(object sender,TDB.ResEventArgs args){
+			GameObject obj = TDB.DbgoManager.FetchUnused (args.Name);
+			if (obj != null) {
+				obj.transform.parent = AnimatorObj.transform;
+				obj.transform.localPosition = Vector3.zero;
+			}
+		}
 		/// <summary>
 		/// Refreshs the panel.刷新面板
 		/// </summary>

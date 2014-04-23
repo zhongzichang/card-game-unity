@@ -22,7 +22,6 @@ namespace TangGame.UI.Base
 				return net;
 			}
 			set {
-				xml = Config.heroXml [net.configId];
 				net = value;
 			}
 		}
@@ -209,7 +208,7 @@ namespace TangGame.UI.Base
 		public int Score{
 			get{
 				//TODO 修正算法
-				return net.level * (net.evolve + net.upgrade);
+				return Net.level * (Net.evolve + Net.upgrade);
 			}
 		}
 		/// <summary>
@@ -218,7 +217,7 @@ namespace TangGame.UI.Base
 		/// <value><c>true</c> if this instance is lock; otherwise, <c>false</c>.</value>
 		public bool Islock{
 			get{ 
-				if (net.id == 0) {
+				if (Net.id == 0) {
 					return true;
 				} else {
 					return false;
@@ -228,7 +227,29 @@ namespace TangGame.UI.Base
 
 		public static HeroesRankEnum GetHeroesRankEnum(int rank){
 			float val = (float)Mathf.Sqrt ((float)(2 * rank + 0.25)) - (float)0.5;
-			return (HeroesRankEnum)(int)val;
+			return (HeroesRankEnum)(int)(val - 1);
+		}
+
+		/// <summary>
+		/// 返回品质的颜色
+		/// </summary>
+		/// <returns>The rank color string.</returns>
+		/// <param name="rank">Rank.</param>
+		public static string GetRankColorStr(int rank){
+			return GetRankColorStr (GetHeroesRankEnum(rank));
+		}
+		public static string GetRankColorStr(HeroesRankEnum rank){
+			if (rank.Equals (HeroesRankEnum.WHITE)) {
+				return "white";
+			} else if (rank.Equals (HeroesRankEnum.GREEN)) {
+				return "green";
+			} else if (rank.Equals (HeroesRankEnum.BLUE)) {
+				return "blue";
+			} else if (rank.Equals (HeroesRankEnum.PURPLE)) {
+				return "purple";
+			} else {
+				return "white";
+			}
 		}
 	}
 

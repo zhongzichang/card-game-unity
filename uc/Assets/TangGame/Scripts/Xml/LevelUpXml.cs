@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using TangUtils;
+using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
@@ -11,11 +12,11 @@ namespace TangGame.Xml
 	}
 
 	[XmlRoot ("root")]
+	[XmlLate("level_up")]
 	public class LevelUpRoot
 	{
 		[XmlElement ("value")]
-		public List<LevelUpXml>
-			items = new List<LevelUpXml> ();
+		public List<LevelUpXml> items = new List<LevelUpXml> ();
 
 		public static void LateProcess (object obj)
 		{

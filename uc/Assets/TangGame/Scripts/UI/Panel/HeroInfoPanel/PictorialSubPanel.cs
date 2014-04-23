@@ -20,8 +20,7 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
-			//FIXME remove this code ,that only to test!
-			SetCardTexture ("card_bg_big_2");
+
 		}
 		// Update is called once per frame
 		void Update ()
@@ -96,18 +95,7 @@ namespace TangGame.UI
 
 		void SetBackground (int rank)
 		{
-			string bgColor = "white";
-			HeroesRankEnum rankeEnum = HeroBase.GetHeroesRankEnum (rank);
-			if (rankeEnum.Equals (HeroesRankEnum.WHITE)) {
-				bgColor = "white";
-			} else if (rankeEnum.Equals (HeroesRankEnum.GREEN)) {
-				bgColor = "green";
-			} else if (rankeEnum.Equals (HeroesRankEnum.BLUE)) {
-				bgColor = "blue";
-			} else if (rankeEnum.Equals (HeroesRankEnum.PURPLE)) {
-				bgColor = "purple";
-			}
-			Background.GetComponent<UISprite> ().spriteName = "card_bg_" + bgColor;
+			Background.GetComponent<UISprite> ().spriteName = "card_bg_" + HeroBase.GetRankColorStr(rank);
 		}
 
 		/// <summary>

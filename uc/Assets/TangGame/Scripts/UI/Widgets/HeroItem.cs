@@ -41,10 +41,6 @@ namespace TangGame.UI
 		public void Flush (HeroBase hero)
 		{
 			this.data = hero;
-		
-			//TODO next code is test ,need remove;
-			data.Xml.avatar = this.HeroAvatarSprite.atlas.spriteList [this.Data.Xml.id].name;
-
 			UpHeroRank ((int)data.Net.upgrade);
 			UpHeroAvatarSprite (data.Xml.avatar);
 			UpHeroName (data.Xml.name);

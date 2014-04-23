@@ -47,6 +47,16 @@ namespace TangGame.UI
 			UIEventListener.Get (ToggleBefore.gameObject).onClick += OnToggleBeforeClick;
 			UIEventListener.Get (ToggleLater.gameObject).onClick += OnToggleLaterClick;
 			UIEventListener.Get (ToggleMedium.gameObject).onClick += OnToggleMediumClick;
+
+			TangGame.Net.HeroNet net = new TangGame.Net.HeroNet ();
+			net.id = 100001;
+			net.exp = 1000;
+			net.evolve = 3;
+			net.configId = 1001;
+			net.level = 3;
+			net.upgrade = 3;
+			TangGame.UI.Base.BaseCache.heroBeseDic [net.configId].Net = net;
+
 			this.LoadHeroAll ();
 		}
 
