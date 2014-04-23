@@ -151,10 +151,6 @@ namespace TangUI
         transform.localRotation = Quaternion.identity;
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
-        // depth = 0 保留给场景对象使用
-        if (context.depth == 0) {
-          context.depth++;
-        }
         if (null != panel) {
           NGUITools.AdjustDepth (gameObject, context.depth * 1000);
         }
@@ -189,12 +185,7 @@ namespace TangUI
         preNode.nextNode = null;
 
         context.currentNode = preNode;
-
-        // depth = 0 保留给场景对象使用
-        if (context.depth == 1)
-          context.depth -= 2;
-        else
-          context.depth--;
+        context.depth--;
 
         if (!(preNode is UIPanelRoot) && preNode.gameObject != null && !preNode.gameObject.activeSelf) {
           preNode.SetActive (true);
