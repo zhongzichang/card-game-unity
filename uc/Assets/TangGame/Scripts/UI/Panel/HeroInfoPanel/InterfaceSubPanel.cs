@@ -48,7 +48,7 @@ namespace TangGame.UI
 
 		void Awake(){
 			///注册英雄创建成功监听
-			TDB.DbgoManager.ResEventHandler += OnAvatarLoaded;
+			TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
 		}
 		// Use this for initialization
 		void Start ()
