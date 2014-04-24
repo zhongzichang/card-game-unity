@@ -142,9 +142,11 @@ namespace TangUI
       // init current node
       preNode = context.currentNode;
       if (preNode.nextNode == null) {
-        preNode.nextNode = this;
 
+        preNode.nextNode = this;
         context.currentNode = this;
+        context.depth++;
+
         Transform transform = gameObject.transform;
         transform.parent = context.anchor.transform;
         transform.localPosition = Vector3.zero;
@@ -152,18 +154,22 @@ namespace TangUI
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
         if (null != panel) {
-          int rq = context.depth * 10000;
+
+          // 调整基本面板
+          int baseDepth = context.depth * 1000;
+          FixPanelRenderQ (panel, baseDepth);
+          panel.depth = baseDepth;
+
+          // 调整子面板
           UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> (true);
-          Debug.Log (context.depth + "===");
           foreach (UIPanel cp in childPanels) {
-            int crq = rq;
-            if (cp == panel) {
-              FixPanelRenderQ (cp, crq);
-              NGUITools.AdjustDepth (cp.gameObject, crq);
+            if (cp != panel) {
+              int cdepth = baseDepth + cp.depth;
+              FixPanelRenderQ (cp, cdepth);
+              NGUITools.AdjustDepth (cp.gameObject, baseDepth);
             }
           }
         }
-        context.depth++;
 
         // assign param
         MonoBehaviour script = gameObject.GetComponent (name) as MonoBehaviour;
@@ -198,10 +204,23 @@ namespace TangUI
     public void Remove ()
     {
       if (!(this is UIPanelRoot)) {
-      
-        SetActive (false);
-        preNode.nextNode = null;
 
+        UIPanel panel = gameObject.GetComponent<UIPanel> ();
+        if (null != panel) {
+          int baseDepth = context.depth * 1000;
+
+          // 恢复子面板的 depth
+          UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> (true);
+          foreach (UIPanel cp in childPanels) {
+            if (cp != panel) {
+              NGUITools.AdjustDepth (cp.gameObject, -baseDepth);
+            }
+          }
+        }
+        //NGUITools.AdjustDepth (gameObject, -context.depth * 1000);
+        SetActive (false);
+
+        preNode.nextNode = null;
         context.currentNode = preNode;
         context.depth--;
 
