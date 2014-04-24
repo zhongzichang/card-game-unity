@@ -178,7 +178,6 @@ namespace TangUI
 							int cdepth = baseDepth + 100 * index++;
 							FixPanelRenderQ (cp, cdepth);
 							cp.depth = cdepth;
-							Debug.Log (cp.name + ":" + cp.depth);
 						}
 					}
         }
