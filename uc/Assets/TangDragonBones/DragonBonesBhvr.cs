@@ -61,6 +61,8 @@ namespace TangDragonBones
 				int index = animationList.IndexOf (armature.Animation.MovementID);
         if (index >= animationList.Count - 1) {
           index = 0;
+        } else {
+          index++;
         }
         GotoAndPlay (animationList[index]);
         
