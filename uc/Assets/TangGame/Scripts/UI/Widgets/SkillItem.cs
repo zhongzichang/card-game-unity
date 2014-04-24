@@ -35,7 +35,6 @@ namespace TangGame.UI
 
 		void OnTooltip (bool bl)
 		{
-			Debug.Log ("12321321321");
 			this.GetComponent<UIPlayTween> ().Play (true);
 
 		}

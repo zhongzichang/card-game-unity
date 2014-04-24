@@ -113,18 +113,16 @@ namespace TangGame.UI
 			UIPlayTween pt = GetComponent<UIPlayTween> ();
 			pt.Play (true);
 			if (isChecked) {
-				GetComponent<UIPanel> ().renderQueue = UIPanel.RenderQueue.StartAt;
-				GetComponent<UIPanel> ().startingRenderQueue += 1000;  
-				NGUITools.AdjustDepth (this.gameObject, 1000);
+				GetComponent<UIPanel> ().startingRenderQueue += 500;
+				GetComponent<UIPanel> ().depth += 500;
 			} else {
 				StartCoroutine (BackDepth ());
 			}
 		}
 		public IEnumerator BackDepth() {
 			yield return new WaitForSeconds(0.2f);
-			NGUITools.AdjustDepth (this.gameObject, -1000);
-			GetComponent<UIPanel> ().startingRenderQueue -= 1000;
-			GetComponent<UIPanel> ().renderQueue = UIPanel.RenderQueue.Automatic;
+			GetComponent<UIPanel> ().startingRenderQueue -= 500;
+			GetComponent<UIPanel> ().depth -= 500;
 		}
 
 
