@@ -152,10 +152,16 @@ namespace TangUI
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
         if (null != panel) {
-//          if (panel.renderQueue == UIPanel.RenderQueue.Automatic )
-//            panel.renderQueue = UIPanel.RenderQueue.StartAt;
-//					panel.startingRenderQueue = context.depth * 10000;
-					NGUITools.AdjustDepth (gameObject, context.depth * 10000);
+
+          int rq = context.depth * 1000;
+          FixPanelRenderQ (panel, rq);
+
+          UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> ();
+          foreach (UIPanel cp in childPanels) {
+            FixPanelRenderQ (cp, rq + cp.depth*100);
+          }
+
+          //NGUITools.AdjustDepth (gameObject, context.depth * 10000);
         }
         context.depth++;
 
@@ -175,6 +181,14 @@ namespace TangUI
       } else {
         throw new Exception ("Can not attach to previous node.");
       }
+    }
+
+    private void FixPanelRenderQ(UIPanel panel, int renderQueue){
+
+      if (panel.renderQueue == UIPanel.RenderQueue.Automatic) {
+        panel.renderQueue = UIPanel.RenderQueue.StartAt;
+      }
+      panel.startingRenderQueue = renderQueue;
     }
 
     /// <summary>
