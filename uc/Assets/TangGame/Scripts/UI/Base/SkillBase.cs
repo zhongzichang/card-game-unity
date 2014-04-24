@@ -1,38 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using TangGame.Xml;
 
 namespace TangGame.UI.Base
 {
-	public class SkillBase
-	{
-		private int id;
-		private int configId;
-		private int skillLv;
-		//	private SkillConfig config;
-		public int SkillLv {
+	public class SkillBase{
+		private SkillXml xml;
+
+		public SkillXml Xml {
 			get {
-				return skillLv;
+				return xml;
 			}
 			set {
-				skillLv = value;
+				xml = value;
 			}
 		}
 
-		public int ConfigId {
+		private int level;
+
+		public int Level {
 			get {
-				return configId;
+				return level;
 			}
 			set {
-				configId = value;
+				level = value;
 			}
 		}
 
-		public int Id {
+		/// <summary>
+		/// 判断技能是否解锁
+		/// </summary>
+		/// <value><c>true</c> if this instance is lock; otherwise, <c>false</c>.</value>
+		public bool IsLock {
 			get {
-				return id;
-			}
-			set {
-				id = value;
+				if (level <= 0) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 	}

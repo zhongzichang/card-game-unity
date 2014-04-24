@@ -31,9 +31,13 @@ namespace TangGame.Net
 		/// </summary>
 		public short evolve;
 		/// <summary>
+		/// 英雄技能等级
+		/// </summary>
+		public int[] skillLevel;
+		/// <summary>
 		/// The equip.
 		/// </summary>
-		public Dictionary<int,EquipData> equip = new Dictionary<int,EquipData>();
+		public Dictionary<int,EquipNet> equip = new Dictionary<int,EquipNet>();
 
 	}
 }

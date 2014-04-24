@@ -159,7 +159,7 @@ namespace TangGame.Xml
 		{
 			HeroRoot root = obj as HeroRoot;
 			foreach (HeroXml item in root.items) {
-				Config.heroXml [item.id] = item;
+				Config.heroXmlTable [item.id] = item;
 				//TODO 先写到这个地方到时候再改
 				TangGame.UI.Base.HeroBase herobase = new TangGame.UI.Base.HeroBase ();
 				herobase.Xml = item;

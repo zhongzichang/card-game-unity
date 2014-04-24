@@ -13,20 +13,29 @@ namespace TangGame.UI
 		public UILabel SkillName;
 		public UILabel SkillDescription;
 		public UILabel SkillInfoLabel;
+		public GameObject SkillInfoBg;
 		private SkillBase skill;
 
 		public void Flush (SkillBase skill)
 		{
 			this.skill = skill;
-//		SetSkillName (skill.config.name);
-//		SetMoney (skill.config.money);
-			SetSkillLv (skill.SkillLv);
+			SetSkillName (skill.Xml.name);
+			if (skill.IsLock) {
+				SetSkillLv ("进阶到***后解锁");
+			} else {
+				SetSkillLv (skill.Level);
+			}
+//			SetMoney (skill.config.money);
 //		SetSkillInfoLabel (skill.config.description);
 //		SetSkillDescription(skill.config.info);
+
+			Add.gameObject.SetActive (!skill.IsLock);
+			Money.gameObject.SetActive (!skill.IsLock);
 		}
 
 		void OnTooltip (bool bl)
 		{
+			Debug.Log ("12321321321");
 			this.GetComponent<UIPlayTween> ().Play (true);
 
 		}
@@ -69,7 +78,13 @@ namespace TangGame.UI
 		{
 			this.SkillName.text = skillName;
 		}
-
+		/// <summary>
+		/// 当技能为解锁时使用
+		/// </summary>
+		/// <param name="str">String.</param>
+		void SetSkillLv(string str){
+			this.SkillLevel.text = str;
+		}
 		void SetSkillLv (int lv)
 		{
 			this.SkillLevel.text = "lv." + lv;

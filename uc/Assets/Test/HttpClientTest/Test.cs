@@ -19,14 +19,16 @@ public class Test : MonoBehaviour
 		if(GUILayout.Button("reqeust")){
 			HTTP.Request http = new HTTP.Request( "get", "http://localhost:4004/" );
 			http.AddHeader("Accept", "application/json");
-			http.Send( ( request ) => {
-				Debug.Log( request.response.Text );
-				HeroResult[] heroes = reader.Read<HeroResult[]>(request.response.Text );
-				Debug.Log( heroes.Length );
-				foreach(HeroResult hero in heroes){
-					Debug.Log(hero.name);
-				}
-			});
+			http.Send(HandleResponse);
+		}
+	}
+
+	void HandleResponse(HTTP.Request request){
+		Debug.Log( request.response.Text );
+		HeroResult[] heroes = reader.Read<HeroResult[]>(request.response.Text );
+		Debug.Log( heroes.Length );
+		foreach(HeroResult hero in heroes){
+			Debug.Log(hero.name);
 		}
 	}
 }

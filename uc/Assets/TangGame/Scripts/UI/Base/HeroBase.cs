@@ -10,7 +10,45 @@ namespace TangGame.UI.Base
 	{
 		private HeroNet net;
 		private HeroXml xml;
+		private SkillBase[] skillBases;
 
+		/// <summary>
+		/// Ups the skill bases. 更新技能列表
+		/// </summary>
+		private void UpSkillBases(){
+			if (xml != null) {
+				if (skillBases == null) {
+					skillBases = new SkillBase[Skill_Ids.Length];
+				}
+				for (int i = 0; i < Skill_Ids.Length; i++) {
+					if(skillBases[i] == null){
+					skillBases [i] = new SkillBase ();
+					skillBases [i].Xml = Config.skillXmlTable [Skill_Ids[i]];
+					}
+				}
+			}
+			if (net != null && net.skillLevel != null) {
+				if (skillBases == null) {
+					skillBases = new SkillBase[net.skillLevel.Length];
+				}
+				for (int i = 0; i < net.skillLevel.Length; i++) {
+					if (skillBases == null) {
+						skillBases [i] = new SkillBase ();
+					}
+					skillBases [i].Level = net.skillLevel [i];
+				}
+			}
+		}
+		/// <summary>
+		/// Gets the skill bases.技能实体数据数组
+		/// </summary>
+		/// <value>The skill bases.</value>
+		public SkillBase[] SkillBases {
+			get {
+				UpSkillBases ();
+				return skillBases;
+			}
+		}
 		/// <summary>
 		/// 来自网络的数据
 		/// </summary>
@@ -35,7 +73,7 @@ namespace TangGame.UI.Base
 			get {
 				return xml;
 			}
-			set {
+			set { 
 				xml = value;
 			}
 		}
@@ -235,7 +273,16 @@ namespace TangGame.UI.Base
 				return Net.level * (Net.evolve + Net.upgrade);
 			}
 		}
-
+		/// <summary>
+		/// 英雄技能id 数组
+		/// </summary>
+		/// <value>The skill_ identifiers.</value>
+		private int[] Skill_Ids{
+			get{ 
+				string[] str = Utils.SplitStrByBraces (xml.skill_ids);
+				return Utils.SplitStrByCommaToInt (str[0]);
+			}
+		}
 		/// <summary>
 		/// 这个英雄是否解锁
 		/// </summary>
