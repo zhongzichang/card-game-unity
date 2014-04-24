@@ -152,16 +152,16 @@ namespace TangUI
         transform.localScale = Vector3.one;
         UIPanel panel = gameObject.GetComponent<UIPanel> ();
         if (null != panel) {
-
-          int rq = context.depth * 1000;
-          FixPanelRenderQ (panel, rq);
-
-          UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> ();
+          int rq = context.depth * 10000;
+          UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> (true);
+          Debug.Log (context.depth + "===");
           foreach (UIPanel cp in childPanels) {
-            FixPanelRenderQ (cp, rq + cp.depth*100);
+            int crq = rq;
+            if (cp == panel) {
+              FixPanelRenderQ (cp, crq);
+              NGUITools.AdjustDepth (cp.gameObject, crq);
+            }
           }
-
-          //NGUITools.AdjustDepth (gameObject, context.depth * 10000);
         }
         context.depth++;
 
@@ -183,7 +183,8 @@ namespace TangUI
       }
     }
 
-    private void FixPanelRenderQ(UIPanel panel, int renderQueue){
+    private void FixPanelRenderQ (UIPanel panel, int renderQueue)
+    {
 
       if (panel.renderQueue == UIPanel.RenderQueue.Automatic) {
         panel.renderQueue = UIPanel.RenderQueue.StartAt;
