@@ -80,7 +80,6 @@ namespace TangGame.UI
 		// Update is called once per frame
 		void Update ()
 		{
-
 		}
 
 		private void LoadAnimatorObj(string resName){
@@ -106,7 +105,7 @@ namespace TangGame.UI
 					dragonBonesBhvr.GotoAndPlay ("idle");
 				}
 				Renderer objRender = obj.transform.GetComponentInChildren<Renderer>();
-				objRender.material.renderQueue = GetComponent<UIPanel>().startingRenderQueue + 25;
+				objRender.material.renderQueue = GetComponent<UIPanel>().startingRenderQueue + 50;
 			}
 			return obj;
 		}
@@ -136,7 +135,7 @@ namespace TangGame.UI
 			this.SetStarList (heroBase.Net.evolve, true);
 			//			this.SetHeroPackageSoulstone (heroBase.net, heroBase.xml); //需要使用背包数据,以及进化数据
 //		this.SetPropsList ();
-//			SetHeroType (heroBase.xml.attribute_type);
+			SetHeroType (heroBase.Attribute_Type);
 		}
 
 		private void SetHeroType (AttributeTypeEnum propertyType)

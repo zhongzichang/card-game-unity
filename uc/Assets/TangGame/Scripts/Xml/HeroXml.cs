@@ -3,7 +3,6 @@ using System.Xml;
 using UnityEngine;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-
 namespace TangGame.Xml
 {
 	public class HeroXml

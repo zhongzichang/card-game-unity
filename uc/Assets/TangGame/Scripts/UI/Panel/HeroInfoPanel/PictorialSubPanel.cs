@@ -47,7 +47,7 @@ namespace TangGame.UI
 		{
 			this.data = data;
 			SetHeroName (data.Xml.name);
-			//			SetPropertyType (data.xml.attribute_type);TODO 修改为枚举
+			SetPropertyType (data.Attribute_Type);
 //		SetSkillGroup ();
 			SetCardTexture (data.Xml.portrait);
 			SetBackground ((int)data.Net.upgrade);

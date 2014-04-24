@@ -46,7 +46,7 @@ namespace TangGame.UI
 			UpHeroName (data.Xml.name);
 			Locked (data.Islock);
 			UpLevel (data.Net.level);
-			UpHeroType ((AttributeTypeEnum)data.Xml.attribute_type);
+			UpHeroType (data.Attribute_Type);
 			//			UpHeroFragments (data.FragmentsCount, data.FragmentsCountMax);//需要道具来支撑
 			SetStarList (data.Net.evolve);
 		}

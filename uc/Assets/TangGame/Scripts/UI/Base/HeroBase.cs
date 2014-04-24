@@ -220,6 +220,11 @@ namespace TangGame.UI.Base
 				return xml.addition_treatment;
 			}
 		}
+		public AttributeTypeEnum Attribute_Type{
+			get{ 
+				return (AttributeTypeEnum)xml.attribute_type;
+			}
+		}
 
 		/// <summary>
 		/// 战队战斗力
