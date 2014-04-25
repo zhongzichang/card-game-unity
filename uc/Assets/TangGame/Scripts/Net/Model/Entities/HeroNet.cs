@@ -31,6 +31,14 @@ namespace TangGame.Net
 		/// </summary>
 		public short evolve;
 		/// <summary>
+		/// 剩余的技能点
+		/// </summary>
+		public short skillCount;
+		/// <summary>
+		/// 最后一次升级技能的时间
+		/// </summary>
+		public long lastUpSkillTime;
+		/// <summary>
 		/// 英雄技能等级
 		/// </summary>
 		public int[] skillLevel;
