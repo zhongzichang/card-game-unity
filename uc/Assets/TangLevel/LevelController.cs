@@ -29,6 +29,11 @@ namespace TangLevel
       //TDB.DbgoManager.RaiseLoadedEvent.
     }
 
+    public static void OnDestory(){
+      TDB.DbgoManager.RaiseLoadedEvent -= OnDbResLoaded;
+    }
+
+
     /// <summary>
     /// 挑战这个关卡
     /// </summary>
@@ -60,7 +65,7 @@ namespace TangLevel
     /// <param name="levelId">Level identifier.</param>
     private static void LoadTargetSubLevelRes ()
     {
-
+      Debug.Log ("LoadTargetSubLevelRes");
       SubLevel subLevel = LevelContext.TargetSubLevel;
 
       if (Cache.gobjTable.ContainsKey (subLevel.resName)) {
@@ -82,7 +87,7 @@ namespace TangLevel
     private static void OnSubLevelLoaded (AssetBundle ab)
     {
 
-      //Debug.Log ("OnSubLevelLoaded");
+      Debug.Log ("OnSubLevelLoaded");
       UnityEngine.Object assets = null;
       if (ab == null) {
         string filepath = Config.BATTLE_BG_PATH + Tang.Config.DIR_SEP + LevelContext.TargetSubLevel.resName;
@@ -140,10 +145,12 @@ namespace TangLevel
       foreach (KeyValuePair<string, int> kvp in tmpHeroTable) {
         // 已有的英雄数量
         int has = HeroGobjManager.Size (kvp.Key);
+        Debug.Log ("Has " + has + " " + kvp.Key);
         if (has < kvp.Value) {
           int need = kvp.Value - has;
           requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
+          Debug.Log ("Need " + need + " " + kvp.Key);
         }
       }
     }
@@ -155,7 +162,7 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private static void OnDbResLoaded (object sender, TDB.ResEventArgs args)
     {
-
+      Debug.Log ("OnDbResLoaded ====");
       string name = args.Name;
       if (requiredHeroGobjTable.ContainsKey (name)) {
         requiredHeroGobjTable [name] = requiredHeroGobjTable [name] - 1;
@@ -183,18 +190,18 @@ namespace TangLevel
       GameObject bgGobj = GameObjectManager.FetchUnused (LevelContext.TargetSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
-        //Debug.Log ("Background Created.");
+        Debug.Log ("Background Created.");
         LevelContext.background = bgGobj;
       }
 
       // 敌方小组列阵
       Group enemyGroup = LevelContext.TargetSubLevel.enemyGroup;
       Embattle (enemyGroup, BattleDirection.LEFT);
-      //Debug.Log ("EnemyGroup Embattle.");
+      Debug.Log ("EnemyGroup Embattle.");
 
       // 我方小组列阵
       Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
-      //Debug.Log ("SelfGroup Embattle.");
+      Debug.Log ("SelfGroup Embattle.");
 
 
       // 确保清场
@@ -233,11 +240,14 @@ namespace TangLevel
         HeroGobjManager.Release (gobj, true);
       }
       foreach (GameObject gobj in LevelContext.selfGobjs) {
-        HeroGobjManager.Release (gobj, false);
+        HeroGobjManager.Release (gobj, true);
       }
+
+      HeroGobjManager.Clear ();
 
       // 卸载背景
       LevelContext.InLevel = false;
+      LevelContext.subLevelStatus = LevelStatus.OUT;
       // 发出离开关卡通知
     }
 

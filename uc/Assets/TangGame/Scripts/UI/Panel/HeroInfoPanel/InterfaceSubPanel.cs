@@ -49,10 +49,6 @@ namespace TangGame.UI
 		private TDB.DragonBonesBhvr dragonBonesBhvr;
 		private ArrayList propsSpirtes = new ArrayList ();
 
-		void Awake(){
-			///注册英雄创建成功监听
-			TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
-		}
 		// Use this for initialization
 		void Start ()
 		{
@@ -73,10 +69,13 @@ namespace TangGame.UI
 			UIEventListener.Get (PictorialButton.gameObject).onClick += ToggleButtonOnClick;
 		}
 		void OnEnable(){
-			LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+      LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+      ///注册英雄创建成功监听
+      TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
 		}
 		void OnDisable(){
-			TDB.DbgoManager.Release (dragonBonesBhvr.gameObject,true);
+      TDB.DbgoManager.Release (dragonBonesBhvr.gameObject,true);
+      TDB.DbgoManager.RaiseLoadedEvent -= OnAvatarLoaded;
 		}
 		// Update is called once per frame
 		void Update ()

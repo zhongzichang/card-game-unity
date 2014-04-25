@@ -67,6 +67,8 @@ namespace TangDragonBones
           if (armature != null)
             AddToCache (armature);
 
+          Debug.Log ("add armature .....");
+
           // 发出通知事件，游戏对象已经准备完毕
           if (RaiseLoadedEvent != null)
             RaiseLoadedEvent (null, new ResEventArgs (name));

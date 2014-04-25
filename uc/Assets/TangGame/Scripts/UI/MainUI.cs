@@ -63,6 +63,12 @@ namespace TangGame
 
 			}
 
+      if (GUI.Button (new Rect (10, 210, 150, 100), "Battle")) {
+
+        Application.LoadLevel ("LevelDemo");
+
+      }
+
 			//			if (GUI.Button (new Rect (200, 10, 150, 100), "New Main Popup Panel")) {
 			//				if (mgr != null) {
 			//					mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, "test param");

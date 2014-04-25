@@ -14,7 +14,7 @@ namespace TangLevel
     private DirectedNavigable navigable;
     private HeroStatusBhvr statusBhvr;
     private Transform myTransform;
-    private TDB.ArmatureBhvr armatureBhvr;
+    private TDB.DragonBonesBhvr dbBhvr;
 
     #region MonoBehaviours
 
@@ -34,8 +34,8 @@ namespace TangLevel
       // transform
       myTransform = transform;
       // dragonbones behaviour
-      armatureBhvr = GetComponent<TDB.ArmatureBhvr> ();
-      armatureBhvr.GotoAndPlay (statusBhvr.Status.ToString());
+      dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
+      dbBhvr.GotoAndPlay (statusBhvr.Status.ToString());
     }
 
 
@@ -85,10 +85,10 @@ namespace TangLevel
     private void OnStatusStart(HeroStatus status){
       switch (status) {
       case HeroStatus.attack:
-        armatureBhvr.GotoAndPlay (status.ToString ());
+        dbBhvr.GotoAndPlay (status.ToString ());
         break;
       default:
-        armatureBhvr.GotoAndPlay (status.ToString ());
+        dbBhvr.GotoAndPlay (status.ToString ());
         break;
       }
     }

@@ -8,7 +8,6 @@ namespace TangLevel
 
     void Start(){
 
-      LevelController.Init ();
 
     }
 
