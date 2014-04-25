@@ -58,7 +58,18 @@ namespace TangGame.UI
 			}
 			if (SkillNumTime.activeSelf != skillTimeBool)
 				this.SkillNumTime.SetActive (skillTimeBool);
-			this.SetSkillNumTime ("(" + minute + ":" + second + ")");
+
+			string minuteStr = minute.ToString();
+			string secondStr = second.ToString ();
+			if (minute < 10) {
+				minuteStr = 0 + minuteStr;
+			}
+			if (second < 10) {
+				secondStr = 0 + second.ToString ();
+			}
+
+
+			this.SetSkillNumTime ("(" + minuteStr + ":" + second + ")");
 //			SkillNumTime.GetComponent<UILabel>().text = (fixedTime / (60 * 60 * 24)).ToString() + "天"  
 //				+ ((fixedTime/60 - fixedTime / (60 * 60 * 24)*24*60)/60).ToString() + "小时"  
 //				+ ((fixedTime / 60) % 60).ToString() + "分"  

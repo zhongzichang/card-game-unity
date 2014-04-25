@@ -14,6 +14,8 @@ namespace TangGame
 		public GameObject TaskMenu;
 		public GameObject ActivityMenu;
 		private UIToggle mainPopupToggle;
+
+
 		// Use this for initialization
 		void Start ()
 		{
@@ -33,13 +35,13 @@ namespace TangGame
 		// when hero menu click show hero panel
 		void OnHeroMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.REPLACE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.TEXTURE);
 			this.CloseMenu ();
 		}
 
 		void OnBagMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgrCoC.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.ADDITIVE);
+			TangGame.UIContext.mgrCoC.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.TEXTURE);
 			this.CloseMenu ();
 		}
 

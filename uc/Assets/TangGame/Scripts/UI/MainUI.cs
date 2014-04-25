@@ -22,6 +22,7 @@ namespace TangGame
 		/// The anchor center or center.
 		/// </summary>
 		public UIAnchor anchorCoC;
+
 		// Use this for initialization
 
 		void Start ()
@@ -29,7 +30,7 @@ namespace TangGame
 
 			if (anchorTR != null) {
 				UIPanelNodeManager mgr = new UIPanelNodeManager (anchorTR);
-				mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
+				mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.OVERRIDE);
 				UIContext.mgrTR = mgr;
 			}
 			if (anchorCoC != null) {
@@ -42,7 +43,7 @@ namespace TangGame
 			}
 			if (anchorToT != null) {
 				UIPanelNodeManager mgr = new UIPanelNodeManager (anchorToT);
-				mgr.LazyOpen (TangGame.UIContext.MAIN_STATUS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
+				mgr.LazyOpen (TangGame.UIContext.MAIN_STATUS_PANEL_NAME, UIPanelNode.OpenMode.OVERRIDE);
 				UIContext.mgrToT = mgr;
 			}
 		}

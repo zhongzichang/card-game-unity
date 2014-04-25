@@ -11,9 +11,6 @@ namespace TangGame.UI
 		public UILabel Money;
 		public UILabel SkillLevel;
 		public UILabel SkillName;
-		public UILabel SkillDescription;
-		public UILabel SkillInfoLabel;
-		public GameObject SkillInfoBg;
 		private SkillBase skill;
 
 		public void Flush (SkillBase skill)
@@ -26,8 +23,10 @@ namespace TangGame.UI
 				SetSkillLv (skill.Level);
 			}
 //			SetMoney (skill.config.money);
-//		SetSkillInfoLabel (skill.config.description);
-//		SetSkillDescription(skill.config.info);
+//			SetSkillDescription(skill.Xml.skill_tag);
+//			SetSkillInfoLabel ("这是一个测试数据 \n不要怀疑我的真实性\n不要怀疑我的真实性\n不要怀疑我的真实性\n不要怀疑我的真实性");
+
+
 
 			Add.gameObject.SetActive (!skill.IsLock);
 			Money.gameObject.SetActive (!skill.IsLock);
@@ -35,13 +34,14 @@ namespace TangGame.UI
 
 		void OnTooltip (bool bl)
 		{
-			this.GetComponent<UIPlayTween> ().Play (true);
-
+			string str = skill.Xml.skill_tag + "\n[FA8000]";
+			str += skill.Xml.skill_info;
+			UITooltip.ShowText (str);
 		}
 
 		void OnHover ()
 		{
-//		this.GetComponent<UIPlayTween> ().Play(true);
+			UITooltip.ShowText ("");
 		}
 
 		public SkillBase Skill {
@@ -51,16 +51,6 @@ namespace TangGame.UI
 			set {
 				skill = value;
 			}
-		}
-
-		void SetSkillInfoLabel (string skillInfoLabel)
-		{
-			this.SkillInfoLabel.text = skillInfoLabel;
-		}
-
-		void SetSkillDescription (string skillDescription)
-		{
-			this.SkillDescription.text = skillDescription;
 		}
 
 		void SetSkillIncon (string skillIconName)

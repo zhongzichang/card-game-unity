@@ -28,6 +28,14 @@ namespace TangGame.Xml
 //		<!-- 技能图标 -->
 //		<icon_name></icon_name>
 		public string icon_name;
+		/// <summary>
+		/// The 技能描述.
+		/// </summary>
+		public string skill_tag;
+		/// <summary>
+		/// 技能信息，技能加成以及效果相关信息
+		/// </summary>
+		public string skill_info;
 	}
 	[XmlRoot ("root")]
 	[XmlLate("skill")]
