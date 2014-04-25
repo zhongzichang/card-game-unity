@@ -25,20 +25,28 @@ namespace TangUI
 
     public void LazyOpen (string name)
     {
-      LazyOpen (name, UIPanelNode.OpenMode.ADDITIVE, null);
+			LazyOpen (name, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.SPRITE, null);
     }
+		public void LazyOpen (string name,UIPanelNode.OpenMode openMode)
+		{
+			LazyOpen (name, openMode,UIPanelNode.BlockMode.NONE, null);
+		}
 
-    public void LazyOpen (string name, UIPanelNode.OpenMode openMode)
+		public void LazyOpen (string name, UIPanelNode.OpenMode openMode,UIPanelNode.BlockMode blockMode)
     {
-      LazyOpen (name, openMode, null);
+			LazyOpen (name, openMode, blockMode, null);
     }
+		public void LazyOpen (string name, UIPanelNode.OpenMode openMode, object param){
+			LazyOpen (name, openMode, UIPanelNode.BlockMode.SPRITE, param);
+		}
 
-    public void LazyOpen (string name, UIPanelNode.OpenMode openMode, object param)
+		public void LazyOpen (string name, UIPanelNode.OpenMode openMode,UIPanelNode.BlockMode blockMode, object param)
     {
       if (!name.Equals (context.currentNode.name)) {
         UIPanelNode node = new UIPanelNode (name);
         node.context = context;
-        node.Launch (openMode, param);
+				UIPanelNodeContext.mgrUseStack.Push (this);
+				node.Launch (openMode,blockMode, param);
       }
       
     }

@@ -19,6 +19,11 @@ namespace TangUI
       OVERRIDE,
       REPLACE
     }
+		public enum BlockMode{
+			NONE,
+			SPRITE,
+			TEXTURE
+		}
 
     private UIPanelNodeContext m_context;
     /// <summary>
@@ -46,6 +51,10 @@ namespace TangUI
     ///   Open Mode
     /// </summary>
     public OpenMode openMode;
+		/// <summary>
+		/// The block mode.
+		/// </summary>
+		public BlockMode blockMode;
     /// <summary>
     ///   Body
     /// </summary>
@@ -77,12 +86,11 @@ namespace TangUI
     /// <summary>
     ///   Launch
     /// </summary>
-    public void Launch (OpenMode openMode, object param)
+		public void Launch (OpenMode openMode,BlockMode blockMode, object param)
     {
-
+			this.blockMode = blockMode;
       this.openMode = openMode;
       this.param = param;
-
       gameObject = context.cache.GetInactiveGobj (name);
       if (null == gameObject)
         StartLoadRes ();
@@ -119,9 +127,16 @@ namespace TangUI
         gameObject.SetActive (false);
         gameObject.name = name;
         context.cache.Put (name, gameObject);
-
         DynamicBindUtil.BindScriptAndProperty (gameObject, name);
 
+				if (this.blockMode == BlockMode.SPRITE) {
+					UnityEngine.Object obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK));
+					NGUITools.AddChild (gameObject, obj as GameObject);
+				}
+				if (this.blockMode == BlockMode.TEXTURE) {
+					GameObject obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
+					NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<UITexture> ().enabled = true;
+				}
         Show ();    
       }
 

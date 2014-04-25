@@ -8,6 +8,9 @@
 		<range_type>0</range_type>
 		<lv_max>0</lv_max>
 		<icon_name>str</icon_name>
+	
+		<skill_tag>文字描述</skill_tag>
+		<skill_info>黄字描述</skill_info>
 	</value>
 	<value>
 		<id>102</id>
@@ -17,6 +20,9 @@
 		<range_type>0</range_type>
 		<lv_max>0</lv_max>
 		<icon_name>str</icon_name>
+	
+		<skill_tag>文字描述</skill_tag>
+		<skill_info>黄字描述</skill_info>
 	</value>
 	<value>
 		<id>103</id>
@@ -26,6 +32,9 @@
 		<range_type>0</range_type>
 		<lv_max>0</lv_max>
 		<icon_name>str</icon_name>
+	
+		<skill_tag>文字描述</skill_tag>
+		<skill_info>黄字描述</skill_info>
 	</value>
 	<value>
 		<id>104</id>
@@ -35,5 +44,8 @@
 		<range_type>0</range_type>
 		<lv_max>0</lv_max>
 		<icon_name>str</icon_name>
+	
+		<skill_tag>文字描述</skill_tag>
+		<skill_info>黄字描述</skill_info>
 	</value>
 </root>

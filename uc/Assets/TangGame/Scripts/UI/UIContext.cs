@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using TangUI;
+using System.Collections;
 
 namespace TangGame
 {
@@ -24,6 +25,7 @@ namespace TangGame
 
 		public const string HERO_ITEM_NAME = "HeroItem";
 		public const string SKILL_ITEM_NAME = "SkillItem";
+		public const string PANEL_BLOCK = "Block"; 
 
 		/// <summary>
 		/// The mgr center or center.
@@ -41,7 +43,6 @@ namespace TangGame
 		/// The mgr to top or top.
 		/// </summary>
 		public static UIPanelNodeManager mgrToT;
-
 
 		public static string getWidgetsPath(string weightName){
 			return TangUI.Config.WIDGET_PATH + "/" + weightName;
