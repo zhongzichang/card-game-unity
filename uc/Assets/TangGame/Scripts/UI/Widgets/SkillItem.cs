@@ -11,29 +11,37 @@ namespace TangGame.UI
 		public UILabel Money;
 		public UILabel SkillLevel;
 		public UILabel SkillName;
-		public UILabel SkillDescription;
-		public UILabel SkillInfoLabel;
 		private SkillBase skill;
 
 		public void Flush (SkillBase skill)
 		{
 			this.skill = skill;
-//		SetSkillName (skill.config.name);
-//		SetMoney (skill.config.money);
-			SetSkillLv (skill.SkillLv);
-//		SetSkillInfoLabel (skill.config.description);
-//		SetSkillDescription(skill.config.info);
+			SetSkillName (skill.Xml.name);
+			if (skill.IsLock) {
+				SetSkillLv ("进阶到***后解锁");
+			} else {
+				SetSkillLv (skill.Level);
+			}
+//			SetMoney (skill.config.money);
+//			SetSkillDescription(skill.Xml.skill_tag);
+//			SetSkillInfoLabel ("这是一个测试数据 \n不要怀疑我的真实性\n不要怀疑我的真实性\n不要怀疑我的真实性\n不要怀疑我的真实性");
+
+
+
+			Add.gameObject.SetActive (!skill.IsLock);
+			Money.gameObject.SetActive (!skill.IsLock);
 		}
 
 		void OnTooltip (bool bl)
 		{
-			this.GetComponent<UIPlayTween> ().Play (true);
-
+			string str = skill.Xml.skill_tag + "\n[FA8000]";
+			str += skill.Xml.skill_info;
+			UITooltip.ShowText (str);
 		}
 
 		void OnHover ()
 		{
-//		this.GetComponent<UIPlayTween> ().Play(true);
+			UITooltip.ShowText ("");
 		}
 
 		public SkillBase Skill {
@@ -43,16 +51,6 @@ namespace TangGame.UI
 			set {
 				skill = value;
 			}
-		}
-
-		void SetSkillInfoLabel (string skillInfoLabel)
-		{
-			this.SkillInfoLabel.text = skillInfoLabel;
-		}
-
-		void SetSkillDescription (string skillDescription)
-		{
-			this.SkillDescription.text = skillDescription;
 		}
 
 		void SetSkillIncon (string skillIconName)
@@ -69,7 +67,13 @@ namespace TangGame.UI
 		{
 			this.SkillName.text = skillName;
 		}
-
+		/// <summary>
+		/// 当技能为解锁时使用
+		/// </summary>
+		/// <param name="str">String.</param>
+		void SetSkillLv(string str){
+			this.SkillLevel.text = str;
+		}
 		void SetSkillLv (int lv)
 		{
 			this.SkillLevel.text = "lv." + lv;

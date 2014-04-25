@@ -22,7 +22,7 @@ namespace TangGame.Xml
 		{
 			LevelUpRoot root = obj as LevelUpRoot;
 			foreach (LevelUpXml item in root.items) {
-				Config.LevelUpXml [item.lv] = item;
+				Config.levelUpXmlTable [item.lv] = item;
 			}
 		}
 	}

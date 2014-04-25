@@ -6,6 +6,7 @@
 using UnityEngine;
 using System;
 using System.Reflection;
+using System.Collections;
 using TS = TangScene;
 
 namespace TangUI
@@ -18,6 +19,11 @@ namespace TangUI
       OVERRIDE,
       REPLACE
     }
+		public enum BlockMode{
+			NONE,
+			SPRITE,
+			TEXTURE
+		}
 
     private UIPanelNodeContext m_context;
     /// <summary>
@@ -45,6 +51,10 @@ namespace TangUI
     ///   Open Mode
     /// </summary>
     public OpenMode openMode;
+		/// <summary>
+		/// The block mode.
+		/// </summary>
+		public BlockMode blockMode;
     /// <summary>
     ///   Body
     /// </summary>
@@ -76,12 +86,11 @@ namespace TangUI
     /// <summary>
     ///   Launch
     /// </summary>
-    public void Launch (OpenMode openMode, object param)
+		public void Launch (OpenMode openMode,BlockMode blockMode, object param)
     {
-
+			this.blockMode = blockMode;
       this.openMode = openMode;
       this.param = param;
-
       gameObject = context.cache.GetInactiveGobj (name);
       if (null == gameObject)
         StartLoadRes ();
@@ -118,9 +127,16 @@ namespace TangUI
         gameObject.SetActive (false);
         gameObject.name = name;
         context.cache.Put (name, gameObject);
-
         DynamicBindUtil.BindScriptAndProperty (gameObject, name);
 
+				if (this.blockMode == BlockMode.SPRITE) {
+					UnityEngine.Object obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK));
+					NGUITools.AddChild (gameObject, obj as GameObject);
+				}
+				if (this.blockMode == BlockMode.TEXTURE) {
+					GameObject obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
+					NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<UITexture> ().enabled = true;
+				}
         Show ();    
       }
 
@@ -162,13 +178,23 @@ namespace TangUI
 
           // 调整子面板
           UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> (true);
-          foreach (UIPanel cp in childPanels) {
-            if (cp != panel) {
-              int cdepth = baseDepth + cp.depth;
-              FixPanelRenderQ (cp, cdepth);
-              NGUITools.AdjustDepth (cp.gameObject, baseDepth);
-            }
-          }
+					Hashtable ht = new Hashtable ();
+					foreach (UIPanel cp in childPanels) {
+						ht.Add (cp, cp.depth);
+					}
+					UIPanel[] keyArray=new UIPanel[ht.Count]; 
+					int[] valueArray=new int[ht.Count]; 
+					ht.Keys.CopyTo(keyArray,0);  
+					ht.Values.CopyTo(valueArray,0);
+					Array.Sort(valueArray,keyArray);
+					int index = 1;
+					foreach (UIPanel cp in keyArray) {
+						if (cp != panel) {
+							int cdepth = baseDepth + 100 * index++;
+							FixPanelRenderQ (cp, cdepth);
+							cp.depth = cdepth;
+						}
+					}
         }
 
         // assign param
@@ -205,19 +231,6 @@ namespace TangUI
     {
       if (!(this is UIPanelRoot)) {
 
-        UIPanel panel = gameObject.GetComponent<UIPanel> ();
-        if (null != panel) {
-          int baseDepth = context.depth * 1000;
-
-          // 恢复子面板的 depth
-          UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> (true);
-          foreach (UIPanel cp in childPanels) {
-            if (cp != panel) {
-              NGUITools.AdjustDepth (cp.gameObject, -baseDepth);
-            }
-          }
-        }
-        //NGUITools.AdjustDepth (gameObject, -context.depth * 1000);
         SetActive (false);
 
         preNode.nextNode = null;

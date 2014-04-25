@@ -7,7 +7,10 @@ namespace TangDragonBones
 {
   public class Cache
   {
-    // game object
+    // armature object
+    public static Dictionary<string, List<Armature>> armatureTable = new Dictionary<string, List<Armature>>();
+
+    // gameo object
     public static Dictionary<string, List<GameObject>> gobjTable = new Dictionary<string, List<GameObject>>();
 
     // atlas data

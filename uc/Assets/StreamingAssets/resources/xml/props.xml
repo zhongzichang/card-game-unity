@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<value>
+		<id></id>
+		<name></name>
+		<type></type>
+		<upgrade></upgrade>
+		<strength></strength>
+		<intellect></intellect>
+		<agile></agile>
+		<hpMax></hpMax>
+		<attack_damage></attack_damage>
+		<spell_power></spell_power>
+		<physical_defense></physical_defense>
+		<spell_defense></spell_defense>
+		<physical_crit></physical_crit>
+		<spell_crit></spell_crit>
+		<hp_re></hp_re>
+		<energy_re></energy_re>
+		<physical_penetrate></physical_penetrate>
+		<spell_penetrate></spell_penetrate>
+		<bloodsucking_lv></bloodsucking_lv>
+		<dodge></dodge>
+		<addition_treatment></addition_treatment>
+		<level></level>
+		<synthetic_props></synthetic_props>
+		<synthetic_spend></synthetic_spend>
+		<price_list></price_list>
+		<selling_price></selling_price>
+		<enchant_points></enchant_points>
+		<experience></experience>
+		<icon></icon>
+		<description></description>
+	</value>
+</root>

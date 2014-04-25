@@ -49,10 +49,6 @@ namespace TangGame.UI
 		private TDB.DragonBonesBhvr dragonBonesBhvr;
 		private ArrayList propsSpirtes = new ArrayList ();
 
-		void Awake(){
-			///注册英雄创建成功监听
-			TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
-		}
 		// Use this for initialization
 		void Start ()
 		{
@@ -65,6 +61,7 @@ namespace TangGame.UI
 
 			SkillInfoButton.GetComponent<UIToggle> ().optionCanBeNone = true;
 			PictorialButton.GetComponent<UIToggle> ().optionCanBeNone = true;
+			PropertyInfoButton.GetComponent<UIToggle> ().optionCanBeNone = true;
 
 			UIEventListener.Get (AnimatorObj.gameObject).onClick += AnimatorObjOnClick;
 			UIEventListener.Get (PropertyInfoButton.gameObject).onClick += ToggleButtonOnClick;
@@ -72,10 +69,13 @@ namespace TangGame.UI
 			UIEventListener.Get (PictorialButton.gameObject).onClick += ToggleButtonOnClick;
 		}
 		void OnEnable(){
-			LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+      LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+      ///注册英雄创建成功监听
+      TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
 		}
 		void OnDisable(){
-			TDB.DbgoManager.Release (dragonBonesBhvr.gameObject,true);
+      TDB.DbgoManager.Release (dragonBonesBhvr.gameObject,true);
+      TDB.DbgoManager.RaiseLoadedEvent -= OnAvatarLoaded;
 		}
 		// Update is called once per frame
 		void Update ()
@@ -131,7 +131,7 @@ namespace TangGame.UI
 			this.SetHeroNameFrame ((int)heroBase.Net.upgrade);
 			this.SetLevel (heroBase.Net.level);
 			this.SetScore (heroBase.Score);
-			this.SetExp (heroBase.Net.exp, Config.LevelUpXml[heroBase.Net.level].val);
+			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable[heroBase.Net.level].val);
 			this.SetStarList (heroBase.Net.evolve, true);
 			//			this.SetHeroPackageSoulstone (heroBase.net, heroBase.xml); //需要使用背包数据,以及进化数据
 //		this.SetPropsList ();

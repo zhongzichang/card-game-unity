@@ -422,6 +422,10 @@ namespace TangDragonBones
       return 0;
     }
 
+    public static void Clear(){
+      Cache.gobjTable.Clear ();
+    }
+
     #endregion
   }
 }

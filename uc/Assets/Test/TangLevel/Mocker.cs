@@ -20,8 +20,8 @@ namespace TangLevel
         subLevel.enemyGroup = MockGroup ();
 
       }
-
-      Config.levelTable.Add (level.id, level);
+      if (!Config.levelTable.ContainsKey (level.id))
+        Config.levelTable.Add (level.id, level);
     }
 
     public static Group MockGroup ()
@@ -33,8 +33,8 @@ namespace TangLevel
         Hero hero = new Hero ();      
         hero.resName = "hero_zf";
         hero.hp = 100;
-        hero.attackDistance = 5 ;
-        hero.ai = new string[]{"AutoFire"};
+        hero.attackDistance = 5;
+        hero.ai = new string[]{ "AutoFire" };
         group.heros [j] = hero;
       }
       return group;
