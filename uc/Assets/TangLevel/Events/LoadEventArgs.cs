@@ -1,0 +1,21 @@
+
+namespace TangLevel
+{
+  public class LoadEventArgs : LevelEventArgs
+  {
+    private bool success;
+
+    public LoadEventArgs(int id, bool success) : base(id)
+    {
+      this.success = success;
+    }
+
+    public bool Success
+    {
+      get
+	{
+	  return success;
+	}
+    }
+  }
+}

@@ -1,0 +1,21 @@
+namespace TangLevel
+{
+  public class LevelEventArgs : EventArgs
+  {
+
+    private int id;
+
+    public LevelEventArgs(int id)
+    {
+      this.id = id;
+    }
+
+    public int Id
+    {
+      get
+	{
+	  return id;
+	}
+    }
+  }
+}

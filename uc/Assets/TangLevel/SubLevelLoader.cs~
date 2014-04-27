@@ -1,0 +1,34 @@
+/**
+ * Level Loader
+ * Author: zzc
+ * Date: 2014/4/26
+ */
+
+namespace TangLevel
+{
+  public class SubLevelLoader
+  {
+
+    /// <summary>
+    ///   加载成功后会发出该事件
+    /// </summary>
+    public delegate event LoadSuccess(int id);
+
+
+    /// <summary>
+    ///   加载失败后会发出该事件
+    /// </summary>
+    public delegate event LoadFailure(int id);
+    
+
+    /// <summary>
+    ///   加载指定子场景
+    /// </summary>
+    public static void Load(int id)
+    {
+      
+    }
+
+
+  }
+}
