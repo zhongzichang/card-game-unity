@@ -140,16 +140,16 @@ namespace TangGame.UI
 
 		private void SetHeroType (AttributeTypeEnum propertyType)
 		{
-			string resName = "icon_str";
+			string resName = "str_icon";
 			switch (propertyType) {
 			case AttributeTypeEnum.STR:
-				resName = "icon_str";
+				resName = "str_icon";
 				break;
 			case AttributeTypeEnum.INT:
-				resName = "icon_int";
+				resName = "int_icon";
 				break;
 			case AttributeTypeEnum.AGI:
-				resName = "icon_agi";
+				resName = "agi_icon";
 				break;
 			}
 			this.HeroType.GetComponent<UISprite> ().spriteName = resName;
@@ -168,7 +168,7 @@ namespace TangGame.UI
 		/// </summary>
 		void SetHeroNameFrame (int rank)
 		{
-			HeroNameFrame.GetComponent<UISprite> ().spriteName = "herodetail_name_frame_" + rank;
+			HeroNameFrame.GetComponent<UISprite> ().spriteName = "herodetail_name_frame_" + rank; //TODO  需要修改
 		}
 
 		/// <summary>

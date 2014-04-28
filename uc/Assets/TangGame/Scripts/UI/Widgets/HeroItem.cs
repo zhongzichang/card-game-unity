@@ -17,6 +17,7 @@ namespace TangGame.UI
 		public UIGrid PropsGrid;
 		public UISprite[] Props;
 		public StarList starList;
+		public GameObject HeroTag;
 		private HeroBase data;
 		// Use this for initialization
 		void Start ()
@@ -49,8 +50,15 @@ namespace TangGame.UI
 			UpHeroType (data.Attribute_Type);
 			//			UpHeroFragments (data.FragmentsCount, data.FragmentsCountMax);//需要道具来支撑
 			SetStarList (data.Net.evolve);
+			//			SetTag ();TODO
 		}
-
+		/// <summary>
+		/// Ups the tag.如果有装备或可以进阶则显示tag
+		/// </summary>
+		/// <param name="tagShow">If set to <c>true</c> tag show.</param>
+		private void UpTag(bool tagShow){
+			this.HeroTag.SetActive (tagShow);
+		}
 		private void UpHeroType (AttributeTypeEnum propertyType)
 		{
 			string resName = "icon_str";
@@ -110,6 +118,7 @@ namespace TangGame.UI
 
 		void SetStarList (int count)
 		{
+			starList.spriteN = "head_star_icon";
 			starList.count = count;
 			starList.Flush ();
 		}
