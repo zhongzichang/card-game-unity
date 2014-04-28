@@ -1,10 +1,126 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TangSpecial
 {
   public class GobjManager
   {
+
+    #region Resource Load
+
+    public delegate void LoadEventHandler (object sender, LoadResultEventArgs args);
+    public static event LoadEventHandler RaiseLoadEvent;
+
+    /// <summary>
+    /// Load the specified Resource.
+    /// </summary>
+    /// <param name="name">Name.</param>
+    public static void LazyLoad (string name)
+    {
+
+      if (Cache.gobjTable.ContainsKey (name)) {
+
+        // 资源已准备完毕
+        Notify (name, true);
+
+      } else if (Config.use_packed_res) {
+
+        // 使用 Assetbundle
+        Tang.AssetBundleLoader.LoadAsync (name, OnAbLoadedCompleted, OnAbLoadedFailure);
+
+      } else {
+
+        LoadLocalResources (name);
+      }
+    }
+
+    /// <summary>
+    /// 从 Assetbundle 加载后的回调
+    /// </summary>
+    /// <param name="ab">Ab.</param>
+    private static void OnAbLoadedCompleted (AssetBundle ab)
+    {
+
+      UnityEngine.Object asset = ab.Load (ab.name);
+      GameObject gobj = null;
+      if (asset != null) {
+        AdvanceInstantiate (asset);
+      }
+
+    }
+
+    /// <summary>
+    /// Asset Bundle 加载失败
+    /// </summary>
+    /// <param name="name">Name.</param>
+    private static void OnAbLoadedFailure (string name)
+    {
+      // 资源加载失败
+      Notify (name, false);
+    }
+
+    /// <summary>
+    /// 加载本地 Resource 文件夹的资源
+    /// </summary>
+    /// <param name="name">Name.</param>
+    private static void LoadLocalResources (string name)
+    {
+      string filepath = Config.SpecialPath (name);
+      UnityEngine.Object assets = Resources.Load (filepath);
+      GameObject gobj = null;
+      if (assets != null) {
+        AdvanceInstantiate (assets);
+      }
+    }
+
+    /// <summary>
+    /// 自定义实例化
+    /// </summary>
+    /// <param name="asset">Asset.</param>
+    private static void AdvanceInstantiate (UnityEngine.Object asset)
+    {
+
+      GameObject gobj = GameObject.Instantiate (asset) as GameObject;
+
+      if (gobj != null) {
+
+        // 修饰
+        gobj.SetActive (false);
+        gobj.name = asset.name;
+
+        // 添加到缓存中
+        GobjManager.Add (gobj);
+
+        // 资源已准备完毕
+        Notify (asset.name, true);
+
+      } else {
+
+        // 资源加载失败
+        Notify (asset.name, false);
+
+      }
+
+    }
+
+    /// <summary>
+    /// 通知加载结果
+    /// </summary>
+    /// <param name="name">Name.</param>
+    /// <param name="success">If set to <c>true</c> success.</param>
+    private static void Notify (string name, bool success)
+    {
+
+      if (RaiseLoadEvent != null) {
+        RaiseLoadEvent (null, new LoadResultEventArgs (name, success));
+      }
+    }
+
+    #endregion
+
+
+    #region Manage Game Object
 
     /// <summary>
     /// 获取一个没有被使用的游戏对象
@@ -74,6 +190,8 @@ namespace TangSpecial
         GameObject.Destroy (gobj);
       }
     }
+
+    #endregion
   }
 }
 
