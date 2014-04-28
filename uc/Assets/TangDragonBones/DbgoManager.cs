@@ -385,8 +385,6 @@ namespace TangDragonBones
         }
         // 销毁对象
         GameObject.Destroy (gobj);
-        // 销毁资源包
-        Tang.AssetBundleLoader.Unload (name, all);
       }
     }
 

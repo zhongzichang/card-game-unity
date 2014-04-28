@@ -59,7 +59,6 @@ namespace TangLevel
           }
         }
         GameObject.Destroy (gobj);
-        Tang.AssetBundleLoader.Unload (name, all);
       }
     }
   }
