@@ -4,7 +4,7 @@ using TangGame.UI.Base;
 using TDB = TangDragonBones;
 namespace TangGame.UI
 {
-	public class InterfaceSubPanel : MonoBehaviour
+	public class HeroInfoInterfaceSubPanel : MonoBehaviour
 	{
 		///进化按钮
 		public GameObject EvolveButton;

@@ -41,7 +41,7 @@ namespace TangGame
 
 		void OnBagMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgrCoC.LazyOpen ("QuestLogPanel", UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.TEXTURE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.BAG_PANEL_NAME , UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.TEXTURE);
 			this.CloseMenu ();
 		}
 
