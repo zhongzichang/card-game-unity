@@ -6,10 +6,10 @@ namespace TangSpecial
 {
   public class GobjManager
   {
-
     #region Resource Load
 
-    public delegate void LoadEventHandler (object sender, LoadResultEventArgs args);
+    public delegate void LoadEventHandler (object sender,LoadResultEventArgs args);
+
     public static event LoadEventHandler RaiseLoadEvent;
 
     /// <summary>
@@ -119,7 +119,6 @@ namespace TangSpecial
 
     #endregion
 
-
     #region Manage Game Object
 
     /// <summary>
@@ -162,6 +161,14 @@ namespace TangSpecial
         list.Add (gobj);
         Cache.gobjTable.Add (gobj.name, list);
       }
+    }
+
+    /// <summary>
+    /// 释放游戏对象所占用的资源，不完全释放，调用了 Release(gobj,false);
+    /// </summary>
+    public static void Release (GameObject gobj)
+    {
+      Release (gobj, false);
     }
 
     /// <summary>

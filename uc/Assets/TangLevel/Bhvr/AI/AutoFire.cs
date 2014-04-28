@@ -11,10 +11,14 @@ namespace TangLevel
   public class AutoFire : MonoBehaviour
   {
 
+    public const float period = 2;
+
     private DirectedNavigable navigable;
     private HeroStatusBhvr statusBhvr;
     private Transform myTransform;
     private HeroBhvr heroBhvr;
+
+    private float remainTime =  0;
 
     void Start ()
     {
@@ -39,31 +43,37 @@ namespace TangLevel
     void Update ()
     {
 
-      // 空闲时找可攻击对象
-      if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running) {
+      if (remainTime > period) {
 
-        GameObject target = heroBhvr.FindClosestTarget();
-        if (target != null) {
-          //Debug.Log ("find target ----" + target.name);
+        // 空闲时找可攻击对象
+        if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running) {
 
-          // 判断距离是否可攻击
-          float distance = Mathf.Abs (target.transform.localPosition.x - myTransform.localPosition.x);
-          if (distance - heroBhvr.hero.attackDistance > 0.1F) {
+          GameObject target = heroBhvr.FindClosestTarget ();
+          if (target != null) {
+            //Debug.Log ("find target ----" + target.name);
 
-            // 移动到可攻击位置
-            navigable.NavTo (target.transform.localPosition.x, heroBhvr.hero.attackDistance);
-            //Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
-          } else {
+            // 判断距离是否可攻击
+            float distance = Mathf.Abs (target.transform.localPosition.x - myTransform.localPosition.x);
+            if (distance - heroBhvr.hero.attackDistance > 0.1F) {
 
-            if (statusBhvr.Status != HeroStatus.skill) {
+              // 移动到可攻击位置
+              navigable.NavTo (target.transform.localPosition.x, heroBhvr.hero.attackDistance);
+              //Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
+            } else {
 
-              // 发起攻击
-              heroBhvr.Attack (target);
+              if (statusBhvr.Status != HeroStatus.skill) {
 
+                // 发起攻击
+                heroBhvr.Attack (target, null);
+
+              }
             }
           }
         }
+        remainTime = 0;
       }
+
+      remainTime += Time.deltaTime;
     }
 
   }

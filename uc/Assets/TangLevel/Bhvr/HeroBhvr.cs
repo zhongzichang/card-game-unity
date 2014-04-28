@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using TDB = TangDragonBones;
+using DragonBones;
+using DBE = DragonBones.Events;
 
 namespace TangLevel
 {
@@ -15,10 +17,12 @@ namespace TangLevel
     private HeroStatusBhvr statusBhvr;
     private Transform myTransform;
     private TDB.DragonBonesBhvr dbBhvr;
+    private Armature armature;
+    private Skill skill;
 
     #region MonoBehaviours
 
-    void Start ()
+    void Awake ()
     {
       // navigable
       navigable = GetComponent<DirectedNavigable> ();
@@ -35,20 +39,80 @@ namespace TangLevel
       myTransform = transform;
       // dragonbones behaviour
       dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
-      dbBhvr.GotoAndPlay (statusBhvr.Status.ToString());
+      dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
+      armature = dbBhvr.armature;
     }
-
 
     void OnEnable ()
     {
       // 重新打开，状态设置为空闲
-      if( statusBhvr != null )
+      if (statusBhvr != null)
         statusBhvr.Status = HeroStatus.idle;
+
+      if (armature != null) {
+        //armature.AddEventListener (DBE.AnimationEvent.FADE_OUT, OnAnimationFadeOut);
+        //armature.AddEventListener (DBE.AnimationEvent.FADE_OUT_COMPLETE, OnAnimationFadeOutComplete);
+        armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
+      }
+
     }
 
     void OnDisable ()
     {
 
+      if (armature != null) {
+        //armature.RemoveEventListener (DBE.AnimationEvent.FADE_OUT, OnAnimationFadeOut);
+        // armature.RemoveEventListener (DBE.AnimationEvent.FADE_OUT_COMPLETE, OnAnimationFadeOutComplete);
+        armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
+      }
+
+    }
+
+    #endregion
+
+    #region Other Events
+
+    private void OnAnimationFadeOut (Com.Viperstudio.Events.Event e)
+    {
+
+      string movementId = armature.Animation.MovementID;
+
+      Debug.Log ("movementId fade out - "+movementId);
+
+      if (movementId.Equals (HeroStatus.attack.ToString ())) {
+
+
+        // 播放完起手动作后，播放打击。如果有特效，放出特效
+
+      }
+
+    }
+
+    private void OnAnimationFadeOutComplete (Com.Viperstudio.Events.Event e)
+    {
+      string movementId = armature.Animation.MovementID;
+
+      Debug.Log ("movementId fade out complete - "+movementId);
+
+      if (movementId.Equals (HeroStatus.attack.ToString ())) {
+
+        //statusBhvr.Status = HeroStatus.idle;
+
+      }
+
+    }
+
+    private void OnAnimationLoopComplete(Com.Viperstudio.Events.Event e){
+
+      string movementId = armature.Animation.MovementID;
+
+      Debug.Log ("movementId fade out complete - "+movementId);
+
+      if (movementId.Equals (HeroStatus.attack.ToString ())) {
+
+        statusBhvr.Status = HeroStatus.idle;
+
+      }
     }
 
     #endregion
@@ -59,11 +123,11 @@ namespace TangLevel
     /// 攻击指定目标
     /// </summary>
     /// <param name="target">Target.</param>
-    public void Attack (GameObject target)
+    public void Attack (GameObject target, Skill skill)
     {
 
-      if (statusBhvr != null)
-        statusBhvr.Status = HeroStatus.attack;
+      this.skill = skill;
+      statusBhvr.Status = HeroStatus.attack;
 
     }
 
@@ -71,18 +135,21 @@ namespace TangLevel
     /// 找距离最近的目标
     /// </summary>
     /// <returns>The closest target.</returns>
-    public GameObject FindClosestTarget(){
+    public GameObject FindClosestTarget ()
+    {
       return LevelController.FindClosestTarget (this);
     }
 
     #endregion
 
     #region Tang Callback
+
     /// <summary>
     /// 状态开始回调
     /// </summary>
     /// <param name="status">Status.</param>
-    private void OnStatusStart(HeroStatus status){
+    private void OnStatusStart (HeroStatus status)
+    {
       switch (status) {
       case HeroStatus.attack:
         dbBhvr.GotoAndPlay (status.ToString ());
@@ -92,6 +159,7 @@ namespace TangLevel
         break;
       }
     }
+
     #endregion
   }
 }

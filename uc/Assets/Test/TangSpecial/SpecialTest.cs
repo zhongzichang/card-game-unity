@@ -5,7 +5,13 @@ namespace TangSpecial
 {
   public class SpecialTest : MonoBehaviour
   {
+
+    public GameObject source;
+    public GameObject target;
+
     private string spriteName = "Sprite_binghua";
+
+
     // Use this for initialization
     void Start ()
     {
@@ -14,17 +20,18 @@ namespace TangSpecial
       GobjManager.LazyLoad (spriteName);
 	
     }
-    // Update is called once per frame
-    void Update ()
-    {
-	
-    }
 
     private void OnBingHuaLoad (object sender, LoadResultEventArgs args)
     {
       GobjManager.RaiseLoadEvent -= OnBingHuaLoad;
       if (args.Success) {
         GameObject gobj = GobjManager.FetchUnused (spriteName);
+
+        SpecialBhvr bhvr = gobj.GetComponent<SpecialBhvr> ();
+        if (bhvr != null) {
+          bhvr.source = source;
+          bhvr.target = target;
+        }
         gobj.SetActive (true);
       }
     }
