@@ -118,7 +118,6 @@ namespace TangGame.UI
 
 		void SetStarList (int count)
 		{
-			starList.spriteN = "head_star_icon";
 			starList.count = count;
 			starList.Flush ();
 		}
