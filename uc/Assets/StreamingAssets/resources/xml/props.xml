@@ -53,14 +53,14 @@
 		<!-- 买入价格 -->
 		<price_list>12</price_list>
 		<!-- 卖出价格 -->
-		<selling_price></selling_price>
+		<selling_price>12</selling_price>
 		<!-- 附魔点数 -->
-		<enchant_points></enchant_points>
+		<enchant_points>12</enchant_points>
 		<!-- 经验 -->
-		<experience></experience>
+		<experience>12</experience>
 		<!-- 物品图标 -->
-		<icon></icon>
+		<icon>icon1</icon>
 		<!-- 物品描述 -->
-		<description></description>
+		<description>这是一个穿越的故事</description>
 	</value>
 </root>

@@ -5,7 +5,7 @@ using TangGame.UI.Base;
 
 namespace TangGame.UI
 {
-	public class SkillInfoSubPanel : MonoBehaviour
+	public class HeroInfoSkillSubPanel : MonoBehaviour
 	{
 		public GameObject SkillNum;
 		public GameObject SkillNumTime;

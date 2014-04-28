@@ -4,7 +4,7 @@ using TangGame.UI.Base;
 
 namespace TangGame.UI
 {
-	public class PropertyInfoSubPanel : MonoBehaviour
+	public class HeroInfoPropertySubPanel : MonoBehaviour
 	{
 		public GameObject HeroInfo;
 		public GameObject HeroDescription;
