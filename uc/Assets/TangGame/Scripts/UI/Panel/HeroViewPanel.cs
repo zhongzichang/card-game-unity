@@ -50,11 +50,11 @@ namespace TangGame.UI
 
 			TangGame.Net.HeroNet net = new TangGame.Net.HeroNet ();
 			net.id = 100001;
-			net.exp = 1000;
-			net.evolve = 3;
+			net.exp = 10;
+			net.evolve = 5;
 			net.configId = 1001;
-			net.level = 3;
-			net.upgrade = 3;
+			net.level = 2;
+			net.upgrade = 6;
 			TangGame.UI.Base.BaseCache.heroBeseDic [net.configId].Net = net;
 
 			this.LoadHeroAll ();
