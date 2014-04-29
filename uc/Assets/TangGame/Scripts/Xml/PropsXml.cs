@@ -17,8 +17,10 @@ namespace TangGame.Xml
 		//		<!-- 物品类型，装备碎片卷轴 -->
 		//		<type>1</type>
 		public short type;
-		//		<!-- 品质 -->
-		//		<upgrade>1</upgrade>
+		/// <summary>
+		/// The upgrade.
+		/// 道具的品质
+		/// </summary>
 		public short upgrade;
 		//		<!-- 属性加成 -->
 		//		<!-- 力量 -->
