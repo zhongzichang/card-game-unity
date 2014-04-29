@@ -279,7 +279,7 @@ namespace TangGame.UI.Base
 		/// <value>The skill_ identifiers.</value>
 		private int[] Skill_Ids{
 			get{ 
-				string[] str = Utils.SplitStrByBraces (xml.skill_ids);
+				string[] str = (string [])Utils.SplitStrByBraces (xml.skill_ids).ToArray(typeof ( string));
 				return Utils.SplitStrByCommaToInt (str[0]);
 			}
 		}

@@ -7,18 +7,20 @@ namespace TangGame.UI
 	public class HeroInfoPanel : MonoBehaviour
 	{
 		public object param;
-		public GameObject InterfaceSubPanel;
-		public GameObject PictorialSubPanel;
-		public GameObject PropertyInfoSubPanel;
-		public GameObject SkillInfoSubPanel;
+		public GameObject HeroInfoInterfaceSubPanel;
+		public GameObject HeroInfoPictorialSubPanel;
+		public GameObject HeroInfoPropertySubPanel;
+		public GameObject HeroInfoSkillSubPanel;
 		private HeroBase herobase;
 		// Use this for initialization
-		void Awake(){
-			DynamicBindUtil.BindScriptAndProperty (InterfaceSubPanel, InterfaceSubPanel.name);
-			DynamicBindUtil.BindScriptAndProperty (PictorialSubPanel, PictorialSubPanel.name);
-			DynamicBindUtil.BindScriptAndProperty (PropertyInfoSubPanel, PropertyInfoSubPanel.name);
-			DynamicBindUtil.BindScriptAndProperty (SkillInfoSubPanel, SkillInfoSubPanel.name);
+		void Awake ()
+		{
+			DynamicBindUtil.BindScriptAndProperty (HeroInfoInterfaceSubPanel, HeroInfoInterfaceSubPanel.name);
+			DynamicBindUtil.BindScriptAndProperty (HeroInfoPictorialSubPanel, HeroInfoPictorialSubPanel.name);
+			DynamicBindUtil.BindScriptAndProperty (HeroInfoPropertySubPanel, HeroInfoPropertySubPanel.name);
+			DynamicBindUtil.BindScriptAndProperty (HeroInfoSkillSubPanel, HeroInfoSkillSubPanel.name);
 		}
+
 		void Start ()
 		{
 
@@ -32,15 +34,13 @@ namespace TangGame.UI
 			}
 		}
 		//TODO listener herobase change;
-
 		void RefreshSubPanel (HeroBase hero)
 		{
-			InterfaceSubPanel.GetComponent<InterfaceSubPanel> ().RefreshPanel (hero);
-			PictorialSubPanel.GetComponent<PictorialSubPanel> ().RefreshPanel (hero);
-			PropertyInfoSubPanel.GetComponent<PropertyInfoSubPanel> ().Flush (hero);
-			SkillInfoSubPanel.GetComponent<SkillInfoSubPanel> ().Flush (hero);
+			HeroInfoInterfaceSubPanel.GetComponent<HeroInfoInterfaceSubPanel> ().RefreshPanel (hero);
+			HeroInfoPictorialSubPanel.GetComponent<HeroInfoPictorialSubPanel> ().RefreshPanel (hero);
+			HeroInfoPropertySubPanel.GetComponent<HeroInfoPropertySubPanel> ().Flush (hero);
+			HeroInfoSkillSubPanel.GetComponent<HeroInfoSkillSubPanel> ().Flush (hero);
 
 		}
-
 	}
 }

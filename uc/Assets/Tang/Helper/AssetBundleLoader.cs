@@ -18,11 +18,10 @@ namespace Tang
   {
     public delegate void LoadCompleted (AssetBundle ab);
 
-    public delegate void LoadFailure ();
+    public delegate void LoadFailure (string name);
 
-    public delegate void LoadBegan ();
+    public delegate void LoadBegan (string name);
 
-    private static AssetBundleCache cache = new AssetBundleCache ();
     private static Dictionary<string, LoadCompleted> completedHandlerTable = new Dictionary<string, LoadCompleted> ();
     private static Dictionary<string, LoadFailure> failureHandlerTable = new Dictionary<string, LoadFailure> ();
     private static Dictionary<string, LoadBegan> beganHandlerTable = new Dictionary<string, LoadBegan> ();
@@ -40,39 +39,24 @@ namespace Tang
     public static void LoadAsync (string name, LoadCompleted loadCompleted, LoadFailure loadFailure, LoadBegan loadBegan)
     {
 
-      if (cache.Contains (name)) {
 
-        loadCompleted (cache [name]);
+      if (completedHandlerTable.ContainsKey (name))
+        completedHandlerTable [name] += loadCompleted;
+      else
+        completedHandlerTable [name] = loadCompleted;
 
-      } else {
+      if (failureHandlerTable.ContainsKey (name))
+        failureHandlerTable [name] += loadFailure;
+      else
+        failureHandlerTable [name] = loadFailure;
 
-        if (completedHandlerTable.ContainsKey (name))
-          completedHandlerTable [name] += loadCompleted;
-        else
-          completedHandlerTable [name] = loadCompleted;
+      if (beganHandlerTable.ContainsKey (name))
+        beganHandlerTable [name] += loadBegan;
+      else
+        beganHandlerTable [name] = loadBegan;
 
-        if (failureHandlerTable.ContainsKey (name))
-          failureHandlerTable [name] += loadFailure;
-        else
-          failureHandlerTable [name] = loadFailure;
-
-        if (beganHandlerTable.ContainsKey (name))
-          beganHandlerTable [name] += loadBegan;
-        else
-          beganHandlerTable [name] = loadBegan;
-
-        string filepath = ResourceUtils.GetAbFilePath (name);
-        ResourceLoader.Enqueue (filepath, OnWWWLoadCompleted, OnWWWLoadFailure, OnWWWLoadBegan);
-      }
-    }
-
-    public static void Unload (string name, bool unloadAllLoadedObjects)
-    {
-      if (cache.Contains (name)) {
-        AssetBundle ab = cache [name];
-        ab.Unload (unloadAllLoadedObjects);
-        cache.Remove (name);
-      }
+      string filepath = ResourceUtils.GetAbFilePath (name);
+      ResourceLoader.Enqueue (filepath, OnWWWLoadCompleted, OnWWWLoadFailure, OnWWWLoadBegan);
     }
 
     private static void OnWWWLoadCompleted (WWW www)
@@ -80,8 +64,8 @@ namespace Tang
       string name = UrlUtil.GetFileNameWithoutExt (www.url);
       LoadCompleted handler = completedHandlerTable [name];
       if (handler != null && www.assetBundle != null) {
-        cache.Add (www.assetBundle);
         handler (www.assetBundle);
+        www.assetBundle.Unload (true);
       }
     }
 
@@ -90,7 +74,7 @@ namespace Tang
       string name = UrlUtil.GetFileNameWithoutExt (www.url);
       LoadFailure handler = failureHandlerTable [name];
       if (handler != null) {
-        handler ();
+        handler (name);
       }
     }
 
@@ -100,7 +84,7 @@ namespace Tang
       string name = UrlUtil.GetFileNameWithoutExt (www.url);
       LoadBegan handler = beganHandlerTable [name];
       if (handler != null) {
-        handler ();
+        handler (name);
       }
     }
   }

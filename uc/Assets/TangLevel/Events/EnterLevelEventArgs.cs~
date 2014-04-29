@@ -1,0 +1,7 @@
+namespace TangLevel
+{
+  public class EnterLevelEventArgs : LevelEventArgs
+  {
+    
+  }
+}

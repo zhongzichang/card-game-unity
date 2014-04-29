@@ -30,14 +30,26 @@ namespace TangLevel
       Group group = new Group ();
       group.heros = new Hero[1];
       for (int j = 0; j < group.heros.Length; j++) {
-        Hero hero = new Hero ();      
-        hero.resName = "hero_zf";
-        hero.hp = 100;
-        hero.attackDistance = 5;
-        hero.ai = new string[]{ "AutoFire" };
-        group.heros [j] = hero;
+
+        group.heros [j] = MockHero();
       }
       return group;
+    }
+
+
+    public static Hero MockHero(){
+      Hero hero = new Hero ();      
+      hero.resName = "hero_zf";
+      hero.hp = 100;
+      hero.attackDistance = 5;
+      hero.ai = new string[]{ "AutoFire" };
+      return hero;
+    }
+
+    public static Skill MockSkill(){
+      Skill skill = new Skill ();
+      skill.specialName = "binghua";
+      return skill;
     }
   }
 }

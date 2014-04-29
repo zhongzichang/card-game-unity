@@ -185,23 +185,36 @@ public class Utils
 	/// </summary>
 	/// <returns>The string by braces.</returns>
 	/// <param name="str">String.</param>
-	public static string[] SplitStrByBraces(string str){
-		str = str.Replace("{","");
-		return str.Split ('}');
+	public static ArrayList SplitStrByBraces (string str)
+	{
+		str = str.Replace ("{", "");
+		string[] strs = str.Split ('}');
+		ArrayList strList = new ArrayList (strs);
+		for (int i = 0; i < strList.Count; i++) {
+			if (strList [i] == null || strList [i].ToString() == "" || strList [i].ToString() == " ") {
+				strList.RemoveAt (i);
+				i--;
+			}
+		}
+		return strList;
 	}
+
 	/// <summary>
 	/// Splits the string by comma.根据英文 （，）分割字符串
 	/// </summary>
 	/// <returns>The string by comma.</returns>
 	/// <param name="str">String.</param>
-	public static string[] SplitStrByComma(string val){
+	public static string[] SplitStrByComma (string val)
+	{
 		return val.Split (',');
 	}
-	public static int[] SplitStrByCommaToInt(string val){
+
+	public static int[] SplitStrByCommaToInt (string val)
+	{
 		string[] strs = SplitStrByComma (val);
 		int[] ints = new int[strs.Length];
 		for (int i = 0; i < strs.Length; i++) {
-			ints [i] = int.Parse(strs [i]);
+			ints [i] = int.Parse (strs [i]);
 		}
 		return ints;
 	}

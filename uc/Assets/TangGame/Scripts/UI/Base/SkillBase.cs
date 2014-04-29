@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿/// <summary>
+/// xbhuang 2014-4-28
+/// </summary>
+using UnityEngine;
 using TangGame.Xml;
 
 namespace TangGame.UI.Base

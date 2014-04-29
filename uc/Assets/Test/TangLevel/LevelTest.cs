@@ -30,7 +30,7 @@ namespace TangLevel
 
     void OnGUI ()
     {
-      /*
+
       if (GUI.Button (new Rect (10, 10, 150, 100), "Load Level")) {
 
         LevelController.ChallengeLevel (1, Mocker.MockGroup());
@@ -42,13 +42,13 @@ namespace TangLevel
 
         LevelController.EnterNextSubLevel ();
 
-      }*/
+      }
 
       if (GUI.Button (new Rect (10, 210, 150, 100), " Left Level")) {
 
         LevelController.OnDestory ();
         LevelController.LeftLevel ();
-        Application.LoadLevel ("Home");
+        //Application.LoadLevel ("Home");
 
       }
 
