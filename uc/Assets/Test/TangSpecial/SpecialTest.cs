@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace TangSpecial
+namespace TangLevel
 {
   public class SpecialTest : MonoBehaviour
   {

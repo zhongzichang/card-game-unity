@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TangSpecial
+namespace TangLevel
 {
   /// <summary>
   /// 资源加载结果 － 成功与否

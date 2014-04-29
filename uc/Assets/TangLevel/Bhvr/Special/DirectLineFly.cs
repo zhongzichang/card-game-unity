@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace TangSpecial
+namespace TangLevel
 {
   /// <summary>
   /// 直线飞行 - 从一个对象的位置飞行到另一个对象的位置

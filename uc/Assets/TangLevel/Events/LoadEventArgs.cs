@@ -1,21 +1,24 @@
+﻿using System;
 
 namespace TangLevel
 {
-  public class LoadEventArgs : LevelEventArgs
+  /// <summary>
+  /// 资源加载事件参数
+  /// </summary>
+  public class LoadEventArgs : EventArgs
   {
-    private bool success;
+    private string name;
 
-    public LoadEventArgs(int id, bool success) : base(id)
+    public LoadEventArgs (string name)
     {
-      this.success = success;
+      this.name = name;
     }
 
-    public bool Success
-    {
-      get
-	{
-	  return success;
-	}
+    public string Name {
+      get{
+        return name;
+      }
     }
   }
 }
+

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TangSpecial
+namespace TangLevel
 {
   public class GobjManager
   {

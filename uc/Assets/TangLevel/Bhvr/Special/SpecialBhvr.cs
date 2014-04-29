@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace TangSpecial
+namespace TangLevel
 {
   public class SpecialBhvr : MonoBehaviour
   {
