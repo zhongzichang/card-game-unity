@@ -23,16 +23,18 @@ namespace TangLevel
 
     private void OnBingHuaLoad (object sender, LoadResultEventArgs args)
     {
-      GobjManager.RaiseLoadEvent -= OnBingHuaLoad;
-      if (args.Success) {
-        GameObject gobj = GobjManager.FetchUnused (spriteName);
+      if (args.Name == spriteName) {
+        GobjManager.RaiseLoadEvent -= OnBingHuaLoad;
+        if (args.Success) {
+          GameObject gobj = GobjManager.FetchUnused (spriteName);
 
-        SpecialBhvr bhvr = gobj.GetComponent<SpecialBhvr> ();
-        if (bhvr != null) {
-          bhvr.source = source;
-          bhvr.target = target;
+          SpecialBhvr bhvr = gobj.GetComponent<SpecialBhvr> ();
+          if (bhvr != null) {
+            bhvr.source = source;
+            bhvr.target = target;
+          }
+          gobj.SetActive (true);
         }
-        gobj.SetActive (true);
       }
     }
   }

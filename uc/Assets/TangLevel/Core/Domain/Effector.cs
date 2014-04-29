@@ -4,9 +4,10 @@ namespace TangLevel
 {
   public class Effector
   {
-    public Effector ()
-    {
-    }
+
+    public string specialName;
+
+
   }
 }
 

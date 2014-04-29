@@ -43,7 +43,7 @@ namespace TangLevel
     void Update ()
     {
 
-      if (remainTime > period) {
+      //if (remainTime > period) {
 
         // 空闲时找可攻击对象
         if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running) {
@@ -64,14 +64,15 @@ namespace TangLevel
               if (statusBhvr.Status != HeroStatus.skill) {
 
                 // 发起攻击
-                heroBhvr.Attack (target, null);
+                if( heroBhvr.hero.skills != null && heroBhvr.hero.skills.Count > 0)
+                  heroBhvr.Attack (target, heroBhvr.hero.skills[0]);
 
               }
             }
           }
         }
         remainTime = 0;
-      }
+      //}
 
       remainTime += Time.deltaTime;
     }
