@@ -22,5 +22,12 @@ namespace TangGame.UI
 		{
 	
 		}
+		/// <summary>
+		/// Ups the bag properties info sub panel.
+		/// 打开并且更新面板数据
+		/// </summary>
+		public void UpBagPropsInfoSubPanel(int propsId){
+
+		}
 	}
 }
