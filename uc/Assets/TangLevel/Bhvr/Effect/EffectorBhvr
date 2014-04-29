@@ -1,0 +1,14 @@
+﻿using System;
+using UnityEngine;
+
+namespace TangLevel
+{
+  public abstract class EffectorBhvr : MonoBehaviour
+  {
+    public GameObject source;
+    public GameObject target;
+    public Effector effecter;
+
+    public abstract void Play();
+  }
+}
