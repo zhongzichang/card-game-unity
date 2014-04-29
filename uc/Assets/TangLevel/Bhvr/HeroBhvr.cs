@@ -50,8 +50,6 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
 
       if (armature != null) {
-        //armature.AddEventListener (DBE.AnimationEvent.FADE_OUT, OnAnimationFadeOut);
-        //armature.AddEventListener (DBE.AnimationEvent.FADE_OUT_COMPLETE, OnAnimationFadeOutComplete);
         armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
       }
 
@@ -61,8 +59,6 @@ namespace TangLevel
     {
 
       if (armature != null) {
-        //armature.RemoveEventListener (DBE.AnimationEvent.FADE_OUT, OnAnimationFadeOut);
-        // armature.RemoveEventListener (DBE.AnimationEvent.FADE_OUT_COMPLETE, OnAnimationFadeOutComplete);
         armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
       }
 
@@ -72,44 +68,18 @@ namespace TangLevel
 
     #region Other Events
 
-    private void OnAnimationFadeOut (Com.Viperstudio.Events.Event e)
-    {
-
-      string movementId = armature.Animation.MovementID;
-
-      Debug.Log ("movementId fade out - "+movementId);
-
-      if (movementId.Equals (HeroStatus.attack.ToString ())) {
-
-
-        // 播放完起手动作后，播放打击。如果有特效，放出特效
-
-      }
-
-    }
-
-    private void OnAnimationFadeOutComplete (Com.Viperstudio.Events.Event e)
-    {
-      string movementId = armature.Animation.MovementID;
-
-      Debug.Log ("movementId fade out complete - "+movementId);
-
-      if (movementId.Equals (HeroStatus.attack.ToString ())) {
-
-        //statusBhvr.Status = HeroStatus.idle;
-
-      }
-
-    }
 
     private void OnAnimationLoopComplete(Com.Viperstudio.Events.Event e){
 
       string movementId = armature.Animation.MovementID;
 
-      Debug.Log ("movementId fade out complete - "+movementId);
-
       if (movementId.Equals (HeroStatus.attack.ToString ())) {
 
+        // 播放完前摇动作后，播放打击。如果有特效，放出特效
+        if (skill != null) {
+        }
+
+        // 播放完后摇动作后，转成英雄状态 idle
         statusBhvr.Status = HeroStatus.idle;
 
       }
