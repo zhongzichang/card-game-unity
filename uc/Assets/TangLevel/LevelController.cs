@@ -20,6 +20,7 @@ namespace TangLevel
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+    public static UIManager uiMgr = null;
 
     public static void Init ()
     {
@@ -27,12 +28,18 @@ namespace TangLevel
       // 监听Dragonbone资源装载完毕事件
       TDB.DbgoManager.RaiseLoadedEvent += OnDbResLoaded;
       //TDB.DbgoManager.RaiseLoadedEvent.
+
+      GameObject gobj = GameObject.Find ("UI Root");
+      if (gobj != null) {
+        Debug.Log ("xxxx");
+        uiMgr = gobj.GetComponent<UIManager> ();
+      }
     }
 
-    public static void OnDestory(){
+    public static void OnDestory ()
+    {
       TDB.DbgoManager.RaiseLoadedEvent -= OnDbResLoaded;
     }
-
 
     /// <summary>
     /// 挑战这个关卡
@@ -100,7 +107,7 @@ namespace TangLevel
         GameObject gobj = GameObject.Instantiate (assets) as GameObject;
         gobj.SetActive (false);
         gobj.name = assets.name;
-        GameObjectManager.Add (gobj);
+        GobjManager.Add (gobj);
         // 资源已准备完毕
         OnSubLevelResReady ();
       }
@@ -187,7 +194,7 @@ namespace TangLevel
     public static void EnterNextSubLevel ()
     {
       // 创建背景
-      GameObject bgGobj = GameObjectManager.FetchUnused (LevelContext.TargetSubLevel.resName);
+      GameObject bgGobj = GobjManager.FetchUnused (LevelContext.TargetSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
         Debug.Log ("Background Created.");
@@ -210,13 +217,23 @@ namespace TangLevel
 
 
       // 我方进场
+      int i = 0;
       foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
-
+        if (uiMgr != null) {
+          Debug.Log ("moniter hero --");
+          hero.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
+        }
+        i++;
       }
+      i = 0;
       // 敌方进场
       foreach (Hero hero in enemyGroup.heros) {
         AddHeroToScene (hero);
+        if (uiMgr != null) {
+          hero.raiseHpChange += uiMgr.redHpMonitors [i].OnChange;
+        }
+        i++;
       }
 
       // 设置关卡状态 InLevel
@@ -227,6 +244,14 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// Lefts the sub level. 
+    /// </summary>
+    public static void LeftSubLevel(){
+
+      // TODO 离开子关卡需要做一下清理工作
+    }
+
+    /// <summary>
     /// Lefts the current level.
     /// </summary>
     public static void LeftLevel ()
@@ -234,7 +259,7 @@ namespace TangLevel
 
       // 卸载场景资源
       if (LevelContext.background != null)
-        GameObjectManager.Release (LevelContext.background, true);
+        GobjManager.Release (LevelContext.background, true);
       // 卸载场景人物
       foreach (GameObject gobj in LevelContext.enemyGobjs) {
         HeroGobjManager.Release (gobj, true);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace TangLevel
 {
@@ -28,28 +29,51 @@ namespace TangLevel
     {
 
       Group group = new Group ();
-      group.heros = new Hero[1];
+      group.heros = new Hero[ UnityEngine.Random.Range(1,5)];
       for (int j = 0; j < group.heros.Length; j++) {
 
-        group.heros [j] = MockHero();
+        group.heros [j] = MockHero ();
       }
       return group;
     }
 
+    static int tmp = 0;
 
-    public static Hero MockHero(){
+    public static Hero MockHero ()
+    {
       Hero hero = new Hero ();      
       hero.resName = "hero_zf";
+      hero.maxHp = 100;
       hero.hp = 100;
-      hero.attackDistance = 5;
-      hero.ai = new string[]{ "AutoFire" };
+      hero.maxMp = 100;
+      hero.mp = 100;
+      hero.attackDistance = UnityEngine.Random.Range(1, 20);
+      if (tmp % 2 == 0)
+        hero.ai = new string[]{ "AutoFire" };
+      else
+        hero.ai = new string[]{ "AutoFire" };
+      tmp++;
+
+      // skill
+      List<Skill> skills = new List<Skill> ();
+      skills.Add (MockSkill ());
+      hero.skills = skills;
       return hero;
     }
 
-    public static Skill MockSkill(){
+    public static Skill MockSkill ()
+    {
       Skill skill = new Skill ();
-      skill.specialName = "binghua";
+      skill.specialName = "Sprite_binghua";
+
+      skill.effector = MockEffector ();
       return skill;
+    }
+
+    public static Effector MockEffector(){
+      Effector effector = new Effector ();
+      effector.specialName = "Sprite_binghuajizhong";
+      return effector;
     }
   }
 }

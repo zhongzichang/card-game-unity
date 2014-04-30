@@ -27,7 +27,7 @@ namespace TangLevel
       // }
 
     }
-
+    /*
     void OnGUI ()
     {
 
@@ -52,7 +52,7 @@ namespace TangLevel
 
       }
 
-    }
+    }*/
 
     private void OnSubLevelLoaded(object sender, EventArgs args){
 

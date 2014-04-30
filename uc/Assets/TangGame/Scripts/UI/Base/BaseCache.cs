@@ -9,7 +9,11 @@ namespace TangGame.UI.Base
 		/// <summary>
 		/// 英雄数据数组
 		/// </summary>
-		public static Dictionary<int,HeroBase> heroBeseDic = new Dictionary<int, HeroBase>();
+		public static Dictionary<int,HeroBase> heroBeseTable = new Dictionary<int, HeroBase>();
+		/// <summary>
+		/// 道具数据数组
+		/// </summary>
+		public static Dictionary<int,PropsBase> propsBaseTable = new Dictionary<int, PropsBase>();
 
 	}
 }

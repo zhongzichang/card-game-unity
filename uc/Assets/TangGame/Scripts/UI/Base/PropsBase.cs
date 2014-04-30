@@ -53,7 +53,7 @@ namespace TangGame.UI.Base
 
 	}
 	///道具类型
-	public enum PropsTypEnum{
+	public enum PropsTypeEnum{
 		NONE,
 		/// <summary>
 		/// The EQUI.装备
@@ -78,6 +78,11 @@ namespace TangGame.UI.Base
 		/// <summary>
 		/// The ENCHAN.附魔材料
 		/// </summary>
-		ENCHANT
+		ENCHANT,
+		/// <summary>
+		/// The valuable.
+		/// 贵重物品
+		/// </summary>
+		VALUABLE
 	}
 }

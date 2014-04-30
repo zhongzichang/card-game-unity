@@ -7,7 +7,6 @@ namespace TangLevel
 {
   public class HeroGobjManager
   {
-
     /// <summary>
     /// 加载一个英雄游戏对象
     /// </summary>
@@ -22,8 +21,9 @@ namespace TangLevel
     /// </summary>
     /// <param name="hero">Hero.</param>
     /// <param name="count">Count.</param>
-    public static void LazyLoad( string name, int count){
-      Debug.Log ("HeroGobjManager.LazyLoad "+ name + " " + count);
+    public static void LazyLoad (string name, int count)
+    {
+      Debug.Log ("HeroGobjManager.LazyLoad " + name + " " + count);
       TD.DbgoManager.LazyLoad (name, count);
     }
 
@@ -46,25 +46,29 @@ namespace TangLevel
         if (statusBhvr == null) {
           statusBhvr = gobj.AddComponent<TS.CharacterStatusBhvr> ();
         }
-        // HeroBhvr
-        HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
-        if (heroBhvr == null) {
-          heroBhvr = gobj.AddComponent<HeroBhvr> ();
-        }
-        heroBhvr.hero = hero;
         // Directional
         Directional directional = gobj.GetComponent<Directional> ();
         if (directional == null) {
           directional = gobj.AddComponent<Directional> ();
         }
         directional.Direction = hero.battleDirection;
+        // Skill
+        SkillBhvr skillBhvr = gobj.GetComponent<SkillBhvr> ();
+        if (skillBhvr == null) {
+          skillBhvr = gobj.AddComponent<SkillBhvr> ();
+        }
+        // HeroBhvr
+        HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+        if (heroBhvr == null) {
+          heroBhvr = gobj.AddComponent<HeroBhvr> ();
+        }
+        heroBhvr.hero = hero;
         // AI
         if (hero.ai != null) {
           foreach (string scriptName in hero.ai) {
             Component component = gobj.AddComponent (scriptName);
-            if (component == null)
-            {
-              Debug.LogWarning("Fail to add AI Component - " + scriptName);
+            if (component == null) {
+              Debug.LogWarning ("Fail to add AI Component - " + scriptName);
             }
           }
         }
@@ -81,7 +85,8 @@ namespace TangLevel
     /// </summary>
     /// <param name="gobj">Gobj.</param>
     /// <param name="all">If set to <c>true</c> 释放所占有的资源.</param>
-    public static void Release(GameObject gobj, bool all ){
+    public static void Release (GameObject gobj, bool all)
+    {
       TD.DbgoManager.Release (gobj, all);
     }
 
@@ -90,7 +95,8 @@ namespace TangLevel
     /// </summary>
     /// <returns>The of unused.</returns>
     /// <param name="name">Name.</param>
-    public static int SizeOfUnused(string name){
+    public static int SizeOfUnused (string name)
+    {
       return TD.DbgoManager.SizeOfUnused (name);
     }
 
@@ -98,11 +104,13 @@ namespace TangLevel
     /// 获取已有英雄对象的数量
     /// </summary>
     /// <param name="name">Name.</param>
-    public static int Size(string name){
+    public static int Size (string name)
+    {
       return TD.DbgoManager.SizeOf (name);
     }
 
-    public static void Clear(){
+    public static void Clear ()
+    {
       TD.DbgoManager.Clear ();
     }
   }

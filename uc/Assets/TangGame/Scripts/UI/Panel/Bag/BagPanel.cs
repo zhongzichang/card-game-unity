@@ -4,6 +4,7 @@
 /// </summary>
 using UnityEngine;
 using System.Collections;
+using TangGame.UI.Base;
 
 namespace TangGame.UI
 {
@@ -21,6 +22,16 @@ namespace TangGame.UI
 		void Update ()
 		{
 	
+		}
+		void OnDisable(){
+			this.BagPropsInfoSubPanel.SetActive (false);
+		}
+		/// <summary>
+		/// Ups the bag properties info sub panel.
+		/// 打开并且更新面板数据
+		/// </summary>
+		public void UpBagPropsInfoSubPanel(PropsBase data){
+			BagPropsInfoSubPanel.GetComponent<BagPropsInfoSubPanel> ().Flush (data);
 		}
 	}
 }

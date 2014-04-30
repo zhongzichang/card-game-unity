@@ -17,8 +17,10 @@ namespace TangGame.Xml
 		//		<!-- 物品类型，装备碎片卷轴 -->
 		//		<type>1</type>
 		public short type;
-		//		<!-- 品质 -->
-		//		<upgrade>1</upgrade>
+		/// <summary>
+		/// The upgrade.
+		/// 道具的品质
+		/// </summary>
 		public short upgrade;
 		//		<!-- 属性加成 -->
 		//		<!-- 力量 -->
@@ -71,7 +73,7 @@ namespace TangGame.Xml
 		public int dodge;
 		//		<!-- 治疗效果 -->
 		//		<addition_treatment>21</addition_treatment>
-		public int addtition_treatment;
+		public int addition_treatment;
 		//		<!-- 需求等级 -->
 		//		<level>12</level>
 		public int level;
@@ -96,6 +98,10 @@ namespace TangGame.Xml
 		//		<!-- 物品图标 -->
 		//		<icon></icon>
 		public string icon;
+		/// <summary>
+		/// 物品信息
+		/// </summary>
+		public string info;
 		//		<!-- 物品描述 -->
 		//		<description></description>
 		public string description;
@@ -109,10 +115,10 @@ namespace TangGame.Xml
 		/// 合成所需的物品列表
 		/// </summary>
 		/// <value>The synthetic properties table.</value>
-		public Dictionary<int, int> SyntheticPropsTable {
-			get {
-				return syntheticPropsTable;
-			}
+		public Dictionary<int, int> GetSyntheticPropsTable ()
+		{
+			return syntheticPropsTable;
+
 		}
 	}
 
@@ -129,6 +135,12 @@ namespace TangGame.Xml
 			foreach (PropsXml item in root.items) {
 				Config.propsXmlTable [item.id] = item;
 				ResolveSyntheticProps (item);
+
+
+				//TODO 先写到这个地方到时候再改
+				TangGame.UI.Base.PropsBase propsBase = new TangGame.UI.Base.PropsBase ();
+				propsBase.Xml = item;
+				TangGame.UI.Base.BaseCache.propsBaseTable.Add (item.id, propsBase);
 			}
 		}
 
@@ -143,7 +155,7 @@ namespace TangGame.Xml
 				foreach (string str in strs) {
 					int configId = Utils.SplitStrByCommaToInt (str) [0];
 					int count = Utils.SplitStrByCommaToInt (str) [1];
-					item.SyntheticPropsTable.Add (configId, count);
+					item.GetSyntheticPropsTable ().Add (configId, count);
 					Config.addPropsPropsRelationship (configId, item.id);
 				}
 			}

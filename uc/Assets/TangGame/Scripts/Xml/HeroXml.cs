@@ -20,6 +20,10 @@ namespace TangGame.Xml
 		/// </summary>
 		public short showView;
 		/// <summary>
+		/// 灵魂石头id
+		/// </summary>
+		public int soul_rock_id;
+		/// <summary>
 		/// 初始星级
 		/// </summary>
 		public int evolve;
@@ -160,10 +164,12 @@ namespace TangGame.Xml
 			HeroRoot root = obj as HeroRoot;
 			foreach (HeroXml item in root.items) {
 				Config.heroXmlTable [item.id] = item;
+				Config.addPropsHeroesRelationship (item.soul_rock_id,item.id);
 				//TODO 先写到这个地方到时候再改
 				TangGame.UI.Base.HeroBase herobase = new TangGame.UI.Base.HeroBase ();
 				herobase.Xml = item;
-				TangGame.UI.Base.BaseCache.heroBeseDic.Add (item.id, herobase);
+				TangGame.UI.Base.BaseCache.heroBeseTable.Add (item.id, herobase);
+
 			}
 		}
 	}

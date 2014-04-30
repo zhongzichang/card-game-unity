@@ -4,80 +4,92 @@ using System.Collections;
 namespace TangLevel
 {
   /// <summary>
-  /// 直线飞行 - 从一个对象的位置飞行到另一个对象的位置
+  /// 直线飞行 - 从一个对象的位置飞行到另一个对象的位置。
+  /// 到达指定的距离后发出作用器，然后消失。
   /// </summary>
-  public class DirectLineFly : SpecialBhvr
+  public class DirectLineFly : SkillSpecialBhvr
   {
-  
-    public float speed;
-    public float disappearDistance;
 
+    public static Vector3 OFFSET = new Vector3(0, 3, 0);
 
+    public float speed = 20;
+    public float disappearDistance = 2;
     private Transform myTransform;
-    private Vector3 spos; // 源位置
-    private Vector3 tpos; // 目标位置
+    // 源位置
+    private Vector3 spos;
+    // 目标位置
+    private Vector3 tpos;
+    private bool isPlay = false;
 
     void Awake ()
     {
       myTransform = transform;
     }
-
-    void Start(){
-      Init ();
-    }
-
     // Update is called once per frame
     void Update ()
     {
 
-      float distance = Vector3.Distance (myTransform.localPosition, tpos);
+      if (isPlay) {
 
-      float fraction = Time.deltaTime * speed / distance;
+        float distance = Vector3.Distance (myTransform.localPosition, tpos);
 
-      if (distance < disappearDistance) {
-        // 命中目标
-        //Cache.notificationQueue.Enqueue (new Notification (NtftNames.HIT, 
-        //  new HitBean (actorId, targetId, tokenCode)));
+        float fraction = Time.deltaTime * speed / distance;
 
-        //Destroy (gameObject);
-        GobjManager.Release (gameObject);
+        if (distance < disappearDistance) {
 
-      } else {
+          // 命中目标
+          //Cache.notificationQueue.Enqueue (new Notification (NtftNames.HIT, 
+          //  new HitBean (actorId, targetId, tokenCode)));
 
-        myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
-          tpos, fraction);
+          // 发出作用器
+          SkillBhvr targetSkillBhvr = skill.target.GetComponent<SkillBhvr> ();
+          if (targetSkillBhvr != null) {
+            targetSkillBhvr.Receive (skill.effector, skill);
+          }
+
+          //Destroy (gameObject);
+          GobjManager.Release (gameObject);
+          isPlay = false;
+
+        } else {
+
+          myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
+            tpos, fraction);
+        }
       }
 	
     }
 
-    void OnEanble ()
+    void OnDisable ()
     {
-      Init ();
-    }
-
-    void OnDisable(){
-      source = null;
-      target = null;
       spos = Vector3.zero;
       tpos = Vector3.zero;
+      myTransform.localRotation = Quaternion.identity;
+      myTransform.localPosition = Vector3.zero;
+      isPlay = false;
     }
 
-    private void Init(){
+    public override void Play ()
+    {
 
-      if (source != null && target != null) {
+      if (skill.source != null && skill.target != null) {
 
-        spos = source.transform.localPosition;
-        tpos = target.transform.localPosition;
+
+        spos = skill.source.transform.localPosition + OFFSET;
+        tpos = skill.target.transform.localPosition + OFFSET;
+
+        // 方向
+        myTransform.localRotation = Quaternion.FromToRotation (Vector3.right, 
+          (tpos - new Vector3 (spos.x, spos.y, tpos.z)).normalized);
 
         // 位置
         myTransform.localPosition = new Vector3 (spos.x, spos.y, spos.z);
 
-        // 方向
-        myTransform.localRotation = Quaternion.FromToRotation (Vector3.right, (tpos - myTransform.localPosition).normalized);
+        isPlay = true;
 
       } else {
 
-        gameObject.SetActive (false);
+        GobjManager.Release (gameObject);
 
       }
     }

@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace TangLevel
 {
-  public class SpecialBhvr : MonoBehaviour
+  public abstract class SpecialBhvr : MonoBehaviour
   {
-    public GameObject source;
-    public GameObject target;
+    public abstract void Play();
   }
 }
-
