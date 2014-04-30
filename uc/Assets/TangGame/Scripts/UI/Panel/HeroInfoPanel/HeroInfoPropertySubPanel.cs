@@ -52,10 +52,13 @@ namespace TangGame.UI
 		/// <param name="str">String.</param>
 		void SetProperty (HeroBase herobase)
 		{
+//			string redStr = "[CC0000]{0}[-] : {1}";
+//			string orangeStr = "[ff8c00]{0}[-] : {1}";
 			int index = 0;
-			AddPropertyItem ("[CC0000]力量成长[-]", herobase.Strength_growth).transform.localPosition += Vector3.down * index++;
-			AddPropertyItem ("[CC0000]智力成长[-]", herobase.Intellect_growth).transform.localPosition += Vector3.down * index++;
-			AddPropertyItem ("[CC0000]敏捷成长[-]", herobase.Agile_growth).transform.localPosition += Vector3.down * index++;
+//			AddPropertyItem ( string.Format (redStr, UIPanelLang.STRENGTH_GROWTH, herobase.Strength_growth)).transform.localPosition += Vector3.down * index++;
+			AddPropertyItem ("[CC0000]" +UIPanelLang.STRENGTH_GROWTH +"[-]", herobase.Strength_growth).transform.localPosition += Vector3.down * index++;
+			AddPropertyItem ("[CC0000]" +UIPanelLang.INTELLECT_GROWTH +"[-]", herobase.Intellect_growth).transform.localPosition += Vector3.down * index++;
+			AddPropertyItem ("[CC0000]" +UIPanelLang.AGILE_GROWTH +"[-]", herobase.Agile_growth).transform.localPosition += Vector3.down * index++;
 
 			AddPropertyItem ("[ff8c00]力量[-]", herobase.Strength).transform.localPosition += Vector3.down * index++;
 			AddPropertyItem ("[ff8c00]智力[-]", herobase.Intellect).transform.localPosition += Vector3.down * index++;

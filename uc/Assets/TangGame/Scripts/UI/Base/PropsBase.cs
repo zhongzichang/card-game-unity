@@ -53,7 +53,7 @@ namespace TangGame.UI.Base
 
 	}
 	///道具类型
-	public enum PropsTypEnum{
+	public enum PropsTypeEnum{
 		NONE,
 		/// <summary>
 		/// The EQUI.装备
