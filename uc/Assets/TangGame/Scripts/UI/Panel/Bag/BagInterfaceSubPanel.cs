@@ -33,7 +33,7 @@ namespace TangGame.UI
 		/// </summary>
 		public GameObject ToggleConsumables;
 		public GameObject PropsTable;
-		public Dictionary<int, PropsItem> propsItems = new Dictionary<int, PropsItem> ();
+		private Dictionary<int, PropsItem> propsItems = new Dictionary<int, PropsItem> ();
 		// Use this for initialization
 		void Start ()
 		{

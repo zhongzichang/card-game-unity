@@ -115,10 +115,10 @@ namespace TangGame.Xml
 		/// 合成所需的物品列表
 		/// </summary>
 		/// <value>The synthetic properties table.</value>
-		public Dictionary<int, int> SyntheticPropsTable {
-			get {
-				return syntheticPropsTable;
-			}
+		public Dictionary<int, int> GetSyntheticPropsTable ()
+		{
+			return syntheticPropsTable;
+
 		}
 	}
 
@@ -149,7 +149,7 @@ namespace TangGame.Xml
 				foreach (string str in strs) {
 					int configId = Utils.SplitStrByCommaToInt (str) [0];
 					int count = Utils.SplitStrByCommaToInt (str) [1];
-					item.SyntheticPropsTable.Add (configId, count);
+					item.GetSyntheticPropsTable ().Add (configId, count);
 					Config.addPropsPropsRelationship (configId, item.id);
 				}
 			}

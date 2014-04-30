@@ -78,6 +78,11 @@ namespace TangGame.UI.Base
 		/// <summary>
 		/// The ENCHAN.附魔材料
 		/// </summary>
-		ENCHANT
+		ENCHANT,
+		/// <summary>
+		/// The valuable.
+		/// 贵重物品
+		/// </summary>
+		VALUABLE
 	}
 }
