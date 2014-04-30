@@ -15,6 +15,12 @@ namespace TangLevel
   public class Hero
   {
 
+    public delegate void HpChangeHandler (int val, int max);
+    public HpChangeHandler raiseHpChange;
+
+    public delegate void MpChangeHandler(int val, int max);
+    public MpChangeHandler raiseMpChange;
+
     // --- 人物属性 ---
     #region Character Attributes
     /// <summary>
@@ -34,13 +40,39 @@ namespace TangLevel
     /// </summary>
     public int agility;
     /// <summary>
+    /// 最大生命值
+    /// </summary>
+    public int maxHp;
+    /// <summary>
     /// 生命值
     /// </summary>
-    public int hp;
+    private int m_hp;
+    public int hp {
+      get{ return m_hp; }
+      set{
+        m_hp = value;
+        if (raiseHpChange != null) {
+          raiseHpChange (value, maxHp);
+        }
+      }
+    }
+    /// <summary>
+    /// 最大能量值
+    /// </summary>
+    public int maxMp;
     /// <summary>
     /// 能量值
     /// </summary>
-    public int mp;
+    private int m_mp;
+    public int mp {
+      get{ return m_mp; }
+      set{
+        m_mp = value;
+        if (raiseMpChange != null) {
+          raiseMpChange (value, maxMp);
+        }
+      }
+    }
 
     /// <summary>
     /// 等级

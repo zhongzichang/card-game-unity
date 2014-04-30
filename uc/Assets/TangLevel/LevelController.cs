@@ -20,6 +20,7 @@ namespace TangLevel
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+    public static UIManager uiMgr = null;
 
     public static void Init ()
     {
@@ -27,12 +28,18 @@ namespace TangLevel
       // 监听Dragonbone资源装载完毕事件
       TDB.DbgoManager.RaiseLoadedEvent += OnDbResLoaded;
       //TDB.DbgoManager.RaiseLoadedEvent.
+
+      GameObject gobj = GameObject.Find ("UI Root");
+      if (gobj != null) {
+        Debug.Log ("xxxx");
+        uiMgr = gobj.GetComponent<UIManager> ();
+      }
     }
 
-    public static void OnDestory(){
+    public static void OnDestory ()
+    {
       TDB.DbgoManager.RaiseLoadedEvent -= OnDbResLoaded;
     }
-
 
     /// <summary>
     /// 挑战这个关卡
@@ -210,13 +217,23 @@ namespace TangLevel
 
 
       // 我方进场
+      int i = 0;
       foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
-
+        if (uiMgr != null) {
+          Debug.Log ("moniter hero --");
+          hero.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
+        }
+        i++;
       }
+      i = 0;
       // 敌方进场
       foreach (Hero hero in enemyGroup.heros) {
         AddHeroToScene (hero);
+        if (uiMgr != null) {
+          hero.raiseHpChange += uiMgr.redHpMonitors [i].OnChange;
+        }
+        i++;
       }
 
       // 设置关卡状态 InLevel
@@ -224,6 +241,14 @@ namespace TangLevel
         LevelContext.InLevel = true;
 
       LevelContext.subLevelStatus = LevelStatus.IN;
+    }
+
+    /// <summary>
+    /// Lefts the sub level. 
+    /// </summary>
+    public static void LeftSubLevel(){
+
+      // TODO 离开子关卡需要做一下清理工作
     }
 
     /// <summary>
