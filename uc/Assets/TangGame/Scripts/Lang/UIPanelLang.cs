@@ -38,7 +38,7 @@ namespace TangGame.UI
 		/// <summary>
 		/// 法术攻击强度
 		/// </summary>
-		public const string  ABILITY_POWER="法术攻击强度";
+		public const string  SPELL_POWER="法术攻击强度";
 		/// <summary>
 		/// 物理防御
 		/// </summary>
@@ -46,7 +46,7 @@ namespace TangGame.UI
 		/// <summary>
 		/// 法术防御
 		/// </summary>
-		public const string  MAGIC_DEFENSE="法术防御";
+		public const string  SPELL_DEFENSE="法术防御";
 		/// <summary>
 		/// 生命回复
 		/// </summary>
@@ -74,7 +74,7 @@ namespace TangGame.UI
 		/// <summary>
 		/// 法术爆击
 		/// </summary>
-		public const string  MAGIC_CRIT="法术爆击";
+		public const string  SPELL_CRIT="法术爆击";
 		/// <summary>
 		/// 闪避
 		/// </summary>

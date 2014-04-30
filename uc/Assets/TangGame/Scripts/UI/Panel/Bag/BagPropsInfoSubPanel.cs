@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI.Base;
+using System;
+using System.Text.RegularExpressions;
 
 namespace TangGame.UI
 {
@@ -74,12 +76,20 @@ namespace TangGame.UI
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
 		}
-		//TODO 更新物品名字
+		/// <summary>
+		/// Ups the name of the properties.
+		/// 更新物品名字
+		/// </summary>
+		/// <param name="name">Name.</param>
 		public void UpPropsName (string name)
 		{
 			this.PropsName.GetComponent<UILabel> ().text = name;
 		}
-		//TODO 更新图标
+		/// <summary>
+		/// Ups the properties icon.
+		/// 更新图标
+		/// </summary>
+		/// <param name="name">Name.</param>
 		public void UpPropsIcon (string name)
 		{
 			this.PropsIcon.GetComponent<UILabel> ().text = name;
@@ -93,89 +103,146 @@ namespace TangGame.UI
 		{
 			//			this.Frames.GetComponent<UISprite>().spriteName = "" TODO  需要根据图片名字修改
 		}
-		//TODO 更新数量
+		/// <summary>
+		/// Ups the properties count.
+		/// 更新数量
+		/// </summary>
+		/// <param name="num">Number.</param>
 		public void UpPropsCount (int num)
 		{
 			UILabel label = this.PropsCount.GetComponent<UILabel> ();
 			label.text = string.Format (label.text, num);
 		}
-		//TODO 更新信息
+		/// <summary>
+		/// Ups the properties info label.
+		/// 更新信息
+		/// </summary>
+		/// <param name="data">Data.</param>
 		public void UpPropsInfoLabel (PropsBase data)
 		{
+			string infoStr = "";
 			//		<!-- 属性加成 -->
 			//		<!-- 力量 -->
 			//		<strength>21</strength>
 			if (data.Xml.strength > 0) {
+				infoStr += UIPanelLang.STRENGTH + data.Xml.strength + ",";
 
 			}
 			//		<!-- 智力 -->
 			//		<intellect>42</intellect>
 			if (data.Xml.intellect > 0) {
+				infoStr += UIPanelLang.INTELLECT + data.Xml.intellect + ",";
 			}
 			//		<!-- 敏捷 -->
 			//		<agile>2</agile>
 			if (data.Xml.agile > 0) {
+				infoStr += UIPanelLang.AGILE + data.Xml.agile + Environment.NewLine;
 			}
 			//		<!-- 生命最大 -->
 			//		<hpMax>132</hpMax>
 			if (data.Xml.hpMax > 0) {
+				infoStr += UIPanelLang.HPMAX + data.Xml.hpMax + Environment.NewLine;
+
 			}
 			//		<!-- 攻击强度 -->
 			//		<attack_damage>23</attack_damage>
 			if (data.Xml.attack_damage > 0) {
+				infoStr += UIPanelLang.ATTACK_DAMAGE + data.Xml.attack_damage + Environment.NewLine;
 			}
 			//		<!-- 法术强度 -->
 			//		<spell_power>123</spell_power>
 			if (data.Xml.spell_power > 0) {
+				infoStr += UIPanelLang.SPELL_POWER + data.Xml.spell_power + Environment.NewLine;
 			}
 			//		<!-- 物理防御 -->
 			//		<physical_defense>321</physical_defense>
 			if (data.Xml.physical_defense > 0) {
+				infoStr += UIPanelLang.PHYSICAL_DEFENSE + data.Xml.physical_defense + Environment.NewLine;
 			}
 			//		<!-- 法术防御 -->
 			//		<spell_defense>123</spell_defense>
 			if (data.Xml.spell_defense > 0) {
+				infoStr += UIPanelLang.SPELL_DEFENSE + data.Xml.spell_defense + Environment.NewLine;
 			}
 			//		<!-- 物理爆击 -->
 			//		<physical_crit>12</physical_crit>
 			if (data.Xml.physical_crit > 0) {
+				infoStr += UIPanelLang.PHYSICAL_CRIT + data.Xml.physical_crit + Environment.NewLine;
 			}
 			//		<!-- 法术爆击 -->
 			//		<spell_crit>21</spell_crit>
 			if (data.Xml.spell_cirt > 0) {
+				infoStr += UIPanelLang.SPELL_CRIT + data.Xml.spell_cirt + Environment.NewLine;
 			}
 			//		<!-- 生命回复 -->
 			//		<hp_re>12</hp_re>
 			if (data.Xml.hp_re > 0) {
+				infoStr += UIPanelLang.HP_RECOVERY + data.Xml.hp_re + Environment.NewLine;
 			}
 			//		<!-- 能量回复 -->
 			//		<energy_re>21</energy_re>
 			if (data.Xml.energy_re > 0) {
+				infoStr += UIPanelLang.ENERGY_RECOVERY + data.Xml.energy_re + Environment.NewLine;
 			}
 			//		<!-- 物理穿透 -->
 			//		<physical_penetrate>12</physical_penetrate>
 			if (data.Xml.physical_penetrate > 0) {
+				infoStr += UIPanelLang.PHYSICAL_PENETRATION + data.Xml.physical_penetrate + Environment.NewLine;
 			}
 			//		<!-- 法术穿透 -->
 			//		<spell_penetrate>21</spell_penetrate>
 			if (data.Xml.spell_penetrate > 0) {
+				infoStr += UIPanelLang.SPELL_PENETRATION + data.Xml.spell_penetrate + Environment.NewLine;
 			}
 			//		<!-- 吸血等级 -->
 			//		<bloodsucking_lv>12</bloodsucking_lv>
 			if (data.Xml.bloodsucking_lv > 0) {
+				infoStr += UIPanelLang.BLOODSUCKING_LV + data.Xml.bloodsucking_lv + Environment.NewLine;
 			}
 			//		<!-- 闪避 -->
 			//		<dodge>21</dodge>
 			if (data.Xml.dodge > 0) {
+				infoStr += UIPanelLang.DODGE + data.Xml.dodge + Environment.NewLine;
 			}
 			//		<!-- 治疗效果 -->
 			//		<addition_treatment>21</addition_treatment>
 			if (data.Xml.addtition_treatment > 0) {
+				infoStr += UIPanelLang.ADDITION_TREATMENT + data.Xml.addtition_treatment + "%" + Environment.NewLine;
+			}
+			if (data.Xml.info != null) {
+				infoStr = data.Xml.info;
+			}
+			UILabel lab = PropsInfoLabel.GetComponent<UILabel> ();
+			if (lab != null) {
+				lab.text = infoStr;
 			}
 
 		}
-		//TODO 更新描述
-		//TODO 更新出售单价
+		/// <summary>
+		/// Ups the description.
+		/// 更新描述
+		/// </summary>
+		/// <param name="text">Text.</param>
+		public void UpDescription(string text){
+			UILabel lab = PropsDescription.GetComponent<UILabel> ();
+			if (lab != null) {
+				lab.text = text;
+			}
+		}
+		/// <summary>
+		/// Ups the properties info.
+		///  更新出售单价
+		/// </summary>
+		/// <param name="num">Number.</param>
+		public void UpPropsInfo(int num){
+			UILabel lab = PropsInfoLabel.GetComponent<UILabel> ();
+			if (lab != null) {
+				string pattern = "\\d+";
+				Regex rgx = new Regex(pattern);
+				string result = rgx.Replace(lab.text, num.ToString());
+				lab.text = result;
+			}
+		}
 		/// <summary>
 		/// Ups the properties info.
 		/// 更新文字内容

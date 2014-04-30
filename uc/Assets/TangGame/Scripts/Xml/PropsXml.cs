@@ -98,6 +98,10 @@ namespace TangGame.Xml
 		//		<!-- 物品图标 -->
 		//		<icon></icon>
 		public string icon;
+		/// <summary>
+		/// 物品信息
+		/// </summary>
+		public string info;
 		//		<!-- 物品描述 -->
 		//		<description></description>
 		public string description;
