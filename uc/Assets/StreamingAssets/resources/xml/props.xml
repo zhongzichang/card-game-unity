@@ -1,66 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<value>
-		<!-- 物品编号 -->
 		<id>1001</id>
-		<!-- 物品名称 -->
 		<name>牛顿的不粘锅</name>
-		<!-- 物品类型，装备碎片卷轴 -->
 		<type>1</type>
-		<!-- 品质 -->
 		<upgrade>1</upgrade>
-		<!-- 属性加成 -->
-		<!-- 力量 -->
 		<strength>21</strength>
-		<!-- 智力 -->
 		<intellect>42</intellect>
-		<!-- 敏捷 -->
 		<agile>2</agile>
-		<!-- 生命最大 -->
 		<hpMax>132</hpMax>
-		<!-- 攻击强度 -->
 		<attack_damage>23</attack_damage>
-		<!-- 法术强度 -->
 		<spell_power>123</spell_power>
-		<!-- 物理防御 -->
 		<physical_defense>321</physical_defense>
-		<!-- 法术防御 -->
 		<spell_defense>123</spell_defense>
-		<!-- 物理爆击 -->
 		<physical_crit>12</physical_crit>
-		<!-- 法术爆击 -->
 		<spell_crit>21</spell_crit>
-		<!-- 生命回复 -->
 		<hp_re>12</hp_re>
-		<!-- 能量回复 -->
 		<energy_re>21</energy_re>
-		<!-- 物理穿透 -->
 		<physical_penetrate>12</physical_penetrate>
-		<!-- 法术穿透 -->
 		<spell_penetrate>21</spell_penetrate>
-		<!-- 吸血等级 -->
 		<bloodsucking_lv>12</bloodsucking_lv>
-		<!-- 闪避 -->
 		<dodge>21</dodge>
-		<!-- 治疗效果 -->
 		<addition_treatment>21</addition_treatment>
-		<!-- 需求等级 -->
 		<level>12</level>
-		<!-- 合成道具 -->
-		<synthetic_props>12</synthetic_props>
-		<!-- 合成花费 -->
+		<synthetic_props>{12,123}</synthetic_props>
 		<synthetic_spend>21</synthetic_spend>
-		<!-- 买入价格 -->
 		<price_list>12</price_list>
-		<!-- 卖出价格 -->
 		<selling_price>12</selling_price>
-		<!-- 附魔点数 -->
 		<enchant_points>12</enchant_points>
-		<!-- 经验 -->
 		<experience>12</experience>
-		<!-- 物品图标 -->
 		<icon>icon1</icon>
-		<!-- 物品描述 -->
 		<description>这是一个穿越的故事</description>
 	</value>
 </root>
