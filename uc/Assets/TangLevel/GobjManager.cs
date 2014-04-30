@@ -12,6 +12,20 @@ namespace TangLevel
 
     public static event LoadEventHandler RaiseLoadEvent;
 
+    public static bool HasHandler (LoadEventHandler func)
+    {
+      bool ret = false;
+      if (RaiseLoadEvent != null) {
+        Delegate[] delegates = RaiseLoadEvent.GetInvocationList ();
+        for (int i = 0; i < delegates.Length; i++) {
+          if (delegates [i] == func) {
+            ret = true;
+          }
+        }
+      }
+      return ret;
+    }
+
     /// <summary>
     /// Load the specified Resource.
     /// </summary>
@@ -134,7 +148,6 @@ namespace TangLevel
         // 查找是否存在没被使用的对象
         foreach (GameObject gobj in Cache.gobjTable[name]) {
           if (!gobj.activeSelf) {
-            gobj.SetActive (true);
             result = gobj;
           }
         }
@@ -142,6 +155,9 @@ namespace TangLevel
         if (result == null) {
           GameObject source = Cache.gobjTable [name] [0];
           result = GameObject.Instantiate (source, Vector3.zero, Quaternion.identity) as GameObject;
+          result.name = name;
+          result.SetActive (false);
+          Add (result);
         }
       }
 

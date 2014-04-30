@@ -8,63 +8,69 @@ namespace TangLevel
   /// </summary>
   public class DirectLineFly : SpecialBhvr
   {
-  
-    public float speed;
-    public float disappearDistance;
-
-
+    public float speed = 2;
+    public float disappearDistance = 2;
     private Transform myTransform;
-    private Vector3 spos; // 源位置
-    private Vector3 tpos; // 目标位置
+    private Vector3 spos;
+    // 源位置
+    private Vector3 tpos;
+    // 目标位置
+    private bool isPlay = false;
 
     void Awake ()
     {
       myTransform = transform;
     }
-
-    void Start(){
-      Init ();
-    }
-
     // Update is called once per frame
     void Update ()
     {
 
-      float distance = Vector3.Distance (myTransform.localPosition, tpos);
+      if (isPlay) {
 
-      float fraction = Time.deltaTime * speed / distance;
+        float distance = Vector3.Distance (myTransform.localPosition, tpos);
 
-      if (distance < disappearDistance) {
-        // 命中目标
-        //Cache.notificationQueue.Enqueue (new Notification (NtftNames.HIT, 
-        //  new HitBean (actorId, targetId, tokenCode)));
+        float fraction = Time.deltaTime * speed / distance;
 
-        //Destroy (gameObject);
-        GobjManager.Release (gameObject);
+        if (distance < disappearDistance) {
+          // 命中目标
+          //Cache.notificationQueue.Enqueue (new Notification (NtftNames.HIT, 
+          //  new HitBean (actorId, targetId, tokenCode)));
 
-      } else {
+          Debug.Log (target+"===");
+          // 发出作用器
+          SkillBhvr targetSkillBhvr = target.GetComponent<SkillBhvr> ();
+          if (targetSkillBhvr != null) {
+            targetSkillBhvr.Receive (skill.effector, skill, source);
+          }
 
-        myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
-          tpos, fraction);
+          //Destroy (gameObject);
+          GobjManager.Release (gameObject);
+          isPlay = false;
+
+        } else {
+
+          myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
+            tpos, fraction);
+        }
       }
 	
     }
 
-    void OnEanble ()
+    void OnDisable ()
     {
-      Init ();
-    }
-
-    void OnDisable(){
       source = null;
       target = null;
       spos = Vector3.zero;
       tpos = Vector3.zero;
+      myTransform.localRotation = Quaternion.identity;
     }
 
-    private void Init(){
+    public override void Play ()
+    {
 
       if (source != null && target != null) {
+
+        isPlay = true;
 
         spos = source.transform.localPosition;
         tpos = target.transform.localPosition;
@@ -77,7 +83,8 @@ namespace TangLevel
 
       } else {
 
-        gameObject.SetActive (false);
+        isPlay = false;
+        GobjManager.Release (gameObject);
 
       }
     }

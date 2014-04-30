@@ -100,7 +100,7 @@ namespace TangLevel
         GameObject gobj = GameObject.Instantiate (assets) as GameObject;
         gobj.SetActive (false);
         gobj.name = assets.name;
-        GameObjectManager.Add (gobj);
+        GobjManager.Add (gobj);
         // 资源已准备完毕
         OnSubLevelResReady ();
       }
@@ -187,7 +187,7 @@ namespace TangLevel
     public static void EnterNextSubLevel ()
     {
       // 创建背景
-      GameObject bgGobj = GameObjectManager.FetchUnused (LevelContext.TargetSubLevel.resName);
+      GameObject bgGobj = GobjManager.FetchUnused (LevelContext.TargetSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
         Debug.Log ("Background Created.");
@@ -234,7 +234,7 @@ namespace TangLevel
 
       // 卸载场景资源
       if (LevelContext.background != null)
-        GameObjectManager.Release (LevelContext.background, true);
+        GobjManager.Release (LevelContext.background, true);
       // 卸载场景人物
       foreach (GameObject gobj in LevelContext.enemyGobjs) {
         HeroGobjManager.Release (gobj, true);
