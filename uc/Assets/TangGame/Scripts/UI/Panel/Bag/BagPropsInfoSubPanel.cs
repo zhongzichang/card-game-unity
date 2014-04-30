@@ -82,8 +82,10 @@ namespace TangGame.UI
 			this.UpPropsPrice (data.Xml.selling_price);
 			if (data.Net != null) {
 				this.UpPropsCount (data.Net.count);
+			} else {
+				this.UpPropsCount (0);
 			}
-
+			this.UpDescription (data.Xml.description);
 
 		}
 
@@ -102,9 +104,9 @@ namespace TangGame.UI
 		/// 更新图标
 		/// </summary>
 		/// <param name="name">Name.</param>
-		public void UpPropsIcon (string name)
+		public void UpPropsIcon (string icon)
 		{
-			this.PropsIcon.GetComponent<UILabel> ().text = name;
+			this.PropsIcon.GetComponent<UISprite> ().spriteName = icon;
 		}
 
 		/// <summary>
@@ -113,7 +115,7 @@ namespace TangGame.UI
 		/// </summary>
 		public void UpPropsFrames (short upgrade)
 		{
-			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr (upgrade);// TODO  需要根据图片名字修改
+			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr ((HeroesRankEnum)upgrade);// TODO  需要根据图片名字修改
 		}
 
 		/// <summary>
@@ -138,93 +140,99 @@ namespace TangGame.UI
 			PropsTypeEnum type = (PropsTypeEnum)data.Xml.type;
 			string infoStr = "";
 			if (PropsTypeEnum.EQUIP == type) {
-				//		<!-- 属性加成 -->
-				//		<!-- 力量 -->
-				//		<strength>21</strength>
-				if (data.Xml.strength > 0) {
-					infoStr += UIPanelLang.STRENGTH + data.Xml.strength + ",";
-
-				}
-				//		<!-- 智力 -->
-				//		<intellect>42</intellect>
-				if (data.Xml.intellect > 0) {
-					infoStr += UIPanelLang.INTELLECT + data.Xml.intellect + ",";
-				}
-				//		<!-- 敏捷 -->
-				//		<agile>2</agile>
-				if (data.Xml.agile > 0) {
-					infoStr += UIPanelLang.AGILE + data.Xml.agile + Environment.NewLine;
+				if (data.Xml.strength == data.Xml.intellect && data.Xml.intellect == data.Xml.agile) {
+					infoStr += UIPanelLang.STRENGTH + ",";
+					infoStr += UIPanelLang.INTELLECT + ",";
+					infoStr += UIPanelLang.AGILE + "+";
+					infoStr += data.Xml.strength;
+				} else {
+					//		<!-- 属性加成 -->
+					//		<!-- 力量 -->
+					//		<strength>21</strength>
+					if (data.Xml.strength > 0) {
+						infoStr += UIPanelLang.STRENGTH + "+" + data.Xml.strength + Environment.NewLine;
+					}
+					//		<!-- 智力 -->
+					//		<intellect>42</intellect>
+					if (data.Xml.intellect > 0) {
+						infoStr += UIPanelLang.INTELLECT + "+" + data.Xml.intellect + Environment.NewLine;
+					}
+					//		<!-- 敏捷 -->
+					//		<agile>2</agile>
+					if (data.Xml.agile > 0) {
+						infoStr += UIPanelLang.AGILE + "+" + data.Xml.agile + Environment.NewLine;
+					}
 				}
 				//		<!-- 生命最大 -->
 				//		<hpMax>132</hpMax>
 				if (data.Xml.hpMax > 0) {
-					infoStr += UIPanelLang.HPMAX + data.Xml.hpMax + Environment.NewLine;
+					infoStr += UIPanelLang.HPMAX + "+" + data.Xml.hpMax + Environment.NewLine;
 
 				}
 				//		<!-- 攻击强度 -->
 				//		<attack_damage>23</attack_damage>
 				if (data.Xml.attack_damage > 0) {
-					infoStr += UIPanelLang.ATTACK_DAMAGE + data.Xml.attack_damage + Environment.NewLine;
+					infoStr += UIPanelLang.ATTACK_DAMAGE + "+" + data.Xml.attack_damage + Environment.NewLine;
 				}
 				//		<!-- 法术强度 -->
 				//		<spell_power>123</spell_power>
 				if (data.Xml.spell_power > 0) {
-					infoStr += UIPanelLang.SPELL_POWER + data.Xml.spell_power + Environment.NewLine;
+					infoStr += UIPanelLang.SPELL_POWER + "+" + data.Xml.spell_power + Environment.NewLine;
 				}
 				//		<!-- 物理防御 -->
 				//		<physical_defense>321</physical_defense>
 				if (data.Xml.physical_defense > 0) {
-					infoStr += UIPanelLang.PHYSICAL_DEFENSE + data.Xml.physical_defense + Environment.NewLine;
+					infoStr += UIPanelLang.PHYSICAL_DEFENSE + "+" + data.Xml.physical_defense + Environment.NewLine;
 				}
 				//		<!-- 法术防御 -->
 				//		<spell_defense>123</spell_defense>
 				if (data.Xml.spell_defense > 0) {
-					infoStr += UIPanelLang.SPELL_DEFENSE + data.Xml.spell_defense + Environment.NewLine;
+					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.Xml.spell_defense + Environment.NewLine;
 				}
 				//		<!-- 物理爆击 -->
 				//		<physical_crit>12</physical_crit>
 				if (data.Xml.physical_crit > 0) {
-					infoStr += UIPanelLang.PHYSICAL_CRIT + data.Xml.physical_crit + Environment.NewLine;
+					infoStr += UIPanelLang.PHYSICAL_CRIT + "+" + data.Xml.physical_crit + Environment.NewLine;
 				}
 				//		<!-- 法术爆击 -->
 				//		<spell_crit>21</spell_crit>
 				if (data.Xml.spell_cirt > 0) {
-					infoStr += UIPanelLang.SPELL_CRIT + data.Xml.spell_cirt + Environment.NewLine;
+					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.Xml.spell_cirt + Environment.NewLine;
 				}
 				//		<!-- 生命回复 -->
 				//		<hp_re>12</hp_re>
 				if (data.Xml.hp_re > 0) {
-					infoStr += UIPanelLang.HP_RECOVERY + data.Xml.hp_re + Environment.NewLine;
+					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.Xml.hp_re + Environment.NewLine;
 				}
 				//		<!-- 能量回复 -->
 				//		<energy_re>21</energy_re>
 				if (data.Xml.energy_re > 0) {
-					infoStr += UIPanelLang.ENERGY_RECOVERY + data.Xml.energy_re + Environment.NewLine;
+					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.Xml.energy_re + Environment.NewLine;
 				}
 				//		<!-- 物理穿透 -->
 				//		<physical_penetrate>12</physical_penetrate>
 				if (data.Xml.physical_penetrate > 0) {
-					infoStr += UIPanelLang.PHYSICAL_PENETRATION + data.Xml.physical_penetrate + Environment.NewLine;
+					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.Xml.physical_penetrate + Environment.NewLine;
 				}
 				//		<!-- 法术穿透 -->
 				//		<spell_penetrate>21</spell_penetrate>
 				if (data.Xml.spell_penetrate > 0) {
-					infoStr += UIPanelLang.SPELL_PENETRATION + data.Xml.spell_penetrate + Environment.NewLine;
+					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.Xml.spell_penetrate + Environment.NewLine;
 				}
 				//		<!-- 吸血等级 -->
 				//		<bloodsucking_lv>12</bloodsucking_lv>
 				if (data.Xml.bloodsucking_lv > 0) {
-					infoStr += UIPanelLang.BLOODSUCKING_LV + data.Xml.bloodsucking_lv + Environment.NewLine;
+					infoStr += UIPanelLang.BLOODSUCKING_LV + "+" + data.Xml.bloodsucking_lv + Environment.NewLine;
 				}
 				//		<!-- 闪避 -->
 				//		<dodge>21</dodge>
 				if (data.Xml.dodge > 0) {
-					infoStr += UIPanelLang.DODGE + data.Xml.dodge + Environment.NewLine;
+					infoStr += UIPanelLang.DODGE + "+" + data.Xml.dodge + Environment.NewLine;
 				}
 				//		<!-- 治疗效果 -->
 				//		<addition_treatment>21</addition_treatment>
-				if (data.Xml.addtition_treatment > 0) {
-					infoStr += UIPanelLang.ADDITION_TREATMENT + data.Xml.addtition_treatment + "%" + Environment.NewLine;
+				if (data.Xml.addition_treatment > 0) {
+					infoStr += UIPanelLang.ADDITION_TREATMENT + "+" + data.Xml.addition_treatment + "%" + Environment.NewLine;
 				}
 			}
 			//如果是贵重物品
@@ -248,6 +256,7 @@ namespace TangGame.UI
 			//如果是消耗品
 			if (PropsTypeEnum.NONE == type)
 				infoStr += data.Xml.info;
+
 			UILabel label = PropsInfoLabel.GetComponent<UILabel> ();
 			if (label != null) {
 				label.text = infoStr;
@@ -276,7 +285,7 @@ namespace TangGame.UI
 		/// <param name="num">Number.</param>
 		public void UpPropsPrice (int num)
 		{
-			UILabel lab = PropsInfoLabel.GetComponent<UILabel> ();
+			UILabel lab = PriceLabel.GetComponent<UILabel> ();
 			if (lab != null) {
 				string pattern = "\\d+";
 				Regex rgx = new Regex (pattern);

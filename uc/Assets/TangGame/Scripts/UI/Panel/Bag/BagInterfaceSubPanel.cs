@@ -46,9 +46,11 @@ namespace TangGame.UI
 
 			//TODO 测试数据
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
-			for (int i = 0; i < 50; i++) {
+			foreach (PropsBase propsBase in TangGame.UI.Base.BaseCache.propsBaseTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
-				propsItems.Add (i, item);//
+				item.Flush (propsBase);
+				propsItems.Add (item.data.Xml.id, item);
+
 			}
 			PropsTable.GetComponent<UITable> ().repositionNow = true;
 			//TODO 测试数据
@@ -127,7 +129,12 @@ namespace TangGame.UI
 				}
 			}
 		}
-
+		/// <summary>
+		/// Shows the type of the items by properties.
+		/// 根据道具的类型显示item
+		/// </summary>
+		/// <param name="type1">Type1.</param>
+		/// <param name="type2">Type2.</param>
 		void ShowItemsByPropsType (PropsTypeEnum type1, PropsTypeEnum type2)
 		{
 			foreach (PropsItem item in propsItems.Values) {

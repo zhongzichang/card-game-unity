@@ -22,12 +22,12 @@ namespace TangGame.UI
 		{
 	
 		}
-		void Flush(PropsBase data){
+		public void Flush(PropsBase data){
 			this.data = data;
 			if(data != null){
 				this.propsCountLabel.text = data.Count.ToString();
 				this.propsIconSprite.spriteName = data.Xml.icon;
-				this.frameSprite.spriteName = string.Format ("frame_{0}", data.Xml.upgrade);
+				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr((HeroesRankEnum)data.Xml.upgrade));
 			}
 
 		}
