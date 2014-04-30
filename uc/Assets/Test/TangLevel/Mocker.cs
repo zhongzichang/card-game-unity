@@ -48,7 +48,7 @@ namespace TangLevel
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else
-        hero.ai = new string[]{ };
+        hero.ai = new string[]{ "AutoFire" };
       tmp++;
 
       // skill
@@ -69,7 +69,7 @@ namespace TangLevel
 
     public static Effector MockEffector(){
       Effector effector = new Effector ();
-      effector.specialName = "Sprite_luoshen";
+      effector.specialName = "Sprite_binghuajizhong";
       return effector;
     }
   }

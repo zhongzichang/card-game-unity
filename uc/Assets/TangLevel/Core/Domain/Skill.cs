@@ -1,9 +1,13 @@
 ﻿using System;
+using UnityEngine;
 
 namespace TangLevel
 {
   public class Skill
   {
+    #region Selft
+
+    // -- 自身属性 --
 
     /// <summary>
     /// 编号
@@ -106,11 +110,19 @@ namespace TangLevel
     /// </summary>
     public string yellowDesc;
 
-    public Skill ()
-    {
+    #endregion
 
 
-    }
+    #region Runtime
+
+    // -- 运行时属性 --
+
+    public GameObject source;
+    public GameObject target;
+
+    #endregion
+
+
   }
 }
 
