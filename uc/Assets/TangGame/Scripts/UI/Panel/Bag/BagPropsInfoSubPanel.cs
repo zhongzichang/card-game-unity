@@ -56,7 +56,7 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
-			this.UpPropsInfo ("物品描述，这是一个非常非常非常废话的描述！你可以忽略它！当然，忽略也是有代价的！！！！");
+
 		}
 		// Update is called once per frame
 		void Update ()
@@ -75,6 +75,16 @@ namespace TangGame.UI
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
+			this.UpPropsIcon (data.Xml.icon);
+			this.UpPropsFrames (data.Xml.upgrade);
+			this.UpPropsInfo (data);
+			this.UpPropsName (data.Xml.name);
+			this.UpPropsPrice (data.Xml.selling_price);
+			if (data.Net != null) {
+				this.UpPropsCount (data.Net.count);
+			}
+
+
 		}
 		/// <summary>
 		/// Ups the name of the properties.
@@ -99,9 +109,9 @@ namespace TangGame.UI
 		/// Ups the properties frames.
 		/// 更新阶级
 		/// </summary>
-		public void UpPropsFrames ()
+		public void UpPropsFrames (short upgrade)
 		{
-			//			this.Frames.GetComponent<UISprite>().spriteName = "" TODO  需要根据图片名字修改
+			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr (upgrade);// TODO  需要根据图片名字修改
 		}
 		/// <summary>
 		/// Ups the properties count.
@@ -118,7 +128,7 @@ namespace TangGame.UI
 		/// 更新信息
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void UpPropsInfoLabel (PropsBase data)
+		public void UpPropsInfo (PropsBase data)
 		{
 			string infoStr = "";
 			//		<!-- 属性加成 -->
@@ -212,11 +222,13 @@ namespace TangGame.UI
 			if (data.Xml.info != null) {
 				infoStr = data.Xml.info;
 			}
-			UILabel lab = PropsInfoLabel.GetComponent<UILabel> ();
-			if (lab != null) {
-				lab.text = infoStr;
-			}
+			UILabel label = PropsInfoLabel.GetComponent<UILabel> ();
+			if (label != null) {
 
+				label.text = infoStr;
+				Utils.TextBgAdaptiveSize (label, PropsInfoBg.GetComponent<UISprite> ());
+				PropInfoTable.GetComponent<UITable> ().repositionNow = true;
+			}
 		}
 		/// <summary>
 		/// Ups the description.
@@ -234,7 +246,7 @@ namespace TangGame.UI
 		///  更新出售单价
 		/// </summary>
 		/// <param name="num">Number.</param>
-		public void UpPropsInfo(int num){
+		public void UpPropsPrice(int num){
 			UILabel lab = PropsInfoLabel.GetComponent<UILabel> ();
 			if (lab != null) {
 				string pattern = "\\d+";
@@ -242,18 +254,6 @@ namespace TangGame.UI
 				string result = rgx.Replace(lab.text, num.ToString());
 				lab.text = result;
 			}
-		}
-		/// <summary>
-		/// Ups the properties info.
-		/// 更新文字内容
-		/// </summary>
-		/// <param name="text">Text.</param>
-		public void UpPropsInfo (string text)
-		{
-			UILabel label = PropsInfoLabel.GetComponent<UILabel> ();
-			label.text = text;
-			Utils.TextBgAdaptiveSize (label, PropsInfoBg.GetComponent<UISprite> ());
-			PropInfoTable.GetComponent<UITable> ().repositionNow = true;
 		}
 	}
 }
