@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 0
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -39,9 +39,45 @@ TextureImporter:
   spritePivot: {x: .5, y: .5}
   spritePixelsToUnits: 100
   alphaIsTransparency: 0
-  textureType: -1
+  textureType: 0
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: binghua_AtlasTexture0_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 841
+        width: 1016
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: binghua_AtlasTexture0_1
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 27
+        width: 384
+        height: 1058
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: binghua_AtlasTexture0_2
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1
+        width: 1082
+        height: 356
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: binghua_AtlasTexture0_3
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 349
+        width: 1004
+        height: 472
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

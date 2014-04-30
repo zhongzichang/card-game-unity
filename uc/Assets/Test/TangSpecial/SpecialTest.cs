@@ -28,10 +28,11 @@ namespace TangLevel
         if (args.Success) {
           GameObject gobj = GobjManager.FetchUnused (spriteName);
 
-          SpecialBhvr bhvr = gobj.GetComponent<SpecialBhvr> ();
+          SkillSpecialBhvr bhvr = gobj.GetComponent<SkillSpecialBhvr> ();
           if (bhvr != null) {
-            bhvr.source = source;
-            bhvr.target = target;
+            //bhvr.source = source;
+            //bhvr.target = target;
+            bhvr.skill = Mocker.MockSkill ();
           }
           gobj.SetActive (true);
         }
