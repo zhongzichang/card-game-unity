@@ -26,6 +26,7 @@ namespace TangGame
 
 		public const string HERO_ITEM_NAME = "HeroItem";
 		public const string SKILL_ITEM_NAME = "SkillItem";
+		public const string PROPS_ITEM_NAME = "PropsItem";
 		public const string PANEL_BLOCK = "Block"; 
 
 		/// <summary>

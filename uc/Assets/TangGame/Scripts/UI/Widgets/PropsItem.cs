@@ -9,7 +9,7 @@ namespace TangGame.UI
 		public UISprite frameSprite;
 		public UILabel propsCountLabel;
 		public UISprite propsIconSprite;
-		private PropsBase data;
+		public PropsBase data;
 		private BagPanel bagPanel;
 		// Use this for initialization
 		void Start ()
