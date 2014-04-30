@@ -13,12 +13,15 @@ namespace TangLevel
     // 作用完毕，需要被删除的作用器
     private List<Effector> removes = new List<Effector> ();
 
+
+    private HeroBhvr heroBhvr = null;
+
     #region Mono
 
     // Use this for initialization
     void Start ()
     {
-	
+      heroBhvr = GetComponent<HeroBhvr> ();
     }
     // Update is called once per frame
     void Update ()
@@ -158,6 +161,11 @@ namespace TangLevel
     {
       // 包装作用器
       WrapEffector (effector, skill);
+
+
+      // 如果作用器减少HP
+      // 测试用
+      heroBhvr.hero.hp -= 1;
 
 
       string specialName = effector.specialName;

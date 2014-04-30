@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace TangLevel
 {
@@ -29,7 +29,7 @@ namespace TangLevel
     {
 
       Group group = new Group ();
-      group.heros = new Hero[1];
+      group.heros = new Hero[ UnityEngine.Random.Range(1,5)];
       for (int j = 0; j < group.heros.Length; j++) {
 
         group.heros [j] = MockHero ();
@@ -43,8 +43,11 @@ namespace TangLevel
     {
       Hero hero = new Hero ();      
       hero.resName = "hero_zf";
+      hero.maxHp = 100;
       hero.hp = 100;
-      hero.attackDistance = 15;
+      hero.maxMp = 100;
+      hero.mp = 100;
+      hero.attackDistance = UnityEngine.Random.Range(1, 20);
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else
