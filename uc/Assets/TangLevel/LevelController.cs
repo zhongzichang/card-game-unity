@@ -31,7 +31,6 @@ namespace TangLevel
 
       GameObject gobj = GameObject.Find ("UI Root");
       if (gobj != null) {
-        Debug.Log ("xxxx");
         uiMgr = gobj.GetComponent<UIManager> ();
       }
     }
@@ -169,7 +168,6 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private static void OnDbResLoaded (object sender, TDB.ResEventArgs args)
     {
-      Debug.Log ("OnDbResLoaded ====");
       string name = args.Name;
       if (requiredHeroGobjTable.ContainsKey (name)) {
         requiredHeroGobjTable [name] = requiredHeroGobjTable [name] - 1;
@@ -221,7 +219,6 @@ namespace TangLevel
       foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
         if (uiMgr != null) {
-          Debug.Log ("moniter hero --");
           hero.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
         }
         i++;
