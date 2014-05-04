@@ -29,9 +29,8 @@ namespace TangLevel
       TDB.DbgoManager.RaiseLoadedEvent += OnDbResLoaded;
       //TDB.DbgoManager.RaiseLoadedEvent.
 
-      GameObject gobj = GameObject.Find ("UI Root");
+      GameObject gobj = GameObject.Find ("BattleUIRoot");
       if (gobj != null) {
-        Debug.Log ("xxxx");
         uiMgr = gobj.GetComponent<UIManager> ();
       }
     }
@@ -169,7 +168,6 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private static void OnDbResLoaded (object sender, TDB.ResEventArgs args)
     {
-      Debug.Log ("OnDbResLoaded ====");
       string name = args.Name;
       if (requiredHeroGobjTable.ContainsKey (name)) {
         requiredHeroGobjTable [name] = requiredHeroGobjTable [name] - 1;
@@ -217,23 +215,38 @@ namespace TangLevel
 
 
       // 我方进场
-      int i = 0;
+      int heroIndex = 0;
       foreach (Hero hero in LevelContext.selfGroup.heros) {
-        AddHeroToScene (hero);
-        if (uiMgr != null) {
-          Debug.Log ("moniter hero --");
-          hero.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
+        GameObject gobj = AddHeroToScene (hero);
+        if (gobj != null) {
+          DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
+          if (uiMgr != null && uiMgr.greenHpMonitors.Length > heroIndex) {
+            hero.raiseHpChange += uiMgr.greenHpMonitors [heroIndex].OnChange;
+            hero.raiseHpChange += uiMgr.greenDisplayByHurts [heroIndex].OnHpChange;
+            hero.raiseHpChange += uiMgr.selfHpMonitors [heroIndex].OnChange;
+            if (agent != null) {
+              agent.raisePositionChange += uiMgr.greenHpPosMonitors [heroIndex].OnChange;
+            }
+          }
+          heroIndex++;
         }
-        i++;
       }
-      i = 0;
+
       // 敌方进场
+      heroIndex = 0;
       foreach (Hero hero in enemyGroup.heros) {
-        AddHeroToScene (hero);
-        if (uiMgr != null) {
-          hero.raiseHpChange += uiMgr.redHpMonitors [i].OnChange;
+        GameObject gobj = AddHeroToScene (hero);
+        if (gobj != null) {
+          DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
+          if (uiMgr != null && uiMgr.redHpMonitors.Length > heroIndex) {
+            hero.raiseHpChange += uiMgr.redHpMonitors [heroIndex].OnChange;
+            hero.raiseHpChange += uiMgr.redDisplayByHurts [heroIndex].OnHpChange;
+            if (agent != null) {
+              agent.raisePositionChange += uiMgr.redHpPosMonitors [heroIndex].OnChange;
+            }
+          }
+          heroIndex++;
         }
-        i++;
       }
 
       // 设置关卡状态 InLevel
@@ -246,7 +259,8 @@ namespace TangLevel
     /// <summary>
     /// Lefts the sub level. 
     /// </summary>
-    public static void LeftSubLevel(){
+    public static void LeftSubLevel ()
+    {
 
       // TODO 离开子关卡需要做一下清理工作
     }
@@ -414,7 +428,7 @@ namespace TangLevel
     /// </summary>
     /// <param name="hero">Hero.</param>
     /// <param name="side">Side.</param>
-    public static void AddHeroToScene (Hero hero)
+    public static GameObject AddHeroToScene (Hero hero)
     {
 
       GameObject gobj = HeroGobjManager.FetchUnused (hero);
@@ -426,6 +440,7 @@ namespace TangLevel
         else
           LevelContext.enemyGobjs.Add (gobj);
       }
+      return gobj;
     }
 
     /// <summary>

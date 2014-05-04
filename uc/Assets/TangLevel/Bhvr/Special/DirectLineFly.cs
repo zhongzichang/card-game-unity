@@ -7,7 +7,7 @@ namespace TangLevel
   /// 直线飞行 - 从一个对象的位置飞行到另一个对象的位置。
   /// 到达指定的距离后发出作用器，然后消失。
   /// </summary>
-  public class DirectLineFly : SkillSpecialBhvr
+  public class DirectLineFly : EffectorSpecialBhvr
   {
 
     public static Vector3 OFFSET = new Vector3(0, 3, 0);
@@ -42,9 +42,9 @@ namespace TangLevel
           //  new HitBean (actorId, targetId, tokenCode)));
 
           // 发出作用器
-          SkillBhvr targetSkillBhvr = skill.target.GetComponent<SkillBhvr> ();
-          if (targetSkillBhvr != null) {
-            targetSkillBhvr.Receive (skill.effector, skill);
+          SkillBhvr targetSkillBhvr = effector.skill.target.GetComponent<SkillBhvr> ();
+          if (targetSkillBhvr != null && effector.subEffectors != null && effector.subEffectors.Length > 0) {
+            targetSkillBhvr.Receive (effector.subEffectors[0], effector.skill);
           }
 
           //Destroy (gameObject);
@@ -72,11 +72,11 @@ namespace TangLevel
     public override void Play ()
     {
 
-      if (skill.source != null && skill.target != null) {
+      if (effector.skill != null && effector.skill.source != null && effector.skill.target != null) {
 
 
-        spos = skill.source.transform.localPosition + OFFSET;
-        tpos = skill.target.transform.localPosition + OFFSET;
+        spos = effector.skill.source.transform.localPosition + OFFSET;
+        tpos = effector.skill.target.transform.localPosition + OFFSET;
 
         // 方向
         myTransform.localRotation = Quaternion.FromToRotation (Vector3.right, 

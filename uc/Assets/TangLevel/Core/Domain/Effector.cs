@@ -9,6 +9,9 @@ namespace TangLevel
     #region Self
     // -- 自身属性 --
     public string specialName;
+
+    public Effector[] subEffectors;
+
     #endregion
 
     #region Runtime

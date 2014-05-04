@@ -103,6 +103,8 @@ namespace TangLevel
 
     void LateUpdate ()
     {
+
+      // 调整游戏对象的Y坐标
       Vector3 pos = myTransform.localPosition;
       myTransform.localPosition = new Vector3 (pos.x, pos.y, -(100-pos.y));
     }
