@@ -18,7 +18,8 @@ namespace TangLevel
     /// </summary>
     private float remain = 0f;
 
-    void Start(){
+    void Start ()
+    {
       continuedTime = DEFAULT_TIME;
     }
 
@@ -48,13 +49,22 @@ namespace TangLevel
     public void OnHpChange (int val, int max)
     {
 
-      if (!gameObject.activeSelf) {
-        // hp 变化后 ，显示 HP Bar
-        gameObject.SetActive (true);
+      if (max > 0) {
+
+        float amount = ((float)val) / max;
+
+        if (amount > 0) {
+
+          if (!gameObject.activeSelf) {
+            // hp 变化后 ，显示 HP Bar
+            gameObject.SetActive (true);
+          }
+
+          remain = continuedTime;
+        } else if (gameObject.activeSelf) {
+          gameObject.SetActive (false);
+        }
       }
-
-      remain = continuedTime;
-
     }
   }
 }
