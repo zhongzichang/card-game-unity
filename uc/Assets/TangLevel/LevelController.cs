@@ -223,6 +223,7 @@ namespace TangLevel
           if (uiMgr != null && uiMgr.greenHpMonitors.Length > heroIndex) {
             hero.raiseHpChange += uiMgr.greenHpMonitors [heroIndex].OnChange;
             hero.raiseHpChange += uiMgr.greenDisplayByHurts [heroIndex].OnHpChange;
+            hero.raiseHpChange += uiMgr.selfHpMonitors [heroIndex].OnChange;
             if (agent != null) {
               agent.raisePositionChange += uiMgr.greenHpPosMonitors [heroIndex].OnChange;
             }
