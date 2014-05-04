@@ -167,9 +167,9 @@ namespace TangGame.Xml
 				Config.addPropsHeroesRelationship (item.soul_rock_id,item.id);
 				//TODO 先写到这个地方到时候再改
 				TangGame.UI.Base.HeroBase herobase = new TangGame.UI.Base.HeroBase ();
-
 				herobase.Xml = item;
-				TangGame.UI.Base.BaseCache.heroBeseDic.Add (item.id, herobase);
+				TangGame.UI.Base.BaseCache.heroBeseTable.Add (item.id, herobase);
+
 			}
 		}
 	}

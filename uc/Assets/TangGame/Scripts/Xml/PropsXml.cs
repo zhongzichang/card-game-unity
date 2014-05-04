@@ -73,7 +73,7 @@ namespace TangGame.Xml
 		public int dodge;
 		//		<!-- 治疗效果 -->
 		//		<addition_treatment>21</addition_treatment>
-		public int addtition_treatment;
+		public int addition_treatment;
 		//		<!-- 需求等级 -->
 		//		<level>12</level>
 		public int level;
@@ -135,6 +135,12 @@ namespace TangGame.Xml
 			foreach (PropsXml item in root.items) {
 				Config.propsXmlTable [item.id] = item;
 				ResolveSyntheticProps (item);
+
+
+				//TODO 先写到这个地方到时候再改
+				TangGame.UI.Base.PropsBase propsBase = new TangGame.UI.Base.PropsBase ();
+				propsBase.Xml = item;
+				TangGame.UI.Base.BaseCache.propsBaseTable.Add (item.id, propsBase);
 			}
 		}
 

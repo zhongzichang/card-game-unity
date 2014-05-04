@@ -55,7 +55,7 @@ namespace TangGame.UI
 			net.configId = 1001;
 			net.level = 2;
 			net.upgrade = 6;
-			TangGame.UI.Base.BaseCache.heroBeseDic [net.configId].Net = net;
+			TangGame.UI.Base.BaseCache.heroBeseTable [net.configId].Net = net;
 
 			this.LoadHeroAll ();
 		}
@@ -64,7 +64,7 @@ namespace TangGame.UI
 		/// 加载所有的英雄
 		/// </summary>
 		void LoadHeroAll(){
-			foreach(HeroBase herobase in TangGame.UI.Base.BaseCache.heroBeseDic.Values){
+			foreach(HeroBase herobase in TangGame.UI.Base.BaseCache.heroBeseTable.Values){
 				this.UpHeroItem (herobase);
 			}
 			this.repositionNow ();

@@ -13,9 +13,9 @@ public class InputController : MonoBehaviour
 		float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x;
 		if(new_pos >=-10.24 && new_pos<=0)
 		{
-			skyLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x /4));
-			mountainLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x/2));
-			grassLayer.transform.Translate(Vector3.right * gesture.DeltaMove.x);
+      skyLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x /40));
+      mountainLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x/20));
+      grassLayer.transform.Translate(Vector3.right * gesture.DeltaMove.x/10);
 		}
 	}
 

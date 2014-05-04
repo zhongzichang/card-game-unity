@@ -243,7 +243,7 @@ public class Utils
 			mSize.x += border.x + border.z + ( offset.x - border.x) * 2f;
 			mSize.y += border.y + border.w + (-offset.y - border.y) * 2f;
 
-			background.width = Mathf.RoundToInt(mSize.x);
+//			background.width = Mathf.RoundToInt(mSize.x);
 			background.height = Mathf.RoundToInt(mSize.y);
 		}
 	}
