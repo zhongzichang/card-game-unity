@@ -218,16 +218,17 @@ namespace TangLevel
       int i = 0;
       foreach (Hero hero in LevelContext.selfGroup.heros) {
         AddHeroToScene (hero);
-        if (uiMgr != null) {
+        if (uiMgr != null && uiMgr.greenHpMonitors.Length > i) {
           hero.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
         }
         i++;
       }
+
       i = 0;
       // 敌方进场
       foreach (Hero hero in enemyGroup.heros) {
         AddHeroToScene (hero);
-        if (uiMgr != null) {
+        if (uiMgr != null && uiMgr.redHpMonitors.Length > i) {
           hero.raiseHpChange += uiMgr.redHpMonitors [i].OnChange;
         }
         i++;

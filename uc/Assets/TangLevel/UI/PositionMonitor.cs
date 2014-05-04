@@ -5,15 +5,21 @@ namespace TangLevel
 {
   public class PositionMonitor : MonoBehaviour
   {
+
+    public Camera camera;
+    private Transform myTransform = null;
+
     // Use this for initialization
     void Start ()
     {
-	
+      myTransform = transform;
     }
-    // Update is called once per frame
-    void Update ()
-    {
-	
+
+    void OnChange(Vector3 screenPosition){
+
+      camera.ScreenToWorldPoint (screenPosition);
+      //myTransform.
     }
+
   }
 }
