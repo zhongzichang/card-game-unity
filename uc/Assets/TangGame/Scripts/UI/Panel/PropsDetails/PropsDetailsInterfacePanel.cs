@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace TangGame.UI
 {
-	public class BagPropsInfoSubPanel : MonoBehaviour
+	public class PropsDetailsInterfacePanel : MonoBehaviour
 	{
 		/// <summary>
 		/// The properties info background.
@@ -44,23 +44,44 @@ namespace TangGame.UI
 		/// </summary>
 		public	GameObject PropsCount;
 		/// <summary>
-		/// The price label.
-		/// 物品的价格
-		/// </summary>
-		public GameObject PriceLabel;
-		/// <summary>
 		/// The name of the properties.
 		/// 物品的名字
 		/// </summary>
 		public GameObject PropsName;
+		/// <summary>
+		/// The properties lv label.
+		/// 道具要求等级
+		/// </summary>
+		public GameObject PropsLvLabel;
+		/// <summary>
+		/// The data.
+		/// 英雄数据
+		/// </summary>
+		private PropsBase data;
 
+		public PropsBase Data {
+			get {
+				return data;
+			}
+			set {
+				data = value;
+			}
+		}
 
+		/// <summary>
+		/// The synthesis button label.
+		/// </summary>
+		public GameObject SynthesisBtnLabel;
+		// Use this for initialization
+		void Start ()
+		{
+			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
+		}
 		// Update is called once per frame
 		void Update ()
 		{
 	
 		}
-
 		/// <summary>
 		/// Flush the specified data.
 		/// 刷新面板数据
@@ -76,7 +97,7 @@ namespace TangGame.UI
 			this.UpPropsFrames (data.Xml.upgrade);
 			this.UpPropsInfo (data);
 			this.UpPropsName (data.Xml.name);
-			this.UpPropsPrice (data.Xml.selling_price);
+			this.UpPropsLvLabel (data.Xml.level.ToString());
 			if (data.Net != null) {
 				this.UpPropsCount (data.Net.count);
 			} else {
@@ -85,7 +106,6 @@ namespace TangGame.UI
 			this.UpDescription (data.Xml.description);
 
 		}
-
 		/// <summary>
 		/// Ups the name of the properties.
 		/// 更新物品名字
@@ -276,18 +296,14 @@ namespace TangGame.UI
 		}
 
 		/// <summary>
-		/// Ups the properties info.
-		///  更新出售单价
+		/// Ups the properties lv label.
+		/// 等下道具等级需求
 		/// </summary>
-		/// <param name="num">Number.</param>
-		public void UpPropsPrice (int num)
-		{
-			UILabel lab = PriceLabel.GetComponent<UILabel> ();
+		/// <param name="text">Text.</param>
+		public void UpPropsLvLabel(string text){
+			UILabel lab = PropsLvLabel.GetComponent<UILabel> ();
 			if (lab != null) {
-				string pattern = "\\d+";
-				Regex rgx = new Regex (pattern);
-				string result = rgx.Replace (lab.text, num.ToString ());
-				lab.text = result;
+				lab.text = string.Format (UIPanelLang.PROPS_LV_LABEL_TAG, text);
 			}
 		}
 	}

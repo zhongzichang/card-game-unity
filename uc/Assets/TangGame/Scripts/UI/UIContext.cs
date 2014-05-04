@@ -21,8 +21,21 @@ namespace TangGame
 		public const string MAIN_STATUS_PANEL_NAME = "MainStatusPanel";
 		public const string MAIN_POPUP_PANEL_NAME = "MainPopupPanel";
 		public const string HERO_VIEW_PANEL_NAME = "HeroViewPanel";
+		/// <summary>
+		/// HER o_ INF o_ PANE l_ NAM.
+		/// 英雄队列面板
+		/// </summary>
 		public const string HERO_INFO_PANEL_NAME = "HeroInfoPanel";
+		/// <summary>
+		/// The BA g_ PANE l_ NAM.
+		/// 背包面板
+		/// </summary>
 		public const string BAG_PANEL_NAME = "BagPanel";
+		/// <summary>
+		/// The property s_ DETAIL s_ PANE l_ NAM.
+		/// 道具图鉴
+		/// </summary>
+		public const string PROPS_DETAILS_PANEL_NAME = "PropsDetailsPanel";
 
 		public const string HERO_ITEM_NAME = "HeroItem";
 		public const string SKILL_ITEM_NAME = "SkillItem";
