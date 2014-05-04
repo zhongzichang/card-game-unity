@@ -29,7 +29,7 @@ namespace TangLevel
     {
 
       Group group = new Group ();
-      group.heros = new Hero[ UnityEngine.Random.Range(1,5)];
+      group.heros = new Hero[ UnityEngine.Random.Range(2,5)];
       for (int j = 0; j < group.heros.Length; j++) {
 
         group.heros [j] = MockHero ();
@@ -47,7 +47,7 @@ namespace TangLevel
       hero.hp = 100;
       hero.maxMp = 100;
       hero.mp = 100;
-      hero.attackDistance = UnityEngine.Random.Range(1, 20);
+      hero.attackDistance = UnityEngine.Random.Range(3, 20);
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else

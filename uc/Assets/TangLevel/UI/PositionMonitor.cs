@@ -6,8 +6,8 @@ namespace TangLevel
   public class PositionMonitor : MonoBehaviour
   {
 
-    public Camera camera;
     private Transform myTransform = null;
+    private Vector3 offset = new Vector3 (0, 100, 0);
 
     // Use this for initialization
     void Start ()
@@ -15,10 +15,10 @@ namespace TangLevel
       myTransform = transform;
     }
 
-    void OnChange(Vector3 screenPosition){
+    public void OnChange(Vector3 screenPosition){
 
-      camera.ScreenToWorldPoint (screenPosition);
-      //myTransform.
+      myTransform.localPosition = screenPosition + offset;
+
     }
 
   }

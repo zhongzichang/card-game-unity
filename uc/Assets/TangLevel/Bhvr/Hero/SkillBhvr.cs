@@ -165,7 +165,7 @@ namespace TangLevel
 
       // 如果作用器减少HP
       // 测试用
-      heroBhvr.hero.hp -= 1;
+      heroBhvr.hero.hp -= 3;
 
 
       string specialName = effector.specialName;
