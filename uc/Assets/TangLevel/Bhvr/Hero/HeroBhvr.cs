@@ -77,7 +77,7 @@ namespace TangLevel
 
     #endregion
 
-    #region Other Events
+    #region DragonBones Events
 
     private void OnMovementChange (Com.Viperstudio.Events.Event e)
     {
@@ -101,15 +101,58 @@ namespace TangLevel
       
         // 播放完前摇动作后，播放后摇。如果有后摇特效，放出后摇特效
         if (skillBhvr != null && skill != null && target != null) {
-          skillBhvr.Cast (skill, target);
+
+          skillBhvr.Cast (skill.effector, skill, target);
+
         }
 
         // 播放完后摇动作后，转成英雄状态 idle
         statusBhvr.Status = HeroStatus.idle;
 
+      } else if (movementId.Equals (HeroStatus.dead.ToString ())) {
+
+
       }
     }
 
+    #endregion
+
+    #region Tang Callback
+
+    /// <summary>
+    /// 状态开始回调
+    /// </summary>
+    /// <param name="status">Status.</param>
+    private void OnStatusStart (HeroStatus status)
+    {
+      switch (status) {
+      case HeroStatus.attack:
+        // TODO 技能需要特殊处理，不同的技能使用不同的动作
+        dbBhvr.GotoAndPlay (status.ToString ());
+        break;
+      case HeroStatus.dead:
+        armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
+        FadeOut ();
+        break;
+      default:
+        dbBhvr.GotoAndPlay (status.ToString ());
+        break;
+      }
+    }
+
+    #endregion
+
+    #region Private Methods
+    private void FadeOut(){
+
+      // 死亡动画播放完毕
+      // 淡出
+      FadeOut fadeout = GetComponent<FadeOut> ();
+      if (fadeout == null) {
+        fadeout = gameObject.AddComponent<FadeOut> ();
+      }
+      fadeout.Play ();
+    }
     #endregion
 
     #region Public Methods
@@ -128,6 +171,11 @@ namespace TangLevel
 
     }
 
+    public void Die ()
+    {
+      statusBhvr.Status = HeroStatus.dead;
+    }
+
     /// <summary>
     /// 找距离最近的目标
     /// </summary>
@@ -135,26 +183,6 @@ namespace TangLevel
     public GameObject FindClosestTarget ()
     {
       return LevelController.FindClosestTarget (this);
-    }
-
-    #endregion
-
-    #region Tang Callback
-
-    /// <summary>
-    /// 状态开始回调
-    /// </summary>
-    /// <param name="status">Status.</param>
-    private void OnStatusStart (HeroStatus status)
-    {
-      switch (status) {
-      case HeroStatus.attack:
-        dbBhvr.GotoAndPlay (status.ToString ());
-        break;
-      default:
-        dbBhvr.GotoAndPlay (status.ToString ());
-        break;
-      }
     }
 
     #endregion

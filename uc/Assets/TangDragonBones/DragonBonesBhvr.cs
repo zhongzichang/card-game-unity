@@ -13,17 +13,16 @@ namespace TangDragonBones
 
     #region MonoBehaviour
 
-
     void OnDisable ()
     {
       //Debug.Log ("disable");
-      if (armature != null)
+      if (armature != null &&  WorldClock.Clock.Contains(armature) )
         WorldClock.Clock.Remove (armature);
     }
 
     void OnEnable ()
     {
-      if (armature != null) {
+      if (armature != null &&  !WorldClock.Clock.Contains(armature)) {
         WorldClock.Clock.Add (armature);
       }
     }
@@ -36,7 +35,6 @@ namespace TangDragonBones
     }
 
     #endregion
-
 
     #region Public Methods
 
@@ -55,19 +53,22 @@ namespace TangDragonBones
     /// <summary>
     /// 播放下一个动作
     /// </summary>
-    public void GotoAndPlayNext(){
+    public void GotoAndPlayNext ()
+    {
       if (armature != null) {
         List<string> animationList = armature.Animation.AnimationList;
-				int index = animationList.IndexOf (armature.Animation.MovementID);
+        int index = animationList.IndexOf (armature.Animation.MovementID);
         if (index >= animationList.Count - 1) {
           index = 0;
         } else {
           index++;
         }
-        GotoAndPlay (animationList[index]);
+        GotoAndPlay (animationList [index]);
         
       }
     }
+
+
     #endregion
   }
 }
