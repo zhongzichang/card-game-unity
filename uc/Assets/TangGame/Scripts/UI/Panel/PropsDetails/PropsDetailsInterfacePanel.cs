@@ -67,6 +67,11 @@ namespace TangGame.UI
 				data = value;
 			}
 		}
+		void OnEnable(){
+			if (data != null) {
+				Flush (data);
+			}
+		}
 
 		/// <summary>
 		/// The synthesis button label.
@@ -75,6 +80,9 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
+			if (data != null) {
+				Flush (data);
+			}
 			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
 		}
 		// Update is called once per frame
@@ -143,7 +151,7 @@ namespace TangGame.UI
 		public void UpPropsCount (int num)
 		{
 			UILabel label = this.PropsCount.GetComponent<UILabel> ();
-			label.text = string.Format (label.text, num);
+			label.text = string.Format (UIPanelLang.HAS_NUMBER_OF_PROPS, num);
 		}
 
 		/// <summary>

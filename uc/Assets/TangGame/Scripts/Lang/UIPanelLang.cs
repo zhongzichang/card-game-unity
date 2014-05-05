@@ -107,7 +107,7 @@ namespace TangGame.UI
 		/// The property s_ L v_ LABE l_ TA.
 		/// 需要英雄等级
 		/// </summary>
-		public const string PROPS_LV_LABEL_TAG = "需求英雄等级: ｛0｝";
+		public const string PROPS_LV_LABEL_TAG = "需求英雄等级: {0}";
 
 
 		/// <summary>
@@ -119,6 +119,10 @@ namespace TangGame.UI
 		/// The SYNTHESI s_ SPEE.
 		/// 合成花费
 		/// </summary>
-		public const string SYNTHESIS_SPEND = "合成花费 : ｛0｝";
+		public const string SYNTHESIS_SPEND = "合成花费 : {0}";
+		/// <summary>
+		/// Has a number of props
+		/// </summary>
+		public const string HAS_NUMBER_OF_PROPS = "拥有 {0} 件";
 	}
 }
