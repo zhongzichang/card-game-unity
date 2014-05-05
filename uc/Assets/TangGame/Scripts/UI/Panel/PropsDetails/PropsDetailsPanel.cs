@@ -18,6 +18,8 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
+			if(param != null && param is PropsBase)
+				data = param as PropsBase;
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsInterfacePanel, PropsDetailsInterfacePanel.name);
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsSubPanel, PropsDetailsSubPanel.name);
 

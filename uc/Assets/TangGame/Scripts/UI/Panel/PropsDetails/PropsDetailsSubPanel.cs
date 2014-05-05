@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI.Base;
+using TangGame.Xml;
 
 namespace TangGame.UI
 {
@@ -75,21 +76,29 @@ namespace TangGame.UI
 
 		}
 
-		void OnEable ()
+		void OnEnable ()
 		{
-			SVPropsItem svpItem = this.SVPropsItem.GetComponent<SVPropsItem> ();
-			svpItem.Flush (data);
-			SVPropsItemArray.Add (svpItem);
-			SetCurrentPropsItem (svpItem);
+			if (data != null) {
+				SVPropsItem svpItem = this.SVPropsItem.GetComponent<SVPropsItem> ();
+				svpItem.Flush (data);
+				SVPropsItemArray.Add (svpItem);
+				SetCurrentPropsItem (svpItem);
+			}
 		}
 
 		/// <summary>
 		/// SVs the properties item array forward.
 		/// 点击到下一个道具
 		/// </summary>
-		void SVPropsItemArrayForward (PropsBase propsBase)
+		void SVPropsItemArrayForward (PropsXml propsXml)
 		{
 			//TODO 点击到下一个道具
+			int count = SVPropsItemArray.Count;
+			SVPropsItem svPropsItem = SVPropsItemArray [count - 1] as SVPropsItem;
+			svPropsItem.IsChecked = false;
+			svPropsItem = NGUITools.AddChild (SVPropsItemTable.gameObject, SVPropsItem).GetComponent<SVPropsItem> ();
+			svPropsItem.Flush (propsXml);
+			this.SVPropsItemTable.GetComponent<UITable> ().repositionNow = true;
 		}
 
 		/// <summary>
@@ -102,7 +111,7 @@ namespace TangGame.UI
 				SVPropsItemArray.RemoveAt (SVPropsItemArray.Count - 1);
 				SetCurrentPropsItem (SVPropsItemArray[SVPropsItemArray.Count - 1] as SVPropsItem);
 			}
-
+			this.SVPropsItemTable.GetComponent<UITable> ().repositionNow = true;
 		}
 
 		/// <summary>
@@ -115,7 +124,7 @@ namespace TangGame.UI
 			svpItem.IsChecked = true;
 			if (SVPropsItemArray.LastIndexOf (svpItem) != 0) {
 				svpItem.Arrow.SetActive (true);
-			}
+			} 
 			PropsBase propsBase = svpItem.data;
 			PropsItem mainPropsItem = MainPropsItem.GetComponent<PropsItem> ();
 			mainPropsItem.ShowCount = false;

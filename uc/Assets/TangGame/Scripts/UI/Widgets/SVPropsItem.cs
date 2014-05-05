@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Xml;
+using TangGame.UI.Base;
 
 namespace TangGame.UI
 {
@@ -20,6 +22,11 @@ namespace TangGame.UI
 				isChecked = value;
 				Vernier.gameObject.SetActive (isChecked);
 			}
+		}
+		public void Flush(PropsXml xml){
+			data = new PropsBase ();
+			data.Xml = xml;
+			this.Flush (data);
 		}
 	}
 }

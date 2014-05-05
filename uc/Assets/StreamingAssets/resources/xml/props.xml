@@ -23,7 +23,7 @@
 		<dodge>0</dodge>
 		<addition_treatment>20</addition_treatment>
 		<level>15</level>
-		<synthetic_props>{12,123}</synthetic_props>
+		<synthetic_props>{12,123}{103,12}</synthetic_props>
 		<synthetic_spend>500</synthetic_spend>
 		<price_list>{123,123,123}</price_list>
 		<selling_price>5000</selling_price>
