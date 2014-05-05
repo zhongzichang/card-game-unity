@@ -81,6 +81,15 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// 释放英雄游戏对象 - 不释放资源，只设置为 unactive
+    /// </summary>
+    /// <param name="gobj">Gobj.</param>
+    public static void Release (GameObject gobj)
+    {
+      TD.DbgoManager.Release (gobj, false);
+    }
+
+    /// <summary>
     /// 释放英雄游戏对象
     /// </summary>
     /// <param name="gobj">Gobj.</param>
