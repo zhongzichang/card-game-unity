@@ -143,6 +143,7 @@ namespace TangLevel
       // TODO 测试用，请使用正式的伤害计算公式
       int hurt = UnityEngine.Random.Range (1, 20);
       heroBhvr.hero.hp -= hurt;
+
       // 冒字
       TG.BattleTxt battleTxt = new TG.BattleTxt ();
       battleTxt.type = TG.BattleTxtType.Hurt;

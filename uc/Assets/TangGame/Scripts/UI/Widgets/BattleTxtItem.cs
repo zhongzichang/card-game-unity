@@ -88,7 +88,7 @@ namespace TangGame
       this.transform.localScale = Vector3.zero;
       movePosition = this.transform.localPosition;
       movePosition.z = -10;
-      movePosition.y = 0;
+      //movePosition.y = 0;
 
       if (txt.type == BattleTxtType.Text) {//文字初始坐标要往上一点
         movePosition.y += 30;
