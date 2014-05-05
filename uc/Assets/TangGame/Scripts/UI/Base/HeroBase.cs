@@ -15,15 +15,16 @@ namespace TangGame.UI.Base
 		/// <summary>
 		/// Ups the skill bases. 更新技能列表
 		/// </summary>
-		private void UpSkillBases(){
+		private void UpSkillBases ()
+		{
 			if (xml != null) {
 				if (skillBases == null) {
 					skillBases = new SkillBase[Skill_Ids.Length];
 				}
 				for (int i = 0; i < Skill_Ids.Length; i++) {
-					if(skillBases[i] == null){
-					skillBases [i] = new SkillBase ();
-					skillBases [i].Xml = Config.skillXmlTable [Skill_Ids[i]];
+					if (skillBases [i] == null) {
+						skillBases [i] = new SkillBase ();
+						skillBases [i].Xml = Config.skillXmlTable [Skill_Ids [i]];
 					}
 				}
 			}
@@ -39,6 +40,7 @@ namespace TangGame.UI.Base
 				}
 			}
 		}
+
 		/// <summary>
 		/// Gets the skill bases.技能实体数据数组
 		/// </summary>
@@ -49,6 +51,7 @@ namespace TangGame.UI.Base
 				return skillBases;
 			}
 		}
+
 		/// <summary>
 		/// 来自网络的数据
 		/// </summary>
@@ -213,6 +216,7 @@ namespace TangGame.UI.Base
 				return xml.spell_penetration;
 			}
 		}
+
 		/// <summary>
 		/// 法术爆击
 		/// </summary>
@@ -222,12 +226,13 @@ namespace TangGame.UI.Base
 				return xml.magic_crit;
 			}
 		}
+
 		/// <summary>
 		/// 物理爆击
 		/// </summary>
 		/// <value>The physical_ crit.</value>
-		public int Physical_Crit{
-			get{ 
+		public int Physical_Crit {
+			get { 
 				return xml.physical_crit;
 			}
 		}
@@ -258,8 +263,9 @@ namespace TangGame.UI.Base
 				return xml.addition_treatment;
 			}
 		}
-		public AttributeTypeEnum Attribute_Type{
-			get{ 
+
+		public AttributeTypeEnum Attribute_Type {
+			get { 
 				return (AttributeTypeEnum)xml.attribute_type;
 			}
 		}
@@ -273,16 +279,18 @@ namespace TangGame.UI.Base
 				return Net.level * (Net.evolve + Net.upgrade);
 			}
 		}
+
 		/// <summary>
 		/// 英雄技能id 数组
 		/// </summary>
 		/// <value>The skill_ identifiers.</value>
-		private int[] Skill_Ids{
-			get{ 
-				string[] str = (string [])Utils.SplitStrByBraces (xml.skill_ids).ToArray(typeof ( string));
-				return Utils.SplitStrByCommaToInt (str[0]);
+		private int[] Skill_Ids {
+			get { 
+				string[] str = (string[])Utils.SplitStrByBraces (xml.skill_ids).ToArray (typeof(string));
+				return Utils.SplitStrByCommaToInt (str [0]);
 			}
 		}
+
 		/// <summary>
 		/// 这个英雄是否解锁
 		/// </summary>

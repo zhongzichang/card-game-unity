@@ -45,7 +45,6 @@ namespace TangGame.Net
 		/// <summary>
 		/// The equip.
 		/// </summary>
-		public Dictionary<int,EquipNet> equip = new Dictionary<int,EquipNet>();
-
+		public EquipNet[] equipList;
 	}
 }
