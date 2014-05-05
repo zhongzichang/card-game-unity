@@ -27,11 +27,8 @@ namespace TangLevel
       set;
     }
 
-    /// <summary>
-    /// 子关卡状态
-    /// </summary>
-    public static LevelStatus subLevelStatus = LevelStatus.OUT;
     private static Level m_currentLevel = null;
+
     /// <summary>
     /// 当前关卡
     /// </summary>
@@ -41,28 +38,33 @@ namespace TangLevel
       set{ m_currentLevel = value; }
     }
 
-    private static int m_currentSubLevelIndex = 0;
     /// <summary>
     /// 当前子关卡
     /// </summary>
     /// <value>The current sub level.</value>
     public static SubLevel CurrentSubLevel {
-      get {
-        if (m_currentLevel != null && m_currentLevel.subLeves.Length > m_currentSubLevelIndex) {
-          return m_currentLevel.subLeves [m_currentSubLevelIndex];
-        }
-        return null;
-      }
+      get;
+      set;
     }
+
     /// <summary>
     /// 下一个子关卡
     /// </summary>
     /// <value>The next sub level.</value>
     public static SubLevel NextSubLevel {
       get {
-        if (m_currentLevel != null && m_currentLevel.subLeves.Length > m_currentSubLevelIndex + 1) {
-          return m_currentLevel.subLeves [m_currentSubLevelIndex + 1];
-        }
+        if (m_currentLevel != null) {
+          if (InLevel) { // 在关卡里面
+            int nextIndex = CurrentSubLevel.index + 1;
+            if (m_currentLevel.subLeves.Length > nextIndex) {
+              return m_currentLevel.subLeves [nextIndex];
+            }
+          } else { // 在关卡外面
+            if (m_currentLevel.subLeves.Length > 0) {
+              return m_currentLevel.subLeves [0];
+            }
+          }
+        } 
         return null;
       }
     }
@@ -73,7 +75,7 @@ namespace TangLevel
     /// <value>The target sub level.</value>
     public static SubLevel TargetSubLevel {
       get {
-        return InLevel ? NextSubLevel : CurrentSubLevel;
+        return NextSubLevel;
       }
     }
 

@@ -16,16 +16,16 @@ namespace TangLevel
       for (int i = 1; i < 4; i++) {
         SubLevel subLevel = new SubLevel ();
         subLevel.id = i;
-
+        subLevel.index = i - 1;
         if (i == 1) {
           subLevel.resName = "bbg_arena";
         } else if (i == 2) {
-          subLevel.resName = "bbg_beach_buiding";
+          subLevel.resName = "bbg_beach_building";
         } else if (i == 3) {
           subLevel.resName = "bbg_blood_elf_door";
         }
 
-        level.subLeves [i - 1] = subLevel;
+        level.subLeves [subLevel.index ] = subLevel;
         subLevel.enemyGroup = MockGroup ();
 
       }

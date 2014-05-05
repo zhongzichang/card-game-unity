@@ -66,7 +66,10 @@ namespace TangLevel
         // AI
         if (hero.ai != null) {
           foreach (string scriptName in hero.ai) {
-            Component component = gobj.AddComponent (scriptName);
+            Component component = gobj.GetComponent (scriptName);
+            if (component == null) {
+              component = gobj.AddComponent (scriptName);
+            }
             if (component == null) {
               Debug.LogWarning ("Fail to add AI Component - " + scriptName);
             }
@@ -78,6 +81,15 @@ namespace TangLevel
 
       return gobj;
 
+    }
+
+    /// <summary>
+    /// 释放英雄游戏对象 - 不释放资源，只设置为 unactive
+    /// </summary>
+    /// <param name="gobj">Gobj.</param>
+    public static void Release (GameObject gobj)
+    {
+      TD.DbgoManager.Release (gobj, false);
     }
 
     /// <summary>

@@ -12,9 +12,17 @@ namespace TangLevel
   {
     /// <summary>
     /// Occurs when raise sub level loaded event.
-    /// 子关卡加载完毕事件处理
+    /// 关卡加载完毕
     /// </summary>
-    public static event EventHandler RaiseSubLevelLoadedEvent;
+    public static event EventHandler RaiseLevelLoadedEvent;
+    /// <summary>
+    /// 挑战成功
+    /// </summary>
+    public static event EventHandler RaiseChallengeSuccessEvent;
+    /// <summary>
+    /// 挑战失败
+    /// </summary>
+    public static event EventHandler RaiseChallengeFailEvent;
 
     /// <summary>
     /// 子关卡需要的英雄游戏对象以及数量
@@ -27,26 +35,170 @@ namespace TangLevel
     void Start ()
     {
 
-      // 监听Dragonbone资源装载完毕事件
-      TDB.DbgoManager.RaiseLoadedEvent += OnDragonBonesResLoaded;
-
       GameObject gobj = GameObject.Find ("BattleUIRoot");
       if (gobj != null) {
         uiMgr = gobj.GetComponent<UIManager> ();
       }
 
       LevelContext.InLevel = false;
-      LevelContext.subLevelStatus = LevelStatus.OUT;
 
       Mocker.Configure ();
 
-      LevelController.ChallengeLevel (1, Mocker.MockGroup ());
+    }
+    // test ............
+    void OnGUI ()
+    {
+      if (GUI.Button (new Rect (10, 10, 150, 100), "Load Level")) {
+
+        ChallengeLevel (1, Mocker.MockGroup ());
+
+      }
+
+
+      if (GUI.Button (new Rect (200, 10, 150, 100), " Next Sub Level")) {
+
+        ChallengeNextSubLevel ();
+
+      }
+
+      if (GUI.Button (new Rect (10, 210, 150, 100), " Left Level")) {
+
+        LeftLevel ();
+
+      }
+    }
+    // .................
+    void OnEnable ()
+    {
+      // 监听Dragonbone资源装载完毕事件
+      TDB.DbgoManager.RaiseLoadedEvent += OnDragonBonesResLoaded;
+    }
+
+    void OnDisable ()
+    {
+      TDB.DbgoManager.RaiseLoadedEvent -= OnDragonBonesResLoaded;
+    }
+
+    #endregion
+
+    #region PublicStaticMethods
+
+    /// <summary>
+    /// 挑战这个关卡
+    /// </summary>
+    /// <param name="levelId">关卡ID</param>
+    /// <param name="group">我方小组</param>
+    public static void ChallengeLevel (int levelId, Group group)
+    {
+
+      // 确保不在关卡里面
+      if (!LevelContext.InLevel) {
+
+        // 设置当前关卡
+        if (Config.levelTable.ContainsKey (levelId)) {
+          LevelContext.CurrentLevel = Config.levelTable [levelId];
+        }
+        LevelContext.selfGroup = group;
+
+        LoadTargetSubLevelRes ();
+
+      }
+    }
+
+    /// <summary>
+    /// 挑战下一个子关卡
+    /// </summary>
+    public static void ChallengeNextSubLevel ()
+    {
+      // 如果子关卡还没有加载，加载子关卡资源
+      // 否则进入子关卡
+
+      if (LevelContext.TargetSubLevel != null) {
+
+        // 离开子关卡
+        LeftSubLevel ();
+
+        // 记载目标子关卡资源
+        LoadTargetSubLevelRes ();
+
+      }
 
     }
 
-    void OnDestory ()
+    /// <summary>
+    /// Lefts the current level.
+    /// </summary>
+    public static void LeftLevel ()
     {
-      TDB.DbgoManager.RaiseLoadedEvent -= OnDragonBonesResLoaded;
+
+      // 先退出子关卡
+      LeftSubLevel ();
+
+      LevelContext.InLevel = false;
+      // 发出离开关卡通知
+    }
+
+    /// <summary>
+    /// 暂停当前关卡
+    /// </summary>
+    public static void Pause ()
+    {
+
+    }
+
+    /// <summary>
+    /// 恢复当前关卡
+    /// </summary>
+    public static void Resume ()
+    {
+
+    }
+
+    /// <summary>
+    /// 找距离最近的目标
+    /// </summary>
+    /// <returns>The target.</returns>
+    /// <param name="sourceGobj">Source gobj.</param>
+    public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
+    {
+
+      GameObject sgobj = sourceHeroBhvr.gameObject;
+      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
+        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+
+      //Debug.Log (" ------- sourceHeroBhvr.hero.battleDirection = " + sourceHeroBhvr.hero.battleDirection);
+
+      return FindClosestTarget (sgobj, ol);
+    }
+
+    /// <summary>
+    /// 获取距离最近的可攻击目标
+    /// </summary>
+    /// <returns>The closest target.</returns>
+    /// <param name="sgobj">Sgobj.</param>
+    /// <param name="ol">Ol.</param>
+    public static GameObject FindClosestTarget (GameObject sgobj, List<GameObject>  ol)
+    {
+      // 源对象的 x 坐标
+      float posx = sgobj.transform.localPosition.x;
+      // 最接近的对象
+      GameObject closestGobj = null;
+      // 最短的距离
+      float closestDistance = 0;
+      foreach (GameObject gobj in ol) {
+
+        if (closestGobj == null)
+          closestGobj = gobj;
+        else {
+          float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestGobj = gobj;
+          }
+        }
+      }
+
+      return closestGobj;
     }
 
     #endregion
@@ -54,59 +206,62 @@ namespace TangLevel
     #region PrivateStaticMethods
 
     /// <summary>
-    /// 预加载目标子关卡的资源
+    /// 加载目标子关卡的资源
     /// </summary>
     /// <param name="levelId">Level identifier.</param>
     private static void LoadTargetSubLevelRes ()
     {
+
       Debug.Log ("LoadTargetSubLevelRes");
+
       SubLevel subLevel = LevelContext.TargetSubLevel;
+      Debug.Log ("subLevel.resName " + subLevel.resName);
+      GameObject bgGobj = GobjManager.FetchUnused (subLevel.resName);
+      if (bgGobj == null) {
 
-      if (Cache.gobjTable.ContainsKey (subLevel.resName)) {
-        // 游戏背景资源已准备完毕
-        OnSubLevelMapResReady ();
-      } else if (Config.use_packed_res) {
-        // 使用 Assetbundle
-        string name = LevelContext.CurrentSubLevel.resName;
-        Tang.AssetBundleLoader.LoadAsync (name, OnSubLevelLoaded);
+        // 需要加载地图资源
+        if (!GobjManager.HasHandler (OnSubLevelMapLoaded)) {
+          GobjManager.RaiseLoadEvent += OnSubLevelMapLoaded;
+        }
+        GobjManager.LazyLoad (subLevel.resName);
+
       } else {
-        OnSubLevelLoaded (null);
+
+        // 加载子关卡所需英雄资源
+        LoadSubLevelHeroResources ();
+      }
+
+    }
+
+    /// <summary>
+    /// 地图加载完毕的回调
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private static void OnSubLevelMapLoaded (object sender, LoadResultEventArgs args)
+    {
+
+      Debug.Log ("OnSubLevelMapLoaded");
+
+      if (args.Name == LevelContext.TargetSubLevel.resName) {
+
+        if (GobjManager.HasHandler (OnSubLevelMapLoaded)) {
+          GobjManager.RaiseLoadEvent -= OnSubLevelMapLoaded;
+        }
+
+        // 加载子关卡所需英雄资源
+        LoadSubLevelHeroResources ();
+
       }
     }
 
     /// <summary>
-    /// 资源加载后
+    /// 计算加载子关卡所需要的英雄
     /// </summary>
-    /// <param name="ab">Ab.</param>
-    private static void OnSubLevelLoaded (AssetBundle ab)
+    private static void LoadSubLevelHeroResources ()
     {
+      Debug.Log ("LoadSubLevelHeroResources");
 
-      Debug.Log ("OnSubLevelLoaded");
-      UnityEngine.Object assets = null;
-      if (ab == null) {
-        string filepath = Config.BATTLE_BG_PATH + Tang.Config.DIR_SEP + LevelContext.TargetSubLevel.resName;
-        Debug.Log (filepath);
-        assets = Resources.Load (filepath);
-      } else
-        assets = ab.Load (ab.name);
-
-      if (assets != null) {
-        GameObject gobj = GameObject.Instantiate (assets) as GameObject;
-        gobj.SetActive (false);
-        gobj.name = assets.name;
-        GobjManager.Add (gobj);
-
-        // 资源已准备完毕
-        OnSubLevelMapResReady ();
-      }
-    }
-
-    /// <summary>
-    /// 发出子关卡资源已准备好的事件
-    /// </summary>
-    private static void OnSubLevelMapResReady ()
-    {
-      //Debug.Log ("OnSubLevelResReady");
       // -- 加载场景中的其他资源 --
 
       // -- 加载英雄 --
@@ -137,16 +292,25 @@ namespace TangLevel
         }
       }
 
+      // 加载所需要的英雄资源
       foreach (KeyValuePair<string, int> kvp in tmpHeroTable) {
         // 已有的英雄数量
         int has = HeroGobjManager.Size (kvp.Key);
-        Debug.Log ("Has " + has + " " + kvp.Key);
+        int need = 0;
         if (has < kvp.Value) {
-          int need = kvp.Value - has;
+          need = kvp.Value - has;
           requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
-          Debug.Log ("Need " + need + " " + kvp.Key);
         }
+        Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
+      }
+
+      // 所需英雄资源已经存在
+      if (requiredHeroGobjTable.Count == 0) {
+
+        // 通知所有的资源已经准备完毕
+        AllSubLevelResourceReady ();
+
       }
     }
 
@@ -176,14 +340,125 @@ namespace TangLevel
       // 如果需求已经完成，则进入下一个子关卡
       if (loadedCompleted) {
 
-        // 进入子关卡
-        LevelController.EnterNextSubLevel ();
+        // 所有的资源都已准备完毕
+        AllSubLevelResourceReady ();
+
+      }
+    }
+
+    /// <summary>
+    /// 子关卡需要的资源已准备好
+    /// </summary>
+    private static void AllSubLevelResourceReady ()
+    {
+
+      Debug.Log ("AllSubLevelResourceReady");
+
+      // 如果还在关卡外面
+      if (!LevelContext.InLevel) {
 
         // 发出关卡加载完成通知
-        if (RaiseSubLevelLoadedEvent != null) {
-          RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
+        if (RaiseLevelLoadedEvent != null)
+          RaiseLevelLoadedEvent (null, EventArgs.Empty);
+
+        // 进入子关卡
+        EnterNextSubLevel ();
+
+        // 设置关卡状态 InLevel
+        LevelContext.InLevel = true;
+
+      } else {
+
+        // 记录
+        // TODO 用于优化子关卡加载
+
+        // 进入子关卡
+        EnterNextSubLevel ();
+      }
+    }
+
+    /// <summary>
+    /// 进入下一个子关卡
+    /// </summary>
+    private static void EnterNextSubLevel ()
+    {
+      LevelContext.CurrentSubLevel = LevelContext.TargetSubLevel;
+
+      // 确保清场
+      LevelContext.enemyGobjs.Clear ();
+      LevelContext.selfGobjs.Clear ();
+
+      // 创建背景
+      GameObject bgGobj = GobjManager.FetchUnused (LevelContext.CurrentSubLevel.resName);
+      if (bgGobj != null) {
+        bgGobj.SetActive (true);
+        Debug.Log ("Background Created.");
+        LevelContext.background = bgGobj;
+      }
+
+      // 敌方小组列阵
+      Group enemyGroup = LevelContext.CurrentSubLevel.enemyGroup;
+      Embattle (enemyGroup, BattleDirection.LEFT);
+      // 我方小组列阵
+      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
+
+      // 我方进场
+      foreach (Hero hero in LevelContext.selfGroup.heros) {
+        if (hero.hp > 0) {
+          GameObject g = AddHeroToScene (hero);
+          LevelContext.selfGobjs.Add (g);
         }
       }
+
+      // 敌方进场
+      foreach (Hero hero in enemyGroup.heros) {
+        GameObject g = AddHeroToScene (hero);
+        LevelContext.enemyGobjs.Add (g);
+      }
+
+      // 监听场景中的英雄
+      // 己方英雄
+      ListenSelftHeros ();
+      // 敌方英雄
+      ListenEnemyHeros ();
+
+      //LevelContext.CurrentSubLevelIndex++;
+
+    }
+
+    /// <summary>
+    /// Lefts the sub level. 
+    /// </summary>
+    private static void LeftSubLevel ()
+    {
+      // 离开子关卡需要做一下清理工作 ----
+
+      // 取消对我方英雄的监听
+      UnlistenSelfHeros ();
+      // 取消对敌方英雄的监听
+      UnlistenEnemyHeros ();
+
+      // 释放己方英雄
+      foreach (GameObject gobj in LevelContext.selfGobjs) {
+        HeroGobjManager.Release (gobj);
+      }
+
+      // 释放敌方英雄
+      foreach (GameObject gobj in LevelContext.enemyGobjs) {
+        HeroGobjManager.Release (gobj);
+      }
+
+      // 确保清场
+      LevelContext.enemyGobjs.Clear ();
+      LevelContext.selfGobjs.Clear ();
+
+
+      // 释放背景
+      if (LevelContext.background != null) {
+        GobjManager.Release (LevelContext.background, true);
+      }
+
+
     }
 
     /// <summary>
@@ -202,7 +477,7 @@ namespace TangLevel
 
         if (g != null) {
           DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
-          if (uiMgr != null && uiMgr.greenHpMonitors.Length > i) {
+          if (uiMgr != null) {
             // 监听己方英雄HP变化 ----
             // 英雄身上的血条填充
             h.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
@@ -218,7 +493,39 @@ namespace TangLevel
           }
         }
       }
+    }
 
+    /// <summary>
+    /// 取消对己方英雄的监控
+    /// </summary>
+    private static void UnlistenSelfHeros ()
+    {
+
+      GameObject[] gobjs = LevelContext.selfGobjs.ToArray ();
+      Hero[] heros = LevelContext.selfGroup.heros;
+      for (int i = 0; i < gobjs.Length && i < heros.Length; i++) {
+
+        GameObject g = gobjs [i];
+        Hero h = heros [i];
+
+        if (g != null) {
+          DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+          if (uiMgr != null) {
+            // 监听己方英雄HP变化 ----
+            // 英雄身上的血条填充
+            h.raiseHpChange -= uiMgr.greenHpMonitors [i].OnChange;
+            // 血条显示与隐藏
+            h.raiseHpChange -= uiMgr.greenDisplayByHurts [i].OnHpChange;
+            // 英雄头像 ----
+            // 血条
+            h.raiseHpChange -= uiMgr.selfHpMonitors [i].OnChange;
+            // 监听己方英雄的位置变化 -----
+            if (agent != null) {
+              agent.raisePositionChange -= uiMgr.greenHpPosMonitors [i].OnChange;
+            }
+          }
+        }
+      }
     }
 
     /// <summary>
@@ -252,128 +559,48 @@ namespace TangLevel
       }
     }
 
-    #endregion
-
-    #region PublicStaticMethods
-
-    /// <summary>
-    /// 挑战这个关卡
-    /// </summary>
-    /// <param name="levelId">关卡ID</param>
-    /// <param name="group">我方小组</param>
-    public static void ChallengeLevel (int levelId, Group group)
+    private static void UnlistenEnemyHeros ()
     {
 
-      // 确保不在关卡里面
-      if (!LevelContext.InLevel) {
-        // 设置当前关卡
-        if (Config.levelTable.ContainsKey (levelId)) {
-          LevelContext.CurrentLevel = Config.levelTable [levelId];
+      GameObject[] gobjs = LevelContext.enemyGobjs.ToArray ();
+      Hero[] heros = LevelContext.CurrentSubLevel.enemyGroup.heros;
+
+      for (int i = 0; i < gobjs.Length; i++) {
+
+        GameObject g = gobjs [i];
+        Hero h = heros [i];
+
+        if (g != null) {
+          DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+          if (uiMgr != null) {
+            // 监听敌方英雄HP变化 ----
+            // 英雄身上的血条填充
+            h.raiseHpChange -= uiMgr.redHpMonitors [i].OnChange;
+            // 血条的显示与隐藏
+            h.raiseHpChange -= uiMgr.redDisplayByHurts [i].OnHpChange;
+            // 敌方英雄的位置变化 ----
+            if (agent != null) {
+              agent.raisePositionChange -= uiMgr.redHpPosMonitors [i].OnChange;
+            }
+          }
         }
-        LevelContext.selfGroup = group;
-
-        // 判断目标子关卡的资源是否已经加载
-        if (LevelContext.subLevelStatus != LevelStatus.INTENT) {
-          // 试图加载
-          LevelContext.subLevelStatus = LevelStatus.INTENT;
-          LoadTargetSubLevelRes ();
-        }
       }
     }
 
     /// <summary>
-    /// 进入下一个子关卡
+    /// 增加一个英雄到场景中
     /// </summary>
-    public static void EnterNextSubLevel ()
-    {
-      // 确保清场
-      LevelContext.enemyGobjs.Clear ();
-      LevelContext.selfGobjs.Clear ();
-
-      // 创建背景
-      GameObject bgGobj = GobjManager.FetchUnused (LevelContext.TargetSubLevel.resName);
-      if (bgGobj != null) {
-        bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
-        LevelContext.background = bgGobj;
-      }
-
-      // 敌方小组列阵
-      Group enemyGroup = LevelContext.TargetSubLevel.enemyGroup;
-      Embattle (enemyGroup, BattleDirection.LEFT);
-      // 我方小组列阵
-      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
-
-      // 我方进场
-      foreach (Hero hero in LevelContext.selfGroup.heros) {
-        AddHeroToScene (hero);
-      }
-
-      // 敌方进场
-      foreach (Hero hero in enemyGroup.heros) {
-        AddHeroToScene (hero);
-      }
-
-      // 监听场景中的英雄
-      // 己方英雄
-      ListenSelftHeros ();
-      // 敌方英雄
-      ListenEnemyHeros ();
-
-      // 设置关卡状态 InLevel
-      LevelContext.InLevel = true;
-
-    }
-
-    /// <summary>
-    /// Lefts the sub level. 
-    /// </summary>
-    public static void LeftSubLevel ()
-    {
-      // TODO 离开子关卡需要做一下清理工作
-
-      // 取消对我方英雄的监听
-
-
-      // 取消对敌方英雄的监听
-
-
-
-
-      // 释放背景
-      if (LevelContext.background != null) {
-        GobjManager.Release (LevelContext.background, true);
-      }
-
-      // 确保清场
-      LevelContext.enemyGobjs.Clear ();
-      LevelContext.selfGobjs.Clear ();
-
-    }
-
-    /// <summary>
-    /// Lefts the current level.
-    /// </summary>
-    public static void LeftLevel ()
+    /// <param name="hero">Hero.</param>
+    /// <param name="side">Side.</param>
+    private static GameObject AddHeroToScene (Hero hero)
     {
 
-      // 卸载场景资源
-      if (LevelContext.background != null)
-        GobjManager.Release (LevelContext.background, true);
-
-      // 卸载场景人物
-      foreach (GameObject gobj in LevelContext.enemyGobjs) {
-        HeroGobjManager.Release (gobj, true);
+      GameObject gobj = HeroGobjManager.FetchUnused (hero);
+      if (gobj != null) {
+        gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
+        gobj.SetActive (true);
       }
-      foreach (GameObject gobj in LevelContext.selfGobjs) {
-        HeroGobjManager.Release (gobj, true);
-      }
-
-      HeroGobjManager.Clear ();
-
-      LevelContext.InLevel = false;
-      LevelContext.subLevelStatus = LevelStatus.OUT;
-      // 发出离开关卡通知
+      return gobj;
     }
 
     /// <summary>
@@ -381,7 +608,7 @@ namespace TangLevel
     /// </summary>
     /// <param name="group">Group.</param>
     /// <param name="side">Side.</param>
-    public static void Embattle (Group group, BattleDirection direction)
+    private static void Embattle (Group group, BattleDirection direction)
     {
 
       Hero[] heros = group.heros;
@@ -507,98 +734,6 @@ namespace TangLevel
 
       }
 
-    }
-
-    /// <summary>
-    /// 增加一个英雄到场景中
-    /// </summary>
-    /// <param name="hero">Hero.</param>
-    /// <param name="side">Side.</param>
-    public static GameObject AddHeroToScene (Hero hero)
-    {
-
-      GameObject gobj = HeroGobjManager.FetchUnused (hero);
-      if (gobj != null) {
-        gobj.SetActive (true);
-        gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
-        if (hero.battleDirection == BattleDirection.RIGHT)
-          LevelContext.selfGobjs.Add (gobj);
-        else
-          LevelContext.enemyGobjs.Add (gobj);
-      }
-      return gobj;
-    }
-
-    /// <summary>
-    /// 暂停当前关卡
-    /// </summary>
-    public static void Pause ()
-    {
-
-    }
-
-    /// <summary>
-    /// 恢复当前关卡
-    /// </summary>
-    public static void Resume ()
-    {
-
-    }
-
-    /// <summary>
-    /// Determines if is last sub level.
-    /// </summary>
-    /// <returns><c>true</c> if is last sub level; otherwise, <c>false</c>.</returns>
-    public static bool IsLastSubLevel ()
-    {
-      return false;
-    }
-
-    /// <summary>
-    /// 找距离最近的目标
-    /// </summary>
-    /// <returns>The target.</returns>
-    /// <param name="sourceGobj">Source gobj.</param>
-    public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
-    {
-
-      GameObject sgobj = sourceHeroBhvr.gameObject;
-      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
-        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
-
-      //Debug.Log (" ------- sourceHeroBhvr.hero.battleDirection = " + sourceHeroBhvr.hero.battleDirection);
-
-      return FindClosestTarget (sgobj, ol);
-    }
-
-    /// <summary>
-    /// 获取距离最近的可攻击目标
-    /// </summary>
-    /// <returns>The closest target.</returns>
-    /// <param name="sgobj">Sgobj.</param>
-    /// <param name="ol">Ol.</param>
-    public static GameObject FindClosestTarget (GameObject sgobj, List<GameObject>  ol)
-    {
-      // 源对象的 x 坐标
-      float posx = sgobj.transform.localPosition.x;
-      // 最接近的对象
-      GameObject closestGobj = null;
-      // 最短的距离
-      float closestDistance = 0;
-      foreach (GameObject gobj in ol) {
-
-        if (closestGobj == null)
-          closestGobj = gobj;
-        else {
-          float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestGobj = gobj;
-          }
-        }
-      }
-
-      return closestGobj;
     }
 
     #endregion
