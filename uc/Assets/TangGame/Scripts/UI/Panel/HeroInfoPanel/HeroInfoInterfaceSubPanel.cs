@@ -2,6 +2,7 @@
 using System.Collections;
 using TangGame.UI.Base;
 using TDB = TangDragonBones;
+
 namespace TangGame.UI
 {
 	public class HeroInfoInterfaceSubPanel : MonoBehaviour
@@ -45,10 +46,8 @@ namespace TangGame.UI
 		private HeroBase heroBase;
 		///星级列表
 		public GameObject StarList;
-
 		private TDB.DragonBonesBhvr dragonBonesBhvr;
 		private ArrayList propsSpirtes = new ArrayList ();
-
 		// Use this for initialization
 		void Start ()
 		{
@@ -68,33 +67,40 @@ namespace TangGame.UI
 			UIEventListener.Get (SkillInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (PictorialButton.gameObject).onClick += ToggleButtonOnClick;
 		}
-		void OnEnable(){
-      LoadAnimatorObj ("hero_zf"); //TODO  测试用的
-      ///注册英雄创建成功监听
-      TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
+
+		void OnEnable ()
+		{
+			LoadAnimatorObj ("hero_zf"); //TODO  测试用的
+			///注册英雄创建成功监听
+			TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
 		}
-		void OnDisable(){
-      TDB.DbgoManager.Release (dragonBonesBhvr.gameObject,true);
-      TDB.DbgoManager.RaiseLoadedEvent -= OnAvatarLoaded;
+
+		void OnDisable ()
+		{
+			TDB.DbgoManager.Release (dragonBonesBhvr.gameObject, true);
+			TDB.DbgoManager.RaiseLoadedEvent -= OnAvatarLoaded;
 		}
 		// Update is called once per frame
 		void Update ()
 		{
 		}
 
-		private void LoadAnimatorObj(string resName){
+		private void LoadAnimatorObj (string resName)
+		{
 			GameObject obj = GetAvatar (resName);
-			if(obj == null) {
+			if (obj == null) {
 				TDB.DbgoManager.LazyLoad (resName);
 			}
 
 		}
 
-		private void OnAvatarLoaded(object sender,TDB.ResEventArgs args){
+		private void OnAvatarLoaded (object sender, TDB.ResEventArgs args)
+		{
 			GameObject obj = GetAvatar (args.Name);
 		}
 
-		private GameObject GetAvatar(string resName){
+		private GameObject GetAvatar (string resName)
+		{
 			GameObject obj = TDB.DbgoManager.FetchUnused (resName);
 			if (obj != null) {
 				obj.transform.parent = AnimatorObj.transform;
@@ -104,11 +110,12 @@ namespace TangGame.UI
 				if (dragonBonesBhvr != null) {
 					dragonBonesBhvr.GotoAndPlay ("idle");
 				}
-				Renderer objRender = obj.transform.GetComponentInChildren<Renderer>();
-				objRender.material.renderQueue = GetComponent<UIPanel>().startingRenderQueue + 50;
+				Renderer objRender = obj.transform.GetComponentInChildren<Renderer> ();
+				objRender.material.renderQueue = GetComponent<UIPanel> ().startingRenderQueue + 50;
 			}
 			return obj;
 		}
+
 		/// <summary>
 		/// Refreshs the panel.刷新面板
 		/// </summary>
@@ -131,7 +138,7 @@ namespace TangGame.UI
 			this.SetHeroNameFrame ((int)heroBase.Net.upgrade);
 			this.SetLevel (heroBase.Net.level);
 			this.SetScore (heroBase.Score);
-			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable[heroBase.Net.level].val);
+			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable [heroBase.Net.level].val);
 			this.SetStarList (heroBase.Net.evolve, true);
 			//			this.SetHeroPackageSoulstone (heroBase.net, heroBase.xml); //需要使用背包数据,以及进化数据
 //		this.SetPropsList ();
@@ -210,11 +217,13 @@ namespace TangGame.UI
 		/// 切换动画
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		void AnimatorObjOnClick(GameObject obj){
+		void AnimatorObjOnClick (GameObject obj)
+		{
 			if (dragonBonesBhvr != null) {
 				dragonBonesBhvr.GotoAndPlayNext ();
 			}
 		}
+
 		/// <summary>
 		/// Sets the hero package soulstone.设置英雄碎片数量和比例条
 		/// </summary>

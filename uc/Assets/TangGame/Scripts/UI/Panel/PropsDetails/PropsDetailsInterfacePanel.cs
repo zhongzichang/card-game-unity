@@ -72,8 +72,10 @@ namespace TangGame.UI
 				propsDPbean = value;
 			}
 		}
-		void OnEnable(){
-			if ( propsDPbean!= null && propsDPbean.props != null) {
+
+		void OnEnable ()
+		{
+			if (propsDPbean != null && propsDPbean.props != null) {
 				Flush (propsDPbean);
 			}
 		}
@@ -85,7 +87,7 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
-			if ( propsDPbean!= null && propsDPbean.props != null) {
+			if (propsDPbean != null && propsDPbean.props != null) {
 				Flush (propsDPbean);
 			}
 			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
@@ -95,6 +97,7 @@ namespace TangGame.UI
 		{
 	
 		}
+
 		/// <summary>
 		/// Flush the specified data.
 		/// 刷新面板数据
@@ -111,7 +114,7 @@ namespace TangGame.UI
 			this.UpPropsFrames (data.Xml.upgrade);
 			this.UpPropsInfo (data);
 			this.UpPropsName (data.Xml.name);
-			this.UpPropsLvLabel (data.Xml.level.ToString());
+			this.UpPropsLvLabel (data.Xml.level.ToString ());
 			int propsCount = 0;
 			if (data.Net != null) {
 				propsCount = data.Net.count;
@@ -138,6 +141,7 @@ namespace TangGame.UI
 
 
 		}
+
 		/// <summary>
 		/// Ups the name of the properties.
 		/// 更新物品名字
@@ -332,7 +336,8 @@ namespace TangGame.UI
 		/// 等下道具等级需求
 		/// </summary>
 		/// <param name="text">Text.</param>
-		public void UpPropsLvLabel(string text){
+		public void UpPropsLvLabel (string text)
+		{
 			UILabel lab = PropsLvLabel.GetComponent<UILabel> ();
 			if (lab != null) {
 				lab.text = string.Format (UIPanelLang.PROPS_LV_LABEL_TAG, text);

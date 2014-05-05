@@ -15,6 +15,7 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Awake ()
 		{
+			//给相关面板动态绑定脚本
 			DynamicBindUtil.BindScriptAndProperty (HeroInfoInterfaceSubPanel, HeroInfoInterfaceSubPanel.name);
 			DynamicBindUtil.BindScriptAndProperty (HeroInfoPictorialSubPanel, HeroInfoPictorialSubPanel.name);
 			DynamicBindUtil.BindScriptAndProperty (HeroInfoPropertySubPanel, HeroInfoPropertySubPanel.name);

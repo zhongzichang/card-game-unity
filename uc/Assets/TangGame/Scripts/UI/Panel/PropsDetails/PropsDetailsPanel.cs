@@ -6,6 +6,7 @@
 using UnityEngine;
 using System.Collections;
 using TangGame.UI.Base;
+
 namespace TangGame.UI
 {
 	public class PropsDetailsPanel : MonoBehaviour
@@ -14,13 +15,12 @@ namespace TangGame.UI
 		public GameObject PropsDetailsInterfacePanel;
 		public GameObject PropsDetailsSubPanel;
 		private PropsDetailsPanelBean propsDPbean;
-
 		// Use this for initialization
 		void Start ()
 		{
 			if (param != null && param is PropsBase)
 				propsDPbean = new PropsDetailsPanelBean ();
-				propsDPbean.props = param as PropsBase;
+			propsDPbean.props = param as PropsBase;
 			if (param != null && param is PropsDetailsPanelBean) {
 				propsDPbean = param as PropsDetailsPanelBean;
 			}
@@ -39,14 +39,15 @@ namespace TangGame.UI
 				propsDPbean = value;
 			}
 		}
-
 		// Update is called once per frame
 		void Update ()
 		{
 	
 		}
 	}
-	public class PropsDetailsPanelBean{
+
+	public class PropsDetailsPanelBean
+	{
 		public PropsBase props;
 		public HeroBase hero;
 	}

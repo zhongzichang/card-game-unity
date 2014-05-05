@@ -82,7 +82,7 @@ namespace TangGame.UI
 
 		void OnEnable ()
 		{
-			if ( propsDPbean!= null && propsDPbean.props != null) {
+			if (propsDPbean != null && propsDPbean.props != null) {
 				this.ClearSVPropsItemArray ();
 				SVPropsItemArrayForward (propsDPbean.props.Xml);
 			}
@@ -110,35 +110,37 @@ namespace TangGame.UI
 			svPropsItem.name += SVPropsItemArray.IndexOf (svPropsItem);
 			UIEventListener.Get (svPropsItem.gameObject).onClick += OnSVPropsItemOnClick;
 			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
-			StartCoroutine (UpdateScrollView (new Vector3(-SVPropsItemTable.GetComponent<UIGrid> ().cellWidth,0,0)));
+			StartCoroutine (UpdateScrollView (new Vector3 (-SVPropsItemTable.GetComponent<UIGrid> ().cellWidth, 0, 0)));
 
 		}
 
-		IEnumerator UpdateScrollView(Vector3 constraint){
+		IEnumerator UpdateScrollView (Vector3 constraint)
+		{
 
 
-			yield return new WaitForSeconds(0.2F);
+			yield return new WaitForSeconds (0.2F);
 			UIScrollView sVPropsItemScrollView = NGUITools.FindInParents<UIScrollView> (SVPropsItemTable.gameObject);
 			if (SVPropsItemArray.Count > 4) {
 				sVPropsItemScrollView.contentPivot = UIWidget.Pivot.Right;
 
-			}else{
+			} else {
 				sVPropsItemScrollView.contentPivot = UIWidget.Pivot.TopLeft;
 				constraint = Vector3.zero;
 
 			}
 			Transform svTrans = sVPropsItemScrollView.transform;
 			UIPanel svPanel = sVPropsItemScrollView.panel;
-			Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(svTrans, svTrans);
-			if(constraint == Vector3.zero) constraint = svPanel.CalculateConstrainOffset(bounds.min, bounds.max);
-			if (constraint.sqrMagnitude != 0f && sVPropsItemScrollView.dragEffect ==UIScrollView.DragEffect.MomentumAndSpring) {
+			Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds (svTrans, svTrans);
+			if (constraint == Vector3.zero)
+				constraint = svPanel.CalculateConstrainOffset (bounds.min, bounds.max);
+			if (constraint.sqrMagnitude != 0f && sVPropsItemScrollView.dragEffect == UIScrollView.DragEffect.MomentumAndSpring) {
 				// Spring back into place
 				Vector3 pos = svTrans.localPosition + constraint;
-				pos.x = Mathf.Round(pos.x);
-				pos.y = Mathf.Round(pos.y);
-				SpringPanel.Begin(svPanel.gameObject, pos, 13f);
+				pos.x = Mathf.Round (pos.x);
+				pos.y = Mathf.Round (pos.y);
+				SpringPanel.Begin (svPanel.gameObject, pos, 13f);
 			}
-    }
+		}
 
 		/// <summary>
 		/// SVs the properties item array back.
@@ -148,7 +150,7 @@ namespace TangGame.UI
 		{
 			if (SVPropsItemArray.Count > 1) {
 				SVPropsItemArray.RemoveAt (SVPropsItemArray.Count - 1);
-				SetCurrentPropsItem (SVPropsItemArray[SVPropsItemArray.Count - 1] as SVPropsItem);
+				SetCurrentPropsItem (SVPropsItemArray [SVPropsItemArray.Count - 1] as SVPropsItem);
 			}
 			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
 		}
@@ -157,7 +159,8 @@ namespace TangGame.UI
 		/// Clears the sub properties item array.
 		/// 清理sub array中的所有道具
 		/// </summary>
-		void ClearSubPropsItemArray(){
+		void ClearSubPropsItemArray ()
+		{
 			foreach (SubPropsItem item in SubPropsItemArray) {
 				if (item.gameObject.activeSelf) {
 					item.gameObject.SetActive (false);
@@ -166,11 +169,13 @@ namespace TangGame.UI
 			}
 			SubPropsItemArray.Clear ();
 		}
+
 		/// <summary>
 		/// Clears the SV properties item array.
 		/// 清空sv
 		/// </summary>
-		void ClearSVPropsItemArray(){
+		void ClearSVPropsItemArray ()
+		{
 			foreach (SVPropsItem item in SVPropsItemArray) {
 				if (item.gameObject.activeSelf) {
 					item.gameObject.SetActive (false);
@@ -179,12 +184,14 @@ namespace TangGame.UI
 			}
 			SVPropsItemArray.Clear ();
 		}
+
 		/// <summary>
 		/// Backs the SV properties item array.
 		/// </summary>
 		/// <param name="sVPropsItem">S V properties item.</param>
-		void BackToSVPropsItem(SVPropsItem sVPropsItem){
-			while(SVPropsItemArray.Count > 0){
+		void BackToSVPropsItem (SVPropsItem sVPropsItem)
+		{
+			while (SVPropsItemArray.Count > 0) {
 				SVPropsItem item = SVPropsItemArray [SVPropsItemArray.Count - 1] as SVPropsItem;
 				if (sVPropsItem != item) {
 					SVPropsItemArray.Remove (item);
@@ -199,6 +206,7 @@ namespace TangGame.UI
 			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
 
 		}
+
 		/// <summary>
 		/// Sets the current properties item.
 		/// 设置当前道具
@@ -237,22 +245,26 @@ namespace TangGame.UI
 				SubItemTable.GetComponent<UIGrid> ().repositionNow = true;
 			}
 
-			this.SpendingLabel.GetComponent<UILabel> ().text = string.Format (UIPanelLang.SYNTHESIS_SPEND,svpItem.data.Xml.synthetic_spend);
+			this.SpendingLabel.GetComponent<UILabel> ().text = string.Format (UIPanelLang.SYNTHESIS_SPEND, svpItem.data.Xml.synthetic_spend);
 		}
+
 		/// <summary>
 		/// Subs the properties item on click.
 		/// 
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		void OnSubPropsItemOnClick(GameObject obj){
+		void OnSubPropsItemOnClick (GameObject obj)
+		{
 			SubPropsItem item = obj.GetComponent<SubPropsItem> ();
 			SVPropsItemArrayForward (item.data.Xml);
 		}
+
 		/// <summary>
 		/// Raises the SV properties item on click event.
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		void OnSVPropsItemOnClick(GameObject obj){
+		void OnSVPropsItemOnClick (GameObject obj)
+		{
 			SVPropsItem item = obj.GetComponent<SVPropsItem> ();
 			BackToSVPropsItem (item);
 		}

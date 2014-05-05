@@ -46,6 +46,5 @@ namespace TangGame.Net
 		/// The equip.
 		/// </summary>
 		public EquipNet[] equipList;
-
 	}
 }
