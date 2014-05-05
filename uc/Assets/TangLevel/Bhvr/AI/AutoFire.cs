@@ -33,13 +33,13 @@ namespace TangLevel
       // transform
       myTransform = transform;
 
-
     }
 
     void Update ()
     {
 
       if (remainTime > period) {
+
 
         // 空闲时找可攻击对象
         if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running) {

@@ -14,6 +14,8 @@ namespace TangLevel
   {
     public int id;
 
+    public int index;
+
     public string resName;
 
     public Group enemyGroup;

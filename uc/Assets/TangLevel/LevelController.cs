@@ -12,9 +12,17 @@ namespace TangLevel
   {
     /// <summary>
     /// Occurs when raise sub level loaded event.
-    /// 子关卡加载完毕事件处理
+    /// 关卡加载完毕
     /// </summary>
-    public static event EventHandler RaiseSubLevelLoadedEvent;
+    public static event EventHandler RaiseLevelLoadedEvent;
+    /// <summary>
+    /// 挑战成功
+    /// </summary>
+    public static event EventHandler RaiseChallengeSuccessEvent;
+    /// <summary>
+    /// 挑战失败
+    /// </summary>
+    public static event EventHandler RaiseChallengeFailEvent;
 
     /// <summary>
     /// 子关卡需要的英雄游戏对象以及数量
@@ -42,13 +50,20 @@ namespace TangLevel
     {
       if (GUI.Button (new Rect (10, 10, 150, 100), "Load Level")) {
 
-        LevelController.ChallengeLevel (1, Mocker.MockGroup ());
+        ChallengeLevel (1, Mocker.MockGroup ());
+
+      }
+
+
+      if (GUI.Button (new Rect (200, 10, 150, 100), " Next Sub Level")) {
+
+        ChallengeNextSubLevel ();
 
       }
 
       if (GUI.Button (new Rect (10, 210, 150, 100), " Left Level")) {
 
-        LevelController.LeftLevel ();
+        LeftLevel ();
 
       }
     }
@@ -91,83 +106,22 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 进入下一个子关卡
+    /// 挑战下一个子关卡
     /// </summary>
-    public static void EnterNextSubLevel ()
+    public static void ChallengeNextSubLevel ()
     {
-      // 确保清场
-      LevelContext.enemyGobjs.Clear ();
-      LevelContext.selfGobjs.Clear ();
+      // 如果子关卡还没有加载，加载子关卡资源
+      // 否则进入子关卡
 
-      // 创建背景
-      GameObject bgGobj = GobjManager.FetchUnused (LevelContext.TargetSubLevel.resName);
-      if (bgGobj != null) {
-        bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
-        LevelContext.background = bgGobj;
+      if (LevelContext.TargetSubLevel != null) {
+
+        // 离开子关卡
+        LeftSubLevel ();
+
+        // 记载目标子关卡资源
+        LoadTargetSubLevelRes ();
+
       }
-
-      // 敌方小组列阵
-      Group enemyGroup = LevelContext.TargetSubLevel.enemyGroup;
-      Embattle (enemyGroup, BattleDirection.LEFT);
-      // 我方小组列阵
-      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
-
-      // 我方进场
-      foreach (Hero hero in LevelContext.selfGroup.heros) {
-        GameObject g = AddHeroToScene (hero);
-        LevelContext.selfGobjs.Add (g);
-      }
-
-      // 敌方进场
-      foreach (Hero hero in enemyGroup.heros) {
-        GameObject g = AddHeroToScene (hero);
-        LevelContext.enemyGobjs.Add (g);
-      }
-
-      // 监听场景中的英雄
-      // 己方英雄
-      ListenSelftHeros ();
-      // 敌方英雄
-      ListenEnemyHeros ();
-
-      // 设置关卡状态 InLevel
-      LevelContext.InLevel = true;
-
-    }
-
-    /// <summary>
-    /// Lefts the sub level. 
-    /// </summary>
-    public static void LeftSubLevel ()
-    {
-      // TODO 离开子关卡需要做一下清理工作
-
-      // 取消对我方英雄的监听
-      UnlistenSelfHeros ();
-      // 取消对敌方英雄的监听
-      UnlistenEnemyHeros ();
-
-      // 释放己方英雄
-      foreach (GameObject gobj in LevelContext.selfGobjs) {
-        HeroGobjManager.Release (gobj);
-      }
-
-      // 释放敌方英雄
-      foreach (GameObject gobj in LevelContext.enemyGobjs) {
-        HeroGobjManager.Release (gobj);
-      }
-
-      // 确保清场
-      LevelContext.enemyGobjs.Clear ();
-      LevelContext.selfGobjs.Clear ();
-
-
-      // 释放背景
-      if (LevelContext.background != null) {
-        GobjManager.Release (LevelContext.background, true);
-      }
-
 
     }
 
@@ -185,139 +139,6 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 列阵
-    /// </summary>
-    /// <param name="group">Group.</param>
-    /// <param name="side">Side.</param>
-    public static void Embattle (Group group, BattleDirection direction)
-    {
-
-      Hero[] heros = group.heros;
-
-      // 调整英雄面对的方向
-      for (int i = 0; i < heros.Length; i++) {
-        heros [i].battleDirection = direction;
-      }
-
-      // 根据攻击距离进行排序
-      Array.Sort (heros, delegate(Hero hero1, Hero hero2) {
-        return hero1.attackDistance.CompareTo (hero2.attackDistance);
-      });
-
-      // 分成两列
-      List<Hero> column1 = new List<Hero> ();
-      List<Hero> column2 = new List<Hero> ();
-      Vector2 origin = Vector2.zero;
-      int stepx = 6; // 排与排之间的距离
-
-      if (BattleDirection.RIGHT == direction) {
-
-        // 分成两列
-        for (int i = 0; i < heros.Length; i++) {
-          if (i % 2 == 0) {
-            column1.Add (heros [i]);
-          } else {
-            column2.Add (heros [i]);
-          }
-        }
-
-        int offsety = 0;
-        origin = new Vector2 (0, 12);
-        // 对于第一列
-        for (int i = 0; i < column1.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
-          bool useOffset = false;
-          for (int j = i - 1; j >= 0; j--) {
-            if (column1 [i].attackDistance == column1 [j].attackDistance) {
-              useOffset = true;
-              offsety++;
-              break;
-            }
-          }
-          if (useOffset)
-            column1 [i].birthPoint = origin - new Vector2 (stepx * i, offsety);
-          else
-            column1 [i].birthPoint = origin - new Vector2 (stepx * i, 0);
-        }
-
-        // 对于第二列
-        origin = new Vector2 (-3, 8);
-        offsety = 0;
-        for (int i = 0; i < column2.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
-          bool useOffset = false;
-          for (int j = i - 1; j >= 0; j--) {
-            if (column2 [i].attackDistance == column2 [j].attackDistance) {
-              useOffset = true;
-              offsety++;
-              break;
-            }
-          }
-          if (useOffset)
-            column2 [i].birthPoint = origin - new Vector2 (stepx * i, -offsety);
-          else
-            column2 [i].birthPoint = origin - new Vector2 (stepx * i, 0);
-        }
-
-      } else {
-
-        // 清空两列内容
-        column1.Clear ();
-        column2.Clear ();
-
-        // 分成两列
-        for (int i = 0; i < heros.Length; i++) {
-          if (i % 2 == 0) {
-            column1.Add (heros [i]);
-          } else {
-            column2.Add (heros [i]);
-          }
-        }
-
-        // 对于第一列
-        int offsety = 0;
-        origin = new Vector2 (32, 12);
-        // 对于第一列
-        for (int i = 0; i < column1.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
-          bool useOffset = false;
-          for (int j = i - 1; j >= 0; j--) {
-            if (column1 [i].attackDistance == column1 [j].attackDistance) {
-              useOffset = true;
-              offsety++;
-              break;
-            }
-          }
-          if (useOffset)
-            column1 [i].birthPoint = origin + new Vector2 (stepx * i, -offsety);
-          else
-            column1 [i].birthPoint = origin + new Vector2 (stepx * i, 0);
-        }
-
-        // 对于第二列
-        offsety = 0;
-        origin = new Vector2 (35, 8);
-        for (int i = 0; i < column2.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
-          bool useOffset = false;
-          for (int j = i - 1; j >= 0; j--) {
-            if (column2 [i].attackDistance == column2 [j].attackDistance) {
-              useOffset = true;
-              offsety++;
-              break;
-            }
-          }
-          if (useOffset)
-            column2 [i].birthPoint = origin + new Vector2 (stepx * i, offsety);
-          else
-            column2 [i].birthPoint = origin + new Vector2 (stepx * i, 0);
-        }
-
-      }
-
-    }
-
-    /// <summary>
     /// 暂停当前关卡
     /// </summary>
     public static void Pause ()
@@ -331,15 +152,6 @@ namespace TangLevel
     public static void Resume ()
     {
 
-    }
-
-    /// <summary>
-    /// Determines if is last sub level.
-    /// </summary>
-    /// <returns><c>true</c> if is last sub level; otherwise, <c>false</c>.</returns>
-    public static bool IsLastSubLevel ()
-    {
-      return false;
     }
 
     /// <summary>
@@ -394,7 +206,7 @@ namespace TangLevel
     #region PrivateStaticMethods
 
     /// <summary>
-    /// 预加载目标子关卡的资源
+    /// 加载目标子关卡的资源
     /// </summary>
     /// <param name="levelId">Level identifier.</param>
     private static void LoadTargetSubLevelRes ()
@@ -403,23 +215,33 @@ namespace TangLevel
       Debug.Log ("LoadTargetSubLevelRes");
 
       SubLevel subLevel = LevelContext.TargetSubLevel;
-
+      Debug.Log ("subLevel.resName " + subLevel.resName);
       GameObject bgGobj = GobjManager.FetchUnused (subLevel.resName);
       if (bgGobj == null) {
-        // 需要加载资源
+
+        // 需要加载地图资源
         if (!GobjManager.HasHandler (OnSubLevelMapLoaded)) {
           GobjManager.RaiseLoadEvent += OnSubLevelMapLoaded;
         }
         GobjManager.LazyLoad (subLevel.resName);
+
       } else {
-        // 游戏背景资源已准备完毕
-        OnSubLevelMapResReady ();
+
+        // 加载子关卡所需英雄资源
+        LoadSubLevelHeroResources ();
       }
 
     }
 
+    /// <summary>
+    /// 地图加载完毕的回调
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
     private static void OnSubLevelMapLoaded (object sender, LoadResultEventArgs args)
     {
+
+      Debug.Log ("OnSubLevelMapLoaded");
 
       if (args.Name == LevelContext.TargetSubLevel.resName) {
 
@@ -427,19 +249,19 @@ namespace TangLevel
           GobjManager.RaiseLoadEvent -= OnSubLevelMapLoaded;
         }
 
-        // 游戏背景资源已准备完毕
-        OnSubLevelMapResReady ();
+        // 加载子关卡所需英雄资源
+        LoadSubLevelHeroResources ();
 
       }
     }
 
-
     /// <summary>
-    /// 发出子关卡资源已准备好的事件
+    /// 计算加载子关卡所需要的英雄
     /// </summary>
-    private static void OnSubLevelMapResReady ()
+    private static void LoadSubLevelHeroResources ()
     {
-      //Debug.Log ("OnSubLevelResReady");
+      Debug.Log ("LoadSubLevelHeroResources");
+
       // -- 加载场景中的其他资源 --
 
       // -- 加载英雄 --
@@ -470,28 +292,25 @@ namespace TangLevel
         }
       }
 
+      // 加载所需要的英雄资源
       foreach (KeyValuePair<string, int> kvp in tmpHeroTable) {
         // 已有的英雄数量
         int has = HeroGobjManager.Size (kvp.Key);
-        Debug.Log ("Has " + has + " " + kvp.Key);
+        int need = 0;
         if (has < kvp.Value) {
-          int need = kvp.Value - has;
+          need = kvp.Value - has;
           requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
-          Debug.Log ("Need " + need + " " + kvp.Key);
         }
+        Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
       }
 
       // 所需英雄资源已经存在
       if (requiredHeroGobjTable.Count == 0) {
 
-        // 发出关卡加载完成通知
-        if (RaiseSubLevelLoadedEvent != null) {
-          RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
-        }
+        // 通知所有的资源已经准备完毕
+        AllSubLevelResourceReady ();
 
-        // 进入子关卡
-        LevelController.EnterNextSubLevel ();
       }
     }
 
@@ -521,15 +340,125 @@ namespace TangLevel
       // 如果需求已经完成，则进入下一个子关卡
       if (loadedCompleted) {
 
-        // 发出关卡加载完成通知
-        if (RaiseSubLevelLoadedEvent != null) {
-          RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
-        }
-
-        // 进入子关卡
-        LevelController.EnterNextSubLevel ();
+        // 所有的资源都已准备完毕
+        AllSubLevelResourceReady ();
 
       }
+    }
+
+    /// <summary>
+    /// 子关卡需要的资源已准备好
+    /// </summary>
+    private static void AllSubLevelResourceReady ()
+    {
+
+      Debug.Log ("AllSubLevelResourceReady");
+
+      // 如果还在关卡外面
+      if (!LevelContext.InLevel) {
+
+        // 发出关卡加载完成通知
+        if (RaiseLevelLoadedEvent != null)
+          RaiseLevelLoadedEvent (null, EventArgs.Empty);
+
+        // 进入子关卡
+        EnterNextSubLevel ();
+
+        // 设置关卡状态 InLevel
+        LevelContext.InLevel = true;
+
+      } else {
+
+        // 记录
+        // TODO 用于优化子关卡加载
+
+        // 进入子关卡
+        EnterNextSubLevel ();
+      }
+    }
+
+    /// <summary>
+    /// 进入下一个子关卡
+    /// </summary>
+    private static void EnterNextSubLevel ()
+    {
+      LevelContext.CurrentSubLevel = LevelContext.TargetSubLevel;
+
+      // 确保清场
+      LevelContext.enemyGobjs.Clear ();
+      LevelContext.selfGobjs.Clear ();
+
+      // 创建背景
+      GameObject bgGobj = GobjManager.FetchUnused (LevelContext.CurrentSubLevel.resName);
+      if (bgGobj != null) {
+        bgGobj.SetActive (true);
+        Debug.Log ("Background Created.");
+        LevelContext.background = bgGobj;
+      }
+
+      // 敌方小组列阵
+      Group enemyGroup = LevelContext.CurrentSubLevel.enemyGroup;
+      Embattle (enemyGroup, BattleDirection.LEFT);
+      // 我方小组列阵
+      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
+
+      // 我方进场
+      foreach (Hero hero in LevelContext.selfGroup.heros) {
+        if (hero.hp > 0) {
+          GameObject g = AddHeroToScene (hero);
+          LevelContext.selfGobjs.Add (g);
+        }
+      }
+
+      // 敌方进场
+      foreach (Hero hero in enemyGroup.heros) {
+        GameObject g = AddHeroToScene (hero);
+        LevelContext.enemyGobjs.Add (g);
+      }
+
+      // 监听场景中的英雄
+      // 己方英雄
+      ListenSelftHeros ();
+      // 敌方英雄
+      ListenEnemyHeros ();
+
+      //LevelContext.CurrentSubLevelIndex++;
+
+    }
+
+    /// <summary>
+    /// Lefts the sub level. 
+    /// </summary>
+    private static void LeftSubLevel ()
+    {
+      // 离开子关卡需要做一下清理工作 ----
+
+      // 取消对我方英雄的监听
+      UnlistenSelfHeros ();
+      // 取消对敌方英雄的监听
+      UnlistenEnemyHeros ();
+
+      // 释放己方英雄
+      foreach (GameObject gobj in LevelContext.selfGobjs) {
+        HeroGobjManager.Release (gobj);
+      }
+
+      // 释放敌方英雄
+      foreach (GameObject gobj in LevelContext.enemyGobjs) {
+        HeroGobjManager.Release (gobj);
+      }
+
+      // 确保清场
+      LevelContext.enemyGobjs.Clear ();
+      LevelContext.selfGobjs.Clear ();
+
+
+      // 释放背景
+      if (LevelContext.background != null) {
+        GobjManager.Release (LevelContext.background, true);
+      }
+
+
     }
 
     /// <summary>
@@ -672,6 +601,139 @@ namespace TangLevel
         gobj.SetActive (true);
       }
       return gobj;
+    }
+
+    /// <summary>
+    /// 列阵
+    /// </summary>
+    /// <param name="group">Group.</param>
+    /// <param name="side">Side.</param>
+    private static void Embattle (Group group, BattleDirection direction)
+    {
+
+      Hero[] heros = group.heros;
+
+      // 调整英雄面对的方向
+      for (int i = 0; i < heros.Length; i++) {
+        heros [i].battleDirection = direction;
+      }
+
+      // 根据攻击距离进行排序
+      Array.Sort (heros, delegate(Hero hero1, Hero hero2) {
+        return hero1.attackDistance.CompareTo (hero2.attackDistance);
+      });
+
+      // 分成两列
+      List<Hero> column1 = new List<Hero> ();
+      List<Hero> column2 = new List<Hero> ();
+      Vector2 origin = Vector2.zero;
+      int stepx = 6; // 排与排之间的距离
+
+      if (BattleDirection.RIGHT == direction) {
+
+        // 分成两列
+        for (int i = 0; i < heros.Length; i++) {
+          if (i % 2 == 0) {
+            column1.Add (heros [i]);
+          } else {
+            column2.Add (heros [i]);
+          }
+        }
+
+        int offsety = 0;
+        origin = new Vector2 (0, 12);
+        // 对于第一列
+        for (int i = 0; i < column1.Count; i++) {
+          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          bool useOffset = false;
+          for (int j = i - 1; j >= 0; j--) {
+            if (column1 [i].attackDistance == column1 [j].attackDistance) {
+              useOffset = true;
+              offsety++;
+              break;
+            }
+          }
+          if (useOffset)
+            column1 [i].birthPoint = origin - new Vector2 (stepx * i, offsety);
+          else
+            column1 [i].birthPoint = origin - new Vector2 (stepx * i, 0);
+        }
+
+        // 对于第二列
+        origin = new Vector2 (-3, 8);
+        offsety = 0;
+        for (int i = 0; i < column2.Count; i++) {
+          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          bool useOffset = false;
+          for (int j = i - 1; j >= 0; j--) {
+            if (column2 [i].attackDistance == column2 [j].attackDistance) {
+              useOffset = true;
+              offsety++;
+              break;
+            }
+          }
+          if (useOffset)
+            column2 [i].birthPoint = origin - new Vector2 (stepx * i, -offsety);
+          else
+            column2 [i].birthPoint = origin - new Vector2 (stepx * i, 0);
+        }
+
+      } else {
+
+        // 清空两列内容
+        column1.Clear ();
+        column2.Clear ();
+
+        // 分成两列
+        for (int i = 0; i < heros.Length; i++) {
+          if (i % 2 == 0) {
+            column1.Add (heros [i]);
+          } else {
+            column2.Add (heros [i]);
+          }
+        }
+
+        // 对于第一列
+        int offsety = 0;
+        origin = new Vector2 (32, 12);
+        // 对于第一列
+        for (int i = 0; i < column1.Count; i++) {
+          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          bool useOffset = false;
+          for (int j = i - 1; j >= 0; j--) {
+            if (column1 [i].attackDistance == column1 [j].attackDistance) {
+              useOffset = true;
+              offsety++;
+              break;
+            }
+          }
+          if (useOffset)
+            column1 [i].birthPoint = origin + new Vector2 (stepx * i, -offsety);
+          else
+            column1 [i].birthPoint = origin + new Vector2 (stepx * i, 0);
+        }
+
+        // 对于第二列
+        offsety = 0;
+        origin = new Vector2 (35, 8);
+        for (int i = 0; i < column2.Count; i++) {
+          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          bool useOffset = false;
+          for (int j = i - 1; j >= 0; j--) {
+            if (column2 [i].attackDistance == column2 [j].attackDistance) {
+              useOffset = true;
+              offsety++;
+              break;
+            }
+          }
+          if (useOffset)
+            column2 [i].birthPoint = origin + new Vector2 (stepx * i, offsety);
+          else
+            column2 [i].birthPoint = origin + new Vector2 (stepx * i, 0);
+        }
+
+      }
+
     }
 
     #endregion
