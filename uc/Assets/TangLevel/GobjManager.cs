@@ -80,7 +80,7 @@ namespace TangLevel
     /// <param name="name">Name.</param>
     private static void LoadLocalResources (string name)
     {
-      string filepath = Config.SpecialPath (name);
+      string filepath = Config.GobjsPath (name);
       UnityEngine.Object assets = Resources.Load (filepath);
       GameObject gobj = null;
       if (assets != null) {

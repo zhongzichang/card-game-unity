@@ -22,11 +22,6 @@ namespace TangLevel
     {
       heroBhvr = GetComponent<HeroBhvr> ();
     }
-    // Update is called once per frame
-    void Update ()
-    {
-	
-    }
 
     void OnDisable ()
     {

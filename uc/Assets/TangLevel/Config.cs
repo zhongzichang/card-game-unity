@@ -21,17 +21,10 @@ namespace TangLevel
     /// <summary>
     /// 战斗背景资源路径
     /// </summary>
-    public const string BATTLE_BG_PATH = "Prefabs/Level/BattleBg";
-
-
-    /// <summary>
-    /// 特效资源路径
-    /// </summary>
-    public const string SPECIAL_PATH = "Specials";
-    public static string SpecialPath(string name){
-      return SPECIAL_PATH + Tang.Config.DIR_SEP + name;
+    public const string GOBJS_PATH = "Prefabs/Gobjs";
+    public static string GobjsPath(string name){
+      return GOBJS_PATH + Tang.Config.DIR_SEP + name;
     }
-
 
     /// <summary>
     /// 关卡表

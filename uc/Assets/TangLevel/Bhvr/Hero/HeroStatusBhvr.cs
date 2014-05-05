@@ -16,6 +16,8 @@ namespace TangLevel
     public HeroStatus m_status = HeroStatus.idle;
     // private SpriteAnimate spriteAnimate;
     //private ActorBhvr actorBhvr;
+    private bool changed = false;
+    private HeroStatus beforeStatus = HeroStatus.idle;
 
     void Start ()
     {
@@ -30,6 +32,17 @@ namespace TangLevel
 
     }
 
+    void Update ()
+    {
+      if (changed) {
+
+        changed = false;
+
+        if (statusEndHandler != null)
+          statusEndHandler (m_status);
+      }
+    }
+
     /// <summary>
     ///   角色状态，被脚本使用
     /// </summary>
@@ -40,14 +53,13 @@ namespace TangLevel
       set {
         if (m_status != value) {
 
-
-          if (statusEndHandler != null)
-            statusEndHandler (m_status);
+          beforeStatus = m_status;
+          changed = true;
 
           m_status = value;
 
           if (statusStartHandler != null)
-            statusStartHandler (m_status);
+            statusStartHandler (beforeStatus);
 
           // send notification for status changed
           /*
@@ -67,7 +79,7 @@ namespace TangLevel
     /// </summary>
     //public void LateLastFrame (SpriteAnimation spriteAnimation)
     //{
-      /*
+    /*
       if (Status == HeroStatus.attack)
         Status = HeroStatus.idle;
       else if (Status == HeroStatus.sprintBrake)
@@ -83,7 +95,7 @@ namespace TangLevel
       if (Status == HeroStatus.attack) {
         // 在这一帧发出攻击到达消息
         //if (index == 6)
-          //Facade.Instance.SendNotification (NtftNames.ATTACK_HIT, actorBhvr.id);
+        //Facade.Instance.SendNotification (NtftNames.ATTACK_HIT, actorBhvr.id);
       }
     }
   }
