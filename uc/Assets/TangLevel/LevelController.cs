@@ -247,7 +247,8 @@ namespace TangLevel
             hero.raiseHpChange += uiMgr.greenHpMonitors [heroIndex].OnChange;
             // 血条显示与隐藏
             hero.raiseHpChange += uiMgr.greenDisplayByHurts [heroIndex].OnHpChange;
-            // 英雄头像血条
+            // 英雄头像 ----
+            // 血条
             hero.raiseHpChange += uiMgr.selfHpMonitors [heroIndex].OnChange;
             // 监听己方英雄的位置变化 -----
             if (agent != null) {

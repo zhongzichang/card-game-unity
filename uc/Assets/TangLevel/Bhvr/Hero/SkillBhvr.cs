@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using PureMVC.Patterns;
+using PureMVC.Interfaces;
+using TG = TangGame;
 
 namespace TangLevel
 {
@@ -138,7 +141,18 @@ namespace TangLevel
 
       // 如果作用器减少HP
       // TODO 测试用，请使用正式的伤害计算公式
-      heroBhvr.hero.hp -= UnityEngine.Random.Range (1, 20);
+      int hurt = UnityEngine.Random.Range (1, 20);
+      heroBhvr.hero.hp -= hurt;
+      // 冒字
+      TG.BattleTxt battleTxt = new TG.BattleTxt ();
+      battleTxt.type = TG.BattleTxtType.Hurt;
+      battleTxt.value = hurt;
+      if (heroBhvr.hero.battleDirection == BattleDirection.RIGHT)
+        battleTxt.self = true;
+      else
+        battleTxt.self = false;
+      battleTxt.position = Camera.main.WorldToScreenPoint (transform.localPosition);
+      Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
       // HP 小于等于0时，角色死亡
       if (heroBhvr.hero.hp <= 0) {
         heroBhvr.Die ();
