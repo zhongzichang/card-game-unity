@@ -120,6 +120,7 @@ namespace TangGame.Xml
 			return syntheticPropsTable;
 
 		}
+
 	}
 
 	[XmlRoot ("root")]

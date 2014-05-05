@@ -33,6 +33,7 @@ namespace TangGame.UI
 		/// </summary>
 		public GameObject ToggleConsumables;
 		public GameObject PropsTable;
+		private BagPanel bagPanel;
 		private Dictionary<int, PropsItem> propsItems = new Dictionary<int, PropsItem> ();
 		// Use this for initialization
 		void Start ()
@@ -43,13 +44,15 @@ namespace TangGame.UI
 			UIEventListener.Get (ToggleSoulRock.gameObject).onClick += ToggleSoulRockOnClick;
 			UIEventListener.Get (ToggleConsumables.gameObject).onClick += ToggleConsumablesOnClick;
 
-
+			if(bagPanel == null)
+				bagPanel = NGUITools.FindInParents<BagPanel> (this.gameObject);
 			//TODO 测试数据
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
 			foreach (PropsBase propsBase in TangGame.UI.Base.BaseCache.propsBaseTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
 				item.Flush (propsBase);
 				propsItems.Add (item.data.Xml.id, item);
+				UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
 
 			}
 			PropsTable.GetComponent<UITable> ().repositionNow = true;
@@ -62,7 +65,14 @@ namespace TangGame.UI
 		{
 	
 		}
-
+		/// <summary>
+		/// Propertieses the item on click.
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		public void PropsItemOnClick(GameObject obj){
+			PropsItem item = obj.GetComponent<PropsItem> ();
+			bagPanel.UpBagPropsInfoSubPanel (item.data);
+		}
 		/// <summary>
 		/// Toggles all on click.
 		/// 显示全部

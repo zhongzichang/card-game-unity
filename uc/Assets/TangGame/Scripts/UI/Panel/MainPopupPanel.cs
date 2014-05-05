@@ -47,6 +47,8 @@ namespace TangGame
 
 		void OnDebrisMenuClick (GameObject obj)
 		{
+
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.PROPS_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,TangGame.UI.Base.BaseCache.propsBaseTable[1001]);
 			this.CloseMenu ();
 		}
 

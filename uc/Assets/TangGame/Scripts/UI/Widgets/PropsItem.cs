@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI.Base;
+using TangGame.Xml;
 
 namespace TangGame.UI
 {
@@ -10,12 +11,21 @@ namespace TangGame.UI
 		public UILabel propsCountLabel;
 		public UISprite propsIconSprite;
 		public PropsBase data;
-		private BagPanel bagPanel;
+		private bool showCount = true;
+
+		public bool ShowCount {
+			get {
+				return showCount;
+			}
+			set {
+				showCount = value;
+			}
+		}
+
 		// Use this for initialization
 		void Start ()
 		{
-			if(bagPanel == null)
-				bagPanel = NGUITools.FindInParents<BagPanel> (this.gameObject);
+
 		}
 		// Update is called once per frame
 		void Update ()
@@ -25,18 +35,16 @@ namespace TangGame.UI
 		public void Flush(PropsBase data){
 			this.data = data;
 			if(data != null){
-				this.propsCountLabel.text = data.Count.ToString();
 				this.propsIconSprite.spriteName = data.Xml.icon;
 				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr((HeroesRankEnum)data.Xml.upgrade));
+				if (propsCountLabel != null && showCount) {
+					if(data.Net != null)
+						this.propsCountLabel.text = data.Net.count.ToString();
+				}
 			}
 
 		}
 
-		void OnClick ()
-		{
-			if (bagPanel != null && data != null) {
-				bagPanel.UpBagPropsInfoSubPanel (data);
-			}
-		}
+
 	}
 }
