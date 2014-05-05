@@ -16,13 +16,14 @@ namespace TangDragonBones
     void OnDisable ()
     {
       //Debug.Log ("disable");
-      if (armature != null &&  WorldClock.Clock.Contains(armature) )
+      if (armature != null && WorldClock.Clock.Contains (armature)) {
         WorldClock.Clock.Remove (armature);
+      }
     }
 
     void OnEnable ()
     {
-      if (armature != null &&  !WorldClock.Clock.Contains(armature)) {
+      if (armature != null &&  ! (WorldClock.Clock.Contains(armature)) ) {
         WorldClock.Clock.Add (armature);
       }
     }
@@ -44,7 +45,7 @@ namespace TangDragonBones
     /// <param name="movementId">Movement identifier.</param>
     public void GotoAndPlay (string movementId)
     {
-      if (armature != null) {
+      if (armature != null && gameObject.activeSelf) {
         //armature.AdvanceTime (0f);
         armature.Animation.GotoAndPlay (movementId, -1, -1, 0);
       }
@@ -55,7 +56,7 @@ namespace TangDragonBones
     /// </summary>
     public void GotoAndPlayNext ()
     {
-      if (armature != null) {
+      if (armature != null &&  gameObject.activeSelf) {
         List<string> animationList = armature.Animation.AnimationList;
         int index = animationList.IndexOf (armature.Animation.MovementID);
         if (index >= animationList.Count - 1) {

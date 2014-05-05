@@ -36,7 +36,7 @@ namespace TangLevel
       if (statusBhvr == null) {
         statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
       }
-      statusBhvr.statusStartHandler += OnStatusStart;
+      statusBhvr.statusEndHandler += OnStatusEnd;
       // transform
       myTransform = transform;
       // dragonbones behaviour
@@ -123,12 +123,13 @@ namespace TangLevel
     /// 状态开始回调
     /// </summary>
     /// <param name="status">Status.</param>
-    private void OnStatusStart (HeroStatus status)
+    private void OnStatusEnd (HeroStatus status)
     {
       switch (status) {
       case HeroStatus.attack:
         // TODO 技能需要特殊处理，不同的技能使用不同的动作
         dbBhvr.GotoAndPlay (status.ToString ());
+        //armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
         break;
       case HeroStatus.dead:
         armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);

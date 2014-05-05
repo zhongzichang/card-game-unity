@@ -433,33 +433,6 @@ namespace TangLevel
       }
     }
 
-    /// <summary>
-    /// 资源加载后
-    /// </summary>
-    /// <param name="ab">Ab.</param>
-    /*
-    private static void OnSubLevelLoaded (AssetBundle ab)
-    {
-
-      Debug.Log ("OnSubLevelLoaded");
-      UnityEngine.Object assets = null;
-      if (ab == null) {
-        string filepath = Config.BATTLE_BG_PATH + Tang.Config.DIR_SEP + LevelContext.TargetSubLevel.resName;
-        Debug.Log (filepath);
-        assets = Resources.Load (filepath);
-      } else
-        assets = ab.Load (ab.name);
-
-      if (assets != null) {
-        GameObject gobj = GameObject.Instantiate (assets) as GameObject;
-        gobj.SetActive (false);
-        gobj.name = assets.name;
-        GobjManager.Add (gobj);
-
-        // 资源已准备完毕
-        OnSubLevelMapResReady ();
-      }
-    }*/
 
     /// <summary>
     /// 发出子关卡资源已准备好的事件
@@ -508,6 +481,18 @@ namespace TangLevel
           Debug.Log ("Need " + need + " " + kvp.Key);
         }
       }
+
+      // 所需英雄资源已经存在
+      if (requiredHeroGobjTable.Count == 0) {
+
+        // 发出关卡加载完成通知
+        if (RaiseSubLevelLoadedEvent != null) {
+          RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
+        }
+
+        // 进入子关卡
+        LevelController.EnterNextSubLevel ();
+      }
     }
 
     /// <summary>
@@ -536,13 +521,14 @@ namespace TangLevel
       // 如果需求已经完成，则进入下一个子关卡
       if (loadedCompleted) {
 
-        // 进入子关卡
-        LevelController.EnterNextSubLevel ();
-
         // 发出关卡加载完成通知
         if (RaiseSubLevelLoadedEvent != null) {
           RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
         }
+
+        // 进入子关卡
+        LevelController.EnterNextSubLevel ();
+
       }
     }
 
@@ -682,8 +668,8 @@ namespace TangLevel
 
       GameObject gobj = HeroGobjManager.FetchUnused (hero);
       if (gobj != null) {
-        gobj.SetActive (true);
         gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
+        gobj.SetActive (true);
       }
       return gobj;
     }

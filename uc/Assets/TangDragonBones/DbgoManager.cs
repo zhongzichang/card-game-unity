@@ -116,6 +116,7 @@ namespace TangDragonBones
 
       Armature armature = factory.BuildArmature (name, null, name);
       GameObject heroObj = new GameObject ();
+      heroObj.SetActive (false);
       heroObj.name = armature.Name;
       GameObject armatureGobj = (armature.Display as UnityArmatureDisplay).Display;
       armatureGobj.name = "body";
@@ -124,7 +125,6 @@ namespace TangDragonBones
       armatureGobj.transform.localRotation = Quaternion.identity;
       DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
       bhvr.armature = armature;
-      heroObj.SetActive (false);
       AddToCache (heroObj);
 
     }
@@ -340,7 +340,6 @@ namespace TangDragonBones
       if (Cache.gobjTable.ContainsKey (name)) {
         foreach (GameObject gobj in Cache.gobjTable[name]) {
           if (gobj != null && !gobj.activeSelf) {
-            gobj.SetActive (true);
             return gobj;
           }
         }
