@@ -20,8 +20,20 @@ namespace TangUI
       REPLACE
     }
 		public enum BlockMode{
+			/// <summary>
+			/// The NON.
+			/// 没有背景
+			/// </summary>
 			NONE,
+			/// <summary>
+			/// The SPRIT.
+			/// 黑色背景
+			/// </summary>
 			SPRITE,
+			/// <summary>
+			/// The TEXTUR.
+			/// 图片背景
+			/// </summary>
 			TEXTURE
 		}
 
