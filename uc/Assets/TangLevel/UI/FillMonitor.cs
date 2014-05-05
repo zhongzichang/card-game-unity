@@ -14,9 +14,12 @@ namespace TangLevel
 
     public void OnChange (int val, int max)
     {
+
       if (max > 0) {
 
         float amount = ((float)val) / max;
+        if (amount < 0)
+          amount = 0;
 
         if (sprite != null && amount >= 0) {
           sprite.fillAmount = amount;

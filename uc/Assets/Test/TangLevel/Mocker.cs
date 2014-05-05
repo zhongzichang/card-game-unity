@@ -64,13 +64,27 @@ namespace TangLevel
     public static Skill MockSkill ()
     {
       Skill skill = new Skill ();
-      skill.specialName = "Sprite_binghua";
 
-      skill.effector = MockEffector ();
+      skill.effector = MockLineFlyEffector ();
+
       return skill;
     }
 
-    public static Effector MockEffector(){
+    // 线性飞行
+    public static Effector MockLineFlyEffector(){
+
+      Effector effector = new Effector ();
+      effector.specialName = "Sprite_binghua";
+
+      Effector[] subEffectors = new Effector[1];
+      subEffectors [0] = MockHitEffector ();
+      effector.subEffectors = subEffectors;
+
+      return effector;
+    }
+
+    // 命中
+    public static Effector MockHitEffector(){
       Effector effector = new Effector ();
       effector.specialName = "Sprite_binghuajizhong";
       return effector;

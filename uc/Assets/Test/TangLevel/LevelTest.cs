@@ -10,12 +10,14 @@ namespace TangLevel
     // Use this for initialization
     void Start ()
     {
+      /*
       LevelController.Init ();
       LevelContext.InLevel = false;
       LevelContext.subLevelStatus = LevelStatus.OUT;
       Mocker.Configure ();
       LevelController.ChallengeLevel (1, Mocker.MockGroup());
       LevelController.RaiseSubLevelLoadedEvent += OnSubLevelLoaded;
+      */
     }
     // Update is called once per frame
     void Update ()
@@ -54,11 +56,12 @@ namespace TangLevel
 
     }*/
 
+    /*
     private void OnSubLevelLoaded(object sender, EventArgs args){
 
       LevelController.RaiseSubLevelLoadedEvent -= OnSubLevelLoaded;
       LevelController.EnterNextSubLevel ();
 
-    }
+    }*/
   }
 }

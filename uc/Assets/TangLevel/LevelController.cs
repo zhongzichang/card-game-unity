@@ -8,7 +8,7 @@ namespace TangLevel
   /// <summary>
   /// Level controller.
   /// </summary>
-  public class LevelController
+  public class LevelController : MonoBehaviour
   {
     /// <summary>
     /// Occurs when raise sub level loaded event.
@@ -22,49 +22,37 @@ namespace TangLevel
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
     public static UIManager uiMgr = null;
 
-    public static void Init ()
+    #region MonoMethods
+
+    void Start ()
     {
 
       // 监听Dragonbone资源装载完毕事件
       TDB.DbgoManager.RaiseLoadedEvent += OnDbResLoaded;
-      //TDB.DbgoManager.RaiseLoadedEvent.
 
       GameObject gobj = GameObject.Find ("BattleUIRoot");
       if (gobj != null) {
         uiMgr = gobj.GetComponent<UIManager> ();
       }
+
+      LevelContext.InLevel = false;
+      LevelContext.subLevelStatus = LevelStatus.OUT;
+
+      Mocker.Configure ();
+
+      LevelController.ChallengeLevel (1, Mocker.MockGroup ());
+
     }
 
-    public static void OnDestory ()
+    void OnDestory ()
     {
       TDB.DbgoManager.RaiseLoadedEvent -= OnDbResLoaded;
     }
 
-    /// <summary>
-    /// 挑战这个关卡
-    /// </summary>
-    /// <param name="levelId">关卡ID</param>
-    /// <param name="group">我方小组</param>
-    public static void ChallengeLevel (int levelId, Group group)
-    {
+    #endregion
 
-      // 确保不在关卡里面
-      if (!LevelContext.InLevel) {
-        // 设置当前关卡
-        if (Config.levelTable.ContainsKey (levelId)) {
-          LevelContext.CurrentLevel = Config.levelTable [levelId];
-        }
-        LevelContext.selfGroup = group;
 
-        // 判断目标子关卡的资源是否已经加载
-        if (LevelContext.subLevelStatus != LevelStatus.INTENT) {
-          // 试图加载
-          LevelContext.subLevelStatus = LevelStatus.INTENT;
-          LoadTargetSubLevelRes ();
-        }
-      }
-    }
-
+    #region PrivateStaticMethods
     /// <summary>
     /// 预加载目标子关卡的资源
     /// </summary>
@@ -180,11 +168,44 @@ namespace TangLevel
         }
       }
       if (loadedCompleted) {
-        //Debug.Log ("DragonBones Resource Loaded Completed.");
-        if (RaiseSubLevelLoadedEvent != null)
+
+        LevelController.EnterNextSubLevel ();
+
+        if (RaiseSubLevelLoadedEvent != null) {
           RaiseSubLevelLoadedEvent (null, EventArgs.Empty);
+        }
       }
     }
+    #endregion
+
+
+    #region PublicStaticMethods
+    /// <summary>
+    /// 挑战这个关卡
+    /// </summary>
+    /// <param name="levelId">关卡ID</param>
+    /// <param name="group">我方小组</param>
+    public static void ChallengeLevel (int levelId, Group group)
+    {
+
+      // 确保不在关卡里面
+      if (!LevelContext.InLevel) {
+        // 设置当前关卡
+        if (Config.levelTable.ContainsKey (levelId)) {
+          LevelContext.CurrentLevel = Config.levelTable [levelId];
+        }
+        LevelContext.selfGroup = group;
+
+        // 判断目标子关卡的资源是否已经加载
+        if (LevelContext.subLevelStatus != LevelStatus.INTENT) {
+          // 试图加载
+          LevelContext.subLevelStatus = LevelStatus.INTENT;
+          LoadTargetSubLevelRes ();
+        }
+      }
+    }
+
+    #endregion
 
     /// <summary>
     /// 进入下一个子关卡
@@ -221,8 +242,14 @@ namespace TangLevel
         if (gobj != null) {
           DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
           if (uiMgr != null && uiMgr.greenHpMonitors.Length > heroIndex) {
+            // 监听己方英雄HP变化 ----
+            // 英雄身上的血条填充
             hero.raiseHpChange += uiMgr.greenHpMonitors [heroIndex].OnChange;
+            // 血条显示与隐藏
             hero.raiseHpChange += uiMgr.greenDisplayByHurts [heroIndex].OnHpChange;
+            // 英雄头像血条
+            hero.raiseHpChange += uiMgr.selfHpMonitors [heroIndex].OnChange;
+            // 监听己方英雄的位置变化 -----
             if (agent != null) {
               agent.raisePositionChange += uiMgr.greenHpPosMonitors [heroIndex].OnChange;
             }
@@ -238,8 +265,12 @@ namespace TangLevel
         if (gobj != null) {
           DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
           if (uiMgr != null && uiMgr.redHpMonitors.Length > heroIndex) {
+            // 监听敌方英雄HP变化 ----
+            // 英雄身上的血条填充
             hero.raiseHpChange += uiMgr.redHpMonitors [heroIndex].OnChange;
+            // 血条的显示与隐藏
             hero.raiseHpChange += uiMgr.redDisplayByHurts [heroIndex].OnHpChange;
+            // 敌方英雄的位置变化 ----
             if (agent != null) {
               agent.raisePositionChange += uiMgr.redHpPosMonitors [heroIndex].OnChange;
             }
@@ -273,6 +304,7 @@ namespace TangLevel
       // 卸载场景资源
       if (LevelContext.background != null)
         GobjManager.Release (LevelContext.background, true);
+
       // 卸载场景人物
       foreach (GameObject gobj in LevelContext.enemyGobjs) {
         HeroGobjManager.Release (gobj, true);
@@ -283,7 +315,6 @@ namespace TangLevel
 
       HeroGobjManager.Clear ();
 
-      // 卸载背景
       LevelContext.InLevel = false;
       LevelContext.subLevelStatus = LevelStatus.OUT;
       // 发出离开关卡通知
