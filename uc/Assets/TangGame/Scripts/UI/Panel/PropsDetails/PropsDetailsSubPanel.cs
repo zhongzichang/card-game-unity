@@ -113,14 +113,17 @@ namespace TangGame.UI
 			this.SVPropsItemTable.GetComponent<UITable> ().repositionNow = true;
 
 
-			if (count > 0) {
-				sVPropsItemScrollView.contentPivot = UIWidget.Pivot.Right;
-				sVPropsItemScrollView.ResetPosition ();
-			} else {
-
-			}
+      StartCoroutine (UpdateScrollView ());
 
 		}
+
+    IEnumerator UpdateScrollView(){
+      yield return 0;
+      UIScrollView sVPropsItemScrollView = NGUITools.FindInParents<UIScrollView> (SVPropsItemTable.gameObject);
+
+      sVPropsItemScrollView.contentPivot = UIWidget.Pivot.Right;
+      sVPropsItemScrollView.ResetPosition ();
+    }
 
 		/// <summary>
 		/// SVs the properties item array back.
