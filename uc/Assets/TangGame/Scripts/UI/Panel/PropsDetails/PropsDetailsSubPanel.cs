@@ -94,7 +94,6 @@ namespace TangGame.UI
 		/// </summary>
 		void SVPropsItemArrayForward (PropsXml propsXml)
 		{
-			UIScrollView sVPropsItemScrollView = NGUITools.FindInParents<UIScrollView> (SVPropsItemTable.gameObject);
 
 			int count = SVPropsItemArray.Count;
 			if (count != 0) {
@@ -110,19 +109,35 @@ namespace TangGame.UI
 			SetCurrentPropsItem (svPropsItem);
 			svPropsItem.name += SVPropsItemArray.IndexOf (svPropsItem);
 			UIEventListener.Get (svPropsItem.gameObject).onClick += OnSVPropsItemOnClick;
-			this.SVPropsItemTable.GetComponent<UITable> ().repositionNow = true;
-
-
-      StartCoroutine (UpdateScrollView ());
+			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
+			StartCoroutine (UpdateScrollView (new Vector3(-SVPropsItemTable.GetComponent<UIGrid> ().cellWidth,0,0)));
 
 		}
 
-    IEnumerator UpdateScrollView(){
-      yield return 0;
-      UIScrollView sVPropsItemScrollView = NGUITools.FindInParents<UIScrollView> (SVPropsItemTable.gameObject);
+		IEnumerator UpdateScrollView(Vector3 constraint){
 
-      sVPropsItemScrollView.contentPivot = UIWidget.Pivot.Right;
-      sVPropsItemScrollView.ResetPosition ();
+
+			yield return new WaitForSeconds(0.2F);
+			UIScrollView sVPropsItemScrollView = NGUITools.FindInParents<UIScrollView> (SVPropsItemTable.gameObject);
+			if (SVPropsItemArray.Count > 4) {
+				sVPropsItemScrollView.contentPivot = UIWidget.Pivot.Right;
+
+			}else{
+				sVPropsItemScrollView.contentPivot = UIWidget.Pivot.TopLeft;
+				constraint = Vector3.zero;
+
+			}
+			Transform svTrans = sVPropsItemScrollView.transform;
+			UIPanel svPanel = sVPropsItemScrollView.panel;
+			Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(svTrans, svTrans);
+			if(constraint == Vector3.zero) constraint = svPanel.CalculateConstrainOffset(bounds.min, bounds.max);
+			if (constraint.sqrMagnitude != 0f && sVPropsItemScrollView.dragEffect ==UIScrollView.DragEffect.MomentumAndSpring) {
+				// Spring back into place
+				Vector3 pos = svTrans.localPosition + constraint;
+				pos.x = Mathf.Round(pos.x);
+				pos.y = Mathf.Round(pos.y);
+				SpringPanel.Begin(svPanel.gameObject, pos, 13f);
+			}
     }
 
 		/// <summary>
@@ -135,7 +150,7 @@ namespace TangGame.UI
 				SVPropsItemArray.RemoveAt (SVPropsItemArray.Count - 1);
 				SetCurrentPropsItem (SVPropsItemArray[SVPropsItemArray.Count - 1] as SVPropsItem);
 			}
-			this.SVPropsItemTable.GetComponent<UITable> ().repositionNow = true;
+			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
 		}
 
 		/// <summary>
@@ -179,7 +194,10 @@ namespace TangGame.UI
 					break;
 				}
 			}
+			StartCoroutine (UpdateScrollView (Vector3.zero));
 			SetCurrentPropsItem (sVPropsItem);
+			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
+
 		}
 		/// <summary>
 		/// Sets the current properties item.
@@ -198,6 +216,8 @@ namespace TangGame.UI
 			PropsItem mainPropsItem = MainPropsItem.GetComponent<PropsItem> ();
 			mainPropsItem.ShowCount = false;
 			mainPropsItem.Flush (propsBase);
+			mainPropsItem.GetComponent<TweenAlpha> ().ResetToBeginning ();
+			mainPropsItem.GetComponent<TweenAlpha> ().Play ();
 
 			Dictionary<int,int> syntheticPropsTable = propsBase.Xml.GetSyntheticPropsTable ();
 			foreach (KeyValuePair<int,int> propsKeyVal in syntheticPropsTable) {
