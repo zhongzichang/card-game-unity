@@ -51,7 +51,7 @@ namespace TangGame.UI
 		/// <summary>
 		/// The parameter.
 		/// </summary>
-		private PropsBase data;
+		private PropsDetailsPanelBean propsDPbean;
 		/// <summary>
 		/// The SV properties item array.
 		/// </summary>
@@ -61,12 +61,12 @@ namespace TangGame.UI
 		/// </summary>
 		private ArrayList SubPropsItemArray = new ArrayList ();
 
-		public PropsBase Data {
+		public PropsDetailsPanelBean PropsDPbean {
 			get {
-				return data;
+				return propsDPbean;
 			}
 			set {
-				data = value;
+				propsDPbean = value;
 			}
 		}
 		// Use this for initialization
@@ -82,9 +82,9 @@ namespace TangGame.UI
 
 		void OnEnable ()
 		{
-			if (data != null) {
+			if ( propsDPbean!= null && propsDPbean.props != null) {
 				this.ClearSVPropsItemArray ();
-				SVPropsItemArrayForward (data.Xml);
+				SVPropsItemArrayForward (propsDPbean.props.Xml);
 			}
 		}
 

@@ -54,22 +54,27 @@ namespace TangGame.UI
 		/// </summary>
 		public GameObject PropsLvLabel;
 		/// <summary>
+		/// The equipped button.
+		/// 装备按钮
+		/// </summary>
+		public GameObject EquippedBtn;
+		/// <summary>
 		/// The data.
 		/// 英雄数据
 		/// </summary>
-		private PropsBase data;
+		private PropsDetailsPanelBean propsDPbean;
 
-		public PropsBase Data {
+		public PropsDetailsPanelBean PropsDPbean {
 			get {
-				return data;
+				return propsDPbean;
 			}
 			set {
-				data = value;
+				propsDPbean = value;
 			}
 		}
 		void OnEnable(){
-			if (data != null) {
-				Flush (data);
+			if ( propsDPbean!= null && propsDPbean.props != null) {
+				Flush (propsDPbean);
 			}
 		}
 
@@ -80,8 +85,8 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
-			if (data != null) {
-				Flush (data);
+			if ( propsDPbean!= null && propsDPbean.props != null) {
+				Flush (propsDPbean);
 			}
 			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
 		}
@@ -95,8 +100,9 @@ namespace TangGame.UI
 		/// 刷新面板数据
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void Flush (PropsBase data)
+		public void Flush (PropsDetailsPanelBean bean)
 		{
+			PropsBase data = bean.props;
 			if (this.gameObject.activeSelf == false) {
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().Play (true);
@@ -106,12 +112,30 @@ namespace TangGame.UI
 			this.UpPropsInfo (data);
 			this.UpPropsName (data.Xml.name);
 			this.UpPropsLvLabel (data.Xml.level.ToString());
+			int propsCount = 0;
 			if (data.Net != null) {
-				this.UpPropsCount (data.Net.count);
+				propsCount = data.Net.count;
 			} else {
-				this.UpPropsCount (0);
+				this.UpPropsCount (propsCount);
+			}
+
+			if (bean.hero != null) {
+				if (propsCount > 0) {
+					this.SynthesisBtnLabel.transform.parent.gameObject.SetActive (false);
+					this.EquippedBtn.SetActive (true);
+					if (bean.props.Xml.level > bean.hero.Net.level) {
+						EquippedBtn.GetComponent<UIButton> ().isEnabled = false;
+					} else {
+						EquippedBtn.GetComponent<UIButton> ().isEnabled = true;
+					}
+				}
+			} else {
+				this.SynthesisBtnLabel.transform.parent.gameObject.SetActive (true);
+				this.EquippedBtn.SetActive (false);
+
 			}
 			this.UpDescription (data.Xml.description);
+
 
 		}
 		/// <summary>
