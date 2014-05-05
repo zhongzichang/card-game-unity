@@ -13,10 +13,6 @@ namespace TangGame.UI
     public bool selected;
     public int camp;
 
-    public bool IsSelected() {
-      return selected;
-    }
-
     public bool IsFront(){
       return HERO_TYPE_FRONT == camp;
     }

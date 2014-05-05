@@ -34,6 +34,7 @@ namespace TangGame.UI
     }
 
     void UpdateHero(HeroItemData data){
+      data.selected = !data.selected;
       selectedHeroTable.UpdateHero (data);
     }
 
@@ -49,14 +50,16 @@ namespace TangGame.UI
           AddHero (data);
       }
       if (GUILayout.Button ("UpdateHero")) {
-        HeroItemData data = new HeroItemData ();
-        data.icon = "BatRider";
-        data.iconFrame = "hero_icon_frame_2";
-        data.level = "56";
-        data.stars = 3;
-        data.camp = 1;
-        data.selected = true;
-        UpdateHero (data);
+        for (int i = 0; i < 3; i++) {
+          HeroItemData data = new HeroItemData ();
+          data.icon = "Axe";
+          data.iconFrame = "hero_icon_frame_2";
+          data.level = "36";
+          data.stars = 4;
+          data.camp = 2;
+          data.selected = false;
+          UpdateHero (data);
+        }
       }
     }
   }
