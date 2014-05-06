@@ -45,10 +45,10 @@ namespace TangLevel
       armature = dbBhvr.armature;
       // skill behaviour
       skillBhvr = GetComponent<SkillBhvr> ();
-
+      /*
       if (armature != null) {
         armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
-      }
+      }*/
 
     }
 

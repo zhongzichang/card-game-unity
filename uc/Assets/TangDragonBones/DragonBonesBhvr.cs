@@ -51,23 +51,6 @@ namespace TangDragonBones
       }
     }
 
-    /// <summary>
-    /// 播放下一个动作
-    /// </summary>
-    public void GotoAndPlayNext ()
-    {
-      if (armature != null &&  gameObject.activeSelf) {
-        List<string> animationList = armature.Animation.AnimationList;
-        int index = animationList.IndexOf (armature.Animation.MovementID);
-        if (index >= animationList.Count - 1) {
-          index = 0;
-        } else {
-          index++;
-        }
-        GotoAndPlay (animationList [index]);
-        
-      }
-    }
 
 
     #endregion
