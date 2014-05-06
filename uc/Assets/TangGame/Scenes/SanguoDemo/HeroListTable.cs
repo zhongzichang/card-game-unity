@@ -6,20 +6,40 @@ namespace TangGame.UI
 
   public class HeroListTable : MonoBehaviour {
 
-  	// Use this for initialization
-  	void Start () {
-  	
-  	}
-  	
-  	// Update is called once per frame
-  	void Update () {
-  	
-  	}
+    private BetterList<HeroItemObject> heroList = new BetterList<HeroItemObject> ();
+    private UITable tableHero;
 
-    public void AddHero(HeroItemData data)
-    {
-      Debug.Log ("AddHero");
+    // Use this for initialization
+    void Start () {
+      tableHero = gameObject.GetComponent<UITable> ();
     }
+
+    // Update is called once per frame
+    void Update () {
+
+    }
+
+    public HeroItemObject FindHeroItem(HeroItemData data){
+      foreach( HeroItemObject t in heroList){
+        if(t.icon.spriteName.Equals(data.icon)){
+          return t;
+        }
+      }
+      return null;
+    }
+
+    public HeroItemObject CreateHeroItem(HeroItemData data){
+      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItem"));
+
+      HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
+      obj.UpdateHeroItem (data);
+      heroList.Add (obj);
+      if (tableHero) {
+        tableHero.Reposition ();
+      }
+      return obj;
+    }
+
   }
 
 }
