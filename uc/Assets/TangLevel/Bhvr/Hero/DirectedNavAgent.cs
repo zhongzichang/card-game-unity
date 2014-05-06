@@ -8,13 +8,13 @@ namespace TangLevel
   {
     /// 屏幕位置发生变化
     public delegate void ScrPosChanged (Vector3 screenPosition);
+
     public ScrPosChanged raiseScrPosChanged;
+
     /// <summary>
     /// 世界位置发生变化
     /// </summary>
     public event EventHandler RaisePosChanged;
-
-
     // speed
     public float speed;
     // stopping distance
@@ -31,10 +31,8 @@ namespace TangLevel
     }
 
     public Transform myTransform;
-
     private Vector3 lastScreenPos = Vector3.zero;
     private Vector3 lastPos = Vector3.zero;
-
     // Use this for initialization
     void Start ()
     {
@@ -51,7 +49,9 @@ namespace TangLevel
         Vector3 localPosition = myTransform.localPosition;
         float distance = Mathf.Abs (destination - localPosition.x);
         if (distance - stoppingDistance < 0.01F) {
+
           ResetPath ();
+
         } else {
 
           // 移动

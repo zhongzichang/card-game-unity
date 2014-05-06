@@ -47,7 +47,7 @@ namespace TangLevel
           GameObject target = heroBhvr.FindClosestTarget ();
           if (target != null) {
 
-            //Debug.Log ("find target ----" + target.name);
+            // Debug.Log ("find target ----" + target.name);
 
             // 判断距离是否可攻击
             float distance = Mathf.Abs (target.transform.localPosition.x - myTransform.localPosition.x);
@@ -56,7 +56,7 @@ namespace TangLevel
               // 移动到可攻击位置
               navigable.NavTo (target.transform.localPosition.x, heroBhvr.hero.attackDistance);
 
-              //Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
+              // Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
 
             } else {
 

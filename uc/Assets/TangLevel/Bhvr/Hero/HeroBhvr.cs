@@ -12,11 +12,11 @@ namespace TangLevel
   [RequireComponent (typeof(DirectedNavigable), typeof(HeroStatusBhvr))]
   public class HeroBhvr : MonoBehaviour
   {
-
     public event EventHandler RaiseDead;
 
     public Hero hero;
     private DirectedNavigable navigable;
+    private DirectedNavAgent agent;
     private HeroStatusBhvr statusBhvr;
     private Transform myTransform;
     private TDB.DragonBonesBhvr dbBhvr;
@@ -29,6 +29,11 @@ namespace TangLevel
 
     void Start ()
     {
+      // nav agent
+      agent = GetComponent<DirectedNavAgent> ();
+      if (agent == null) {
+        agent = gameObject.AddComponent<DirectedNavAgent> ();
+      }
       // navigable
       navigable = GetComponent<DirectedNavigable> ();
       if (navigable == null) {
@@ -49,7 +54,7 @@ namespace TangLevel
         if (statusBhvr == null) {
           statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
         }
-        statusBhvr.statusEndHandler += OnStatusEnd;
+        statusBhvr.statusChangedHandler += OnStatusChanged;
       }
       // 重新打开，状态设置为空闲
       statusBhvr.Status = HeroStatus.idle;
@@ -116,7 +121,11 @@ namespace TangLevel
 
       } else if (movementId.Equals (HeroStatus.dead.ToString ())) {
 
+        Debug.Log ("dead ========");
 
+      } else if (movementId.Equals (HeroStatus.beat.ToString ())) {
+
+        statusBhvr.Status = HeroStatus.idle;
       }
     }
 
@@ -125,10 +134,10 @@ namespace TangLevel
     #region Tang Callback
 
     /// <summary>
-    /// 状态开始回调
+    /// 状态回调
     /// </summary>
     /// <param name="status">Status.</param>
-    private void OnStatusEnd (HeroStatus status)
+    private void OnStatusChanged (HeroStatus status)
     {
       switch (status) {
       case HeroStatus.attack:
@@ -180,12 +189,38 @@ namespace TangLevel
 
     }
 
+    /// <summary>
+    /// 死亡
+    /// </summary>
     public void Die ()
     {
       statusBhvr.Status = HeroStatus.dead;
       if (RaiseDead != null) {
         RaiseDead (this, EventArgs.Empty);
       }
+    }
+
+    /// <summary>
+    /// 被击打
+    /// </summary>
+    public void Beat ()
+    {
+      // 下面的行为会被打断
+      if (statusBhvr.Status == HeroStatus.idle ||
+          statusBhvr.Status == HeroStatus.attack) {
+        statusBhvr.Status = HeroStatus.beat;
+
+      } else if (statusBhvr.Status == HeroStatus.running) {
+        statusBhvr.Status = HeroStatus.beat;
+        agent.ResetPath ();
+      }
+    }
+
+    public void CelebrateVictory ()
+    {
+
+      statusBhvr.Status = HeroStatus.victory;
+
     }
 
     /// <summary>

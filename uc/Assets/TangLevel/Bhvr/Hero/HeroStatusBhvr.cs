@@ -8,7 +8,7 @@ namespace TangLevel
     public delegate void StatusChange (HeroStatus status);
 
     // 状态结束时回调
-    public StatusChange statusEndHandler;
+    public StatusChange statusChangedHandler;
     /// <summary>
     ///   角色状态，在*inspector*中使用
     /// </summary>
@@ -24,8 +24,8 @@ namespace TangLevel
 
         changed = false;
 
-        if (statusEndHandler != null)
-          statusEndHandler (m_status);
+        if (statusChangedHandler != null)
+          statusChangedHandler (m_status);
       }
     }
 

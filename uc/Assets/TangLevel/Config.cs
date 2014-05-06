@@ -13,7 +13,7 @@ namespace TangLevel
 {
   public class Config
   {
-    public const float RIGHT_BOUND = 48;
+    public const float RIGHT_BOUND = 40;
 
     /// <summary>
     ///   是否使用打包后的资源
