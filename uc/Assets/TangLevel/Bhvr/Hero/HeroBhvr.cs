@@ -12,6 +12,9 @@ namespace TangLevel
   [RequireComponent (typeof(DirectedNavigable), typeof(HeroStatusBhvr))]
   public class HeroBhvr : MonoBehaviour
   {
+
+    public event EventHandler RaiseDead;
+
     public Hero hero;
     private DirectedNavigable navigable;
     private HeroStatusBhvr statusBhvr;
@@ -180,6 +183,9 @@ namespace TangLevel
     public void Die ()
     {
       statusBhvr.Status = HeroStatus.dead;
+      if (RaiseDead != null) {
+        RaiseDead (this, EventArgs.Empty);
+      }
     }
 
     /// <summary>
