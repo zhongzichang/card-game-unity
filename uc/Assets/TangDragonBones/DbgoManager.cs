@@ -125,6 +125,7 @@ namespace TangDragonBones
       armatureGobj.transform.localRotation = Quaternion.identity;
       DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
       bhvr.armature = armature;
+      heroObj.AddComponent<DemoBhvr> ();
       AddToCache (heroObj);
 
     }

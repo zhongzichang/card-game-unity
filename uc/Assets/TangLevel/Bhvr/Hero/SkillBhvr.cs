@@ -133,34 +133,46 @@ namespace TangLevel
       // 包装作用器
       WrapEffector (effector, skill);
 
+      // 只有英雄还没死，才会进行伤害计算
+      if (heroBhvr.hero.hp > 0) {
 
-      // 如果作用器减少HP
-      // TODO 测试用，请使用正式的伤害计算公式
-      int hurt = UnityEngine.Random.Range (1, 20);
-      heroBhvr.hero.hp -= hurt;
+        // 如果作用器减少HP
+        // TODO 测试用，请使用正式的伤害计算公式
+        int hurt = UnityEngine.Random.Range (1, 20);
+        heroBhvr.hero.hp -= hurt;
 
-      // 冒字
-      TG.BattleTxt battleTxt = new TG.BattleTxt ();
-      battleTxt.type = TG.BattleTxtType.Hurt;
-      battleTxt.value = hurt;
-      if (heroBhvr.hero.battleDirection == BattleDirection.RIGHT)
-        battleTxt.self = true;
-      else
-        battleTxt.self = false;
-      battleTxt.position = Camera.main.WorldToScreenPoint (transform.localPosition);
-      Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
-      // HP 小于等于0时，角色死亡
-      if (heroBhvr.hero.hp <= 0) {
-        heroBhvr.Die ();
+        // 冒字
+        TG.BattleTxt battleTxt = new TG.BattleTxt ();
+        battleTxt.type = TG.BattleTxtType.Hurt;
+        battleTxt.value = hurt;
+        if (heroBhvr.hero.battleDirection == BattleDirection.RIGHT)
+          battleTxt.self = true;
+        else
+          battleTxt.self = false;
+        battleTxt.position = Camera.main.WorldToScreenPoint (transform.localPosition);
+        Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
+
+        // HP 小于等于0时，角色死亡
+        if (heroBhvr.hero.hp <= 0) {
+          heroBhvr.Die ();
+        } else {
+          // 被击打
+          heroBhvr.Beat ();
+        }
       }
+
 
       // 作用器特效
       string specialName = effector.specialName;
       if (specialName != null) {
         GameObject gobj = GobjManager.FetchUnused (specialName);
+
         if (gobj != null) {
+
           ReleaseEffectorSpecial (gobj, effector);
+
         } else {
+
           // 添加到受作用器列表
           effectors.Add (effector);
           // 需要加载资源

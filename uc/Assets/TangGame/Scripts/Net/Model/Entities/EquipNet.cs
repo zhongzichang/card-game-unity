@@ -17,10 +17,10 @@ namespace TangGame.Net
 		/// <summary>
 		/// 装备的附魔等级
 		/// </summary>
-		public int level;
+		public int enchantsLv;
 		/// <summary>
 		/// 装备的附魔经验
 		/// </summary>
-		public long exp;
+		public long enchantsExp;
 	}
 }

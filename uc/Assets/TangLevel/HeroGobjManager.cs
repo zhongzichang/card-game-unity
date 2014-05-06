@@ -63,6 +63,11 @@ namespace TangLevel
           heroBhvr = gobj.AddComponent<HeroBhvr> ();
         }
         heroBhvr.hero = hero;
+        // DemoBhvr , make disable
+        TD.DemoBhvr demoBhvr = gobj.GetComponent<TD.DemoBhvr> ();
+        if (demoBhvr != null && demoBhvr.enabled) {
+          demoBhvr.enabled = false;
+        }
         // AI
         if (hero.ai != null) {
           foreach (string scriptName in hero.ai) {

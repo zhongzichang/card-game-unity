@@ -80,6 +80,7 @@ namespace TangGame.UI
 			}
 		}
 
+		public GameObject SynthesisBtn;
 		/// <summary>
 		/// The synthesis button label.
 		/// </summary>
@@ -122,9 +123,12 @@ namespace TangGame.UI
 				this.UpPropsCount (propsCount);
 			}
 
+
+			this.SynthesisBtn.SetActive (true);
+			this.EquippedBtn.SetActive (false);
 			if (bean.hero != null) {
 				if (propsCount > 0) {
-					this.SynthesisBtnLabel.transform.parent.gameObject.SetActive (false);
+					this.SynthesisBtn.SetActive (false);
 					this.EquippedBtn.SetActive (true);
 					if (bean.props.Xml.level > bean.hero.Net.level) {
 						EquippedBtn.GetComponent<UIButton> ().isEnabled = false;
@@ -132,11 +136,7 @@ namespace TangGame.UI
 						EquippedBtn.GetComponent<UIButton> ().isEnabled = true;
 					}
 				}
-			} else {
-				this.SynthesisBtnLabel.transform.parent.gameObject.SetActive (true);
-				this.EquippedBtn.SetActive (false);
-
-			}
+			} 
 			this.UpDescription (data.Xml.description);
 
 
@@ -168,7 +168,7 @@ namespace TangGame.UI
 		/// </summary>
 		public void UpPropsFrames (short upgrade)
 		{
-			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr ((HeroesRankEnum)upgrade);// TODO  需要根据图片名字修改
+			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr ((RankEnum)upgrade);// TODO  需要根据图片名字修改
 		}
 
 		/// <summary>

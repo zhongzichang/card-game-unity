@@ -18,17 +18,28 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
-			if (param != null && param is PropsBase)
-				propsDPbean = new PropsDetailsPanelBean ();
-			propsDPbean.props = param as PropsBase;
-			if (param != null && param is PropsDetailsPanelBean) {
-				propsDPbean = param as PropsDetailsPanelBean;
-			}
+
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsInterfacePanel, PropsDetailsInterfacePanel.name);
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsSubPanel, PropsDetailsSubPanel.name);
 
-			PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> ().PropsDPbean = propsDPbean;
-			PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().PropsDPbean = propsDPbean;
+				PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> ().PropsDPbean = propsDPbean;
+				PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().Flush (propsDPbean);
+		}
+
+		void OnEnable ()
+		{
+			if (param != null && param is PropsBase) {
+				PropsDPbean = new PropsDetailsPanelBean ();
+				PropsDPbean.props = param as PropsBase;
+			}
+			if (param != null && param is PropsDetailsPanelBean) {
+				PropsDPbean = param as PropsDetailsPanelBean;
+			}
+			if (PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> () != null)
+				PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> ().PropsDPbean = propsDPbean;
+
+			if (PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> () != null)
+				PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().PropsDPbean = propsDPbean;
 		}
 
 		public PropsDetailsPanelBean PropsDPbean {
@@ -44,6 +55,7 @@ namespace TangGame.UI
 		{
 	
 		}
+
 	}
 
 	public class PropsDetailsPanelBean

@@ -74,6 +74,9 @@ namespace TangGame.UI
 		{
 
 		}
+		void OnClick(){
+			SVPropsItemArrayBack ();
+		}
 		// Update is called once per frame
 		void Update ()
 		{
@@ -114,6 +117,12 @@ namespace TangGame.UI
 
 		}
 
+		/// <summary>
+		/// Updates the scroll view.
+		/// 以spring的方式位移scorll view ，
+		/// </summary>
+		/// <returns>The scroll view.</returns>
+		/// <param name="constraint">如果constraint 是vector3.zero 则默认位移到初始状态</param>
 		IEnumerator UpdateScrollView (Vector3 constraint)
 		{
 
@@ -148,11 +157,10 @@ namespace TangGame.UI
 		/// </summary>
 		void SVPropsItemArrayBack ()
 		{
-			if (SVPropsItemArray.Count > 1) {
-				SVPropsItemArray.RemoveAt (SVPropsItemArray.Count - 1);
-				SetCurrentPropsItem (SVPropsItemArray [SVPropsItemArray.Count - 1] as SVPropsItem);
+			if (SVPropsItemArray.Count >= 2) {
+				SVPropsItem item = SVPropsItemArray [SVPropsItemArray.Count - 2] as SVPropsItem;
+				BackToSVPropsItem (item);
 			}
-			this.SVPropsItemTable.GetComponent<UIGrid> ().repositionNow = true;
 		}
 
 		/// <summary>

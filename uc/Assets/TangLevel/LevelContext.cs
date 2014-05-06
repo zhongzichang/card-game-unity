@@ -79,19 +79,6 @@ namespace TangLevel
       }
     }
 
-    /// <summary>
-    /// 下一个子关卡是否已经准备完毕
-    /// </summary>
-    /// <value><c>true</c> if is next sub level res ready; otherwise, <c>false</c>.</value>
-    public static bool IsNextSubLevelResReady {
-      get;
-      set;
-    }
-
-    public static bool IsWaitingForEnten {
-      get;
-      set;
-    }
 
     /// <summary>
     /// 我方小组(model)

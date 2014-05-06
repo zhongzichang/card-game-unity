@@ -19,7 +19,7 @@ namespace TangGame.UI
 			this.data = data;
 			if (data != null) {
 				this.propsIconSprite.spriteName = data.Xml.icon;
-				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr ((HeroesRankEnum)data.Xml.upgrade));
+				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr ((RankEnum)data.Xml.upgrade));
 				if (data.Net != null)
 					this.propsCountLabel.text = (data.Net.count + count).ToString ();
 				else
