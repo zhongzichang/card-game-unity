@@ -26,7 +26,6 @@ namespace TangLevel
     /// 挑战失败
     /// </summary>
     public static event EventHandler RaiseChangengeFailure;
-
     /// <summary>
     /// 进入子关卡成功
     /// </summary>
@@ -112,7 +111,6 @@ namespace TangLevel
 
       }
     }
-
 
     /// <summary>
     /// 挑战下一个子关卡
@@ -258,11 +256,11 @@ namespace TangLevel
       }
     }
 
-
     /// <summary>
     /// 处理英雄死亡事件
     /// </summary>
-    private static void OnHeroDead(object sender, EventArgs args){
+    private static void OnHeroDead (object sender, EventArgs args)
+    {
 
       HeroBhvr bhvr = sender as HeroBhvr;
       if (bhvr != null) {
@@ -285,6 +283,7 @@ namespace TangLevel
             if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLeves.Length - 1) {
               // 发出关卡挑战成功
               Debug.Log ("challenge success");
+              CelebrateVictory ();
               if (RaiseChallengeSuccess != null) {
                 RaiseChallengeSuccess (null, EventArgs.Empty);
               }
@@ -301,13 +300,17 @@ namespace TangLevel
     /// <summary>
     /// 处理英雄位置变化事件
     /// </summary>
-    private static void OnHeroPosChanged(object sender, EventArgs args) {
+    private static void OnHeroPosChanged (object sender, EventArgs args)
+    {
 
       DirectedNavAgent agent = sender as DirectedNavAgent;
       if (agent != null) {
 
         // 英雄的位置超过设定的边际
         if (agent.myTransform.localPosition.x > Config.RIGHT_BOUND) {
+
+          // 离开当前子关卡
+          LeftSubLevel ();
 
           // 进入下一个子关卡
           ContinueNextSubLevel ();
@@ -317,6 +320,7 @@ namespace TangLevel
       }
 
     }
+
     #endregion
 
     #region PrivateStaticMethods
@@ -515,7 +519,7 @@ namespace TangLevel
       LevelContext.selfGobjs.Clear ();
 
 
-      // 释放背景
+      // 释放背景资源
       if (LevelContext.background != null) {
         GobjManager.Release (LevelContext.background, true);
       }
@@ -529,10 +533,11 @@ namespace TangLevel
     private static void ListenSelftHeros ()
     {
 
-      GameObject[] gobjs = LevelContext.selfGobjs.ToArray ();
+      List<GameObject> gobjs = LevelContext.selfGobjs;
       Hero[] heros = LevelContext.selfGroup.heros;
 
-      for (int i = 0; i < gobjs.Length && i < heros.Length; i++) {
+
+      for (int i = 0; i < gobjs.Count && i < heros.Length; i++) {
 
         GameObject g = gobjs [i];
         Hero h = heros [i];
@@ -569,9 +574,9 @@ namespace TangLevel
     private static void UnlistenSelfHeros ()
     {
 
-      GameObject[] gobjs = LevelContext.selfGobjs.ToArray ();
+      List<GameObject> gobjs = LevelContext.selfGobjs;
       Hero[] heros = LevelContext.selfGroup.heros;
-      for (int i = 0; i < gobjs.Length && i < heros.Length; i++) {
+      for (int i = 0; i < gobjs.Count && i < heros.Length; i++) {
 
         GameObject g = gobjs [i];
         Hero h = heros [i];
@@ -609,10 +614,10 @@ namespace TangLevel
     private static void ListenEnemyHeros ()
     {
 
-      GameObject[] gobjs = LevelContext.enemyGobjs.ToArray ();
+      List<GameObject> gobjs = LevelContext.enemyGobjs;
       Hero[] heros = LevelContext.CurrentSubLevel.enemyGroup.heros;
 
-      for (int i = 0; i < gobjs.Length; i++) {
+      for (int i = 0; i < gobjs.Count; i++) {
 
         GameObject g = gobjs [i];
         Hero h = heros [i];
@@ -643,10 +648,10 @@ namespace TangLevel
     private static void UnlistenEnemyHeros ()
     {
 
-      GameObject[] gobjs = LevelContext.enemyGobjs.ToArray ();
+      List<GameObject> gobjs = LevelContext.enemyGobjs;
       Hero[] heros = LevelContext.CurrentSubLevel.enemyGroup.heros;
 
-      for (int i = 0; i < gobjs.Length; i++) {
+      for (int i = 0; i < gobjs.Count; i++) {
 
         GameObject g = gobjs [i];
         Hero h = heros [i];
@@ -828,29 +833,26 @@ namespace TangLevel
     private static void ContinueAhead ()
     {
 
-      foreach (GameObject g in LevelContext.selfGobjs) {
+      foreach (GameObject g in LevelContext.AliveSelfGobjs) {
 
         HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
         if (heroBhvr == null) {
           continue;
         }
 
-        if (heroBhvr.hero.hp > 0) {
-
-          DirectedNavigable nav = g.GetComponent<DirectedNavigable> ();
-          if (nav != null) {
-
-            nav.NavTo ( Config.RIGHT_BOUND + 10F);
-
-          }
-
+        DirectedNavigable nav = g.GetComponent<DirectedNavigable> ();
+        if (nav != null) {
+          nav.NavTo (Config.RIGHT_BOUND + 10);
         }
-
       }
 
     }
 
-    private static void ContinueNextSubLevel(){
+    /// <summary>
+    /// 继续攻打下一个子关卡
+    /// </summary>
+    private static void ContinueNextSubLevel ()
+    {
 
       // 如果子关卡还没有加载，加载子关卡资源
       // 否则进入子关卡
@@ -864,6 +866,24 @@ namespace TangLevel
         LoadTargetSubLevelRes ();
       }
     }
+
+    /// <summary>
+    /// 英雄们庆祝胜利
+    /// </summary>
+    private static void CelebrateVictory ()
+    {
+
+      foreach (GameObject g in LevelContext.selfGobjs) {
+
+        HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
+        if (heroBhvr == null) {
+          continue;
+        }
+
+        heroBhvr.CelebrateVictory ();
+      }
+    }
+
     #endregion
   }
 }

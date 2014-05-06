@@ -155,6 +155,9 @@ namespace TangLevel
         // HP 小于等于0时，角色死亡
         if (heroBhvr.hero.hp <= 0) {
           heroBhvr.Die ();
+        } else {
+          // 被击打
+          heroBhvr.Beat ();
         }
       }
 
@@ -163,9 +166,13 @@ namespace TangLevel
       string specialName = effector.specialName;
       if (specialName != null) {
         GameObject gobj = GobjManager.FetchUnused (specialName);
+
         if (gobj != null) {
+
           ReleaseEffectorSpecial (gobj, effector);
+
         } else {
+
           // 添加到受作用器列表
           effectors.Add (effector);
           // 需要加载资源

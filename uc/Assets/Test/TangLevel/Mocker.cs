@@ -25,7 +25,7 @@ namespace TangLevel
           subLevel.resName = "bbg_blood_elf_door";
         }
 
-        level.subLeves [subLevel.index ] = subLevel;
+        level.subLeves [subLevel.index] = subLevel;
         subLevel.enemyGroup = MockGroup ();
 
       }
@@ -33,11 +33,19 @@ namespace TangLevel
         Config.levelTable.Add (level.id, level);
     }
 
+    static int tmpG = 0;
+
     public static Group MockGroup ()
     {
 
       Group group = new Group ();
-      group.heros = new Hero[ UnityEngine.Random.Range(2,5)];
+      int maxHeros = 5;
+      if (tmpG == 3) {
+        maxHeros = 5;
+      } else
+        maxHeros = 3;
+      tmpG++;
+      group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
 
         group.heros [j] = MockHero ();
@@ -55,7 +63,7 @@ namespace TangLevel
       hero.hp = 100;
       hero.maxMp = 100;
       hero.mp = 100;
-      hero.attackDistance = UnityEngine.Random.Range(3, 20);
+      hero.attackDistance = UnityEngine.Random.Range (3, 20);
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else
@@ -77,9 +85,9 @@ namespace TangLevel
 
       return skill;
     }
-
     // 线性飞行
-    public static Effector MockLineFlyEffector(){
+    public static Effector MockLineFlyEffector ()
+    {
 
       Effector effector = new Effector ();
       effector.specialName = "Sprite_binghua";
@@ -90,9 +98,9 @@ namespace TangLevel
 
       return effector;
     }
-
     // 命中
-    public static Effector MockHitEffector(){
+    public static Effector MockHitEffector ()
+    {
       Effector effector = new Effector ();
       effector.specialName = "Sprite_binghuajizhong";
       return effector;

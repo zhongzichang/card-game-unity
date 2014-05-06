@@ -6,7 +6,7 @@ namespace TangLevel
 {
   public class PlayOnceEffector : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3(0, 3, 0);
+    public static Vector3 OFFSET = new Vector3(0, 1.5F, 0);
 
     private Uni2DSprite sprite;
     private Uni2DSpriteAnimation animation;
@@ -37,6 +37,7 @@ namespace TangLevel
           GameObject target = skill.target;
           if (target != null) {
 
+            // 绑定到目标身上
             myTransform.localPosition = target.transform.localPosition + OFFSET;
             foundTarget = true;
           }

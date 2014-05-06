@@ -8,7 +8,8 @@ namespace TangLevel
     running,
     attack,
     dead,
-    skill
+    beat,
+    victory
   }
 }
 
