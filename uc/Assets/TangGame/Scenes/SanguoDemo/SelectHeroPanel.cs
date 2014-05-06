@@ -10,8 +10,9 @@ namespace TangGame.UI
     public HeroListTable heroTableMiddle;
     public HeroListTable heroTableBack;
 
-    public SelectHeroTable selectedHeroTable;
+    public SelectHeroTable heroTableSelected;
 
+    private Hashtable heroItems = new Hashtable();
     // Use this for initialization
   	void Start () {
 
@@ -23,45 +24,37 @@ namespace TangGame.UI
   	}
 
     void AddHero(HeroItemData data){
-      if (data.IsFront()) {
-        UpdateHero(heroTableFront, data);
-      } else if (data.IsMiddle()) {
-        UpdateHero(heroTableMiddle, data);
-      } else if (data.IsBack()) {
-        UpdateHero(heroTableBack, data);
+      heroItems [data.icon] = data;
+
+      HeroListTable heroTable = GetHeroTable (data);
+      if (heroTable) {
+        HeroItemObject obj = heroTable.CreateHeroItemObj(data);
+        UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
       }
-      UpdateHero(heroTableAll, data);
-    }
 
-    void UpdateHero(HeroListTable table, HeroItemData data){
-        HeroItemObject obj = table.FindHeroItem (data);
-        if (obj == null) {
-          obj = table.CreateHeroItem (data);
-          UIEventListener.Get(obj.gameObject).onClick += OnHeroViewItemClicked;
-        } else {
-          obj.gameObject.SetActive (true);
-        }
-    }
+      {
+        HeroItemObject obj = heroTableAll.CreateHeroItemObj (data);
+        UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
+      }
 
-    void SelectHero(SelectHeroTable table, HeroItemData data){
-      HeroItemObject obj = table.FindHeroItem (data);
-      if (obj == null) {
-        obj = table.CreateHeroItem (data);
-        UIEventListener.Get(obj.gameObject).onClick += OnSelectHeroItemClicked;
-      } else {
-        obj.gameObject.SetActive (true);
+      {
+        HeroItemObject obj = heroTableSelected.CreateHeroItemObj (data);
+        UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
       }
     }
 
-    private void OnSelectHeroItemClicked(GameObject obj){
-      obj.SetActive (false);
+    private HeroListTable GetHeroTable(HeroItemData data){
+      if (data.IsFront()) return heroTableFront;
+      if (data.IsMiddle()) return heroTableMiddle;
+      if (data.IsBack()) return heroTableBack;
+      return null;
     }
 
-    private void OnHeroViewItemClicked(GameObject obj){
-      HeroItemObject hero = obj.GetComponent<HeroItemObject>();
-      if(hero){
-        Debug.Log ("ToggleTick.");
-        hero.ToggleTick();
+    private void OnItemClicked(GameObject obj){
+      HeroItemObject hero = (HeroItemObject)obj.GetComponent<HeroItemObject> (); 
+      HeroItemData data = (HeroItemData)heroItems[hero.name];
+      if (data != null) {
+        data.Toggle ();
       }
     }
 
@@ -94,16 +87,6 @@ namespace TangGame.UI
           data.camp = 0;
           AddHero (data);
         }
-      }
-      if (GUILayout.Button ("SelectHero")) {
-        HeroItemData data = new HeroItemData ();
-        data.icon = "Axe";
-        data.iconFrame = "hero_icon_frame_2";
-        data.level = "36";
-        data.stars = 4;
-        data.camp = 2;
-        data.selected = false;
-        SelectHero (selectedHeroTable, data);
       }
     }
   }

@@ -21,7 +21,8 @@ namespace TangGame.UI
 
     }
 
-    public void UpdateHeroItem(HeroItemData data){
+    public void Update(HeroItemData data){
+      this.name = data.icon;
       icon.spriteName = data.icon;
       iconFrame.spriteName = data.iconFrame;
       level.text = data.level;
@@ -29,9 +30,12 @@ namespace TangGame.UI
       stars.Reposition ();
     }
 
-    public void ToggleTick(){
-      Debug.Log ("Toggled.");
+    public void Toggle(){
       tick.SetActive (!tick.activeSelf);
+    }
+
+    public void Hide(){
+      gameObject.SetActive (!gameObject.activeSelf);
     }
 
 //    void OnGUI(){
@@ -41,7 +45,7 @@ namespace TangGame.UI
 //        data.iconFrame = "hero_icon_frame_2";
 //        data.level = "56";
 //        data.stars = 3;
-//        UpdateHeroItem (data);
+//        Bind (data);
 //      }
 //      if (GUILayout.Button ("ToggleTick")) {
 //        ToggleTick ();
