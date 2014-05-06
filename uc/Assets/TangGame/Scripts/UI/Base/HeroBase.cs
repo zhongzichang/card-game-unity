@@ -305,10 +305,10 @@ namespace TangGame.UI.Base
 			}
 		}
 
-		public static HeroesRankEnum GetHeroesRankEnum (int rank)
+		public static RankEnum GetHeroesRankEnum (int rank)
 		{
 			float val = (float)Mathf.Sqrt ((float)(2 * rank + 0.25)) - (float)0.5;
-			return (HeroesRankEnum)(int)(val - 1);
+			return (RankEnum)(int)(val - 1);
 		}
 
 		/// <summary>
@@ -321,15 +321,15 @@ namespace TangGame.UI.Base
 			return GetRankColorStr (GetHeroesRankEnum (rank));
 		}
 
-		public static string GetRankColorStr (HeroesRankEnum rank)
+		public static string GetRankColorStr (RankEnum rank)
 		{
-			if (rank.Equals (HeroesRankEnum.WHITE)) {
+			if (rank.Equals (RankEnum.WHITE)) {
 				return "white";
-			} else if (rank.Equals (HeroesRankEnum.GREEN)) {
+			} else if (rank.Equals (RankEnum.GREEN)) {
 				return "green";
-			} else if (rank.Equals (HeroesRankEnum.BLUE)) {
+			} else if (rank.Equals (RankEnum.BLUE)) {
 				return "blue";
-			} else if (rank.Equals (HeroesRankEnum.PURPLE)) {
+			} else if (rank.Equals (RankEnum.PURPLE)) {
 				return "purple";
 			} else {
 				return "white";
@@ -353,7 +353,7 @@ namespace TangGame.UI.Base
 		LATER
 	}
 
-	public enum HeroesRankEnum
+	public enum RankEnum
 	{
 		WHITE,
 		GREEN,

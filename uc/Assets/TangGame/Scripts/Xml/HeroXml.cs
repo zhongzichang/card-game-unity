@@ -2,6 +2,7 @@
 using System.Xml;
 using UnityEngine;
 using System.Xml.Serialization;
+using System.Collections;
 using System.Collections.Generic;
 namespace TangGame.Xml
 {
@@ -150,7 +151,36 @@ namespace TangGame.Xml
 		/// <summary>
 		/// 图鉴的名字
 		/// </summary>
-		public string portrait;
+		public string portrait = null;
+
+		List<PropsXml> equipList;
+
+		/// <summary>
+		/// Currents the equip list by rank.
+		/// 根据阶级获取当前装备的xml对象
+		/// </summary>
+		/// <returns>The equip list by rank.</returns>
+		/// <param name="rank">Rank.</param>
+		public List<PropsXml> CurrentEquipListByRank(int heroRank){
+			if (equipList == null) {
+				equipList = new List<PropsXml> ();
+				ArrayList equipStrList = Utils.SplitStrByBraces (this.equip_id_list);
+				string equipStr = "";
+				if (equipStrList.Count >= heroRank - 1) {
+					equipStr = equipStrList [heroRank - 1].ToString();
+				}
+				int[] equipIds = Utils.SplitStrByCommaToInt (equipStr);
+				if(equipStr != null){
+					foreach (int id in equipIds) {
+					if (Config.propsXmlTable.ContainsKey (id))
+						equipList.Add (Config.propsXmlTable [id]);
+					else
+							Debug.LogWarning (string.Format("找不到物品，道具id:{0}",id));
+					}
+				}
+			}
+			return equipList;
+		}
 	}
 
 	[XmlRoot("root")]
