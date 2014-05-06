@@ -112,7 +112,7 @@ namespace TangGame.UI
 		/// </summary>
 		public void UpPropsFrames (short upgrade)
 		{
-			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr ((HeroesRankEnum)upgrade);// TODO  需要根据图片名字修改
+			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr ((RankEnum)upgrade);// TODO  需要根据图片名字修改
 		}
 
 		/// <summary>

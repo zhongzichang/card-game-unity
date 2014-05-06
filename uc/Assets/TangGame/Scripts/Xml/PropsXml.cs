@@ -8,8 +8,10 @@ namespace TangGame.Xml
 {
 	public class PropsXml
 	{
-		//		<!-- 物品编号 -->
-		//		<id>1001</id>
+		/// <summary>
+		/// The identifier.
+		/// 物品编号
+		/// </summary>
 		public int id;
 		//		<!-- 物品名称 -->
 		//		<name>牛顿的不粘锅</name>

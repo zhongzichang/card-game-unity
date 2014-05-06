@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using TangGame.UI.Base;
 using TDB = TangDragonBones;
 
@@ -20,12 +21,7 @@ namespace TangGame.UI
 		public GameObject AnimatorObj;
 		public GameObject Background;
 		///6个道具栏
-		public GameObject Props1;
-		public GameObject Props2;
-		public GameObject Props3;
-		public GameObject Props4;
-		public GameObject Props5;
-		public GameObject Props6;
+		public GameObject PropsTable;
 		///英雄名字
 		public GameObject HeroNameLabel;
 		///英雄名字框
@@ -47,16 +43,10 @@ namespace TangGame.UI
 		///星级列表
 		public GameObject StarList;
 		private TDB.DragonBonesBhvr dragonBonesBhvr;
-		private ArrayList propsSpirtes = new ArrayList ();
+		private ArrayList equipObjects = new ArrayList ();
 		// Use this for initialization
 		void Start ()
 		{
-			propsSpirtes.Add (Props1.GetComponentInChildren<UISprite> ());
-			propsSpirtes.Add (Props2.GetComponentInChildren<UISprite> ());
-			propsSpirtes.Add (Props3.GetComponentInChildren<UISprite> ());
-			propsSpirtes.Add (Props4.GetComponentInChildren<UISprite> ());
-			propsSpirtes.Add (Props5.GetComponentInChildren<UISprite> ());
-			propsSpirtes.Add (Props6.GetComponentInChildren<UISprite> ());
 
 			SkillInfoButton.GetComponent<UIToggle> ().optionCanBeNone = true;
 			PictorialButton.GetComponent<UIToggle> ().optionCanBeNone = true;
@@ -103,6 +93,7 @@ namespace TangGame.UI
 		{
 			GameObject obj = TDB.DbgoManager.FetchUnused (resName);
 			if (obj != null) {
+				obj.SetActive (true);
 				obj.transform.parent = AnimatorObj.transform;
 				obj.transform.localPosition = Vector3.zero;
 				obj.transform.localScale = new Vector3 (30, 30, 1);
@@ -128,7 +119,8 @@ namespace TangGame.UI
 		}
 
 		/// <summary>
-		/// Refreshs the panel.刷新面板的数据
+		/// Refreshs the panel.
+		/// 刷新面板的数据
 		/// </summary>
 		/// <param name="data">Data.</param>
 		public void RefreshPanel (HeroBase heroBase)
@@ -140,8 +132,16 @@ namespace TangGame.UI
 			this.SetScore (heroBase.Score);
 			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable [heroBase.Net.level].val);
 			this.SetStarList (heroBase.Net.evolve, true);
-			//			this.SetHeroPackageSoulstone (heroBase.net, heroBase.xml); //需要使用背包数据,以及进化数据
-//		this.SetPropsList ();
+			int packageCount = 0;
+			if (BaseCache.propsBaseTable.ContainsKey (heroBase.Xml.soul_rock_id)) {
+				packageCount = BaseCache.propsBaseTable [heroBase.Xml.soul_rock_id].Net.count;
+			}
+			int mPackageCountMax = -1;
+			if (Config.evolveXmlTable.ContainsKey (heroBase.Net.evolve + 1)) {
+				mPackageCountMax = Config.evolveXmlTable [heroBase.Net.evolve].val;
+			}
+			this.SetHeroPackageSoulstone (packageCount, mPackageCountMax);
+			this.SetEquipList (heroBase);
 			SetHeroType (heroBase.Attribute_Type);
 		}
 
@@ -229,7 +229,14 @@ namespace TangGame.UI
 		/// </summary>
 		void SetHeroPackageSoulstone (int fragmentsCount, int fragmentsCountMax)
 		{
-			HeroPackageSoulstoneCountLabel.GetComponent<UILabel> ().text = fragmentsCount + "/" + fragmentsCountMax;
+			UILabel lab = HeroPackageSoulstoneCountLabel.GetComponent<UILabel> ();
+
+			if (fragmentsCountMax == -1) {
+				lab.text = UIPanelLang.FULL_STAR;
+				return;
+			} else {
+				lab.text = fragmentsCount + "/" + fragmentsCountMax;
+			}
 			float fillAmount = (float)fragmentsCount / (float)fragmentsCountMax;
 			if (fillAmount > 1)
 				fillAmount = 1;
@@ -237,10 +244,18 @@ namespace TangGame.UI
 		}
 
 		/// <summary>
-		/// Sets the properties list.设置道具穿戴
+		/// Sets the properties list.
+		/// 设置穿戴的道具
 		/// </summary>
-		void SetPropsList ()
+		void SetEquipList (HeroBase heroBase)
 		{
+			List<TangGame.Xml.PropsXml> equipsList = heroBase.Xml.CurrentEquipListByRank (heroBase.Net.upgrade);
+			EquipItem[] items = PropsTable.GetComponentsInChildren<EquipItem> ();
+			for (int i = 0; i < items.Length; i++) {
+				if (items[i] == null)
+					continue;
+				items[i].Flush (heroBase,equipsList[i]);
+			}
 			//FIXME  道具相关的数据更新
 		}
 		//切换详细属性／图鉴／技能升级的效果按钮

@@ -16,6 +16,9 @@ public class StarList : UIGrid {
 		this.Flush ();
 	}
 
+	/// <summary>
+	/// Flush this instance.
+	/// </summary>
 	public void Flush(){
 		ClearAllStar ();
 		stars = new UISprite[countMax];
@@ -28,17 +31,33 @@ public class StarList : UIGrid {
 		this.SetStarSpirteName ();
 		this.repositionNow = true;
 	}
+	/// <summary>
+	/// Clears all star.
+	/// 清理掉所有的星星
+	/// </summary>
 	void ClearAllStar(){
 		for (int i = 0; i< stars.Length; i ++) {
 			if(stars[i] is UISprite){
+				stars [i].gameObject.SetActive (false);
 				Destroy(stars[i].gameObject);
 			}
 		}
 	}
+	/// <summary>
+	/// Sets the name of the star spirte.
+	/// 设置星星的spritename
+	/// </summary>
 	public void SetStarSpirteName(){
-		this.SetStarSpirteName (spriteN);
+		if (spriteN != "") {
+			this.SetStarSpirteName (spriteN);
+		}
 	}
 
+	/// <summary>
+	/// Sets the name of the star spirte.
+	/// 设置星星的名字
+	/// </summary>
+	/// <param name="spriteName">Sprite name.</param>
 	public void SetStarSpirteName(string spriteName){
 		if (descending) {
 			for (int i = countMax; i > (countMax - count); i--) {
