@@ -12,6 +12,9 @@ namespace TangLevel
   [RequireComponent (typeof(DirectedNavigable), typeof(HeroStatusBhvr))]
   public class HeroBhvr : MonoBehaviour
   {
+
+    public event EventHandler RaiseDead;
+
     public Hero hero;
     private DirectedNavigable navigable;
     private HeroStatusBhvr statusBhvr;
@@ -31,33 +34,35 @@ namespace TangLevel
       if (navigable == null) {
         navigable = gameObject.AddComponent<DirectedNavigable> ();
       }
-      // status behaviour
-      statusBhvr = GetComponent<HeroStatusBhvr> ();
-      if (statusBhvr == null) {
-        statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
-      }
-      statusBhvr.statusEndHandler += OnStatusEnd;
       // transform
       myTransform = transform;
-      // dragonbones behaviour
-      dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
-      dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
-      armature = dbBhvr.armature;
       // skill behaviour
       skillBhvr = GetComponent<SkillBhvr> ();
-
-      if (armature != null) {
-        armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
-      }
 
     }
 
     void OnEnable ()
-    {
+    { 
+      // status behaviour
+      if (statusBhvr == null) {
+        statusBhvr = GetComponent<HeroStatusBhvr> ();
+        if (statusBhvr == null) {
+          statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
+        }
+        statusBhvr.statusEndHandler += OnStatusEnd;
+      }
       // 重新打开，状态设置为空闲
-      if (statusBhvr != null)
-        statusBhvr.Status = HeroStatus.idle;
+      statusBhvr.Status = HeroStatus.idle;
 
+      // DragonBonesBhvr
+      if (dbBhvr == null) {
+        // dragonbones behaviour
+        dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
+        dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
+        armature = dbBhvr.armature;
+      }
+
+      // armature
       if (armature != null) {
         armature.AddEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
         armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
@@ -144,7 +149,9 @@ namespace TangLevel
     #endregion
 
     #region Private Methods
-    private void FadeOut(){
+
+    private void FadeOut ()
+    {
 
       // 死亡动画播放完毕
       // 淡出
@@ -154,6 +161,7 @@ namespace TangLevel
       }
       fadeout.Play ();
     }
+
     #endregion
 
     #region Public Methods
@@ -175,6 +183,9 @@ namespace TangLevel
     public void Die ()
     {
       statusBhvr.Status = HeroStatus.dead;
+      if (RaiseDead != null) {
+        RaiseDead (this, EventArgs.Empty);
+      }
     }
 
     /// <summary>
