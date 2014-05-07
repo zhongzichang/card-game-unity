@@ -84,25 +84,27 @@ namespace TangGame.UI
 			}
 		}
 
-		public GameObject SynthesisBtn;
-		/// <summary>
-		/// The synthesis button label.
-		/// </summary>
-		public GameObject SynthesisBtnLabel;
-		// Use this for initialization
 		void Start ()
 		{
 			if (propsDPbean != null && propsDPbean.props != null) {
 				Flush (propsDPbean);
 			}
-			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
+			EquippedBtn.GetComponentInChildren<UILabel> ().text = UIPanelLang.OK;
+			UIEventListener.Get (EquippedBtn.gameObject).onClick += EquippedBtnOnClick;
 		}
 		// Update is called once per frame
 		void Update ()
 		{
 	
 		}
-
+		/// <summary>
+		/// Equippeds the button on click.
+		/// 关闭当前面板
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		void EquippedBtnOnClick(GameObject obj){
+			UIContext.mgrCoC.Back ();
+		}
 		/// <summary>
 		/// Flush the specified data.
 		/// 刷新面板数据
