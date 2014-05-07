@@ -14,10 +14,6 @@ namespace TangLevel
 
     #endregion
 
-    #region Runtime
-    // -- 运行时属性 --
-    public Skill skill;
-    #endregion
 
   }
 }

@@ -5,53 +5,40 @@ namespace TangGame.UI
 {
 
   public class SelectHeroTable : MonoBehaviour {
+    private UITable table;
+    private Hashtable heroObjs = new Hashtable();
 
-    private UITable tableHero;
-    // Use this for initialization
-  	void Start () {
-      tableHero = GetComponent<UITable> ();
-      selectedHero = new BetterList<HeroItemObject> ();
-  	}
-  	
-  	// Update is called once per frame
-  	void Update () {
-  	
-  	}
-
-    public void UpdateHero(HeroItemData data){
-      HeroItemObject obj = FindHeroItem (data);
-      if (obj == null) {
-        obj = CreateHeroItem (data);
-        selectedHero.Add (obj);
-      } else {
-        obj.gameObject.SetActive (true);
-      }
-      tableHero.Reposition ();
+    void Start () {
+      table = gameObject.GetComponent<UITable> ();
     }
 
-    private BetterList<HeroItemObject> selectedHero ;
-
-    private HeroItemObject FindHeroItem(HeroItemData data){
-      foreach( HeroItemObject t in selectedHero){
-        if(t.icon.spriteName.Equals(data.icon)){
-          return t;
-        }
-      }
-      return null;
-    }
-
-    private HeroItemObject CreateHeroItem(HeroItemData data){
-      GameObject hero = NGUITools.AddChild (tableHero.gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItem"));
-      UIEventListener.Get(hero).onClick += OnHeroItemClicked;
+    public HeroItemObject CreateHeroItemObj(HeroItemData data){
+      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItem"));
 
       HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
-      obj.UpdateHeroItem (data);
+      heroObjs[data.icon] = obj;
+      data.onToggleChanged += ToggleChanged;
+      obj.Update (data);
+
+      if (data.toggled) {
+        if (table) {
+          table.Reposition ();
+        }
+      } else {
+        hero.SetActive (false);
+      }
 
       return obj;
     }
 
-    private void OnHeroItemClicked(GameObject obj){
-      obj.SetActive (false);
+    public void ToggleChanged (string key){
+      HeroItemObject obj = (HeroItemObject) heroObjs [key];
+      if (obj) {
+        obj.Hide ();
+      }
+      if (table) {
+        table.Reposition ();
+      }
     }
   }
 

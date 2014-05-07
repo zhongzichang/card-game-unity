@@ -24,6 +24,14 @@ namespace TangLevel
     // --- 人物属性 ---
     #region Character Attributes
     /// <summary>
+    /// The identifier.
+    /// </summary>
+    public int id;
+    /// <summary>
+    /// The name.
+    /// </summary>
+    public string name;
+    /// <summary>
     /// 资源名称
     /// </summary>
     public string resName;
@@ -104,19 +112,28 @@ namespace TangLevel
     /// <summary>
     /// 出生点
     /// </summary>
-    public Vector2 birthPoint;
+    public Vector2 birthPoint = Vector2.zero;
     /// <summary>
     /// 战斗方向
     /// </summary>
-    public BattleDirection battleDirection;
+    public BattleDirection battleDirection = BattleDirection.RIGHT;
     #endregion
 
 
     #region Constroctor
     public Hero ()
     {
-
     }
+    #endregion
+
+
+    #region PublicMethods
+
+    public Hero ShallowCopy ()
+    {
+      return (Hero)this.MemberwiseClone ();
+    }
+
     #endregion
   }
 }

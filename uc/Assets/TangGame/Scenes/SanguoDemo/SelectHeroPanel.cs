@@ -10,8 +10,9 @@ namespace TangGame.UI
     public HeroListTable heroTableMiddle;
     public HeroListTable heroTableBack;
 
-    public SelectHeroTable selectedHeroTable;
+    public SelectHeroTable heroTableSelected;
 
+    private Hashtable heroItems = new Hashtable();
     // Use this for initialization
   	void Start () {
 
@@ -23,42 +24,68 @@ namespace TangGame.UI
   	}
 
     void AddHero(HeroItemData data){
-      if (data.IsFront()) {
-        heroTableFront.AddHero (data);
-      } else if (data.IsMiddle()) {
-        heroTableMiddle.AddHero (data);
-      } else if (data.IsBack()) {
-        heroTableBack.AddHero (data);
+      heroItems [data.icon] = data;
+
+      HeroListTable heroTable = GetHeroTable (data);
+      if (heroTable) {
+        HeroItemObject obj = heroTable.CreateHeroItemObj(data);
+        UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
       }
-      heroTableAll.AddHero (data);
+
+      {
+        HeroItemObject obj = heroTableAll.CreateHeroItemObj (data);
+        UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
+      }
+
+      {
+        HeroItemObject obj = heroTableSelected.CreateHeroItemObj (data);
+        UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
+      }
     }
 
-    void UpdateHero(HeroItemData data){
-      data.selected = !data.selected;
-      selectedHeroTable.UpdateHero (data);
+    private HeroListTable GetHeroTable(HeroItemData data){
+      if (data.IsFront()) return heroTableFront;
+      if (data.IsMiddle()) return heroTableMiddle;
+      if (data.IsBack()) return heroTableBack;
+      return null;
+    }
+
+    private void OnItemClicked(GameObject obj){
+      HeroItemObject hero = (HeroItemObject)obj.GetComponent<HeroItemObject> (); 
+      HeroItemData data = (HeroItemData)heroItems[hero.name];
+      if (data != null) {
+        data.Toggle ();
+      }
     }
 
     void OnGUI(){
       if (GUILayout.Button ("AddHero")) {
+        {
+          HeroItemData data = new HeroItemData ();
+          data.icon = "AV";
+          data.iconFrame = "hero_icon_frame_7";
+          data.level = "40";
+          data.stars = 2;
+          data.camp = 2;
+          AddHero (data);
+        }
+        {
           HeroItemData data = new HeroItemData ();
           data.icon = "BatRider";
           data.iconFrame = "hero_icon_frame_2";
-          data.level = "56";
+          data.level = "50";
           data.stars = 3;
           data.camp = 1;
-          data.selected = false;
           AddHero (data);
-      }
-      if (GUILayout.Button ("UpdateHero")) {
-        for (int i = 0; i < 3; i++) {
+        }
+        {
           HeroItemData data = new HeroItemData ();
           data.icon = "Axe";
-          data.iconFrame = "hero_icon_frame_2";
-          data.level = "36";
-          data.stars = 4;
-          data.camp = 2;
-          data.selected = false;
-          UpdateHero (data);
+          data.iconFrame = "hero_icon_frame_10";
+          data.level = "66";
+          data.stars = 5;
+          data.camp = 0;
+          AddHero (data);
         }
       }
     }

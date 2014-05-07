@@ -20,6 +20,23 @@ namespace TangLevel
     }
 
 
+    #region PublicMethods
+
+    public Group ShallowCopy ()
+    {
+      return (Group)this.MemberwiseClone ();
+    }
+
+    public Group DeepCopy ()
+    {
+      Group other = (Group)this.MemberwiseClone ();
+
+
+
+      return other;
+    }
+
+    #endregion
 
   }
 }

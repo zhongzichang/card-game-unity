@@ -19,23 +19,25 @@ namespace TangUI
       OVERRIDE,
       REPLACE
     }
-		public enum BlockMode{
-			/// <summary>
-			/// The NON.
-			/// 没有背景
-			/// </summary>
-			NONE,
-			/// <summary>
-			/// The SPRIT.
-			/// 黑色背景
-			/// </summary>
-			SPRITE,
-			/// <summary>
-			/// The TEXTUR.
-			/// 图片背景
-			/// </summary>
-			TEXTURE
-		}
+
+    public enum BlockMode
+    {
+      /// <summary>
+      /// The NON.
+      /// 没有背景
+      /// </summary>
+      NONE,
+      /// <summary>
+      /// The SPRIT.
+      /// 黑色背景
+      /// </summary>
+      SPRITE,
+      /// <summary>
+      /// The TEXTUR.
+      /// 图片背景
+      /// </summary>
+      TEXTURE
+    }
 
     private UIPanelNodeContext m_context;
     /// <summary>
@@ -63,14 +65,18 @@ namespace TangUI
     ///   Open Mode
     /// </summary>
     public OpenMode openMode;
-		/// <summary>
-		/// The block mode.
-		/// </summary>
-		public BlockMode blockMode;
+    /// <summary>
+    /// The block mode.
+    /// </summary>
+    public BlockMode blockMode;
     /// <summary>
     ///   Body
     /// </summary>
     public object param;
+    /// <summary>
+    /// The is base template.
+    /// </summary>
+    public bool isBaseTemplate;
 
     /// <summary>
     ///   Context
@@ -98,16 +104,41 @@ namespace TangUI
     /// <summary>
     ///   Launch
     /// </summary>
-		public void Launch (OpenMode openMode,BlockMode blockMode, object param)
+    public void Launch (OpenMode openMode, BlockMode blockMode, object param, bool isBaseTemplate = false)
     {
-			this.blockMode = blockMode;
+      this.blockMode = blockMode;
       this.openMode = openMode;
       this.param = param;
-      gameObject = context.cache.GetInactiveGobj (name);
-      if (null == gameObject)
-        StartLoadRes ();
-      else
-        Show ();
+      this.isBaseTemplate = isBaseTemplate;
+
+      if (isBaseTemplate) { // 使用模版
+
+        if (context.cache.assetTable.ContainsKey (name)) {
+          UnityEngine.Object asset = context.cache.assetTable [name];
+          GameObject g = Create (asset);
+          if (g != null) {
+            Show ();
+          }
+        } else {
+          StartLoadRes ();
+        }
+
+      } else {
+
+        gameObject = context.cache.GetInactiveGobj (name);
+        if (null == gameObject) {
+          if (context.cache.assetTable.ContainsKey (name)) {
+            GameObject g = Create (context.cache.assetTable [name]);
+            if (g != null) {
+              Show ();
+            }
+          } else {
+            StartLoadRes ();
+          }
+        } else {
+          Show ();
+        }
+      }
 
     }
 
@@ -128,30 +159,42 @@ namespace TangUI
 
     private void LoadResComplete (WWW www)
     { 
-      UnityEngine.Object assets = null;
-      if (www == null)
-        assets = Resources.Load (Config.PANEL_PATH + Tang.Config.DIR_SEP + name);
-      else
-        assets = www.assetBundle.Load (name);
-      gameObject = GameObject.Instantiate (assets) as GameObject;
+      UnityEngine.Object asset = null;
+      if (www == null) {
+        asset = Resources.Load (Config.PANEL_PATH + Tang.Config.DIR_SEP + name);
+      } else {
+        asset = www.assetBundle.Load (name);
+      }
 
+      if (asset != null) {
+        context.cache.assetTable.Add (asset.name, asset);
+        GameObject g = Create (asset);
+        if (g != null) {
+          Show ();
+        }
+      }
+    }
+
+    private GameObject Create (UnityEngine.Object asset)
+    {
+
+      gameObject = GameObject.Instantiate (asset) as GameObject;
       if (gameObject != null) {
         gameObject.SetActive (false);
         gameObject.name = name;
         context.cache.Put (name, gameObject);
         DynamicBindUtil.BindScriptAndProperty (gameObject, name);
 
-				if (this.blockMode == BlockMode.SPRITE) {
-					UnityEngine.Object obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK));
-					NGUITools.AddChild (gameObject, obj as GameObject);
-				}
-				if (this.blockMode == BlockMode.TEXTURE) {
-					GameObject obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
-					NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<UITexture> ().enabled = true;
-				}
-        Show ();    
+        if (this.blockMode == BlockMode.SPRITE) {
+          UnityEngine.Object obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK));
+          NGUITools.AddChild (gameObject, obj as GameObject);
+        }
+        if (this.blockMode == BlockMode.TEXTURE) {
+          GameObject obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
+          NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<UITexture> ().enabled = true;
+        }
       }
-
+      return gameObject;
     }
 
     /// <summary>
@@ -190,23 +233,23 @@ namespace TangUI
 
           // 调整子面板
           UIPanel[] childPanels = gameObject.GetComponentsInChildren<UIPanel> (true);
-					Hashtable ht = new Hashtable ();
-					foreach (UIPanel cp in childPanels) {
-						ht.Add (cp, cp.depth);
-					}
-					UIPanel[] keyArray=new UIPanel[ht.Count]; 
-					int[] valueArray=new int[ht.Count]; 
-					ht.Keys.CopyTo(keyArray,0);  
-					ht.Values.CopyTo(valueArray,0);
-					Array.Sort(valueArray,keyArray);
-					int index = 1;
-					foreach (UIPanel cp in keyArray) {
-						if (cp != panel) {
-							int cdepth = baseDepth + 100 * index++;
-							FixPanelRenderQ (cp, cdepth);
-							cp.depth = cdepth;
-						}
-					}
+          Hashtable ht = new Hashtable ();
+          foreach (UIPanel cp in childPanels) {
+            ht.Add (cp, cp.depth);
+          }
+          UIPanel[] keyArray = new UIPanel[ht.Count]; 
+          int[] valueArray = new int[ht.Count]; 
+          ht.Keys.CopyTo (keyArray, 0);  
+          ht.Values.CopyTo (valueArray, 0);
+          Array.Sort (valueArray, keyArray);
+          int index = 1;
+          foreach (UIPanel cp in keyArray) {
+            if (cp != panel) {
+              int cdepth = baseDepth + 100 * index++;
+              FixPanelRenderQ (cp, cdepth);
+              cp.depth = cdepth;
+            }
+          }
         }
 
         // assign param
@@ -243,7 +286,11 @@ namespace TangUI
     {
       if (!(this is UIPanelRoot)) {
 
-        SetActive (false);
+        if (isBaseTemplate) {
+          NGUITools.Destroy (gameObject);
+        } else {
+          SetActive (false);
+        }
 
         preNode.nextNode = null;
         context.currentNode = preNode;

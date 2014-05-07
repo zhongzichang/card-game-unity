@@ -111,17 +111,12 @@ namespace TangLevel
       
         // 播放完前摇动作后，播放后摇。如果有后摇特效，放出后摇特效
         if (skillBhvr != null && skill != null && target != null) {
-
-          skillBhvr.Cast (skill.effector, skill, target);
+          skillBhvr.Cast (skill.effector, skill, gameObject, target);
 
         }
 
         // 播放完后摇动作后，转成英雄状态 idle
         statusBhvr.Status = HeroStatus.idle;
-
-      } else if (movementId.Equals (HeroStatus.dead.ToString ())) {
-
-        Debug.Log ("dead ========");
 
       } else if (movementId.Equals (HeroStatus.beat.ToString ())) {
 
@@ -194,6 +189,9 @@ namespace TangLevel
     /// </summary>
     public void Die ()
     {
+      if (statusBhvr.Status == HeroStatus.running) {
+        agent.ResetPath ();
+      }
       statusBhvr.Status = HeroStatus.dead;
       if (RaiseDead != null) {
         RaiseDead (this, EventArgs.Empty);
