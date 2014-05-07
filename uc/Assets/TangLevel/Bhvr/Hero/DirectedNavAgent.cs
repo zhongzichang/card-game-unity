@@ -77,7 +77,6 @@ namespace TangLevel
       }
     }
 
-
     public void ResetPath ()
     {
       hasPath = false;

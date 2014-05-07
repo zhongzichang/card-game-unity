@@ -214,6 +214,21 @@ namespace TangLevel
       }
     }
 
+    /// <summary>
+    /// 释放缓存的所有资源
+    /// </summary>
+    /// <param name="all">If set to <c>true</c> all.</param>
+    public static void ReleaseAll(bool all){
+      foreach (KeyValuePair<string, List<GameObject>> p in Cache.gobjTable) {
+        foreach (GameObject g in p.Value) {
+          g.SetActive (false);
+          if (all) {
+            GameObject.Destroy (g);
+          }
+        }
+      }
+    }
+
     #endregion
   }
 }
