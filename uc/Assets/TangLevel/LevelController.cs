@@ -30,6 +30,22 @@ namespace TangLevel
     /// 进入子关卡成功
     /// </summary>
     public static event EventHandler RaiseEnterSubLevelSuccess;
+    /// <summary>
+    /// 战斗暂停
+    /// </summary>
+    public static event EventHandler RaisePause;
+    /// <summary>
+    /// 战斗恢复
+    /// </summary>
+    public static event EventHandler RaiseResume;
+    /// <summary>
+    /// 大招开始
+    /// </summary>
+    public static event EventHandler UniqueSkillStart;
+    /// <summary>
+    /// 大招结束
+    /// </summary>
+    public static event EventHandler UniqueSkillFinish;
 
     /// <summary>
     /// 子关卡需要的英雄游戏对象以及数量
@@ -49,32 +65,8 @@ namespace TangLevel
 
       LevelContext.InLevel = false;
 
-      Mocker.Configure ();
 
     }
-    // test ............
-    void OnGUI ()
-    {
-      if (GUI.Button (new Rect (10, 10, 150, 100), "Load Level")) {
-
-        ChallengeLevel (1, Mocker.MockGroup ());
-
-      }
-
-
-      if (GUI.Button (new Rect (200, 10, 150, 100), " Next Sub Level")) {
-
-        ChallengeNextSubLevel ();
-
-      }
-
-      if (GUI.Button (new Rect (10, 210, 150, 100), " Left Level")) {
-
-        LeftLevel ();
-
-      }
-    }
-    // .................
     void OnEnable ()
     {
       // 监听Dragonbone资源装载完毕事件
@@ -142,7 +134,9 @@ namespace TangLevel
     /// </summary>
     public static void Pause ()
     {
-
+      if (RaisePause != null) {
+        RaisePause (null, EventArgs.Empty);
+      }
     }
 
     /// <summary>
@@ -150,7 +144,9 @@ namespace TangLevel
     /// </summary>
     public static void Resume ()
     {
-
+      if (RaiseResume != null) {
+        RaiseResume (null, EventArgs.Empty);
+      }
     }
 
     /// <summary>
@@ -524,12 +520,8 @@ namespace TangLevel
       LevelContext.enemyGobjs.Clear ();
       LevelContext.selfGobjs.Clear ();
 
-
-      // 释放背景资源
-      if (LevelContext.background != null) {
-        GobjManager.Release (LevelContext.background, true);
-      }
-
+      // 释放其他(背景，特效)资源
+      GobjManager.ReleaseAll (false);
 
     }
 

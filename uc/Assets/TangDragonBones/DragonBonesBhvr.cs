@@ -51,8 +51,27 @@ namespace TangDragonBones
       }
     }
 
+    /// <summary>
+    /// 暂停动画播放
+    /// </summary>
+    public void Pause(){
+      if (armature != null) {
+        if (WorldClock.Clock.Contains (armature)) {
+          WorldClock.Clock.Remove (armature);
+        }
+      }
+    }
 
-
+    /// <summary>
+    /// 恢复动画播放
+    /// </summary>
+    public void Resume(){
+      if (armature != null) {
+        if (!WorldClock.Clock.Contains (armature)) {
+          WorldClock.Clock.Add (armature);
+        }
+      }
+    }
     #endregion
   }
 }
