@@ -9,6 +9,7 @@ namespace TangGame.UI
     public UISprite iconFrame;
     public UILabel level;
     public UIGrid stars;
+    public GameObject tick;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +29,11 @@ namespace TangGame.UI
       stars.Reposition ();
     }
 
+    public void ToggleTick(){
+      Debug.Log ("Toggled.");
+      tick.SetActive (!tick.activeSelf);
+    }
+
 //    void OnGUI(){
 //      if (GUILayout.Button ("UpdateHeroItem")) {
 //        HeroItemData data = new HeroItemData ();
@@ -37,14 +43,10 @@ namespace TangGame.UI
 //        data.stars = 3;
 //        UpdateHeroItem (data);
 //      }
-//      if (GUILayout.Button ("UpdateHeroItem")) {
-//        HeroItemData data = new HeroItemData ();
-//        data.icon = "Axe";
-//        data.iconFrame = "hero_icon_frame_1";
-//        data.level = "33";
-//        data.stars = 4;
-//        UpdateHeroItem (data);
+//      if (GUILayout.Button ("ToggleTick")) {
+//        ToggleTick ();
 //      }
 //    }
+
   }
 }

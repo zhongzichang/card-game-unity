@@ -128,5 +128,8 @@ namespace TangGame.UI
 		/// The FUL l_ STA.
 		/// </summary>
 		public const string FULL_STAR = "满星";
+
+		public const string EQUIP = "装备";
+		public const string OK = "确定";
 	}
 }

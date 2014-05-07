@@ -55,6 +55,7 @@ namespace TangGame.UI
 		{
 	
 		}
+
 	}
 
 	public class PropsDetailsPanelBean
