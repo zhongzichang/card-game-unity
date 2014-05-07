@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace TangGame
@@ -59,14 +59,14 @@ namespace TangGame
 
     public override void Start ()
     {
-      this.isStart = true;
+      this.started = true;
       label = this.GetComponent<UILabel> ();
       UpdateData ();
     }
 
     public override void UpdateData ()
     {
-      if (!this.isStart) {
+      if (!this.started) {
         return;
       }
       BattleTxt txt = data as BattleTxt;

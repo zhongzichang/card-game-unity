@@ -183,9 +183,9 @@ namespace TangGame.UI
 			if (data.Net == null)
 				return;
 			float enchantingVariable = Utils.EnchantingVariable (data.Xml.upgrade,data.Net.enchantsLv);
-			PropsTypeEnum type = (PropsTypeEnum)data.Xml.type;
+			PropsType type = (PropsType)data.Xml.type;
 			string infoStr = "";
-			if (PropsTypeEnum.EQUIP == type) {
+			if (PropsType.EQUIP == type) {
 				if (data.Xml.strength == data.Xml.intellect && data.Xml.intellect == data.Xml.agile) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
@@ -317,15 +317,15 @@ namespace TangGame.UI
 				}
 			}
 			//如果是贵重物品
-			if (PropsTypeEnum.VALUABLE == type) {
+			if (PropsType.VALUABLE == type) {
 				infoStr += data.Xml.info;
 			}
 			//如果是卷轴
-			if (PropsTypeEnum.SCROLLS == type) {
+			if (PropsType.SCROLLS == type) {
 				infoStr += string.Format (UIPanelLang.RELL_INFO, Config.propsPropsRelationship [data.Xml.id] [0]);
 			}
 			//如果是灵魂石
-			if (PropsTypeEnum.SOULROCK == type) {
+			if (PropsType.SOULROCK == type) {
 				ArrayList heroids = Config.propsHeroesRelationship [data.Xml.id];
 				if (heroids.Count > 0) {
 					TangGame.Xml.HeroXml heroxml = Config.heroXmlTable [(int)heroids [0]];
@@ -335,7 +335,7 @@ namespace TangGame.UI
 
 			}
 			//如果是消耗品
-			if (PropsTypeEnum.NONE == type)
+			if (PropsType.NONE == type)
 				infoStr += data.Xml.info;
 
 			UILabel label = PropsInfoLabel.GetComponent<UILabel> ();

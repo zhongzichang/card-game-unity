@@ -47,6 +47,9 @@ namespace TangLevel
       Level other = (Level)this.MemberwiseClone ();
 
       other.subLeves = new SubLevel[ subLeves.Length ];
+      for (int i = 0; i < other.subLeves.Length; i++) {
+        other.subLeves [i] = subLeves [i].DeepCopy ();
+      }
 
       return other;
     }

@@ -25,7 +25,7 @@ namespace TangGame{
 			expFullLabel.text = UIPanelLang.BATTLE_FULL_EXP;
 			expFullLabel.gameObject.SetActive(false);
 
-			expBar.width = 1;
+			expBar.fillAmount = 0.3f;
 		}
 
 	}

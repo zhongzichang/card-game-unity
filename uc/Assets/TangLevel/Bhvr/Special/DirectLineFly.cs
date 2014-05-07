@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace TangLevel
 {
@@ -9,9 +10,7 @@ namespace TangLevel
   /// </summary>
   public class DirectLineFly : EffectorSpecialBhvr
   {
-
-    public static Vector3 OFFSET = new Vector3(0F, 1.5F, 0F);
-
+    public static Vector3 OFFSET = new Vector3 (0F, 1.5F, 0F);
     public float speed = 20;
     public float disappearDistance = 2;
     private Transform myTransform;
@@ -21,10 +20,21 @@ namespace TangLevel
     private Vector3 tpos;
     // 目标
     private GameObject target;
-    private bool isPlay = false;
+    private Uni2DSprite sprite;
+    private Uni2DSpriteAnimation animation;
+
+    #region MonoMethods
 
     void Awake ()
     {
+      sprite = GetComponent<Uni2DSprite> ();
+      if (sprite != null) {
+        animation = sprite.spriteAnimation;
+        if (animation.IsPlaying) {
+          animation.Pause ();
+        }
+      }
+
       myTransform = transform;
     }
     // Update is called once per frame
@@ -73,6 +83,17 @@ namespace TangLevel
 	
     }
 
+    void OnEnable ()
+    {
+
+      // 关卡控制
+      LevelController.RaisePause += OnPause;
+      LevelController.RaiseResume += OnResume;
+      if (!isPlay) {
+        Resume ();
+      }
+    }
+
     void OnDisable ()
     {
       spos = Vector3.zero;
@@ -80,7 +101,19 @@ namespace TangLevel
       myTransform.localRotation = Quaternion.identity;
       myTransform.localPosition = Vector3.zero;
       isPlay = false;
+
+      // 关卡控制
+      LevelController.RaisePause -= OnPause;
+      LevelController.RaiseResume -= OnResume;
+
+      if (isPlay) {
+        Pause ();
+      }
     }
+
+    #endregion
+
+    #region PublicMethods
 
     public override void Play ()
     {
@@ -99,6 +132,7 @@ namespace TangLevel
         myTransform.localPosition = new Vector3 (spos.x, spos.y, spos.z);
 
         isPlay = true;
+        animation.Play ();
 
       } else {
 
@@ -106,5 +140,19 @@ namespace TangLevel
 
       }
     }
+
+    public override void Pause ()
+    {
+      isPlay = false;
+      animation.Pause ();
+    }
+
+    public override void Resume ()
+    {
+      isPlay = true;
+      animation.Resume ();
+    }
+
+    #endregion
   }
 }

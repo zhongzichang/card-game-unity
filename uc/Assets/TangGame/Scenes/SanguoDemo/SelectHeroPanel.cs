@@ -5,12 +5,12 @@ namespace TangGame.UI
 {
   public class SelectHeroPanel : MonoBehaviour {
 
-    public HeroListTable heroTableAll;
-    public HeroListTable heroTableFront;
-    public HeroListTable heroTableMiddle;
-    public HeroListTable heroTableBack;
+    public HeroListGrid allGrid;
+    public HeroListGrid frontGrid;
+    public HeroListGrid middleGrid;
+    public HeroListGrid backGrid;
 
-    public SelectHeroTable heroTableSelected;
+    public SelectedHeroGrid selectedGrid;
 
     private Hashtable heroItems = new Hashtable();
     // Use this for initialization
@@ -24,35 +24,35 @@ namespace TangGame.UI
   	}
 
     void AddHero(HeroItemData data){
-      heroItems [data.icon] = data;
+      heroItems [data.id] = data;
 
-      HeroListTable heroTable = GetHeroTable (data);
-      if (heroTable) {
-        HeroItemObject obj = heroTable.CreateHeroItemObj(data);
+      HeroListGrid heroGrid = GetHeroGrid (data);
+      if (heroGrid) {
+        HeroItemObject obj = heroGrid.CreateHeroItemObj(data);
         UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
       }
 
       {
-        HeroItemObject obj = heroTableAll.CreateHeroItemObj (data);
+        HeroItemObject obj = allGrid.CreateHeroItemObj (data);
         UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
       }
 
       {
-        HeroItemObject obj = heroTableSelected.CreateHeroItemObj (data);
+        HeroItemObject obj = selectedGrid.CreateHeroItemObj (data);
         UIEventListener.Get (obj.gameObject).onClick += OnItemClicked;
       }
     }
 
-    private HeroListTable GetHeroTable(HeroItemData data){
-      if (data.IsFront()) return heroTableFront;
-      if (data.IsMiddle()) return heroTableMiddle;
-      if (data.IsBack()) return heroTableBack;
+    private HeroListGrid GetHeroGrid(HeroItemData data){
+      if (data.IsFront()) return frontGrid;
+      if (data.IsMiddle()) return middleGrid;
+      if (data.IsBack()) return backGrid;
       return null;
     }
 
     private void OnItemClicked(GameObject obj){
       HeroItemObject hero = (HeroItemObject)obj.GetComponent<HeroItemObject> (); 
-      HeroItemData data = (HeroItemData)heroItems[hero.name];
+      HeroItemData data = hero.GetData ();
       if (data != null) {
         data.Toggle ();
       }
@@ -62,29 +62,44 @@ namespace TangGame.UI
       if (GUILayout.Button ("AddHero")) {
         {
           HeroItemData data = new HeroItemData ();
-          data.icon = "AV";
-          data.iconFrame = "hero_icon_frame_7";
-          data.level = "40";
+          data.id = "AV";
+          data.order = 26;
+          data.rank = 7;
+          data.level = 40;
           data.stars = 2;
-          data.camp = 2;
+          data.lineType = 2;
           AddHero (data);
         }
         {
           HeroItemData data = new HeroItemData ();
-          data.icon = "BatRider";
-          data.iconFrame = "hero_icon_frame_2";
-          data.level = "50";
+          data.id = "BatRider";
+          data.order = 15;
+          data.rank = 2;
+          data.level = 50;
           data.stars = 3;
-          data.camp = 1;
+          data.lineType = 1;
           AddHero (data);
         }
         {
           HeroItemData data = new HeroItemData ();
-          data.icon = "Axe";
-          data.iconFrame = "hero_icon_frame_10";
-          data.level = "66";
+          data.id = "Axe";
+          data.order = 8;
+          data.rank = 8;
+          data.level = 66;
           data.stars = 5;
-          data.camp = 0;
+          data.lineType = 0;
+          AddHero (data);
+        }
+      }
+      if (GUILayout.Button ("SortNewHero")) {
+        {
+          HeroItemData data = new HeroItemData ();
+          data.order = 17;
+          data.id = "CM";
+          data.rank = 3;
+          data.level = 42;
+          data.stars = 5;
+          data.lineType = 1;
           AddHero (data);
         }
       }

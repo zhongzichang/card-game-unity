@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.UI;
+using TangGame.UI.Base;
 
 namespace TangGame{
 	public class PropTipsPanel : MonoBehaviour {
@@ -21,17 +23,15 @@ namespace TangGame{
 		/// TIPS高度，包含基本高度和文本高度
 		private int mHeight = 0;
 
-
 		// Use this for initialization
 		void Start () {
-			Debug.Log(effectLabel.height);
 			CalculateHeight();
 		}
-		
-		// Update is called once per frame
-		void Update () {
-		
+
+		public int height{
+			get{return this.mHeight;}
 		}
+
 
 		public void CalculateHeight(){
 			mHeight = BASE_HEIGHT;
@@ -51,6 +51,27 @@ namespace TangGame{
 				descLabel.gameObject.transform.localPosition = temp;
 			}
 			background.height = mHeight;
+			this.gameObject.transform.localPosition = new Vector3(-165, mHeight / 2, 0);
+		}
+
+		/// 设置道具
+		public void SetProp(PropsBase prop){
+			this.effectLabel.text = "";
+			this.descLabel.text = "";
+			this.goldLabel.text = "";
+			this.frame.spriteName = Global.GetPropFrameName((PropsType)prop.Xml.type, prop.Xml.upgrade);
+			this.icon.spriteName = prop.Xml.icon;
+			this.goldLabel.text = prop.Xml.selling_price.ToString();
+			this.nameLabel.text = prop.Xml.name;
+			if(prop.Xml.level < 1){
+				this.levelLabel.text = "";
+			}else{
+				this.levelLabel.text = string.Format(UIPanelLang.TIPS_LEVEL, prop.Xml.level);
+			}
+			this.effectLabel.text = prop.Xml.info;
+			this.descLabel.text = prop.Xml.description;
+
+			this.CalculateHeight();
 		}
 	}
 }

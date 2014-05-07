@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Properties base.
 /// xbhuang 2014-4-28
 /// </summary>
@@ -53,7 +53,7 @@ namespace TangGame.UI.Base
 
 	}
 	///道具类型
-	public enum PropsTypeEnum{
+	public enum PropsType{
 		NONE,
 		/// <summary>
 		/// The EQUI.装备
