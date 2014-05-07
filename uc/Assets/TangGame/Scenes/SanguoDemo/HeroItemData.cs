@@ -9,9 +9,11 @@ namespace TangGame.UI
     public string iconFrame;
     public string level;
     public int stars;
-
-    public bool selected;
     public int camp;
+
+    public delegate void ToggleChanged (string key);
+    public ToggleChanged onToggleChanged;
+    public bool toggled;
 
     public bool IsFront(){
       return HERO_TYPE_FRONT == camp;
@@ -23,6 +25,13 @@ namespace TangGame.UI
 
     public bool IsBack(){
       return HERO_TYPE_BACK == camp;
+    }
+
+    public void Toggle(){
+      this.toggled = !this.toggled;
+      if (onToggleChanged != null) {
+        onToggleChanged (icon); 
+      }
     }
 
     private const int HERO_TYPE_FRONT = 0;
