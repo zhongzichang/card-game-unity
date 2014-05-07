@@ -4,33 +4,35 @@ using System.Collections;
 namespace TangGame.UI
 {
 
-  public class HeroListTable : MonoBehaviour {
+  public class HeroListGrid : MonoBehaviour {
 
-    private UITable table;
+    private UIGrid grid;
+    private UIScrollView scrollView;
     private Hashtable heroObjs = new Hashtable();
 
     void Start () {
-      table = gameObject.GetComponent<UITable> ();
+      grid = gameObject.GetComponent<UIGrid> ();
+      scrollView = NGUITools.FindInParents<UIScrollView>(gameObject);
     }
 
     public HeroItemObject CreateHeroItemObj(HeroItemData data){
-      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItem"));
+      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItemObj"));
+      UIDragScrollView view = (UIDragScrollView)hero.AddComponent<UIDragScrollView> ();
+      view.scrollView = scrollView;
 
       HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
-      heroObjs[data.icon] = obj;
+      heroObjs[data.id] = obj;
       obj.Update (data);
       data.onToggleChanged += ToggleChanged;
 
-      if (table) {
-        table.Reposition ();
+      if (grid) {
+        grid.Reposition ();
       }
       return obj;
     }
 
-    public void ToggleChanged (string key){
-      if (!heroObjs.ContainsKey (key))
-        return;
-      HeroItemObject obj = (HeroItemObject) heroObjs [key];
+    public void ToggleChanged (string heroId){
+      HeroItemObject obj = (HeroItemObject) heroObjs [heroId];
       if (obj) {
         obj.Toggle ();
       }
