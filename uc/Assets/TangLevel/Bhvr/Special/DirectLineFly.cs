@@ -45,9 +45,10 @@ namespace TangLevel
             // 命中目标
 
             // 发出作用器
-            SkillBhvr targetSkillBhvr = effector.skill.target.GetComponent<SkillBhvr> ();
-            if (targetSkillBhvr != null && effector.subEffectors != null && effector.subEffectors.Length > 0) {
-              targetSkillBhvr.Receive (effector.subEffectors [0], effector.skill);
+            SkillBhvr targetSkillBhvr = w.target.GetComponent<SkillBhvr> ();
+            if (targetSkillBhvr != null && w.effector.subEffectors != null && w.effector.subEffectors.Length > 0) {
+              EffectorWrapper cw = EffectorWrapper.W (w.effector.subEffectors [0], w.skill, w.source, w.target);
+              targetSkillBhvr.Receive (cw);
             }
 
             // 释放本特效资源
@@ -84,11 +85,11 @@ namespace TangLevel
     public override void Play ()
     {
 
-      if (effector.skill != null && effector.skill.source != null && effector.skill.target != null) {
+      if (w.skill != null && w.source != null && w.target != null) {
 
-        target = effector.skill.target;
-        spos = effector.skill.source.transform.localPosition + OFFSET;
-        tpos = effector.skill.target.transform.localPosition + OFFSET;
+        target = w.target;
+        spos = w.source.transform.localPosition + OFFSET;
+        tpos = w.target.transform.localPosition + OFFSET;
 
         // 方向
         myTransform.localRotation = Quaternion.FromToRotation (Vector3.right, 

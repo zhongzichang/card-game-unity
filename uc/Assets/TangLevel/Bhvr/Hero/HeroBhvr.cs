@@ -111,8 +111,7 @@ namespace TangLevel
       
         // 播放完前摇动作后，播放后摇。如果有后摇特效，放出后摇特效
         if (skillBhvr != null && skill != null && target != null) {
-
-          skillBhvr.Cast (skill.effector, skill, target);
+          skillBhvr.Cast (skill.effector, skill, gameObject, target);
 
         }
 

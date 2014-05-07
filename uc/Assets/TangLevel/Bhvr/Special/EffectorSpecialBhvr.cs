@@ -5,7 +5,7 @@ namespace TangLevel
 {
   public abstract class EffectorSpecialBhvr : SpecialBhvr
   {
-    public Effector effector;
+    public EffectorWrapper w;
   }
 }
 
