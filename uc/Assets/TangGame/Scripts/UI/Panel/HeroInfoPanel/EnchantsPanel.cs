@@ -52,10 +52,10 @@ namespace TangGame.UI
 		public void UpPropsInfo (EquipBase data)
 		{
 
-			PropsTypeEnum type = (PropsTypeEnum)data.Xml.type;
+			PropsType type = (PropsType)data.Xml.type;
 			string infoStr = "";
 			float enchantingVariable = Utils.EnchantingVariable (data.Xml.upgrade,data.Net.enchantsLv);
-			if (PropsTypeEnum.EQUIP == type) {
+			if (PropsType.EQUIP == type) {
 				if (data.Xml.strength == data.Xml.intellect && data.Xml.intellect == data.Xml.agile) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
