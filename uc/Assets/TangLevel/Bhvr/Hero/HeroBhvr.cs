@@ -119,10 +119,6 @@ namespace TangLevel
         // 播放完后摇动作后，转成英雄状态 idle
         statusBhvr.Status = HeroStatus.idle;
 
-      } else if (movementId.Equals (HeroStatus.dead.ToString ())) {
-
-        Debug.Log ("dead ========");
-
       } else if (movementId.Equals (HeroStatus.beat.ToString ())) {
 
         statusBhvr.Status = HeroStatus.idle;
@@ -194,6 +190,9 @@ namespace TangLevel
     /// </summary>
     public void Die ()
     {
+      if (statusBhvr.Status == HeroStatus.running) {
+        agent.ResetPath ();
+      }
       statusBhvr.Status = HeroStatus.dead;
       if (RaiseDead != null) {
         RaiseDead (this, EventArgs.Empty);
