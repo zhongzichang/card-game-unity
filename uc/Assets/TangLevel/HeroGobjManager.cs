@@ -41,28 +41,38 @@ namespace TangLevel
         if (navigable == null) {
           navigable = gobj.AddComponent<DirectedNavigable> ();
         }
+        if (!navigable.enabled)
+          navigable.enabled = true;
         // CharacterStatusBhvr
         TS.CharacterStatusBhvr statusBhvr = gobj.GetComponent<TS.CharacterStatusBhvr> ();
         if (statusBhvr == null) {
           statusBhvr = gobj.AddComponent<TS.CharacterStatusBhvr> ();
         }
+        if (!statusBhvr.enabled)
+          statusBhvr.enabled = true;
         // Directional
         Directional directional = gobj.GetComponent<Directional> ();
         if (directional == null) {
           directional = gobj.AddComponent<Directional> ();
         }
         directional.Direction = hero.battleDirection;
+        if (!directional.enabled)
+          directional.enabled = true;
         // Skill
         SkillBhvr skillBhvr = gobj.GetComponent<SkillBhvr> ();
         if (skillBhvr == null) {
           skillBhvr = gobj.AddComponent<SkillBhvr> ();
         }
+        if (!skillBhvr.enabled)
+          skillBhvr.enabled = true;
         // HeroBhvr
         HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
         if (heroBhvr == null) {
           heroBhvr = gobj.AddComponent<HeroBhvr> ();
         }
         heroBhvr.hero = hero;
+        if (!heroBhvr.enabled)
+          heroBhvr.enabled = true;
         // DemoBhvr , make disable
         TD.DemoBhvr demoBhvr = gobj.GetComponent<TD.DemoBhvr> ();
         if (demoBhvr != null && demoBhvr.enabled) {

@@ -5,7 +5,7 @@ namespace TangLevel
 {
   public class Skill
   {
-    #region Selft
+    #region SelfAttributes
 
     // -- 自身属性 --
 
@@ -112,16 +112,11 @@ namespace TangLevel
 
     #endregion
 
-
-    #region Runtime
-
-    // -- 运行时属性 --
-
-    public GameObject source;
-    public GameObject target;
-
+    #region PublicMethods
+    public Skill ShallowCopy(){
+      return (Skill)this.MemberwiseClone ();
+    }
     #endregion
-
 
   }
 }

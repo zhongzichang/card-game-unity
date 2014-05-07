@@ -132,6 +132,8 @@ namespace TangGame.UI
 		public const string EQUIP = "装备";
 		public const string OK = "确定";
 
+		public const string UNENCHANTED= "未附魔";
+
 		/// 战斗界面中的“退出战斗”
 		public const string BATTLE_QUIT = "退出战斗" ;
 		/// 战斗界面中的“声音：开”

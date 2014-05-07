@@ -6,8 +6,7 @@ namespace TangLevel
 {
   public class PlayOnceEffector : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3(0, 1.5F, 0);
-
+    public static Vector3 OFFSET = new Vector3 (0, 1.5F, 0);
     private Uni2DSprite sprite;
     private Uni2DSpriteAnimation animation;
     private Transform myTransform;
@@ -31,10 +30,10 @@ namespace TangLevel
     {
 
       bool foundTarget = false;
-      if (effector != null) {
-        Skill skill = effector.skill;
+      if (w != null) {
+        Skill skill = w.skill;
         if (skill != null) {
-          GameObject target = skill.target;
+          GameObject target = w.target;
           if (target != null) {
 
             // 绑定到目标身上
@@ -47,6 +46,26 @@ namespace TangLevel
       if (!foundTarget) {
         GobjManager.Release (gameObject);
       }
+
+      // 关卡控制
+      LevelController.RaisePause += OnPause;
+      LevelController.RaiseResume += OnResume;
+
+      if (!isPlay) {
+        Resume ();
+      }
+
+    }
+
+    void OnDisable ()
+    {
+
+      // 关卡控制
+      LevelController.RaisePause -= OnPause;
+      LevelController.RaiseResume -= OnResume;
+      if (isPlay) {
+        Pause ();
+      }
     }
 
     private void OnAnimationEnd (Uni2DAnimationEvent animationEvent)
@@ -56,7 +75,20 @@ namespace TangLevel
 
     public override void Play ()
     {
+      isPlay = true;
       animation.Play ();
+    }
+
+    public override void Pause ()
+    {
+      isPlay = false;
+      animation.Pause ();
+    }
+
+    public override void Resume ()
+    {
+      isPlay = true;
+      animation.Resume ();
     }
   }
 }

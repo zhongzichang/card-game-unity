@@ -24,6 +24,7 @@ namespace TangLevel
     private SkillBhvr skillBhvr;
     private Skill skill;
     private GameObject target;
+    private bool isPlay = true;
 
     #region MonoBehaviours
 
@@ -73,6 +74,13 @@ namespace TangLevel
         armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
       }
 
+      // 关卡控制
+      LevelController.RaisePause += OnPause;
+      LevelController.RaiseResume += OnResume;
+      if (!isPlay) {
+        Resume ();
+      }
+
     }
 
     void OnDisable ()
@@ -83,6 +91,12 @@ namespace TangLevel
         armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
       }
 
+      // 关卡控制
+      LevelController.RaisePause -= OnPause;
+      LevelController.RaiseResume -= OnResume;
+      if (isPlay) {
+        Pause ();
+      }
     }
 
     #endregion
@@ -111,8 +125,7 @@ namespace TangLevel
       
         // 播放完前摇动作后，播放后摇。如果有后摇特效，放出后摇特效
         if (skillBhvr != null && skill != null && target != null) {
-
-          skillBhvr.Cast (skill.effector, skill, target);
+          skillBhvr.Cast (skill.effector, skill, gameObject, target);
 
         }
 
@@ -149,6 +162,30 @@ namespace TangLevel
         dbBhvr.GotoAndPlay (status.ToString ());
         break;
       }
+    }
+
+    #endregion
+
+    #region LevelController Events
+
+    /// <summary>
+    /// 战斗暂停
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnPause (object sender, EventArgs args)
+    {
+      Pause ();
+    }
+
+    /// <summary>
+    /// 战斗恢复
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnResume (object sender, EventArgs args)
+    {
+      Resume ();
     }
 
     #endregion
@@ -220,6 +257,34 @@ namespace TangLevel
 
       statusBhvr.Status = HeroStatus.victory;
 
+    }
+
+    public void Pause ()
+    {
+
+      isPlay = false;
+
+      // 暂停动画
+      if (dbBhvr != null) {
+        dbBhvr.Pause ();
+      }
+      // 暂停行走
+      if (agent.enabled)
+        agent.enabled = false;
+    }
+
+    public void Resume ()
+    {
+
+      isPlay = true;
+
+      // 恢复动画
+      if (dbBhvr != null) {
+        dbBhvr.Resume ();
+      }
+      // 恢复行走
+      if (!agent.enabled)
+        agent.enabled = true;
     }
 
     /// <summary>

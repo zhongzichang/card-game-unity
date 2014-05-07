@@ -32,7 +32,7 @@ namespace TangLevel
 
     public Transform myTransform;
     private Vector3 lastScreenPos = Vector3.zero;
-    private Vector3 lastPos = Vector3.zero;
+
     // Use this for initialization
     void Start ()
     {
@@ -58,7 +58,7 @@ namespace TangLevel
           float fraction = Time.deltaTime * speed / distance;
           float offsetx = Mathf.Lerp (localPosition.x, destination, fraction);
 
-          Vector3 npos = new Vector3 (offsetx, localPosition.y, localPosition.z);
+          Vector3 npos = new Vector3 (offsetx, localPosition.y, -(100 - localPosition.y));
           myTransform.localPosition = npos;
 
           // 屏幕位置改变通知
@@ -71,10 +71,7 @@ namespace TangLevel
           }
           // 位置改变通知
           if (RaisePosChanged != null) {
-            if (npos != lastPos) {
-              RaisePosChanged (this, EventArgs.Empty);
-              lastPos = npos;
-            }
+            RaisePosChanged (this, EventArgs.Empty);
           }
         }
       }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace TangLevel
 {
@@ -9,9 +10,7 @@ namespace TangLevel
   /// </summary>
   public class DirectLineFly : EffectorSpecialBhvr
   {
-
-    public static Vector3 OFFSET = new Vector3(0F, 1.5F, 0F);
-
+    public static Vector3 OFFSET = new Vector3 (0F, 1.5F, 0F);
     public float speed = 20;
     public float disappearDistance = 2;
     private Transform myTransform;
@@ -21,10 +20,21 @@ namespace TangLevel
     private Vector3 tpos;
     // 目标
     private GameObject target;
-    private bool isPlay = false;
+    private Uni2DSprite sprite;
+    private Uni2DSpriteAnimation animation;
+
+    #region MonoMethods
 
     void Awake ()
     {
+      sprite = GetComponent<Uni2DSprite> ();
+      if (sprite != null) {
+        animation = sprite.spriteAnimation;
+        if (animation.IsPlaying) {
+          animation.Pause ();
+        }
+      }
+
       myTransform = transform;
     }
     // Update is called once per frame
@@ -45,9 +55,10 @@ namespace TangLevel
             // 命中目标
 
             // 发出作用器
-            SkillBhvr targetSkillBhvr = effector.skill.target.GetComponent<SkillBhvr> ();
-            if (targetSkillBhvr != null && effector.subEffectors != null && effector.subEffectors.Length > 0) {
-              targetSkillBhvr.Receive (effector.subEffectors [0], effector.skill);
+            SkillBhvr targetSkillBhvr = w.target.GetComponent<SkillBhvr> ();
+            if (targetSkillBhvr != null && w.effector.subEffectors != null && w.effector.subEffectors.Length > 0) {
+              EffectorWrapper cw = EffectorWrapper.W (w.effector.subEffectors [0], w.skill, w.source, w.target);
+              targetSkillBhvr.Receive (cw);
             }
 
             // 释放本特效资源
@@ -72,6 +83,17 @@ namespace TangLevel
 	
     }
 
+    void OnEnable ()
+    {
+
+      // 关卡控制
+      LevelController.RaisePause += OnPause;
+      LevelController.RaiseResume += OnResume;
+      if (!isPlay) {
+        Resume ();
+      }
+    }
+
     void OnDisable ()
     {
       spos = Vector3.zero;
@@ -79,16 +101,28 @@ namespace TangLevel
       myTransform.localRotation = Quaternion.identity;
       myTransform.localPosition = Vector3.zero;
       isPlay = false;
+
+      // 关卡控制
+      LevelController.RaisePause -= OnPause;
+      LevelController.RaiseResume -= OnResume;
+
+      if (isPlay) {
+        Pause ();
+      }
     }
+
+    #endregion
+
+    #region PublicMethods
 
     public override void Play ()
     {
 
-      if (effector.skill != null && effector.skill.source != null && effector.skill.target != null) {
+      if (w.skill != null && w.source != null && w.target != null) {
 
-        target = effector.skill.target;
-        spos = effector.skill.source.transform.localPosition + OFFSET;
-        tpos = effector.skill.target.transform.localPosition + OFFSET;
+        target = w.target;
+        spos = w.source.transform.localPosition + OFFSET;
+        tpos = w.target.transform.localPosition + OFFSET;
 
         // 方向
         myTransform.localRotation = Quaternion.FromToRotation (Vector3.right, 
@@ -98,6 +132,7 @@ namespace TangLevel
         myTransform.localPosition = new Vector3 (spos.x, spos.y, spos.z);
 
         isPlay = true;
+        animation.Play ();
 
       } else {
 
@@ -105,5 +140,19 @@ namespace TangLevel
 
       }
     }
+
+    public override void Pause ()
+    {
+      isPlay = false;
+      animation.Pause ();
+    }
+
+    public override void Resume ()
+    {
+      isPlay = true;
+      animation.Resume ();
+    }
+
+    #endregion
   }
 }
