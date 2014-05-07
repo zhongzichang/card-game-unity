@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.UI.Base;
 
 namespace TangGame{
 	public class BattleResultPanel : MonoBehaviour {
@@ -10,13 +11,12 @@ namespace TangGame{
 		public UISprite[] winStars;
 		public UIEventListener winDataBtn;
 		public BattleResultHeroItem heroItem;
+		public PropInfoItem propInfoItem;
 
 		public GameObject loseGroup;
 		public UIEventListener loseDataBtn;
 		public UIEventListener loseNextBtn;
 		public UISprite[] loseSprites;
-
-		public UIEventListener tempBtn;
 
 
 		void Awake(){
@@ -27,14 +27,23 @@ namespace TangGame{
 			loseNextBtn.onClick += NextBtnHandler;
 			loseDataBtn.onClick += DataBtnHandler;
 
-			tempBtn.onPress += TempBtnHandler;
-
 			winGroup.SetActive(false);
 			loseGroup.SetActive(false);
 		}
 
 		void Start () {
 			winGroup.SetActive(true);
+			PropsBase prop = new PropsBase();
+			prop.Xml = new TangGame.Xml.PropsXml();
+			prop.Xml.name = "测试道具";
+			prop.Xml.type = 2;
+			prop.Count = 2;
+			prop.Xml.icon = "104";
+			prop.Xml.level = 5;
+			prop.Xml.info = "使用后可以获得一个小萝莉";
+			prop.Xml.description = "这是测试道具，大家都懂得";
+
+			propInfoItem.data = prop;
 		}
 		
 		// Update is called once per frame
@@ -55,13 +64,7 @@ namespace TangGame{
 			
 		}
 
-		private void TempBtnHandler(GameObject go, bool state){
-			if(state){
-				PropTips.Show(Vector3.zero, 10, 0);
-			}else{
-				PropTips.Hiddle();
-			}
-		}
+
 
 	}
 }

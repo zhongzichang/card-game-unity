@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI.Base;
@@ -94,7 +94,7 @@ namespace TangGame.UI
 		/// <param name="obj">Object.</param>
 		void ToggleEquipOnClick (GameObject obj)
 		{
-			this.ShowItemsByPropsType (PropsTypeEnum.EQUIP);
+			this.ShowItemsByPropsType (PropsType.EQUIP);
 		}
 
 		/// <summary>
@@ -104,7 +104,7 @@ namespace TangGame.UI
 		/// <param name="obj">Object.</param>
 		void ToggleScrollOnClick (GameObject obj)
 		{
-			this.ShowItemsByPropsType (PropsTypeEnum.SCROLLS);
+			this.ShowItemsByPropsType (PropsType.SCROLLS);
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace TangGame.UI
 		/// <param name="obj">Object.</param>
 		void ToggleSoulRockOnClick (GameObject obj)
 		{
-			this.ShowItemsByPropsType (PropsTypeEnum.SOULROCK);
+			this.ShowItemsByPropsType (PropsType.SOULROCK);
 		}
 
 		/// <summary>
@@ -124,14 +124,14 @@ namespace TangGame.UI
 		/// <param name="obj">Object.</param>
 		void ToggleConsumablesOnClick (GameObject obj)
 		{
-			this.ShowItemsByPropsType (PropsTypeEnum.EXP, PropsTypeEnum.ENCHANT);
+			this.ShowItemsByPropsType (PropsType.EXP, PropsType.ENCHANT);
 		}
 
-		void ShowItemsByPropsType (PropsTypeEnum type)
+		void ShowItemsByPropsType (PropsType type)
 		{
 			foreach (PropsItem item in propsItems.Values) {
 				if (item.data != null) {
-					if ((PropsTypeEnum)item.data.Xml.type == type) {
+					if ((PropsType)item.data.Xml.type == type) {
 						item.gameObject.SetActive (true);
 					} else {
 						item.gameObject.SetActive (false);
@@ -145,11 +145,11 @@ namespace TangGame.UI
 		/// </summary>
 		/// <param name="type1">Type1.</param>
 		/// <param name="type2">Type2.</param>
-		void ShowItemsByPropsType (PropsTypeEnum type1, PropsTypeEnum type2)
+		void ShowItemsByPropsType (PropsType type1, PropsType type2)
 		{
 			foreach (PropsItem item in propsItems.Values) {
 				if (item.data != null) {
-					if ((PropsTypeEnum)item.data.Xml.type == type1 || (PropsTypeEnum)item.data.Xml.type == type2) {
+					if ((PropsType)item.data.Xml.type == type1 || (PropsType)item.data.Xml.type == type2) {
 						item.gameObject.SetActive (true);
 					} else {
 						item.gameObject.SetActive (false);

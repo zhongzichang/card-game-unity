@@ -144,5 +144,8 @@ namespace TangGame.UI
 		public const string BATTLE_CONTINUE = "继续战斗" ;
 		/// 战斗结果界面中的“经验已满”
 		public const string BATTLE_FULL_EXP = "经验已满" ;
+
+		/// 道具Props界面“需求等级”
+		public const string TIPS_LEVEL = "需求等级：{0}" ;
 	}
 }
