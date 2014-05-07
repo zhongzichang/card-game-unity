@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: 5e587ccbb1fb3a94c99c2e065e1f4dfa
-labels:
-- Uni2D_TextureAtlas
+guid: efc67ff7e3c0908449f1eb505e736176
 TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -22,13 +20,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 2
+    aniso: 4
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -38,9 +36,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
-  buildTargetSettings: []
+  alphaIsTransparency: 1
+  textureType: 5
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: 4
+    compressionQuality: 50
   spriteSheet:
     sprites: []
   spritePackingTag: 

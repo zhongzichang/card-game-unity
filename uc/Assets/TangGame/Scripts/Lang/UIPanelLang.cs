@@ -131,5 +131,16 @@ namespace TangGame.UI
 
 		public const string EQUIP = "装备";
 		public const string OK = "确定";
+
+		/// 战斗界面中的“退出战斗”
+		public const string BATTLE_QUIT = "退出战斗" ;
+		/// 战斗界面中的“声音：开”
+		public const string BATTLE_SOUND_OPEN = "声音：开" ;
+		/// 战斗界面中的“声音：关”
+		public const string BATTLE_SOUND_CLOSE = "声音：关" ;
+		/// 战斗界面中的“继续战斗”
+		public const string BATTLE_CONTINUE = "继续战斗" ;
+		/// 战斗结果界面中的“经验已满”
+		public const string BATTLE_FULL_EXP = "经验已满" ;
 	}
 }
