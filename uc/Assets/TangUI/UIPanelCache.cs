@@ -11,6 +11,7 @@ namespace TangUI
 	public class UIPanelCache
 	{
 
+    public Dictionary<string, UnityEngine.Object> assetTable = new Dictionary<string, UnityEngine.Object>();
 
 		private Dictionary<string,List<GameObject>> table = 
 			new Dictionary<string, List<GameObject>> ();

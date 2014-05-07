@@ -31,10 +31,10 @@ namespace TangLevel
     {
 
       bool foundTarget = false;
-      if (effector != null) {
-        Skill skill = effector.skill;
+      if (w != null) {
+        Skill skill = w.skill;
         if (skill != null) {
-          GameObject target = skill.target;
+          GameObject target = w.target;
           if (target != null) {
 
             // 绑定到目标身上

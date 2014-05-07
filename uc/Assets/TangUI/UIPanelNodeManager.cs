@@ -25,28 +25,32 @@ namespace TangUI
 
     public void LazyOpen (string name)
     {
-			LazyOpen (name, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.SPRITE, null);
+      LazyOpen (name, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, null);
     }
-		public void LazyOpen (string name,UIPanelNode.OpenMode openMode)
-		{
-			LazyOpen (name, openMode,UIPanelNode.BlockMode.NONE, null);
-		}
 
-		public void LazyOpen (string name, UIPanelNode.OpenMode openMode,UIPanelNode.BlockMode blockMode)
+    public void LazyOpen (string name, UIPanelNode.OpenMode openMode)
     {
-			LazyOpen (name, openMode, blockMode, null);
+      LazyOpen (name, openMode, UIPanelNode.BlockMode.NONE, null);
     }
-		public void LazyOpen (string name, UIPanelNode.OpenMode openMode, object param){
-			LazyOpen (name, openMode, UIPanelNode.BlockMode.SPRITE, param);
-		}
 
-		public void LazyOpen (string name, UIPanelNode.OpenMode openMode,UIPanelNode.BlockMode blockMode, object param)
+    public void LazyOpen (string name, UIPanelNode.OpenMode openMode, UIPanelNode.BlockMode blockMode)
+    {
+      LazyOpen (name, openMode, blockMode, null);
+    }
+
+    public void LazyOpen (string name, UIPanelNode.OpenMode openMode, object param)
+    {
+      LazyOpen (name, openMode, UIPanelNode.BlockMode.SPRITE, param);
+    }
+
+    public void LazyOpen (string name, UIPanelNode.OpenMode openMode, UIPanelNode.BlockMode blockMode,
+                          object param, bool isBaseTemplate = false)
     {
       if (!name.Equals (context.currentNode.name)) {
         UIPanelNode node = new UIPanelNode (name);
         node.context = context;
-				UIPanelNodeContext.mgrUseStack.Push (this);
-				node.Launch (openMode,blockMode, param);
+        UIPanelNodeContext.mgrUseStack.Push (this);
+        node.Launch (openMode, blockMode, param, isBaseTemplate);
       }
       
     }
