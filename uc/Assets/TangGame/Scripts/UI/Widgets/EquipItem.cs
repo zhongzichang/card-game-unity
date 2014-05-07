@@ -53,14 +53,18 @@ namespace TangGame.UI
 		}
 
 		void OnClick(){
+			PropsDetailsPanelBean bean = new PropsDetailsPanelBean ();
+			bean.hero = this.hero;
 			if (propsNet == null) {
-				PropsDetailsPanelBean bean = new PropsDetailsPanelBean ();
-				bean.hero = this.hero;
 				bean.props = new PropsBase ();
 				bean.props.Xml = xml;
 				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.PROPS_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean);
 			} else {
-				
+				EquipBase equipBase= new EquipBase ();
+				equipBase.Net = propsNet;
+				equipBase.Xml = xml;
+				bean.props = equipBase; 
+				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.EQUIP_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean);
 			}
 		}
 	}

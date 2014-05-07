@@ -131,5 +131,6 @@ namespace TangGame.UI
 
 		public const string EQUIP = "装备";
 		public const string OK = "确定";
+		public const string UNENCHANTED= "未附魔";
 	}
 }

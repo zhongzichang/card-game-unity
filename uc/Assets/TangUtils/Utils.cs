@@ -246,5 +246,11 @@ public class Utils
 //			background.width = Mathf.RoundToInt(mSize.x);
 			background.height = Mathf.RoundToInt(mSize.y);
 		}
+
+
+	}
+	public static float EnchantingVariable(int rank,int enchantLevel){
+		//TODO only to test;
+		return 0.25f;
 	}
 }
