@@ -15,6 +15,10 @@ namespace TangGame.UI
     }
 
     public HeroItemObject CreateHeroItemObj(HeroItemData data){
+      if (heroObjs.ContainsKey (data.id)) {
+        return (HeroItemObject)heroObjs [data.id];
+      }
+
       GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItemObj"));
 
       HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
@@ -22,14 +26,10 @@ namespace TangGame.UI
       data.onToggleChanged += ToggleChanged;
       obj.Update (data);
 
-      if (data.toggled) {
-        if (grid) {
-          grid.Reposition ();
-        }
-      } else {
-        hero.SetActive (false);
+      if (grid) {
+        grid.Reposition ();
       }
-
+    
       return obj;
     }
 
@@ -52,6 +52,9 @@ namespace TangGame.UI
 
       HeroItemData  leftData = leftObj.GetData ();
       HeroItemData  rightData = rightObj.GetData ();
+
+      if (leftData == null || rightData == null)
+        return 0;
 
       // 根据英雄排序表
       return rightData.order.CompareTo (leftData.order);

@@ -58,51 +58,51 @@ namespace TangGame.UI
       }
     }
 
-    void OnGUI(){
-      if (GUILayout.Button ("AddHero")) {
-        {
-          HeroItemData data = new HeroItemData ();
-          data.id = "AV";
-          data.order = 26;
-          data.rank = 7;
-          data.level = 40;
-          data.stars = 2;
-          data.lineType = 2;
-          AddHero (data);
-        }
-        {
-          HeroItemData data = new HeroItemData ();
-          data.id = "BatRider";
-          data.order = 15;
-          data.rank = 2;
-          data.level = 50;
-          data.stars = 3;
-          data.lineType = 1;
-          AddHero (data);
-        }
-        {
-          HeroItemData data = new HeroItemData ();
-          data.id = "Axe";
-          data.order = 8;
-          data.rank = 8;
-          data.level = 66;
-          data.stars = 5;
-          data.lineType = 0;
-          AddHero (data);
-        }
-      }
-      if (GUILayout.Button ("SortNewHero")) {
-        {
-          HeroItemData data = new HeroItemData ();
-          data.order = 17;
-          data.id = "CM";
-          data.rank = 3;
-          data.level = 42;
-          data.stars = 5;
-          data.lineType = 1;
-          AddHero (data);
-        }
-      }
-    }
+//    void OnGUI(){
+//      if (GUILayout.Button ("AddHero")) {
+//        {
+//          HeroItemData data = new HeroItemData ();
+//          data.id = "AV";
+//          data.order = 26;
+//          data.rank = 7;
+//          data.level = 40;
+//          data.stars = 2;
+//          data.lineType = 2;
+//          AddHero (data);
+//        }
+//        {
+//          HeroItemData data = new HeroItemData ();
+//          data.id = "BatRider";
+//          data.order = 15;
+//          data.rank = 2;
+//          data.level = 50;
+//          data.stars = 3;
+//          data.lineType = 1;
+//          AddHero (data);
+//        }
+//        {
+//          HeroItemData data = new HeroItemData ();
+//          data.id = "Axe";
+//          data.order = 8;
+//          data.rank = 8;
+//          data.level = 66;
+//          data.stars = 5;
+//          data.lineType = 0;
+//          AddHero (data);
+//        }
+//      }
+//      if (GUILayout.Button ("SortNewHero")) {
+//        {
+//          HeroItemData data = new HeroItemData ();
+//          data.order = 17;
+//          data.id = "CM";
+//          data.rank = 3;
+//          data.level = 42;
+//          data.stars = 5;
+//          data.lineType = 1;
+//          AddHero (data);
+//        }
+//      }
+//    }
   }
 }

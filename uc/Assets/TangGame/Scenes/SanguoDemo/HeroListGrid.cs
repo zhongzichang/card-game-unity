@@ -55,6 +55,9 @@ namespace TangGame.UI
 
       HeroItemData  leftData = leftObj.GetData ();
       HeroItemData  rightData = rightObj.GetData ();
+      if (leftData == null || rightData == null)
+        return 0;
+
       // 根据等级，星级和品阶依次排序
       int ret = rightData.level.CompareTo(leftData.level);
       if (ret == 0) {
