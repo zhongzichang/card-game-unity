@@ -103,7 +103,9 @@ namespace TangLevel
 
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
-          LevelContext.CurrentLevel = Config.levelTable [levelId];
+
+          // 克隆一份场景数据
+          LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy();
         }
         LevelContext.selfGroup = group;
 

@@ -37,7 +37,7 @@ namespace TangLevel
     {
       SubLevel other = (SubLevel)this.MemberwiseClone ();
 
-      other.enemyGroup = new Group ();
+      other.enemyGroup = enemyGroup.DeepCopy ();
 
       return other;
     }

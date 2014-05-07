@@ -31,7 +31,10 @@ namespace TangLevel
     {
       Group other = (Group)this.MemberwiseClone ();
 
-
+      other.heros = new Hero[heros.Length];
+      for (int i = 0; i < heros.Length; i++) {
+        other.heros [i] = heros [i].ShallowCopy ();
+      }
 
       return other;
     }
