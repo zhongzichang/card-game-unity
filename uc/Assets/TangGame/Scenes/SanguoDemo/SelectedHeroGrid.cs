@@ -14,33 +14,23 @@ namespace TangGame.UI
       grid.onCustomSort = CompareHeroItem;
     }
 
-    public HeroItemObject CreateHeroItemObj(HeroItemData data){
-      if (heroObjs.ContainsKey (data.id)) {
-        return (HeroItemObject)heroObjs [data.id];
-      }
 
-      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItemObj"));
-
-      HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
-      heroObjs[data.id] = obj;
-      data.onToggleChanged += ToggleChanged;
-      obj.Update (data);
-
-      if (grid) {
-        grid.Reposition ();
-      }
-    
-      return obj;
+    public void AddHeroItemObject(HeroItemObject hero){
+      heroObjs [hero.HeroId] = hero;
+      // 默认隐藏
+      hero.gameObject.SetActive (false);
     }
 
-    public void ToggleChanged (string key){
-      HeroItemObject obj = (HeroItemObject) heroObjs [key];
-      if (obj) {
-        obj.Hide ();
-      }
-      if (grid) {
-        grid.Reposition ();
-      }
+    public void UpdateToggle (string heroId){
+      HeroItemObject obj = FindHeroItemObject (heroId);
+      if (obj == null)
+        return;
+      obj.ToggleActive ();
+      grid.Reposition ();
+    }
+
+    private HeroItemObject FindHeroItemObject(string heroId){
+      return (HeroItemObject) heroObjs [heroId];
     }
 
     private int CompareHeroItem (Transform left, Transform right){
@@ -50,14 +40,8 @@ namespace TangGame.UI
       if (leftObj == null || rightObj == null)
         return 0;
 
-      HeroItemData  leftData = leftObj.GetData ();
-      HeroItemData  rightData = rightObj.GetData ();
-
-      if (leftData == null || rightData == null)
-        return 0;
-
       // 根据英雄排序表
-      return rightData.order.CompareTo (leftData.order);
+      return rightObj.HeroData.order.CompareTo (leftObj.HeroData.order);
     }
   }
 

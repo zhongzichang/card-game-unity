@@ -9,22 +9,22 @@ namespace TangGame.UI
     public UISprite iconFrame;
     public UILabel level;
     public UIGrid stars;
+    public GameObject mp;
+    public GameObject hp;
+    public GameObject bucket;
     public GameObject tick;
 
-    private HeroItemData data;
-
-    // Use this for initialization
-    void Start () {
-
+    private HeroItemData heroData;
+    public HeroItemData HeroData{
+      get { return heroData; } 
+      set { heroData=value; } 
+    }
+    public string HeroId{
+      get { return heroData.id; } 
     }
 
-    // Update is called once per frame
-    void Update () {
-
-    }
-
-    public void Update(HeroItemData data){
-      this.data = data;
+    public void Refresh(HeroItemData data){
+      HeroData = data;
       icon.spriteName = GetIconName(data);
       iconFrame.spriteName = GetIconFrameName(data);
       level.text = data.level.ToString();
@@ -32,18 +32,12 @@ namespace TangGame.UI
       stars.Reposition ();
     }
 
-    public HeroItemData GetData(){
-      return data;
-    }
-
-    public void Toggle(){
-      Debug.Log ("Toggle");
-      tick.SetActive (!tick.activeSelf);
-    }
-
-    public void Hide(){
-      Debug.Log ("Hide");
+    public void ToggleActive(){
       gameObject.SetActive (!gameObject.activeSelf);
+    }
+
+    public void ToggleTick(){
+      tick.SetActive (!tick.activeSelf);
     }
 
     private string GetIconName(HeroItemData data){
