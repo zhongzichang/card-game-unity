@@ -8,7 +8,7 @@ public class ViewItem : MonoBehaviour {
 	private object mData;
 	private bool mSeleted;
 	
-	protected bool isStart = false;
+	protected bool started = false;
 
 	public string id{
 		get{return this.mId;}
@@ -39,7 +39,7 @@ public class ViewItem : MonoBehaviour {
 	}
 	
 	public virtual void Start(){
-		this.isStart = true;
+		this.started = true;
 	}
 	
 	public virtual void OnDestroy(){
