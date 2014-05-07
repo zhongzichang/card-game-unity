@@ -51,9 +51,8 @@ namespace TangGame.UI
     }
 
     private void OnItemClicked(GameObject obj){
-      Debug.Log ("OnItemClicked");
       HeroItemObject hero = (HeroItemObject)obj.GetComponent<HeroItemObject> (); 
-      HeroItemData data = (HeroItemData)heroItems[hero.id.name];
+      HeroItemData data = hero.GetData ();
       if (data != null) {
         data.Toggle ();
       }
@@ -64,39 +63,43 @@ namespace TangGame.UI
         {
           HeroItemData data = new HeroItemData ();
           data.id = "AV";
+          data.order = 26;
           data.rank = 7;
           data.level = 40;
           data.stars = 2;
-          data.camp = 2;
+          data.lineType = 2;
           AddHero (data);
         }
         {
           HeroItemData data = new HeroItemData ();
           data.id = "BatRider";
+          data.order = 15;
           data.rank = 2;
           data.level = 50;
           data.stars = 3;
-          data.camp = 1;
+          data.lineType = 1;
           AddHero (data);
         }
         {
           HeroItemData data = new HeroItemData ();
           data.id = "Axe";
-          data.rank = 10;
+          data.order = 8;
+          data.rank = 8;
           data.level = 66;
           data.stars = 5;
-          data.camp = 0;
+          data.lineType = 0;
           AddHero (data);
         }
       }
       if (GUILayout.Button ("SortNewHero")) {
         {
           HeroItemData data = new HeroItemData ();
-          data.id = "Bone";
+          data.order = 17;
+          data.id = "CM";
           data.rank = 3;
           data.level = 42;
           data.stars = 5;
-          data.camp = 2;
+          data.lineType = 1;
           AddHero (data);
         }
       }
