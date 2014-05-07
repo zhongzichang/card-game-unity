@@ -22,6 +22,10 @@ namespace TangLevel
     public DisplayByHurt[] greenDisplayByHurts;
     public DisplayByHurt[] redDisplayByHurts;
 
+    // 英雄头像
+    public GameObject[] heroWgts;
+    public UIGrid groupGrid;
+
   }
 }
 

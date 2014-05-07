@@ -548,6 +548,7 @@ namespace TangLevel
             // 血条显示与隐藏
             h.raiseHpChange += uiMgr.greenDisplayByHurts [i].OnHpChange;
             // 英雄头像 ----
+            uiMgr.heroWgts [i].SetActive (true);
             // 血条
             h.raiseHpChange += uiMgr.selfHpMonitors [i].OnChange;
             // 监听己方英雄的位置变化 -----
@@ -565,6 +566,8 @@ namespace TangLevel
         }
         i++;
       }
+      uiMgr.groupGrid.maxPerLine = i;
+      uiMgr.groupGrid.gameObject.SetActive (true);
     }
 
     /// <summary>
@@ -589,7 +592,9 @@ namespace TangLevel
             h.raiseHpChange -= uiMgr.greenHpMonitors [i].OnChange;
             // 血条显示与隐藏
             h.raiseHpChange -= uiMgr.greenDisplayByHurts [i].OnHpChange;
+            uiMgr.greenDisplayByHurts [i].gameObject.SetActive (false);
             // 英雄头像 ----
+            uiMgr.heroWgts [i].SetActive (false);
             // 血条
             h.raiseHpChange -= uiMgr.selfHpMonitors [i].OnChange;
             // 监听己方英雄的位置变化 -----
@@ -607,6 +612,8 @@ namespace TangLevel
         }
         i++;
       }
+      uiMgr.groupGrid.maxPerLine = 1;
+      uiMgr.groupGrid.gameObject.SetActive (false);
     }
 
     /// <summary>
@@ -668,6 +675,7 @@ namespace TangLevel
             h.raiseHpChange -= uiMgr.redHpMonitors [i].OnChange;
             // 血条的显示与隐藏
             h.raiseHpChange -= uiMgr.redDisplayByHurts [i].OnHpChange;
+            uiMgr.redDisplayByHurts [i].gameObject.SetActive (false);
             // 敌方英雄的位置变化 ----
             DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
             if (agent != null) {
