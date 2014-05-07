@@ -464,6 +464,10 @@ namespace TangLevel
         LevelContext.background = bgGobj;
       }
 
+      // 整理双方战队 - 去掉死亡的队员
+      LevelContext.selfGroup.Arrange ();
+      LevelContext.CurrentSubLevel.enemyGroup.Arrange ();
+
       // 敌方小组列阵
       Group enemyGroup = LevelContext.CurrentSubLevel.enemyGroup;
       Embattle (enemyGroup, BattleDirection.LEFT);
@@ -471,7 +475,7 @@ namespace TangLevel
       Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
 
       // 我方进场
-      foreach (Hero hero in LevelContext.selfGroup.heros) {
+      foreach (Hero hero in LevelContext.selfGroup.aliveHeros) {
         if (hero.hp > 0) {
           GameObject g = AddHeroToScene (hero);
           LevelContext.selfGobjs.Add (g);
@@ -479,7 +483,7 @@ namespace TangLevel
       }
 
       // 敌方进场
-      foreach (Hero hero in enemyGroup.heros) {
+      foreach (Hero hero in enemyGroup.aliveHeros) {
         GameObject g = AddHeroToScene (hero);
         LevelContext.enemyGobjs.Add (g);
       }
@@ -535,14 +539,14 @@ namespace TangLevel
     private static void ListenSelftHeros ()
     {
 
-      List<GameObject> gobjs = LevelContext.selfGobjs;
-      Hero[] heros = LevelContext.selfGroup.heros;
+      List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
+      List<GameObject>.Enumerator gobjEnum = LevelContext.selfGobjs.GetEnumerator ();
 
+      int i = 0;
+      while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
 
-      for (int i = 0; i < gobjs.Count && i < heros.Length; i++) {
-
-        GameObject g = gobjs [i];
-        Hero h = heros [i];
+        Hero h = heroEnum.Current;
+        GameObject g = gobjEnum.Current;
 
         if (g != null) {
           if (uiMgr != null) {
@@ -567,6 +571,7 @@ namespace TangLevel
             heroBhvr.RaiseDead += OnHeroDead;
           }
         }
+        i++;
       }
     }
 
@@ -576,12 +581,14 @@ namespace TangLevel
     private static void UnlistenSelfHeros ()
     {
 
-      List<GameObject> gobjs = LevelContext.selfGobjs;
-      Hero[] heros = LevelContext.selfGroup.heros;
-      for (int i = 0; i < gobjs.Count && i < heros.Length; i++) {
+      List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
+      List<GameObject>.Enumerator gobjEnum = LevelContext.AliveSelfGobjs.GetEnumerator ();
 
-        GameObject g = gobjs [i];
-        Hero h = heros [i];
+      int i = 0;
+      while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
+
+        Hero h = heroEnum.Current;
+        GameObject g = gobjEnum.Current;
 
         if (g != null) {
           if (uiMgr != null) {
@@ -600,13 +607,13 @@ namespace TangLevel
               agent.RaisePosChanged -= OnHeroPosChanged;
             }
           }
-
           // 监听英雄的死亡
           HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
           if (heroBhvr != null) {
             heroBhvr.RaiseDead -= OnHeroDead;
           }
         }
+        i++;
       }
     }
 
@@ -616,13 +623,15 @@ namespace TangLevel
     private static void ListenEnemyHeros ()
     {
 
-      List<GameObject> gobjs = LevelContext.enemyGobjs;
-      Hero[] heros = LevelContext.CurrentSubLevel.enemyGroup.heros;
 
-      for (int i = 0; i < gobjs.Count; i++) {
+      List<Hero>.Enumerator heroEnum = LevelContext.CurrentSubLevel.enemyGroup.aliveHeros.GetEnumerator ();
+      List<GameObject>.Enumerator gobjEnum = LevelContext.enemyGobjs.GetEnumerator ();
 
-        GameObject g = gobjs [i];
-        Hero h = heros [i];
+      int i = 0;
+      while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
+
+        Hero h = heroEnum.Current;
+        GameObject g = gobjEnum.Current;
 
         if (g != null) {
           if (uiMgr != null && uiMgr.redHpMonitors.Length > i) {
@@ -644,22 +653,24 @@ namespace TangLevel
             heroBhvr.RaiseDead += OnHeroDead;
           }
         }
+        i++;
       }
     }
 
     private static void UnlistenEnemyHeros ()
     {
 
-      List<GameObject> gobjs = LevelContext.enemyGobjs;
-      Hero[] heros = LevelContext.CurrentSubLevel.enemyGroup.heros;
+      List<Hero>.Enumerator heroEnum = LevelContext.CurrentSubLevel.enemyGroup.aliveHeros.GetEnumerator ();
+      List<GameObject>.Enumerator gobjEnum = LevelContext.enemyGobjs.GetEnumerator ();
 
-      for (int i = 0; i < gobjs.Count; i++) {
+      int i = 0;
+      while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
 
-        GameObject g = gobjs [i];
-        Hero h = heros [i];
+        Hero h = heroEnum.Current;
+        GameObject g = gobjEnum.Current;
 
         if (g != null) {
-          if (uiMgr != null) {
+          if (uiMgr != null && uiMgr.redHpMonitors.Length > i) {
             // 监听敌方英雄HP变化 ----
             // 英雄身上的血条填充
             h.raiseHpChange -= uiMgr.redHpMonitors [i].OnChange;
@@ -671,12 +682,14 @@ namespace TangLevel
               agent.raiseScrPosChanged -= uiMgr.redHpPosMonitors [i].OnChange;
             }
           }
+
+          // 监听英雄的死亡
+          HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
+          if (heroBhvr != null) {
+            heroBhvr.RaiseDead -= OnHeroDead;
+          }
         }
-        // 监听英雄的死亡
-        HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
-        if (heroBhvr != null) {
-          heroBhvr.RaiseDead -= OnHeroDead;
-        }
+        i++;
       }
     }
 
@@ -704,15 +717,15 @@ namespace TangLevel
     private static void Embattle (Group group, BattleDirection direction)
     {
 
-      Hero[] heros = group.heros;
+      List<Hero> heros = group.aliveHeros;
 
       // 调整英雄面对的方向
-      for (int i = 0; i < heros.Length; i++) {
-        heros [i].battleDirection = direction;
+      foreach (Hero hero in heros) {
+        hero.battleDirection = direction;
       }
 
       // 根据攻击距离进行排序
-      Array.Sort (heros, delegate(Hero hero1, Hero hero2) {
+      heros.Sort (delegate(Hero hero1, Hero hero2) {
         return hero1.attackDistance.CompareTo (hero2.attackDistance);
       });
 
@@ -722,10 +735,10 @@ namespace TangLevel
       Vector2 origin = Vector2.zero;
       int stepx = 6; // 排与排之间的距离
 
-      if (BattleDirection.RIGHT == direction) {
+      if (BattleDirection.RIGHT == direction) { // 我方战队
 
         // 分成两列
-        for (int i = 0; i < heros.Length; i++) {
+        for (int i = 0; i < heros.Count; i++) {
           if (i % 2 == 0) {
             column1.Add (heros [i]);
           } else {
@@ -771,14 +784,14 @@ namespace TangLevel
             column2 [i].birthPoint = origin - new Vector2 (stepx * i, 0);
         }
 
-      } else {
+      } else {  // 敌方战队
 
         // 清空两列内容
         column1.Clear ();
         column2.Clear ();
 
         // 分成两列
-        for (int i = 0; i < heros.Length; i++) {
+        for (int i = 0; i < heros.Count; i++) {
           if (i % 2 == 0) {
             column1.Add (heros [i]);
           } else {
