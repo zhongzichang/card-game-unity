@@ -4,25 +4,25 @@ using System.Collections;
 namespace TangGame.UI
 {
 
-  public class SelectHeroTable : MonoBehaviour {
-    private UITable table;
+  public class SelectedHeroGrid : MonoBehaviour {
+    private UIGrid grid;
     private Hashtable heroObjs = new Hashtable();
 
     void Start () {
-      table = gameObject.GetComponent<UITable> ();
+      grid = gameObject.GetComponent<UIGrid> ();
     }
 
     public HeroItemObject CreateHeroItemObj(HeroItemData data){
-      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItem"));
+      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItemObj"));
 
       HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
-      heroObjs[data.icon] = obj;
+      heroObjs[data.id] = obj;
       data.onToggleChanged += ToggleChanged;
       obj.Update (data);
 
       if (data.toggled) {
-        if (table) {
-          table.Reposition ();
+        if (grid) {
+          grid.Reposition ();
         }
       } else {
         hero.SetActive (false);
@@ -36,8 +36,8 @@ namespace TangGame.UI
       if (obj) {
         obj.Hide ();
       }
-      if (table) {
-        table.Reposition ();
+      if (grid) {
+        grid.Reposition ();
       }
     }
   }
