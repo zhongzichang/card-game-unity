@@ -6,37 +6,48 @@ namespace TangGame.UI
   public class HeroItemData{
 
     public string id;
-    public int level; //等级
-    public int rank; //品阶 进阶加品阶
-    public int stars; //进化-加星
-    public int camp;
+    /// <summary>
+    /// 出场的序列
+    /// </summary>
+    public int order; 
+    /// <summary>
+    /// 等级
+    /// </summary>
+    public int level;
+    /// <summary>
+    /// 品阶 进阶加品阶，白，绿，蓝，紫
+    /// </summary>
+    public int rank; 
+    /// <summary>
+    /// 进化-加星，1-5
+    /// </summary>
+    public int stars; 
+    /// <summary>
+    /// 前排，中排，后排
+    /// </summary>
+    public int lineType;
 
     public delegate void ToggleChanged (string key);
     public ToggleChanged onToggleChanged;
     public bool toggled;
 
     public bool IsFront(){
-      return HERO_TYPE_FRONT == this.camp;
+      return 0 == this.lineType;
     }
 
     public bool IsMiddle(){
-      return HERO_TYPE_MIDDLE == this.camp;
+      return 1 == this.lineType;
     }
 
     public bool IsBack(){
-      return HERO_TYPE_BACK == this.camp;
+      return 2 == this.lineType;
     }
 
     public void Toggle(){
-      Debug.Log ("Toggle");
       this.toggled = !this.toggled;
       if (onToggleChanged != null) {
         onToggleChanged (this.id); 
       }
     }
-
-    private const int HERO_TYPE_FRONT = 0;
-    private const int HERO_TYPE_MIDDLE = 1;
-    private const int HERO_TYPE_BACK = 2;
   }
 }
