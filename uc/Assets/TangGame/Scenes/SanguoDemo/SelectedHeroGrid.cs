@@ -14,23 +14,12 @@ namespace TangGame.UI
       grid.onCustomSort = CompareHeroItem;
     }
 
+    public HeroItemObject GetHeroItemObjById(string heroId){
+      return (HeroItemObject) heroObjs [heroId];
+    }
 
     public void AddHeroItemObject(HeroItemObject hero){
       heroObjs [hero.HeroId] = hero;
-      // 默认隐藏
-      hero.gameObject.SetActive (false);
-    }
-
-    public void UpdateToggle (string heroId){
-      HeroItemObject obj = FindHeroItemObject (heroId);
-      if (obj == null)
-        return;
-      obj.ToggleActive ();
-      grid.Reposition ();
-    }
-
-    private HeroItemObject FindHeroItemObject(string heroId){
-      return (HeroItemObject) heroObjs [heroId];
     }
 
     private int CompareHeroItem (Transform left, Transform right){

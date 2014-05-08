@@ -9,10 +9,11 @@ namespace TangGame.UI
     public UISprite iconFrame;
     public UILabel level;
     public UIGrid stars;
-    public GameObject mp;
-    public GameObject hp;
+    public UISprite mp;
+    public UISprite hp;
     public GameObject bucket;
     public GameObject tick;
+    public UISprite cast;
 
     private HeroItemData heroData;
     public HeroItemData HeroData{
@@ -28,8 +29,20 @@ namespace TangGame.UI
       icon.spriteName = GetIconName(data);
       iconFrame.spriteName = GetIconFrameName(data);
       level.text = data.level.ToString();
+      mp.fillAmount = data.mp / data.mpMax;
+      hp.fillAmount = data.hp / data.hpMax;
       stars.maxPerLine = data.stars;
       stars.Reposition ();
+    }
+
+    public void UpdateMp(int mpValue){
+      mp.fillAmount = mpValue *100 / HeroData.mpMax;
+      mp.gameObject.SetActive (true);
+      if (HeroData.mpMax == mpValue) {
+        cast.gameObject.SetActive (true);
+      } else {
+        cast.gameObject.SetActive (false);
+      }
     }
 
     public void ToggleActive(){

@@ -6,8 +6,10 @@ namespace TangGame.UI
   public class HeroItemUpdateHandler
   {
     public delegate void UpdateToggle(string heroId);
+    public delegate void UpdateMp(string heroId, int mp);
 
     public UpdateToggle updateToggle;
+    public UpdateMp updateMp;
   }
 
   public class HeroStore {

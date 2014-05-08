@@ -38,9 +38,20 @@ namespace TangGame.UI
 
       {
         HeroItemObject obj = CreateHeroItemObj (selectedGrid.gameObject, data);
+        // 默认隐藏
+        obj.gameObject.SetActive (false);
         selectedGrid.AddHeroItemObject (obj);
-        handler.updateToggle += selectedGrid.UpdateToggle;
+        handler.updateToggle += UpdateSelectedGridToggle;
       }
+    }
+
+    public void UpdateSelectedGridToggle (string heroId){
+      HeroItemObject obj = selectedGrid.GetHeroItemObjById (heroId);
+      if (obj == null)
+        return;
+      obj.ToggleActive ();
+      UIGrid grid = obj.transform.parent.GetComponent<UIGrid> ();
+      grid.Reposition ();
     }
 
     private void OnItemClicked(GameObject obj){
