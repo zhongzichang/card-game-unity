@@ -74,16 +74,18 @@ namespace TangLevel
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockAttackSkill ());
       skills.Add (MockBingHuaSkill ());
+      skills.Add (MockLuoshenSkill ());
+      skills.Add (MockYuehuaSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1 };
+      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
       return hero;
     }
 
     public static Skill MockAttackSkill ()
     {
       Skill skill = new Skill ();
-
-      skill.effector = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockLineFlyEffector ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
@@ -96,9 +98,39 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      skill.effector = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockLineFlyEffector ();
       skill.chargeClip = "binghua0";
       skill.releaseClip = "binghua1";
+      skill.enable = true;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockLuoshenSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockLineFlyEffector ();
+      //skill.chargeClip = "";
+      skill.releaseClip = "luoshen";
+      skill.enable = true;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+
+    public static Skill MockYuehuaSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockLineFlyEffector ();
+      //skill.chargeClip = "";
+      skill.releaseClip = "yuehua";
       skill.enable = true;
       skill.cd = 2;
 

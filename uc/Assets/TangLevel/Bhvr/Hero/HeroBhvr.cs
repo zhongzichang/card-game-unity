@@ -154,24 +154,28 @@ namespace TangLevel
     private void OnStatusChanged (HeroStatus status)
     {
 
+      string clip = null;
       switch (status) {
 
 
       case HeroStatus.charge: // 起手 ----
 
         // 有则播放，无则转到释放状态
+
         if (skill.chargeClip != null) {
           if (animationList.Contains (skill.chargeClip)) {
-            dbBhvr.GotoAndPlay (skill.chargeClip);
-          } else {
-            statusBhvr.Status = HeroStatus.release;
+            clip = skill.chargeClip;
           }
+        }
+        if (clip == null) {
+          statusBhvr.Status = HeroStatus.release;
+        } else {
+          dbBhvr.GotoAndPlay (clip);
         }
         break;
       
       case HeroStatus.release: // 释放 ----
 
-        string clip = null;
         if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
           clip = skill.releaseClip;
         } else {
@@ -180,9 +184,11 @@ namespace TangLevel
         //dbBhvr.GotoAndPlay (clip);
         armature.Animation.GotoAndPlay (clip, -1, -1, 1);
 
-        // 抛出作用器
+        // 抛出作用器s
         if (skill != null) {
-          skillBhvr.Cast (skill.effector, skill, gameObject, target);
+          foreach(Effector e in skill.effectors){
+            skillBhvr.Cast (e, skill, gameObject, target);
+          }
         }
         break;
 
@@ -250,8 +256,8 @@ namespace TangLevel
     public void Attack (GameObject target, Skill skill)
     {
 
-      this.skill = skill;
       this.target = target;
+      this.skill = skill;
 
       statusBhvr.Status = HeroStatus.charge;
 

@@ -5,7 +5,7 @@ namespace TangLevel
 {
   public abstract class SkillSpecialBhvr : SpecialBhvr
   {
-    public Skill skill;
+    public SkillWrapper w;
 
   }
 }

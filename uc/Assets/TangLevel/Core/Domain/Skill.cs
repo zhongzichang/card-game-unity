@@ -55,20 +55,11 @@ namespace TangLevel
     /// </summary>
     public int scopeType;
 
-    /// <summary>
-    /// 作用类型和次数
-    /// </summary>
-    public Effect[] effects;
-
-    /// <summary>
-    /// 作用器序列
-    /// </summary>
-    public EffectQueue effectQueue;
 
     /// <summary>
     /// 作用器
     /// </summary>
-    public Effector effector;
+    public Effector[] effectors;
 
     /// <summary>
     /// 是否可打断
@@ -96,9 +87,14 @@ namespace TangLevel
     public string releaseClip;
 
     /// <summary>
-    /// 特效名称
+    /// 蓄力特效
     /// </summary>
-    public string specialName;
+    public string[] chargeSpecials;
+
+    /// <summary>
+    /// 释放特效
+    /// </summary>
+    public string[] releaseSpecials;
 
     /// <summary>
     /// 技能图标

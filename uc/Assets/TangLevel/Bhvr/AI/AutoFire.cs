@@ -90,6 +90,8 @@ namespace TangLevel
       if (skill == null) {
         this.enabled = false;
         Debug.Log ("Can not find active skill for hero .... please check your hero table and skill table !");
+      } else {
+        remainTime = skill.cd;
       }
       // navigable
       navigable = GetComponent<DirectedNavigable> ();
@@ -143,6 +145,12 @@ namespace TangLevel
       }
 
       remainTime += Time.deltaTime;
+    }
+
+    void OnEnable(){
+      if (skill != null) {
+        remainTime = skill.cd;
+      }
     }
   }
 }

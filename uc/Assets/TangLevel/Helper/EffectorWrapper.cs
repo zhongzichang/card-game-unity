@@ -3,14 +3,11 @@ using UnityEngine;
 
 namespace TangLevel
 {
-  public class EffectorWrapper
+  public class EffectorWrapper : SkillWrapper
   {
     public Effector effector;
-    public Skill skill;
-    public GameObject source;
-    public GameObject target;
 
-    private EffectorWrapper () : base()
+    public EffectorWrapper () : base()
     {
     }
 

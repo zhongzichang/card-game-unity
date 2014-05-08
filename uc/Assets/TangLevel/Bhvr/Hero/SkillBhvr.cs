@@ -9,10 +9,7 @@ namespace TangLevel
 {
   public class SkillBhvr : MonoBehaviour
   {
-    // 作用器列表(需要)
-    private List<EffectorWrapper> ws = new List<EffectorWrapper> ();
-    // 作用完毕，需要被删除的作用器
-    private List<EffectorWrapper> rws = new List<EffectorWrapper> ();
+    private Dictionary<string, List<SkillWrapper>> wt = new Dictionary<string, List<SkillWrapper>> ();
     private HeroBhvr heroBhvr = null;
 
     #region Mono
@@ -32,11 +29,47 @@ namespace TangLevel
 
     #endregion
 
-    #region Hero
-
+    #region PublicMethods
 
     // --- 释放技能 ---
-    // 对目标释放技能
+    /// <summary>
+    /// 释放起手特效
+    /// </summary>
+    /// <param name="skill">Skill.</param>
+    /// <param name="source">Source.</param>
+    /// <param name="target">Target.</param>
+    public void CastChargeSpecial (Skill skill, GameObject source, GameObject target)
+    {
+
+      SkillWrapper w = SkillWrapper.W (skill, source, target);
+      foreach (string specialName in skill.chargeSpecials) {
+        CastSkillSpecial (specialName, w);
+      }
+
+    }
+
+    /// <summary>
+    /// 释放释放特效
+    /// </summary>
+    /// <param name="skill">Skill.</param>
+    /// <param name="source">Source.</param>
+    /// <param name="target">Target.</param>
+    public void CastReleaseSpecial(Skill skill, GameObject source, GameObject target){
+
+      SkillWrapper w = SkillWrapper.W (skill, source, target);
+      foreach (string specialName in skill.chargeSpecials) {
+        CastSkillSpecial (specialName, w);
+      }
+    }
+
+
+    /// <summary>
+    ///  对目标抛出作用器
+    /// </summary>
+    /// <param name="effector">Effector.</param>
+    /// <param name="skill">Skill.</param>
+    /// <param name="source">Source.</param>
+    /// <param name="target">Target.</param>
     public void Cast (Effector effector, Skill skill, GameObject source, GameObject target)
     {
       EffectorWrapper w = EffectorWrapper.W (effector, skill, gameObject, target);
@@ -49,10 +82,12 @@ namespace TangLevel
         GameObject gobj = GobjManager.FetchUnused (specialName);
         if (gobj != null) {
 
-          ReleaseEffectorSpecial ( gobj, w);
+          ReleaseEffectorSpecial (gobj, w);
 
         } else {
 
+          // 添加到作用器列表
+          Add (specialName, w);
           // 需要加载资源
           if (!GobjManager.HasHandler (OnSpecialLoad)) {
             GobjManager.RaiseLoadEvent += OnSpecialLoad;
@@ -63,33 +98,73 @@ namespace TangLevel
 
     }
 
+    #endregion
+
+    #region PrivateMethods
+
+    private void CastSkillSpecial(string specialName, SkillWrapper w){
+
+      // 获取特效对象
+      GameObject gobj = GobjManager.FetchUnused (specialName);
+      if (gobj != null) {
+
+        ReleaseSkillSpecial (gobj, w);
+
+      } else {
+
+        // 添加到作用器列表
+        Add (specialName, w);
+        // 需要加载资源
+        if (!GobjManager.HasHandler (OnSpecialLoad)) {
+          GobjManager.RaiseLoadEvent += OnSpecialLoad;
+        }
+        GobjManager.LazyLoad (specialName);
+      }
+    }
+
     private void OnSpecialLoad (object sender, LoadResultEventArgs args)
     {
       if (args.Success) {
 
         // 获取和播放作用器特效
-        foreach (EffectorWrapper w in rws) {
 
-          if (w.effector.specialName == args.Name) {
+        if (wt.ContainsKey (args.Name)) {
+          foreach (SkillWrapper w in wt[args.Name]) {
             GameObject gobj = GobjManager.FetchUnused (args.Name);
             if (gobj != null) {
-              ReleaseEffectorSpecial (gobj, w);
+              if (w is EffectorWrapper) {
+                ReleaseEffectorSpecial (gobj, w as EffectorWrapper);
+              } else {
+                ReleaseSkillSpecial (gobj, w);
+              }
             }
-            rws.Add (w);
           }
-        }
-
-        // 删除已经被释放的作用器
-        if (rws.Count > 0) {
-          foreach (EffectorWrapper e in rws) {
-            ws.Remove (e);
-          }
+          Remove (args.Name);
         }
       }
     }
 
     /// <summary>
     /// 释放技能特效对象
+    /// </summary>
+    /// <param name="gobj">Gobj.</param>
+    /// <param name="w">The width.</param>
+    private void ReleaseSkillSpecial (GameObject gobj, SkillWrapper w)
+    {
+
+      SkillSpecialBhvr[] bhvrs = gobj.GetComponents<SkillSpecialBhvr> ();
+      if (bhvrs != null) {
+        foreach (SkillSpecialBhvr bhvr in bhvrs) {
+          bhvr.w = w;
+          bhvr.Play ();
+        }
+      }
+      gobj.SetActive (true);
+
+    }
+
+    /// <summary>
+    /// 释放作用器特效对象
     /// </summary>
     /// <param name="gobj">Gobj.</param>
     private void ReleaseEffectorSpecial (GameObject gobj, EffectorWrapper w)
@@ -152,14 +227,39 @@ namespace TangLevel
 
         } else {
 
-          // 添加到受作用器列表
-          ws.Add (w);
+          // 添加到作用器列表
+          Add (specialName, w);
           // 需要加载资源
           if (!GobjManager.HasHandler (OnSpecialLoad)) {
             GobjManager.RaiseLoadEvent += OnSpecialLoad;
           }
           GobjManager.LazyLoad (specialName);
         }
+      }
+    }
+
+    /// <summary>
+    /// 增加一个对象到缓存
+    /// </summary>
+    public void Add (string special, SkillWrapper w)
+    {
+      if (wt.ContainsKey (special)) {
+        wt [special].Add (w);
+      } else {
+        List<SkillWrapper> list = new List<SkillWrapper> ();
+        list.Add (w);
+        wt.Add (special, list);
+      }
+    }
+
+    /// <summary>
+    /// 删除持有某特效的所有技能和作用器
+    /// </summary>
+    /// <param name="special">Special.</param>
+    public void Remove (string special)
+    {
+      if (wt.ContainsKey (special)) {
+        wt[special].Clear();
       }
     }
 
