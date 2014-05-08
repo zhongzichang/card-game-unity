@@ -47,16 +47,6 @@ namespace TangGame.UI
 			UIEventListener.Get (ToggleBefore.gameObject).onClick += OnToggleBeforeClick;
 			UIEventListener.Get (ToggleLater.gameObject).onClick += OnToggleLaterClick;
 			UIEventListener.Get (ToggleMedium.gameObject).onClick += OnToggleMediumClick;
-
-			TangGame.Net.HeroNet net = new TangGame.Net.HeroNet ();
-			net.id = 100001;
-			net.exp = 10;
-			net.evolve = 5;
-			net.configId = 1001;
-			net.level = 2;
-			net.upgrade = 6;
-			TangGame.UI.Base.BaseCache.heroBeseTable [net.configId].Net = net;
-
 			this.LoadHeroAll ();
 		}
 
@@ -208,6 +198,7 @@ namespace TangGame.UI
 			}
 			heroItems.Add (data.Xml.id, item);
 			item.Flush (data);
+			UIEventListener.Get (item.gameObject).onClick -= ItemOnClick;
 			UIEventListener.Get (item.gameObject).onClick += ItemOnClick;
 		}
 
@@ -216,7 +207,7 @@ namespace TangGame.UI
 			if (item == null)
 				return;
 			if (!item.Data.Islock) {
-				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, item.Data);
+				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.SPRITE, item.Data,true);
 			}
 		}
 		//Reposition the children on the next Update().

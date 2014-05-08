@@ -70,6 +70,7 @@ namespace TangGame.UI
 		{
 			if (this.gameObject.activeSelf == false) {
 				this.gameObject.SetActive (true);
+				this.GetComponent<TweenPosition> ().ResetToBeginning ();
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
 			this.UpPropsIcon (data.Xml.icon);

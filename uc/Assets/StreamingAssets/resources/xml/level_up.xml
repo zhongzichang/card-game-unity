@@ -16,4 +16,20 @@
 		<lv>4</lv>
 		<val>1000</val>
 	</value>
+<value>
+		<lv>5</lv>
+		<val>1000</val>
+	</value>
+	<value>
+		<lv>6</lv>
+		<val>3000</val>
+	</value>
+	<value>
+		<lv>7</lv>
+		<val>6000</val>
+	</value>
+	<value>
+		<lv>8</lv>
+		<val>10000</val>
+	</value>
 </root>

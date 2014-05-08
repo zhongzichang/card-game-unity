@@ -127,7 +127,7 @@ namespace TangGame.UI
 		{
 			this.heroBase = heroBase;
 			this.SetHeroName (heroBase.Xml.name);
-			this.SetHeroNameFrame ((int)heroBase.Net.upgrade);
+			this.SetHeroNameFrame (heroBase.Net.upgrade);
 			this.SetLevel (heroBase.Net.level);
 			this.SetScore (heroBase.Score);
 			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable [heroBase.Net.level].val);
@@ -173,9 +173,9 @@ namespace TangGame.UI
     /// <summary>
     /// Sets the hero name frame.设置英雄名字框阶级
     /// </summary>
-    void SetHeroNameFrame (int rank)
+		void SetHeroNameFrame (int upgrade)
     {
-      HeroNameFrame.GetComponent<UISprite> ().spriteName = "herodetail_name_frame_" + rank; //TODO  需要修改
+			HeroNameFrame.GetComponent<UISprite> ().spriteName = Global.GetHeroNameFrame (upgrade); //+ rank; //TODO  需要修改
     }
 
     /// <summary>
@@ -249,12 +249,11 @@ namespace TangGame.UI
 		/// </summary>
 		void SetEquipList (HeroBase heroBase)
 		{
-			List<TangGame.Xml.PropsXml> equipsList = heroBase.Xml.CurrentEquipListByRank (heroBase.Net.upgrade);
 			EquipItem[] items = PropsTable.GetComponentsInChildren<EquipItem> ();
 			for (int i = 0; i < items.Length; i++) {
 				if (items[i] == null)
 					continue;
-				items[i].Flush (heroBase,equipsList[i]);
+				items[i].Flush (heroBase);
 			}
 		}
 		/// <summary>

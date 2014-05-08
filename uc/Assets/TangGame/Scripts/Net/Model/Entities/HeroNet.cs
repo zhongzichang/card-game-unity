@@ -25,15 +25,15 @@ namespace TangGame.Net
 		/// <summary>
 		/// 英雄品质
 		/// </summary>
-		public short upgrade;
+		public int upgrade;
 		/// <summary>
 		/// 英雄星级
 		/// </summary>
-		public short evolve;
+		public int evolve;
 		/// <summary>
 		/// 剩余的技能点
 		/// </summary>
-		public short skillCount;
+		public int skillCount;
 		/// <summary>
 		/// 最后一次升级技能的时间
 		/// </summary>
