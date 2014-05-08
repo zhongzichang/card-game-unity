@@ -26,5 +26,23 @@ namespace TangGame{
 				return PropsNormalFrame[upgrade];
 			}
 		}
+
+		/// <summary>
+		/// 获取英雄的品质边框
+		/// </summary>
+		/// <returns>英雄边框的Sprite名称</returns>
+		/// <param name="upgrade">品质</param>
+		public static string GetHeroIconFrame(int upgrade){
+			return "hero_icon_frame_" + upgrade;
+		}
+
+		/// <summary>
+		/// 获取英雄名称的品质边框
+		/// </summary>
+		/// <returns>英雄名称边框的Sprite名称</returns>
+		/// <param name="upgrade">品质</param>
+		public static string GetHeroNameFrame(int upgrade){
+			return "herodetail_name_frame_" + upgrade;
+		}
 	}
 }
