@@ -22,7 +22,7 @@ namespace TangGame
 			UIEventListener.Get (HeroMenu.gameObject).onClick += OnHeroMenuClick;
 			UIEventListener.Get (BagMenu.gameObject).onClick += OnBagMenuClick;
 			UIEventListener.Get (FragmentsMenu.gameObject).onClick += OnDebrisMenuClick;
-//		UIEventListener.Get (TaskMenu.gameObject).onClick += OnTaskMenuClick;
+//			UIEventListener.Get (TaskMenu.gameObject).onClick += OnTaskMenuClick;
 
 			mainPopupToggle = MainPopupButton.GetComponent<UIToggle> ();
 		}
@@ -48,10 +48,9 @@ namespace TangGame
 		void OnDebrisMenuClick (GameObject obj)
 		{
 
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.PROPS_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,TangGame.UI.Base.BaseCache.propsBaseTable[1001]);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.ENCHANTS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
 			this.CloseMenu ();
 		}
-
 
 
 		// Close current Menu!
