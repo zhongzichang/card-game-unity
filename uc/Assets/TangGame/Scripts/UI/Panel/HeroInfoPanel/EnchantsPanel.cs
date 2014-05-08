@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using TangGame.UI.Base;
 using System;
+using TangGame.UI.Base;
 
 namespace TangGame.UI
 {
@@ -16,7 +18,7 @@ namespace TangGame.UI
 		/// The properties table.
 		/// 道具table对象
 		/// </summary>
-		public GameObject PropsTable;
+		public GameObject EquipTable;
 		/// <summary>
 		/// The name of the hero.
 		/// 英雄名字
@@ -33,15 +35,63 @@ namespace TangGame.UI
 		/// 装备信息标签
 		/// </summary>
 		public GameObject EquipInfoLabel;
+
+		/// <summary>
+		/// The content of the equip.
+		/// 装备相关内容
+		/// </summary>
+		public GameObject EquipContent;
+		/// <summary>
+		/// The content of the hero.
+		/// 英雄相关内容
+		/// </summary>
+		public GameObject HeroContent;
+
+		/// <summary>
+		/// The hero base.
+		/// 选中的英雄
+		/// </summary>
+		private HeroBase heroBase = null;
+
+		/// <summary>
+		/// The equip base.
+		/// 选中的道具
+		/// </summary>
+		private EquipBase equipBase = null;
 		// Use this for initialization
 		void Start ()
 		{
-
+			if (heroBase == null) {
+				HeroContent.SetActive (false);
+			}
+			if (equipBase == null) {
+				EquipContent.SetActive (false);
+			}
 		}
 		// Update is called once per frame
 		void Update ()
 		{
 
+		}
+
+		public void UpHero(HeroBase heroBase){
+			this.heroBase = heroBase;
+			SetEquipList (heroBase);
+		}
+
+		/// <summary>
+		/// Sets the properties list.
+		/// 设置穿戴的道具
+		/// </summary>
+		void SetEquipList (HeroBase heroBase)
+		{
+			List<TangGame.Xml.PropsXml> equipsList = heroBase.Xml.CurrentEquipListByRank (heroBase.Net.upgrade);
+			EquipItemForEnchants[] items = EquipTable.GetComponentsInChildren<EquipItemForEnchants> ();
+			for (int i = 0; i < items.Length; i++) {
+				if (items[i] == null)
+					continue;
+				items[i].Flush (heroBase,equipsList[i]);
+			}
 		}
 
 		/// <summary>

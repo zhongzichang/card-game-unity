@@ -74,9 +74,6 @@ namespace TangGame.UI
 		{
 
 		}
-		void OnClick(){
-			SVPropsItemArrayBack ();
-		}
 		// Update is called once per frame
 		void Update ()
 		{
