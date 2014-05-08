@@ -6,10 +6,11 @@ namespace TangLevel
   {
     idle,
     running,
-    attack,
     dead,
     beat,
-    victory
+    victory,
+    charge,
+    release
   }
 }
 

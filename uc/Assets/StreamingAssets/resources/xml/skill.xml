@@ -48,4 +48,20 @@
 		<skill_tag>文字描述</skill_tag>
 		<skill_info>黄字描述</skill_info>
 	</value>
+
+  
+  <value>
+    <id>200</id>
+    <name>冰花</name>
+    <trigger_type>0</trigger_type>
+    <target_type>0</target_type>
+    <range_type>0</range_type>
+    <lv_max>0</lv_max>
+    <icon_name>str</icon_name>
+  
+    <skill_tag>文字描述</skill_tag>
+    <skill_info>黄字描述</skill_info>
+
+    <action>binghua</action>
+  </value>
 </root>

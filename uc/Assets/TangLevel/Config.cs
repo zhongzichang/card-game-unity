@@ -13,7 +13,16 @@ namespace TangLevel
 {
   public class Config
   {
+
+    /// <summary>
+    /// 地图右边界
+    /// </summary>
     public const float RIGHT_BOUND = 40;
+
+    /// <summary>
+    /// 缺省攻击的动画剪辑
+    /// </summary>
+    public const string DEFAULT_ATTACK_CLIP = "attack";
 
     /// <summary>
     ///   是否使用打包后的资源

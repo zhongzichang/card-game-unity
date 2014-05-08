@@ -32,7 +32,7 @@ namespace TangLevel
           if (bhvr != null) {
             //bhvr.source = source;
             //bhvr.target = target;
-            bhvr.skill = Mocker.MockSkill ();
+            //bhvr.skill = Mocker.MockBingHuaSkill ();
           }
           gobj.SetActive (true);
         }

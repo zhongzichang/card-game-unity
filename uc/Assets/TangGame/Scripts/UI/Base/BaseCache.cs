@@ -15,5 +15,13 @@ namespace TangGame.UI.Base
 		/// </summary>
 		public static Dictionary<int,PropsBase> propsBaseTable = new Dictionary<int, PropsBase>();
 
+		/// 获取英雄数据
+		public static HeroBase GetHero(int id){
+			if(heroBeseTable.ContainsKey(id)){
+				return heroBeseTable[id];
+			}
+			return null;
+		}
+
 	}
 }
