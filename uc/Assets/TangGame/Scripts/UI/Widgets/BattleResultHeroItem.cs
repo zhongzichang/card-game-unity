@@ -26,6 +26,7 @@ namespace TangGame{
 			expFullLabel.gameObject.SetActive(false);
 
 			expBar.fillAmount = 0.3f;
+			this.started = true;
 		}
 
 	}

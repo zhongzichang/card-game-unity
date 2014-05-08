@@ -256,9 +256,12 @@ namespace TangGame.UI
 					continue;
 				items[i].Flush (heroBase,equipsList[i]);
 			}
-			//FIXME  道具相关的数据更新
 		}
-		//切换详细属性／图鉴／技能升级的效果按钮
+		/// <summary>
+		/// Toggles the button on click.
+		/// 切换详细属性／图鉴／技能升级的效果按钮
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		public void ToggleButtonOnClick (GameObject obj)
 		{
 			UIToggle tg = obj.GetComponent<UIToggle> ();

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ViewItem : MonoBehaviour {
 
+	public delegate void ViewItemDelegate(ViewItem item);
+
 	private string mId;
 	private int mIndex;
 	private object mData;

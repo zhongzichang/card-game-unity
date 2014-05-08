@@ -58,7 +58,7 @@ namespace TangGame.UI
 			if (propsNet == null) {
 				bean.props = new PropsBase ();
 				bean.props.Xml = xml;
-				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.PROPS_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean);
+				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.PROPS_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean,true);
 			} else {
 				EquipBase equipBase= new EquipBase ();
 				equipBase.Net = propsNet;
