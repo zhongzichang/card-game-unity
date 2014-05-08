@@ -15,9 +15,9 @@ namespace TangGame{
 		/// 点击分派的事件
 		public ViewItemDelegate onClick;
 
-		private int heroId;
-		private int hp;
-		private int maxHp;
+		private int mHeroId;
+		private int hp = 1;
+		private int maxHp = 1;
 		private int mp;
 		private int maxMp;
 
@@ -61,9 +61,14 @@ namespace TangGame{
 			onClick = null;
 		}
 
+		/// 英雄的ID
+		public int heroId{
+			get{return this.mHeroId;}
+		}
+
 		/// 设置英雄的ID，用于显示英雄的头像和品质边框
 		public void SetHeroId(int id){
-			this.heroId = id;
+			this.mHeroId = id;
 			if(!this.started){return;}
 			UpdateHero();
 		}
