@@ -17,33 +17,21 @@ namespace TangGame.UI
 
       scrollView = NGUITools.FindInParents<UIScrollView>(gameObject);
     }
-
-    public HeroItemObject CreateHeroItemObj(HeroItemData data){
-      if (heroObjs.ContainsKey (data.id)) {
-        return (HeroItemObject)heroObjs [data.id];
-      }
-
-      GameObject hero = NGUITools.AddChild (gameObject, (GameObject)Resources.Load("Prefabs/PvE/HeroItemObj"));
-      UIDragScrollView view = (UIDragScrollView)hero.AddComponent<UIDragScrollView> ();
-      view.scrollView = scrollView;
-
-      HeroItemObject obj = (HeroItemObject)hero.GetComponent<HeroItemObject> ();
-      heroObjs[data.id] = obj;
-
-      obj.Update (data);
-      data.onToggleChanged += ToggleChanged;
-
-      if (grid) {
-        grid.Reposition ();
-      }
-      return obj;
+      
+    public void AddHeroItemObject(HeroItemObject hero){
+      heroObjs [hero.HeroId] = hero;
     }
 
-    public void ToggleChanged (string heroId){
-      HeroItemObject obj = (HeroItemObject) heroObjs [heroId];
-      if (obj) {
-        obj.Toggle ();
-      }
+    public void UpdateToggle (string heroId){
+      HeroItemObject obj = FindHeroItemObject (heroId);
+      if (obj == null)
+        return;
+
+      obj.ToggleTick ();
+    }
+
+    private HeroItemObject FindHeroItemObject(string heroId){
+      return (HeroItemObject) heroObjs [heroId];
     }
 
     private int CompareHeroItem (Transform left, Transform right){
@@ -53,14 +41,12 @@ namespace TangGame.UI
       if (leftObj == null || rightObj == null)
         return 0;
 
-      HeroItemData  leftData = leftObj.GetData ();
-      HeroItemData  rightData = rightObj.GetData ();
       // 根据等级，星级和品阶依次排序
-      int ret = rightData.level.CompareTo(leftData.level);
+      int ret = rightObj.HeroData.level.CompareTo(leftObj.HeroData.level);
       if (ret == 0) {
-        ret = rightData.stars.CompareTo(leftData.stars);
+        ret = rightObj.HeroData.stars.CompareTo(leftObj.HeroData.stars);
         if (ret == 0) {
-          return  rightData.rank.CompareTo(leftData.rank);
+          return  rightObj.HeroData.rank.CompareTo(leftObj.HeroData.rank);
         }
       }
       return ret;
