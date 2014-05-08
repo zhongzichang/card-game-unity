@@ -11,6 +11,7 @@ namespace TangGame{
 		public UISprite mpBar;
 		public UISprite frame;
 		public UISprite icon;
+		public UISprite star;
 		public UIEventListener frameBtn;
 		/// 点击分派的事件
 		public ViewItemDelegate onClick;
@@ -86,12 +87,15 @@ namespace TangGame{
 			this.mp = mp;
 			this.maxMp = maxMp;
 			if(!this.started){return;}
+			if(this.hp < 1){//该处添加判读是用于设置HP和MP顺序问题
+				this.mp = 0;
+			}
 			UpdateMp();
 		}
 
 		/// 更新英雄
 		private void UpdateHero(){
-
+			star.width = 21 * 2;
 		}
 
 		/// 更新英雄HP
@@ -102,6 +106,12 @@ namespace TangGame{
 			}
 			hpFillAmount = percent;
 			hpBar.fillAmount = percent;
+
+			if(this.hp < 1){//死亡了，设置MP为0
+				this.mp = 0;
+				UpdateMp();
+				icon.color = new Color32(51, 51, 51, 255);//死亡设置灰色
+			}
 		}
 
 		/// 更新英雄Mp
