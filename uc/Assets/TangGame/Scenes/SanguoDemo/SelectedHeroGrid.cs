@@ -6,20 +6,11 @@ namespace TangGame.UI
 
   public class SelectedHeroGrid : MonoBehaviour {
     private UIGrid grid;
-    private Hashtable heroObjs = new Hashtable();
 
     void Start () {
       grid = gameObject.GetComponent<UIGrid> ();
       grid.sorting = UIGrid.Sorting.Custom;
       grid.onCustomSort = CompareHeroItem;
-    }
-
-    public HeroItemObject GetHeroItemObjById(string heroId){
-      return (HeroItemObject) heroObjs [heroId];
-    }
-
-    public void AddHeroItemObject(HeroItemObject hero){
-      heroObjs [hero.HeroId] = hero;
     }
 
     private int CompareHeroItem (Transform left, Transform right){
