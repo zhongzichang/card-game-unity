@@ -3,6 +3,7 @@ using UnityEngine;
 using TDB = TangDragonBones;
 using DragonBones;
 using DBE = DragonBones.Events;
+using System.Collections.Generic;
 
 namespace TangLevel
 {
@@ -25,6 +26,7 @@ namespace TangLevel
     private Skill skill;
     private GameObject target;
     private bool isPlay = true;
+    private List<string> animationList;
 
     #region MonoBehaviours
 
@@ -72,6 +74,8 @@ namespace TangLevel
       if (armature != null) {
         armature.AddEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
         armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
+        armature.AddEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
+        animationList = armature.Animation.AnimationList;
       }
 
       // 关卡控制
@@ -89,6 +93,7 @@ namespace TangLevel
       if (armature != null) {
         armature.RemoveEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
         armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
+        armature.RemoveEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
       }
 
       // 关卡控制
@@ -108,33 +113,33 @@ namespace TangLevel
 
       string movementId = armature.Animation.MovementID;
 
-      // 前摇动作
-      if (movementId.Equals (HeroStatus.attack.ToString ())) {
-        // 如果有前摇特效，播放前摇特效
-
-      }
 
     }
     //private void
     private void OnAnimationLoopComplete (Com.Viperstudio.Events.Event e)
     {
-
       string movementId = armature.Animation.MovementID;
 
-      if (movementId.Equals (HeroStatus.attack.ToString ())) {
-      
-        // 播放完前摇动作后，播放后摇。如果有后摇特效，放出后摇特效
-        if (skillBhvr != null && skill != null && target != null) {
-          skillBhvr.Cast (skill.effector, skill, gameObject, target);
+      //
+      switch (statusBhvr.Status) {
 
-        }
-
-        // 播放完后摇动作后，转成英雄状态 idle
+      case HeroStatus.beat:
         statusBhvr.Status = HeroStatus.idle;
+        break;
+      case HeroStatus.charge:
+        statusBhvr.Status = HeroStatus.release;
+        break;
+      }
 
-      } else if (movementId.Equals (HeroStatus.beat.ToString ())) {
+    }
 
+    private void OnAnimationComplete (Com.Viperstudio.Events.Event e)
+    {
+
+      switch (statusBhvr.Status) {
+      case HeroStatus.release:
         statusBhvr.Status = HeroStatus.idle;
+        break;
       }
     }
 
@@ -148,17 +153,47 @@ namespace TangLevel
     /// <param name="status">Status.</param>
     private void OnStatusChanged (HeroStatus status)
     {
+
       switch (status) {
-      case HeroStatus.attack:
-        // TODO 技能需要特殊处理，不同的技能使用不同的动作
-        dbBhvr.GotoAndPlay (status.ToString ());
-        //armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
+
+
+      case HeroStatus.charge: // 起手 ----
+
+        // 有则播放，无则转到释放状态
+        if (skill.chargeClip != null) {
+          if (animationList.Contains (skill.chargeClip)) {
+            dbBhvr.GotoAndPlay (skill.chargeClip);
+          } else {
+            statusBhvr.Status = HeroStatus.release;
+          }
+        }
         break;
-      case HeroStatus.dead:
+      
+      case HeroStatus.release: // 释放 ----
+
+        string clip = null;
+        if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
+          clip = skill.releaseClip;
+        } else {
+          clip = Config.DEFAULT_ATTACK_CLIP;
+        }
+        //dbBhvr.GotoAndPlay (clip);
+        armature.Animation.GotoAndPlay (clip, -1, -1, 1);
+
+        // 抛出作用器
+        if (skill != null) {
+          skillBhvr.Cast (skill.effector, skill, gameObject, target);
+        }
+        break;
+
+      case HeroStatus.dead: // 死亡 ----
+
         armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
         FadeOut ();
         break;
-      default:
+
+      default: // 其他 ----
+
         dbBhvr.GotoAndPlay (status.ToString ());
         break;
       }
@@ -218,7 +253,7 @@ namespace TangLevel
       this.skill = skill;
       this.target = target;
 
-      statusBhvr.Status = HeroStatus.attack;
+      statusBhvr.Status = HeroStatus.charge;
 
     }
 
@@ -242,13 +277,17 @@ namespace TangLevel
     public void Beat ()
     {
       // 下面的行为会被打断
-      if (statusBhvr.Status == HeroStatus.idle ||
-          statusBhvr.Status == HeroStatus.attack) {
-        statusBhvr.Status = HeroStatus.beat;
+      switch(statusBhvr.Status){
 
-      } else if (statusBhvr.Status == HeroStatus.running) {
+      case HeroStatus.idle:
+      case HeroStatus.charge:
         statusBhvr.Status = HeroStatus.beat;
+        break;
+
+      case HeroStatus.running:
         agent.ResetPath ();
+        statusBhvr.Status = HeroStatus.beat;
+        break;
       }
     }
 

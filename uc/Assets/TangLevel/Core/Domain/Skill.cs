@@ -22,17 +22,17 @@ namespace TangLevel
     /// <summary>
     /// 起手动作时间
     /// </summary>
-    public float attackA;
+    public float attackTimeA;
 
     /// <summary>
     /// 释放动作时间
     /// </summary>
-    public float attackB;
+    public float attackTimeB;
 
     /// <summary>
     /// 起手是否循环
     /// </summary>
-    public bool attackALoop;
+    public bool attackLoopA;
 
     /// <summary>
     /// 是否大招
@@ -86,9 +86,14 @@ namespace TangLevel
     public int replaceSkillId;
 
     /// <summary>
-    /// 动画剪辑名称
+    /// 蓄力动画剪辑
     /// </summary>
-    public string animationClipName;
+    public string chargeClip;
+
+    /// <summary>
+    /// 释放动画剪辑
+    /// </summary>
+    public string releaseClip;
 
     /// <summary>
     /// 特效名称
@@ -109,6 +114,11 @@ namespace TangLevel
     /// 黄字描述
     /// </summary>
     public string yellowDesc;
+
+    /// <summary>
+    /// 是否可以施展
+    /// </summary>
+    public bool enable = false;
 
     #endregion
 

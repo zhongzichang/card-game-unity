@@ -82,6 +82,8 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effector = MockLineFlyEffector ();
+      skill.chargeClip = "binghua0";
+      skill.releaseClip = "binghua1";
 
       return skill;
     }

@@ -104,6 +104,12 @@ namespace TangLevel
     /// 英雄技能
     /// </summary>
     public List<Skill> skills;
+
+    /// <summary>
+    /// 出手序列
+    /// </summary>
+    public int[] skillQueue;
+
     #endregion
 
 
