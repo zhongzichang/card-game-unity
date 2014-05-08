@@ -16,7 +16,7 @@ namespace TangGame{
 		private List<BattleHeroItem> itemList = new List<BattleHeroItem>();
 
 		void Start(){
-			heroItem.gameObject.SetActive(false);
+			//heroItem.gameObject.SetActive(false);
 			started = true;
 			UpdateData();
 		}
