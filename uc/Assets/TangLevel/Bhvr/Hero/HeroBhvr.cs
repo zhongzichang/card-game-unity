@@ -281,6 +281,7 @@ namespace TangLevel
 
       case HeroStatus.idle:
       case HeroStatus.charge:
+      case HeroStatus.release:
         statusBhvr.Status = HeroStatus.beat;
         break;
 

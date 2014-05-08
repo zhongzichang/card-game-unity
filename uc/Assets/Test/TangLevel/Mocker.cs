@@ -72,18 +72,35 @@ namespace TangLevel
 
       // skill
       List<Skill> skills = new List<Skill> ();
-      skills.Add (MockSkill ());
+      skills.Add (MockAttackSkill ());
+      skills.Add (MockBingHuaSkill ());
       hero.skills = skills;
+      hero.skillQueue = new int[]{ 0, 1 };
       return hero;
     }
 
-    public static Skill MockSkill ()
+    public static Skill MockAttackSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effector = MockLineFlyEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockBingHuaSkill ()
     {
       Skill skill = new Skill ();
 
       skill.effector = MockLineFlyEffector ();
       skill.chargeClip = "binghua0";
       skill.releaseClip = "binghua1";
+      skill.enable = true;
+      skill.cd = 2;
 
       return skill;
     }
