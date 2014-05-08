@@ -11,13 +11,14 @@ namespace TangGame{
 		public UISprite mpBar;
 		public UISprite frame;
 		public UISprite icon;
+		public UISprite star;
 		public UIEventListener frameBtn;
 		/// 点击分派的事件
 		public ViewItemDelegate onClick;
 
-		private int heroId;
-		private int hp;
-		private int maxHp;
+		private int mHeroId;
+		private int hp = 1;
+		private int maxHp = 1;
 		private int mp;
 		private int maxMp;
 
@@ -61,9 +62,14 @@ namespace TangGame{
 			onClick = null;
 		}
 
+		/// 英雄的ID
+		public int heroId{
+			get{return this.mHeroId;}
+		}
+
 		/// 设置英雄的ID，用于显示英雄的头像和品质边框
 		public void SetHeroId(int id){
-			this.heroId = id;
+			this.mHeroId = id;
 			if(!this.started){return;}
 			UpdateHero();
 		}
@@ -81,12 +87,19 @@ namespace TangGame{
 			this.mp = mp;
 			this.maxMp = maxMp;
 			if(!this.started){return;}
+			if(this.hp < 1){//该处添加判读是用于设置HP和MP顺序问题
+				this.mp = 0;
+			}
 			UpdateMp();
 		}
 
 		/// 更新英雄
 		private void UpdateHero(){
-
+			HeroBase hero = BaseCache.GetHero(this.mHeroId);
+			if(hero == null){return;}
+			star.width = 21 * hero.Net.evolve;
+			icon.spriteName = hero.Xml.avatar;
+			frame.spriteName = Global.GetHeroNameFrame(hero.Net.upgrade);
 		}
 
 		/// 更新英雄HP
@@ -97,6 +110,12 @@ namespace TangGame{
 			}
 			hpFillAmount = percent;
 			hpBar.fillAmount = percent;
+
+			if(this.hp < 1){//死亡了，设置MP为0
+				this.mp = 0;
+				UpdateMp();
+				icon.color = new Color32(51, 51, 51, 255);//死亡设置灰色
+			}
 		}
 
 		/// 更新英雄Mp
