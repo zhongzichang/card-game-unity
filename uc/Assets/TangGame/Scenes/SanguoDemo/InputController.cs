@@ -7,27 +7,34 @@ public class InputController : MonoBehaviour
 	public GameObject mountainLayer;
 	public GameObject skyLayer;
 
-	void OnDrag( DragGesture gesture ) 
+  public Transform pressed;
+
+  private float dragScale = 0.03f;
+
+  void OnDrag( DragGesture gesture ) 
 	{
 		Debug.Log ("OnDrag");
 		float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x;
 		if(new_pos >=-10.24 && new_pos<=0)
 		{
-      skyLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x /40));
-      mountainLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x/20));
-      grassLayer.transform.Translate(Vector3.right * gesture.DeltaMove.x/10);
+      skyLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x * dragScale/4));
+      mountainLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x * dragScale/2));
+      grassLayer.transform.Translate(Vector3.right * gesture.DeltaMove.x * dragScale);
 		}
 	}
 
 	void OnTap( TapGesture gesture ) 
 	{
-		Debug.Log ("OnTap");
-		Ray ray = Camera.main.ScreenPointToRay(gesture.Position);
-		RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
-		if(hit.collider != null)
-		{
-			Debug.Log ("OnTap " + hit.collider.gameObject.name );
-			hit.collider.gameObject.SendMessage("OnTap");
-		}
+    Ray ray = Camera.main.ScreenPointToRay(gesture.Position);
+    RaycastHit hit;
+    if(Physics.Raycast(ray, out hit)){
+      Debug.DrawLine(ray.origin, hit.point);
+      if(hit.collider != null)
+  		{
+        GameObject obj = hit.collider.gameObject;
+        Debug.Log ("OnTap " +obj.name );
+        pressed.position = obj.transform.position;
+  		}
+    }
 	}
 }
