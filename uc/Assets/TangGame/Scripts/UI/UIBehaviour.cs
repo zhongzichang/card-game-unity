@@ -9,6 +9,7 @@ namespace TangGame{
 		public Camera uiCamera;
 
 		void Awake(){
+			Global.uiRoot = uiRoot.gameObject;
 			UIContext.manger = new UIPanelNodeManager (uiRoot);
 		}
 	}

@@ -66,7 +66,7 @@ namespace TangGame{
 	
 		public void PauseBtnHandler(GameObject go){
 			pause = true;
-			TangGame.UIContext.manger.LazyOpen("LevelPausePanel", TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE);
+			TangGame.UIContext.manger.LazyOpen("LevelPausePanel", TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, null);
 		}
 
 		public void Play(){
