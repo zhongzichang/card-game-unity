@@ -5,7 +5,11 @@ namespace TangLevel
 {
   public class NativePlaceOnceBhvr : SkillSpecialBhvr
   {
+
+    public static Vector3 OFFSET = new Vector3 (0,0,1);
+
     private Transform myTransform;
+
 
     void Awake ()
     {
@@ -26,10 +30,11 @@ namespace TangLevel
     void OnEnable ()
     {
 
-      if (w != null && w.target != null) {
+      if (w != null && w.source != null) {
 
         // 绑定到目标身上
-        myTransform.localPosition = w.target.transform.localPosition;
+        myTransform.localPosition = w.source.transform.localPosition + OFFSET;
+        //myTransform.localPosition = Vector3.zero;
 
       } else {
         GobjManager.Release (gameObject);
