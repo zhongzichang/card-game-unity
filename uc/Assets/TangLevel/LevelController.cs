@@ -2,6 +2,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TDB = TangDragonBones;
+using TG = TangGame;
+using TUI = TangUI;
 
 namespace TangLevel
 {
@@ -10,6 +12,8 @@ namespace TangLevel
   /// </summary>
   public class LevelController : MonoBehaviour
   {
+    #region Events
+
     /// <summary>
     /// 成功进入关卡
     /// </summary>
@@ -47,21 +51,42 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler UniqueSkillFinish;
 
+    #endregion
+
     /// <summary>
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+
+    #region UIAttribures
+
+    public static GameObject levelUIRoot;
     public static UIManager uiMgr = null;
+    public UIAnchor bottomAnchor;
+    private static TUI.UIPanelNodeManager bottomPanelMgr;
+    private static TG.LevelHeroPanel levelHeroPanel;
+
+    #endregion
 
     #region MonoMethods
 
     void Start ()
     {
+      // UI ----
 
-      GameObject gobj = GameObject.Find ("LevelUIRoot");
-      if (gobj != null) {
-        uiMgr = gobj.GetComponent<UIManager> ();
+      levelUIRoot = GameObject.Find ("LevelUIRoot");
+      levelUIRoot.SetActive (false);
+
+      if (levelUIRoot != null) {
+        uiMgr = levelUIRoot.GetComponent<UIManager> ();
       }
+      if (bottomAnchor != null) {
+        bottomPanelMgr = new TUI.UIPanelNodeManager (bottomAnchor, OnBottomPanelEvent);
+        bottomPanelMgr.LazyOpen (UIContext.HERO_OP_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
+          TUI.UIPanelNode.BlockMode.NONE);
+      }
+
+      // Scene ----
 
       LevelContext.InLevel = false;
 
@@ -81,6 +106,25 @@ namespace TangLevel
 
     #endregion
 
+    #region UIEvents
+
+    #endregion
+
+    void OnBottomPanelEvent (object sender, TUI.PanelEventArgs args)
+    {
+      TUI.UIPanelNode node = sender as TUI.UIPanelNode;
+      if (node != null) {
+        switch (args.EventType) {
+        case TUI.EventType.OnLoad:
+          // 面板加载成功
+          if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
+            levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
+          }
+          break;
+        }
+      }
+    }
+
     #region PublicStaticMethods
 
     /// <summary>
@@ -91,8 +135,14 @@ namespace TangLevel
     public static void ChallengeLevel (int levelId, Group group)
     {
 
+
       // 确保不在关卡里面
       if (!LevelContext.InLevel) {
+
+        // 显示UI
+        if (!levelUIRoot.activeSelf) {
+          levelUIRoot.SetActive (true);
+        }
 
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
@@ -126,8 +176,17 @@ namespace TangLevel
       // 先退出子关卡
       LeftSubLevel ();
 
+      // TODO 发出离开关卡通知
       LevelContext.InLevel = false;
-      // 发出离开关卡通知
+
+      // 取消 HeroOpPanel 对 英雄数据变化的监听
+      UnsetHeroOpPanel ();
+
+      // 隐藏UI
+      if (levelUIRoot.activeSelf) {
+        levelUIRoot.SetActive (false);
+      }
+
     }
 
     /// <summary>
@@ -419,8 +478,11 @@ namespace TangLevel
 
       Debug.Log ("AllSubLevelResourceReady");
 
-      // 如果还在关卡外面
-      if (!LevelContext.InLevel) {
+
+      if (!LevelContext.InLevel) { // 如果还在关卡外面
+
+        // 首次进入子关卡 ----
+        SetupHeroOpPanel ();
 
         // 进入子关卡
         EnterNextSubLevel ();
@@ -432,7 +494,7 @@ namespace TangLevel
         if (RaiseEnterLevelSuccess != null)
           RaiseEnterLevelSuccess (null, EventArgs.Empty);
 
-      } else {
+      } else { // 已经在关卡里面
 
         // 记录
         // TODO 用于优化子关卡加载
@@ -491,8 +553,6 @@ namespace TangLevel
       // 敌方英雄
       ListenEnemyHeros ();
 
-      //LevelContext.CurrentSubLevelIndex++;
-
     }
 
     /// <summary>
@@ -534,45 +594,31 @@ namespace TangLevel
 
       List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
       List<GameObject>.Enumerator gobjEnum = LevelContext.selfGobjs.GetEnumerator ();
-      List<int> heroIds = new List<int> ();
 
       int i = 0;
-      while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
+      while (heroEnum.MoveNext () && gobjEnum.MoveNext () ) {
 
         Hero h = heroEnum.Current;
         GameObject g = gobjEnum.Current;
-        heroIds [i] = h.id;
 
-        if (uiMgr != null) {
-          // 监听己方英雄HP变化 ----
-          // 英雄身上的血条填充
-          h.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
-          // 血条显示与隐藏
-          h.raiseHpChange += uiMgr.greenDisplayByHurts [i].OnHpChange;
-          // 英雄头像 ----
-          uiMgr.heroWgts [i].SetActive (true);
-          // 血条
-          h.raiseHpChange += uiMgr.selfHpMonitors [i].OnChange;
-          // 监听己方英雄的位置变化 -----
-          DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
-          if (agent != null) {
-            agent.raiseScrPosChanged += uiMgr.greenHpPosMonitors [i].OnChange;
-            agent.RaisePosChanged += OnHeroPosChanged;
-          }
+        // 监听己方英雄HP变化 ----
+        // 英雄身上的血条填充
+        h.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
+        // 血条显示与隐藏
+        h.raiseHpChange += uiMgr.greenDisplayByHurts [i].OnHpChange;
+        // 监听己方英雄的位置变化 -----
+        DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+        if (agent != null) {
+          agent.raiseScrPosChanged += uiMgr.greenHpPosMonitors [i].OnChange;
+          agent.RaisePosChanged += OnHeroPosChanged;
         }
-        // 监听英雄的死亡
+        // 监听英雄的死亡 ----
         HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
         if (heroBhvr != null) {
           heroBhvr.RaiseDead += OnHeroDead;
         }
         i++;
       }
-
-      //uiMgr.groupGrid.maxPerLine = i;
-      //uiMgr.groupGrid.gameObject.SetActive (true);
-
-
-
     }
 
     /// <summary>
@@ -590,35 +636,25 @@ namespace TangLevel
         Hero h = heroEnum.Current;
         GameObject g = gobjEnum.Current;
 
-        if (g != null) {
-          if (uiMgr != null) {
-            // 监听己方英雄HP变化 ----
-            // 英雄身上的血条填充
-            h.raiseHpChange -= uiMgr.greenHpMonitors [i].OnChange;
-            // 血条显示与隐藏
-            h.raiseHpChange -= uiMgr.greenDisplayByHurts [i].OnHpChange;
-            uiMgr.greenDisplayByHurts [i].gameObject.SetActive (false);
-            // 英雄头像 ----
-            uiMgr.heroWgts [i].SetActive (false);
-            // 血条
-            h.raiseHpChange -= uiMgr.selfHpMonitors [i].OnChange;
-            // 监听己方英雄的位置变化 -----
-            DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
-            if (agent != null) {
-              agent.raiseScrPosChanged -= uiMgr.greenHpPosMonitors [i].OnChange;
-              agent.RaisePosChanged -= OnHeroPosChanged;
-            }
-          }
-          // 监听英雄的死亡
-          HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
-          if (heroBhvr != null) {
-            heroBhvr.RaiseDead -= OnHeroDead;
-          }
+        // 监听己方英雄HP变化 ----
+        // 英雄身上的血条填充
+        h.raiseHpChange -= uiMgr.greenHpMonitors [i].OnChange;
+        // 血条显示与隐藏
+        h.raiseHpChange -= uiMgr.greenDisplayByHurts [i].OnHpChange;
+        uiMgr.greenDisplayByHurts [i].gameObject.SetActive (false);
+        // 监听己方英雄的位置变化 -----
+        DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+        if (agent != null) {
+          agent.raiseScrPosChanged -= uiMgr.greenHpPosMonitors [i].OnChange;
+          agent.RaisePosChanged -= OnHeroPosChanged;
+        }
+        // 监听英雄的死亡
+        HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
+        if (heroBhvr != null) {
+          heroBhvr.RaiseDead -= OnHeroDead;
         }
         i++;
       }
-      uiMgr.groupGrid.maxPerLine = 1;
-      uiMgr.groupGrid.gameObject.SetActive (false);
     }
 
     /// <summary>
@@ -626,7 +662,6 @@ namespace TangLevel
     /// </summary>
     private static void ListenEnemyHeros ()
     {
-
 
       List<Hero>.Enumerator heroEnum = LevelContext.CurrentSubLevel.enemyGroup.aliveHeros.GetEnumerator ();
       List<GameObject>.Enumerator gobjEnum = LevelContext.enemyGobjs.GetEnumerator ();
@@ -637,25 +672,22 @@ namespace TangLevel
         Hero h = heroEnum.Current;
         GameObject g = gobjEnum.Current;
 
-        if (g != null) {
-          if (uiMgr != null && uiMgr.redHpMonitors.Length > i) {
-            // 监听敌方英雄HP变化 ----
-            // 英雄身上的血条填充
-            h.raiseHpChange += uiMgr.redHpMonitors [i].OnChange;
-            // 血条的显示与隐藏
-            h.raiseHpChange += uiMgr.redDisplayByHurts [i].OnHpChange;
-            // 敌方英雄的位置变化 ----
-            DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
-            if (agent != null) {
-              agent.raiseScrPosChanged += uiMgr.redHpPosMonitors [i].OnChange;
-            }
-          }
+        // 监听敌方英雄HP变化 ----
+        // 英雄身上的血条填充
+        h.raiseHpChange += uiMgr.redHpMonitors [i].OnChange;
+        // 血条的显示与隐藏
+        h.raiseHpChange += uiMgr.redDisplayByHurts [i].OnHpChange;
+        // 敌方英雄的位置变化 ----
+        DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+        if (agent != null) {
+          agent.raiseScrPosChanged += uiMgr.redHpPosMonitors [i].OnChange;
+        }
+          
 
-          // 监听英雄的死亡
-          HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
-          if (heroBhvr != null) {
-            heroBhvr.RaiseDead += OnHeroDead;
-          }
+        // 监听英雄的死亡
+        HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
+        if (heroBhvr != null) {
+          heroBhvr.RaiseDead += OnHeroDead;
         }
         i++;
       }
@@ -673,27 +705,24 @@ namespace TangLevel
         Hero h = heroEnum.Current;
         GameObject g = gobjEnum.Current;
 
-        if (g != null) {
-          if (uiMgr != null && uiMgr.redHpMonitors.Length > i) {
-            // 监听敌方英雄HP变化 ----
-            // 英雄身上的血条填充
-            h.raiseHpChange -= uiMgr.redHpMonitors [i].OnChange;
-            // 血条的显示与隐藏
-            h.raiseHpChange -= uiMgr.redDisplayByHurts [i].OnHpChange;
-            uiMgr.redDisplayByHurts [i].gameObject.SetActive (false);
-            // 敌方英雄的位置变化 ----
-            DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
-            if (agent != null) {
-              agent.raiseScrPosChanged -= uiMgr.redHpPosMonitors [i].OnChange;
-            }
-          }
-
-          // 监听英雄的死亡
-          HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
-          if (heroBhvr != null) {
-            heroBhvr.RaiseDead -= OnHeroDead;
-          }
+        // 监听敌方英雄HP变化 ----
+        // 英雄身上的血条填充
+        h.raiseHpChange -= uiMgr.redHpMonitors [i].OnChange;
+        // 血条的显示与隐藏
+        h.raiseHpChange -= uiMgr.redDisplayByHurts [i].OnHpChange;
+        uiMgr.redDisplayByHurts [i].gameObject.SetActive (false);
+        // 敌方英雄的位置变化 ----
+        DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+        if (agent != null) {
+          agent.raiseScrPosChanged -= uiMgr.redHpPosMonitors [i].OnChange;
         }
+
+        // 监听英雄的死亡
+        HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
+        if (heroBhvr != null) {
+          heroBhvr.RaiseDead -= OnHeroDead;
+        }
+        
         i++;
       }
     }
@@ -901,6 +930,45 @@ namespace TangLevel
         }
 
         heroBhvr.CelebrateVictory ();
+      }
+    }
+
+    private static void SetupHeroOpPanel(){
+
+      // 创建英雄UI操作面板
+      Hero[] heros = LevelContext.selfGroup.heros;
+      TG.LevelHeroPanelData data = new TG.LevelHeroPanelData ();
+      data.heroCount = LevelContext.selfGroup.heros.Length;
+      levelHeroPanel.param = data;
+      List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
+      int i = 0;
+      while (wgtEnum.MoveNext ()) {
+        Hero h = heros [i];
+        TG.LevelHeroItem w = wgtEnum.Current;
+
+        // 英雄头像 ----
+        w.SetHeroId (h.id);
+        h.raiseHpChange += w.SetHp;
+        h.raiseMpChange += w.SetMp;
+        i++;
+
+      }
+    }
+
+    private static void UnsetHeroOpPanel(){
+
+      // 创建英雄UI操作面板
+      Hero[] heros = LevelContext.selfGroup.heros;
+      List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
+      int i = 0;
+      while (wgtEnum.MoveNext ()) {
+        Hero h = heros [i];
+        TG.LevelHeroItem w = wgtEnum.Current;
+        // 英雄头像 ----
+        h.raiseHpChange -= w.SetHp;
+        h.raiseMpChange -= w.SetMp;
+        i++;
+
       }
     }
 

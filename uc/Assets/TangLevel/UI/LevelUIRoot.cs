@@ -23,13 +23,18 @@ namespace TangLevel
     void OnBottomPanelEvent (object sender, TUI.PanelEventArgs args)
     {
 
-      switch (args.EventType) {
-      case TUI.EventType.OnLoad:
+      TUI.UIPanelNode node = sender as TUI.UIPanelNode;
+      if (node != null) {
+
+        switch (args.EventType) {
+        case TUI.EventType.OnLoad:
         // 面板加载成功
-
-        break;
+          if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
+            levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
+          }
+          break;
+        }
       }
-
     }
   }
 }
