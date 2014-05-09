@@ -170,7 +170,13 @@ namespace TangLevel
         if (clip == null) {
           statusBhvr.Status = HeroStatus.release;
         } else {
+
+          // 播放起手动作
           dbBhvr.GotoAndPlay (clip);
+          // 播放起手特效
+          if (skill.chargeSpecials != null) {
+            skillBhvr.CastChargeSpecial (skill, gameObject, target);
+          }
         }
         break;
       
@@ -181,12 +187,16 @@ namespace TangLevel
         } else {
           clip = Config.DEFAULT_ATTACK_CLIP;
         }
-        //dbBhvr.GotoAndPlay (clip);
+        // 播放施放动作
         armature.Animation.GotoAndPlay (clip, -1, -1, 1);
+        // 播放施放特效
+        if (skill.releaseSpecials != null) {
+          skillBhvr.CastReleaseSpecial (skill, gameObject, target);
+        }
 
         // 抛出作用器s
         if (skill != null) {
-          foreach(Effector e in skill.effectors){
+          foreach (Effector e in skill.effectors) {
             skillBhvr.Cast (e, skill, gameObject, target);
           }
         }
@@ -283,7 +293,7 @@ namespace TangLevel
     public void Beat ()
     {
       // 下面的行为会被打断
-      switch(statusBhvr.Status){
+      switch (statusBhvr.Status) {
 
       case HeroStatus.idle:
       case HeroStatus.charge:

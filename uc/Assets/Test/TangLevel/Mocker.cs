@@ -57,7 +57,8 @@ namespace TangLevel
 
     public static Hero MockHero ()
     {
-      Hero hero = new Hero ();      
+      Hero hero = new Hero ();  
+      hero.id = tmp;
       hero.resName = "hero_zf";
       hero.maxHp = 100;
       hero.hp = 100;
@@ -116,10 +117,11 @@ namespace TangLevel
       skill.effectors[0] = MockLineFlyEffector ();
       //skill.chargeClip = "";
       skill.releaseClip = "luoshen";
-      skill.chargeSpecials = new string[2];
-      skill.chargeSpecials[0] = "Sprite_luoshen1";
-      skill.chargeSpecials[1] = "Sprite_luoshen2";
+      skill.releaseSpecials = new string[2];
+      skill.releaseSpecials[0] = "Sprite_luoshen1";
+      skill.releaseSpecials[1] = "Sprite_luoshen2";
       skill.enable = true;
+      skill.bigMove = true;
       skill.cd = 2;
 
       return skill;

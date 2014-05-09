@@ -10,7 +10,7 @@ namespace TangLevel
     private Vector3 offset = new Vector3 (0, 100, 0);
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
       myTransform = transform;
     }
