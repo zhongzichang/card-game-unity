@@ -4,14 +4,25 @@
  * Date: 2014/4/3
  */
 using UnityEngine;
+using System;
 
 namespace TangUI
-{
+{ 
+  public delegate void PanelEventHandler(object sender, PanelEventArgs args);
+
   public class UIPanelNodeManager
   {
+
+    public event PanelEventHandler eventHandler;
+
     private UIPanelNodeContext context;
 
-    public UIPanelNodeManager (UIAnchor anchor)
+    /*
+    public UIPanelNodeManager (UIAnchor anchor) : this(anchor, null)
+    {
+    }*/
+
+    public UIPanelNodeManager (UIAnchor anchor, PanelEventHandler eventHandler = null)
     {
 
       UIPanelNode root = new UIPanelRoot ();
@@ -21,6 +32,7 @@ namespace TangUI
       this.context.currentNode = root;
       this.context.cache = new UIPanelCache ();
       this.context.anchor = anchor;
+      this.eventHandler = eventHandler;
     }
 
     public void LazyOpen (string name)
@@ -50,7 +62,7 @@ namespace TangUI
         UIPanelNode node = new UIPanelNode (name);
         node.context = context;
         UIPanelNodeContext.mgrUseStack.Push (this);
-        node.Launch (openMode, blockMode, param, isBaseTemplate);
+        node.Launch (openMode, blockMode, param, isBaseTemplate, eventHandler);
       }
       
     }

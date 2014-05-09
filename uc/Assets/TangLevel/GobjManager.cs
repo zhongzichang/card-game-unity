@@ -38,6 +38,10 @@ namespace TangLevel
         // 资源已准备完毕
         Notify (name, true);
 
+      } else if (Cache.assetTable.ContainsKey (name)) {
+
+        AdvanceInstantiate (Cache.assetTable[name]);
+
       } else if (Config.use_packed_res) {
 
         // 使用 Assetbundle
@@ -59,6 +63,7 @@ namespace TangLevel
       UnityEngine.Object asset = ab.Load (ab.name);
       GameObject gobj = null;
       if (asset != null) {
+        Cache.assetTable.Add (asset.name, asset);
         AdvanceInstantiate (asset);
       }
 
@@ -81,10 +86,11 @@ namespace TangLevel
     private static void LoadLocalResources (string name)
     {
       string filepath = Config.GobjsPath (name);
-      UnityEngine.Object assets = Resources.Load (filepath);
+      UnityEngine.Object asset = Resources.Load (filepath);
       GameObject gobj = null;
-      if (assets != null) {
-        AdvanceInstantiate (assets);
+      if (asset != null) {
+        Cache.assetTable.Add (asset.name, asset);
+        AdvanceInstantiate (asset);
       }
     }
 
@@ -94,7 +100,6 @@ namespace TangLevel
     /// <param name="asset">Asset.</param>
     private static void AdvanceInstantiate (UnityEngine.Object asset)
     {
-
       GameObject gobj = GameObject.Instantiate (asset) as GameObject;
 
       if (gobj != null) {
@@ -218,7 +223,8 @@ namespace TangLevel
     /// 释放缓存的所有资源
     /// </summary>
     /// <param name="all">If set to <c>true</c> all.</param>
-    public static void ReleaseAll(bool all){
+    public static void ReleaseAll (bool all)
+    {
       foreach (KeyValuePair<string, List<GameObject>> p in Cache.gobjTable) {
         foreach (GameObject g in p.Value) {
           g.SetActive (false);

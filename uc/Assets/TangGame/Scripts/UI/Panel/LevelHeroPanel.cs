@@ -13,7 +13,7 @@ namespace TangGame
     private object mParam;
     private bool started;
     /// 对象列表
-    private List<LevelHeroItem> itemList = new List<LevelHeroItem> ();
+    public List<LevelHeroItem> itemList = new List<LevelHeroItem> ();
 
     void Start ()
     {
@@ -39,18 +39,18 @@ namespace TangGame
       if (this.mParam == null) {
         return;
       }
-      BattleHeroPanelData data = this.mParam as BattleHeroPanelData;
+      LevelHeroPanelData data = this.mParam as LevelHeroPanelData;
       foreach (LevelHeroItem item in itemList) {
         GameObject.Destroy (item.gameObject);
       }
       itemList.Clear ();
 
       float gap = 140;
-      this.background.width = (int)(40 + gap * data.heros.Count);
-      float startX = -(data.heros.Count - 1) / 2 * gap;
-      foreach (int id in data.heros) {
+      this.background.width = (int)(40 + gap * data.heroCount);
+      float startX = -(data.heroCount - 1) / 2 * gap;
+      for (int i = 0; i < data.heroCount; i++) {
         GameObject go = GameObject.Instantiate (heroItem.gameObject) as GameObject;
-        go.name = "HeroItem_" + id;
+        go.name = "HeroItem_" + i;
         go.SetActive (true);
         go.transform.parent = itemGroup.transform;
         go.transform.localScale = Vector3.one;
