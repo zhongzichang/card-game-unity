@@ -17,6 +17,11 @@ namespace TangUI
 
     private UIPanelNodeContext context;
 
+    /*
+    public UIPanelNodeManager (UIAnchor anchor) : this(anchor, null)
+    {
+    }*/
+
     public UIPanelNodeManager (UIAnchor anchor, PanelEventHandler eventHandler = null)
     {
 

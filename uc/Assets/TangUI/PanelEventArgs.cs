@@ -11,6 +11,12 @@ namespace TangUI
 
     private EventType eventType;
 
+    public EventType EventType{
+      get{
+        return eventType;
+      }
+    }
+
     public PanelEventArgs (EventType eventType)
     {
       this.eventType = eventType;

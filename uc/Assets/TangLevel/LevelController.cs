@@ -58,7 +58,7 @@ namespace TangLevel
     void Start ()
     {
 
-      GameObject gobj = GameObject.Find ("BattleUIRoot");
+      GameObject gobj = GameObject.Find ("LevelUIRoot");
       if (gobj != null) {
         uiMgr = gobj.GetComponent<UIManager> ();
       }
