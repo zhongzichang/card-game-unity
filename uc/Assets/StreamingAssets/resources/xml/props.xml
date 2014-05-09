@@ -4,7 +4,7 @@
 		<id>1001</id>
 		<name>牛顿的不粘锅</name>
 		<type>1</type>
-		<upgrade>3</upgrade>
+		<upgrade>4</upgrade>
 		<strength>21</strength>
 		<intellect>42</intellect>
 		<agile>2</agile>
@@ -27,7 +27,7 @@
 		<synthetic_spend>1900</synthetic_spend>
 		<price_list>{123,123,123}</price_list>
 		<selling_price>300</selling_price>
-		<enchant_points>300</enchant_points>
+		<enchant_points>10</enchant_points>
 		<experience>0</experience>
 		<icon>199</icon>
 		<info>你tmd在逗我？？？</info>
@@ -60,7 +60,7 @@
 		<synthetic_spend>1500</synthetic_spend>
 		<price_list>{123,123,123}</price_list>
 		<selling_price>1300</selling_price>
-		<enchant_points>300</enchant_points>
+		<enchant_points>30</enchant_points>
 		<experience>0</experience>
 		<icon>201</icon>
 		<info>你tmd在逗我？？？</info>
@@ -93,7 +93,7 @@
 		<synthetic_spend>5300</synthetic_spend>
 		<price_list>{123,123,123}</price_list>
 		<selling_price>5600</selling_price>
-		<enchant_points>300</enchant_points>
+		<enchant_points>30</enchant_points>
 		<experience>0</experience>
 		<icon>202</icon>
 		<info>你tmd在逗我？？？</info>
@@ -126,7 +126,7 @@
 		<synthetic_spend>4700</synthetic_spend>
 		<price_list>{123,123,123}</price_list>
 		<selling_price>18000</selling_price>
-		<enchant_points>300</enchant_points>
+		<enchant_points>30</enchant_points>
 		<experience>0</experience>
 		<icon>203</icon>
 		<info>你tmd在逗我？？？</info>
