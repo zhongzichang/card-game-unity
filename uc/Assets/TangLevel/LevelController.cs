@@ -533,6 +533,7 @@ namespace TangLevel
 
       List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
       List<GameObject>.Enumerator gobjEnum = LevelContext.selfGobjs.GetEnumerator ();
+      List<int> heroIds = new List<int> ();
 
       int i = 0;
       while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {

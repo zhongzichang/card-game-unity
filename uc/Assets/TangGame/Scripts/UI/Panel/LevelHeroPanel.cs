@@ -39,7 +39,7 @@ namespace TangGame
       if (this.mParam == null) {
         return;
       }
-      BattleHeroPanelData data = this.mParam as BattleHeroPanelData;
+      LevelHeroPanelData data = this.mParam as LevelHeroPanelData;
       foreach (LevelHeroItem item in itemList) {
         GameObject.Destroy (item.gameObject);
       }
