@@ -24,6 +24,12 @@ namespace TangGame.UI
 		}
 
 
+
+		/// <summary>
+		/// Flush the specified hero.
+		/// 穿戴在人物身上的装备专用的flush
+		/// </summary>
+		/// <param name="hero">Hero.</param>
 		public void Flush(HeroBase hero){
 			this.hero = hero;
 			if (hero.Net == null)

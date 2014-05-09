@@ -135,6 +135,7 @@ namespace TangGame.Xml
 		public static void LateProcess (object obj)
 		{
 			PropsRoot root = obj as PropsRoot;
+			int a = 5;
 			foreach (PropsXml item in root.items) {
 				Config.propsXmlTable [item.id] = item;
 				ResolveSyntheticProps (item);
@@ -142,8 +143,13 @@ namespace TangGame.Xml
 
 				//TODO 先写到这个地方到时候再改
 				TangGame.UI.Base.PropsBase propsBase = new TangGame.UI.Base.PropsBase ();
+				TangGame.Net.PropsNet net = new TangGame.Net.PropsNet ();
+				net.configId = item.id;
+				net.count = a * a % 123;
 				propsBase.Xml = item;
+				propsBase.Net = net;
 				TangGame.UI.Base.BaseCache.propsBaseTable.Add (item.id, propsBase);
+				a++;
 			}
 		}
 

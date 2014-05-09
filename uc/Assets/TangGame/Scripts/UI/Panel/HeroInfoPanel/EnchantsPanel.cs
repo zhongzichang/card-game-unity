@@ -23,7 +23,12 @@ namespace TangGame.UI
 		/// The properties table.
 		/// 道具table 对象
 		/// </summary>
-		public GameObject PropsTable;
+		public GameObject PropsTableObj;
+		/// <summary>
+		/// The properties item.
+		/// 道具对象
+		/// </summary>
+		public GameObject PropsItemObj;
 		/// <summary>
 		/// The hero table.
 		/// 可选择的英雄界面
@@ -145,6 +150,7 @@ namespace TangGame.UI
 			if (equipBase.Xml.upgrade > 1) {//TODO 追加条件附魔最大等级
 				UpUnenchanted (equipBase.Net.enchantsLv);
 				UpPropsInfo (equipBase);
+				PropsTableLoad ();
 			}
 			//TODO  添加需要多少宝石，需要多少经验点，和需要多少金币
 		}
@@ -202,6 +208,73 @@ namespace TangGame.UI
 			this.HeroTable.GetComponent<UITable> ().repositionNow = true;
 
 		}
+
+		/// <summary>
+		/// The properties base item table.
+		/// 背包道具列表
+		/// </summary>
+		public Dictionary<int,PropsItem> propsBaseItemTable = new Dictionary<int,PropsItem>();
+		/// <summary>
+		/// The properties checked count.
+		/// 被选中装备的数量
+		/// </summary>
+		private Dictionary<PropsItem,int> propsCheckedCountTable = new Dictionary<PropsItem, int>();
+
+
+
+		/// <summary>
+		/// Propertieses the table load.
+		/// </summary>
+		public void PropsTableLoad(){
+			foreach(PropsBase propsBase in BaseCache.propsBaseTable.Values){
+				//如果附魔经验为零则标示该装备不能成为附魔的消耗品
+				if (propsBase.Xml.enchant_points != 0) {
+					AddPorpsItemToPropsTable (propsBase);
+				}
+			}
+		}
+		/// <summary>
+		/// Adds the porps item to properties table.
+		/// 添加一个道具对象到道具列表中去
+		/// </summary>
+		/// <param name="propsBase">Properties base.</param>
+		public PropsItem AddPorpsItemToPropsTable(PropsBase propsBase){
+			PropsItem item = NGUITools.AddChild (PropsTableObj,PropsItemObj).GetComponent<PropsItem>();//添加一个对象
+			item.Flush (propsBase);
+			if (!item.gameObject.activeSelf) {
+				item.gameObject.SetActive (true);
+			}
+			UIEventListener.Get (item.gameObject).onClick -= PropsItemOnClick;
+			UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
+			this.PropsTableObj.GetComponent<UITable> ().repositionNow = true;
+			return item;
+		}
+
+		/// <summary>
+		/// Propsitems the on click.
+		/// 道具被点击
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		void PropsItemOnClick(GameObject obj){
+			PropsItem itemTmp = obj.GetComponent<PropsItem> ();
+			if (itemTmp == null)
+				return;
+			if (propsCheckedCountTable.ContainsKey (itemTmp)) {
+				//TODO 如果当前装备附魔经验超出最大附魔经验则 return
+				if (propsCheckedCountTable [itemTmp] >= itemTmp.data.Net.count) {
+					//这是已经标示的物品大于当前物品的数量
+					return;
+				}
+		
+				propsCheckedCountTable [itemTmp] += 1;
+			} else {
+				propsCheckedCountTable.Add (itemTmp,1);
+			}
+
+			itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.Net.count;
+	
+		}
+
 
 		/// <summary>
 		/// Subs the hero avatar item on click.
@@ -264,6 +337,8 @@ namespace TangGame.UI
 			if (equipItem != null && equipItem.EquipBase != null && equipItem.EquipBase.Net != null) {
 				this.EquipContent.SetActive (true);
 				UpEquipContent (equipItem.EquipBase);
+			} else {
+				this.EquipContent.SetActive (false);
 			}
 		}
 

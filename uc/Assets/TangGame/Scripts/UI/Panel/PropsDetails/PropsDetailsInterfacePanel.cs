@@ -119,9 +119,8 @@ namespace TangGame.UI
 			int propsCount = 0;
 			if (data.Net != null) {
 				propsCount = data.Net.count;
-			} else {
-				this.UpPropsCount (propsCount);
-			}
+			} 
+			this.UpPropsCount (propsCount);
 
 
 			this.SynthesisBtn.SetActive (true);
