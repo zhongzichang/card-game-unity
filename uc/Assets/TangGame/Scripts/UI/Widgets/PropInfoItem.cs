@@ -19,6 +19,7 @@ namespace TangGame{
 		}
 
 		public override void UpdateData(){
+			if(!this.started){return;}
 			if(this.data == null){return;}
 			PropsBase prop = this.data as PropsBase;
 			if(prop.Count < 1){
