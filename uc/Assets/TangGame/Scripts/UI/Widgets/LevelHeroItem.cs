@@ -4,7 +4,7 @@ using TangGame.UI;
 using TangGame.UI.Base;
 
 namespace TangGame{
-	public class BattleHeroItem : ViewItem {
+  public class LevelHeroItem : ViewItem {
 		
 		public UISprite hpBar;
 		public UISprite hpYellow;

@@ -40,10 +40,13 @@ public class DynamicBindUtil
 	public static MonoBehaviour BindScriptAndProperty(GameObject obj, string scriptName)
 	{
 		//首先将脚本和GameObject绑定
-		MonoBehaviour script = obj.AddComponent(scriptName) as MonoBehaviour;
+    MonoBehaviour script = obj.GetComponent (scriptName) as MonoBehaviour;
+    if (script == null) {
+      script = obj.AddComponent (scriptName) as MonoBehaviour;
+    }
 		if (script == null)
 		{
-			Debug.LogError("bind " +scriptName + "faild");
+      Debug.LogError("bind " +scriptName + " faild");
 			return null;
 		}
 		//动态进行组件和脚本变量的绑定
@@ -53,7 +56,8 @@ public class DynamicBindUtil
 		{
 
       // 如果字段的名称等于 param，略过。param永远参数传递，不用于游戏对象赋值。
-      if( ff.Name.Equals("param" ) )
+      // 如果字段已经被赋值，略过
+      if( ff.Name.Equals("param" ) || ff.GetValue(script) != null )
         continue;
 
 			Transform[] tfs = obj.GetComponentsInChildren<Transform>(true);
