@@ -57,7 +57,8 @@ namespace TangLevel
 
     public static Hero MockHero ()
     {
-      Hero hero = new Hero ();      
+      Hero hero = new Hero ();  
+      hero.id = tmp;
       hero.resName = "hero_zf";
       hero.maxHp = 100;
       hero.hp = 100;
