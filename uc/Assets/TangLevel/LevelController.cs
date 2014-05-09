@@ -67,6 +67,7 @@ namespace TangLevel
 
 
     }
+
     void OnEnable ()
     {
       // 监听Dragonbone资源装载完毕事件
@@ -97,7 +98,7 @@ namespace TangLevel
         if (Config.levelTable.ContainsKey (levelId)) {
 
           // 克隆一份场景数据
-          LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy();
+          LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy ();
         }
         LevelContext.selfGroup = group;
 
@@ -540,35 +541,38 @@ namespace TangLevel
 
         Hero h = heroEnum.Current;
         GameObject g = gobjEnum.Current;
+        heroIds [i] = h.id;
 
-        if (g != null) {
-          if (uiMgr != null) {
-            // 监听己方英雄HP变化 ----
-            // 英雄身上的血条填充
-            h.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
-            // 血条显示与隐藏
-            h.raiseHpChange += uiMgr.greenDisplayByHurts [i].OnHpChange;
-            // 英雄头像 ----
-            uiMgr.heroWgts [i].SetActive (true);
-            // 血条
-            h.raiseHpChange += uiMgr.selfHpMonitors [i].OnChange;
-            // 监听己方英雄的位置变化 -----
-            DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
-            if (agent != null) {
-              agent.raiseScrPosChanged += uiMgr.greenHpPosMonitors [i].OnChange;
-              agent.RaisePosChanged += OnHeroPosChanged;
-            }
+        if (uiMgr != null) {
+          // 监听己方英雄HP变化 ----
+          // 英雄身上的血条填充
+          h.raiseHpChange += uiMgr.greenHpMonitors [i].OnChange;
+          // 血条显示与隐藏
+          h.raiseHpChange += uiMgr.greenDisplayByHurts [i].OnHpChange;
+          // 英雄头像 ----
+          uiMgr.heroWgts [i].SetActive (true);
+          // 血条
+          h.raiseHpChange += uiMgr.selfHpMonitors [i].OnChange;
+          // 监听己方英雄的位置变化 -----
+          DirectedNavAgent agent = g.GetComponent<DirectedNavAgent> ();
+          if (agent != null) {
+            agent.raiseScrPosChanged += uiMgr.greenHpPosMonitors [i].OnChange;
+            agent.RaisePosChanged += OnHeroPosChanged;
           }
-          // 监听英雄的死亡
-          HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
-          if (heroBhvr != null) {
-            heroBhvr.RaiseDead += OnHeroDead;
-          }
+        }
+        // 监听英雄的死亡
+        HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
+        if (heroBhvr != null) {
+          heroBhvr.RaiseDead += OnHeroDead;
         }
         i++;
       }
-      uiMgr.groupGrid.maxPerLine = i;
-      uiMgr.groupGrid.gameObject.SetActive (true);
+
+      //uiMgr.groupGrid.maxPerLine = i;
+      //uiMgr.groupGrid.gameObject.SetActive (true);
+
+
+
     }
 
     /// <summary>

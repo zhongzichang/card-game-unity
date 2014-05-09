@@ -77,6 +77,10 @@ namespace TangUI
     /// The is base template.
     /// </summary>
     public bool isBaseTemplate;
+    /// <summary>
+    /// The panel event handler.
+    /// </summary>
+    public PanelEventHandler raisePanelEvent;
 
     /// <summary>
     ///   Context
@@ -104,12 +108,14 @@ namespace TangUI
     /// <summary>
     ///   Launch
     /// </summary>
-    public void Launch (OpenMode openMode, BlockMode blockMode, object param, bool isBaseTemplate = false)
+    public void Launch (OpenMode openMode, BlockMode blockMode, object param, 
+                        bool isBaseTemplate = false, PanelEventHandler handler = null)
     {
       this.blockMode = blockMode;
       this.openMode = openMode;
       this.param = param;
       this.isBaseTemplate = isBaseTemplate;
+      this.raisePanelEvent = handler;
 
       if (isBaseTemplate) { // 使用模版
 
@@ -186,11 +192,13 @@ namespace TangUI
         DynamicBindUtil.BindScriptAndProperty (gameObject, name);
 
         if (this.blockMode == BlockMode.SPRITE) {
-          UnityEngine.Object obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK));
+          UnityEngine.Object obj = Resources.Load (
+                                     TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK));
           NGUITools.AddChild (gameObject, obj as GameObject);
         }
         if (this.blockMode == BlockMode.TEXTURE) {
-          GameObject obj = Resources.Load (TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
+          GameObject obj = Resources.Load (
+                             TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
           NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<UITexture> ().enabled = true;
         }
       }
@@ -264,6 +272,11 @@ namespace TangUI
 
         if (!gameObject.activeSelf)
           SetActive (true);
+
+        // 发出加载完成通知
+        if (raisePanelEvent != null) {
+          raisePanelEvent (this, new PanelEventArgs (EventType.OnLoad));
+        }
 
       } else {
         throw new Exception ("Can not attach to previous node.");

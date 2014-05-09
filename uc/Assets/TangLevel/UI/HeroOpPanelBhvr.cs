@@ -21,7 +21,6 @@ namespace TangLevel
         mgr = new UIPanelNodeManager (anchor);
         mgr.LazyOpen (UIContext.HERO_OP_PANEL, UIPanelNode.OpenMode.ADDITIVE, "test param");
       }
-
     }
   }
 }
