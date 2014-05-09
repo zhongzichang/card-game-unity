@@ -13,22 +13,22 @@ namespace TangGame.UI
 		/// The properties info background.
 		/// 物品信息文字的背景
 		/// </summary>
-		public GameObject PropsInfoBg;
+		public GameObject EquipInfoBg;
 		/// <summary>
 		/// The properties info label.
 		/// 物品的信息
 		/// </summary>
-		public GameObject PropsInfoLabel;
+		public GameObject EquipInfoLabel;
 		/// <summary>
 		/// The properties description.
 		/// 物品的描述
 		/// </summary>
-		public GameObject PropsDescription;
+		public GameObject EquipDescription;
 		/// <summary>
 		/// The property info table.
 		/// 描述内容的table容器
 		/// </summary>
-		public GameObject PropInfoTable;
+		public GameObject EquipInfoTable;
 		/// <summary>
 		/// The frames.
 		/// 物品边框对象
@@ -48,12 +48,12 @@ namespace TangGame.UI
 		/// The name of the properties.
 		/// 物品的名字
 		/// </summary>
-		public GameObject PropsName;
+		public GameObject EquipName;
 		/// <summary>
 		/// The properties lv label.
 		/// 道具要求等级
 		/// </summary>
-		public GameObject PropsLvLabel;
+		public GameObject EquipLvLabel;
 		/// <summary>
 		/// The equipped button.
 		/// 装备按钮
@@ -137,7 +137,7 @@ namespace TangGame.UI
 		/// <param name="name">Name.</param>
 		public void UpPropsName (string name)
 		{
-			this.PropsName.GetComponent<UILabel> ().text = name;
+			this.EquipName.GetComponent<UILabel> ().text = name;
 		}
 
 		/// <summary>
@@ -191,28 +191,28 @@ namespace TangGame.UI
 					infoStr += UIPanelLang.INTELLECT + ",";
 					infoStr += UIPanelLang.AGILE + "+";
 					infoStr += data.Xml.strength;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.strength * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " + Mathf.Round(data.Xml.strength * enchantingVariable).ToString() + "[-]";
 				} else {
 					//		<!-- 属性加成 -->
 					//		<!-- 力量 -->
 					//		<strength>21</strength>
 					if (data.Xml.strength > 0) {
 						infoStr += UIPanelLang.STRENGTH + "+" + data.Xml.strength;
-						infoStr +="+[33FF00]" +Mathf.Round(data.Xml.strength * enchantingVariable).ToString() + "[-]";
+						infoStr += "[33FF00] + " +Mathf.Round(data.Xml.strength * enchantingVariable).ToString() + "[-]";
 						infoStr += Environment.NewLine;
 					}
 					//		<!-- 智力 -->
 					//		<intellect>42</intellect>
 					if (data.Xml.intellect > 0) {
 						infoStr += UIPanelLang.INTELLECT + "+" + data.Xml.intellect;
-						infoStr +="+[33FF00]" +Mathf.Round(data.Xml.intellect * enchantingVariable).ToString() + "[-]";
+						infoStr += "[33FF00] + " +Mathf.Round(data.Xml.intellect * enchantingVariable).ToString() + "[-]";
 						infoStr += Environment.NewLine;
 					}
 					//		<!-- 敏捷 -->
 					//		<agile>2</agile>
 					if (data.Xml.agile > 0) {
 						infoStr += UIPanelLang.AGILE + "+" + data.Xml.agile;
-						infoStr +="+[33FF00]" +Mathf.Round(data.Xml.agile * enchantingVariable).ToString() + "[-]";
+						infoStr += "[33FF00] + "+Mathf.Round(data.Xml.agile * enchantingVariable).ToString() + "[-]";
 						infoStr += Environment.NewLine;
 					}
 				}
@@ -220,7 +220,7 @@ namespace TangGame.UI
 				//		<hpMax>132</hpMax>
 				if (data.Xml.hpMax > 0) {
 					infoStr += UIPanelLang.HPMAX + "+" + data.Xml.hpMax;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.hpMax * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.hpMax * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 
 				}
@@ -228,91 +228,91 @@ namespace TangGame.UI
 				//		<attack_damage>23</attack_damage>
 				if (data.Xml.attack_damage > 0) {
 					infoStr += UIPanelLang.ATTACK_DAMAGE + "+" + data.Xml.attack_damage;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.attack_damage * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.attack_damage * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术强度 -->
 				//		<spell_power>123</spell_power>
 				if (data.Xml.spell_power > 0) {
 					infoStr += UIPanelLang.SPELL_POWER + "+" + data.Xml.spell_power;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.spell_power * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.spell_power * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理防御 -->
 				//		<physical_defense>321</physical_defense>
 				if (data.Xml.physical_defense > 0) {
 					infoStr += UIPanelLang.PHYSICAL_DEFENSE + "+" + data.Xml.physical_defense;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.physical_defense * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.physical_defense * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术防御 -->
 				//		<spell_defense>123</spell_defense>
 				if (data.Xml.spell_defense > 0) {
 					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.Xml.spell_defense;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.spell_defense * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.spell_defense * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理爆击 -->
 				//		<physical_crit>12</physical_crit>
 				if (data.Xml.physical_crit > 0) {
 					infoStr += UIPanelLang.PHYSICAL_CRIT + "+" + data.Xml.physical_crit;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.physical_crit * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.physical_crit * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术爆击 -->
 				//		<spell_crit>21</spell_crit>
 				if (data.Xml.spell_cirt > 0) {
 					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.Xml.spell_cirt;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.spell_cirt * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.spell_cirt * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 生命回复 -->
 				//		<hp_re>12</hp_re>
 				if (data.Xml.hp_re > 0) {
 					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.Xml.hp_re;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.hp_re * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.hp_re * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 能量回复 -->
 				//		<energy_re>21</energy_re>
 				if (data.Xml.energy_re > 0) {
 					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.Xml.energy_re;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.energy_re * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.energy_re * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理穿透 -->
 				//		<physical_penetrate>12</physical_penetrate>
 				if (data.Xml.physical_penetrate > 0) {
 					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.Xml.physical_penetrate;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.physical_penetrate * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.physical_penetrate * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术穿透 -->
 				//		<spell_penetrate>21</spell_penetrate>
 				if (data.Xml.spell_penetrate > 0) {
 					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.Xml.spell_penetrate;
-					infoStr += "+[33FF00]" +Mathf.Round(data.Xml.spell_penetrate * enchantingVariable).ToString() + "[-]";
+					infoStr +=  "[33FF00] + " +Mathf.Round(data.Xml.spell_penetrate * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 吸血等级 -->
 				//		<bloodsucking_lv>12</bloodsucking_lv>
 				if (data.Xml.bloodsucking_lv > 0) {
 					infoStr += UIPanelLang.BLOODSUCKING_LV + "+" + data.Xml.bloodsucking_lv;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.bloodsucking_lv * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.bloodsucking_lv * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 闪避 -->
 				//		<dodge>21</dodge>
 				if (data.Xml.dodge > 0) {
 					infoStr += UIPanelLang.DODGE + "+" + data.Xml.dodge;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.dodge * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.dodge * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 治疗效果 -->
 				//		<addition_treatment>21</addition_treatment>
 				if (data.Xml.addition_treatment > 0) {
 					infoStr += UIPanelLang.ADDITION_TREATMENT + "+" + data.Xml.addition_treatment;
-					infoStr +="+[33FF00]" +Mathf.Round(data.Xml.addition_treatment * enchantingVariable).ToString() + "[-]";
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.addition_treatment * enchantingVariable).ToString() + "[-]";
 					infoStr +="%" + Environment.NewLine;
 				}
 			}
@@ -338,11 +338,11 @@ namespace TangGame.UI
 			if (PropsType.NONE == type)
 				infoStr += data.Xml.info;
 
-			UILabel label = PropsInfoLabel.GetComponent<UILabel> ();
+			UILabel label = EquipInfoLabel.GetComponent<UILabel> ();
 			if (label != null) {
 				label.text = infoStr;
-				Utils.TextBgAdaptiveSize (label, PropsInfoBg.GetComponent<UISprite> ());
-				PropInfoTable.GetComponent<UITable> ().repositionNow = true;
+				Utils.TextBgAdaptiveSize (label, EquipInfoBg.GetComponent<UISprite> ());
+				EquipInfoTable.GetComponent<UITable> ().repositionNow = true;
 			}
 		}
 
@@ -353,7 +353,7 @@ namespace TangGame.UI
 		/// <param name="text">Text.</param>
 		public void UpDescription (string text)
 		{
-			UILabel lab = PropsDescription.GetComponent<UILabel> ();
+			UILabel lab = EquipDescription.GetComponent<UILabel> ();
 			if (lab != null) {
 				lab.text = text;
 			}
@@ -366,7 +366,7 @@ namespace TangGame.UI
 		/// <param name="text">Text.</param>
 		public void UpPropsLvLabel (string text)
 		{
-			UILabel lab = PropsLvLabel.GetComponent<UILabel> ();
+			UILabel lab = EquipLvLabel.GetComponent<UILabel> ();
 			if (lab != null) {
 				lab.text = string.Format (UIPanelLang.PROPS_LV_LABEL_TAG, text);
 			}

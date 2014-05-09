@@ -147,5 +147,6 @@ namespace TangGame.UI
 
 		/// 道具Props界面“需求等级”
 		public const string TIPS_LEVEL = "需求等级：{0}" ;
+
 	}
 }

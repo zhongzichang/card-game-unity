@@ -48,7 +48,14 @@ namespace TangGame.UI
 			Locked (data.Islock);
 			UpLevel (data.Net.level);
 			UpHeroType (data.Attribute_Type);
-			//			UpHeroFragments (data.FragmentsCount, data.FragmentsCountMax);//需要道具来支撑
+			int fragmentsCount  = 0;
+			int FragmentsCountMax = Config.evolveXmlTable[1].val;
+			if (BaseCache.propsBaseTable.ContainsKey (data.Xml.soul_rock_id)) {
+				fragmentsCount = BaseCache.propsBaseTable [data.Xml.soul_rock_id].Count;
+			}
+			if (data.Net != null && Config.evolveXmlTable.ContainsKey (data.Net.evolve + 1)) {
+				FragmentsCountMax = Config.evolveXmlTable[data.Net.evolve + 1].val;
+			}
 			SetStarList (data.Net.evolve);
 			//			SetTag ();TODO
 		}

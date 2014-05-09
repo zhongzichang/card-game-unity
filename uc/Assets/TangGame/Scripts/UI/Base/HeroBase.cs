@@ -11,7 +11,33 @@ namespace TangGame.UI.Base
 		private HeroNet net;
 		private HeroXml xml;
 		private SkillBase[] skillBases;
+		private EquipBase[] equipBases;
 
+
+		/// <summary>
+		/// Ups the equip bases.
+		/// 更新装备相关数据
+		/// </summary>
+		private void UpEquipBases(){
+			if (xml != null) {
+				if (equipBases == null) {
+					equipBases = new EquipBase[Equip_Ids.Length];
+				}
+				for (int i = 0; i < Equip_Ids.Length; i++) {
+					EquipBase equipBaseTmp = equipBases [i];
+					if (equipBaseTmp == null) {
+						equipBaseTmp = new EquipBase ();
+						equipBaseTmp.Xml = Config.propsXmlTable [Equip_Ids [i]];
+						equipBases [i] = equipBaseTmp;
+					}
+				}
+				if (net != null && net.equipList != null) {
+					for (int i = 0; i < net.equipList.Length; i++) {
+						equipBases [i].Net = net.equipList [i];
+					}
+				}
+			}
+		}
 		/// <summary>
 		/// Ups the skill bases. 更新技能列表
 		/// </summary>
@@ -49,6 +75,13 @@ namespace TangGame.UI.Base
 			get {
 				UpSkillBases ();
 				return skillBases;
+			}
+		}
+
+		public EquipBase[] EquipBases {
+			get {
+				UpEquipBases ();
+				return equipBases;
 			}
 		}
 
@@ -286,8 +319,19 @@ namespace TangGame.UI.Base
 		/// <value>The skill_ identifiers.</value>
 		private int[] Skill_Ids {
 			get { 
-				string[] str = (string[])Utils.SplitStrByBraces (xml.skill_ids).ToArray (typeof(string));
-				return Utils.SplitStrByCommaToInt (str [0]);
+				string[] strs = (string[])Utils.SplitStrByBraces (xml.skill_ids).ToArray (typeof(string));
+				return Utils.SplitStrByCommaToInt (strs [0]);
+			}
+		}
+		/// <summary>
+		/// Sets the equip_id_list.
+		/// 获取当前品阶的装备列表
+		/// </summary>
+		/// <value>The equip_id_list.</value>
+		private int[] Equip_Ids{
+			get{ 
+				string[] strs = (string[])Utils.SplitStrByBraces (xml.equip_id_list).ToArray (typeof(string));
+				return Utils.SplitStrByCommaToInt (strs [net.upgrade - 1]);
 			}
 		}
 

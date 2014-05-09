@@ -161,13 +161,13 @@ namespace TangGame.Xml
 		/// </summary>
 		/// <returns>The equip list by rank.</returns>
 		/// <param name="rank">Rank.</param>
-		public List<PropsXml> CurrentEquipListByRank(int heroRank){
+		public List<PropsXml> CurrentEquipListByRank(int heroUpgrade){
 			if (equipList == null) {
 				equipList = new List<PropsXml> ();
 				ArrayList equipStrList = Utils.SplitStrByBraces (this.equip_id_list);
 				string equipStr = "";
-				if (equipStrList.Count >= heroRank - 1) {
-					equipStr = equipStrList [heroRank - 1].ToString();
+				if (equipStrList.Count >= heroUpgrade - 1) {
+					equipStr = equipStrList [heroUpgrade - 1].ToString();
 				}
 				int[] equipIds = Utils.SplitStrByCommaToInt (equipStr);
 				if(equipStr != null){
@@ -192,14 +192,29 @@ namespace TangGame.Xml
 		public static void LateProcess (object obj)
 		{
 			HeroRoot root = obj as HeroRoot;
+			int i = 0;
 			foreach (HeroXml item in root.items) {
 				Config.heroXmlTable [item.id] = item;
 				Config.addPropsHeroesRelationship (item.soul_rock_id,item.id);
-				//TODO 先写到这个地方到时候再改
+				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.Base.HeroBase herobase = new TangGame.UI.Base.HeroBase ();
 				herobase.Xml = item;
+				herobase.Net = new TangGame.Net.HeroNet ();
+				herobase.Net.configId = item.id;
+				herobase.Net.evolve = i%5 +1;
+				herobase.Net.exp = 15 * i % 49;
+				herobase.Net.upgrade = i%9 +1;
+				herobase.Net.id = i + 10000;
+				herobase.Net.level = i%4 + 1;
+				herobase.Net.equipList = new TangGame.Net.EquipNet[6];
+				TangGame.Net.EquipNet equip;
+				equip = new TangGame.Net.EquipNet ();
+				equip.configId = 1001 + i%5;
+				equip.enchantsLv = 1;
+				equip.enchantsExp = 30;
+				herobase.Net.equipList [0] = equip;
 				TangGame.UI.Base.BaseCache.heroBeseTable.Add (item.id, herobase);
-
+				i++;
 			}
 		}
 	}
