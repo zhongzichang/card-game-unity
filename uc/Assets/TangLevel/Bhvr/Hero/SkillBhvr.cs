@@ -57,7 +57,7 @@ namespace TangLevel
     public void CastReleaseSpecial(Skill skill, GameObject source, GameObject target){
 
       SkillWrapper w = SkillWrapper.W (skill, source, target);
-      foreach (string specialName in skill.chargeSpecials) {
+      foreach (string specialName in skill.releaseSpecials) {
         CastSkillSpecial (specialName, w);
       }
     }

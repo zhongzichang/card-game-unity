@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace TangLevel
 {
-  public class PlayOnceEffector : EffectorSpecialBhvr
+  public class Uni2DPlayOnceEffector : EffectorSpecialBhvr
   {
     public static Vector3 OFFSET = new Vector3 (0, 1.5F, 0);
     private Uni2DSprite sprite;
-    private Uni2DSpriteAnimation animation;
+    private Uni2DSpriteAnimation uni2DAnimation;
     private Transform myTransform;
 
     void Awake ()
@@ -16,10 +16,10 @@ namespace TangLevel
 
       sprite = GetComponent<Uni2DSprite> ();
       if (sprite != null) {
-        animation = sprite.spriteAnimation;
-        animation.onAnimationEndEvent += OnAnimationEnd;
-        if (animation.IsPlaying) {
-          animation.Pause ();
+        uni2DAnimation = sprite.spriteAnimation;
+        uni2DAnimation.onAnimationEndEvent += OnAnimationEnd;
+        if (uni2DAnimation.IsPlaying) {
+          uni2DAnimation.Pause ();
         }
       }
 
@@ -29,31 +29,18 @@ namespace TangLevel
     void OnEnable ()
     {
 
-      bool foundTarget = false;
-      if (w != null) {
-        Skill skill = w.skill;
-        if (skill != null) {
-          GameObject target = w.target;
-          if (target != null) {
+      if (w != null && w.target != null) {
 
-            // 绑定到目标身上
-            myTransform.localPosition = target.transform.localPosition + OFFSET;
-            foundTarget = true;
-          }
-        }
-      }
+        // 绑定到目标身上
+        myTransform.localPosition = w.target.transform.localPosition + OFFSET;
 
-      if (!foundTarget) {
+      } else {
         GobjManager.Release (gameObject);
       }
 
       // 关卡控制
       LevelController.RaisePause += OnPause;
       LevelController.RaiseResume += OnResume;
-
-      if (!isPlay) {
-        Resume ();
-      }
 
     }
 
@@ -63,12 +50,13 @@ namespace TangLevel
       // 关卡控制
       LevelController.RaisePause -= OnPause;
       LevelController.RaiseResume -= OnResume;
+
       if (isPlay) {
         Pause ();
       }
     }
 
-    private void OnAnimationEnd (Uni2DAnimationEvent animationEvent)
+    private void OnAnimationEnd (Uni2DAnimationEvent uni2DAnimationEvent)
     {
       GobjManager.Release (gameObject);
     }
@@ -76,19 +64,19 @@ namespace TangLevel
     public override void Play ()
     {
       isPlay = true;
-      animation.Play ();
+      uni2DAnimation.Play ();
     }
 
     public override void Pause ()
     {
       isPlay = false;
-      animation.Pause ();
+      uni2DAnimation.Pause ();
     }
 
     public override void Resume ()
     {
       isPlay = true;
-      animation.Resume ();
+      uni2DAnimation.Resume ();
     }
   }
 }

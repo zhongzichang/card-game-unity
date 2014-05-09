@@ -266,6 +266,11 @@ namespace TangUI
           FieldInfo fieldInfo = script.GetType ().GetField ("param");
           if (fieldInfo != null) {
             fieldInfo.SetValue (script, param);
+          } else {
+            PropertyInfo propertyInfo = script.GetType ().GetProperty ("param");
+            if (propertyInfo != null) {
+              propertyInfo.SetValue (script, param, null);
+            }
           }
         }
     
