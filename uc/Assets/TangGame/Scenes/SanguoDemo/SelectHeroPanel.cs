@@ -89,7 +89,7 @@ namespace TangGame.UI
 
     void OnGUI(){
       if (GUILayout.Button ("AddHero")) {
-          AddHero (HeroStore.Instance.RandomHero());
+        AddHero (TestDataStore.Instance.RandomHero());
       }
     }
   }
