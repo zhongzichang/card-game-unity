@@ -17,6 +17,8 @@ namespace TangGame{
 		public TweenScale tween;
 		public UISprite soundSprite;
 
+		private object mParam;
+
 		void Awake(){
 			continueBtn.onClick += ContinueBtnHandler;
 			quitBtn.onClick += QuitBtnHandler;
@@ -29,6 +31,14 @@ namespace TangGame{
 
 		void Start(){
 			Open();
+		}
+
+		public object param{
+			get{return mParam;}
+			set{
+				mParam = value;
+				Open();
+			}
 		}
 
 		public void ContinueBtnHandler(GameObject go){
