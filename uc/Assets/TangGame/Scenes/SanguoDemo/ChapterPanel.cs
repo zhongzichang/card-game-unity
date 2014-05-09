@@ -3,6 +3,9 @@ using System.Collections;
 
 public class ChapterPanel : MonoBehaviour {
 
+  public GameObject tag;
+  public ArrayList chapters;
+
 	// Use this for initialization
 	void Start () {
 	
