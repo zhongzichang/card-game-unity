@@ -22,7 +22,6 @@ namespace TangGame
       TangScene.TS.EnsureTSGobj ();
       TangNet.TN.EnsureTNGobj ();
 
-
       remainCounter = xmls.Length;
 
       if (xmls.Length > 0) {
@@ -33,6 +32,8 @@ namespace TangGame
       } else {
         OnPreloadCompleted();
       }
+
+      PlaceController.Place = Place.welcome;
     }
 
     private void LoadCompleted (WWW www)

@@ -7,7 +7,7 @@ public class PlaceController : MonoBehaviour {
   // 如果位置改变将发出事件通知
   public static EventHandler placeChangedHandler;
 
-  private static Place place;
+  private static Place place = Place.none;
   public static Place Place
   {
     get
@@ -30,7 +30,7 @@ public class PlaceController : MonoBehaviour {
 
   public Place myPlace = Place.none;
 
-  void Start()
+  void Awake()
   {
     placeChangedHandler += OnPlaceChanged;
   }

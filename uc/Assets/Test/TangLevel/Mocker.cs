@@ -117,9 +117,9 @@ namespace TangLevel
       skill.effectors[0] = MockLineFlyEffector ();
       //skill.chargeClip = "";
       skill.releaseClip = "luoshen";
-      skill.releaseSpecials = new string[2];
-      skill.releaseSpecials[0] = "Sprite_luoshen1";
-      skill.releaseSpecials[1] = "Sprite_luoshen2";
+      //skill.releaseSpecials = new string[2];
+      //skill.releaseSpecials[0] = "Sprite_luoshen1";
+      //skill.releaseSpecials[1] = "Sprite_luoshen2";
       skill.enable = true;
       skill.bigMove = true;
       skill.cd = 2;
