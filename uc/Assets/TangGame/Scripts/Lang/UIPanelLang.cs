@@ -131,8 +131,21 @@ namespace TangGame.UI
 
 		public const string EQUIP = "装备";
 		public const string OK = "确定";
-
+		/// <summary>
+		/// The UNENCHANTE.
+		/// 未附魔
+		/// </summary>
 		public const string UNENCHANTED= "未附魔";
+		/// <summary>
+		/// The ENCHANTIN g_ I s_ NO t_ SELECTE.
+		/// 未选择附魔材料
+		/// </summary>
+		public const string ENCHANTING_IS_NOT_SELECTED = "未选择附魔材料";
+		/// <summary>
+		/// The ENCHANTIN g_ HA s_ T o_ TO.
+		/// 已附魔到顶级
+		/// </summary>
+		public const string ENCHANTING_HAS_TO_TOP = "已附魔到顶级";
 
 		/// 战斗界面中的“退出战斗”
 		public const string BATTLE_QUIT = "退出战斗" ;

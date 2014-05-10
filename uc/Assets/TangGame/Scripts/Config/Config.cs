@@ -15,6 +15,7 @@ namespace TangGame
 		public static Dictionary<int,SkillXml> skillXmlTable = new Dictionary<int, SkillXml> ();
 		public static Dictionary<int, PropsXml> propsXmlTable = new Dictionary<int, PropsXml> ();
 		public static Dictionary<int,EvolveXml> evolveXmlTable = new Dictionary<int, EvolveXml> ();
+		public static Dictionary<int,EnchantsConsumedXml> enchantsConsumedXmlTable = new Dictionary<int, EnchantsConsumedXml>();
 		/// <summary>
 		/// The properties heroes relationship.
 		/// 道具和英雄之间的关联

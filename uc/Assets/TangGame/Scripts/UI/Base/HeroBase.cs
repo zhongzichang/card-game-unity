@@ -399,6 +399,7 @@ namespace TangGame.UI.Base
 
 	public enum RankEnum
 	{
+		NONE,
 		WHITE,
 		GREEN,
 		BLUE,

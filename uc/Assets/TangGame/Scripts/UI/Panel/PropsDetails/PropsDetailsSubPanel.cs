@@ -67,24 +67,10 @@ namespace TangGame.UI
 			}
 			set {
 				propsDPbean = value;
-			}
-		}
-		// Use this for initialization
-		void Start ()
-		{
-
-		}
-		// Update is called once per frame
-		void Update ()
-		{
-
-		}
-
-		void OnEnable ()
-		{
-			if (propsDPbean != null && propsDPbean.props != null) {
-				this.ClearSVPropsItemArray ();
-				SVPropsItemArrayForward (propsDPbean.props.Xml);
+				if (propsDPbean != null && propsDPbean.props != null) {
+					this.ClearSVPropsItemArray ();
+					SVPropsItemArrayForward (propsDPbean.props.Xml);
+				}
 			}
 		}
 

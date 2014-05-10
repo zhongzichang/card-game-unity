@@ -21,6 +21,6 @@ namespace TangGame.Net
 		/// <summary>
 		/// 装备的附魔经验
 		/// </summary>
-		public long enchantsExp;
+		public int enchantsExp;
 	}
 }

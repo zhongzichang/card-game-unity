@@ -32,6 +32,11 @@ namespace TangGame.UI
 		{
 	
 		}
+		/// <summary>
+		/// Flush the specified data.
+		/// 设置item
+		/// </summary>
+		/// <param name="data">Data.</param>
 		public void Flush(PropsBase data){
 			this.data = data;
 			if(data != null){
@@ -42,7 +47,6 @@ namespace TangGame.UI
 						this.propsCountLabel.text = data.Net.count.ToString();
 				}
 			}
-
 		}
 
 

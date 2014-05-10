@@ -11,37 +11,44 @@ namespace TangGame.UI
 {
 	public class PropsDetailsPanel : MonoBehaviour
 	{
-		public object param;
+		private object mParam;
 		public GameObject PropsDetailsInterfacePanel;
 		public GameObject PropsDetailsSubPanel;
 		private PropsDetailsPanelBean propsDPbean;
-		// Use this for initialization
-		void Start ()
-		{
-
+		void Awake(){
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsInterfacePanel, PropsDetailsInterfacePanel.name);
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsSubPanel, PropsDetailsSubPanel.name);
-
-				PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> ().PropsDPbean = propsDPbean;
-				PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().Flush (propsDPbean);
 		}
 
-		void OnEnable ()
-		{
-			if (param != null && param is PropsBase) {
+		/// <summary>
+		/// Ups the sub panels.
+		/// 更新子面板的数据
+		/// </summary>
+		/// <param name="val">Value.</param>
+		private void UpSubPanels (object val){
+			if (val != null && val is PropsBase) {
 				PropsDPbean = new PropsDetailsPanelBean ();
-				PropsDPbean.props = param as PropsBase;
+				PropsDPbean.props = val as PropsBase;
 			}
-			if (param != null && param is PropsDetailsPanelBean) {
-				PropsDPbean = param as PropsDetailsPanelBean;
+			if (val != null && val is PropsDetailsPanelBean) {
+				PropsDPbean = val as PropsDetailsPanelBean;
 			}
 			if (PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> () != null)
 				PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> ().PropsDPbean = propsDPbean;
-
 			if (PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> () != null)
 				PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().PropsDPbean = propsDPbean;
 		}
 
+		//=====================对象属性相关／property=================
+		public object param {
+			get {
+				return mParam;
+			}
+			set {
+				mParam = value;
+				UpSubPanels (mParam);
+			}
+		}
 		public PropsDetailsPanelBean PropsDPbean {
 			get {
 				return propsDPbean;
@@ -50,14 +57,11 @@ namespace TangGame.UI
 				propsDPbean = value;
 			}
 		}
-		// Update is called once per frame
-		void Update ()
-		{
-	
-		}
-
 	}
-
+	/// <summary>
+	/// Properties details panel bean.
+	/// 装备数据
+	/// </summary>
 	public class PropsDetailsPanelBean
 	{
 		public PropsBase props;
