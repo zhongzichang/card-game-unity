@@ -10,21 +10,13 @@ namespace TangLevel
     public FillMonitor[] greenHpMonitors;
     public FillMonitor[] redHpMonitors;
 
-    // 能量槽
-    public FillMonitor[] selfHpMonitors;
-    public FillMonitor[] selfMpMonitors;
-
     // 血条位置
     public PositionMonitor[] greenHpPosMonitors;
     public PositionMonitor[] redHpPosMonitors;
 
-    // 血条显示
+    // 血条显示与隐藏
     public DisplayByHurt[] greenDisplayByHurts;
     public DisplayByHurt[] redDisplayByHurts;
-
-    // 英雄头像
-    public GameObject[] heroWgts;
-    public UIGrid groupGrid;
 
   }
 }
