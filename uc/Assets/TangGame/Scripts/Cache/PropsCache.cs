@@ -18,7 +18,7 @@ namespace TangGame.UI{
 		}
 
 		/// 道具掉落数据，存储道具掉落所在的场景中
-		public Dictionary<int, PropsDropData> propsDrops = new Dictionary<int, PropsDropData>();
+		public Dictionary<int, PropsRelationData> propsRelations = new Dictionary<int, PropsRelationData>();
 
 	}
 }
