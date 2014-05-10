@@ -21,7 +21,7 @@
 		<spell_penetrate>0</spell_penetrate>
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
-		<addition_treatment>20</addition_treatment>
+		<addition_treatment>21</addition_treatment>
 		<level>15</level>
 		<synthetic_props>{1002,10}</synthetic_props>
 		<synthetic_spend>1900</synthetic_spend>
@@ -54,7 +54,7 @@
 		<spell_penetrate>0</spell_penetrate>
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
-		<addition_treatment>20</addition_treatment>
+		<addition_treatment>22</addition_treatment>
 		<level>15</level>
 		<synthetic_props>{1003,12}{1004,15}</synthetic_props>
 		<synthetic_spend>1500</synthetic_spend>

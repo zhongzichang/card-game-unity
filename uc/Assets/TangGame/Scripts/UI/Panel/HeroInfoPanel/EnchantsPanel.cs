@@ -39,6 +39,10 @@ namespace TangGame.UI
 		/// 英雄名字
 		/// </summary>
 		public GameObject HeroName;
+		/// <summary>
+		/// The hero item.
+		/// 英雄item对象
+		/// </summary>
 		public GameObject HeroItem;
 		/// <summary>
 		/// The select hero button.
@@ -108,31 +112,78 @@ namespace TangGame.UI
 		/// 选中的道具
 		/// </summary>
 		private EquipBase mEquipBase = null;
+		/// <summary>
+		/// The en C xml.
+		/// 当前装备的附魔表
+		/// </summary>
 		TangGame.Xml.EnchantsConsumedXml enCXml;
-
+		/// <summary>
+		/// 当前进度条显示的经验
+		/// </summary>
+		int mEnExpCurrent = 0;
+		/// <summary>
+		/// The properties exp sum.
+		/// 装备附魔经验总和
+		/// </summary>
+		int mEnExpSum = 0;
+		/// <summary>
+		/// The m en lv up.
+		/// 装备附魔提
+		/// </summary>
+		int mEnLvUp = 0;
+		/// <summary>
+		/// The m gem spend lab.
+		/// 显示一键附魔需要多少宝石的标签
+		/// </summary>
 		UILabel mGemSpendLab;
+		/// <summary>
+		/// The m gold spend lab.
+		/// 显示附魔需要多少金币的标签
+		/// </summary>
 		UILabel mGoldSpendLab;
+		/// <summary>
+		/// The m exp sprite.
+		/// 显示当前附魔经验的进度条
+		/// </summary>
 		UISprite mExpSprite;
+		/// <summary>
+		/// The m exp lab.
+		/// 显示经验的标签
+		/// </summary>
 		UILabel mExpLab;
+		/// <summary>
+		/// The hero avatar item table.
+		/// 英雄对象列表
+		/// </summary>
+		Dictionary<int,HeroAvatarItem> heroAvatarItemTable = new Dictionary<int, HeroAvatarItem> ();/// <summary>
+		/// The properties base item table.
+		/// 背包道具列表
+		/// </summary>
+		Dictionary<int,PropsItem> propsBaseItemTable = new Dictionary<int,PropsItem> ();
+		/// <summary>
+		/// The properties checked count.
+		/// 被选中装备的数量
+		/// </summary>
+		Dictionary<PropsItem,int> propsCheckedCountTable = new Dictionary<PropsItem, int> ();
 
-		void Awake(){
-		}
-		// Use this for initialization
-		void Start ()
+
+		void Awake ()
 		{
 			mGemSpendLab = this.EnchantsSpendGem.GetComponentInChildren<UILabel> ();
 			mGoldSpendLab = this.EnchantsSpendGold.GetComponentInChildren<UILabel> ();
 			mExpSprite = this.EnchantingExp.GetComponent<UISprite> ();
 			mExpLab = this.EnchantingExp.GetComponentInChildren<UILabel> ();
+		}
+		// Use this for initialization
+		void Start ()
+		{
 			if (heroBase == null) {
 				HeroContent.SetActive (false);
 			}
 			if (mEquipBase == null) {
 				EquipContent.SetActive (false);
 			}
-
-			SetEquipListEvent ();
-
+			SetEquipsEvent ();
 			UIEventListener.Get (SelectHeroBtn.gameObject).onClick += SelectHeroBtnOnClick;
 			UIEventListener.Get (SelectHeroPanelBlock.gameObject).onClick += SelectHeroPanelBlockOnClcik;
 			UIEventListener.Get (HeroItem.gameObject).onClick += SelectHeroBtnOnClick;
@@ -142,7 +193,7 @@ namespace TangGame.UI
 		/// 更新英雄对象
 		/// </summary>
 		/// <param name="heroBase">Hero base.</param>
-		public void UpHeroContent (HeroBase heroBase)
+		void UpHeroContent (HeroBase heroBase)
 		{
 			this.heroBase = heroBase;
 			HeroContent.SetActive (true);
@@ -165,7 +216,7 @@ namespace TangGame.UI
 		/// 更新装备相关数据
 		/// </summary>
 		/// <param name="equipNet">Equip net.</param>
-		public void UpEquipContent (EquipBase equipBase)
+		void UpEquipContent (EquipBase equipBase)
 		{
 			this.mEquipBase = equipBase;
 			//重置附魔点数
@@ -175,7 +226,7 @@ namespace TangGame.UI
 			propsCheckedCountTable.Clear ();
 			enCXml = Config.enchantsConsumedXmlTable [equipBase.Xml.upgrade];
 			int enLv = equipBase.Net.enchantsLv;
-			int enNextLv = enLv+1;
+			int enNextLv = enLv + 1;
 			int enExp = equipBase.Net.enchantsExp;
 			if (enCXml.GetLvMax () == 0) {
 				//此装备不能附魔
@@ -187,12 +238,12 @@ namespace TangGame.UI
 				mExpLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
 			} else {
 				UpUnenchanted (enLv);
-				UpPropsInfo (equipBase);
+				UpEquipsInfo (equipBase);
 				PropsTableLoad ();
 				mGoldSpendLab.text = UIPanelLang.ENCHANTING_IS_NOT_SELECTED;
-				int expToMax = enCXml.GetToMaxExp (enLv,enExp);
-				mGemSpendLab.text = (expToMax * enCXml.gem_spend).ToString();
-				mExpSprite.fillAmount = (float)enExp/(float)enCXml.GetExpSpend (enNextLv);
+				int expToMax = enCXml.GetToMaxExp (enLv, enExp);
+				mGemSpendLab.text = (expToMax * enCXml.gem_spend).ToString ();
+				mExpSprite.fillAmount = (float)enExp / (float)enCXml.GetExpSpend (enNextLv);
 				mExpLab.text = enExp + "/" + enCXml.GetExpSpend (enNextLv);
 			}
 
@@ -200,29 +251,29 @@ namespace TangGame.UI
 
 		/// <summary>
 		/// Selects the hero panel block on clcik.
+		/// 当选择英雄面板的遮罩被点击的时候
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		public void SelectHeroPanelBlockOnClcik (GameObject obj)
+		void SelectHeroPanelBlockOnClcik (GameObject obj)
 		{
 			SelectHeroPanel.SetActive (false);
 		}
 
 		/// <summary>
 		/// Selects the hero button on click.
+		/// 当切换英雄的按钮被点击的时候
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		public void SelectHeroBtnOnClick (GameObject obj)
+		void SelectHeroBtnOnClick (GameObject obj)
 		{
 			this.SelectHero ();
 		}
-
-		private Dictionary<int,HeroAvatarItem> heroAvatarItemTable = new Dictionary<int, HeroAvatarItem> ();
 
 		/// <summary>
 		/// Clears the hero list view.
 		/// 清空列表中的所有的英雄对象
 		/// </summary>
-		public void ClearHeroListView ()
+		void ClearHeroListView ()
 		{
 			foreach (HeroAvatarItem item in heroAvatarItemTable.Values) {
 				item.gameObject.SetActive (false);
@@ -235,7 +286,7 @@ namespace TangGame.UI
 		/// Selects the hero.
 		/// 选择英雄
 		/// </summary>
-		public void SelectHero ()
+		void SelectHero ()
 		{
 			this.SelectHeroPanel.SetActive (true);
 			ClearHeroListView ();
@@ -251,22 +302,10 @@ namespace TangGame.UI
 			this.HeroTable.GetComponent<UITable> ().repositionNow = true;
 
 		}
-
-		/// <summary>
-		/// The properties base item table.
-		/// 背包道具列表
-		/// </summary>
-		public Dictionary<int,PropsItem> propsBaseItemTable = new Dictionary<int,PropsItem> ();
-		/// <summary>
-		/// The properties checked count.
-		/// 被选中装备的数量
-		/// </summary>
-		private Dictionary<PropsItem,int> propsCheckedCountTable = new Dictionary<PropsItem, int> ();
-
 		/// <summary>
 		/// Propertieses the table load.
 		/// </summary>
-		public void PropsTableLoad ()
+		void PropsTableLoad ()
 		{
 
 			foreach (PropsBase propsBase in BaseCache.propsBaseTable.Values) {
@@ -282,7 +321,7 @@ namespace TangGame.UI
 		/// 添加一个道具对象到道具列表中去
 		/// </summary>
 		/// <param name="propsBase">Properties base.</param>
-		public PropsItem AddPorpsItemToPropsTable (PropsBase propsBase)
+		PropsItem AddPorpsItemToPropsTable (PropsBase propsBase)
 		{
 			PropsItem item;
 			if (propsBaseItemTable.ContainsKey (propsBase.Xml.id)) {
@@ -301,17 +340,6 @@ namespace TangGame.UI
 			return item;
 		}
 
-		int mEnExpCurrent = 0;
-		/// <summary>
-		/// The properties exp sum.
-		/// 装备附魔经验总和
-		/// </summary>
-		int mEnExpSum = 0;
-		/// <summary>
-		/// The m en lv up.
-		/// 装备附魔提
-		/// </summary>
-		int mEnLvUp = 0;
 		/// <summary>
 		/// Propsitems the on click.
 		/// 道具被点击
@@ -325,8 +353,7 @@ namespace TangGame.UI
 
 			mEnExpSum += itemTmp.data.Xml.enchant_points;
 			mEnExpCurrent += itemTmp.data.Xml.enchant_points;
-			int expMax = enCXml.GetExpSpend(mEquipBase.Net.enchantsLv + mEnLvUp + 1);
-//			int expTmp = expMax - mEquipBase.Net.enchantsExp;
+			int expMax = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp + 1);
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0)
 				return;
@@ -342,11 +369,11 @@ namespace TangGame.UI
 			} else {
 				propsCheckedCountTable.Add (itemTmp, 1);
 			}
-			while(mEnExpCurrent + 1 > expMax && expMax != 0){
+			while (mEnExpCurrent + 1 > expMax && expMax != 0) {
 				mEnLvUp++;
 				mEnExpCurrent = mEnExpCurrent - expMax;
 //				expTmp = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp);
-				expMax = enCXml.GetExpSpend(mEquipBase.Net.enchantsLv + mEnLvUp + 1);
+				expMax = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp + 1);
 			}
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0) {
@@ -365,7 +392,7 @@ namespace TangGame.UI
 		/// Subs the hero avatar item on click.
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		public void SubHeroAvatarItemOnClick (GameObject obj)
+		void SubHeroAvatarItemOnClick (GameObject obj)
 		{
 			HeroAvatarItem heroAvatarItem = obj.GetComponent<HeroAvatarItem> ();
 			this.UpHeroContent (heroAvatarItem.heroBase);
@@ -376,7 +403,7 @@ namespace TangGame.UI
 		/// 更新是否附魔
 		/// </summary>
 		/// <param name="enchantsLv">Enchants lv.</param>
-		public void UpUnenchanted (int enchantsLv)
+		void UpUnenchanted (int enchantsLv)
 		{
 			if (enchantsLv > 0) {
 				Unenchanted.GetComponent<UILabel> ().text = "";
@@ -403,11 +430,11 @@ namespace TangGame.UI
 		/// Sets the equip list event.
 		/// 设置按钮的点击事件，只能在start中使用一次
 		/// </summary>
-		void SetEquipListEvent ()
+		void SetEquipsEvent ()
 		{
 			EquipItemForEnchants[] items = EquipTable.GetComponentsInChildren<EquipItemForEnchants> (true);
 			foreach (EquipItemForEnchants equipItem in items) {
-				UIEventListener.Get (equipItem.gameObject).onClick += EquipItemForEnchantsOnClick;
+				UIEventListener.Get (equipItem.gameObject).onClick += OnEquipItemFEClick;
 			}
 		}
 
@@ -416,7 +443,7 @@ namespace TangGame.UI
 		/// 装备被点击
 		/// </summary>
 		/// <param name="obj">Object.</param>
-		void EquipItemForEnchantsOnClick (GameObject obj)
+		void OnEquipItemFEClick (GameObject obj)
 		{
 			EquipItemForEnchants equipItem = obj.GetComponent<EquipItemForEnchants> ();
 			if (equipItem != null && equipItem.EquipBase != null && equipItem.EquipBase.Net != null) {
@@ -429,10 +456,10 @@ namespace TangGame.UI
 
 		/// <summary>
 		/// Ups the properties info label.
-		/// 更新信息
+		/// 更新装备的文本信息显示内容
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void UpPropsInfo (EquipBase data)
+		void UpEquipsInfo (EquipBase data)
 		{
 
 			PropsType type = (PropsType)data.Xml.type;
@@ -558,9 +585,6 @@ namespace TangGame.UI
 					infoStr += " %[-]" + Environment.NewLine;
 				}
 			}
-
-
-
 			UILabel label = EquipInfoLabel.GetComponent<UILabel> ();
 			if (label != null) {
 				label.text = infoStr;
@@ -575,7 +599,7 @@ namespace TangGame.UI
 		/// <param name="title">Title.</param>
 		/// <param name="val">Value.</param>
 		/// <param name="enchantingVariable">Enchanting variable.</param>
-		public void AddPropertie (ref string infoStr, string title, int val, float enchantingVariable)
+		void AddPropertie (ref string infoStr, string title, int val, float enchantingVariable)
 		{
 			infoStr += string.Format ("{0}[ff0000] + {1}[-]", title, val);
 			if (enchantingVariable != 0 && Mathf.Round (val * enchantingVariable) != 0) {

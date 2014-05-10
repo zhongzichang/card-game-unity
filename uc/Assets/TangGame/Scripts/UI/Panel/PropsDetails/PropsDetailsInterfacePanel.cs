@@ -70,13 +70,9 @@ namespace TangGame.UI
 			}
 			set {
 				propsDPbean = value;
-			}
-		}
-
-		void OnEnable ()
-		{
-			if (propsDPbean != null && propsDPbean.props != null) {
-				Flush (propsDPbean);
+				if (propsDPbean != null && propsDPbean.props != null) {
+					Flush (propsDPbean);
+				}
 			}
 		}
 
@@ -88,9 +84,6 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
-			if (propsDPbean != null && propsDPbean.props != null) {
-				Flush (propsDPbean);
-			}
 			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
 		}
 		// Update is called once per frame
