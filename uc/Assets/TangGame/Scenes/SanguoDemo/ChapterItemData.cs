@@ -4,9 +4,9 @@ using System.Collections;
 namespace TangGame.UI
 {
   public class ChapterItemData {
-    public string id;
-    public Hashtable stages;
+    public int id;
     public int minLevel;
+    public ArrayList stages = new ArrayList();
   }
 }
 

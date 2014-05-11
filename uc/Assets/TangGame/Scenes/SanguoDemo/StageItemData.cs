@@ -4,7 +4,8 @@ using System.Collections;
 namespace TangGame.UI
 {
   public class StageItemData {
-    public string id;
+    public int id;
+    public int chapterId;
     /// <summary>
     /// 关卡类型
     ///  1.普通关卡，无限制。
