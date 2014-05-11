@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-using TangGame.UI.Base;
+using TangGame.UI;
 
 namespace TangGame.Xml
 {
@@ -142,13 +142,13 @@ namespace TangGame.Xml
 
 
 				//TODO 先写到这个地方到时候再改
-				TangGame.UI.Base.PropsBase propsBase = new TangGame.UI.Base.PropsBase ();
+				TangGame.UI.PropsBase propsBase = new TangGame.UI.PropsBase ();
 				TangGame.Net.PropsNet net = new TangGame.Net.PropsNet ();
 				net.configId = item.id;
 				net.count = a * a % 123;
 				propsBase.Xml = item;
 				propsBase.Net = net;
-				TangGame.UI.Base.BaseCache.propsBaseTable.Add (item.id, propsBase);
+				TangGame.UI.BaseCache.propsBaseTable.Add (item.id, propsBase);
 				a++;
 			}
 		}

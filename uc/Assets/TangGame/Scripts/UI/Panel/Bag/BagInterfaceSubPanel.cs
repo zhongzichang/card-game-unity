@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using TangGame.UI.Base;
+using TangGame.UI;
 
 namespace TangGame.UI
 {
@@ -48,7 +48,7 @@ namespace TangGame.UI
 				bagPanel = NGUITools.FindInParents<BagPanel> (this.gameObject);
 			//TODO 测试数据
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
-			foreach (PropsBase propsBase in TangGame.UI.Base.BaseCache.propsBaseTable.Values) {
+			foreach (PropsBase propsBase in TangGame.UI.BaseCache.propsBaseTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
 				item.Flush (propsBase);
 				propsItems.Add (item.data.Xml.id, item);

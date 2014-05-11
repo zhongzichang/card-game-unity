@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using TangGame.UI.Base;
+using TangGame.UI;
 using System;
 using System.Text.RegularExpressions;
 

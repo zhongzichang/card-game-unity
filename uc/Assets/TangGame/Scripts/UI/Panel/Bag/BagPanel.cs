@@ -4,7 +4,7 @@
 /// </summary>
 using UnityEngine;
 using System.Collections;
-using TangGame.UI.Base;
+using TangGame.UI;
 
 namespace TangGame.UI
 {

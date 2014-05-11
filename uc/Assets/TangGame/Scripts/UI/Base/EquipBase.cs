@@ -5,7 +5,7 @@ using UnityEngine;
 using TangGame.Xml;
 using TangGame.Net;
 
-namespace TangGame.UI.Base
+namespace TangGame.UI
 {
 	public class EquipBase : PropsBase{
 
