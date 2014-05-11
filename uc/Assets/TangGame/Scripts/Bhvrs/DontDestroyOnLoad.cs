@@ -12,7 +12,7 @@ namespace TangGame
 
   public class DontDestroyOnLoad : MonoBehaviour
   {
-    void Start()
+    void Awake()
     {
       DontDestroyOnLoad( gameObject );
     }

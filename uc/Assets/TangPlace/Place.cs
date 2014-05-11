@@ -5,6 +5,7 @@ using System;
 public enum Place
 {
   none,
+  welcome,
   home,
   level
 }
