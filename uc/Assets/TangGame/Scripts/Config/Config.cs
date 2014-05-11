@@ -20,32 +20,32 @@ namespace TangGame
 		/// The properties heroes relationship.
 		/// 道具和英雄之间的关联
 		/// </summary>
-		public static Dictionary <int, ArrayList> propsHeroesRelationship = new Dictionary<int, ArrayList> ();
+		public static Dictionary <int, List<HeroXml>> propsHeroesRelationship = new Dictionary<int, List<HeroXml>> ();
 		/// <summary>
 		/// The properties levels relationship.
 		/// 道具和关卡之间的关联
 		/// </summary>
-		public static  Dictionary <int, ArrayList> propsLevelsRelationship = new Dictionary<int, ArrayList> ();
+		public static  Dictionary <int, List<object>> propsLevelsRelationship = new Dictionary<int, List<object>> ();
 		/// <summary>
 		/// The properties properties relationship.
 		/// 道具和道具之间的关联
 		/// 可合成的道具列表
 		/// </summary>
-		public static Dictionary <int, ArrayList> propsPropsRelationship = new Dictionary<int, ArrayList> ();
+		public static Dictionary <int, List<PropsXml>> propsPropsRelationship = new Dictionary<int, List<PropsXml>> ();
 
 		/// <summary>
 		/// Adds the properties properties relationship.
 		/// </summary>
 		/// <param name="propsId1">Properties id1.</param>
 		/// <param name="propsId2">Properties id2.</param>
-		public static void addPropsPropsRelationship (int propsXmlId1, int propsXmlId2)
+		public static void addPropsPropsRelationship (int propsXmlId, PropsXml propsXml)
 		{
-			if (!propsPropsRelationship.ContainsKey (propsXmlId1)) {
-				propsPropsRelationship.Add (propsXmlId1, new ArrayList ());
+			if (!propsPropsRelationship.ContainsKey (propsXmlId)) {
+				propsPropsRelationship.Add (propsXmlId, new List<PropsXml> ());
 			}
-			ArrayList array = propsPropsRelationship [propsXmlId1];
-			if (!array.Contains (propsXmlId2))
-				array.Add (propsXmlId2);
+			List<PropsXml> array = propsPropsRelationship [propsXmlId];
+			if (!array.Contains (propsXml))
+				array.Add (propsXml);
 		}
 
 		/// <summary>
@@ -53,14 +53,14 @@ namespace TangGame
 		/// </summary>
 		/// <param name="propsXmlId">Properties xml identifier. 道具id</param>
 		/// <param name="heroXmlId">Hero xml identifier. 英雄id</param>
-		public static void addPropsHeroesRelationship (int propsXmlId, int heroXmlId)
+		public static void addPropsHeroesRelationship (int propsXmlId, HeroXml heroXml)
 		{
-			if (!propsPropsRelationship.ContainsKey (propsXmlId)) {
-				propsPropsRelationship.Add (propsXmlId, new ArrayList ());
+			if (!propsHeroesRelationship.ContainsKey (propsXmlId)) {
+				propsHeroesRelationship.Add (propsXmlId, new List<HeroXml> ());
 			}
-			ArrayList array = propsPropsRelationship [propsXmlId];
-			if (!array.Contains (heroXmlId))
-				array.Add (heroXmlId);
+			List<HeroXml> array = propsHeroesRelationship [propsXmlId];
+			if (!array.Contains (heroXml))
+				array.Add (heroXml);
 		}
 	}
 }

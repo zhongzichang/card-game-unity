@@ -165,7 +165,7 @@ namespace TangGame.Xml
 					int configId = Utils.SplitStrByCommaToInt (str) [0];
 					int count = Utils.SplitStrByCommaToInt (str) [1];
 					item.GetSyntheticPropsTable ().Add (configId, count);
-					Config.addPropsPropsRelationship (configId, item.id);
+					Config.addPropsPropsRelationship (configId, item);
 				}
 			}
 		}

@@ -195,7 +195,7 @@ namespace TangGame.Xml
 			int i = 0;
 			foreach (HeroXml item in root.items) {
 				Config.heroXmlTable [item.id] = item;
-				Config.addPropsHeroesRelationship (item.soul_rock_id,item.id);
+				Config.addPropsHeroesRelationship (item.soul_rock_id,item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
 				herobase.Xml = item;
