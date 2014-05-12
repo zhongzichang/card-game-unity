@@ -5,15 +5,17 @@ namespace TangGame
 {
   public class HomeWorldGestures : MonoBehaviour
   {
-
     public CameraScrolling cameraScrolling;
 
     void OnTap (TapGesture gesture)
     { 
-      if (gesture.Selection)
-        Debug.Log ("Tapped object: " + gesture.Selection.name);
-      else
-        Debug.Log ("No object was tapped at " + gesture.Position);
+      if (gesture.Selection) {
+
+        // 测试代码
+        if ("Sprite_main_pve_title_press".Equals (gesture.Selection.name)) {
+          PlaceController.Place = Place.level;
+        }
+      }
     }
 
     void OnSwipe (SwipeGesture gesture)
