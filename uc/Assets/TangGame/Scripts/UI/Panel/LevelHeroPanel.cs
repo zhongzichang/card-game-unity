@@ -47,7 +47,7 @@ namespace TangGame
 
       float gap = 140;
       this.background.width = (int)(40 + gap * data.heroCount);
-      float startX = -(data.heroCount - 1) / 2 * gap;
+      float startX = -((float)(data.heroCount - 1)) / 2 * gap;
       for (int i = 0; i < data.heroCount; i++) {
         GameObject go = GameObject.Instantiate (heroItem.gameObject) as GameObject;
         go.name = "HeroItem_" + i;
