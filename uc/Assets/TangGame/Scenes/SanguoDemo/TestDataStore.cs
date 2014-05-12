@@ -17,32 +17,33 @@ namespace TangGame.UI
         }
     }
 
+    private string[] heroIds = {"AV", "GoldenDragon", "NagaPriest", "SkeletonWarrior", 
+      "BatRider", "Golem", "Necromancersr", "SpellBreaker",
+      "Bone", "GraniteGolem", "OD", "TH",
+      "CM", "Huskar", "OK", "SuicideGoblinjr",
+      "Coco", "JUGG", "POM", "TK",
+      "DOTsr", "KOTL", "Panda", "Tank",
+      "DP", "LOA", "Pugna", "Tauren",
+      "DR", "Lich", "QOP", "Tiny",
+      "DoT", "Lina", "Razor", "Treant",
+      "DragonBaby", "Lion", "SF", "Troll",
+      "DragonTurtle", "Luna", "SG", "Ursa",
+      "ES", "MeatWagon", "SNK", "VS",
+      "Ench", "Med", "SP", "Viper",
+      "Ghoul", "NEC", "Shaman", "WR",
+      "GlaiveThrower", "Naga", "Sil", "Zeus",
+      "Goblinjr", "NagaArcher", "SkeletonArcher", 
+    };
+
     /// <summary>
     /// 生成测试用随机英雄数据
     /// </summary>
     /// <returns>The hero.</returns>
     public HeroItemData RandomHero(){
-      string[] heroIds = {"AV", "GoldenDragon", "NagaPriest", "SkeletonWarrior", 
-        "BatRider", "Golem", "Necromancersr", "SpellBreaker",
-        "Bone", "GraniteGolem", "OD", "TH",
-        "CM", "Huskar", "OK", "SuicideGoblinjr",
-        "Coco", "JUGG", "POM", "TK",
-        "DOTsr", "KOTL", "Panda", "Tank",
-        "DP", "LOA", "Pugna", "Tauren",
-        "DR", "Lich", "QOP", "Tiny",
-        "DoT", "Lina", "Razor", "Treant",
-        "DragonBaby", "Lion", "SF", "Troll",
-        "DragonTurtle", "Luna", "SG", "Ursa",
-        "ES", "MeatWagon", "SNK", "VS",
-        "Ench", "Med", "SP", "Viper",
-        "Ghoul", "NEC", "Shaman", "WR",
-        "GlaiveThrower", "Naga", "Sil", "Zeus",
-        "Goblinjr", "NagaArcher", "SkeletonArcher", 
-      };
-
       HeroItemData hero = new HeroItemData ();
       hero.order = Random.Range(0, heroIds.Length);
       hero.id = heroIds[hero.order];
+      hero.name = "不告诉你";
       hero.rank = Random.Range(1, 10);
       hero.level = Random.Range(1, 99);
       hero.stars = Random.Range(1, 5);
@@ -54,14 +55,26 @@ namespace TangGame.UI
       return hero;
     }
 
-    public RewardItemData RandRewardItem(){
+    public HeroItemData RandomEnemy(string enemyId){
+      HeroItemData enemy = new HeroItemData ();
+      enemy.id = enemyId;
+      enemy.name = "可怕的狗娃";
+      enemy.rank = Random.Range(1, 10);
+      enemy.level = Random.Range(1, 99);
+      enemy.stars = Random.Range(1, 5);
+      return enemy;
+    }
+
+    public RewardItemData RandRewardItem(string rewardId){
       RewardItemData item = new RewardItemData ();
-      item.id = "equip-374";
+      item.id = rewardId;
       item.name = "东南枝";
+      item.type = Random.Range (1, 3);
+      item.rank = Random.Range (1, 5);
       item.minLevel = 20;
       item.goldCost = 4000;
       item.detailDesc = "生命回复-100";
-      item.briefDesc = "日照香炉生紫烟";
+      item.briefDesc = "狗娃的必杀技";
       return item;
     }
 
@@ -93,6 +106,9 @@ namespace TangGame.UI
         stage.type = 1;
         stage.status = 2;
       }
+      stage.enemyIds = "Axe,DoT,DoT,CM";
+      stage.bossId = "Zeus";
+      stage.rewardIds = "371,372,373,374";
       return stage;
     }
   }

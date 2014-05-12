@@ -52,7 +52,7 @@ namespace TangGame.UI
       handler.updateToggle (heroId);
     }
 
-    private HeroItemData GetHeroById(string heroId){
+    public HeroItemData GetHeroById(string heroId){
       return (HeroItemData)this.heroes [heroId];
     }
   }

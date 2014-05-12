@@ -5,6 +5,10 @@ namespace TangLevel
 {
   public class UIManager : MonoBehaviour
   {
+    /// <summary>
+    /// 下一个子关卡
+    /// </summary>
+    public GameObject nextSubLevelBtn;
 
     // 血量槽
     public FillMonitor[] greenHpMonitors;

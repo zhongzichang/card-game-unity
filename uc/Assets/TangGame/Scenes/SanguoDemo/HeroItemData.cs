@@ -6,6 +6,10 @@ namespace TangGame.UI
   public class HeroItemData{
 
     public string id;
+    /// <summary>
+    /// 英雄名称
+    /// </summary>
+    public string name;
 
     /// <summary>
     /// 出场的序列
