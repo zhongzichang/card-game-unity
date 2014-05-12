@@ -5,6 +5,8 @@ using TangGame.UI;
 namespace TangGame{
 	public class BattleResultPanel : MonoBehaviour {
 
+		public const string NAME = "BattleResultPanel";
+
 		public GameObject winGroup;
 		public UIEventListener winNextBtn;
 		public UIEventListener winReplayBtn;
@@ -18,6 +20,7 @@ namespace TangGame{
 		public UIEventListener loseNextBtn;
 		public UISprite[] loseSprites;
 
+		private object mParam;
 
 		void Awake(){
 			winNextBtn.onClick += NextBtnHandler;
@@ -45,10 +48,14 @@ namespace TangGame{
 
 			propInfoItem.data = prop;
 		}
-		
-		// Update is called once per frame
-		void Update () {
-			
+
+		public object param{
+			get{return this.mParam;}
+			set{this.mParam = value;UpdateData();}
+		}
+
+		private void UpdateData(){
+
 		}
 
 

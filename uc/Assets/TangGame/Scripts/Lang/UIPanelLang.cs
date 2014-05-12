@@ -158,6 +158,11 @@ namespace TangGame.UI
 		/// 战斗结果界面中的“经验已满”
 		public const string BATTLE_FULL_EXP = "经验已满" ;
 
+		/// 战斗结果数据界面中的“我方\n输出伤害”
+		public const string BATTLE_OUR_DAMAGE = "我方\n输出伤害" ;
+		/// 战斗结果数据界面中的“敌方\n输出伤害”
+		public const string BATTLE_ENEMY_DAMAGE = "敌方\n输出伤害" ;
+
 		/// 道具Props界面“需求等级”
 		public const string TIPS_LEVEL = "需求等级：{0}" ;
 
