@@ -28,6 +28,7 @@ namespace TangGame.UI
 		private FragmentInterfaceSubPanel mInterPanel;
 		private FragmentPropsInfoSubPanel mInfoPanel;
 		private FragmentSynthesisSubPanel mSyntPanel;
+		private FragmentSellSubPanel mSellPanel;
 
 		void Awake(){
 			DynamicBindUtil.BindScriptAndProperty (FragmentPropsInfoSubPanel,FragmentPropsInfoSubPanel.name);

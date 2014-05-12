@@ -55,7 +55,7 @@ namespace TangGame.UI
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
 			foreach (PropsBase propsBase in TangGame.UI.BaseCache.propsBaseTable.Values) {
 				if (PropsType.DEBRIS != (PropsType)propsBase.Xml.type)
-//					continue;
+					continue;
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
 				item.Flush (propsBase);
 				scrollItems.Add (item.data.Xml.id, item);
@@ -131,7 +131,9 @@ namespace TangGame.UI
 		/// <param name="go">Go.</param>
 		void ScrollItemOnClick (GameObject go)
 		{
-			//TODO 当点击后触发
+			PropsItem item = go.GetComponent<PropsItem> ();
+			if (item != null && item.data != null)
+				mInfoPanel.props = item.data;
 		}
 
 		#endregion
