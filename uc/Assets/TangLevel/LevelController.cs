@@ -184,12 +184,14 @@ namespace TangLevel
     /// 当点击暂停面板的继续按钮
     /// </summary>
     /// <param name="g">The green component.</param>
-    private void OnContinueBtnClick(GameObject g){
+    private void OnContinueBtnClick (GameObject g)
+    {
       Resume ();
       levelPausePanel.gameObject.SetActive (false);
     }
 
-    private void OnQuitBtnClick(GameObject g){
+    private void OnQuitBtnClick (GameObject g)
+    {
       LeftLevel ();
     }
 
@@ -270,6 +272,9 @@ namespace TangLevel
       if (levelUIRoot.activeSelf) {
         levelUIRoot.SetActive (false);
       }
+
+      // 暂停强设置为 home ，等加上 History 再做处理
+      PlaceController.Place = Place.home;
 
     }
 
@@ -439,9 +444,14 @@ namespace TangLevel
                 RaiseChallengeSuccess (null, EventArgs.Empty);
               }
             } else {
+              // 子关卡完成
               if (RaiseSubLevelCleaned != null) {
                 RaiseSubLevelCleaned (null, EventArgs.Empty);
               }
+
+              // 显示下一子关卡按钮
+              if (!uiMgr.nextSubLevelBtn.activeSelf)
+                uiMgr.nextSubLevelBtn.SetActive (true);
             }
           }
         }
@@ -631,6 +641,7 @@ namespace TangLevel
         if (hero.hp > 0) {
           GameObject g = AddHeroToScene (hero);
           LevelContext.selfGobjs.Add (g);
+          LevelContext.SubLevelBeganGobjs.Add (g);
         }
       }
 
@@ -645,6 +656,13 @@ namespace TangLevel
       ListenSelftHeros ();
       // 敌方英雄
       ListenEnemyHeros ();
+
+      // UI 控制 --
+      // 隐藏下一个小关的按钮
+      if (uiMgr.nextSubLevelBtn.activeSelf) {
+        uiMgr.nextSubLevelBtn.SetActive (false);
+      }
+
 
     }
 
@@ -673,6 +691,7 @@ namespace TangLevel
       // 确保清场
       LevelContext.enemyGobjs.Clear ();
       LevelContext.selfGobjs.Clear ();
+      LevelContext.SubLevelBeganGobjs.Clear ();
 
       // 释放其他(背景，特效)资源
       GobjManager.ReleaseAll (false);
@@ -684,9 +703,10 @@ namespace TangLevel
     /// </summary>
     private static void ListenSelftHeros ()
     {
-
+      // 得到进子关卡时的英雄数据
       List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
-      List<GameObject>.Enumerator gobjEnum = LevelContext.selfGobjs.GetEnumerator ();
+      // 得到进子关卡时的英雄游戏对象
+      List<GameObject>.Enumerator gobjEnum = LevelContext.SubLevelBeganGobjs.GetEnumerator ();
 
       int i = 0;
       while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
@@ -719,9 +739,10 @@ namespace TangLevel
     /// </summary>
     private static void UnlistenSelfHeros ()
     {
-
+      // 得到进子关卡时的英雄数据
       List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
-      List<GameObject>.Enumerator gobjEnum = LevelContext.AliveSelfGobjs.GetEnumerator ();
+      // 得到进子关卡时的英雄游戏对象
+      List<GameObject>.Enumerator gobjEnum = LevelContext.SubLevelBeganGobjs.GetEnumerator ();
 
       int i = 0;
       while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {

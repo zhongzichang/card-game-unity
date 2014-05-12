@@ -145,6 +145,11 @@ namespace TangLevel
       }
     }
 
+    /// <summary>
+    /// 子关卡开始时活着的英雄
+    /// </summary>
+    public static List<GameObject> SubLevelBeganGobjs = new List<GameObject> ();
+
     public static bool isPause = false;
 
     #endregion
