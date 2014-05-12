@@ -65,11 +65,11 @@ namespace TangLevel
 
     public static GameObject levelUIRoot;
     public static UIManager uiMgr = null;
-
-    public UIAnchor bottomAnchor;
-
-    private static TUI.UIPanelNodeManager bottomPanelMgr;
+    private static TUI.UIPanelNodeManager centerPanelMgr;
     private static TG.LevelHeroPanel levelHeroPanel;
+    private static TG.LevelPausePanel levelPausePanel;
+    public GameObject uiRoot;
+    public UIAnchor centerAnchor;
 
     #endregion
 
@@ -78,20 +78,42 @@ namespace TangLevel
     void Awake ()
     {
       // UI ----
+      if (uiRoot != null) {
 
-      levelUIRoot = GameObject.Find ("LevelUIRoot");
-      if (levelUIRoot == null) {
-        levelUIRoot = NewUIRoot ();
-      }
-      if (levelUIRoot != null) {
-        uiMgr = levelUIRoot.GetComponent<UIManager> ();
-      }
-      if (bottomAnchor != null) {
-        bottomPanelMgr = new TUI.UIPanelNodeManager (bottomAnchor, OnBottomPanelEvent);
-        bottomPanelMgr.LazyOpen (UIContext.HERO_OP_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
-          TUI.UIPanelNode.BlockMode.NONE);
-      }
+        // 确保 LevelRootUI 的存在
+        levelUIRoot = uiRoot;
+        if (levelUIRoot == null) {
+          levelUIRoot = NewUIRoot ();
+        }
 
+        if (levelUIRoot != null) {
+
+          // 隐藏整个UI
+          if (levelUIRoot.activeSelf) {
+            levelUIRoot.SetActive (false);
+          }
+
+          // 血条
+          uiMgr = levelUIRoot.GetComponent<UIManager> ();
+
+        }
+
+        if (centerAnchor != null) {
+
+          // 下面的英雄操作面板
+          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnBottomAnchorEvent);
+          centerPanelMgr.LazyOpen (UIContext.HERO_OP_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
+            TUI.UIPanelNode.BlockMode.NONE);
+
+          // 中间的关卡暂停面板
+          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnCenterAnchorEvent);
+          centerPanelMgr.LazyOpen (UIContext.LEVEL_PAUSE_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
+            TUI.UIPanelNode.BlockMode.SPRITE);
+        }
+
+      } else {
+        Debug.LogError ("Can not found Level UI Root");
+      }
       // Scene ----
 
       LevelContext.InLevel = false;
@@ -114,7 +136,12 @@ namespace TangLevel
 
     #region UIEventHandlers
 
-    void OnBottomPanelEvent (object sender, TUI.PanelEventArgs args)
+    /// <summary>
+    /// 底下英雄交互面板事件
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnBottomAnchorEvent (object sender, TUI.PanelEventArgs args)
     {
       TUI.UIPanelNode node = sender as TUI.UIPanelNode;
       if (node != null) {
@@ -122,11 +149,50 @@ namespace TangLevel
         case TUI.EventType.OnLoad:
           // 面板加载成功
           if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
+            node.gameObject.SetActive (false);
             levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
           }
           break;
         }
       }
+    }
+
+    /// <summary>
+    /// 关卡暂停面板
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnCenterAnchorEvent (object sender, TUI.PanelEventArgs args)
+    {
+      TUI.UIPanelNode node = sender as TUI.UIPanelNode;
+      if (node != null) {
+        switch (args.EventType) {
+        case TUI.EventType.OnLoad:
+          // 面板加载成功
+          if (UIContext.LEVEL_PAUSE_PANEL.Equals (node.name)) {
+            node.gameObject.SetActive (false);
+            levelPausePanel = node.gameObject.GetComponent<TG.LevelPausePanel> ();
+            levelPausePanel.continueBtn.onClick += OnContinueBtnClick;
+            levelPausePanel.quitBtn.onClick += OnQuitBtnClick;
+          }
+          break;
+        }
+      }
+    }
+
+    /// <summary>
+    /// 当点击暂停面板的继续按钮
+    /// </summary>
+    /// <param name="g">The green component.</param>
+    private void OnContinueBtnClick (GameObject g)
+    {
+      Resume ();
+      levelPausePanel.gameObject.SetActive (false);
+    }
+
+    private void OnQuitBtnClick (GameObject g)
+    {
+      LeftLevel ();
     }
 
     #endregion
@@ -149,7 +215,6 @@ namespace TangLevel
     /// <param name="group">我方小组</param>
     public static void ChallengeLevel (int levelId, Group group)
     {
-
 
       // 确保不在关卡里面
       if (!LevelContext.InLevel) {
@@ -197,10 +262,19 @@ namespace TangLevel
       // 取消 HeroOpPanel 对 英雄数据变化的监听
       UnsetHeroOpPanel ();
 
+      // 是否暂停状态
+      if (LevelContext.isPause) {
+        LevelContext.isPause = false;
+        // 暂停面板
+        levelPausePanel.gameObject.SetActive (false);
+      }
       // 隐藏UI
       if (levelUIRoot.activeSelf) {
         levelUIRoot.SetActive (false);
       }
+
+      // 暂停强设置为 home ，等加上 History 再做处理
+      PlaceController.Place = Place.home;
 
     }
 
@@ -209,8 +283,14 @@ namespace TangLevel
     /// </summary>
     public static void Pause ()
     {
-      if (RaisePause != null) {
-        RaisePause (null, EventArgs.Empty);
+      if (!LevelContext.isPause) {
+        LevelContext.isPause = true;
+
+        if (RaisePause != null) {
+          RaisePause (null, EventArgs.Empty);
+        }
+        // 显示暂停面板
+        levelPausePanel.gameObject.SetActive (true);
       }
     }
 
@@ -219,8 +299,11 @@ namespace TangLevel
     /// </summary>
     public static void Resume ()
     {
-      if (RaiseResume != null) {
-        RaiseResume (null, EventArgs.Empty);
+      if (LevelContext.isPause) {
+        LevelContext.isPause = false;
+        if (RaiseResume != null) {
+          RaiseResume (null, EventArgs.Empty);
+        }
       }
     }
 
@@ -361,9 +444,14 @@ namespace TangLevel
                 RaiseChallengeSuccess (null, EventArgs.Empty);
               }
             } else {
+              // 子关卡完成
               if (RaiseSubLevelCleaned != null) {
                 RaiseSubLevelCleaned (null, EventArgs.Empty);
               }
+
+              // 显示下一子关卡按钮
+              if (!uiMgr.nextSubLevelBtn.activeSelf)
+                uiMgr.nextSubLevelBtn.SetActive (true);
             }
           }
         }
@@ -553,6 +641,7 @@ namespace TangLevel
         if (hero.hp > 0) {
           GameObject g = AddHeroToScene (hero);
           LevelContext.selfGobjs.Add (g);
+          LevelContext.SubLevelBeganGobjs.Add (g);
         }
       }
 
@@ -567,6 +656,13 @@ namespace TangLevel
       ListenSelftHeros ();
       // 敌方英雄
       ListenEnemyHeros ();
+
+      // UI 控制 --
+      // 隐藏下一个小关的按钮
+      if (uiMgr.nextSubLevelBtn.activeSelf) {
+        uiMgr.nextSubLevelBtn.SetActive (false);
+      }
+
 
     }
 
@@ -595,6 +691,7 @@ namespace TangLevel
       // 确保清场
       LevelContext.enemyGobjs.Clear ();
       LevelContext.selfGobjs.Clear ();
+      LevelContext.SubLevelBeganGobjs.Clear ();
 
       // 释放其他(背景，特效)资源
       GobjManager.ReleaseAll (false);
@@ -606,9 +703,10 @@ namespace TangLevel
     /// </summary>
     private static void ListenSelftHeros ()
     {
-
+      // 得到进子关卡时的英雄数据
       List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
-      List<GameObject>.Enumerator gobjEnum = LevelContext.selfGobjs.GetEnumerator ();
+      // 得到进子关卡时的英雄游戏对象
+      List<GameObject>.Enumerator gobjEnum = LevelContext.SubLevelBeganGobjs.GetEnumerator ();
 
       int i = 0;
       while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
@@ -641,9 +739,10 @@ namespace TangLevel
     /// </summary>
     private static void UnlistenSelfHeros ()
     {
-
+      // 得到进子关卡时的英雄数据
       List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
-      List<GameObject>.Enumerator gobjEnum = LevelContext.AliveSelfGobjs.GetEnumerator ();
+      // 得到进子关卡时的英雄游戏对象
+      List<GameObject>.Enumerator gobjEnum = LevelContext.SubLevelBeganGobjs.GetEnumerator ();
 
       int i = 0;
       while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
@@ -953,24 +1052,28 @@ namespace TangLevel
     /// </summary>
     private static void SetupHeroOpPanel ()
     {
+      if (levelHeroPanel != null) {
 
-      // 创建英雄UI操作面板
-      Hero[] heros = LevelContext.selfGroup.heros;
-      TG.LevelHeroPanelData data = new TG.LevelHeroPanelData ();
-      data.heroCount = LevelContext.selfGroup.heros.Length;
-      levelHeroPanel.param = data;
-      List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
-      int i = 0;
-      while (wgtEnum.MoveNext ()) {
-        Hero h = heros [i];
-        TG.LevelHeroItem w = wgtEnum.Current;
+        // 创建英雄UI操作面板
+        Hero[] heros = LevelContext.selfGroup.heros;
+        TG.LevelHeroPanelData data = new TG.LevelHeroPanelData ();
+        data.heroCount = LevelContext.selfGroup.heros.Length;
+        levelHeroPanel.param = data;
+        List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
+        int i = 0;
+        while (wgtEnum.MoveNext ()) {
+          Hero h = heros [i];
+          TG.LevelHeroItem w = wgtEnum.Current;
 
-        // 英雄头像 ----
-        w.SetHeroId (h.id);
-        h.raiseHpChange += w.SetHp;
-        h.raiseMpChange += w.SetMp;
-        i++;
+          // 英雄头像 ----
+          w.SetHeroId (h.id);
+          h.raiseHpChange += w.SetHp;
+          h.raiseMpChange += w.SetMp;
+          i++;
 
+        }
+
+        levelHeroPanel.gameObject.SetActive (true);
       }
     }
 
@@ -980,18 +1083,23 @@ namespace TangLevel
     private static void UnsetHeroOpPanel ()
     {
 
-      // 创建英雄UI操作面板
-      Hero[] heros = LevelContext.selfGroup.heros;
-      List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
-      int i = 0;
-      while (wgtEnum.MoveNext ()) {
-        Hero h = heros [i];
-        TG.LevelHeroItem w = wgtEnum.Current;
-        // 英雄头像 ----
-        h.raiseHpChange -= w.SetHp;
-        h.raiseMpChange -= w.SetMp;
-        i++;
+      if (levelHeroPanel != null) {
 
+        // 创建英雄UI操作面板
+        Hero[] heros = LevelContext.selfGroup.heros;
+        List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
+        int i = 0;
+        while (wgtEnum.MoveNext ()) {
+          Hero h = heros [i];
+          TG.LevelHeroItem w = wgtEnum.Current;
+          // 英雄头像 ----
+          h.raiseHpChange -= w.SetHp;
+          h.raiseMpChange -= w.SetMp;
+          i++;
+
+        }
+
+        levelHeroPanel.gameObject.SetActive (false);
       }
     }
 
