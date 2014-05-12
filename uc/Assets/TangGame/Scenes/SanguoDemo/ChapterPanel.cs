@@ -5,10 +5,8 @@ namespace TangGame.UI
 {
   public class ChapterPanel : MonoBehaviour {
 
-    public GameObject tag;
-    public ArrayList chapters;
-
-    private Hashtable chapterObjs = new Hashtable();
+    public GameObject chaptersGrid;
+    private BetterList<ChapterItemObject> chapterObjs = new BetterList<ChapterItemObject>();
 
   	// Use this for initialization
   	void Start () {
@@ -20,27 +18,36 @@ namespace TangGame.UI
   	
   	}
 
-//    private void AddHeroToList(HeroItemData data){
-//      HeroStore.Instance.AddHero (data);
-//      HeroItemUpdateHandler handler = HeroStore.Instance.GetUpdateHandler(data.id);
-//
-//      {
-//        HeroItemObject obj = CreateHeroItemObj (selectedGrid.gameObject, data);
-//        heroObjs [obj.HeroId] = obj;
-//        handler.updateMp += UpdateMp;
+
+    private void AddChapter(ChapterItemData data){
+      ChapterItemObject obj = CreateChapterItemObject (chaptersGrid, data);
+    }
+
+    private ChapterItemObject CreateChapterItemObject(GameObject parent, ChapterItemData data){
+      GameObject obj = NGUITools.AddChild (parent, (GameObject)Resources.Load("Prefabs/PvE/ChapterItemObj"));
+
+      ChapterItemObject chapter = (ChapterItemObject)obj.GetComponent<ChapterItemObject> ();
+      chapter.Refresh (data);
+
+      return chapter;
+    }
+
+//    void OnGUI(){
+//      if (GUILayout.Button ("AddCapter")) {
+//        AddChapter (TestDataStore.Instance.RandomChapter (0));
 //      }
 //    }
 
-    private void UpdateStatus (string stageId, int status){
-      StageItemObject stage = (StageItemObject) chapterObjs [stageId];
+    private void UpdateStatus (int chapterId, int stageId, int status){
+      ChapterItemObject chapter = (ChapterItemObject)chapterObjs [chapterId];
+      if (chapter == null)
+        return;
+
+      StageItemObject stage = (StageItemObject) chapter.stageObjs [stageId];
       if (stage == null)
         return;
-      stage.UpdateStatus (status);
-    }
 
-    private void OnItemClicked(GameObject obj){
-      StageItemObject hero = (StageItemObject)obj.GetComponent<StageItemObject> (); 
-      Debug.Log ("OnItemClicked");
+      stage.UpdateStatus (status);
     }
   }
 }

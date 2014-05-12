@@ -40,32 +40,60 @@ namespace TangGame.UI
         "Goblinjr", "NagaArcher", "SkeletonArcher", 
       };
 
-      HeroItemData data = new HeroItemData ();
-      data.order = Random.Range(0, heroIds.Length);
-      data.id = heroIds[data.order];
-      data.rank = Random.Range(1, 10);
-      data.level = Random.Range(1, 99);
-      data.stars = Random.Range(1, 5);
-      data.lineType = Random.Range(0, 3);
-      data.hp = Random.Range(1, 100);
-      data.hpMax = 100;
-      data.mp = Random.Range(1, 100);
-      data.mpMax = 100;
-      return data;
+      HeroItemData hero = new HeroItemData ();
+      hero.order = Random.Range(0, heroIds.Length);
+      hero.id = heroIds[hero.order];
+      hero.rank = Random.Range(1, 10);
+      hero.level = Random.Range(1, 99);
+      hero.stars = Random.Range(1, 5);
+      hero.lineType = Random.Range(0, 3);
+      hero.hp = Random.Range(1, 100);
+      hero.hpMax = 100;
+      hero.mp = Random.Range(1, 100);
+      hero.mpMax = 100;
+      return hero;
     }
 
-    public StageItemData RandomStage(){
-      StageItemData data = new StageItemData ();
-      data.desc = "这里有一个名叫New Blast的Boss。";
-      data.name = "空手接白刃";
-      data.id = "stage-1";
-      data.maxCountById = 3;
-      data.vitCost = 6;
-      data.type = Random.Range(1,2);
-      data.stars = Random.Range(0, 3);
-      data.minLevel = Random.Range(40, 50);
-      data.status = Random.Range(1,3);
-      return data;
+    public RewardItemData RandRewardItem(){
+      RewardItemData item = new RewardItemData ();
+      item.id = "equip-374";
+      item.name = "东南枝";
+      item.minLevel = 20;
+      item.goldCost = 4000;
+      item.detailDesc = "生命回复-100";
+      item.briefDesc = "日照香炉生紫烟";
+      return item;
+    }
+
+    public ChapterItemData RandomChapter(int chapterId){
+      ChapterItemData chapter = new ChapterItemData ();
+      chapter.id = chapterId;
+      chapter.minLevel = Random.Range (40, 50);
+      for (int stageId = 0; stageId < 2; stageId++) {
+        StageItemData stage = RandomStage(chapterId, stageId);
+        chapter.stages.Add(stage);
+      }
+      return chapter;
+    }
+
+    public StageItemData RandomStage(int chapterId, int stageId){
+      StageItemData stage = new StageItemData ();
+      stage.id = stageId;
+      stage.chapterId = chapterId;
+      stage.desc = "这里有一个名叫New Blast的Boss。";
+      stage.name = "空手接白刃";
+      stage.maxCountById = 3;
+      stage.vitCost = 6;
+      if (stageId == 1) {
+        stage.type = 2;
+        stage.stars = 2;
+        stage.minLevel = 40;
+        stage.status = 3;
+      } else {
+        stage.type = 1;
+        stage.status = 2;
+      }
+      return stage;
     }
   }
 }

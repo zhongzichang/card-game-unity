@@ -4,7 +4,7 @@
 using UnityEngine;
 using TangGame.Xml;
 
-namespace TangGame.UI.Base
+namespace TangGame.UI
 {
 	public class SkillBase{
 		private SkillXml xml;

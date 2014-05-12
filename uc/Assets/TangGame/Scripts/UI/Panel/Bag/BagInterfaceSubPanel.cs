@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using TangGame.UI.Base;
+using TangGame.UI;
 
 namespace TangGame.UI
 {
@@ -46,9 +46,17 @@ namespace TangGame.UI
 
 			if(bagPanel == null)
 				bagPanel = NGUITools.FindInParents<BagPanel> (this.gameObject);
-			//TODO 测试数据
+
+			LoadAllPropsItem ();
+		}
+		/// <summary>
+		/// Loads all properties item.
+		/// 加载所有的物品对象到列表中去
+		/// </summary>
+		public void LoadAllPropsItem(){
+			//FIXME 修改prefab的加载方式
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
-			foreach (PropsBase propsBase in TangGame.UI.Base.BaseCache.propsBaseTable.Values) {
+			foreach (PropsBase propsBase in TangGame.UI.BaseCache.propsBaseTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
 				item.Flush (propsBase);
 				propsItems.Add (item.data.Xml.id, item);
@@ -56,10 +64,8 @@ namespace TangGame.UI
 
 			}
 			PropsTable.GetComponent<UITable> ().repositionNow = true;
-			//TODO 测试数据
-
-
 		}
+
 		// Update is called once per frame
 		void Update ()
 		{

@@ -195,9 +195,9 @@ namespace TangGame.Xml
 			int i = 0;
 			foreach (HeroXml item in root.items) {
 				Config.heroXmlTable [item.id] = item;
-				Config.addPropsHeroesRelationship (item.soul_rock_id,item.id);
+				Config.addPropsHeroesRelationship (item.soul_rock_id,item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
-				TangGame.UI.Base.HeroBase herobase = new TangGame.UI.Base.HeroBase ();
+				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
 				herobase.Xml = item;
 				herobase.Net = new TangGame.Net.HeroNet ();
 				herobase.Net.configId = item.id;
@@ -213,7 +213,7 @@ namespace TangGame.Xml
 				equip.enchantsLv = 1;
 				equip.enchantsExp = 30;
 				herobase.Net.equipList [0] = equip;
-				TangGame.UI.Base.BaseCache.heroBeseTable.Add (item.id, herobase);
+				TangGame.UI.BaseCache.heroBeseTable.Add (item.id, herobase);
 				i++;
 			}
 		}

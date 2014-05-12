@@ -2,7 +2,7 @@
 ///   Config for UI
 /// </summary>
 using System.Collections.Generic;
-namespace TangGame.UI.Base
+namespace TangGame.UI
 {
 	public class BaseCache
 	{

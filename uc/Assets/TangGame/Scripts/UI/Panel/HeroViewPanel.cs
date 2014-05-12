@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using PureMVC.Interfaces;
 using PureMVC.Patterns;
 using TangUI;
-using TangGame.UI.Base;
+using TangGame.UI;
 
 namespace TangGame.UI
 {
@@ -54,7 +54,7 @@ namespace TangGame.UI
 		/// 加载所有的英雄
 		/// </summary>
 		void LoadHeroAll(){
-			foreach(HeroBase herobase in TangGame.UI.Base.BaseCache.heroBeseTable.Values){
+			foreach(HeroBase herobase in TangGame.UI.BaseCache.heroBeseTable.Values){
 				this.UpHeroItem (herobase);
 			}
 			this.repositionNow ();

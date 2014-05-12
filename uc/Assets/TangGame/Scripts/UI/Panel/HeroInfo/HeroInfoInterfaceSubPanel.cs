@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using TangGame.UI.Base;
+using TangGame.UI;
 using TDB = TangDragonBones;
 
 namespace TangGame.UI

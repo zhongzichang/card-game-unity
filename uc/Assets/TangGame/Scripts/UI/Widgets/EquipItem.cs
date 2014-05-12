@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using System.Collections;
-using TangGame.UI.Base;
+using TangGame.UI;
 using TangGame.Xml;
 using TangGame.Net;
 using TangUI;

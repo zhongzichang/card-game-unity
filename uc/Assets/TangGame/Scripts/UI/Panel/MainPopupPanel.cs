@@ -48,7 +48,7 @@ namespace TangGame
 		void OnDebrisMenuClick (GameObject obj)
 		{
 
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.ENCHANTS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.FRAGMENT_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
 			this.CloseMenu ();
 		}
 

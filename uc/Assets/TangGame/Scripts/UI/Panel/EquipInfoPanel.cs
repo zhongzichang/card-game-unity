@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TangGame.UI.Base;
+using System.Collections.Generic;
+using TangGame.UI;
 using System;
 using System.Text.RegularExpressions;
 
@@ -326,9 +327,9 @@ namespace TangGame.UI
 			}
 			//如果是灵魂石
 			if (PropsType.SOULROCK == type) {
-				ArrayList heroids = Config.propsHeroesRelationship [data.Xml.id];
-				if (heroids.Count > 0) {
-					TangGame.Xml.HeroXml heroxml = Config.heroXmlTable [(int)heroids [0]];
+				List<Xml.HeroXml> heroXmlList = Config.propsHeroesRelationship [data.Xml.id];
+				if (heroXmlList.Count > 0) {
+					Xml.HeroXml heroxml = heroXmlList [0];
 					int count = Config.evolveXmlTable [heroxml.evolve].val;
 					infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroxml.name);
 				}
