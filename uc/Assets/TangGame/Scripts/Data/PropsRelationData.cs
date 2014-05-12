@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TangGame.Xml;
+
 namespace TangGame.UI{
 	/// 道具关联，道具掉落配置和英雄可装备配置，根据关卡配置表中的解析而来
 	public class PropsRelationData {

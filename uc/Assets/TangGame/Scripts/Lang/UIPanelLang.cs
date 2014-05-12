@@ -161,5 +161,12 @@ namespace TangGame.UI
 		/// 道具Props界面“需求等级”
 		public const string TIPS_LEVEL = "需求等级：{0}" ;
 
+		/// 道具详情界面“获得途径”
+		public const string PROPS_DETAILS_GET = "获得途径" ;
+		/// 道具详情界面“可装备英雄”
+		public const string PROPS_DETAILS_HERO = "可装备英雄" ;
+		/// 道具详情界面“可合成装备”
+		public const string PROPS_DETAILS_SYNTHETIC = "可合成装备" ;
+
 	}
 }
