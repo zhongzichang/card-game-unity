@@ -54,6 +54,17 @@ namespace TangGame.UI
       return hero;
     }
 
+    public RewardItemData RandRewardItem(){
+      RewardItemData item = new RewardItemData ();
+      item.id = "equip-374";
+      item.name = "东南枝";
+      item.minLevel = 20;
+      item.goldCost = 4000;
+      item.detailDesc = "生命回复-100";
+      item.briefDesc = "日照香炉生紫烟";
+      return item;
+    }
+
     public ChapterItemData RandomChapter(int chapterId){
       ChapterItemData chapter = new ChapterItemData ();
       chapter.id = chapterId;

@@ -20,6 +20,13 @@ namespace TangGame.UI
       get { return heroData; } 
       set { heroData=value; } 
     }
+
+    private bool showLevel = true;
+    public bool ShowLevel {
+      get { return showLevel; }
+      set { showLevel = value; }
+    }
+
     public string HeroId{
       get { return heroData.id; } 
     }
@@ -28,7 +35,11 @@ namespace TangGame.UI
       HeroData = data;
       icon.spriteName = GetIconName(data);
       iconFrame.spriteName = GetIconFrameName(data);
-      level.text = data.level.ToString();
+      if (showLevel) {
+        level.text = data.level.ToString ();
+      } else {
+        level.enabled = false;
+      }
       mp.fillAmount = data.mp / data.mpMax;
       hp.fillAmount = data.hp / data.hpMax;
       stars.maxPerLine = data.stars;

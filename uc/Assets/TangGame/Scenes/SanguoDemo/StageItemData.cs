@@ -42,7 +42,7 @@ namespace TangGame.UI
     /// <summary>
     /// 14  怪物一览      {怪物id1,怪物id2...}在关卡准备界面上，显示该关卡有哪些怪物，显示顺序同数组顺序。特别的，数组最后一个怪物为 boss。
     /// </summary>
-    public string monster;
+    public string enemies;
     /// <summary>
     /// 15  掉落一览      {物品id1,物品id2...}在关卡准备界面上，显示该关卡可能掉落的物品，显示顺序同数组顺序。                
     /// </summary>
