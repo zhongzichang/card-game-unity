@@ -12,11 +12,10 @@ namespace TangLevel
   /// </summary>
   public class LevelController : MonoBehaviour
   {
-
     public static readonly string GOBJ_NAME = "LevelController";
     public static readonly string UI_ROOT_NAME = "LevelUIRoot";
 
-#region Events
+    #region Events
 
     /// <summary>
     /// 成功进入关卡
@@ -55,41 +54,42 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler UniqueSkillFinish;
 
-#endregion
+    #endregion
 
     /// <summary>
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
 
-#region UIAttribures
+    #region UIAttribures
 
     public static GameObject levelUIRoot;
     public static UIManager uiMgr = null;
+
     public UIAnchor bottomAnchor;
+
     private static TUI.UIPanelNodeManager bottomPanelMgr;
     private static TG.LevelHeroPanel levelHeroPanel;
 
-#endregion
+    #endregion
 
-#region MonoMethods
+    #region MonoMethods
 
     void Awake ()
     {
       // UI ----
 
       levelUIRoot = GameObject.Find ("LevelUIRoot");
-      if( levelUIRoot == null )
-	{
-	  levelUIRoot = NewUIRoot();
-	}
+      if (levelUIRoot == null) {
+        levelUIRoot = NewUIRoot ();
+      }
       if (levelUIRoot != null) {
         uiMgr = levelUIRoot.GetComponent<UIManager> ();
       }
       if (bottomAnchor != null) {
         bottomPanelMgr = new TUI.UIPanelNodeManager (bottomAnchor, OnBottomPanelEvent);
         bottomPanelMgr.LazyOpen (UIContext.HERO_OP_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
-				 TUI.UIPanelNode.BlockMode.NONE);
+          TUI.UIPanelNode.BlockMode.NONE);
       }
 
       // Scene ----
@@ -110,11 +110,9 @@ namespace TangLevel
       TDB.DbgoManager.RaiseLoadedEvent -= OnDragonBonesResLoaded;
     }
 
-#endregion
+    #endregion
 
-#region UIEvents
-
-#endregion
+    #region UIEventHandlers
 
     void OnBottomPanelEvent (object sender, TUI.PanelEventArgs args)
     {
@@ -131,15 +129,16 @@ namespace TangLevel
       }
     }
 
-#region PublicStaticMethods
+    #endregion
 
-    public static GameObject EnsureGObj()
+    #region PublicStaticMethods
+
+    public static GameObject EnsureGObj ()
     {
-      GameObject gobj = GameObject.Find(GOBJ_NAME);
-      if(gobj == null)
-	{
-	  gobj = NewGobj();
-	}
+      GameObject gobj = GameObject.Find (GOBJ_NAME);
+      if (gobj == null) {
+        gobj = NewGobj ();
+      }
       return gobj;
     }
 
@@ -272,9 +271,9 @@ namespace TangLevel
       return closestGobj;
     }
 
-#endregion
+    #endregion
 
-#region Callback
+    #region Callback
 
     /// <summary>
     /// 地图加载完毕的回调
@@ -395,9 +394,9 @@ namespace TangLevel
 
     }
 
-#endregion
+    #endregion
 
-#region PrivateStaticMethods
+    #region PrivateStaticMethods
 
     /// <summary>
     /// 加载目标子关卡的资源
@@ -449,7 +448,7 @@ namespace TangLevel
             int count = tmpHeroTable [hero.resName] + 1;
             tmpHeroTable [hero.resName] = count;
           } else
-	      tmpHeroTable.Add (hero.resName, 1);
+            tmpHeroTable.Add (hero.resName, 1);
         }
       }
 
@@ -460,7 +459,7 @@ namespace TangLevel
             int count = tmpHeroTable [hero.resName] + 1;
             tmpHeroTable [hero.resName] = count;
           } else
-	      tmpHeroTable.Add (hero.resName, 1);
+            tmpHeroTable.Add (hero.resName, 1);
         }
       }
 
@@ -612,7 +611,7 @@ namespace TangLevel
       List<GameObject>.Enumerator gobjEnum = LevelContext.selfGobjs.GetEnumerator ();
 
       int i = 0;
-      while (heroEnum.MoveNext () && gobjEnum.MoveNext () ) {
+      while (heroEnum.MoveNext () && gobjEnum.MoveNext ()) {
 
         Hero h = heroEnum.Current;
         GameObject g = gobjEnum.Current;
@@ -776,8 +775,8 @@ namespace TangLevel
 
       // 根据攻击距离进行排序
       heros.Sort (delegate(Hero hero1, Hero hero2) {
-	  return hero1.attackDistance.CompareTo (hero2.attackDistance);
-	});
+        return hero1.attackDistance.CompareTo (hero2.attackDistance);
+      });
 
       // 分成两列
       List<Hero> column1 = new List<Hero> ();
@@ -949,7 +948,11 @@ namespace TangLevel
       }
     }
 
-    private static void SetupHeroOpPanel(){
+    /// <summary>
+    /// 设置英雄操作面板
+    /// </summary>
+    private static void SetupHeroOpPanel ()
+    {
 
       // 创建英雄UI操作面板
       Hero[] heros = LevelContext.selfGroup.heros;
@@ -971,7 +974,11 @@ namespace TangLevel
       }
     }
 
-    private static void UnsetHeroOpPanel(){
+    /// <summary>
+    /// 取消英雄配置面板
+    /// </summary>
+    private static void UnsetHeroOpPanel ()
+    {
 
       // 创建英雄UI操作面板
       Hero[] heros = LevelContext.selfGroup.heros;
@@ -988,32 +995,37 @@ namespace TangLevel
       }
     }
 
+    /// <summary>
+    /// 创建一个 LevelController 游戏对象
+    /// </summary>
+    /// <returns>The gobj.</returns>
     private static GameObject NewGobj ()
     {
 
       GameObject gobj = null;
-      UnityEngine.Object asset = Resources.Load("Prefabs/"+GOBJ_NAME);
-      if( asset != null)
-	{
-	  gobj = Instantiate(asset) as GameObject;
-	}
+      UnityEngine.Object asset = Resources.Load ("Prefabs/" + GOBJ_NAME);
+      if (asset != null) {
+        gobj = Instantiate (asset) as GameObject;
+      }
       return gobj;
     }
 
-    private static GameObject NewUIRoot()
+    /// <summary>
+    /// 创建一个 LevelUIRoot 游戏对象
+    /// </summary>
+    /// <returns>The user interface root.</returns>
+    private static GameObject NewUIRoot ()
     {
       GameObject gobj = null;
-      UnityEngine.Object asset = Resources.Load("Prefabs/"+UI_ROOT_NAME);
-      if( asset != null)
-	{
-	  gobj = Instantiate(asset) as GameObject;
-	}
+      UnityEngine.Object asset = Resources.Load ("Prefabs/" + UI_ROOT_NAME);
+      if (asset != null) {
+        gobj = Instantiate (asset) as GameObject;
+      }
       return gobj;
       
     }
 
-
-#endregion
+    #endregion
   }
 }
 
