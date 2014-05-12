@@ -9,7 +9,7 @@ using TangGame.UI.Base;
 
 namespace TangGame.UI
 {
-	public class PropsDetailsPanel : MonoBehaviour
+	public class EquipDetailsPanel : MonoBehaviour
 	{
 		private object mParam;
 		public GameObject PropsDetailsInterfacePanel;

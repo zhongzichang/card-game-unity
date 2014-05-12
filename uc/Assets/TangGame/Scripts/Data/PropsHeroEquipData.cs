@@ -5,7 +5,7 @@ namespace TangGame.UI{
 	public class PropsHeroEquipData {
 		/// 英雄ID
 		public int id;
-		/// 英雄进阶列表，包括哪个阶段
-		public List<int> upgrades = new List<int>();
+		/// 英雄阶数
+		public int upgrades;
 	}
 }
