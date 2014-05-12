@@ -87,12 +87,5 @@ namespace TangGame
       txt.crit = index > 50;
       mediator.SendNotification (BattleCommand.BattleTxt, txt);
     }
-
-    void OnGUI ()
-    {
-      if (GUI.Button (new Rect (100, 100, 100, 50), "xue")) {
-        Show ();
-      }
-    }
   }
 }

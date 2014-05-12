@@ -8,12 +8,14 @@ namespace TangLevel
     // Use this for initialization
     void Start ()
     {
-	
+      UIEventListener.Get (gameObject).onClick += OnClickMe;
     }
-    // Update is called once per frame
-    void Update ()
-    {
-	
+
+    private void OnClickMe(GameObject g){
+    
+      // 游戏暂停，打开暂停面板
+      LevelController.Pause ();
+
     }
   }
 }

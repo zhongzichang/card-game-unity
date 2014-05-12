@@ -145,6 +145,8 @@ namespace TangLevel
       }
     }
 
+    public static bool isPause = false;
+
     #endregion
   }
 }

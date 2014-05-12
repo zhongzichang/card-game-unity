@@ -31,26 +31,6 @@ namespace TangLevel
         LevelController.ChallengeNextSubLevel ();
 
       }
-
-
-      if (GUI.Button (new Rect (400, 10, 150, 50), " Pause")) {
-
-        LevelController.Pause ();
-
-      }
-
-
-      if (GUI.Button (new Rect (600, 10, 150, 50), " Resume")) {
-
-        LevelController.Resume ();
-
-      }
-
-      if (GUI.Button (new Rect (10, 210, 150, 50), " Left Level")) {
-
-        LevelController.LeftLevel ();
-
-      }
     }
     // .................
   }
