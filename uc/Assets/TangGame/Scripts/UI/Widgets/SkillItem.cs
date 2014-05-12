@@ -13,18 +13,18 @@ namespace TangGame.UI
 		public UILabel SkillName;
 		private SkillBase skill;
 
-		public void Flush (SkillBase skill)
+		public void Flush (SkillBase skill,int herolv)
 		{
 			this.skill = skill;
 			SetSkillName (skill.Xml.name);
+			SetSkillIncon (skill.Xml.icon_name);
 			if (skill.IsLock) {
-				SetSkillLv ("进阶到***后解锁");
+				SetSkillLv ("进阶到**后解锁");
 			} else {
-				SetSkillLv (skill.Level);
+				SetSkillLv (skill.Level,herolv);
 			}
+			//TODO
 //			SetMoney (skill.config.money);
-//			SetSkillDescription(skill.Xml.skill_tag);
-//			SetSkillInfoLabel ("这是一个测试数据 \n不要怀疑我的真实性\n不要怀疑我的真实性\n不要怀疑我的真实性\n不要怀疑我的真实性");
 
 
 
@@ -32,8 +32,7 @@ namespace TangGame.UI
 			Money.gameObject.SetActive (!skill.IsLock);
 		}
 
-		void OnTooltip (bool bl)
-		{
+		void OnPress(){
 			string str = skill.Xml.skill_tag + "\n[FA8000]";
 			str += skill.Xml.skill_info;
 			UITooltip.ShowText (str);
@@ -74,10 +73,14 @@ namespace TangGame.UI
 		void SetSkillLv(string str){
 			this.SkillLevel.text = str;
 		}
-		void SetSkillLv (int lv)
+		void SetSkillLv (int lv,int herolv)
 		{
 			this.SkillLevel.text = "lv." + lv;
-			//FIXME if skill > herolv addbutton will false;
+			if (lv >= herolv) {
+				this.Add.gameObject.SetActive (false);
+			} else {
+				this.Add.gameObject.SetActive (true);
+			}
 		}
 	}
 }

@@ -36,6 +36,7 @@ namespace TangGame
 		/// 道具图鉴
 		/// </summary>
 		public const string PROPS_DETAILS_PANEL_NAME = "PropsDetailsPanel";
+		public const string EQUIP_DETAILS_PANEL_NAME = "EquipDetailsPanel";
 
 		/// <summary>
 		/// 附魔面板

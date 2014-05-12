@@ -73,13 +73,19 @@ namespace TangGame.UI
 				}
 			}
 		}
-
+		bool mStarted;
+		void Start(){
+			mStarted = true;
+			SVPropsItemArrayForward (propsDPbean.props.Xml);
+		}
 		/// <summary>
 		/// SVs the properties item array forward.
 		/// 点击到下一个道具
 		/// </summary>
 		void SVPropsItemArrayForward (PropsXml propsXml)
 		{
+			if (!mStarted)
+				return;
 
 			int count = SVPropsItemArray.Count;
 			if (count != 0) {

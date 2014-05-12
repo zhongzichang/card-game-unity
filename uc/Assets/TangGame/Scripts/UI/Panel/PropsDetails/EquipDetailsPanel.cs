@@ -15,6 +15,11 @@ namespace TangGame.UI
 		public GameObject PropsDetailsInterfacePanel;
 		public GameObject PropsDetailsSubPanel;
 		private PropsDetailsPanelBean propsDPbean;
+		bool mStarted;
+		void Start(){
+			mStarted = true;
+			UpSubPanels (mParam);
+		}
 		void Awake(){
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsInterfacePanel, PropsDetailsInterfacePanel.name);
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsSubPanel, PropsDetailsSubPanel.name);
@@ -26,6 +31,8 @@ namespace TangGame.UI
 		/// </summary>
 		/// <param name="val">Value.</param>
 		private void UpSubPanels (object val){
+			if (!mStarted)
+				return;
 			if (val != null && val is PropsBase) {
 				PropsDPbean = new PropsDetailsPanelBean ();
 				PropsDPbean.props = val as PropsBase;
