@@ -3,8 +3,9 @@ using System.Collections;
 
 namespace TangLevel
 {
-  public class PauseButton : MonoBehaviour
+  public class NextSubLevelBtn : MonoBehaviour
   {
+
     // Use this for initialization
     void Start ()
     {
@@ -12,9 +13,9 @@ namespace TangLevel
     }
 
     private void OnClickMe(GameObject g){
-    
+
       // 游戏暂停，打开暂停面板
-      LevelController.Pause ();
+      LevelController.ChallengeNextSubLevel ();
 
     }
   }

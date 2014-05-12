@@ -6,7 +6,7 @@ namespace TangLevel
   {
 
     public static string HERO_OP_PANEL = "LevelHeroPanel";
-
+    public static string LEVEL_PAUSE_PANEL = "LevelPausePanel";
   }
 }
 
