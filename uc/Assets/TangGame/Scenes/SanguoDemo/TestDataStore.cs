@@ -93,6 +93,9 @@ namespace TangGame.UI
         stage.type = 1;
         stage.status = 2;
       }
+      stage.enemyIds = "Axe,DoT,DoT,CM";
+      stage.bossId = "Zeus";
+      stage.rewardIds = "371,372,373,374";
       return stage;
     }
   }

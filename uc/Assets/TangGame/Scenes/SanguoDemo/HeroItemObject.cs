@@ -14,6 +14,7 @@ namespace TangGame.UI
     public GameObject bucket;
     public GameObject tick;
     public UISprite cast;
+    public UISprite boss;
 
     private HeroItemData heroData;
     public HeroItemData HeroData{
@@ -25,6 +26,12 @@ namespace TangGame.UI
     public bool ShowLevel {
       get { return showLevel; }
       set { showLevel = value; }
+    }
+
+    private bool showBoss = false;
+    public bool ShowBoss {
+      get { return showBoss; }
+      set { showBoss = value; }
     }
 
     public string HeroId{

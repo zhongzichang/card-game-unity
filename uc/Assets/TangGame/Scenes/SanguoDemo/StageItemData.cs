@@ -42,11 +42,12 @@ namespace TangGame.UI
     /// <summary>
     /// 14  怪物一览      {怪物id1,怪物id2...}在关卡准备界面上，显示该关卡有哪些怪物，显示顺序同数组顺序。特别的，数组最后一个怪物为 boss。
     /// </summary>
-    public string enemies;
+    public string enemyIds;
+    public string bossId;
     /// <summary>
     /// 15  掉落一览      {物品id1,物品id2...}在关卡准备界面上，显示该关卡可能掉落的物品，显示顺序同数组顺序。                
     /// </summary>
-    public string rewards;
+    public string rewardIds;
     /// <summary>
     /// 16  描述      关卡的文字描述
     /// </summary>
@@ -70,6 +71,14 @@ namespace TangGame.UI
 
     public bool IsLockedStatus(){
       return status == 1;
+    }
+
+    public string[] GetEnemyIds(){
+      return enemyIds.Split (',');
+    }
+
+    public string[] GetRewardIds(){
+      return rewardIds.Split (',');
     }
   }
 }

@@ -29,12 +29,15 @@ namespace TangGame.UI
       desc.text = stage.desc;
       vitCost.text = stage.vitCost.ToString();
 
-      foreach (string enemyId in stage.enemies.Split(',')) {
-        HeroItemData enemy = null;
+
+      foreach (string enemyId in  stage.enemyIds.Split (',')) {
+        HeroItemData enemy = HeroStore.Instance.GetHeroById (enemyId);
         CreateEnemyItemObj (enemies.gameObject, enemy);
       }
+      HeroItemData boss = HeroStore.Instance.GetHeroById (stage.bossId);
+      CreateBossItemObj (enemies.gameObject, boss);
       enemies.Reposition ();
-      foreach (string rewardId in stage.rewards.Split(',')) {
+      foreach (string rewardId in stage.GetRewardIds()) {
         RewardItemData item = null;
         CreateRewardItemObj (rewards.gameObject, item);
       }
@@ -48,6 +51,12 @@ namespace TangGame.UI
       hero.Refresh (data);
       hero.ShowLevel = false;
       return hero;
+    }
+
+    private HeroItemObject CreateBossItemObj(GameObject parent, HeroItemData data){
+      HeroItemObject boss = CreateEnemyItemObj (parent, data);
+      boss.ShowBoss = true;
+      return boss;
     }
 
     private RewardItemObject CreateRewardItemObj(GameObject parent, RewardItemData data){
