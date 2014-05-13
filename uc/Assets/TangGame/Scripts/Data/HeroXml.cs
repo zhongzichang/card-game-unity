@@ -198,23 +198,26 @@ namespace TangGame.Xml
 				Config.addPropsHeroesRelationship (item.soul_rock_id,item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
-				herobase.Xml = item;
-				herobase.Net = new TangGame.Net.HeroNet ();
-				herobase.Net.configId = item.id;
-				herobase.Net.evolve = i%5 +1;
-				herobase.Net.exp = 15 * i % 49;
-				herobase.Net.upgrade = i%9 +1;
-				herobase.Net.id = i + 10000;
-				herobase.Net.level = i%4 + 1;
-				herobase.Net.equipList = new TangGame.Net.EquipNet[6];
-				TangGame.Net.EquipNet equip;
-				equip = new TangGame.Net.EquipNet ();
-				equip.configId = 1001 + i%5;
-				equip.enchantsLv = 1;
-				equip.enchantsExp = 30;
-				herobase.Net.equipList [0] = equip;
+				if (item.id == 1001) {
+					herobase.Xml = item;
+					herobase.Net = new TangGame.Net.HeroNet ();
+					herobase.Net.configId = item.id;
+					herobase.Net.evolve = 2;
+					herobase.Net.exp = 40;
+					herobase.Net.upgrade = 3;
+					herobase.Net.id = 10001;
+					herobase.Net.level = 5;
+					herobase.Net.equipList = new TangGame.Net.EquipNet[6];
+					TangGame.Net.EquipNet equip;
+					equip = new TangGame.Net.EquipNet ();
+					equip.configId = 1003;
+					equip.enchantsLv = 1;
+					equip.enchantsExp = 30;
+					herobase.Net.equipList [3] = equip;
+				} else {
+					herobase.Xml = item;
+				}
 				TangGame.UI.BaseCache.heroBeseTable.Add (item.id, herobase);
-				i++;
 			}
 		}
 	}

@@ -29,25 +29,33 @@ namespace TangGame.UI
       desc.text = stage.desc;
       vitCost.text = stage.vitCost.ToString();
 
-      foreach (string enemyId in stage.enemies.Split(',')) {
-        HeroItemData enemy = null;
+      foreach (string enemyId in  stage.GetEnemyIds()) {
+        HeroItemData enemy = TestDataStore.Instance.RandomEnemy(enemyId);
         CreateEnemyItemObj (enemies.gameObject, enemy);
       }
+
+      Debug.Log ("boss -- " + stage.bossId);
+      HeroItemData boss = TestDataStore.Instance.RandomEnemy(stage.bossId);
+      EnemyItemObject bossObj = CreateEnemyItemObj (enemies.gameObject, boss);
       enemies.Reposition ();
-      foreach (string rewardId in stage.rewards.Split(',')) {
-        RewardItemData item = null;
+      // 先自动排列，再调整boss位置
+      bossObj.ShowBoss(true);
+      bossObj.gameObject.transform.localScale = new Vector3 (1.2f, 1.2f, 1.0f);
+      bossObj.gameObject.transform.localPosition += Vector3.up * 20;
+
+      foreach (string rewardId in stage.GetRewardIds()) {
+        RewardItemData item = TestDataStore.Instance.RandRewardItem(rewardId);
         CreateRewardItemObj (rewards.gameObject, item);
       }
       rewards.Reposition ();
     }
 
-    private HeroItemObject CreateEnemyItemObj(GameObject parent, HeroItemData data){
-      GameObject obj = NGUITools.AddChild (parent, (GameObject)Resources.Load("Prefabs/PvE/HeroItemObj"));
+    private EnemyItemObject CreateEnemyItemObj(GameObject parent, HeroItemData data){
+      GameObject obj = NGUITools.AddChild (parent, (GameObject)Resources.Load("Prefabs/PvE/EnemyItemObj"));
 
-      HeroItemObject hero = (HeroItemObject)obj.GetComponent<HeroItemObject> ();
-      hero.Refresh (data);
-      hero.ShowLevel = false;
-      return hero;
+      EnemyItemObject enemy = (EnemyItemObject)obj.GetComponent<EnemyItemObject> ();
+      enemy.Refresh (data);
+      return enemy;
     }
 
     private RewardItemObject CreateRewardItemObj(GameObject parent, RewardItemData data){
@@ -67,12 +75,6 @@ namespace TangGame.UI
       if (GUILayout.Button ("Refresh")) {
         StageItemData  data = TestDataStore.Instance.RandomStage(0, 1);
         Refresh (data);
-      }
-      if (GUILayout.Button ("Add Enemy Item")) {
-        CreateEnemyItemObj (enemies.gameObject, TestDataStore.Instance.RandomHero());
-      }
-      if (GUILayout.Button ("Add Reward Item")) {
-        CreateRewardItemObj (rewards.gameObject, TestDataStore.Instance.RandRewardItem());
       }
     }
   }

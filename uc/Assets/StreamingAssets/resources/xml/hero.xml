@@ -2,12 +2,12 @@
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<value>
 		<id>1001</id>
-		<name>测试角色1</name>
+		<name>甄夫人</name>
 		<showView>1</showView>
 		<evolve>2</evolve>
 		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
+		<gender>2</gender>
+		<attribute_type>3</attribute_type>
 		<location>2</location>
 		
 		<strength_growth>0.1</strength_growth>
@@ -32,17 +32,17 @@
 		<dodge>10</dodge>
 		<addition_treatment>10</addition_treatment>
 		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>
-		<skill_ids>{101,101,101,102}</skill_ids>
+		<skill_ids>{101,102,103,104}</skill_ids>
 		<shot_order>0,0,2,3,0,4</shot_order>
 		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
 		<hero_tip>此女贵乃不可言。</hero_tip>
 		<avatar>hero_icon_1</avatar>
-		<portrait>card_bg_big_3</portrait>
+		<portrait>card_bg_big_40</portrait>
 		<fragments_avatar></fragments_avatar>
 	</value>
 	<value>
 		<id>1002</id>
-		<name>测试角色1</name>
+		<name>孙仁</name>
 		<showView>1</showView>
 		<evolve>2</evolve>
 		<camp>1</camp>
@@ -73,15 +73,15 @@
 		<addition_treatment>10</addition_treatment>
 		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
 		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
+		<hero_info>赤壁之战后，被周瑜以美人计假嫁刘备</hero_info>
+		<hero_tip>孙坚与吴国太之女。</hero_tip>
 		<avatar>hero_icon_1_un</avatar>
 		<portrait>card_bg_big_3</portrait>
 		<fragments_avatar></fragments_avatar>
 	</value>
 	<value>
 		<id>1003</id>
-		<name>测试角色1</name>
+		<name>曹仁</name>
 		<showView>1</showView>
 		<evolve>2</evolve>
 		<camp>1</camp>
@@ -112,242 +112,8 @@
 		<addition_treatment>10</addition_treatment>
 		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
 		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
-		<avatar>hero_icon_1_un</avatar>
-		<portrait>card_bg_big_3</portrait>
-		<fragments_avatar></fragments_avatar>
-	</value>
-	<value>
-		<id>1004</id>
-		<name>测试角色1</name>
-		<showView>1</showView>
-		<evolve>2</evolve>
-		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
-		<location>2</location>
-		
-		<strength_growth>0.1</strength_growth>
-		<intellect_growth>0.2</intellect_growth>
-		<agile_growth>0.1</agile_growth>
-
-		<strength>20</strength>
-		<intellect>32</intellect>
-		<agile>64</agile>
-		<hpMax>1000</hpMax>
-		<attack_damage>164</attack_damage>
-		<ability_power>200</ability_power>
-		<physical_defense>480</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>20</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>1000</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>80</spell_penetration>
-		<bloodsucking_lv>2</bloodsucking_lv>
-		<dodge>10</dodge>
-		<addition_treatment>10</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
-		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
-		<avatar>hero_icon_1_un</avatar>
-		<portrait>card_bg_big_3</portrait>
-		<fragments_avatar></fragments_avatar>
-	</value>
-	<value>
-		<id>1005</id>
-		<name>测试角色1</name>
-		<showView>1</showView>
-		<evolve>2</evolve>
-		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
-		<location>2</location>
-		
-		<strength_growth>0.1</strength_growth>
-		<intellect_growth>0.2</intellect_growth>
-		<agile_growth>0.1</agile_growth>
-
-		<strength>20</strength>
-		<intellect>32</intellect>
-		<agile>64</agile>
-		<hpMax>1000</hpMax>
-		<attack_damage>164</attack_damage>
-		<ability_power>200</ability_power>
-		<physical_defense>480</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>20</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>1000</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>80</spell_penetration>
-		<bloodsucking_lv>2</bloodsucking_lv>
-		<dodge>10</dodge>
-		<addition_treatment>10</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
-		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
-		<avatar>hero_icon_1_un</avatar>
-		<portrait>card_bg_big_3</portrait>
-		<fragments_avatar></fragments_avatar>
-	</value>
-	<value>
-		<id>1006</id>
-		<name>测试角色1</name>
-		<showView>1</showView>
-		<evolve>2</evolve>
-		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
-		<location>3</location>
-		
-		<strength_growth>0.1</strength_growth>
-		<intellect_growth>0.2</intellect_growth>
-		<agile_growth>0.1</agile_growth>
-
-		<strength>20</strength>
-		<intellect>32</intellect>
-		<agile>64</agile>
-		<hpMax>1000</hpMax>
-		<attack_damage>164</attack_damage>
-		<ability_power>200</ability_power>
-		<physical_defense>480</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>20</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>1000</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>80</spell_penetration>
-		<bloodsucking_lv>2</bloodsucking_lv>
-		<dodge>10</dodge>
-		<addition_treatment>10</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
-		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
-		<avatar>hero_icon_1_un</avatar>
-		<portrait>card_bg_big_3</portrait>
-		<fragments_avatar></fragments_avatar>
-	</value>
-	<value>
-		<id>1007</id>
-		<name>测试角色1</name>
-		<showView>1</showView>
-		<evolve>2</evolve>
-		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
-		<location>1</location>
-		
-		<strength_growth>0.1</strength_growth>
-		<intellect_growth>0.2</intellect_growth>
-		<agile_growth>0.1</agile_growth>
-
-		<strength>20</strength>
-		<intellect>32</intellect>
-		<agile>64</agile>
-		<hpMax>1000</hpMax>
-		<attack_damage>164</attack_damage>
-		<ability_power>200</ability_power>
-		<physical_defense>480</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>20</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>1000</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>80</spell_penetration>
-		<bloodsucking_lv>2</bloodsucking_lv>
-		<dodge>10</dodge>
-		<addition_treatment>10</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
-		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
-		<avatar>hero_icon_1_un</avatar>
-		<portrait>card_bg_big_3</portrait>
-		<fragments_avatar></fragments_avatar>
-	</value>
-	<value>
-		<id>1008</id>
-		<name>测试角色1</name>
-		<showView>1</showView>
-		<evolve>2</evolve>
-		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
-		<location>3</location>
-		
-		<strength_growth>0.1</strength_growth>
-		<intellect_growth>0.2</intellect_growth>
-		<agile_growth>0.1</agile_growth>
-
-		<strength>20</strength>
-		<intellect>32</intellect>
-		<agile>64</agile>
-		<hpMax>1000</hpMax>
-		<attack_damage>164</attack_damage>
-		<ability_power>200</ability_power>
-		<physical_defense>480</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>20</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>1000</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>80</spell_penetration>
-		<bloodsucking_lv>2</bloodsucking_lv>
-		<dodge>10</dodge>
-		<addition_treatment>10</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
-		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
-		<avatar>hero_icon_1_un</avatar>
-		<portrait>card_bg_big_3</portrait>
-		<fragments_avatar></fragments_avatar>
-	</value>
-	<value>
-		<id>1009</id>
-		<name>测试角色1</name>
-		<showView>1</showView>
-		<evolve>2</evolve>
-		<camp>1</camp>
-		<gender>1</gender>
-		<attribute_type>1</attribute_type>
-		<location>1</location>
-		
-		<strength_growth>0.1</strength_growth>
-		<intellect_growth>0.2</intellect_growth>
-		<agile_growth>0.1</agile_growth>
-
-		<strength>20</strength>
-		<intellect>32</intellect>
-		<agile>64</agile>
-		<hpMax>1000</hpMax>
-		<attack_damage>164</attack_damage>
-		<ability_power>200</ability_power>
-		<physical_defense>480</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>20</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>1000</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>80</spell_penetration>
-		<bloodsucking_lv>2</bloodsucking_lv>
-		<dodge>10</dodge>
-		<addition_treatment>10</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}{1001,1002,1003,1004,1005,1001}</equip_id_list>		<skill_ids>{101,101,101,102}</skill_ids>
-		<shot_order>0,0,2,3,0,4</shot_order>
-		<hero_info>仿佛兮兮若轻云之闭月，飘飘兮若流风之回雪。</hero_info>
-		<hero_tip>此女贵乃不可言。</hero_tip>
+		<hero_info>曹仁于曹操起兵时与曹洪一同前来投奔。</hero_info>
+		<hero_tip>曹操堂弟。</hero_tip>
 		<avatar>hero_icon_1_un</avatar>
 		<portrait>card_bg_big_3</portrait>
 		<fragments_avatar></fragments_avatar>

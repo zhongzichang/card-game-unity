@@ -52,7 +52,7 @@ namespace TangGame.UI
 			bean.hero = this.hero;
 			if (equipBase.Net == null) {
 				bean.props = equipBase;
-				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.PROPS_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean,true);
+				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.EQUIP_DETAILS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean,true);
 			} else {
 				bean.props = equipBase; 
 				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.EQUIP_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE,bean);
