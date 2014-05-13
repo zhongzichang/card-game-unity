@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Xml;
 
 namespace TangGame.UI{
 	/// 战斗结束界面的数据显示项
@@ -27,6 +28,12 @@ namespace TangGame.UI{
 			if(this.data == null){return;}
 
 			BattleResultHeroData tempData = this.data as BattleResultHeroData;
+
+			if(Config.heroXmlTable.ContainsKey(tempData.id)){
+				HeroXml hero = Config.heroXmlTable[tempData.id];
+				icon.spriteName = hero.avatar;
+			}
+
 			levelLabel.text = tempData.level.ToString();
 			frame.spriteName = Global.GetHeroIconFrame(tempData.upgrade);
 			star.width = Global.GetHeroStar(tempData.evolve) * 21;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<value>
+		<upgrade>1</upgrade>
+		<exp_spend>{0}</exp_spend>
+		<gold_spend>0</gold_spend>
+		<gem_spend>3</gem_spend>
+	</value>
+	<value>
+		<upgrade>2</upgrade>
+		<exp_spend>{20}</exp_spend>
+		<gold_spend>120</gold_spend>
+		<gem_spend>3</gem_spend>
+	</value>
+	<value>
+		<upgrade>3</upgrade>
+		<exp_spend>{30,50,80}</exp_spend>
+		<gold_spend>150</gold_spend>
+		<gem_spend>3</gem_spend>
+	</value>
+	<value>
+		<upgrade>4</upgrade>
+		<exp_spend>{60,100,160,300,500}</exp_spend>
+		<gold_spend>200</gold_spend>
+		<gem_spend>3</gem_spend>
+	</value>
+</root>
