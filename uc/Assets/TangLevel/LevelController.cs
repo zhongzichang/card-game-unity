@@ -45,14 +45,6 @@ namespace TangLevel
     /// 战斗恢复
     /// </summary>
     public static event EventHandler RaiseResume;
-    /// <summary>
-    /// 大招开始
-    /// </summary>
-    public static event EventHandler UniqueSkillStart;
-    /// <summary>
-    /// 大招结束
-    /// </summary>
-    public static event EventHandler UniqueSkillFinish;
 
     #endregion
 
