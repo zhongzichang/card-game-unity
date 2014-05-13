@@ -116,7 +116,7 @@ namespace TangGame.UI
 		/// The en C xml.
 		/// 当前装备的附魔表
 		/// </summary>
-		TangGame.Xml.EnchantsConsumedXml enCXml;
+		TangGame.Xml.EnchantsConsumedData enCXml;
 		/// <summary>
 		/// 当前进度条显示的经验
 		/// </summary>
