@@ -83,16 +83,17 @@ namespace TangGame
 
     private void Show ()
     {
-      BattleTxtType[] types = new BattleTxtType[]{ BattleTxtType.Hurt, BattleTxtType.Text };
-      int index = Random.Range (0, 2);
+			BattleTxtType[] types = new BattleTxtType[]{ BattleTxtType.Hurt, BattleTxtType.Text, BattleTxtType.Energy };
+      int index = Random.Range (0, 3);
+			Debug.Log(index);
       BattleTxtType type = types [index];
       int hp = 100;
-      if (type == BattleTxtType.Hurt) {
+	if (type != BattleTxtType.Text) {
         hp = Random.Range (50, 200);
         if (hp < 100) {
           hp = -hp;
         }
-      } else if (type == BattleTxtType.Text) {
+      } else {
         hp = 1;
       }
 
@@ -102,6 +103,7 @@ namespace TangGame
       txt.value = hp;
       txt.type = type;
       txt.crit = index > 50;
+			txt.self = Random.Range (0, 100) > 50;
 			txt.position = new Vector3(100 , 100,0);
       mediator.SendNotification (BattleCommand.BattleTxt, txt);
     }
