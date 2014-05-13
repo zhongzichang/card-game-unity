@@ -43,7 +43,7 @@ namespace TangGame.UI
 		/// 没有英雄只更新图片
 		/// </summary>
 		/// <param name="xml">Xml.</param>
-		public void Flush(HeroXml xml){
+		public void Flush(HeroData xml){
 			this.heroIcon.spriteName = xml.avatar;
 		}
 	}

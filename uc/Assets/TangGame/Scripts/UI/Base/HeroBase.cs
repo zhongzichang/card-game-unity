@@ -9,7 +9,7 @@ namespace TangGame.UI
 	public class HeroBase
 	{
 		private HeroNet net;
-		private HeroXml xml;
+		private HeroData xml;
 		private SkillBase[] skillBases;
 		private EquipBase[] equipBases;
 
@@ -105,7 +105,7 @@ namespace TangGame.UI
 		/// 来自配置表的数据
 		/// </summary>
 		/// <value>The xml.</value>
-		public HeroXml Xml {
+		public HeroData Xml {
 			get {
 				return xml;
 			}
