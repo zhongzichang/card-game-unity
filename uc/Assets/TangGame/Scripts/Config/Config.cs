@@ -12,7 +12,7 @@ namespace TangGame
 		public static Dictionary<string, object> xmlObjTable = new Dictionary<string, object> ();
 		public static Dictionary<int,HeroData> heroXmlTable = new Dictionary<int, HeroData> ();
 		public static Dictionary<int,LevelUpXml> levelUpXmlTable = new Dictionary<int,LevelUpXml> ();
-		public static Dictionary<int,SkillXml> skillXmlTable = new Dictionary<int, SkillXml> ();
+		public static Dictionary<int,SkillData> skillXmlTable = new Dictionary<int, SkillData> ();
 		public static Dictionary<int, PropsXml> propsXmlTable = new Dictionary<int, PropsXml> ();
 		public static Dictionary<int,EvolveData> evolveXmlTable = new Dictionary<int, EvolveData> ();
 		public static Dictionary<int,EnchantsConsumedXml> enchantsConsumedXmlTable = new Dictionary<int, EnchantsConsumedXml>();

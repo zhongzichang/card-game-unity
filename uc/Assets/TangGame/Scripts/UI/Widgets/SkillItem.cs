@@ -17,7 +17,7 @@ namespace TangGame.UI
 		{
 			this.skill = skill;
 			SetSkillName (skill.Xml.name);
-			SetSkillIncon (skill.Xml.icon_name);
+			SetSkillIncon (skill.Xml.skill_icon);
 			if (skill.IsLock) {
 				SetSkillLv ("进阶到**后解锁");
 			} else {
@@ -33,8 +33,8 @@ namespace TangGame.UI
 		}
 
 		void OnPress(){
-			string str = skill.Xml.skill_tag + "\n[FA8000]";
-			str += skill.Xml.skill_info;
+			string str = skill.Xml.desc + "\n[FA8000]";
+			str += skill.Xml.desc_y;
 			UITooltip.ShowText (str);
 		}
 
