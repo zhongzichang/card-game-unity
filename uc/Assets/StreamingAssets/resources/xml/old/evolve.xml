@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<value>
+		<lv>1</lv>
+		<val>10</val>
+	</value>
+	<value>
+		<lv>2</lv>
+		<val>20</val>
+	</value>
+	<value>
+		<lv>3</lv>
+		<val>50</val>
+	</value>
+	<value>
+		<lv>4</lv>
+		<val>100</val>
+	</value>
+	<value>
+		<lv>5</lv>
+		<val>150</val>
+	</value>
+</root>

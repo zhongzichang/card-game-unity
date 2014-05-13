@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<value>
+		<lv>1</lv>
+		<val>100</val>
+	</value>
+	<value>
+		<lv>2</lv>
+		<val>300</val>
+	</value>
+	<value>
+		<lv>3</lv>
+		<val>600</val>
+	</value>
+	<value>
+		<lv>4</lv>
+		<val>1000</val>
+	</value>
+<value>
+		<lv>5</lv>
+		<val>1000</val>
+	</value>
+	<value>
+		<lv>6</lv>
+		<val>3000</val>
+	</value>
+	<value>
+		<lv>7</lv>
+		<val>6000</val>
+	</value>
+	<value>
+		<lv>8</lv>
+		<val>10000</val>
+	</value>
+</root>

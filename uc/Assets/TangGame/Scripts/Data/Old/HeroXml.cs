@@ -16,9 +16,7 @@ namespace TangGame.Xml
 		/// 英雄名称
 		/// </summary>
 		public string name;
-		/// <summary>
 		/// 是否再列表显示
-		/// </summary>
 		public short showView;
 		/// <summary>
 		/// 灵魂石头id
