@@ -23,7 +23,7 @@ namespace TangGame.UI
 				Vernier.gameObject.SetActive (isChecked);
 			}
 		}
-		public void Flush(PropsXml xml){
+		public void Flush(PropsData xml){
 			data = new PropsBase ();
 			data.Xml = xml;
 			this.Flush (data);

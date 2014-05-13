@@ -11,6 +11,6 @@ namespace TangGame.UI{
 		/// 可装备该道具的英雄列表
 		public List<PropsHeroEquipData> heros = new List<PropsHeroEquipData>();
 		/// 可合成需要该道具的道具列表
-		public List<PropsXml> synthetics = new List<PropsXml>();
+		public List<PropsData> synthetics = new List<PropsData>();
 	}
 }

@@ -1,6 +1,8 @@
-
+using TangUtils;
 using System.Xml;
-using UnityEngine;
+using System.Xml.Serialization;
+using System.Collections.Generic;
+using TangGame.UI;
 
 namespace TangGame.Xml
 {
@@ -32,22 +34,24 @@ namespace TangGame.Xml
 		public int magic_defense;
 		/// 物理暴击
 		public int physical_crit;
-		/// 生命回复
+		/// 魔法爆击
 		public int magic_crit;
-		/// 能量回复
+		/// 生命回复
 		public int hp_recovery;
-		/// 破甲值
+		/// 能量回复
 		public int energy_recovery;
-		/// 无视魔抗
+		/// 破甲值
 		public int physical_penetration;
-		/// 吸血等级
+		/// 无视魔抗
 		public int spell_penetration;
-		/// 闪避
+		/// 吸血等级
 		public int bloodsucking_lv;
-		/// 治疗效果
+		/// 闪避
 		public int dodge;
-		/// 能量消耗降低
+		/// 治疗效果
 		public int addition_treatment;
+		/// 能量消耗降低
+		public int reduce_energy;
 		/// 需求等级
 		public int level;
 		/// 合成物
@@ -63,10 +67,73 @@ namespace TangGame.Xml
 		/// 经验值
 		public int experience;
 		/// 图标编号
-		public int icon;
+		public string icon;
 		/// 物品描述1
 		public string info;
 		/// 物品描述2
 		public string description;
+		/// <summary>
+		/// The synthetic properties table.
+		/// </summary>
+		private Dictionary<int,int> syntheticPropsTable = new Dictionary<int, int> ();
+
+		/// <summary>
+		/// Gets the synthetic properties table.
+		/// 合成所需的物品列表
+		/// </summary>
+		/// <value>The synthetic properties table.</value>
+		public Dictionary<int, int> GetSyntheticPropsTable ()
+		{
+			return syntheticPropsTable;
+
+		}
+
+	}
+
+	[XmlRoot ("root")]
+	[XmlLate ("props")]
+	public class PropsRoot
+	{
+		[XmlElement ("value")]
+		public List<PropsData> items = new List<PropsData> ();
+
+		public static void LateProcess (object obj)
+		{
+			PropsRoot root = obj as PropsRoot;
+			int a = 5;
+			foreach (PropsData item in root.items) {
+				Config.propsXmlTable [item.id] = item;
+				ResolveSyntheticProps (item);
+
+
+				//TODO 先写到这个地方到时候再改
+				TangGame.UI.PropsBase propsBase = new TangGame.UI.PropsBase ();
+				TangGame.Net.PropsNet net = new TangGame.Net.PropsNet ();
+				net.configId = item.id;
+				net.count = a * a % 123;
+				propsBase.Xml = item;
+				propsBase.Net = net;
+				TangGame.UI.BaseCache.propsBaseTable.Add (item.id, propsBase);
+				a++;
+			}
+		}
+
+		/// <summary>
+		/// Resolves the synthetic properties.
+		/// </summary>
+		/// <param name="item">Item.</param>
+		private static void ResolveSyntheticProps (PropsData item)
+		{
+			if (item.synthetic_props != null) {
+				string[] strs = (string[])Utils.SplitStrByBraces (item.synthetic_props).ToArray (typeof(string));
+				foreach (string str in strs) {
+					int configId = Utils.SplitStrByCommaToInt (str) [0];
+					int count = Utils.SplitStrByCommaToInt (str) [1];
+					item.GetSyntheticPropsTable ().Add (configId, count);
+					Config.addPropsPropsRelationship (configId, item);
+				}
+			}
+		}
 	}
 }
+

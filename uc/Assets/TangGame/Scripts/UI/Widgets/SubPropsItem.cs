@@ -7,7 +7,7 @@ namespace TangGame.UI
 {
 	public class SubPropsItem : PropsItem
 	{
-		public void Flush (PropsXml xml, int count)
+		public void Flush (PropsData xml, int count)
 		{
 			data = new PropsBase ();
 			data.Xml = xml;

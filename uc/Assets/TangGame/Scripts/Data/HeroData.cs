@@ -80,7 +80,7 @@ namespace TangGame.Xml
 		public string avatar;
 		/// 图鉴资源名字
 		public string portrait;
-		List<PropsXml> equipList;
+		List<PropsData> equipList;
 
 		/// <summary>
 		/// Currents the equip list by rank.
@@ -88,9 +88,9 @@ namespace TangGame.Xml
 		/// </summary>
 		/// <returns>The equip list by rank.</returns>
 		/// <param name="rank">Rank.</param>
-		public List<PropsXml> CurrentEquipListByRank(int heroUpgrade){
+		public List<PropsData> CurrentEquipListByRank(int heroUpgrade){
 			if (equipList == null) {
-				equipList = new List<PropsXml> ();
+				equipList = new List<PropsData> ();
 				ArrayList equipStrList = Utils.SplitStrByBraces (this.equip_id_list);
 				string equipStr = "";
 				if (equipStrList.Count >= heroUpgrade - 1) {

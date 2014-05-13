@@ -155,7 +155,7 @@ namespace TangGame.UI
 		/// Ups the properties frames.
 		/// 更新阶级
 		/// </summary>
-		public void UpPropsFrames (short upgrade)
+		public void UpPropsFrames (int upgrade)
 		{
 			this.Frames.GetComponent<UISprite> ().spriteName = "equip_frame_" + HeroBase.GetRankColorStr ((RankEnum)upgrade);// TODO  需要根据图片名字修改
 		}
@@ -234,9 +234,9 @@ namespace TangGame.UI
 				}
 				//		<!-- 法术强度 -->
 				//		<spell_power>123</spell_power>
-				if (data.Xml.spell_power > 0) {
-					infoStr += UIPanelLang.SPELL_POWER + "+" + data.Xml.spell_power;
-					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.spell_power * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.ability_power > 0) {
+					infoStr += UIPanelLang.SPELL_POWER + "+" + data.Xml.ability_power;
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.ability_power * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理防御 -->
@@ -248,9 +248,9 @@ namespace TangGame.UI
 				}
 				//		<!-- 法术防御 -->
 				//		<spell_defense>123</spell_defense>
-				if (data.Xml.spell_defense > 0) {
-					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.Xml.spell_defense;
-					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.spell_defense * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.magic_defense > 0) {
+					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.Xml.magic_defense;
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.magic_defense * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理爆击 -->
@@ -262,37 +262,37 @@ namespace TangGame.UI
 				}
 				//		<!-- 法术爆击 -->
 				//		<spell_crit>21</spell_crit>
-				if (data.Xml.spell_cirt > 0) {
-					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.Xml.spell_cirt;
-					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.spell_cirt * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.magic_crit > 0) {
+					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.Xml.magic_crit;
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.magic_crit * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 生命回复 -->
 				//		<hp_re>12</hp_re>
-				if (data.Xml.hp_re > 0) {
-					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.Xml.hp_re;
-					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.hp_re * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.hp_recovery > 0) {
+					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.Xml.hp_recovery;
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.hp_recovery * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 能量回复 -->
 				//		<energy_re>21</energy_re>
-				if (data.Xml.energy_re > 0) {
-					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.Xml.energy_re;
-					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.energy_re * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.energy_recovery > 0) {
+					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.Xml.energy_recovery;
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.energy_recovery * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理穿透 -->
 				//		<physical_penetrate>12</physical_penetrate>
-				if (data.Xml.physical_penetrate > 0) {
-					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.Xml.physical_penetrate;
-					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.physical_penetrate * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.physical_penetration > 0) {
+					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.Xml.physical_penetration;
+					infoStr += "[33FF00] + " +Mathf.Round(data.Xml.physical_penetration * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术穿透 -->
 				//		<spell_penetrate>21</spell_penetrate>
-				if (data.Xml.spell_penetrate > 0) {
-					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.Xml.spell_penetrate;
-					infoStr +=  "[33FF00] + " +Mathf.Round(data.Xml.spell_penetrate * enchantingVariable).ToString() + "[-]";
+				if (data.Xml.spell_penetration > 0) {
+					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.Xml.spell_penetration;
+					infoStr +=  "[33FF00] + " +Mathf.Round(data.Xml.spell_penetration * enchantingVariable).ToString() + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 吸血等级 -->
