@@ -35,7 +35,7 @@
 	<value>
 		<id>1002</id>
 		<name>牛顿的食用香精</name>
-		<type>2</type>
+		<type>3</type>
 		<upgrade>1</upgrade>
 		<strength>0</strength>
 		<intellect>50</intellect>
@@ -67,28 +67,28 @@
 	<value>
 		<id>1003</id>
 		<name>牛顿的美味佳肴</name>
-		<type>3</type>
+		<type>1</type>
 		<upgrade>4</upgrade>
 		<strength>10</strength>
 		<intellect>10</intellect>
 		<agile>10</agile>
 		<hpMax>10</hpMax>
-		<attack_damage>10</attack_damage>
-		<ability_power>10</ability_power>
-		<physical_defense>10</physical_defense>
-		<magic_defense>10</magic_defense>
-		<physical_crit>10</physical_crit>
-		<magic_crit>10</magic_crit>
-		<hp_recovery>10</hp_recovery>
-		<energy_recovery>10</energy_recovery>
-		<physical_penetration>10</physical_penetration>
-		<spell_penetration>10</spell_penetration>
-		<bloodsucking_lv>10</bloodsucking_lv>
+		<attack_damage>0</attack_damage>
+		<ability_power>0</ability_power>
+		<physical_defense>0</physical_defense>
+		<magic_defense>0</magic_defense>
+		<physical_crit>0</physical_crit>
+		<magic_crit>0</magic_crit>
+		<hp_recovery>0</hp_recovery>
+		<energy_recovery>0</energy_recovery>
+		<physical_penetration>0</physical_penetration>
+		<spell_penetration>0</spell_penetration>
+		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>10</dodge>
 		<addition_treatment>10</addition_treatment>
 		<reduce_energy>10</reduce_energy>
 		<level>10</level>
-		<synthetic_props>{1001,1002}</synthetic_props>
+		<synthetic_props>{1001,10}{1002,10}</synthetic_props>
 		<synthetic_spend>500</synthetic_spend>
 		<price_list>120000</price_list>
 		<selling_price>200</selling_price>

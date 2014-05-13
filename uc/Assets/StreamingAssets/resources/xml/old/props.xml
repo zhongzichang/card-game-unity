@@ -56,7 +56,7 @@
 		<dodge>0</dodge>
 		<addition_treatment>22</addition_treatment>
 		<level>15</level>
-		<synthetic_props>{1003,12}{1004,15}</synthetic_props>
+		<synthetic_props>{1003,12}{1001,15}</synthetic_props>
 		<synthetic_spend>1500</synthetic_spend>
 		<price_list>{123,123,123}</price_list>
 		<selling_price>1300</selling_price>

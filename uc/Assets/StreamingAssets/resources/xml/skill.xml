@@ -1,6 +1,6 @@
 <root>
 	<value>
-		<id>1001</id>
+		<id>101</id>
 		<name>一盏青灯</name>
 		<cool_time>10</cool_time>
 		<type>1</type>
@@ -27,7 +27,7 @@
 		<desc_y>0</desc_y>
 	</value>
 	<value>
-		<id>1002</id>
+		<id>102</id>
 		<name>清风血夜</name>
 		<cool_time>10</cool_time>
 		<type>1</type>
