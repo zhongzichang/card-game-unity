@@ -1,156 +1,85 @@
-﻿using TangUtils;
 using System.Xml;
 using UnityEngine;
-using System.Xml.Serialization;
-using System.Collections;
+using TangUtils;
 using System.Collections.Generic;
+using System.Collections;
+using System.Xml.Serialization;
 namespace TangGame.Xml
 {
-	public class HeroXml
-	{
-		/// <summary>
-		/// The identifier.
-		/// </summary>
+	public class HeroData
+	{ 
+		/// 编号
 		public int id;
-		/// <summary>
 		/// 英雄名称
-		/// </summary>
 		public string name;
-		/// 是否再列表显示
-		public short showView;
-		/// <summary>
-		/// 灵魂石头id
-		/// </summary>
+		/// 是否显示到英雄列表
+		public int showView;
+		/// 碎片ID
 		public int soul_rock_id;
-		/// <summary>
 		/// 初始星级
-		/// </summary>
 		public int evolve;
-		/// <summary>
 		/// 英雄阵营
-		/// </summary>
 		public int camp;
-		/// <summary>
 		/// 英雄性别
-		/// </summary>
 		public int gender;
-		/// <summary>
-		/// 英雄属性类型，力量，智力，敏捷
-		/// </summary>
+		/// 英雄类型
 		public int attribute_type;
-		/// <summary>
-		/// 前排，中排，后排
-		/// </summary>
+		/// 英雄位置
 		public int location;
-		/// <summary>
-		/// 力量成长率
-		/// </summary>
+		/// 力量成长
 		public float strength_growth;
-		/// <summary>
-		/// 智力成长率
-		/// </summary>
+		/// 智力成长
 		public float intellect_growth;
-		/// <summary>
-		/// 敏捷成长率
-		/// </summary>
+		/// 敏捷成长
 		public float agile_growth;
-		/// <summary>
 		/// 力量
-		/// </summary>
 		public int strength;
-		/// <summary>
 		/// 智力
-		/// </summary>
 		public int intellect;
-		/// <summary>
 		/// 敏捷
-		/// </summary>
 		public int agile;
-		/// <summary>
-		/// 生命最大值
-		/// </summary>
+		/// 最大生命值
 		public int hpMax;
-		/// <summary>
-		/// 物理攻击强度
-		/// </summary>
+		/// 物理攻击
 		public int attack_damage;
-		/// <summary>
-		/// 法术攻击强度
-		/// </summary>
+		/// 魔法强度
 		public int ability_power;
-		/// <summary>
-		/// 物理防御
-		/// </summary>
+		/// 物理护甲
 		public int physical_defense;
-		/// <summary>
-		/// 法术防御
-		/// </summary>
+		/// 魔法抗性
 		public int magic_defense;
-		/// <summary>
-		/// 生命回复
-		/// </summary>
-		public int hp_recovery;
-		/// <summary>
-		/// 能量回复
-		/// </summary>
-		public int energy_recovery;
-		/// <summary>
-		/// 物理穿透
-		/// </summary>
-		public int physical_penetration;
-		/// <summary>
-		/// 法术穿透
-		/// </summary>
-		public int spell_penetration;
-		/// <summary>
-		/// 吸血等级
-		/// </summary>
-		public int bloodsucking_lv;
-		/// <summary>
-		/// 物理爆击
-		/// </summary>
+		/// 物理暴击
 		public int physical_crit;
-		/// <summary>
-		/// 法术爆击
-		/// </summary>
+		/// 法术暴击
 		public int magic_crit;
-		/// <summary>
+		/// 生命回复
+		public int hp_recovery;
+		/// 能量回复
+		public int energy_recovery;
+		/// 破甲值
+		public int physical_penetration;
+		/// 无视魔抗
+		public int spell_penetration;
+		/// 吸血等级
+		public int bloodsucking_lv;
 		/// 闪避
-		/// </summary>
 		public int dodge;
-		/// <summary>
-		/// 治疗加成
-		/// </summary>
+		/// 治疗效果
 		public int addition_treatment;
-		/// <summary>
-		/// 进阶装备id列表
-		/// </summary>
+		/// 进阶装备配置
 		public string equip_id_list;
-		/// <summary>
-		/// 技能id数组
-		/// </summary>
+		/// 技能编号
 		public string skill_ids;
-		/// <summary>
-		/// 技能出手先后顺序
-		/// </summary>
+		/// 出手序列
 		public string shot_order;
-		/// <summary>
-		/// 英雄简介
-		/// </summary>
+		/// 英雄介绍
 		public string hero_info;
-		/// <summary>
-		/// 英雄标签
-		/// </summary>
+		/// 标签介绍
 		public string hero_tip;
-		/// <summary>
-		/// 英雄头像资源名字
-		/// </summary>
+		/// 头像资源名
 		public string avatar;
-		/// <summary>
-		/// 图鉴的名字
-		/// </summary>
-		public string portrait = null;
-
+		/// 图鉴资源名字
+		public string portrait;
 		List<PropsXml> equipList;
 
 		/// <summary>
@@ -170,9 +99,9 @@ namespace TangGame.Xml
 				int[] equipIds = Utils.SplitStrByCommaToInt (equipStr);
 				if(equipStr != null){
 					foreach (int id in equipIds) {
-					if (Config.propsXmlTable.ContainsKey (id))
-						equipList.Add (Config.propsXmlTable [id]);
-					else
+						if (Config.propsXmlTable.ContainsKey (id))
+							equipList.Add (Config.propsXmlTable [id]);
+						else
 							Debug.LogWarning (string.Format("找不到物品，道具id:{0}",id));
 					}
 				}
@@ -186,12 +115,12 @@ namespace TangGame.Xml
 	public class HeroRoot
 	{
 		[XmlElement("value")]
-		public List<HeroXml> items = new List<HeroXml> ();
+		public List<HeroData> items = new List<HeroData> ();
 		public static void LateProcess (object obj)
 		{
 			HeroRoot root = obj as HeroRoot;
 			int i = 0;
-			foreach (HeroXml item in root.items) {
+			foreach (HeroData item in root.items) {
 				Config.heroXmlTable [item.id] = item;
 				Config.addPropsHeroesRelationship (item.soul_rock_id,item);
 				//TODO 先写到这个地方到时候再改，测试使用数据

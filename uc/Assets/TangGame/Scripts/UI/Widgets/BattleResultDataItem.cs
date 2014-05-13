@@ -30,7 +30,7 @@ namespace TangGame.UI{
 			BattleResultHeroData tempData = this.data as BattleResultHeroData;
 
 			if(Config.heroXmlTable.ContainsKey(tempData.id)){
-				HeroXml hero = Config.heroXmlTable[tempData.id];
+				HeroData hero = Config.heroXmlTable[tempData.id];
 				icon.spriteName = hero.avatar;
 			}
 

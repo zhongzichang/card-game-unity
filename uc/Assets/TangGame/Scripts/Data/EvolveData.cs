@@ -1,14 +1,15 @@
-﻿using TangUtils;
+using TangUtils;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
 namespace TangGame.Xml
 {
-	public class EvolveXml
-	{
+	public class EvolveData
+	{ 
 		public int lv;
 		public int val;
+		public string val_all;
 	}
 
 	[XmlRoot ("root")]
@@ -16,12 +17,12 @@ namespace TangGame.Xml
 	public class EvolveRoot
 	{
 		[XmlElement ("value")]
-		public List<EvolveXml> items = new List<EvolveXml> ();
+		public List<EvolveData> items = new List<EvolveData> ();
 
 		public static void LateProcess (object obj)
 		{
 			EvolveRoot root = obj as EvolveRoot;
-			foreach (EvolveXml item in root.items) {
+			foreach (EvolveData item in root.items) {
 				Config.evolveXmlTable [item.lv] = item;
 			}
 		}

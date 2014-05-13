@@ -10,17 +10,17 @@ namespace TangGame
 		// XML 配置 ------
 		// 所有加载后的XML对象
 		public static Dictionary<string, object> xmlObjTable = new Dictionary<string, object> ();
-		public static Dictionary<int,HeroXml> heroXmlTable = new Dictionary<int, HeroXml> ();
+		public static Dictionary<int,HeroData> heroXmlTable = new Dictionary<int, HeroData> ();
 		public static Dictionary<int,LevelUpXml> levelUpXmlTable = new Dictionary<int,LevelUpXml> ();
 		public static Dictionary<int,SkillXml> skillXmlTable = new Dictionary<int, SkillXml> ();
 		public static Dictionary<int, PropsXml> propsXmlTable = new Dictionary<int, PropsXml> ();
-		public static Dictionary<int,EvolveXml> evolveXmlTable = new Dictionary<int, EvolveXml> ();
+		public static Dictionary<int,EvolveData> evolveXmlTable = new Dictionary<int, EvolveData> ();
 		public static Dictionary<int,EnchantsConsumedXml> enchantsConsumedXmlTable = new Dictionary<int, EnchantsConsumedXml>();
 		/// <summary>
 		/// The properties heroes relationship.
 		/// 道具和英雄之间的关联
 		/// </summary>
-		public static Dictionary <int, List<HeroXml>> propsHeroesRelationship = new Dictionary<int, List<HeroXml>> ();
+		public static Dictionary <int, List<HeroData>> propsHeroesRelationship = new Dictionary<int, List<HeroData>> ();
 		/// <summary>
 		/// The properties levels relationship.
 		/// 道具和关卡之间的关联
@@ -53,12 +53,12 @@ namespace TangGame
 		/// </summary>
 		/// <param name="propsXmlId">Properties xml identifier. 道具id</param>
 		/// <param name="heroXmlId">Hero xml identifier. 英雄id</param>
-		public static void addPropsHeroesRelationship (int propsXmlId, HeroXml heroXml)
+		public static void addPropsHeroesRelationship (int propsXmlId, HeroData heroXml)
 		{
 			if (!propsHeroesRelationship.ContainsKey (propsXmlId)) {
-				propsHeroesRelationship.Add (propsXmlId, new List<HeroXml> ());
+				propsHeroesRelationship.Add (propsXmlId, new List<HeroData> ());
 			}
-			List<HeroXml> array = propsHeroesRelationship [propsXmlId];
+			List<HeroData> array = propsHeroesRelationship [propsXmlId];
 			if (!array.Contains (heroXml))
 				array.Add (heroXml);
 		}
