@@ -90,5 +90,10 @@ namespace TangGame{
 			int upgradeTmp = Global.RankToUpgrade (rankTmp);
 			return upgrade - upgradeTmp;
 		}
+
+		/// 获取转换英雄的星阶，考虑到界面只能显示5个星的问题，需要转换
+		public static int GetHeroStar(int evolve){
+			return evolve;
+		}
 	}
 }

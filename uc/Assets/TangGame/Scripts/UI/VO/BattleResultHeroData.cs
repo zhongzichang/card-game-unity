@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 namespace TangGame.UI{
 	/// 战斗结果面板英雄数据
@@ -6,7 +7,7 @@ namespace TangGame.UI{
 		/// ID
 		public int id;
 		/// 等级
-		public int level;
+		public int level = 1;
 		/// 当前经验
 		public int exp;
 		/// 是否升级
@@ -16,8 +17,15 @@ namespace TangGame.UI{
 		/// 战斗中的最大输出伤害
 		public int maxDamage;
 		/// 品阶
-		public int upgrade;
+		public int upgrade = 1;
+		/// 星阶
+		public int evolve = 1;
 
+		public BattleResultHeroData(){
+			level = Random.Range(1, 99);
+			evolve = Random.Range(1, 5);
+			damage = Random.Range(1, 5000);
+		}
 
 	}
 }
