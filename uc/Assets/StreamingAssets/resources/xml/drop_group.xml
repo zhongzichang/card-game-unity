@@ -1,1 +1,6 @@
-<root><value><id>1001</id><props_id_list>{1001,1002,1003,1004}</props_id_list></value></root>
+<root>
+	<value>
+		<id>1001</id>
+		<props_id_list>{1001,1002,1003,1004}</props_id_list>
+	</value>
+</root>

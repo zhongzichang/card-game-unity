@@ -91,6 +91,11 @@ namespace TangGame.UI
 					item.gameObject.SetActive (true);
 				}
 			}
+			this.PropsTableReposition ();
+
+		}
+		void PropsTableReposition(){
+			this.PropsTable.GetComponent<UITable> ().repositionNow = true;
 		}
 
 		/// <summary>
@@ -144,6 +149,7 @@ namespace TangGame.UI
 					}
 				}
 			}
+			this.PropsTableReposition ();
 		}
 		/// <summary>
 		/// Shows the type of the items by properties.

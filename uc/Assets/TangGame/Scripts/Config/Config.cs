@@ -11,11 +11,11 @@ namespace TangGame
 		// 所有加载后的XML对象
 		public static Dictionary<string, object> xmlObjTable = new Dictionary<string, object> ();
 		public static Dictionary<int,HeroData> heroXmlTable = new Dictionary<int, HeroData> ();
-		public static Dictionary<int,LevelUpXml> levelUpXmlTable = new Dictionary<int,LevelUpXml> ();
-		public static Dictionary<int,SkillXml> skillXmlTable = new Dictionary<int, SkillXml> ();
-		public static Dictionary<int, PropsXml> propsXmlTable = new Dictionary<int, PropsXml> ();
+		public static Dictionary<int,LevelUpData> levelUpXmlTable = new Dictionary<int,LevelUpData> ();
+		public static Dictionary<int,SkillData> skillXmlTable = new Dictionary<int, SkillData> ();
+		public static Dictionary<int, PropsData> propsXmlTable = new Dictionary<int, PropsData> ();
 		public static Dictionary<int,EvolveData> evolveXmlTable = new Dictionary<int, EvolveData> ();
-		public static Dictionary<int,EnchantsConsumedXml> enchantsConsumedXmlTable = new Dictionary<int, EnchantsConsumedXml>();
+		public static Dictionary<int,EnchantsConsumedData> enchantsConsumedXmlTable = new Dictionary<int, EnchantsConsumedData>();
 		/// <summary>
 		/// The properties heroes relationship.
 		/// 道具和英雄之间的关联
@@ -31,19 +31,19 @@ namespace TangGame
 		/// 道具和道具之间的关联
 		/// 可合成的道具列表
 		/// </summary>
-		public static Dictionary <int, List<PropsXml>> propsPropsRelationship = new Dictionary<int, List<PropsXml>> ();
+		public static Dictionary <int, List<PropsData>> propsPropsRelationship = new Dictionary<int, List<PropsData>> ();
 
 		/// <summary>
 		/// Adds the properties properties relationship.
 		/// </summary>
 		/// <param name="propsId1">Properties id1.</param>
 		/// <param name="propsId2">Properties id2.</param>
-		public static void addPropsPropsRelationship (int propsXmlId, PropsXml propsXml)
+		public static void addPropsPropsRelationship (int propsXmlId, PropsData propsXml)
 		{
 			if (!propsPropsRelationship.ContainsKey (propsXmlId)) {
-				propsPropsRelationship.Add (propsXmlId, new List<PropsXml> ());
+				propsPropsRelationship.Add (propsXmlId, new List<PropsData> ());
 			}
-			List<PropsXml> array = propsPropsRelationship [propsXmlId];
+			List<PropsData> array = propsPropsRelationship [propsXmlId];
 			if (!array.Contains (propsXml))
 				array.Add (propsXml);
 		}

@@ -1,6 +1,7 @@
-
+using TangUtils;
 using System.Xml;
-using UnityEngine;
+using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace TangGame.Xml
 {
@@ -51,10 +52,26 @@ namespace TangGame.Xml
 		/// 后摇特效
 		public int play_effect;
 		/// 技能图标
-		public int skill_icon;
+		public string skill_icon;
 		/// 文字描述
 		public int desc;
 		/// 黄字描述
 		public int desc_y;
 	}
+	[XmlRoot ("root")]
+	[XmlLate("skill")]
+	public class SkillRoot
+	{
+		[XmlElement ("value")]
+		public List<SkillData> items = new List<SkillData> ();
+
+		public static void LateProcess (object obj)
+		{
+			SkillRoot root = obj as SkillRoot;
+			foreach (SkillData item in root.items) {
+				Config.skillXmlTable [item.id] = item;
+			}
+		}
+	}
 }
+

@@ -12,7 +12,7 @@ namespace TangGame.UI
 		/// <summary>
 		/// The xml.
 		/// </summary>
-		private PropsXml xml;
+		private PropsData xml;
 		/// <summary>
 		/// The net.
 		/// </summary>
@@ -32,7 +32,7 @@ namespace TangGame.UI
 			}
 		}
 
-		public PropsXml Xml {
+		public PropsData Xml {
 			get {
 				return xml;
 			}

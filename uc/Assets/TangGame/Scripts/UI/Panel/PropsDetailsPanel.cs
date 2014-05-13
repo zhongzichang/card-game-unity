@@ -40,7 +40,7 @@ namespace TangGame.UI{
 			heroItem.gameObject.SetActive(false);
 			syntheticItem.gameObject.SetActive(false);
 			started = true;
-			this.mParam = new PropsXml();
+			this.mParam = new PropsData();
 			UpdateData();
 		}
 
@@ -75,7 +75,7 @@ namespace TangGame.UI{
 				syntheticGroup.gameObject.SetActive(false);
 				return;
 			}
-			PropsXml props = (PropsXml)this.mParam;
+			PropsData props = (PropsData)this.mParam;
 			//PropsRelationData data = PropsCache.instance.GetPropsRelationData(props.id);
 			PropsRelationData data = new PropsRelationData();
 			data.heros.Add(new PropsHeroEquipData());
@@ -88,19 +88,19 @@ namespace TangGame.UI{
 			data.heros.Add(new PropsHeroEquipData());
 			data.heros.Add(new PropsHeroEquipData());
 
-			data.synthetics.Add(new PropsXml());
-			data.synthetics.Add(new PropsXml());
-			data.synthetics.Add(new PropsXml());
-			data.synthetics.Add(new PropsXml());
-			data.synthetics.Add(new PropsXml());
-			data.synthetics.Add(new PropsXml());
-			data.synthetics.Add(new PropsXml());
+			data.synthetics.Add(new PropsData());
+			data.synthetics.Add(new PropsData());
+			data.synthetics.Add(new PropsData());
+			data.synthetics.Add(new PropsData());
+			data.synthetics.Add(new PropsData());
+			data.synthetics.Add(new PropsData());
+			data.synthetics.Add(new PropsData());
 
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
 
 			if(data == null){
 				return;
@@ -121,7 +121,7 @@ namespace TangGame.UI{
 				y += height;
 				syntheticGroup.height = height;
 				count = 0;
-				foreach(PropsXml propsData in data.synthetics){
+				foreach(PropsData propsData in data.synthetics){
 					go = UIUtils.Duplicate(syntheticItem.gameObject, syntheticGroup.gameObject);
 					go.transform.localPosition = new Vector3((count % 2) * 330, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsSyntheticItem item = go.GetComponent<PropsDetailsSyntheticItem>();
@@ -163,7 +163,7 @@ namespace TangGame.UI{
 				y += height;
 				getGroup.height = height;
 				count = 0;
-				foreach(LevelData levelData in data.levels){
+				foreach(LevelsData levelData in data.levels){
 					go = UIUtils.Duplicate(getItem.gameObject, getGroup.gameObject);
 					go.transform.localPosition = new Vector3((count % 2) * 330, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsGetItem item = go.GetComponent<PropsDetailsGetItem>();

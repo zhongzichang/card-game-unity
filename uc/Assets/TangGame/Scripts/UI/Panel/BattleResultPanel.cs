@@ -37,7 +37,7 @@ namespace TangGame{
 		void Start () {
 			winGroup.SetActive(true);
 			PropsBase prop = new PropsBase();
-			prop.Xml = new TangGame.Xml.PropsXml();
+			prop.Xml = new TangGame.Xml.PropsData();
 			prop.Xml.name = "测试道具";
 			prop.Xml.type = 2;
 			prop.Count = 2;

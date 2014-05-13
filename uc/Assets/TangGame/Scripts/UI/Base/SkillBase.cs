@@ -7,9 +7,9 @@ using TangGame.Xml;
 namespace TangGame.UI
 {
 	public class SkillBase{
-		private SkillXml xml;
+		private SkillData xml;
 
-		public SkillXml Xml {
+		public SkillData Xml {
 			get {
 				return xml;
 			}

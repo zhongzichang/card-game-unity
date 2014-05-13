@@ -82,7 +82,7 @@ namespace TangGame.UI
 		/// SVs the properties item array forward.
 		/// 点击到下一个道具
 		/// </summary>
-		void SVPropsItemArrayForward (PropsXml propsXml)
+		void SVPropsItemArrayForward (PropsData propsXml)
 		{
 			if (!mStarted)
 				return;
