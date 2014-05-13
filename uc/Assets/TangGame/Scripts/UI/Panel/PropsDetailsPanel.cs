@@ -96,11 +96,11 @@ namespace TangGame.UI{
 			data.synthetics.Add(new PropsXml());
 			data.synthetics.Add(new PropsXml());
 
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
-			data.levels.Add(new LevelData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
+			data.levels.Add(new LevelsData());
 
 			if(data == null){
 				return;
@@ -163,7 +163,7 @@ namespace TangGame.UI{
 				y += height;
 				getGroup.height = height;
 				count = 0;
-				foreach(LevelData levelData in data.levels){
+				foreach(LevelsData levelData in data.levels){
 					go = UIUtils.Duplicate(getItem.gameObject, getGroup.gameObject);
 					go.transform.localPosition = new Vector3((count % 2) * 330, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsGetItem item = go.GetComponent<PropsDetailsGetItem>();
