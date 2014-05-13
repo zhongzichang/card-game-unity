@@ -3,12 +3,12 @@ using System.Collections;
 
 namespace TangGame
 {
-  public class BattleTxtItem : ViewItem
+  public class BattleTxtSpriteItem : ViewItem
   {
     private float duration = 1.8f;
     private float time = 0;
     private bool init = false;
-    private UILabel label;
+    private UISprite sprite;
     private Vector3 movePosition;
     private Vector3 mScale = Vector3.one;
     private int step = 0;
@@ -45,9 +45,9 @@ namespace TangGame
             temp = Vector3.MoveTowards (temp, movePosition, 2f);
             this.gameObject.transform.localPosition = temp;
           }
-          label.alpha -= Time.deltaTime * 1.5f;
+          sprite.alpha -= Time.deltaTime * 1.5f;
 
-          if (label.alpha <= 0) {
+          if (sprite.alpha <= 0) {
             step = 3;
           }
         }
@@ -57,7 +57,7 @@ namespace TangGame
     public override void Start ()
     {
       this.started = true;
-      label = this.GetComponent<UILabel> ();
+      sprite = this.GetComponent<UISprite> ();
       UpdateData ();
     }
 
@@ -67,22 +67,16 @@ namespace TangGame
         return;
       }
       BattleTxt txt = data as BattleTxt;
-
-        if (txt.value < 1) {
-          label.text = "+" + Mathf.Abs (txt.value);
-        } else {
-          label.text = "-" + Mathf.Abs (txt.value);
-        }
+     
+			sprite.spriteName = "battletext_kill_blue";
 
       Vector3 tempPosition = UICamera.mainCamera.ScreenToWorldPoint (txt.position);
       this.transform.position = tempPosition;
       this.transform.localScale = Vector3.zero;
       movePosition = this.transform.localPosition;
       movePosition.z = -10;
-
+			movePosition.y += 30;
       this.transform.localPosition = movePosition;
-
-      movePosition.y += 80;
 
       if (txt.crit) {
         mScale = new Vector3 (1.4f, 1.4f, 1);

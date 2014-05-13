@@ -32,9 +32,11 @@ namespace TangGame
 
   public class BattleTxtPanel : MonoBehaviour
   {
-    public UILabel hurtLabel;
-    public UILabel damageLabel;
-    public UILabel textLabel;
+    public GameObject greenLabel;
+	public GameObject orangeLabel;
+	public GameObject redLabel;
+	public GameObject yellowLabel;
+	public GameObject textSprite;
     private BattleTxtPanelMediator mediator;
 
     void Awake ()
@@ -42,26 +44,41 @@ namespace TangGame
       mediator = new BattleTxtPanelMediator (this);
       Facade.Instance.RegisterMediator (mediator);
 
-      hurtLabel.gameObject.SetActive (false);
-      damageLabel.gameObject.SetActive (false);
-      textLabel.gameObject.SetActive (false);
+	  greenLabel.SetActive (false);
+			orangeLabel.SetActive (false);
+			redLabel.SetActive (false);
+			yellowLabel.SetActive (false);
+			textSprite.SetActive (false);
     }
 
     public void ShowBattleTxt (BattleTxt txt)
     {
-      UILabel label = null;
-      if (txt.type == BattleTxtType.Hurt) {
-        label = hurtLabel;
-      } else if (txt.type == BattleTxtType.Text) {
-        label = textLabel;
-      }
+      GameObject label = null;
+		if (txt.type == BattleTxtType.Hurt) {
+			if(txt.value < 1){
+				label = greenLabel;
+			}else if(txt.self){
+				label = redLabel;
+			}else{
+				label = orangeLabel;
+			}
+		} else if (txt.type == BattleTxtType.Text) {
+			label = textSprite;
+		}else if (txt.type == BattleTxtType.Energy) {
+			label = yellowLabel;
+		}
 
-      GameObject go = GameObject.Instantiate (label.gameObject) as GameObject;
+      GameObject go = GameObject.Instantiate (label) as GameObject;
       go.transform.parent = this.gameObject.transform;
       go.SetActive (true);
       go.transform.localScale = Vector3.one;
-      BattleTxtItem item = go.AddComponent<BattleTxtItem> ();
-      item.data = txt;
+		if(txt.type == BattleTxtType.Text){
+			BattleTxtSpriteItem item = go.AddComponent<BattleTxtSpriteItem> ();
+			item.data = txt;
+		}else{
+			BattleTxtItem item = go.AddComponent<BattleTxtItem> ();
+			item.data = txt;
+		}
     }
 
     private void Show ()
@@ -85,7 +102,14 @@ namespace TangGame
       txt.value = hp;
       txt.type = type;
       txt.crit = index > 50;
+			txt.position = new Vector3(100 , 100,0);
       mediator.SendNotification (BattleCommand.BattleTxt, txt);
     }
+
+		/*void OnGUI(){
+			if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
+				Show();
+			}
+		}*/
   }
 }

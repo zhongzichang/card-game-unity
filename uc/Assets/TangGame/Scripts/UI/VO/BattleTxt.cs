@@ -5,10 +5,13 @@ namespace TangGame
 {
   public enum BattleTxtType
   {
+	///伤害，就是HP相关的文字类型
     Hurt = 0,
-    //伤害，就是HP相关的文字类型
+	///能量，每场战斗结束的时候回复的值
+	Energy = 0,
+	///文字，包含Buff等文字
     Text,
-    //文字，包含Buff等文字
+    
   }
 
   public class BattleTxt
