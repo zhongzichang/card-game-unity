@@ -13,12 +13,12 @@ namespace TangGame.UI
 		private SkillBase[] skillBases;
 		private EquipBase[] equipBases;
 
-
 		/// <summary>
 		/// Ups the equip bases.
 		/// 更新装备相关数据
 		/// </summary>
-		private void UpEquipBases(){
+		private void UpEquipBases ()
+		{
 			if (xml != null) {
 				if (equipBases == null) {
 					equipBases = new EquipBase[Equip_Ids.Length];
@@ -38,6 +38,7 @@ namespace TangGame.UI
 				}
 			}
 		}
+
 		/// <summary>
 		/// Ups the skill bases. 更新技能列表
 		/// </summary>
@@ -323,13 +324,14 @@ namespace TangGame.UI
 				return Utils.SplitStrByCommaToInt (strs [0]);
 			}
 		}
+
 		/// <summary>
 		/// Sets the equip_id_list.
 		/// 获取当前品阶的装备列表
 		/// </summary>
 		/// <value>The equip_id_list.</value>
-		private int[] Equip_Ids{
-			get{ 
+		private int[] Equip_Ids {
+			get { 
 				string[] strs = (string[])Utils.SplitStrByBraces (xml.equip_id_list).ToArray (typeof(string));
 				return Utils.SplitStrByCommaToInt (strs [net.upgrade - 1]);
 			}

@@ -125,7 +125,7 @@ namespace TangGame.Xml
 				Config.addPropsHeroesRelationship (item.soul_rock_id,item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
-				if (item.id == 1001) {
+				if (item.id == 1) {
 					herobase.Xml = item;
 					herobase.Net = new TangGame.Net.HeroNet ();
 					herobase.Net.configId = item.id;
