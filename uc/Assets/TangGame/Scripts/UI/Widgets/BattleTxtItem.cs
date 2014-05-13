@@ -46,9 +46,6 @@ namespace TangGame
             this.gameObject.transform.localPosition = temp;
           }
           label.alpha -= Time.deltaTime * 1.5f;
-          Color color = label.effectColor;
-          color.a -= Time.deltaTime * 1f;
-          label.effectColor = color;
 
           if (label.alpha <= 0) {
             step = 3;
@@ -70,35 +67,22 @@ namespace TangGame
         return;
       }
       BattleTxt txt = data as BattleTxt;
-      if (txt.type == BattleTxtType.Hurt) {
-        if (txt.value > 0) {
-          label.text = "-" + Mathf.Abs (txt.value);
-        } else {
+
+        if (txt.value < 1) {
           label.text = "+" + Mathf.Abs (txt.value);
-          label.color = Color.green;
+        } else {
+          label.text = "-" + Mathf.Abs (txt.value);
         }
-      } else if (txt.type == BattleTxtType.Text) {
-        label.color = new Color (0, 0, 180);
-        txt.crit = false;
-        label.text = "击杀奖励\n+300能量";
-        waitTime = 0.4f;
-      }
+
       Vector3 tempPosition = UICamera.mainCamera.ScreenToWorldPoint (txt.position);
       this.transform.position = tempPosition;
       this.transform.localScale = Vector3.zero;
       movePosition = this.transform.localPosition;
       movePosition.z = -10;
-      //movePosition.y = 0;
-
-      if (txt.type == BattleTxtType.Text) {//文字初始坐标要往上一点
-        movePosition.y += 30;
-      }
 
       this.transform.localPosition = movePosition;
 
-      if (txt.type != BattleTxtType.Text) {//文字不移动
-        movePosition.y += 80;
-      }
+      movePosition.y += 80;
 
       if (txt.crit) {
         mScale = new Vector3 (1.4f, 1.4f, 1);
