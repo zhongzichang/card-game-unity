@@ -63,22 +63,25 @@ namespace TangLevel
       hero.maxHp = 100;
       hero.hp = 100;
       hero.maxMp = 100;
-      hero.mp = 100;
+      hero.mp = 0;
       hero.attackDistance = UnityEngine.Random.Range (3, 20);
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else
         hero.ai = new string[]{ "AutoFire" };
-      tmp++;
 
       // skill
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockAttackSkill ());
       skills.Add (MockBingHuaSkill ());
-      skills.Add (MockLuoshenSkill ());
       skills.Add (MockYuehuaSkill ());
+      //if( hero.id == 0)
+      skills.Add (MockLuoshenSkill ());
       hero.skills = skills;
       hero.skillQueue = new int[]{ 0, 1, 2, 3 };
+
+
+      tmp++;
       return hero;
     }
 
@@ -122,6 +125,7 @@ namespace TangLevel
       //skill.releaseSpecials[1] = "Sprite_luoshen2";
       skill.enable = true;
       skill.bigMove = true;
+      skill.chargeTime = 2F;
       skill.cd = 2;
 
       return skill;

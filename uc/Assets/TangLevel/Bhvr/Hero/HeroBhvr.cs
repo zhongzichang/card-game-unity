@@ -171,11 +171,16 @@ namespace TangLevel
     /// 暂停回调
     /// </summary>
     /// <param name="pause">If set to <c>true</c> pause.</param>
-    private void OnPauseChanged(bool pause){
+    private void OnPauseChanged (bool pause)
+    {
       if (pause) {
         PauseSelf ();
       } else {
-        ResumeSelf ();
+        if (hero.hp == 0) {
+          Die ();
+        } else {
+          ResumeSelf ();
+        }
       }
     }
 
@@ -194,7 +199,8 @@ namespace TangLevel
 
           // 发大招通知
         if (skill.bigMove) {
-          bmBhvr.StartBigMove ();
+          Debug.Log ("bigmovestart hero " + hero.id);
+          bmBhvr.StartBigMove (skill.chargeTime);
         }
 
           // 有则播放，无则转到释放状态
@@ -221,8 +227,11 @@ namespace TangLevel
       case HeroStatus.release: // 释放 ----
 
         // 大招结束
-        if (skill.bigMove)
+        /*
+        if (skill.bigMove) {
+          Debug.Log ("bigmoveend hero "+hero.id);
           bmBhvr.StopBigMove ();
+        }*/
 
         if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
           clip = skill.releaseClip;

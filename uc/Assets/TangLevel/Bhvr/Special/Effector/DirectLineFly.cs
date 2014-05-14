@@ -122,8 +122,9 @@ namespace TangLevel
 
         target = w.target;
         spos = w.source.transform.localPosition + OFFSET;
+        spos = new Vector3 (spos.x, spos.y, -(100 - spos.y));
         tpos = w.target.transform.localPosition + OFFSET;
-
+        tpos = new Vector3 (tpos.x, tpos.y, -(100 - tpos.y));
         // 方向
         myTransform.localRotation = Quaternion.FromToRotation (Vector3.right, 
           (tpos - new Vector3 (spos.x, spos.y, tpos.z)).normalized);
