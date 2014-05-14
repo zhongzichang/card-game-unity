@@ -22,17 +22,17 @@ namespace TangLevel
     /// <summary>
     /// 起手动作时间
     /// </summary>
-    public float attackTimeA;
+    public float chargeTime;
 
     /// <summary>
     /// 释放动作时间
     /// </summary>
-    public float attackTimeB;
+    public float releaseTime;
 
     /// <summary>
     /// 起手是否循环
     /// </summary>
-    public bool attackLoopA;
+    public bool chargeLoop;
 
     /// <summary>
     /// 是否大招

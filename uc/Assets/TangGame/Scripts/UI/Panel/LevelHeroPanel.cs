@@ -36,12 +36,11 @@ namespace TangGame
 
     private void UpdateData ()
     {
-      if (!started) {
-        return;
-      }
+      Debug.Log ("UpdateData1");
       if (this.mParam == null) {
         return;
       }
+      Debug.Log ("UpdateData2");
       LevelHeroPanelData data = this.mParam as LevelHeroPanelData;
       foreach (LevelHeroItem item in itemList) {
         GameObject.Destroy (item.gameObject);

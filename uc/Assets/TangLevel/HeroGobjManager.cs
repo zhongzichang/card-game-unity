@@ -43,10 +43,10 @@ namespace TangLevel
         }
         if (!navigable.enabled)
           navigable.enabled = true;
-        // CharacterStatusBhvr
-        TS.CharacterStatusBhvr statusBhvr = gobj.GetComponent<TS.CharacterStatusBhvr> ();
+        // HeroStatusBhvr
+        HeroStatusBhvr statusBhvr = gobj.GetComponent<HeroStatusBhvr> ();
         if (statusBhvr == null) {
-          statusBhvr = gobj.AddComponent<TS.CharacterStatusBhvr> ();
+          statusBhvr = gobj.AddComponent<HeroStatusBhvr> ();
         }
         if (!statusBhvr.enabled)
           statusBhvr.enabled = true;
@@ -70,8 +70,8 @@ namespace TangLevel
         if (bmBhvr == null) {
           bmBhvr = gobj.AddComponent<BigMoveBhvr> ();
         }
-        if (bmBhvr.enabled) {
-          bmBhvr.enabled = false;
+        if (!bmBhvr.enabled) {
+          bmBhvr.enabled = true;
         }
         // HeroBhvr
         HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();

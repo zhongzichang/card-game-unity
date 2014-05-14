@@ -198,7 +198,7 @@ namespace TangLevel
         int hurt = UnityEngine.Random.Range (1, 20);
         heroBhvr.hero.hp -= hurt;
 
-        // 冒字
+        // 伤害冒字
         TG.BattleTxt battleTxt = new TG.BattleTxt ();
         battleTxt.type = TG.BattleTxtType.Hurt;
         battleTxt.value = hurt;
@@ -209,8 +209,14 @@ namespace TangLevel
         battleTxt.position = Camera.main.WorldToScreenPoint (transform.localPosition) + HURT_TEXT_OFFSET;
         Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
 
+        // TODO 测试用，MP 增加
+        HeroBhvr hb = w.source.GetComponent<HeroBhvr> ();
+        if (hb != null) {
+          hb.hero.mp += hurt;
+        }
+
         // HP 小于等于0时，角色死亡
-        if (heroBhvr.hero.hp <= 0) {
+        if (heroBhvr.hero.hp == 0) {
           heroBhvr.Die ();
         } else {
           // 被击打

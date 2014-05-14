@@ -59,9 +59,9 @@ namespace TangLevel
     public int hp {
       get{ return m_hp; }
       set{
-        m_hp = value;
+        m_hp = value < 0 ? 0 : value;
         if (raiseHpChange != null) {
-          raiseHpChange (value, maxHp);
+          raiseHpChange (m_hp, maxHp);
         }
       }
     }

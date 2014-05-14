@@ -61,8 +61,16 @@ namespace TangLevel
     void Update ()
     {
 
+      // 暂停改变通知
+      if (m_isPause != newIsPause) {
+        m_isPause = newIsPause;
+        if (pauseChangedHandler != null) {
+          pauseChangedHandler (m_isPause);
+        }
+      }
+
       // 状态改变通知
-      if (m_status != newStatus) {
+      else if (m_status != newStatus) {
         beforeStatus = m_status; // 保留状态
         m_status = newStatus; // 切换到新状态
         if (statusChangedHandler != null) {
@@ -70,13 +78,6 @@ namespace TangLevel
         }
       } 
 
-      // 暂停改变通知
-      else if (m_isPause != newIsPause) {
-        m_isPause = newIsPause;
-        if (pauseChangedHandler != null) {
-          pauseChangedHandler (m_isPause);
-        }
-      }
 
     }
 
