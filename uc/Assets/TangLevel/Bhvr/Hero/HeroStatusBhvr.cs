@@ -9,14 +9,19 @@ namespace TangLevel
 
     // 状态结束时回调
     public StatusChange statusChangedHandler;
+
     /// <summary>
     ///   角色状态，在*inspector*中使用
     /// </summary>
     public HeroStatus m_status = HeroStatus.idle;
-    // private SpriteAnimate spriteAnimate;
-    //private ActorBhvr actorBhvr;
+
+    /// <summary>
+    ///   上一个状态
+    /// </summary>
+    public HeroStatus beforeStatus = HeroStatus.idle;
+
+
     private bool changed = false;
-    private HeroStatus beforeStatus = HeroStatus.idle;
 
     void Update ()
     {
@@ -41,7 +46,6 @@ namespace TangLevel
 
           beforeStatus = m_status;
           changed = true;
-
           m_status = value;
         }
       }

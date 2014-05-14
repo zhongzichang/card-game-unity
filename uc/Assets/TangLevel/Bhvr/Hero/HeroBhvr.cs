@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using TDB = TangDragonBones;
 using DragonBones;
@@ -13,7 +13,25 @@ namespace TangLevel
   [RequireComponent (typeof(DirectedNavigable), typeof(HeroStatusBhvr))]
   public class HeroBhvr : MonoBehaviour
   {
+
+    //#region Events
+
+    /// <summary>
+    /// 大招开始
+    /// </summary>
+    public static event EventHandler BigMoveStart;
+    /// <summary>
+    /// 大招结束
+    /// </summary>
+    public static event EventHandler BigMoveEnd;
+    /// <summary>
+    /// 死亡通知
+    /// </summary>
     public event EventHandler RaiseDead;
+
+    //#endregion
+
+    //#region Attributes
 
     public Hero hero;
     private DirectedNavigable navigable;
@@ -27,20 +45,24 @@ namespace TangLevel
     private GameObject target;
     private bool isPlay = true;
     private List<string> animationList;
+    private List<HeroBhvr> bigMoveSenders = new List<HeroBhvr>();
 
-    #region MonoBehaviours
+    //#endregion
+
+#region MonoBehaviours
 
     void Start ()
     {
       // nav agent
       agent = GetComponent<DirectedNavAgent> ();
-      if (agent == null) {
-        agent = gameObject.AddComponent<DirectedNavAgent> ();
-      }
+      if (agent == null)
+	{
+	  agent = gameObject.AddComponent<DirectedNavAgent> ();
+	}
       // navigable
       navigable = GetComponent<DirectedNavigable> ();
       if (navigable == null) {
-        navigable = gameObject.AddComponent<DirectedNavigable> ();
+	navigable = gameObject.AddComponent<DirectedNavigable> ();
       }
       // transform
       myTransform = transform;
@@ -53,36 +75,41 @@ namespace TangLevel
     { 
       // status behaviour
       if (statusBhvr == null) {
-        statusBhvr = GetComponent<HeroStatusBhvr> ();
-        if (statusBhvr == null) {
-          statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
-        }
-        statusBhvr.statusChangedHandler += OnStatusChanged;
+	statusBhvr = GetComponent<HeroStatusBhvr> ();
+	if (statusBhvr == null) {
+	  statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
+	}
+	statusBhvr.statusChangedHandler += OnStatusChanged;
       }
       // 重新打开，状态设置为空闲
       statusBhvr.Status = HeroStatus.idle;
 
       // DragonBonesBhvr
       if (dbBhvr == null) {
-        // dragonbones behaviour
-        dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
-        dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
-        armature = dbBhvr.armature;
+	// dragonbones behaviour
+	dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
+	dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
+	armature = dbBhvr.armature;
       }
 
       // armature
       if (armature != null) {
-        armature.AddEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
-        armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
-        armature.AddEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
-        animationList = armature.Animation.AnimationList;
+	armature.AddEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
+	armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
+	armature.AddEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
+	animationList = armature.Animation.AnimationList;
       }
 
       // 关卡控制
       LevelController.RaisePause += OnPause;
       LevelController.RaiseResume += OnResume;
+
+      BigMoveStart += OnBigMoveStart;
+      BigMoveEnd += OnBigMoveEnd;
+
+
       if (!isPlay) {
-        Resume ();
+	Resume ();
       }
 
     }
@@ -91,22 +118,61 @@ namespace TangLevel
     {
 
       if (armature != null) {
-        armature.RemoveEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
-        armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
-        armature.RemoveEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
+	armature.RemoveEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
+	armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
+	armature.RemoveEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
       }
 
       // 关卡控制
       LevelController.RaisePause -= OnPause;
       LevelController.RaiseResume -= OnResume;
+
+      BigMoveStart -= OnBigMoveStart;
+      BigMoveEnd -= OnBigMoveEnd;
+
+    
       if (isPlay) {
-        Pause ();
+	Pause ();
       }
+
+    
     }
 
-    #endregion
+#endregion
 
-    #region DragonBones Events
+#region SceneEvents
+    private void OnBigMoveStart(object sender, EventArgs args)
+    {
+      HeroBhvr hb = sender as HeroBhvr;
+      if( hb != null )
+	{
+	  // 如果自己也在放大招，不做处理
+	  if( hb == this )
+	    { // 该大招释放者是自己
+
+	    }
+	  else
+	    {
+	      // 别人放的大招
+	      //if( !bigMoveSender.Contains(hb) )
+	      //{
+	      bigMoveSenders.Add(hb);
+	      statusBhvr.Status = HeroStatus.pause;
+	      //		}
+	    }
+	}
+    }
+    private void OnBigMoveEnd(object sender, EventArgs args)
+    {
+      HeroBhvr hb = sender as HeroBhvr;
+      if( hb != this)
+	{
+	  
+	}
+    }
+#endregion
+
+#region DragonBones Events
 
     private void OnMovementChange (Com.Viperstudio.Events.Event e)
     {
@@ -124,11 +190,11 @@ namespace TangLevel
       switch (statusBhvr.Status) {
 
       case HeroStatus.beat:
-        statusBhvr.Status = HeroStatus.idle;
-        break;
+	statusBhvr.Status = HeroStatus.idle;
+	break;
       case HeroStatus.charge:
-        statusBhvr.Status = HeroStatus.release;
-        break;
+	statusBhvr.Status = HeroStatus.release;
+	break;
       }
 
     }
@@ -138,14 +204,14 @@ namespace TangLevel
 
       switch (statusBhvr.Status) {
       case HeroStatus.release:
-        statusBhvr.Status = HeroStatus.idle;
-        break;
+	statusBhvr.Status = HeroStatus.idle;
+	break;
       }
     }
 
-    #endregion
+#endregion
 
-    #region Tang Callback
+#region Tang Callback
 
     /// <summary>
     /// 状态回调
@@ -160,64 +226,68 @@ namespace TangLevel
 
       case HeroStatus.charge: // 起手 ----
 
-        // 有则播放，无则转到释放状态
+	BigMoveStart(this, EventArgs.Empty);
 
-        if (skill.chargeClip != null) {
-          if (animationList.Contains (skill.chargeClip)) {
-            clip = skill.chargeClip;
-          }
-        }
-        if (clip == null) {
-          statusBhvr.Status = HeroStatus.release;
-        } else {
+	// 有则播放，无则转到释放状态
 
-          // 播放起手动作
-          dbBhvr.GotoAndPlay (clip);
-          // 播放起手特效
-          if (skill.chargeSpecials != null) {
-            skillBhvr.CastChargeSpecial (skill, gameObject, target);
-          }
-        }
-        break;
+	if (skill.chargeClip != null) {
+	  if (animationList.Contains (skill.chargeClip)) {
+	    clip = skill.chargeClip;
+	  }
+	}
+	if (clip == null) {
+	  statusBhvr.Status = HeroStatus.release;
+	} else {
+
+	  // 播放起手动作
+	  dbBhvr.GotoAndPlay (clip);
+	  // 播放起手特效
+	  if (skill.chargeSpecials != null) {
+	    skillBhvr.CastChargeSpecial (skill, gameObject, target);
+	  }
+	}
+	break;
       
       case HeroStatus.release: // 释放 ----
 
-        if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
-          clip = skill.releaseClip;
-        } else {
-          clip = Config.DEFAULT_ATTACK_CLIP;
-        }
-        // 播放施放动作
-        armature.Animation.GotoAndPlay (clip, -1, -1, 1);
-        // 播放施放特效
-        if (skill.releaseSpecials != null) {
-          skillBhvr.CastReleaseSpecial (skill, gameObject, target);
-        }
+	BigMoveEnd(this, EventArgs.Empty);
 
-        // 抛出作用器s
-        if (skill != null) {
-          foreach (Effector e in skill.effectors) {
-            skillBhvr.Cast (e, skill, gameObject, target);
-          }
-        }
-        break;
+	if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
+	  clip = skill.releaseClip;
+	} else {
+	  clip = Config.DEFAULT_ATTACK_CLIP;
+	}
+	// 播放施放动作
+	armature.Animation.GotoAndPlay (clip, -1, -1, 1);
+	// 播放施放特效
+	if (skill.releaseSpecials != null) {
+	  skillBhvr.CastReleaseSpecial (skill, gameObject, target);
+	}
+
+	// 抛出作用器s
+	if (skill != null) {
+	  foreach (Effector e in skill.effectors) {
+	    skillBhvr.Cast (e, skill, gameObject, target);
+	  }
+	}
+	break;
 
       case HeroStatus.dead: // 死亡 ----
 
-        armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
-        FadeOut ();
-        break;
+	armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
+	FadeOut ();
+	break;
 
       default: // 其他 ----
 
-        dbBhvr.GotoAndPlay (status.ToString ());
-        break;
+	dbBhvr.GotoAndPlay (status.ToString ());
+	break;
       }
     }
 
-    #endregion
+#endregion
 
-    #region LevelController Events
+#region LevelController Events
 
     /// <summary>
     /// 战斗暂停
@@ -239,9 +309,9 @@ namespace TangLevel
       Resume ();
     }
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private void FadeOut ()
     {
@@ -255,9 +325,9 @@ namespace TangLevel
       fadeout.Play ();
     }
 
-    #endregion
+#endregion
 
-    #region Public Methods
+#region Public Methods
 
     /// <summary>
     /// 攻击指定目标
@@ -352,7 +422,7 @@ namespace TangLevel
       return LevelController.FindClosestTarget (this);
     }
 
-    #endregion
+#endregion
   }
 }
 
