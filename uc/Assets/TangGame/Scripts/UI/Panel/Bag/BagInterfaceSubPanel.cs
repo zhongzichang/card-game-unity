@@ -59,11 +59,13 @@ namespace TangGame.UI
 			foreach (Props propsBase in PropsCache.instance.propsTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
 				item.Flush (propsBase);
+				item.gameObject.name = propsBase.data.id.ToString ();
 				propsItems.Add (item.data.data.id, item);
 				UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
 
 			}
 			PropsTable.GetComponent<UITable> ().repositionNow = true;
+			this.PlayTweenItemAlpha (item.gameObject);
 		}
 
 		// Update is called once per frame
@@ -89,6 +91,7 @@ namespace TangGame.UI
 			foreach (PropsItem item in propsItems.Values) {
 				if (item.data != null) {
 					item.gameObject.SetActive (true);
+					this.PlayTweenItemAlpha (item.gameObject);
 				}
 			}
 			this.PropsTableReposition ();
@@ -144,6 +147,7 @@ namespace TangGame.UI
 				if (item.data != null) {
 					if ((PropsType)item.data.data.type == type) {
 						item.gameObject.SetActive (true);
+						this.PlayTweenItemAlpha (item.gameObject);
 					} else {
 						item.gameObject.SetActive (false);
 					}
@@ -163,11 +167,17 @@ namespace TangGame.UI
 				if (item.data != null) {
 					if ((PropsType)item.data.data.type == type1 || (PropsType)item.data.data.type == type2) {
 						item.gameObject.SetActive (true);
+						this.PlayTweenItemAlpha (item.gameObject);
 					} else {
 						item.gameObject.SetActive (false);
 					}
 				}
 			}
+		}
+		void PlayTweenItemAlpha(GameObject obj){
+			TweenAlpha al = obj.GetComponent<TweenAlpha> ();
+			al.ResetToBeginning ();
+			al.Play ();
 		}
 	}
 }
