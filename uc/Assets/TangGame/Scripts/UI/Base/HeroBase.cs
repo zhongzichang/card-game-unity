@@ -27,7 +27,7 @@ namespace TangGame.UI
 					EquipBase equipBaseTmp = equipBases [i];
 					if (equipBaseTmp == null) {
 						equipBaseTmp = new EquipBase ();
-						equipBaseTmp.Xml = Config.propsXmlTable [Equip_Ids [i]];
+						equipBaseTmp.data = Config.propsXmlTable [Equip_Ids [i]];
 						equipBases [i] = equipBaseTmp;
 					}
 				}

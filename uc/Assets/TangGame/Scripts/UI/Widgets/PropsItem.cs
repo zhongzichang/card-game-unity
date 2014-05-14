@@ -9,7 +9,7 @@ namespace TangGame.UI
 		public UISprite frameSprite;
 		public UILabel propsCountLabel;
 		public UISprite propsIconSprite;
-		public PropsBase data;
+		public Props data;
 		private bool showCount = true;
 
 		public bool ShowCount {
@@ -41,15 +41,15 @@ namespace TangGame.UI
 		/// 设置item
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void Flush (PropsBase data)
+		public void Flush (Props data)
 		{
 			this.data = data;
 			if (data != null) {
-				this.propsIconSprite.spriteName = data.Xml.icon;
-				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr ((RankEnum)data.Xml.upgrade));
+				this.propsIconSprite.spriteName = data.data.icon;
+				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr ((RankEnum)data.data.upgrade));
 				if (propsCountLabel != null && showCount) {
-					if (data.Net != null)
-						this.propsCountLabel.text = data.Net.count.ToString ();
+					if (data.net != null)
+						this.propsCountLabel.text = data.net.count.ToString ();
 				}
 			}
 		}

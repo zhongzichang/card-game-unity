@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 /// Fragment properties info sub panel.
 /// xbhuang
 /// 2014-5-10
@@ -12,13 +12,13 @@ namespace TangGame.UI
 		/// <summary>
 		/// 该面板当前的道具
 		/// </summary>
-		PropsBase mProps;
+		Props mProps;
 		/// <summary>
 		/// 道具合成面板，父面板初始化时会被赋值
 		/// </summary>
 		FragmentSynthesisSubPanel mSyntPanel;
 
-		void Flush (PropsBase props)
+		void Flush (Props props)
 		{
 			if (mProps != props) {
 				mProps = props;
@@ -27,7 +27,7 @@ namespace TangGame.UI
 
 		}
 
-		void UpPropsItem (PropsBase props)
+		void UpPropsItem (Props props)
 		{
 			PropsItem item = this.PropsItem.GetComponent<PropsItem> ();
 			if (item == null)
@@ -89,7 +89,7 @@ namespace TangGame.UI
 			}
 		}
 
-		public PropsBase props {
+		public Props props {
 			get {
 				return mProps;
 			}

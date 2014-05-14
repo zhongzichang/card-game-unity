@@ -14,7 +14,7 @@ namespace TangGame{
 		private bool started;
 		public Vector3 position;
 		public int offset;
-		public PropsBase prop;
+		public Props prop;
 
 		// Use this for initialization
 		void Start () {
@@ -68,7 +68,7 @@ namespace TangGame{
 		/// <param name="position">触发对象的世界坐标</param>
 		/// <param name="offset">触发对象显示的偏移量，一般为高度</param>
 		/// <param name="id">道具的ID</param>
-		public static PropTips Show(Vector3 position, int offset, PropsBase prop){
+		public static PropTips Show(Vector3 position, int offset, Props prop){
 			if(mInstance == null){
 				GameObject go = new GameObject("PropTips");
 				go.layer = Global.UILayer;

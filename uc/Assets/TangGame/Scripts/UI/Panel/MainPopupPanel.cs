@@ -60,7 +60,10 @@ namespace TangGame
 				return;		
 			}
 			mainPopupToggle.value = false;
-			MainPopupButton.GetComponent<UIPlayTween> ().Play (true);
+			UIPlayTween[] playTweens = MainPopupButton.GetComponents<UIPlayTween> ();
+			foreach (UIPlayTween playTween in playTweens) {
+				playTween.Play (true);
+			}
 		}
 	}
 }

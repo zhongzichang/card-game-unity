@@ -43,8 +43,8 @@ namespace TangGame.UI
 			this.starList.cellHeight = 12;
 			this.starList.showBackground = false;
 			if (equipBase != null && equipBase.Net != null) {
-				this.equipIcon.spriteName = equipBase.Xml.icon;
-				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.Xml.upgrade);
+				this.equipIcon.spriteName = equipBase.data.icon;
+				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.data.upgrade);
 				this.starList.count = equipBase.Net.enchantsLv;
 			} else {
 				this.equipIcon.spriteName = "";

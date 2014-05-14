@@ -31,15 +31,15 @@ namespace TangGame.UI
 			if (equipBase.Net != null) {
 				this.equipIcon.color = Color.white;
 				this.equipIcon.alpha = 1f;
-				this.equipIcon.spriteName = equipBase.Xml.icon;
-				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.Xml.upgrade);
+				this.equipIcon.spriteName = equipBase.data.icon;
+				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.data.upgrade);
 				this.label.text = "";
 				this.starList.count = equipBase.Net.enchantsLv;
 				this.starList.Flush ();
 			} else {
 				this.equipIcon.color = Color.gray;
 				this.equipIcon.alpha = 0.4f;
-				this.equipIcon.spriteName = equipBase.Xml.icon;
+				this.equipIcon.spriteName = equipBase.data.icon;
 				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr(RankEnum.WHITE);
 				this.label.text = "未装备";
 				this.starList.count = 0;
