@@ -48,7 +48,7 @@ namespace TangGame.UI
 			this.data = data;
 			SetHeroName (data.Xml.name);
 			SetPropertyType (data.Attribute_Type);
-//		SetSkillGroup ();
+			SetSkillGroup ();
 			SetCardTexture (data.Xml.portrait);
 			SetBackground ((int)data.Net.upgrade);
 			SetStarList (data.Net.evolve);
@@ -95,7 +95,8 @@ namespace TangGame.UI
 
 		void SetBackground (int rank)
 		{
-			Foreground.GetComponent<UISprite> ().spriteName = "card_bg_" + HeroBase.GetRankColorStr(rank);
+//			Foreground.GetComponent<UISprite> ().spriteName = "card_bg_" + HeroBase.GetRankColorStr(rank);
+			Foreground.GetComponent<UISprite> ().color = HeroBase.GetRankColor ((RankEnum)rank);
 		}
 
 		/// <summary>
@@ -103,7 +104,7 @@ namespace TangGame.UI
 		/// </summary>
 		void SetCardTexture (string cardName)
 		{
-			Object card = Resources.Load ("Textures/SanguoUI/art/" + cardName);
+			Object card = Resources.Load ("Textures/HeroPictorialTexture/" + cardName);
 			this.Texture.GetComponent<UITexture> ().mainTexture = card  as Texture2D;
 		}
 

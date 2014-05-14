@@ -381,6 +381,23 @@ namespace TangGame.UI
 				return "white";
 			}
 		}
+
+		public static Color32 GetRankColor (RankEnum rank)
+		{
+			switch (rank) {
+			case RankEnum.WHITE:
+				return new Color32 (171, 171, 171, 255);
+			case RankEnum.GREEN:
+				return new Color32 (93, 255, 0, 255);
+			case RankEnum.BLUE:
+				return new Color32 (0,192,255,255);
+			case RankEnum.PURPLE:
+				return new Color32 (236,43,228,255);
+			case RankEnum.ORANGE:
+				return new Color32(255,111,0,255);
+			}
+			return Color.white;
+		}
 	}
 
 	public enum AttributeTypeEnum
