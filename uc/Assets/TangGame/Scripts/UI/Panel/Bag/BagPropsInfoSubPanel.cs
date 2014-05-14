@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
@@ -67,24 +67,24 @@ namespace TangGame.UI
 		/// 刷新面板数据
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void Flush (PropsBase data)
+		public void Flush (Props data)
 		{
 			if (this.gameObject.activeSelf == false) {
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().ResetToBeginning ();
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
-			this.UpPropsIcon (data.Xml.icon);
-			this.UpPropsFrames (data.Xml.upgrade);
+      this.UpPropsIcon (data.data.icon);
+      this.UpPropsFrames (data.data.upgrade);
 			this.UpPropsInfo (data);
-			this.UpPropsName (data.Xml.name);
-			this.UpPropsPrice (data.Xml.selling_price);
-			if (data.Net != null) {
-				this.UpPropsCount (data.Net.count);
+      this.UpPropsName (data.data.name);
+      this.UpPropsPrice (data.data.selling_price);
+			if (data.net != null) {
+        this.UpPropsCount (data.net.count);
 			} else {
 				this.UpPropsCount (0);
 			}
-			this.UpDescription (data.Xml.description);
+      this.UpDescription (data.data.description);
 
 		}
 
@@ -133,118 +133,118 @@ namespace TangGame.UI
 		/// 更新信息
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void UpPropsInfo (PropsBase data)
+		public void UpPropsInfo (Props data)
 		{
 
-			PropsType type = (PropsType)data.Xml.type;
+			PropsType type = (PropsType)data.data.type;
 			string infoStr = "";
 			if (PropsType.EQUIP == type) {
-				if (data.Xml.strength == data.Xml.intellect && data.Xml.intellect == data.Xml.agile) {
+				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
 					infoStr += UIPanelLang.AGILE + "+";
-					infoStr += data.Xml.strength;
+					infoStr += data.data.strength;
 				} else {
 					//		<!-- 属性加成 -->
 					//		<!-- 力量 -->
 					//		<strength>21</strength>
-					if (data.Xml.strength > 0) {
-						infoStr += UIPanelLang.STRENGTH + "+" + data.Xml.strength + Environment.NewLine;
+					if (data.data.strength > 0) {
+						infoStr += UIPanelLang.STRENGTH + "+" + data.data.strength + Environment.NewLine;
 					}
 					//		<!-- 智力 -->
 					//		<intellect>42</intellect>
-					if (data.Xml.intellect > 0) {
-						infoStr += UIPanelLang.INTELLECT + "+" + data.Xml.intellect + Environment.NewLine;
+					if (data.data.intellect > 0) {
+						infoStr += UIPanelLang.INTELLECT + "+" + data.data.intellect + Environment.NewLine;
 					}
 					//		<!-- 敏捷 -->
 					//		<agile>2</agile>
-					if (data.Xml.agile > 0) {
-						infoStr += UIPanelLang.AGILE + "+" + data.Xml.agile + Environment.NewLine;
+					if (data.data.agile > 0) {
+						infoStr += UIPanelLang.AGILE + "+" + data.data.agile + Environment.NewLine;
 					}
 				}
 				//		<!-- 生命最大 -->
 				//		<hpMax>132</hpMax>
-				if (data.Xml.hpMax > 0) {
-					infoStr += UIPanelLang.HPMAX + "+" + data.Xml.hpMax + Environment.NewLine;
+				if (data.data.hpMax > 0) {
+					infoStr += UIPanelLang.HPMAX + "+" + data.data.hpMax + Environment.NewLine;
 
 				}
 				//		<!-- 攻击强度 -->
 				//		<attack_damage>23</attack_damage>
-				if (data.Xml.attack_damage > 0) {
-					infoStr += UIPanelLang.ATTACK_DAMAGE + "+" + data.Xml.attack_damage + Environment.NewLine;
+				if (data.data.attack_damage > 0) {
+					infoStr += UIPanelLang.ATTACK_DAMAGE + "+" + data.data.attack_damage + Environment.NewLine;
 				}
 				//		<!-- 法术强度 -->
 				//		<spell_power>123</spell_power>
-				if (data.Xml.ability_power > 0) {
-					infoStr += UIPanelLang.SPELL_POWER + "+" + data.Xml.ability_power + Environment.NewLine;
+				if (data.data.ability_power > 0) {
+					infoStr += UIPanelLang.SPELL_POWER + "+" + data.data.ability_power + Environment.NewLine;
 				}
 				//		<!-- 物理防御 -->
 				//		<physical_defense>321</physical_defense>
-				if (data.Xml.physical_defense > 0) {
-					infoStr += UIPanelLang.PHYSICAL_DEFENSE + "+" + data.Xml.physical_defense + Environment.NewLine;
+				if (data.data.physical_defense > 0) {
+					infoStr += UIPanelLang.PHYSICAL_DEFENSE + "+" + data.data.physical_defense + Environment.NewLine;
 				}
 				//		<!-- 法术防御 -->
 				//		<spell_defense>123</spell_defense>
-				if (data.Xml.magic_defense > 0) {
-					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.Xml.magic_defense + Environment.NewLine;
+				if (data.data.magic_defense > 0) {
+					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.data.magic_defense + Environment.NewLine;
 				}
 				//		<!-- 物理爆击 -->
 				//		<physical_crit>12</physical_crit>
-				if (data.Xml.physical_crit > 0) {
-					infoStr += UIPanelLang.PHYSICAL_CRIT + "+" + data.Xml.physical_crit + Environment.NewLine;
+				if (data.data.physical_crit > 0) {
+					infoStr += UIPanelLang.PHYSICAL_CRIT + "+" + data.data.physical_crit + Environment.NewLine;
 				}
 				//		<!-- 法术爆击 -->
 				//		<spell_crit>21</spell_crit>
-				if (data.Xml.magic_crit > 0) {
-					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.Xml.magic_crit + Environment.NewLine;
+				if (data.data.magic_crit > 0) {
+					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.data.magic_crit + Environment.NewLine;
 				}
 				//		<!-- 生命回复 -->
 				//		<hp_re>12</hp_re>
-				if (data.Xml.hp_recovery > 0) {
-					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.Xml.hp_recovery + Environment.NewLine;
+				if (data.data.hp_recovery > 0) {
+					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.data.hp_recovery + Environment.NewLine;
 				}
 				//		<!-- 能量回复 -->
 				//		<energy_re>21</energy_re>
-				if (data.Xml.energy_recovery > 0) {
-					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.Xml.energy_recovery + Environment.NewLine;
+				if (data.data.energy_recovery > 0) {
+					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.data.energy_recovery + Environment.NewLine;
 				}
 				//		<!-- 物理穿透 -->
 				//		<physical_penetrate>12</physical_penetrate>
-				if (data.Xml.physical_penetration > 0) {
-					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.Xml.physical_penetration + Environment.NewLine;
+				if (data.data.physical_penetration > 0) {
+					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.data.physical_penetration + Environment.NewLine;
 				}
 				//		<!-- 法术穿透 -->
 				//		<spell_penetrate>21</spell_penetrate>
-				if (data.Xml.spell_penetration > 0) {
-					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.Xml.spell_penetration + Environment.NewLine;
+				if (data.data.spell_penetration > 0) {
+					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.data.spell_penetration + Environment.NewLine;
 				}
 				//		<!-- 吸血等级 -->
 				//		<bloodsucking_lv>12</bloodsucking_lv>
-				if (data.Xml.bloodsucking_lv > 0) {
-					infoStr += UIPanelLang.BLOODSUCKING_LV + "+" + data.Xml.bloodsucking_lv + Environment.NewLine;
+				if (data.data.bloodsucking_lv > 0) {
+					infoStr += UIPanelLang.BLOODSUCKING_LV + "+" + data.data.bloodsucking_lv + Environment.NewLine;
 				}
 				//		<!-- 闪避 -->
 				//		<dodge>21</dodge>
-				if (data.Xml.dodge > 0) {
-					infoStr += UIPanelLang.DODGE + "+" + data.Xml.dodge + Environment.NewLine;
+				if (data.data.dodge > 0) {
+					infoStr += UIPanelLang.DODGE + "+" + data.data.dodge + Environment.NewLine;
 				}
 				//		<!-- 治疗效果 -->
 				//		<addition_treatment>21</addition_treatment>
-				if (data.Xml.addition_treatment > 0) {
-					infoStr += UIPanelLang.ADDITION_TREATMENT + "+" + data.Xml.addition_treatment + "%" + Environment.NewLine;
+				if (data.data.addition_treatment > 0) {
+					infoStr += UIPanelLang.ADDITION_TREATMENT + "+" + data.data.addition_treatment + "%" + Environment.NewLine;
 				}
 			}
 			//如果是贵重物品
 			if (PropsType.VALUABLE == type) {
-				infoStr += data.Xml.info;
+				infoStr += data.data.info;
 			}
 			//如果是卷轴
 			if (PropsType.SCROLLS == type) {
-				infoStr += string.Format (UIPanelLang.RELL_INFO, Config.propsPropsRelationship [data.Xml.id] [0]);
+				infoStr += string.Format (UIPanelLang.RELL_INFO, Config.propsPropsRelationship [data.data.id] [0]);
 			}
 			//如果是灵魂石
 			if (PropsType.SOULROCK == type) {
-				List<Xml.HeroData> heroXmlList = Config.propsHeroesRelationship [data.Xml.id];
+				List<Xml.HeroData> heroXmlList = Config.propsHeroesRelationship [data.data.id];
 				if (heroXmlList.Count > 0) {
 					TangGame.Xml.HeroData heroxml = heroXmlList [0];
 					int count = Config.evolveXmlTable [heroxml.evolve].val;
@@ -254,7 +254,7 @@ namespace TangGame.UI
 			}
 			//如果是消耗品
 			if (PropsType.NONE == type)
-				infoStr += data.Xml.info;
+				infoStr += data.data.info;
 
 			UILabel label = PropsInfoLabel.GetComponent<UILabel> ();
 			if (label != null) {

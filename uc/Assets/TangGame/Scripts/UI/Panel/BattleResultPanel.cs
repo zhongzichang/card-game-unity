@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using TangGame.UI;
 
@@ -36,17 +36,17 @@ namespace TangGame{
 
 		void Start () {
 			winGroup.SetActive(true);
-			PropsBase prop = new PropsBase();
-			prop.Xml = new TangGame.Xml.PropsData();
-			prop.Xml.name = "测试道具";
-			prop.Xml.type = 2;
-			prop.Count = 2;
-			prop.Xml.icon = "104";
-			prop.Xml.level = 5;
-			prop.Xml.info = "使用后可以获得一个小萝莉";
-			prop.Xml.description = "这是测试道具，大家都懂得";
+			Props props = new Props();
+			props.data = new TangGame.Xml.PropsData();
+			props.data.name = "测试道具";
+			props.data.type = 2;
+			props.count = 2;
+			props.data.icon = "104";
+			props.data.level = 5;
+			props.data.info = "使用后可以获得一个小萝莉";
+			props.data.description = "这是测试道具，大家都懂得";
 
-			propInfoItem.data = prop;
+			propInfoItem.data = props;
 		}
 
 		public object param{

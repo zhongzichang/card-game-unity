@@ -9,19 +9,19 @@ namespace TangGame.UI
 	{
 		public void Flush (PropsData xml, int count)
 		{
-			data = new PropsBase ();
-			data.Xml = xml;
+			data = new Props ();
+			data.data = xml;
 			this.Flush (data, count);
 		}
 
-		public void Flush (PropsBase data, int count)
+		public void Flush (Props data, int count)
 		{
 			this.data = data;
 			if (data != null) {
-				this.propsIconSprite.spriteName = data.Xml.icon;
-				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr ((RankEnum)data.Xml.upgrade));
-				if (data.Net != null)
-					this.propsCountLabel.text = (data.Net.count + count).ToString ();
+        this.propsIconSprite.spriteName = data.data.icon;
+				this.frameSprite.spriteName = string.Format ("equip_frame_{0}", HeroBase.GetRankColorStr ((RankEnum)data.data.upgrade));
+				if (data.net != null)
+					this.propsCountLabel.text = (data.net.count + count).ToString ();
 				else
 					this.propsCountLabel.text = "[FF0000]0[-]/" + count;
 			}

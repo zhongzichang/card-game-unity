@@ -24,8 +24,8 @@ namespace TangGame.UI
 			}
 		}
 		public void Flush(PropsData xml){
-			data = new PropsBase ();
-			data.Xml = xml;
+			data = new Props ();
+			data.data = xml;
 			this.Flush (data);
 		}
 	}

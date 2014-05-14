@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// xbhuang 2014-4-28
 /// </summary>
 using UnityEngine;
@@ -7,7 +7,7 @@ using TangGame.Net;
 
 namespace TangGame.UI
 {
-	public class EquipBase : PropsBase{
+	public class EquipBase : Props{
 
 		private EquipNet net;
 

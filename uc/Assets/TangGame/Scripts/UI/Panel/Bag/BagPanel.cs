@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Bag panel.
 /// xbhuang 2014-4-28
 /// </summary>
@@ -30,7 +30,7 @@ namespace TangGame.UI
 		/// Ups the bag properties info sub panel.
 		/// 打开并且更新面板数据
 		/// </summary>
-		public void UpBagPropsInfoSubPanel(PropsBase data){
+		public void UpBagPropsInfoSubPanel(Props data){
 			BagPropsInfoSubPanel.GetComponent<BagPropsInfoSubPanel> ().Flush (data);
 		}
 	}
