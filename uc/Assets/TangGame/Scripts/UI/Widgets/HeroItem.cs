@@ -113,6 +113,11 @@ namespace TangGame.UI
 
 		private void UpHeroAvatarSprite (string heroAvatar)
 		{
+			//TODO 仅仅供测试使用
+			if (string.IsNullOrEmpty (heroAvatar)) {
+				heroAvatar = "hero_icon_1_un";
+				Debug.LogWarning ("the hero can't find avatar name!");
+			}
 			HeroAvatarSprite.spriteName = heroAvatar;
 		}
 
