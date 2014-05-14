@@ -382,19 +382,19 @@ namespace TangGame.UI
 			}
 		}
 
-		public static Color GetRankColor (RankEnum rank)
+		public static Color32 GetRankColor (RankEnum rank)
 		{
 			switch (rank) {
 			case RankEnum.WHITE:
-				return Color.white;
+				return new Color32 (171, 171, 171, 255);
 			case RankEnum.GREEN:
-				return Color.green;
+				return new Color32 (93, 255, 0, 255);
 			case RankEnum.BLUE:
-				return Color.blue;
+				return new Color32 (0,192,255,255);
 			case RankEnum.PURPLE:
-				return Color.red;
+				return new Color32 (236,43,228,255);
 			case RankEnum.ORANGE:
-				return Color.yellow;
+				return new Color32(255,111,0,255);
 			}
 			return Color.white;
 		}
