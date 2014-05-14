@@ -40,6 +40,7 @@ namespace TangGame.UI
 			}
 		}
 
+
 		// Use this for initialization
 		void Start ()
 		{
