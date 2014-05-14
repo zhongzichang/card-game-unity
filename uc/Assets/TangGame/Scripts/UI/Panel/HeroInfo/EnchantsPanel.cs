@@ -111,7 +111,7 @@ namespace TangGame.UI
 		/// The equip base.
 		/// 选中的道具
 		/// </summary>
-		private EquipBase mEquipBase = null;
+		private Equip mEquipBase = null;
 		/// <summary>
 		/// The en C xml.
 		/// 当前装备的附魔表
@@ -216,22 +216,22 @@ namespace TangGame.UI
 		/// 更新装备相关数据
 		/// </summary>
 		/// <param name="equipNet">Equip net.</param>
-		void UpEquipContent (EquipBase equipBase)
+		void UpEquipContent (Equip equipBase)
 		{
 			this.mEquipBase = equipBase;
 			//重置附魔点数
 			mEnExpSum = 0;
 			mEnLvUp = 0;
-			mEnExpCurrent = equipBase.Net.enchantsExp;
+			mEnExpCurrent = equipBase.net.enchantsExp;
 			propsCheckedCountTable.Clear ();
 			enCXml = Config.enchantsConsumedXmlTable [equipBase.data.upgrade];
-			int enLv = equipBase.Net.enchantsLv;
+			int enLv = equipBase.net.enchantsLv;
 			int enNextLv = enLv + 1;
-			int enExp = equipBase.Net.enchantsExp;
+			int enExp = equipBase.net.enchantsExp;
 			if (enCXml.GetLvMax () == 0) {
 				//此装备不能附魔
 				this.EquipContent.SetActive (false);
-			} else if (equipBase.Net.enchantsLv >= enCXml.GetLvMax ()) {
+			} else if (equipBase.net.enchantsLv >= enCXml.GetLvMax ()) {
 				mGoldSpendLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
 				mGemSpendLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
 				mExpSprite.fillAmount = 1f;
@@ -353,7 +353,7 @@ namespace TangGame.UI
 
       mEnExpSum += itemTmp.data.data.enchant_points;
       mEnExpCurrent += itemTmp.data.data.enchant_points;
-			int expMax = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp + 1);
+			int expMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp + 1);
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0)
 				return;
@@ -373,13 +373,13 @@ namespace TangGame.UI
 				mEnLvUp++;
 				mEnExpCurrent = mEnExpCurrent - expMax;
 //				expTmp = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp);
-				expMax = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp + 1);
+				expMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp + 1);
 			}
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0) {
 				mExpSprite.fillAmount = 1f;
 				mExpLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
-				mGoldSpendLab.text = (enCXml.GetToMaxExp (mEquipBase.Net.enchantsLv, mEquipBase.Net.enchantsExp) * enCXml.gold_spend).ToString ();
+				mGoldSpendLab.text = (enCXml.GetToMaxExp (mEquipBase.net.enchantsLv, mEquipBase.net.enchantsExp) * enCXml.gold_spend).ToString ();
 			} else {
 				mExpSprite.fillAmount = (float)mEnExpCurrent / (float)expMax;
 				mExpLab.text = mEnExpCurrent + "/" + expMax; 
@@ -446,7 +446,7 @@ namespace TangGame.UI
 		void OnEquipItemFEClick (GameObject obj)
 		{
 			EquipItemForEnchants equipItem = obj.GetComponent<EquipItemForEnchants> ();
-			if (equipItem != null && equipItem.EquipBase != null && equipItem.EquipBase.Net != null) {
+			if (equipItem != null && equipItem.EquipBase != null && equipItem.EquipBase.net != null) {
 				this.EquipContent.SetActive (true);
 				UpEquipContent (equipItem.EquipBase);
 			} else {
@@ -459,12 +459,12 @@ namespace TangGame.UI
 		/// 更新装备的文本信息显示内容
 		/// </summary>
 		/// <param name="data">Data.</param>
-		void UpEquipsInfo (EquipBase data)
+		void UpEquipsInfo (Equip data)
 		{
 
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "[000000]";
-			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade, data.Net.enchantsLv);
+			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade, data.net.enchantsLv);
 			if (PropsType.EQUIP == type) {
 				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile) {
 					string title = UIPanelLang.STRENGTH + "," + UIPanelLang.INTELLECT + "," + UIPanelLang.AGILE;

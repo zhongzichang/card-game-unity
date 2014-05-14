@@ -97,4 +97,70 @@
 		<icon>213</icon>
 		<description>因为它糊了</description>
 	</value>
+<value>
+		<id>1004</id>
+		<name>牛顿的全家宴</name>
+		<type>1</type>
+		<upgrade>3</upgrade>
+		<strength>10</strength>
+		<intellect>10</intellect>
+		<agile>10</agile>
+		<hpMax>10</hpMax>
+		<attack_damage>0</attack_damage>
+		<ability_power>0</ability_power>
+		<physical_defense>0</physical_defense>
+		<magic_defense>0</magic_defense>
+		<physical_crit>0</physical_crit>
+		<magic_crit>0</magic_crit>
+		<hp_recovery>0</hp_recovery>
+		<energy_recovery>0</energy_recovery>
+		<physical_penetration>0</physical_penetration>
+		<spell_penetration>0</spell_penetration>
+		<bloodsucking_lv>0</bloodsucking_lv>
+		<dodge>10</dodge>
+		<addition_treatment>10</addition_treatment>
+		<reduce_energy>10</reduce_energy>
+		<level>10</level>
+		<synthetic_props>{1003,18}</synthetic_props>
+		<synthetic_spend>500</synthetic_spend>
+		<price_list>120000</price_list>
+		<selling_price>200</selling_price>
+		<enchant_points>6</enchant_points>
+		<experience>6</experience>
+		<icon>213</icon>
+		<description>天下哪儿有不散的宴席？</description>
+	</value>
+<value>
+		<id>1005</id>
+		<name>牛顿的超级香精</name>
+		<type>1</type>
+		<upgrade>5</upgrade>
+		<strength>10</strength>
+		<intellect>10</intellect>
+		<agile>10</agile>
+		<hpMax>10</hpMax>
+		<attack_damage>0</attack_damage>
+		<ability_power>0</ability_power>
+		<physical_defense>0</physical_defense>
+		<magic_defense>0</magic_defense>
+		<physical_crit>0</physical_crit>
+		<magic_crit>0</magic_crit>
+		<hp_recovery>0</hp_recovery>
+		<energy_recovery>0</energy_recovery>
+		<physical_penetration>0</physical_penetration>
+		<spell_penetration>0</spell_penetration>
+		<bloodsucking_lv>0</bloodsucking_lv>
+		<dodge>10</dodge>
+		<addition_treatment>10</addition_treatment>
+		<reduce_energy>10</reduce_energy>
+		<level>10</level>
+		<synthetic_props>{1002,99}</synthetic_props>
+		<synthetic_spend>500</synthetic_spend>
+		<price_list>120000</price_list>
+		<selling_price>200</selling_price>
+		<enchant_points>6</enchant_points>
+		<experience>6</experience>
+		<icon>213</icon>
+		<description>天下哪儿有不散的宴席？</description>
+	</value>
 </root>
