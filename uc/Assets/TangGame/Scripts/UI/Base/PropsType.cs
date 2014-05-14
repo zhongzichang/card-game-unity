@@ -1,57 +1,10 @@
 /// <summary>
 /// Properties base.
 /// xbhuang 2014-4-28
+/// Modify hgq 2014-5-14
 /// </summary>
-using UnityEngine;
-using TangGame.Xml;
-using TangGame.Net;
-
 namespace TangGame.UI
 {
-	public class PropsBase{
-		/// <summary>
-		/// The xml.
-		/// </summary>
-		private PropsData xml;
-		/// <summary>
-		/// The net.
-		/// </summary>
-		private PropsNet net;
-		/// <summary>
-		/// The count. 道具数量
-		/// </summary>
-		private int count;
-
-
-		public int Count {
-			get {
-				return count;
-			}
-			set {
-				count = value;
-			}
-		}
-
-		public PropsData Xml {
-			get {
-				return xml;
-			}
-			set {
-				xml = value;
-			}
-		}
-
-		public PropsNet Net {
-			get {
-				return net;
-			}
-			set {
-				net = value;
-			}
-		}
-
-
-	}
 	///道具类型
 	public enum PropsType{
 		NONE,

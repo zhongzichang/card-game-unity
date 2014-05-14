@@ -48,10 +48,11 @@ namespace TangGame.UI
 			Locked (data.Islock);
 			UpLevel (data.Net.level);
 			UpHeroType (data.Attribute_Type);
+			UpProps (hero);
 			int fragmentsCount  = 0;
 			int FragmentsCountMax = Config.evolveXmlTable[1].val;
-			if (BaseCache.propsBaseTable.ContainsKey (data.Xml.soul_rock_id)) {
-				fragmentsCount = BaseCache.propsBaseTable [data.Xml.soul_rock_id].Count;
+      if (PropsCache.instance.propsTable.ContainsKey (data.Xml.soul_rock_id)) {
+        fragmentsCount = PropsCache.instance.propsTable[data.Xml.soul_rock_id].count;
 			}
 			if (data.Net != null && Config.evolveXmlTable.ContainsKey (data.Net.evolve + 1)) {
 				FragmentsCountMax = Config.evolveXmlTable[data.Net.evolve + 1].val;
@@ -83,9 +84,26 @@ namespace TangGame.UI
 			this.HeroType.spriteName = resName;
 		}
 
-		private void UpProps ()
+		private void UpProps (HeroBase heroBase)
 		{
-			//TODO upProps;
+
+			if (heroBase != null && !heroBase.Islock && heroBase.EquipBases != null) {
+				Equip[] equips = heroBase.EquipBases;
+				for (int i = 0; i < Props.Length; i++) {
+					int len = heroBase.EquipBases.Length;
+					if (len > i && equips [i] != null) {
+						Props [i].spriteName = equips [i].data.icon;
+						if (equips [i].net != null) {
+							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = true;
+							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = false;
+
+						} else {
+							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = false;
+							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = true;
+						}
+					}
+				}
+			}
 		}
 
 		private void UpLevel (int level)
@@ -113,6 +131,11 @@ namespace TangGame.UI
 
 		private void UpHeroAvatarSprite (string heroAvatar)
 		{
+			//TODO 仅仅供测试使用
+			if (string.IsNullOrEmpty (heroAvatar)) {
+				heroAvatar = "hero_icon_1_un";
+				Debug.LogWarning ("the hero can't find avatar name!");
+			}
 			HeroAvatarSprite.spriteName = heroAvatar;
 		}
 

@@ -6,17 +6,13 @@ namespace TangGame.UI
   public class ChapterItemObject : MonoBehaviour {
 
     /// <summary>
-    /// 标题
-    /// </summary>
-    public UISprite title;
-    /// <summary>
     /// 路径
     /// </summary>
-    public UISprite path;
+    public UITexture path;
     /// <summary>
     /// 背景
     /// </summary>
-    public UISprite background;
+    public UITexture background;
 
     public GameObject stages;
     public BetterList<StageItemObject> stageObjs = new BetterList<StageItemObject>();

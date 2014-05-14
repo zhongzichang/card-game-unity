@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
@@ -56,10 +56,10 @@ namespace TangGame.UI
 		public void LoadAllPropsItem(){
 			//FIXME 修改prefab的加载方式
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
-			foreach (PropsBase propsBase in TangGame.UI.BaseCache.propsBaseTable.Values) {
+			foreach (Props propsBase in PropsCache.instance.propsTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
 				item.Flush (propsBase);
-				propsItems.Add (item.data.Xml.id, item);
+				propsItems.Add (item.data.data.id, item);
 				UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
 
 			}
@@ -142,7 +142,7 @@ namespace TangGame.UI
 		{
 			foreach (PropsItem item in propsItems.Values) {
 				if (item.data != null) {
-					if ((PropsType)item.data.Xml.type == type) {
+					if ((PropsType)item.data.data.type == type) {
 						item.gameObject.SetActive (true);
 					} else {
 						item.gameObject.SetActive (false);
@@ -161,7 +161,7 @@ namespace TangGame.UI
 		{
 			foreach (PropsItem item in propsItems.Values) {
 				if (item.data != null) {
-					if ((PropsType)item.data.Xml.type == type1 || (PropsType)item.data.Xml.type == type2) {
+					if ((PropsType)item.data.data.type == type1 || (PropsType)item.data.data.type == type2) {
 						item.gameObject.SetActive (true);
 					} else {
 						item.gameObject.SetActive (false);

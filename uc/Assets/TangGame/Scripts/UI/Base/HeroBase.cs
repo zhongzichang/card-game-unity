@@ -11,7 +11,7 @@ namespace TangGame.UI
 		private HeroNet net;
 		private HeroData xml;
 		private SkillBase[] skillBases;
-		private EquipBase[] equipBases;
+		private Equip[] equipBases;
 
 		/// <summary>
 		/// Ups the equip bases.
@@ -21,19 +21,19 @@ namespace TangGame.UI
 		{
 			if (xml != null) {
 				if (equipBases == null) {
-					equipBases = new EquipBase[Equip_Ids.Length];
+					equipBases = new Equip[Equip_Ids.Length];
 				}
 				for (int i = 0; i < Equip_Ids.Length; i++) {
-					EquipBase equipBaseTmp = equipBases [i];
+					Equip equipBaseTmp = equipBases [i];
 					if (equipBaseTmp == null) {
-						equipBaseTmp = new EquipBase ();
-						equipBaseTmp.Xml = Config.propsXmlTable [Equip_Ids [i]];
+						equipBaseTmp = new Equip ();
+						equipBaseTmp.data = Config.propsXmlTable [Equip_Ids [i]];
 						equipBases [i] = equipBaseTmp;
 					}
 				}
 				if (net != null && net.equipList != null) {
 					for (int i = 0; i < net.equipList.Length; i++) {
-						equipBases [i].Net = net.equipList [i];
+						equipBases [i].net = net.equipList [i];
 					}
 				}
 			}
@@ -79,7 +79,7 @@ namespace TangGame.UI
 			}
 		}
 
-		public EquipBase[] EquipBases {
+		public Equip[] EquipBases {
 			get {
 				UpEquipBases ();
 				return equipBases;

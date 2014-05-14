@@ -15,9 +15,9 @@ namespace TangGame.UI
 		public UISprite equipFrames;
 		public StarList starList;
 		HeroBase hero;
-		EquipBase equipBase = null;
+		Equip equipBase = null;
 
-		public EquipBase EquipBase {
+		public Equip EquipBase {
 			get {
 				return equipBase;
 			}
@@ -42,10 +42,10 @@ namespace TangGame.UI
 			this.starList.cellWidth = 15;
 			this.starList.cellHeight = 12;
 			this.starList.showBackground = false;
-			if (equipBase != null && equipBase.Net != null) {
-				this.equipIcon.spriteName = equipBase.Xml.icon;
-				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.Xml.upgrade);
-				this.starList.count = equipBase.Net.enchantsLv;
+			if (equipBase != null && equipBase.net != null) {
+				this.equipIcon.spriteName = equipBase.data.icon;
+				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.data.upgrade);
+				this.starList.count = equipBase.net.enchantsLv;
 			} else {
 				this.equipIcon.spriteName = "";
 				this.equipFrames.spriteName = "gocha";

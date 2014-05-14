@@ -1,8 +1,7 @@
-using TangUtils;
+﻿using TangUtils;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-using TangGame.UI;
 
 namespace TangGame.Xml
 {
@@ -105,15 +104,14 @@ namespace TangGame.Xml
 				Config.propsXmlTable [item.id] = item;
 				ResolveSyntheticProps (item);
 
-
-				//TODO 先写到这个地方到时候再改
-				TangGame.UI.PropsBase propsBase = new TangGame.UI.PropsBase ();
+        //TODO 测试数据
+        TangGame.UI.Props props = new TangGame.UI.Props ();
 				TangGame.Net.PropsNet net = new TangGame.Net.PropsNet ();
 				net.configId = item.id;
 				net.count = a * a % 123;
-				propsBase.Xml = item;
-				propsBase.Net = net;
-				TangGame.UI.BaseCache.propsBaseTable.Add (item.id, propsBase);
+        props.data = item;
+				props.net = net;
+        TangGame.UI.PropsCache.instance.propsTable.Add (item.id, props);
 				a++;
 			}
 		}
@@ -130,7 +128,7 @@ namespace TangGame.Xml
 					int configId = Utils.SplitStrByCommaToInt (str) [0];
 					int count = Utils.SplitStrByCommaToInt (str) [1];
 					item.GetSyntheticPropsTable ().Add (configId, count);
-					Config.addPropsPropsRelationship (configId, item);
+          TangGame.UI.PropsCache.instance.AddPropsSyntheticsRelation(configId, item);//道具关联
 				}
 			}
 		}

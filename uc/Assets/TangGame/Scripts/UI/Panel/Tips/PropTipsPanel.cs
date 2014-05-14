@@ -55,21 +55,21 @@ namespace TangGame{
 		}
 
 		/// 设置道具
-		public void SetProp(PropsBase prop){
+		public void SetProp(Props props){
 			this.effectLabel.text = "";
 			this.descLabel.text = "";
 			this.goldLabel.text = "";
-			this.frame.spriteName = Global.GetPropFrameName((PropsType)prop.Xml.type, prop.Xml.upgrade);
-			this.icon.spriteName = prop.Xml.icon;
-			this.goldLabel.text = prop.Xml.selling_price.ToString();
-			this.nameLabel.text = prop.Xml.name;
-			if(prop.Xml.level < 1){
+			this.frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);
+			this.icon.spriteName = props.data.icon;
+			this.goldLabel.text = props.data.selling_price.ToString();
+			this.nameLabel.text = props.data.name;
+			if(props.data.level < 1){
 				this.levelLabel.text = "";
 			}else{
-				this.levelLabel.text = string.Format(UIPanelLang.TIPS_LEVEL, prop.Xml.level);
+				this.levelLabel.text = string.Format(UIPanelLang.TIPS_LEVEL, props.data.level);
 			}
-			this.effectLabel.text = prop.Xml.info;
-			this.descLabel.text = prop.Xml.description;
+			this.effectLabel.text = props.data.info;
+			this.descLabel.text = props.data.description;
 
 			this.CalculateHeight();
 		}

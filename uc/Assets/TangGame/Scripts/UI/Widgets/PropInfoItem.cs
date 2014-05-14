@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using TangGame.UI;
 
@@ -21,14 +21,14 @@ namespace TangGame{
 		public override void UpdateData(){
 			if(!this.started){return;}
 			if(this.data == null){return;}
-			PropsBase prop = this.data as PropsBase;
-			if(prop.Count < 1){
+			Props props = this.data as Props;
+			if(props.count < 1){
 				numLabel.text = "";
 			}else{
-				numLabel.text = prop.Count.ToString();
+        numLabel.text = props.count.ToString();
 			}
-			frame.spriteName = Global.GetPropFrameName((PropsType)prop.Xml.type, prop.Xml.upgrade);
-			icon.spriteName = prop.Xml.icon;
+			frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);
+			icon.spriteName = props.data.icon;
 		}
 
 		public override void OnDestroy (){
@@ -39,7 +39,7 @@ namespace TangGame{
 		private void FrameBtnHandler(GameObject go, bool state){
 			if(this.data == null){return;}
 			if(state){
-				PropsBase prop = this.data as PropsBase;
+				Props prop = this.data as Props;
 				PropTips.Show(go.transform.position, 43, prop);
 			}else{
 				PropTips.Hiddle();
