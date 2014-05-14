@@ -5,6 +5,11 @@ namespace TangGame.UI
 {
   public class ChapterPanel : MonoBehaviour {
 
+    /// <summary>
+    /// 标题
+    /// </summary>
+    public UITexture title;
+
     public GameObject chaptersGrid;
     private BetterList<ChapterItemObject> chapterObjs = new BetterList<ChapterItemObject>();
 

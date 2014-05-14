@@ -10,7 +10,9 @@ namespace TangLevel
     beat,
     victory,
     charge,
-    release
+    release,
+
+    pause
   }
 }
 
