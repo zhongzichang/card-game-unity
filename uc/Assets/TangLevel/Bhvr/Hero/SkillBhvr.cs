@@ -9,6 +9,9 @@ namespace TangLevel
 {
   public class SkillBhvr : MonoBehaviour
   {
+
+    public static readonly Vector3 HURT_TEXT_OFFSET = new Vector3(0, 160, 0);
+
     private Dictionary<string, List<SkillWrapper>> wt = new Dictionary<string, List<SkillWrapper>> ();
     private HeroBhvr heroBhvr = null;
 
@@ -203,7 +206,7 @@ namespace TangLevel
           battleTxt.self = true;
         else
           battleTxt.self = false;
-        battleTxt.position = Camera.main.WorldToScreenPoint (transform.localPosition);
+        battleTxt.position = Camera.main.WorldToScreenPoint (transform.localPosition) + HURT_TEXT_OFFSET;
         Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
 
         // HP 小于等于0时，角色死亡
