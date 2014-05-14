@@ -54,7 +54,7 @@ namespace TangGame.UI
 		/// 加载所有的英雄
 		/// </summary>
 		void LoadHeroAll(){
-			foreach(HeroBase herobase in TangGame.UI.BaseCache.heroBeseTable.Values){
+      foreach(HeroBase herobase in HeroCache.instance.heroBeseTable.Values){
 				this.UpHeroItem (herobase);
 			}
 			this.repositionNow ();
