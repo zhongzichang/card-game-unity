@@ -36,12 +36,11 @@ namespace TangGame
 
     private void UpdateData ()
     {
-      if (!started) {
-        return;
-      }
+      Debug.Log ("UpdateData1");
       if (this.mParam == null) {
         return;
       }
+      Debug.Log ("UpdateData2");
       LevelHeroPanelData data = this.mParam as LevelHeroPanelData;
       foreach (LevelHeroItem item in itemList) {
         GameObject.Destroy (item.gameObject);
@@ -63,11 +62,16 @@ namespace TangGame
         itemList.Add (item);
       }
     }
-
+    /*
+    bool full;
     void OnGUI(){
       if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
         itemList[0].SetHp(Random.Range(50, 1000), 1000);
       }
-    }
+      if(GUI.Button(new Rect(150, 50, 50, 50), "M")){
+        itemList[0].SetMp(full ? 1000 : 0, 1000);
+        full = !full;
+      }
+    }*/
   }
 }

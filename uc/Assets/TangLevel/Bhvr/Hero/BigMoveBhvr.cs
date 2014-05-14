@@ -6,44 +6,51 @@ namespace TangLevel
 {
   public class BigMoveBhvr : MonoBehaviour
   {
-    /// <summary>
-    /// 大招开始
-    /// </summary>
-    public static event EventHandler BigMoveStart;
-    /// <summary>
-    /// 大招结束
-    /// </summary>
-    public static event EventHandler BigMoveEnd;
-
-    public float pauseTime = 1F;
+    public static readonly Vector3 OFFSET = new Vector3 (0F, 0F, -100F);
+    public float pauseTime = 2F;
     private float remainTime = 0;
     private HeroStatusBhvr statusBhvr;
     private HashSet<BigMoveBhvr> bigMoveSenders = new HashSet<BigMoveBhvr> ();
     private bool inited = false;
+    private Transform myTransform;
+    private Vector3 backupPos = Vector3.zero;
+    private DirectedNavAgent agent;
 
     #region MonoMethods
 
-    void Update ()
+    void Start ()
     {
-      remainTime -= Time.deltaTime;
-      if (remainTime < 0) {
-        StopBigMove ();
+      myTransform = transform;
+      if (statusBhvr == null) {
+        statusBhvr = GetComponent<HeroStatusBhvr> ();
       }
+      agent = GetComponent<DirectedNavAgent> ();
+      LevelController.BigMoveStart += OnBigMoveStart;
+      LevelController.BigMoveEnd += OnBigMoveEnd;
     }
 
+    void Update ()
+    {
+      if (statusBhvr.IsBigMove) {
+        remainTime -= Time.deltaTime;
+        if (remainTime < 0) {
+          StopBigMove ();
+        }
+      }
+    }
+    /*
     void OnEnable ()
     {
-      remainTime = pauseTime;
       if (!inited) {
-        inited = true;
         if (statusBhvr == null) {
           statusBhvr = GetComponent<HeroStatusBhvr> ();
         }
 
-        BigMoveStart += OnBigMoveStart;
-        BigMoveEnd += OnBigMoveEnd;
+        LevelController.BigMoveStart += OnBigMoveStart;
+        LevelController.BigMoveEnd += OnBigMoveEnd;
+        inited = true;
       }
-    }
+    }*/
 
     #endregion
 
@@ -56,38 +63,20 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private void OnBigMoveStart (object sender, EventArgs args)
     {
-      //Debug.Log ("OnBigMoveStart");
-      BigMoveBhvr hb = sender as BigMoveBhvr;
-      if (hb != null && hb != this) {
-        // 别人放的大招
-        if (!statusBhvr.IsBigMove) { // 本人没有放大招
-          Debug.Log ("OnBigMoveStart1");
-          if (!bigMoveSenders.Contains (hb)) {
-            Debug.Log ("OnBigMoveStart2");
-            bigMoveSenders.Add (hb);
-          }
-          statusBhvr.IsPause = true;
-        }
+      if (!statusBhvr.IsBigMove) { // 本人没有放大招
+        statusBhvr.IsPause = true;
       }
     }
 
     /// <summary>
-    /// 大招结束
+    /// 大招开始
     /// </summary>
     /// <param name="sender">Sender.</param>
     /// <param name="args">Arguments.</param>
     private void OnBigMoveEnd (object sender, EventArgs args)
     {
-      //Debug.Log ("OnBigMoveEnd");
-      BigMoveBhvr hb = sender as BigMoveBhvr;
-      if (hb != null && hb != this) { 
-        // 别人放的大招
-        if (bigMoveSenders.Contains (hb)) {
-          bigMoveSenders.Remove (hb);
-        }
-        if (bigMoveSenders.Count == 0 && statusBhvr.IsPause) { // 如果没有其他人放大招，恢复动画
-          statusBhvr.IsPause = false;
-        }
+      if (statusBhvr.IsPause) {
+        statusBhvr.IsPause = false;
       }
     }
 
@@ -95,26 +84,31 @@ namespace TangLevel
 
     #region PublicMethods
 
-    public void StartBigMove ()
+    public void StartBigMove (float pauseTime)
     {
-      //Debug.Log ("StartBigMove");
-      this.enabled = true;
-      statusBhvr.IsBigMove = true;
 
-      if (BigMoveStart != null) {
-        BigMoveStart (this, EventArgs.Empty);
-      }
+      remainTime = pauseTime;
+      backupPos = myTransform.localPosition;
+      myTransform.localPosition += OFFSET;
+
+      //Debug.Log ("StartBigMove");
+      //this.enabled = true;
+      statusBhvr.IsBigMove = true;
+      LevelController.BigMoveCounter++;
+
+      //agent.enabled = false;
     }
 
     public void StopBigMove ()
     {
+      myTransform.localPosition = backupPos;
       //Debug.Log ("StopBigMove");
-      this.enabled = false;
+      //this.enabled = false;
       statusBhvr.IsBigMove = false;
 
-      if (BigMoveEnd != null) {
-        BigMoveEnd (this, EventArgs.Empty);
-      }
+      LevelController.BigMoveCounter--;
+
+      //agent.enabled = true;
     }
 
     #endregion

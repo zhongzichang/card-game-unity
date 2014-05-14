@@ -45,6 +45,8 @@ namespace TangLevel
     /// 战斗恢复
     /// </summary>
     public static event EventHandler RaiseResume;
+    public static event EventHandler BigMoveStart;
+    public static event EventHandler BigMoveEnd;
 
     #endregion
 
@@ -62,6 +64,30 @@ namespace TangLevel
     private static TG.LevelPausePanel levelPausePanel;
     public GameObject uiRoot;
     public UIAnchor centerAnchor;
+
+    #endregion
+
+    #region Properties
+
+    private static int m_bigMoveCounter = 0;
+
+    public static int BigMoveCounter {
+      get {
+        return m_bigMoveCounter;
+      }
+      set {
+        if (m_bigMoveCounter != value) {
+          if (m_bigMoveCounter == 0) {
+            BigMoveStart (null, EventArgs.Empty);
+          }
+          m_bigMoveCounter = value;
+          //Debug.Log ("m_bigMoveCounter " + m_bigMoveCounter);
+          if (m_bigMoveCounter == 0) {
+            BigMoveEnd (null, EventArgs.Empty);
+          }
+        }
+      }
+    }
 
     #endregion
 
@@ -93,7 +119,7 @@ namespace TangLevel
         if (centerAnchor != null) {
 
           // 下面的英雄操作面板
-          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnBottomAnchorEvent);
+          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnCenterAnchorEvent);
           centerPanelMgr.LazyOpen (UIContext.HERO_OP_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
             TUI.UIPanelNode.BlockMode.NONE);
 
@@ -129,28 +155,7 @@ namespace TangLevel
     #region UIEventHandlers
 
     /// <summary>
-    /// 底下英雄交互面板事件
-    /// </summary>
-    /// <param name="sender">Sender.</param>
-    /// <param name="args">Arguments.</param>
-    private void OnBottomAnchorEvent (object sender, TUI.PanelEventArgs args)
-    {
-      TUI.UIPanelNode node = sender as TUI.UIPanelNode;
-      if (node != null) {
-        switch (args.EventType) {
-        case TUI.EventType.OnLoad:
-          // 面板加载成功
-          if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
-            node.gameObject.SetActive (false);
-            levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
-          }
-          break;
-        }
-      }
-    }
-
-    /// <summary>
-    /// 关卡暂停面板
+    /// 中央锚点
     /// </summary>
     /// <param name="sender">Sender.</param>
     /// <param name="args">Arguments.</param>
@@ -160,12 +165,17 @@ namespace TangLevel
       if (node != null) {
         switch (args.EventType) {
         case TUI.EventType.OnLoad:
-          // 面板加载成功
+          // 关卡暂停面板
           if (UIContext.LEVEL_PAUSE_PANEL.Equals (node.name)) {
             node.gameObject.SetActive (false);
             levelPausePanel = node.gameObject.GetComponent<TG.LevelPausePanel> ();
             levelPausePanel.continueBtn.onClick += OnContinueBtnClick;
             levelPausePanel.quitBtn.onClick += OnQuitBtnClick;
+          }
+          // 英雄操作面板
+          else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
+            //node.gameObject.SetActive (false);
+            levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
           }
           break;
         }
@@ -677,7 +687,7 @@ namespace TangLevel
 
       // 释放敌方英雄
       foreach (GameObject gobj in LevelContext.enemyGobjs) {
-        HeroGobjManager.Release (gobj);
+        HeroGobjManager.Release (gobj, true);
       }
 
       // 确保清场
