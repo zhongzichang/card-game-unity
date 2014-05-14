@@ -95,7 +95,7 @@ namespace TangGame{
 
 		/// 更新英雄
 		private void UpdateHero(){
-			HeroBase hero = BaseCache.GetHero(this.mHeroId);
+      HeroBase hero = HeroCache.instance.GetHero(this.mHeroId);
 			if(hero == null){return;}
 			star.width = Global.GetHeroStar(hero.Net.evolve) * 21;
 			icon.spriteName = hero.Xml.avatar;

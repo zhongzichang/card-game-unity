@@ -287,16 +287,18 @@ namespace TangGame.UI
 			}
 			//如果是卷轴
 			if (PropsType.SCROLLS == type) {
-				infoStr += string.Format (UIPanelLang.RELL_INFO, Config.propsPropsRelationship [data.data.id] [0]);
+        PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData(data.data.id);
+        if(propsRelationData != null && propsRelationData.synthetics.Count > 0){
+          infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics[0]);
+        }
 			}
 			//如果是灵魂石
 			if (PropsType.SOULROCK == type) {
-				List<Xml.HeroData> heroXmlList = Config.propsHeroesRelationship [data.data.id];
-				if (heroXmlList.Count > 0) {
-					Xml.HeroData heroxml = heroXmlList [0];
-					int count = Config.evolveXmlTable [heroxml.evolve].val;
-					infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroxml.name);
-				}
+        TangGame.Xml.HeroData heroData = HeroCache.instance.GetSoulStoneRelation(data.data.id);
+        if (heroData != null) {
+          int count = Config.evolveXmlTable [heroData.evolve].val;
+          infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroData.name);
+        }
 
 			}
 			//如果是消耗品

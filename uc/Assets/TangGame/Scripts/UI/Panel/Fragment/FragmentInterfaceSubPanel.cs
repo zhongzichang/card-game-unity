@@ -73,12 +73,14 @@ namespace TangGame.UI
 			foreach (PropsItem item in scrollItems.Values) {
 				bool itemStatus = item.gameObject.activeSelf;
 				PropsType mType;
-				List<Xml.PropsData> mList = Config.propsPropsRelationship [item.data.data.id];
-				if (mList == null && mList.Count == 0) {
-					item.gameObject.SetActive (false);
-					continue;
-				}
-				mType = (PropsType)mList [0].type;
+
+        PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData(item.data.data.id);
+        if(propsRelationData == null || propsRelationData.synthetics.Count == 0){
+          item.gameObject.SetActive (false);
+          continue;
+        }
+
+        mType = (PropsType)propsRelationData.synthetics[0].type;
 				if (type == PropsType.NONE) {
 					item.gameObject.SetActive (itemStatus);
 					continue;

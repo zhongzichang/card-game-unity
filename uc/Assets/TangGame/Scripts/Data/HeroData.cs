@@ -124,6 +124,7 @@ namespace TangGame.Xml
 			int i = 0;
 			foreach (HeroData item in root.items) {
 				Config.heroXmlTable [item.id] = item;
+        HeroCache.instance.AddSoulStoneRelation(item);
         PropsCache.instance.AddPropsHeroRelation(item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
@@ -146,7 +147,7 @@ namespace TangGame.Xml
 				} else {
 					herobase.Xml = item;
 				}
-				TangGame.UI.BaseCache.heroBeseTable.Add (item.id, herobase);
+        HeroCache.instance.heroBeseTable.Add (item.id, herobase);
 			}
 		}
 	}

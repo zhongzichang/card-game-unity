@@ -290,7 +290,7 @@ namespace TangGame.UI
 		{
 			this.SelectHeroPanel.SetActive (true);
 			ClearHeroListView ();
-			foreach (HeroBase hero in BaseCache.heroBeseTable.Values) {
+			foreach (HeroBase hero in HeroCache.instance.heroBeseTable.Values) {
 				GameObject obj = NGUITools.AddChild (HeroTable.gameObject, SubHeroAvatarItem.gameObject);
 				obj.SetActive (true);
 				HeroAvatarItem heroAvatarItem = obj.GetComponent<HeroAvatarItem> ();
