@@ -94,13 +94,12 @@ namespace TangGame.UI
 					if (len > i && equips [i] != null) {
 						Props [i].spriteName = equips [i].data.icon;
 						if (equips [i].net != null) {
+							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = true;
 							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = false;
-							Props [i].alpha = 1f;
-							Props [i].color = Color.white;
+
 						} else {
+							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = false;
 							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = true;
-							Props [i].alpha = 0.5f;
-							Props [i].color = Color.gray;
 						}
 					}
 				}
