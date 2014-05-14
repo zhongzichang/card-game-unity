@@ -6,7 +6,7 @@ using TangGame.Xml;
 namespace TangGame.UI{
 	/// 道具详情面板
 	public class PropsDetailsPanel : MonoBehaviour {
-
+		public static string name = "PropsDetailsPanel";
 		public UIEventListener closeBtn;
 		public UISprite frame;
 		public UISprite icon;
