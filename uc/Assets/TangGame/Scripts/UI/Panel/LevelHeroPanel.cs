@@ -19,6 +19,9 @@ namespace TangGame
     {
       heroItem.gameObject.SetActive (false);
       started = true;
+      LevelHeroPanelData data = new LevelHeroPanelData();
+      data.heroCount = 1;
+      this.mParam = data;
       UpdateData ();
     }
 
@@ -58,6 +61,12 @@ namespace TangGame
         startX += gap;
         LevelHeroItem item = go.GetComponent<LevelHeroItem> ();
         itemList.Add (item);
+      }
+    }
+
+    void OnGUI(){
+      if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
+        itemList[0].SetHp(Random.Range(50, 1000), 1000);
       }
     }
   }

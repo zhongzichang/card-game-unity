@@ -49,13 +49,13 @@ namespace TangGame.UI{
 		}
 
 		private void CloseBtnHandler(GameObject go){
-
+      UIContext.mgrCoC.Back();
 		}
 
 		private void UpdateData(){
 			if(!this.started){return;}
 			foreach(ViewItem item in items){
-				GameObject.Destroy(item);
+				GameObject.Destroy(item.gameObject);
 			}
 			items.Clear();
 			float y = 0;
@@ -82,7 +82,7 @@ namespace TangGame.UI{
 			}
 
       frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.upgrade);
-      icon.spriteName = props.name;
+      icon.spriteName = props.icon;
 
 			GameObject go = null;
 			int count = 0;

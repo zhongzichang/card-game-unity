@@ -13,17 +13,18 @@ namespace TangGame.UI
     /// <summary>
     /// 普通副本
     /// </summary>
-    public GameObject normalGrid;
+    public UIScrollView normalView;
     /// <summary>
     /// 精英副本
     /// </summary>
-    public GameObject eliteGrid;
+    public UIScrollView eliteView;
 
     private BetterList<ChapterItemObject> chapterObjs = new BetterList<ChapterItemObject>();
 
   	// Use this for initialization
   	void Start () {
-  	
+      normalView.onDragFinished += OnNormalViewDragFinished;
+      eliteView.onDragFinished += OnEliteViewDragFinished;
   	}
   	
   	// Update is called once per frame
@@ -36,6 +37,18 @@ namespace TangGame.UI
 //        AddChapter (TestDataStore.Instance.RandomChapter (0));
 //      }
 //    }
+
+    private void OnNormalViewDragFinished(){
+      Debug.Log ("delta:" + normalView.movement);
+      string maptitlePath = "Textures/SanguoUI/alpha/HVGA/UImap/";
+      title.mainTexture = Resources.Load (maptitlePath+"maptitle-chapter1") as Texture;
+    }
+
+    private void OnEliteViewDragFinished(){
+      Debug.Log ("delta:" + eliteView.movement);
+      string maptitlePath = "Textures/SanguoUI/alpha/HVGA/UImap/";
+      title.mainTexture = Resources.Load (maptitlePath+"maptitle-chapter2") as Texture;
+    }
 
     private void UpdateStatus (int chapterId, int stageId, int status){
       ChapterItemObject chapter = (ChapterItemObject)chapterObjs [chapterId];
