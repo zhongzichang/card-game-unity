@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace TangLevel
 {
+  [Serializable]
   public class Hero
   {
 

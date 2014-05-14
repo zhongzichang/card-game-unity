@@ -50,12 +50,17 @@ namespace TangDragonBones
         //}
     }
 
+    public void Stop(){
+      armature.Animation.Stop ();
+    }
+
     /// <summary>
     /// 暂停动画播放
     /// </summary>
     public void Pause(){
       if (armature != null) {
-        armature.Animation.TimeScale = 0;
+        armature.Animation.Stop ();
+        //armature.Animation.TimeScale = 0;
         /*
         if (WorldClock.Clock.Contains (armature)) {
           WorldClock.Clock.Remove (armature);
@@ -68,7 +73,8 @@ namespace TangDragonBones
     /// </summary>
     public void Resume(){
       if (armature != null) {
-        armature.Animation.TimeScale = 1;
+        armature.Animation.Play ();
+        //armature.Animation.TimeScale = 1;
         /*
         if (!WorldClock.Clock.Contains (armature)) {
           WorldClock.Clock.Add (armature);
