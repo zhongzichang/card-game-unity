@@ -73,7 +73,7 @@ namespace TangGame.UI{
       }else{
         propsRelationData = propsRelations[id];
       }
-      propsRelationData.heros.Add(data);
+      propsRelationData.AddPropsHeroEquipData(data);
     }
 
 	}

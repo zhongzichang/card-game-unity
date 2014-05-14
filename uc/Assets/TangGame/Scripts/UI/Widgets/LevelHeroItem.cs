@@ -15,6 +15,8 @@ namespace TangGame{
 		public UIEventListener frameBtn;
 		/// 点击分派的事件
 		public ViewItemDelegate onClick;
+    public UISprite hpEffect;
+    public UISprite mpEffect;
 
 		private int mHeroId;
 		private int hp = 1;
@@ -33,6 +35,8 @@ namespace TangGame{
 			hpFillAmount = hpYellow.fillAmount = hpBar.fillAmount = 1;
 			mpFillAmount = mpBar.fillAmount = 0;
 			frameBtn.onClick += FrameBtnClickHandler;
+      hpEffect.gameObject.SetActive(false);
+      mpEffect.gameObject.SetActive(false);
 			this.started = true;
 			UpdateHero();
 			UpdateHp();
@@ -111,10 +115,18 @@ namespace TangGame{
 			hpFillAmount = percent;
 			hpBar.fillAmount = percent;
 
+      if(percent > 0.2f){
+        this.hpEffect.gameObject.SetActive(false);
+      }else{
+        this.hpEffect.gameObject.SetActive(true);
+      }
+
 			if(this.hp < 1){//死亡了，设置MP为0
 				this.mp = 0;
 				UpdateMp();
 				icon.color = new Color32(51, 51, 51, 255);//死亡设置灰色
+        this.hpEffect.gameObject.SetActive(false);
+        this.mpEffect.gameObject.SetActive(false);
 			}
 		}
 
@@ -126,7 +138,10 @@ namespace TangGame{
 			}
 			mpFillAmount = percent;
 			if(percent >= 1){//可以释放技能了
-			}
+        this.mpEffect.gameObject.SetActive(true);
+      }else{
+        this.mpEffect.gameObject.SetActive(false);
+      }
 		}
 
 		/// 点击
