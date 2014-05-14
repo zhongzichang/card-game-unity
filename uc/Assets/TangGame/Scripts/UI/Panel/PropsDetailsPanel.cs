@@ -40,7 +40,6 @@ namespace TangGame.UI{
 			heroItem.gameObject.SetActive(false);
 			syntheticItem.gameObject.SetActive(false);
 			started = true;
-			this.mParam = new PropsData();
 			UpdateData();
 		}
 
@@ -50,13 +49,13 @@ namespace TangGame.UI{
 		}
 
 		private void CloseBtnHandler(GameObject go){
-
+      UIContext.mgrCoC.Back();
 		}
 
 		private void UpdateData(){
 			if(!this.started){return;}
 			foreach(ViewItem item in items){
-				GameObject.Destroy(item);
+				GameObject.Destroy(item.gameObject);
 			}
 			items.Clear();
 			float y = 0;
@@ -68,50 +67,29 @@ namespace TangGame.UI{
 				UIUtils.SetY(getGroup.gameObject, -y);
 				getGroup.height = 100;
 
-				heroLabel.gameObject.SetActive(false);
+				heroLabel.transform.parent.gameObject.SetActive(false);
 				heroGroup.gameObject.SetActive(false);
 				
-				syntheticLabel.gameObject.SetActive(false);
+        syntheticLabel.transform.parent.gameObject.SetActive(false);
 				syntheticGroup.gameObject.SetActive(false);
 				return;
 			}
 			PropsData props = (PropsData)this.mParam;
-			//PropsRelationData data = PropsCache.instance.GetPropsRelationData(props.id);
-			PropsRelationData data = new PropsRelationData();
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-			data.heros.Add(new PropsHeroEquipData());
-
-			data.synthetics.Add(new PropsData());
-			data.synthetics.Add(new PropsData());
-			data.synthetics.Add(new PropsData());
-			data.synthetics.Add(new PropsData());
-			data.synthetics.Add(new PropsData());
-			data.synthetics.Add(new PropsData());
-			data.synthetics.Add(new PropsData());
-
-			data.levels.Add(new LevelsData());
-			data.levels.Add(new LevelsData());
-			data.levels.Add(new LevelsData());
-			data.levels.Add(new LevelsData());
-			data.levels.Add(new LevelsData());
+			PropsRelationData data = PropsCache.instance.GetPropsRelationData(props.id);
 
 			if(data == null){
 				return;
 			}
+
+      frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.upgrade);
+      icon.spriteName = props.icon;
 
 			GameObject go = null;
 			int count = 0;
 
 			//========================================合成========================================
 			int length = data.synthetics.Count;
-			syntheticLabel.gameObject.SetActive(length > 0);
+      syntheticLabel.transform.parent.gameObject.SetActive(length > 0);
 			syntheticGroup.gameObject.SetActive(length > 0);
 			UIUtils.SetY(syntheticLabel.transform.parent.gameObject, -y);
 			if(length > 0){
@@ -133,7 +111,7 @@ namespace TangGame.UI{
 
 			//========================================装备========================================
 			length = data.heros.Count;
-			heroLabel.gameObject.SetActive(length > 0);
+      heroLabel.transform.parent.gameObject.SetActive(length > 0);
 			heroGroup.gameObject.SetActive(length > 0);
 			UIUtils.SetY(heroLabel.transform.parent.gameObject, -y);
 			if(length > 0){

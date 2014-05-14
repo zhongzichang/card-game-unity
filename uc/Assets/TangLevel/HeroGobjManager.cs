@@ -65,6 +65,14 @@ namespace TangLevel
         }
         if (!skillBhvr.enabled)
           skillBhvr.enabled = true;
+        // BigMove
+        BigMoveBhvr bmBhvr = gobj.GetComponent<BigMoveBhvr> ();
+        if (bmBhvr == null) {
+          bmBhvr = gobj.AddComponent<BigMoveBhvr> ();
+        }
+        if (bmBhvr.enabled) {
+          bmBhvr.enabled = false;
+        }
         // HeroBhvr
         HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
         if (heroBhvr == null) {
@@ -78,6 +86,7 @@ namespace TangLevel
         if (demoBhvr != null && demoBhvr.enabled) {
           demoBhvr.enabled = false;
         }
+
         // AI
         if (hero.ai != null) {
           foreach (string scriptName in hero.ai) {
