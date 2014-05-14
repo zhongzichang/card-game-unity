@@ -48,6 +48,7 @@ namespace TangGame.UI
 			Locked (data.Islock);
 			UpLevel (data.Net.level);
 			UpHeroType (data.Attribute_Type);
+			UpProps (hero);
 			int fragmentsCount  = 0;
 			int FragmentsCountMax = Config.evolveXmlTable[1].val;
       if (PropsCache.instance.propsTable.ContainsKey (data.Xml.soul_rock_id)) {
@@ -83,9 +84,26 @@ namespace TangGame.UI
 			this.HeroType.spriteName = resName;
 		}
 
-		private void UpProps ()
+		private void UpProps (HeroBase heroBase)
 		{
-			//TODO upProps;
+
+			if (heroBase != null && !heroBase.Islock && heroBase.EquipBases != null) {
+				Equip[] equips = heroBase.EquipBases;
+				for (int i = 0; i < Props.Length; i++) {
+					int len = heroBase.EquipBases.Length;
+					if (len > i && equips [i] != null) {
+						Props [i].spriteName = equips [i].data.icon;
+						if (equips [i].net != null) {
+							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = true;
+							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = false;
+
+						} else {
+							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = false;
+							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = true;
+						}
+					}
+				}
+			}
 		}
 
 		private void UpLevel (int level)

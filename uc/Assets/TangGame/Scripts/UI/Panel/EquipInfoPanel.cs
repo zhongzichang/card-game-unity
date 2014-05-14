@@ -113,15 +113,15 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		public void Flush (PropsDetailsPanelBean bean)
 		{
-			if (!(bean.props is EquipBase))
+			if (!(bean.props is Equip))
 				return;
-			EquipBase data = bean.props as EquipBase;
+			Equip data = bean.props as Equip;
 			this.UpPropsIcon (data.data.icon);
 			this.UpPropsFrames (data.data.upgrade);
 			this.UpPropsInfo (data); //TODO 追加装备附魔信息
 			this.UpPropsName (data.data.name);
 			this.UpPropsLvLabel (data.data.level.ToString ());
-			if (data.Net != null && data.Net.enchantsLv != 0) {
+			if (data.net != null && data.net.enchantsLv != 0) {
 				this.UpEnchanting (true);
 			} else {
 				this.UpEnchanting (false);
@@ -178,12 +178,12 @@ namespace TangGame.UI
 		/// 更新信息
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void UpPropsInfo (EquipBase data)
+		public void UpPropsInfo (Equip data)
 		{
 			//如果网络数据未空，说明你打开了错误的页面
-			if (data.Net == null)
+			if (data.net == null)
 				return;
-			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade,data.Net.enchantsLv);
+			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade,data.net.enchantsLv);
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "";
 			if (PropsType.EQUIP == type) {
