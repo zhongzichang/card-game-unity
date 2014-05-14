@@ -17,10 +17,10 @@ namespace TangGame.UI
 		public GameObject Texture;
 		private HeroBase data;
 		private bool isChecked = false;
+		GameObject[] skillGroup;
 		// Use this for initialization
 		void Start ()
 		{
-
 		}
 		// Update is called once per frame
 		void Update ()
@@ -46,9 +46,9 @@ namespace TangGame.UI
 		public void RefreshPanel (HeroBase data)
 		{
 			this.data = data;
+			SetSkillGroup (data.SkillBases);
 			SetHeroName (data.Xml.name);
 			SetPropertyType (data.Attribute_Type);
-			SetSkillGroup ();
 			SetCardTexture (data.Xml.portrait);
 			SetBackground ((int)data.Net.upgrade);
 			SetStarList (data.Net.evolve);
@@ -88,9 +88,22 @@ namespace TangGame.UI
 			this.HeroType.GetComponent<UISprite> ().spriteName = resName;
 		}
 
-		void SetSkillGroup ()
+		void SetSkillGroup (SkillBase[] skillBases)
 		{
-			//FIXME 修改界面上技能的图标
+			if (skillBases == null)
+				return;
+
+			skillGroup = new GameObject[4];
+			skillGroup [0] = Skill1;
+			skillGroup [1] = Skill2;
+			skillGroup [2] = Skill3;
+			skillGroup [3] = Skill4;
+			for (int i = 0; i < skillBases.Length; i++) {
+				if (skillBases [i] == null || skillGroup.Length < i) {
+					return;
+				}
+				skillGroup [i].GetComponent<UISprite> ().spriteName = skillBases [i].Xml.skill_icon;
+			}
 		}
 
 		void SetBackground (int rank)
