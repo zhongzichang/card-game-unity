@@ -224,7 +224,7 @@ namespace TangGame.UI
 			mEnLvUp = 0;
 			mEnExpCurrent = equipBase.Net.enchantsExp;
 			propsCheckedCountTable.Clear ();
-			enCXml = Config.enchantsConsumedXmlTable [equipBase.Xml.upgrade];
+			enCXml = Config.enchantsConsumedXmlTable [equipBase.data.upgrade];
 			int enLv = equipBase.Net.enchantsLv;
 			int enNextLv = enLv + 1;
 			int enExp = equipBase.Net.enchantsExp;
@@ -308,10 +308,10 @@ namespace TangGame.UI
 		void PropsTableLoad ()
 		{
 
-			foreach (PropsBase propsBase in BaseCache.propsBaseTable.Values) {
+			foreach (Props props in PropsCache.instance.propsTable.Values) {
 				//如果附魔经验为零则标示该装备不能成为附魔的消耗品
-				if (propsBase.Xml.enchant_points != 0) {
-					AddPorpsItemToPropsTable (propsBase);
+				if (props.data.enchant_points != 0) {
+					AddPorpsItemToPropsTable (props);
 				}
 			}
 		}
@@ -321,16 +321,16 @@ namespace TangGame.UI
 		/// 添加一个道具对象到道具列表中去
 		/// </summary>
 		/// <param name="propsBase">Properties base.</param>
-		PropsItem AddPorpsItemToPropsTable (PropsBase propsBase)
+		PropsItem AddPorpsItemToPropsTable (Props props)
 		{
 			PropsItem item;
-			if (propsBaseItemTable.ContainsKey (propsBase.Xml.id)) {
-				item = propsBaseItemTable [propsBase.Xml.id];
+			if (propsBaseItemTable.ContainsKey (props.data.id)) {
+        item = propsBaseItemTable [props.data.id];
 			} else {
 				item = NGUITools.AddChild (PropsTableObj, PropsItemObj).GetComponent<PropsItem> ();//添加一个对象
-				propsBaseItemTable.Add (propsBase.Xml.id, item);
+        propsBaseItemTable.Add (props.data.id, item);
 			}
-			item.Flush (propsBase);
+			item.Flush (props);
 			if (!item.gameObject.activeSelf) {
 				item.gameObject.SetActive (true);
 			}
@@ -351,8 +351,8 @@ namespace TangGame.UI
 			if (itemTmp == null)
 				return;
 
-			mEnExpSum += itemTmp.data.Xml.enchant_points;
-			mEnExpCurrent += itemTmp.data.Xml.enchant_points;
+      mEnExpSum += itemTmp.data.data.enchant_points;
+      mEnExpCurrent += itemTmp.data.data.enchant_points;
 			int expMax = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp + 1);
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0)
@@ -362,7 +362,7 @@ namespace TangGame.UI
 
 			if (propsCheckedCountTable.ContainsKey (itemTmp)) {
 				//这是已经标示的物品大于当前物品的数量
-				if (propsCheckedCountTable [itemTmp] >= itemTmp.data.Net.count) {
+				if (propsCheckedCountTable [itemTmp] >= itemTmp.data.net.count) {
 					return;
 				}
 				propsCheckedCountTable [itemTmp] += 1;
@@ -385,7 +385,7 @@ namespace TangGame.UI
 				mExpLab.text = mEnExpCurrent + "/" + expMax; 
 				mGoldSpendLab.text = (mEnExpSum * enCXml.gold_spend).ToString ();
 			}
-			itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.Net.count;
+			itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.net.count;
 		}
 
 		/// <summary>
@@ -462,126 +462,126 @@ namespace TangGame.UI
 		void UpEquipsInfo (EquipBase data)
 		{
 
-			PropsType type = (PropsType)data.Xml.type;
+			PropsType type = (PropsType)data.data.type;
 			string infoStr = "[000000]";
-			float enchantingVariable = Utils.EnchantingVariable (data.Xml.upgrade, data.Net.enchantsLv);
+			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade, data.Net.enchantsLv);
 			if (PropsType.EQUIP == type) {
-				if (data.Xml.strength == data.Xml.intellect && data.Xml.intellect == data.Xml.agile) {
+				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile) {
 					string title = UIPanelLang.STRENGTH + "," + UIPanelLang.INTELLECT + "," + UIPanelLang.AGILE;
-					AddPropertie (ref infoStr, title, data.Xml.strength, enchantingVariable);
+					AddPropertie (ref infoStr, title, data.data.strength, enchantingVariable);
 				} else {
 					//		<!-- 属性加成 -->
 					//		<!-- 力量 -->
 					//		<strength>21</strength>
-					if (data.Xml.strength > 0) {
-						AddPropertie (ref infoStr, UIPanelLang.STRENGTH, data.Xml.strength, enchantingVariable);
+					if (data.data.strength > 0) {
+						AddPropertie (ref infoStr, UIPanelLang.STRENGTH, data.data.strength, enchantingVariable);
 					}
 					//		<!-- 智力 -->
 					//		<intellect>42</intellect>
-					if (data.Xml.intellect > 0) {
-						AddPropertie (ref infoStr, UIPanelLang.INTELLECT, data.Xml.intellect, enchantingVariable);
+					if (data.data.intellect > 0) {
+						AddPropertie (ref infoStr, UIPanelLang.INTELLECT, data.data.intellect, enchantingVariable);
 					}
 					//		<!-- 敏捷 -->
 					//		<agile>2</agile>
-					if (data.Xml.agile > 0) {
-						AddPropertie (ref infoStr, UIPanelLang.AGILE, data.Xml.agile, enchantingVariable);
+					if (data.data.agile > 0) {
+						AddPropertie (ref infoStr, UIPanelLang.AGILE, data.data.agile, enchantingVariable);
 					}
 				}
 				//		<!-- 生命最大 -->
 				//		<hpMax>132</hpMax>
-				if (data.Xml.hpMax > 0) {
-					AddPropertie (ref infoStr, UIPanelLang.HPMAX, data.Xml.hpMax, enchantingVariable);
+				if (data.data.hpMax > 0) {
+					AddPropertie (ref infoStr, UIPanelLang.HPMAX, data.data.hpMax, enchantingVariable);
 
 				}
 				//		<!-- 攻击强度 -->
 				//		<attack_damage>23</attack_damage>
-				if (data.Xml.attack_damage > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.ATTACK_DAMAGE, data.Xml.attack_damage);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.attack_damage * enchantingVariable).ToString () + "[-]";
+				if (data.data.attack_damage > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.ATTACK_DAMAGE, data.data.attack_damage);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.attack_damage * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术强度 -->
 				//		<spell_power>123</spell_power>
-				if (data.Xml.ability_power > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_POWER, data.Xml.ability_power);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.ability_power * enchantingVariable).ToString () + "[-]";
+				if (data.data.ability_power > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_POWER, data.data.ability_power);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.ability_power * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理防御 -->
 				//		<physical_defense>321</physical_defense>
-				if (data.Xml.physical_defense > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.PHYSICAL_DEFENSE, data.Xml.physical_defense);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.physical_defense * enchantingVariable).ToString () + "[-]";
+				if (data.data.physical_defense > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.PHYSICAL_DEFENSE, data.data.physical_defense);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.physical_defense * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术防御 -->
 				//		<spell_defense>123</spell_defense>
-				if (data.Xml.magic_defense > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_DEFENSE, data.Xml.magic_defense);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.magic_defense * enchantingVariable).ToString () + "[-]";
+				if (data.data.magic_defense > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_DEFENSE, data.data.magic_defense);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.magic_defense * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理爆击 -->
 				//		<physical_crit>12</physical_crit>
-				if (data.Xml.physical_crit > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.PHYSICAL_CRIT, data.Xml.physical_crit);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.physical_crit * enchantingVariable).ToString () + "[-]";
+				if (data.data.physical_crit > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.PHYSICAL_CRIT, data.data.physical_crit);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.physical_crit * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术爆击 -->
 				//		<spell_crit>21</spell_crit>
-				if (data.Xml.magic_crit > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_CRIT, data.Xml.magic_crit);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.magic_crit * enchantingVariable).ToString () + "[-]";
+				if (data.data.magic_crit > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_CRIT, data.data.magic_crit);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.magic_crit * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 生命回复 -->
 				//		<hp_re>12</hp_re>
-				if (data.Xml.hp_recovery > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.HP_RECOVERY, data.Xml.hp_recovery);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.hp_recovery * enchantingVariable).ToString () + "[-]";
+				if (data.data.hp_recovery > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.HP_RECOVERY, data.data.hp_recovery);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.hp_recovery * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 能量回复 -->
 				//		<energy_re>21</energy_re>
-				if (data.Xml.energy_recovery > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.ENERGY_RECOVERY, data.Xml.energy_recovery);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.energy_recovery * enchantingVariable).ToString () + "[-]";
+				if (data.data.energy_recovery > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.ENERGY_RECOVERY, data.data.energy_recovery);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.energy_recovery * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理穿透 -->
 				//		<physical_penetrate>12</physical_penetrate>
-				if (data.Xml.physical_penetration > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.PHYSICAL_PENETRATION, data.Xml.physical_penetration);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.physical_penetration * enchantingVariable).ToString () + "[-]";
+				if (data.data.physical_penetration > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.PHYSICAL_PENETRATION, data.data.physical_penetration);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.physical_penetration * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术穿透 -->
 				//		<spell_penetrate>21</spell_penetrate>
-				if (data.Xml.spell_penetration > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_PENETRATION, data.Xml.spell_penetration);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.spell_penetration * enchantingVariable).ToString () + "[-]";
+				if (data.data.spell_penetration > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.SPELL_PENETRATION, data.data.spell_penetration);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.spell_penetration * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 吸血等级 -->
 				//		<bloodsucking_lv>12</bloodsucking_lv>
-				if (data.Xml.bloodsucking_lv > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.BLOODSUCKING_LV, data.Xml.bloodsucking_lv);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.bloodsucking_lv * enchantingVariable).ToString () + "[-]";
+				if (data.data.bloodsucking_lv > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.BLOODSUCKING_LV, data.data.bloodsucking_lv);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.bloodsucking_lv * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 闪避 -->
 				//		<dodge>21</dodge>
-				if (data.Xml.dodge > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.DODGE, data.Xml.dodge);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.dodge * enchantingVariable).ToString () + "[-]";
+				if (data.data.dodge > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}[-]", UIPanelLang.DODGE, data.data.dodge);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.dodge * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 治疗效果 -->
 				//		<addition_treatment>21</addition_treatment>
-				if (data.Xml.addition_treatment > 0) {
-					infoStr += string.Format ("{0}[ff0000] + {1}", UIPanelLang.ADDITION_TREATMENT, data.Xml.addition_treatment);
-					infoStr += "[33FF00] +" + Mathf.Round (data.Xml.addition_treatment * enchantingVariable).ToString () + "[-]";
+				if (data.data.addition_treatment > 0) {
+					infoStr += string.Format ("{0}[ff0000] + {1}", UIPanelLang.ADDITION_TREATMENT, data.data.addition_treatment);
+					infoStr += "[33FF00] +" + Mathf.Round (data.data.addition_treatment * enchantingVariable).ToString () + "[-]";
 					infoStr += " %[-]" + Environment.NewLine;
 				}
 			}

@@ -1,9 +1,11 @@
-using System.Xml;
+﻿using System.Xml;
 using UnityEngine;
 using TangUtils;
 using System.Collections.Generic;
 using System.Collections;
 using System.Xml.Serialization;
+using TangGame.UI;
+
 namespace TangGame.Xml
 {
 	public class HeroData
@@ -122,7 +124,7 @@ namespace TangGame.Xml
 			int i = 0;
 			foreach (HeroData item in root.items) {
 				Config.heroXmlTable [item.id] = item;
-				Config.addPropsHeroesRelationship (item.soul_rock_id,item);
+        PropsCache.instance.AddPropsHeroRelation(item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
 				if (item.id == 1) {

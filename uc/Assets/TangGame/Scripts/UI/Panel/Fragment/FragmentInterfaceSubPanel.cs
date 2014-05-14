@@ -1,4 +1,4 @@
-/// <summary>
+﻿/// <summary>
 /// Fragment interface sub panel.
 /// xbhuang 
 /// 2014-5-10
@@ -53,12 +53,12 @@ namespace TangGame.UI
 		{
 			//FIXME 修改prefab的加载方式
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
-			foreach (PropsBase propsBase in TangGame.UI.BaseCache.propsBaseTable.Values) {
-				if (PropsType.DEBRIS != (PropsType)propsBase.Xml.type)
+      foreach (Props props in PropsCache.instance.propsTable.Values) {
+				if (PropsType.DEBRIS != (PropsType)props.data.type)
 					continue;
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
-				item.Flush (propsBase);
-				scrollItems.Add (item.data.Xml.id, item);
+				item.Flush (props);
+				scrollItems.Add (item.data.data.id, item);
 				UIEventListener.Get (item.gameObject).onClick += ScrollItemOnClick;
 
 			}
@@ -73,7 +73,7 @@ namespace TangGame.UI
 			foreach (PropsItem item in scrollItems.Values) {
 				bool itemStatus = item.gameObject.activeSelf;
 				PropsType mType;
-				List<Xml.PropsData> mList = Config.propsPropsRelationship [item.data.Xml.id];
+				List<Xml.PropsData> mList = Config.propsPropsRelationship [item.data.data.id];
 				if (mList == null && mList.Count == 0) {
 					item.gameObject.SetActive (false);
 					continue;

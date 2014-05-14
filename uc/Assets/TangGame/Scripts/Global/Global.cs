@@ -10,6 +10,34 @@ namespace TangGame{
 		/// UI显示的父对象
 		public static GameObject uiRoot;
 
+    public static bool isDebugBuild = true;
+
+    public static void Log(object message)
+    {
+      if (isDebugBuild)
+      {
+        Debug.Log(message);
+      }
+    }
+    
+    public static void LogWarning(object message)
+    {
+      if (isDebugBuild)
+      {
+        Debug.LogWarning(message);
+      }
+    }
+    
+    public static void LogError(object message)
+    {
+      if (isDebugBuild)
+      {
+        Debug.LogError(message);
+      }
+    }
+
+
+
 		/// 道具正常边框的Sprite名称
 		private static string[] PropsNormalFrame = new string[]{"equip_frame_white", "equip_frame_green", "equip_frame_blue", "equip_frame_purple", "equip_frame_orange"};
 		/// 道具碎片边框的Sprite名称

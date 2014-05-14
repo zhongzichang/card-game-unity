@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Properties details sub panel.
 /// xbhuang 
 /// 2014-5-4
@@ -69,14 +69,14 @@ namespace TangGame.UI
 				propsDPbean = value;
 				if (propsDPbean != null && propsDPbean.props != null) {
 					this.ClearSVPropsItemArray ();
-					SVPropsItemArrayForward (propsDPbean.props.Xml);
+					SVPropsItemArrayForward (propsDPbean.props.data);
 				}
 			}
 		}
 		bool mStarted;
 		void Start(){
 			mStarted = true;
-			SVPropsItemArrayForward (propsDPbean.props.Xml);
+      SVPropsItemArrayForward (propsDPbean.props.data);
 		}
 		/// <summary>
 		/// SVs the properties item array forward.
@@ -217,21 +217,21 @@ namespace TangGame.UI
 				svpItem.Arrow.SetActive (true);
 			} 
 
-			PropsBase propsBase = svpItem.data;
+			Props props = svpItem.data;
 			PropsItem mainPropsItem = MainPropsItem.GetComponent<PropsItem> ();
 			mainPropsItem.ShowCount = false;
-			mainPropsItem.Flush (propsBase);
+			mainPropsItem.Flush (props);
 			mainPropsItem.GetComponent<TweenAlpha> ().ResetToBeginning ();
 			mainPropsItem.GetComponent<TweenAlpha> ().Play ();
 
-			Dictionary<int,int> syntheticPropsTable = propsBase.Xml.GetSyntheticPropsTable ();
+			Dictionary<int,int> syntheticPropsTable = props.data.GetSyntheticPropsTable ();
 			foreach (KeyValuePair<int,int> propsKeyVal in syntheticPropsTable) {
 				SubPropsItem propsItem = NGUITools.AddChild (SubItemTable.gameObject, SubPropsItem.gameObject).GetComponent<SubPropsItem> ();
 				propsItem.transform.localScale = SubPropsItem.transform.localScale;
 				propsItem.gameObject.SetActive (true);
 				SubPropsItemArray.Add (propsItem);
-				if (BaseCache.propsBaseTable.ContainsKey (propsKeyVal.Key))
-					propsItem.Flush (BaseCache.propsBaseTable [propsKeyVal.Key], propsKeyVal.Value);
+        if (PropsCache.instance.propsTable.ContainsKey (propsKeyVal.Key))
+          propsItem.Flush (PropsCache.instance.propsTable [propsKeyVal.Key], propsKeyVal.Value);
 				else if (Config.propsXmlTable.ContainsKey (propsKeyVal.Key))
 					propsItem.Flush (Config.propsXmlTable [propsKeyVal.Key], propsKeyVal.Value);
 				else
@@ -242,7 +242,7 @@ namespace TangGame.UI
 				SubItemTable.GetComponent<UIGrid> ().repositionNow = true;
 			}
 
-			this.SpendingLabel.GetComponent<UILabel> ().text = string.Format (UIPanelLang.SYNTHESIS_SPEND, svpItem.data.Xml.synthetic_spend);
+			this.SpendingLabel.GetComponent<UILabel> ().text = string.Format (UIPanelLang.SYNTHESIS_SPEND, svpItem.data.data.synthetic_spend);
 		}
 
 		/// <summary>
@@ -253,7 +253,7 @@ namespace TangGame.UI
 		void OnSubPropsItemOnClick (GameObject obj)
 		{
 			SubPropsItem item = obj.GetComponent<SubPropsItem> ();
-			SVPropsItemArrayForward (item.data.Xml);
+			SVPropsItemArrayForward (item.data.data);
 		}
 
 		/// <summary>

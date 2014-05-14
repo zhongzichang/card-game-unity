@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Properties details panel.
 /// xbhuang 
 /// 2014-5-3
@@ -33,9 +33,9 @@ namespace TangGame.UI
 		private void UpSubPanels (object val){
 			if (!mStarted)
 				return;
-			if (val != null && val is PropsBase) {
+			if (val != null && val is Props) {
 				PropsDPbean = new PropsDetailsPanelBean ();
-				PropsDPbean.props = val as PropsBase;
+				PropsDPbean.props = val as Props;
 			}
 			if (val != null && val is PropsDetailsPanelBean) {
 				PropsDPbean = val as PropsDetailsPanelBean;
@@ -71,7 +71,7 @@ namespace TangGame.UI
 	/// </summary>
 	public class PropsDetailsPanelBean
 	{
-		public PropsBase props;
+		public Props props;
 		public HeroBase hero;
 	}
 }
