@@ -10,7 +10,15 @@ namespace TangGame.UI
     /// </summary>
     public UITexture title;
 
-    public GameObject chaptersGrid;
+    /// <summary>
+    /// 普通副本
+    /// </summary>
+    public GameObject normalGrid;
+    /// <summary>
+    /// 精英副本
+    /// </summary>
+    public GameObject eliteGrid;
+
     private BetterList<ChapterItemObject> chapterObjs = new BetterList<ChapterItemObject>();
 
   	// Use this for initialization
@@ -22,20 +30,6 @@ namespace TangGame.UI
   	void Update () {
   	
   	}
-
-
-    private void AddChapter(ChapterItemData data){
-      ChapterItemObject obj = CreateChapterItemObject (chaptersGrid, data);
-    }
-
-    private ChapterItemObject CreateChapterItemObject(GameObject parent, ChapterItemData data){
-      GameObject obj = NGUITools.AddChild (parent, (GameObject)Resources.Load("Prefabs/PvE/ChapterItemObj"));
-
-      ChapterItemObject chapter = (ChapterItemObject)obj.GetComponent<ChapterItemObject> ();
-      chapter.Refresh (data);
-
-      return chapter;
-    }
 
 //    void OnGUI(){
 //      if (GUILayout.Button ("AddCapter")) {
