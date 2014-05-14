@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TangGame.UI;
 using System;
 using System.Text.RegularExpressions;
+using TangUI;
 
 namespace TangGame.UI
 {
@@ -54,12 +55,19 @@ namespace TangGame.UI
 		/// 物品的名字
 		/// </summary>
 		public GameObject PropsName;
+		public GameObject DetailButton;
+		Props mProps;
 
-
+		void Start(){
+			UIEventListener.Get (DetailButton).onClick += OnDetailButtonClick;
+		}
 		// Update is called once per frame
 		void Update ()
 		{
 	
+		}
+		void OnDetailButtonClick(GameObject obj){
+			TangGame.UIContext.mgrCoC.LazyOpen (PropsDetailsPanel.name, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.SPRITE,mProps.data);
 		}
 
 		/// <summary>
@@ -69,6 +77,7 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		public void Flush (Props data)
 		{
+			this.mProps = data;
 			if (this.gameObject.activeSelf == false) {
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().ResetToBeginning ();
@@ -250,7 +259,7 @@ namespace TangGame.UI
         TangGame.Xml.HeroData heroData = HeroCache.instance.GetSoulStoneRelation(data.data.id);
         if (heroData != null) {
           int count = Config.evolveXmlTable [heroData.evolve].val;
-          infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroData.name);
+					infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroData.name);
 				}
 
 			}
