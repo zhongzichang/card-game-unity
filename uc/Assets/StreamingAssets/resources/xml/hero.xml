@@ -19,9 +19,9 @@
     <skill_ids>{101,101,101,102}</skill_ids>
     <shot_order>0,0,2,3,0,4</shot_order>
     <hero_info>字元俭，襄阳中卢人，蜀汉右车骑将军，中乡侯，蜀汉灭亡后，徙往洛阳，在中途病逝</hero_info>
-    <hero_tip>string</hero_tip>
+    <hero_tip>蜀汉灭亡后，徙往洛阳，在中途病逝</hero_tip>
     <avatar>hero_icon_1</avatar>
-    <portrait>string</portrait>
+    <portrait>pictorial_1</portrait>
   </value>
   <value>
     <id>2</id>

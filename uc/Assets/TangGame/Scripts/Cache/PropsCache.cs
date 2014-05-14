@@ -49,7 +49,7 @@ namespace TangGame.UI{
     public void AddPropsHeroRelation(HeroData data){
       if(string.IsNullOrEmpty(data.equip_id_list)){return;}
       ArrayList equipStrList = Utils.SplitStrByBraces(data.equip_id_list);
-      int count = 0;
+      int count = 1;
       foreach(string equipStr in equipStrList){
         int[] equipIds = Utils.SplitStrByCommaToInt(equipStr);
         foreach(int id in equipIds){
@@ -73,7 +73,7 @@ namespace TangGame.UI{
       }else{
         propsRelationData = propsRelations[id];
       }
-      propsRelationData.heros.Add(data);
+      propsRelationData.AddPropsHeroEquipData(data);
     }
 
 	}
