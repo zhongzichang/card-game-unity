@@ -61,6 +61,14 @@ namespace TangLevel
 
     }
 
+    void Update()
+    {
+      if( hero.hp == 0 && statusBhvr.Status != HeroStatus.dead)
+	{
+	  statusBhvr.Status = HeroStatus.dead;
+	}
+    }
+
     void OnEnable ()
     { 
       // status behaviour

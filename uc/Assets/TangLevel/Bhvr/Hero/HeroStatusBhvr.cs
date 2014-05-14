@@ -29,7 +29,7 @@ namespace TangLevel
         return m_status;
       }
       set {
-        if (!m_isPause && newStatus != value) {
+        if (m_status != HeroStatus.dead && newStatus != value) {
           newStatus = value;
         }
       }
@@ -70,7 +70,7 @@ namespace TangLevel
       }
 
       // 状态改变通知
-      else if (m_status != newStatus) {
+      if (m_status != newStatus) {
         beforeStatus = m_status; // 保留状态
         m_status = newStatus; // 切换到新状态
         if (statusChangedHandler != null) {
