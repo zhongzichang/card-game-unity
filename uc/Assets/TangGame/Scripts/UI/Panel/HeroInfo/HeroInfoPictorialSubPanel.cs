@@ -13,7 +13,7 @@ namespace TangGame.UI
 		public GameObject Skill3;
 		public GameObject Skill4;
 		public GameObject StarList;
-		public GameObject Background;
+		public GameObject Foreground;
 		public GameObject Texture;
 		private HeroBase data;
 		private bool isChecked = false;
@@ -95,7 +95,7 @@ namespace TangGame.UI
 
 		void SetBackground (int rank)
 		{
-			Background.GetComponent<UISprite> ().spriteName = "card_bg_" + HeroBase.GetRankColorStr(rank);
+			Foreground.GetComponent<UISprite> ().spriteName = "card_bg_" + HeroBase.GetRankColorStr(rank);
 		}
 
 		/// <summary>
