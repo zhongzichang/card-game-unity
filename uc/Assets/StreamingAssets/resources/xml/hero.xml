@@ -6,7 +6,7 @@
     <evolve>1</evolve>
     <camp>2</camp>
     <gender>1</gender>
-    <attribute_type>1</attribute_type>
+    <attribute_type>2</attribute_type>
     <magic_crit>0</magic_crit>
     <hp_recovery>0</hp_recovery>
     <energy_recovery>0</energy_recovery>

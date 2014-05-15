@@ -147,19 +147,7 @@ namespace TangGame.UI
 
     private void SetHeroType (AttributeTypeEnum propertyType)
     {
-      string resName = "str_icon";
-      switch (propertyType) {
-      case AttributeTypeEnum.STR:
-        resName = "str_icon";
-        break;
-      case AttributeTypeEnum.INT:
-        resName = "int_icon";
-        break;
-      case AttributeTypeEnum.AGI:
-        resName = "agi_icon";
-        break;
-      }
-      this.HeroType.GetComponent<UISprite> ().spriteName = resName;
+			this.HeroType.GetComponent<UISprite> ().spriteName = Global.GetHeroTypeIconName(propertyType);
     }
 
     /// <summary>
@@ -175,7 +163,8 @@ namespace TangGame.UI
     /// </summary>
 		void SetHeroNameFrame (int upgrade)
     {
-			HeroNameFrame.GetComponent<UISprite> ().spriteName = Global.GetHeroNameFrame (upgrade); //+ rank; //TODO  需要修改
+			//			HeroNameFrame.GetComponent<UISprite> ().spriteName = Global.GetHeroNameFrame (upgrade); //+ rank; 
+			//TODO  需要修改
     }
 
     /// <summary>

@@ -84,6 +84,12 @@ namespace TangGame.UI
 		/// </summary>
 		public const string  ADDITION_TREATMENT="治疗技能加成";
 
+		/// <summary>
+		/// The CAL l_ M e_ MAYB.
+		/// 可以召唤
+		/// </summary>
+		public const string CALL_ME_MAYBE = "CALL ME MAYBE";
+
 
 		/// <summary>
 		/// 灵魂石头的描述

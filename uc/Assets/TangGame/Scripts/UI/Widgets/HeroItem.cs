@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
+
 namespace TangGame.UI
 {
 	public class HeroItem : MonoBehaviour
@@ -19,6 +20,9 @@ namespace TangGame.UI
 		public StarList starList;
 		public GameObject HeroTag;
 		private HeroBase data;
+
+		public int soulStoneCount;
+		public int soulStoneCountMax;
 		// Use this for initialization
 		void Start ()
 		{
@@ -49,39 +53,47 @@ namespace TangGame.UI
 			UpLevel (data.Net.level);
 			UpHeroType (data.Attribute_Type);
 			UpProps (hero);
-			int fragmentsCount  = 0;
-			int FragmentsCountMax = Config.evolveXmlTable[1].val;
-      if (PropsCache.instance.propsTable.ContainsKey (data.Xml.soul_rock_id)) {
-        fragmentsCount = PropsCache.instance.propsTable[data.Xml.soul_rock_id].count;
-			}
-			if (data.Net != null && Config.evolveXmlTable.ContainsKey (data.Net.evolve + 1)) {
-				FragmentsCountMax = Config.evolveXmlTable[data.Net.evolve + 1].val;
-			}
 			SetStarList (data.Net.evolve);
+			SetFragments (data);
 			//			SetTag ();TODO
 		}
+
+		/// <summary>
+		/// Sets the fragments.
+		/// 设置碎片的条
+		/// </summary>
+		/// <param name="hero">Hero.</param>
+		void SetFragments (HeroBase hero)
+		{
+			if (hero.Net.evolve != 0 || !hero.Islock) {
+				return;
+			}
+			int rockId = hero.Xml.soul_rock_id;
+			int evolve = hero.Xml.evolve;
+			Dictionary<int, Props> pTable = PropsCache.instance.propsTable;
+			if (pTable.ContainsKey (rockId)) {
+				soulStoneCount = pTable [rockId].count;
+			}
+			if (evolve == 0) {
+				evolve = 1;
+			}
+			soulStoneCountMax = Config.evolveXmlTable [evolve].val;
+
+			this.UpHeroFragments (soulStoneCount,soulStoneCountMax);
+		}
+
 		/// <summary>
 		/// Ups the tag.如果有装备或可以进阶则显示tag
 		/// </summary>
 		/// <param name="tagShow">If set to <c>true</c> tag show.</param>
-		private void UpTag(bool tagShow){
+		private void UpTag (bool tagShow)
+		{
 			this.HeroTag.SetActive (tagShow);
 		}
+
 		private void UpHeroType (AttributeTypeEnum propertyType)
 		{
-			string resName = "icon_str";
-			switch (propertyType) {
-			case AttributeTypeEnum.STR:
-				resName = "icon_str";
-				break;
-			case AttributeTypeEnum.INT:
-				resName = "icon_int";
-				break;
-			case AttributeTypeEnum.AGI:
-				resName = "icon_agi";
-				break;
-			}
-			this.HeroType.spriteName = resName;
+			this.HeroType.spriteName = Global.GetHeroTypeIconName (propertyType);
 		}
 
 		private void UpProps (HeroBase heroBase)
@@ -95,11 +107,11 @@ namespace TangGame.UI
 						Props [i].spriteName = equips [i].data.icon;
 						if (equips [i].net != null) {
 							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = true;
-							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = false;
+							Props [i].GetComponentsInChildren<UISprite> () [1].enabled = false;
 
 						} else {
 							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = false;
-							Props [i].GetComponentsInChildren<UISprite> ()[1].enabled = true;
+							Props [i].GetComponentsInChildren<UISprite> () [1].enabled = true;
 						}
 					}
 				}
@@ -125,8 +137,12 @@ namespace TangGame.UI
 
 		private void UpHeroFragments (int fragmentsCount, int fragmentsCountMax)
 		{
-			this.CountLabel.text = fragmentsCount + "/" + fragmentsCount;
-			this.ForegroundSprite.fillAmount = fragmentsCount / fragmentsCountMax;
+			if (fragmentsCount >= fragmentsCountMax) {
+				this.CountLabel.text = UIPanelLang.CALL_ME_MAYBE;
+			} else {
+				this.CountLabel.text = fragmentsCount + "/" + fragmentsCountMax;
+				this.ForegroundSprite.fillAmount = fragmentsCount / fragmentsCountMax;
+			}
 		}
 
 		private void UpHeroAvatarSprite (string heroAvatar)
