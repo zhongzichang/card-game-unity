@@ -7,7 +7,6 @@ namespace TangGame
   /// 战斗界面英雄信息面板
   public class LevelHeroPanel : MonoBehaviour
   {
-    public UISprite background;
     public GameObject itemGroup;
     public LevelHeroItem heroItem;
     private object mParam;
@@ -20,7 +19,7 @@ namespace TangGame
       heroItem.gameObject.SetActive (false);
       started = true;
       LevelHeroPanelData data = new LevelHeroPanelData();
-      data.heroCount = 1;
+      data.heroCount = 2;
       this.mParam = data;
       UpdateData ();
     }
@@ -48,8 +47,7 @@ namespace TangGame
       }
       itemList.Clear ();
 
-      float gap = 140;
-      this.background.width = (int)(40 + gap * data.heroCount);
+      float gap = 150;
       float startX = -((float)(data.heroCount - 1)) / 2 * gap;
       for (int i = 0; i < data.heroCount; i++) {
         GameObject go = GameObject.Instantiate (heroItem.gameObject) as GameObject;
@@ -63,7 +61,7 @@ namespace TangGame
         itemList.Add (item);
       }
     }
-    /*
+
     bool full;
     void OnGUI(){
       if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
@@ -73,6 +71,6 @@ namespace TangGame
         itemList[0].SetMp(full ? 1000 : 0, 1000);
         full = !full;
       }
-    }*/
+    }
   }
 }
