@@ -108,8 +108,7 @@ namespace TangGame.UI
 
 		void SetBackground (int rank)
 		{
-//			Foreground.GetComponent<UISprite> ().spriteName = "card_bg_" + HeroBase.GetRankColorStr(rank);
-			Foreground.GetComponent<UISprite> ().color = HeroBase.GetRankColor ((RankEnum)rank);
+			Foreground.GetComponent<UISprite> ().color = Global.GetColor32ByRank(rank);
 		}
 
 		/// <summary>

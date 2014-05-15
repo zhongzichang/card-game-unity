@@ -356,48 +356,6 @@ namespace TangGame.UI
 			float val = (float)Mathf.Sqrt ((float)(2 * rank + 0.25)) - (float)0.5;
 			return (RankEnum)(int)(val - 1);
 		}
-
-		/// <summary>
-		/// 返回品质的颜色
-		/// </summary>
-		/// <returns>The rank color string.</returns>
-		/// <param name="rank">Rank.</param>
-		public static string GetRankColorStr (int rank)
-		{
-			return GetRankColorStr (GetHeroesRankEnum (rank));
-		}
-
-		public static string GetRankColorStr (RankEnum rank)
-		{
-			if (rank.Equals (RankEnum.WHITE)) {
-				return "white";
-			} else if (rank.Equals (RankEnum.GREEN)) {
-				return "green";
-			} else if (rank.Equals (RankEnum.BLUE)) {
-				return "blue";
-			} else if (rank.Equals (RankEnum.PURPLE)) {
-				return "purple";
-			} else {
-				return "white";
-			}
-		}
-
-		public static Color32 GetRankColor (RankEnum rank)
-		{
-			switch (rank) {
-			case RankEnum.WHITE:
-				return new Color32 (171, 171, 171, 255);
-			case RankEnum.GREEN:
-				return new Color32 (93, 255, 0, 255);
-			case RankEnum.BLUE:
-				return new Color32 (0,192,255,255);
-			case RankEnum.PURPLE:
-				return new Color32 (236,43,228,255);
-			case RankEnum.ORANGE:
-				return new Color32(255,111,0,255);
-			}
-			return Color.white;
-		}
 	}
 
 	public enum AttributeTypeEnum
