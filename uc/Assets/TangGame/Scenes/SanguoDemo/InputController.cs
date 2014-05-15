@@ -43,6 +43,9 @@ namespace TangGame
 						Debug.Log ("Boom!");
 //					TangGame.UIContext.mgrCoC.LazyOpen ();
 						UIContext.mgrCoC.LazyOpen (UIContext.ENCHANTS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
+					}else if(obj.name.Equals("Pve")){
+
+						UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_PVE_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
 					}
 				}
 			}

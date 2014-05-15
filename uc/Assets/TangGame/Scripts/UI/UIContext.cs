@@ -15,6 +15,9 @@ namespace TangGame
 {
 	public class UIContext
 	{
+		public const string BATTLE_SELECT_HERO_PANEL_NAME = "BattleSelectHeroPanel";
+		public const string BATTLE_STAGE_DETAIL_PANEL_NAME = "BattleStageDetailPanel";
+		public const string BATTLE_PVE_PANEL_NAME = "BattleChaptersPanel";
 
 		// ****************** panels *******************
 		public const string MAIN_HEAD_PANEL_NAME = "MainHeadPanel";
@@ -41,7 +44,7 @@ namespace TangGame
 		/// <summary>
 		/// 附魔面板
 		/// </summary>
-		public const string ENCHANTS_PANEL_NAME = "EnchantsPanel";
+		public const string ENCHANTS_PANEL_NAME = "BattleChaptersPanel";/// 
 		/// <summary>
 		/// The EQUI p_ INF o_ PANE l_ NAM.
 		/// 装备信息面板

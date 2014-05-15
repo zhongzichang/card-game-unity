@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangUI;
 
 namespace TangGame.UI
 {
@@ -11,6 +12,18 @@ namespace TangGame.UI
     public UISprite start;
     public UIGrid enemies;
     public UIGrid rewards;
+
+		object mParam;
+
+		public object param {
+			get {
+				return mParam;
+			}
+			set {
+				Debug.Log ("Show StageDetailPanel with " + param);
+				mParam = value;
+			}
+		}
 
     private StageItemData stageData;
   	// Use this for initialization
@@ -67,8 +80,9 @@ namespace TangGame.UI
     }
 
     private void OnButtonClicked(GameObject obj){
-      Debug.Log ("OnButtonClicked" + stageData.chapterId + stageData.id);
-      // 进入关卡
+			Debug.Log ("OnButtonClicked" + obj);
+			// 进入选择英雄界面
+			UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_SELECT_HERO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
     }
 
     void OnGUI(){
