@@ -220,6 +220,7 @@ namespace TangGame.UI
 			Props props = svpItem.data;
 			PropsItem mainPropsItem = MainPropsItem.GetComponent<PropsItem> ();
 			mainPropsItem.ShowCount = false;
+			PropsItemNameLabel.GetComponent<UILabel> ().text = props.data.name;
 			mainPropsItem.Flush (props);
 			mainPropsItem.GetComponent<TweenAlpha> ().ResetToBeginning ();
 			mainPropsItem.GetComponent<TweenAlpha> ().Play ();

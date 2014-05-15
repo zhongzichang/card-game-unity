@@ -51,6 +51,12 @@ namespace TangGame
 			"item_frame_4",
 			"item_frame_5"
 		};
+		private static string[] mHeroTypeIcon = new string[]{ 
+			"str_icon",
+			"str_icon",
+			"int_icon",
+			"agi_icon"
+		};
 		private static Color32[] mColor32 = new Color32[]{
 			new Color32 (171, 171, 171, 255),
 			new Color32 (93, 255, 0, 255),
@@ -70,6 +76,15 @@ namespace TangGame
 			} else {
 				return mColor32 [rank];
 			}
+		}
+		/// <summary>
+		/// Gets the hero type icon.
+		/// 根据英雄类型获取名字资源
+		/// </summary>
+		/// <returns>The hero type icon.</returns>
+		/// <param name="type">Type.</param>
+		public static string GetHeroTypeIconName(AttributeTypeEnum type){
+			return mHeroTypeIcon [(int)type];
 		}
 
 		/// <summary, >
