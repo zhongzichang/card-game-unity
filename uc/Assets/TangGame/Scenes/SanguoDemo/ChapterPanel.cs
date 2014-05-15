@@ -19,6 +19,11 @@ namespace TangGame.UI
     /// </summary>
     public UIScrollView eliteView;
 
+    /// <summary>
+    /// The chapter objects.
+    /// </summary>
+    public UIGrid pageIndicators;
+
     private BetterList<ChapterItemObject> chapterObjs = new BetterList<ChapterItemObject>();
 
   	// Use this for initialization
@@ -39,15 +44,35 @@ namespace TangGame.UI
 //    }
 
     private void OnNormalViewDragFinished(){
-      Debug.Log ("delta:" + normalView.movement);
-      string maptitlePath = "Textures/SanguoUI/alpha/HVGA/UImap/";
-      title.mainTexture = Resources.Load (maptitlePath+"maptitle-chapter1") as Texture;
+      int val = GetIndexByScrollBar (normalView.horizontalScrollBar.value);
+      title.mainTexture = GetMapTitle (val);
+      UpdatePageIndicators (val);
     }
 
     private void OnEliteViewDragFinished(){
-      Debug.Log ("delta:" + eliteView.movement);
-      string maptitlePath = "Textures/SanguoUI/alpha/HVGA/UImap/";
-      title.mainTexture = Resources.Load (maptitlePath+"maptitle-chapter2") as Texture;
+      int val = GetIndexByScrollBar (eliteView.horizontalScrollBar.value);
+      title.mainTexture = GetMapTitle (val);
+      UpdatePageIndicators (val);
+    }
+
+    private int GetIndexByScrollBar(float val){
+      if (val < 0.5f) {
+        return 1;
+      }
+      return 2;
+    }
+
+    private Texture GetMapTitle(int val){
+      string maptitlePath = "Textures/BattleChapters/Title/maptitle-chapter" + val.ToString();
+      Debug.Log (maptitlePath);
+      return Resources.Load (maptitlePath) as Texture;
+    }
+
+    private void UpdatePageIndicators(int val){
+      Transform t = pageIndicators.GetChild(val-1);
+      Debug.Log (t.name);
+      UIToggle toggle = t.GetComponent<UIToggle>();
+      toggle.value = true;
     }
 
     private void UpdateStatus (int chapterId, int stageId, int status){
