@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 namespace TangLevel
 {
+  [Serializable]
   public class Level
   {
     // -- 关卡属性 --

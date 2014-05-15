@@ -52,6 +52,8 @@ namespace TangLevel
 
           ResetPath ();
 
+          // TODO 判断该位置是否有人，有则往中间的位置移动
+
         } else {
 
           // 移动

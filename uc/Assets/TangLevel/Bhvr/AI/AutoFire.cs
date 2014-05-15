@@ -123,10 +123,10 @@ namespace TangLevel
 
             // 判断距离是否可攻击
             float distance = Mathf.Abs (target.transform.localPosition.x - myTransform.localPosition.x);
-            if (distance - heroBhvr.hero.attackDistance > 0.1F) {
+            if (distance - skill.distance > 0.1F) {
 
               // 移动到可攻击位置
-              navigable.NavTo (target.transform.localPosition.x, heroBhvr.hero.attackDistance);
+              navigable.NavTo (target.transform.localPosition.x, skill.distance);
 
               // Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
 

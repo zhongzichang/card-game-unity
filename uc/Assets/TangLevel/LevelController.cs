@@ -894,9 +894,9 @@ namespace TangLevel
         hero.battleDirection = direction;
       }
 
-      // 根据攻击距离进行排序
+      // 排序
       heros.Sort (delegate(Hero hero1, Hero hero2) {
-        return hero1.attackDistance.CompareTo (hero2.attackDistance);
+        return hero1.sort.CompareTo (hero2.sort);
       });
 
       // 分成两列
@@ -920,10 +920,10 @@ namespace TangLevel
         origin = new Vector2 (0, 12);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column1 [i].attackDistance == column1 [j].attackDistance) {
+            if (column1 [i].sort == column1 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -939,10 +939,10 @@ namespace TangLevel
         origin = new Vector2 (-3, 8);
         offsety = 0;
         for (int i = 0; i < column2.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column2 [i].attackDistance == column2 [j].attackDistance) {
+            if (column2 [i].sort == column2 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -974,10 +974,10 @@ namespace TangLevel
         origin = new Vector2 (32, 12);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column1 [i].attackDistance == column1 [j].attackDistance) {
+            if (column1 [i].sort == column1 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -993,10 +993,10 @@ namespace TangLevel
         offsety = 0;
         origin = new Vector2 (35, 8);
         for (int i = 0; i < column2.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column2 [i].attackDistance == column2 [j].attackDistance) {
+            if (column2 [i].sort == column2 [j].sort) {
               useOffset = true;
               offsety++;
               break;

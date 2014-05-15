@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace TangLevel
 {
+  [Serializable]
   public class Effector
   {
 

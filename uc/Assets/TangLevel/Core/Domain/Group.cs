@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 namespace TangLevel
 {
+  [Serializable]
   public class Group
   {
 
