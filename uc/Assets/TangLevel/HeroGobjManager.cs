@@ -36,6 +36,14 @@ namespace TangLevel
     {
       GameObject gobj = TD.DbgoManager.FetchUnused (hero.resName);
       if (gobj != null) {
+        // DirectedNavAgent
+        DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
+        if (agent == null) {
+          agent = gobj.AddComponent<DirectedNavAgent> ();
+        }
+        if (!agent.enabled) {
+          agent.enabled = true;
+        }
         // DirectedNavigable
         DirectedNavigable navigable = gobj.GetComponent<DirectedNavigable> ();
         if (navigable == null) {
