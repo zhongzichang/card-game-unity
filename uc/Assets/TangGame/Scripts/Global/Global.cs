@@ -36,6 +36,7 @@ namespace TangGame
 		/// 道具正常边框的Sprite名称
 		private static string[] PropsNormalFrame = new string[] {
 			"item_frame_1",
+			"item_frame_1",
 			"item_frame_2",
 			"item_frame_3",
 			"item_frame_4",
@@ -43,6 +44,7 @@ namespace TangGame
 		};
 		/// 道具碎片边框的Sprite名称
 		private static string[] PropsDebrisFrame = new string[] {
+			"item_frame_1",
 			"item_frame_1",
 			"item_frame_2",
 			"item_frame_3",

@@ -192,11 +192,31 @@ namespace TangLevel
       levelPausePanel.gameObject.SetActive (false);
     }
 
+    /// <summary>
+    /// 退出按钮被点击
+    /// </summary>
+    /// <param name="g">The green component.</param>
     private void OnQuitBtnClick (GameObject g)
     {
       LeftLevel ();
     }
 
+
+    /// <summary>
+    /// 面板上的英雄图标被点击
+    /// </summary>
+    /// <param name="item">Item.</param>
+    private static void OnHeroIconClick (ViewItem viewItem)
+    {
+      TG.LevelHeroItem item = viewItem as TG.LevelHeroItem;
+      if (item != null) {
+        // 获取相应的英雄对象
+        HeroBhvr h = LevelContext.GetHeroBhvr (item.heroId);
+        if (h != null && h.hero != null && h.hero.hp > 0 && h.hero.mp == h.hero.maxMp) {
+          h.BigMove ();
+        }
+      }
+    }
     #endregion
 
     #region PublicStaticMethods
@@ -1068,9 +1088,10 @@ namespace TangLevel
           TG.LevelHeroItem w = wgtEnum.Current;
 
           // 英雄头像 ----
-          w.SetHeroId (h.id);
-          h.raiseHpChange += w.SetHp;
-          h.raiseMpChange += w.SetMp;
+          w.SetHeroId (h.id); // 英雄ID
+          h.raiseHpChange += w.SetHp; // 英雄HP变化
+          h.raiseMpChange += w.SetMp; // 英雄MP变化
+          w.onClick += OnHeroIconClick; // 英雄头像点击
           i++;
 
         }
