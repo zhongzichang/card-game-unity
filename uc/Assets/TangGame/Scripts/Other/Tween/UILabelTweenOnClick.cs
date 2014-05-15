@@ -3,7 +3,7 @@ using System.Collections;
 
 public class UILabelTweenOnClick : MonoBehaviour
 {
-	public Vector3 labVector = new Vector3 (0, -2, 0);
+	public Vector3 labVector = new Vector3 (2, -2, 0);
 	bool mOnClicked;
 	// Use this for initialization
 	void Start ()
