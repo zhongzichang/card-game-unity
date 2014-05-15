@@ -64,7 +64,7 @@ namespace TangLevel
       hero.hp = 100;
       hero.maxMp = 100;
       hero.mp = 0;
-      hero.attackDistance = UnityEngine.Random.Range (3, 20);
+      hero.sort = 1;//UnityEngine.Random.Range (1, 20);
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else
@@ -78,7 +78,7 @@ namespace TangLevel
       //if( hero.id == 0)
       skills.Add (MockLuoshenSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
+      hero.skillQueue = new int[]{ 0, 1, 2 };
 
 
       tmp++;
@@ -94,6 +94,7 @@ namespace TangLevel
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;
+      skill.distance = 10;
       skill.cd = 2;
 
       return skill;
@@ -109,6 +110,7 @@ namespace TangLevel
       skill.releaseClip = "binghua1";
       skill.enable = true;
       skill.bigMove = false;
+      skill.distance = 10;
       skill.cd = 2;
 
       return skill;
@@ -118,8 +120,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      skill.effectors = new Effector[1];
-      skill.effectors[0] = MockLineFlyEffector ();
+      //skill.effectors = new Effector[1];
+      //skill.effectors[0] = MockLineFlyEffector ();
       skill.chargeClip = "luoshen";
       //skill.releaseClip = "luoshen";
       //skill.releaseSpecials = new string[2];
@@ -128,6 +130,7 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = true;
       skill.chargeTime = 2F;
+      skill.distance = 10;
       skill.cd = 2;
 
       return skill;
@@ -144,6 +147,7 @@ namespace TangLevel
       skill.releaseClip = "yuehua";
       skill.enable = true;
       skill.bigMove = false;
+      skill.distance = 10;
       skill.cd = 2;
 
       return skill;

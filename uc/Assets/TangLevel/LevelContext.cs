@@ -79,7 +79,6 @@ namespace TangLevel
       }
     }
 
-
     /// <summary>
     /// 我方小组(model)
     /// </summary>
@@ -146,10 +145,46 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// 根据ID获取活着的我方英雄对象
+    /// </summary>
+    /// <returns>The alive self gobj.</returns>
+    /// <param name="id">Identifier.</param>
+    public static GameObject GetAliveSelfGobj (int id)
+    {
+      GameObject g = null;
+      foreach (GameObject gobj in selfGobjs) {
+        HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+        if (heroBhvr != null) {
+          if (heroBhvr.hero.id == id) {
+            g = gobj;
+            break;
+          }
+        }
+      }
+      return g;
+    }
+
+    /// <summary>
+    /// 根据英雄ID获取 HeroBhvr
+    /// </summary>
+    /// <returns>The hero bhvr.</returns>
+    /// <param name="id">Identifier.</param>
+    public static HeroBhvr GetHeroBhvr(int id){
+      HeroBhvr h = null;
+      foreach (GameObject gobj in selfGobjs) {
+        HeroBhvr hb = gobj.GetComponent<HeroBhvr> ();
+        if (hb != null && hb.hero.id == id) {
+          h = hb;
+          break;
+        }
+      }
+      return h;
+    }
+
+    /// <summary>
     /// 子关卡开始时活着的英雄
     /// </summary>
     public static List<GameObject> SubLevelBeganGobjs = new List<GameObject> ();
-
     public static bool isPause = false;
 
     #endregion

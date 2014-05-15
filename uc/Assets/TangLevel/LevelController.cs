@@ -192,11 +192,31 @@ namespace TangLevel
       levelPausePanel.gameObject.SetActive (false);
     }
 
+    /// <summary>
+    /// 退出按钮被点击
+    /// </summary>
+    /// <param name="g">The green component.</param>
     private void OnQuitBtnClick (GameObject g)
     {
       LeftLevel ();
     }
 
+
+    /// <summary>
+    /// 面板上的英雄图标被点击
+    /// </summary>
+    /// <param name="item">Item.</param>
+    private static void OnHeroIconClick (ViewItem viewItem)
+    {
+      TG.LevelHeroItem item = viewItem as TG.LevelHeroItem;
+      if (item != null) {
+        // 获取相应的英雄对象
+        HeroBhvr h = LevelContext.GetHeroBhvr (item.heroId);
+        if (h != null && h.hero != null && h.hero.hp > 0 && h.hero.mp == h.hero.maxMp) {
+          h.BigMove ();
+        }
+      }
+    }
     #endregion
 
     #region PublicStaticMethods
@@ -874,9 +894,9 @@ namespace TangLevel
         hero.battleDirection = direction;
       }
 
-      // 根据攻击距离进行排序
+      // 排序
       heros.Sort (delegate(Hero hero1, Hero hero2) {
-        return hero1.attackDistance.CompareTo (hero2.attackDistance);
+        return hero1.sort.CompareTo (hero2.sort);
       });
 
       // 分成两列
@@ -900,10 +920,10 @@ namespace TangLevel
         origin = new Vector2 (0, 12);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column1 [i].attackDistance == column1 [j].attackDistance) {
+            if (column1 [i].sort == column1 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -919,10 +939,10 @@ namespace TangLevel
         origin = new Vector2 (-3, 8);
         offsety = 0;
         for (int i = 0; i < column2.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column2 [i].attackDistance == column2 [j].attackDistance) {
+            if (column2 [i].sort == column2 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -954,10 +974,10 @@ namespace TangLevel
         origin = new Vector2 (32, 12);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column1 [i].attackDistance == column1 [j].attackDistance) {
+            if (column1 [i].sort == column1 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -973,10 +993,10 @@ namespace TangLevel
         offsety = 0;
         origin = new Vector2 (35, 8);
         for (int i = 0; i < column2.Count; i++) {
-          // 如果当前英雄与前面英雄的攻击距离相等，则 offsety++;
+          // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
           for (int j = i - 1; j >= 0; j--) {
-            if (column2 [i].attackDistance == column2 [j].attackDistance) {
+            if (column2 [i].sort == column2 [j].sort) {
               useOffset = true;
               offsety++;
               break;
@@ -1068,9 +1088,10 @@ namespace TangLevel
           TG.LevelHeroItem w = wgtEnum.Current;
 
           // 英雄头像 ----
-          w.SetHeroId (h.id);
-          h.raiseHpChange += w.SetHp;
-          h.raiseMpChange += w.SetMp;
+          w.SetHeroId (h.id); // 英雄ID
+          h.raiseHpChange += w.SetHp; // 英雄HP变化
+          h.raiseMpChange += w.SetMp; // 英雄MP变化
+          w.onClick += OnHeroIconClick; // 英雄头像点击
           i++;
 
         }

@@ -22,7 +22,6 @@ namespace TangGame
       rightBound = new Vector3 (bound.x * PIXEL_SCALE - leftBound.x, leftBound.y, leftBound.z);
       goalPosition = leftBound;      
       myTransform.localPosition = leftBound;
-      Debug.Log (myTransform.localPosition );
     }
 
     void LateUpdate ()

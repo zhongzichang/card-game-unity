@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using TGX = TangGame.Xml;
 
 namespace TangLevel
 {
+  [Serializable]
   public class Skill
   {
-    #region SelfAttributes
+    #region Configration Attributes
 
     // -- 自身属性 --
 
@@ -30,11 +32,6 @@ namespace TangLevel
     public float releaseTime;
 
     /// <summary>
-    /// 起手是否循环
-    /// </summary>
-    public bool chargeLoop;
-
-    /// <summary>
     /// 是否大招
     /// </summary>
     public bool bigMove;
@@ -54,7 +51,6 @@ namespace TangLevel
     /// 范围类型
     /// </summary>
     public int scopeType;
-
 
     /// <summary>
     /// 作用器
@@ -97,30 +93,42 @@ namespace TangLevel
     public string[] releaseSpecials;
 
     /// <summary>
-    /// 技能图标
-    /// </summary>
-    public string icon;
-
-    /// <summary>
-    /// 文字描述
-    /// </summary>
-    public string desc;
-
-    /// <summary>
-    /// 黄字描述
-    /// </summary>
-    public string yellowDesc;
-
-    /// <summary>
     /// 是否可以施展
     /// </summary>
     public bool enable = false;
 
     #endregion
 
-    #region PublicMethods
+    #region Public Methods
     public Skill ShallowCopy(){
       return (Skill)this.MemberwiseClone ();
+    }
+    #endregion
+
+    #region Helper Methods
+
+    public static Skill Compose(TGX.SkillData d){
+
+      Skill s = new Skill ();
+
+      s.id = d.id;
+      s.cd = d.cool_time;
+      s.chargeTime = d.boot_time;
+      s.releaseTime = d.after_time;
+      s.bigMove = d.isUltimate;
+      s.distance = d.cast_range;
+      s.targetType = d.target_type;
+      s.scopeType = d.range_type;
+      //effectors;
+      s.breakable = d.being_interrupted_by_injuries;
+      s.attributePersistence = d.is_attribute_addition;
+      //s.chargeClip = null;
+      //s.releaseClip = null;
+      //s.chargeSpecials = d.singing_effect;
+      //s.releaseSpecials = d.play_effect;
+      //s.enable
+      return s;
+
     }
     #endregion
 

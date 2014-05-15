@@ -105,6 +105,9 @@ namespace TangLevel
         }
       }
 
+      if (statusBhvr.IsPause) {
+        statusBhvr.IsPause = false;
+      }
       statusBhvr.Status = HeroStatus.idle;
 
       // 关卡控制
@@ -136,8 +139,14 @@ namespace TangLevel
     private void OnMovementChange (Com.Viperstudio.Events.Event e)
     {
 
-      //string movementId = armature.Animation.MovementID;
-
+      switch (statusBhvr.Status) {
+      case HeroStatus.charge:
+        // 发大招通知
+        if (skill.bigMove) {
+          bmBhvr.StartBigMove (skill.chargeTime);
+        }
+        break;
+      }
 
     }
     //private void
@@ -152,9 +161,8 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
         break;
       case HeroStatus.charge:
-        if (statusBhvr.IsBigMove) {
+        if (skill.bigMove) {
           // 大招结束
-          Debug.Log ("big move end - hero " + hero.id);
           bmBhvr.StopBigMove ();
         }
         statusBhvr.Status = HeroStatus.release;
@@ -209,14 +217,7 @@ namespace TangLevel
 
       case HeroStatus.charge: // 起手 ----
 
-
-          // 发大招通知
-        if (skill.bigMove) {
-          Debug.Log ("big move start - hero " + hero.id);
-          bmBhvr.StartBigMove (skill.chargeTime);
-        }
-
-          // 有则播放，无则转到释放状态
+        // 有则播放，无则转到释放状态
 
         if (skill.chargeClip != null) {
           if (animationList.Contains (skill.chargeClip)) {
@@ -260,7 +261,7 @@ namespace TangLevel
           skillBhvr.CastReleaseSpecial (skill, gameObject, target);
         }
         // 抛出作用器s
-        if (skill != null) {
+        if (skill != null && skill.effectors != null) {
           foreach (Effector e in skill.effectors) {
             skillBhvr.Cast (e, skill, gameObject, target);
           }
@@ -332,9 +333,12 @@ namespace TangLevel
       if (dbBhvr != null) {
         dbBhvr.Pause ();
       }
+
       // 暂停行走
-      if (agent.enabled)
+
+      if (agent.enabled) {
         agent.enabled = false;
+      }
     }
 
     /// <summary>
@@ -348,8 +352,10 @@ namespace TangLevel
         dbBhvr.Resume ();
       }
       // 恢复行走
-      if (!agent.enabled)
+
+      if (!agent.enabled) {
         agent.enabled = true;
+      }
     }
 
     #endregion
@@ -464,10 +470,18 @@ namespace TangLevel
     /// 使用大招攻击
     /// </summary>
     public void BigMove(){
-
       // 获取大招
+      Skill bs = null;
+      foreach (Skill s in hero.skills) {
+        if (s.bigMove) {
+          bs = s;
+          break;
+        }
+      }
 
-
+      if (bs != null) {
+        Attack (bs);
+      }
     }
 
     #endregion

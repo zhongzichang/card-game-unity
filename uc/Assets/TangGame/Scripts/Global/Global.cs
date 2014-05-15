@@ -36,6 +36,7 @@ namespace TangGame
 		/// 道具正常边框的Sprite名称
 		private static string[] PropsNormalFrame = new string[] {
 			"item_frame_1",
+			"item_frame_1",
 			"item_frame_2",
 			"item_frame_3",
 			"item_frame_4",
@@ -44,10 +45,17 @@ namespace TangGame
 		/// 道具碎片边框的Sprite名称
 		private static string[] PropsDebrisFrame = new string[] {
 			"item_frame_1",
+			"item_frame_1",
 			"item_frame_2",
 			"item_frame_3",
 			"item_frame_4",
 			"item_frame_5"
+		};
+		private static string[] mHeroTypeIcon = new string[]{ 
+			"str_icon",
+			"str_icon",
+			"int_icon",
+			"agi_icon"
 		};
 		private static Color32[] mColor32 = new Color32[]{
 			new Color32 (171, 171, 171, 255),
@@ -68,6 +76,15 @@ namespace TangGame
 			} else {
 				return mColor32 [rank];
 			}
+		}
+		/// <summary>
+		/// Gets the hero type icon.
+		/// 根据英雄类型获取名字资源
+		/// </summary>
+		/// <returns>The hero type icon.</returns>
+		/// <param name="type">Type.</param>
+		public static string GetHeroTypeIconName(AttributeTypeEnum type){
+			return mHeroTypeIcon [(int)type];
 		}
 
 		/// <summary, >
@@ -158,5 +175,18 @@ namespace TangGame
 		{
 			return evolve;
 		}
+
+    /// 获取StreamingAssets文件夹路径
+    public static string GetStreamingAssetsPath(){
+      string streamingAssetsPath = "";
+      if(Application.platform == RuntimePlatform.IPhonePlayer){
+        streamingAssetsPath = "file://" + Application.dataPath + "/Raw/";
+      }else if(Application.platform == RuntimePlatform.Android){
+        streamingAssetsPath = Application.streamingAssetsPath + "/";
+      }else{
+        streamingAssetsPath = "file://" + Application.dataPath + "/StreamingAssets/";
+      }
+      return streamingAssetsPath;
+    }
 	}
 }

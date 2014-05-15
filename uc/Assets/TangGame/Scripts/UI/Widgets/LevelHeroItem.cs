@@ -17,6 +17,7 @@ namespace TangGame{
 		public ViewItemDelegate onClick;
     public UISprite hpEffect;
     public UISprite mpEffect;
+    public UISprite hpBarEffect;
 
 		private int mHeroId;
 		private int hp = 1;
@@ -37,6 +38,7 @@ namespace TangGame{
 			frameBtn.onClick += FrameBtnClickHandler;
       hpEffect.gameObject.SetActive(false);
       mpEffect.gameObject.SetActive(false);
+      hpBarEffect.gameObject.SetActive(false);
 			this.started = true;
 			UpdateHero();
 			UpdateHp();
@@ -117,8 +119,10 @@ namespace TangGame{
 
       if(percent > 0.2f){
         this.hpEffect.gameObject.SetActive(false);
+        this.hpBarEffect.gameObject.SetActive(false);
       }else{
         this.hpEffect.gameObject.SetActive(true);
+        this.hpBarEffect.gameObject.SetActive(true);
       }
 
 			if(this.hp < 1){//死亡了，设置MP为0
@@ -127,6 +131,7 @@ namespace TangGame{
 				icon.color = new Color32(51, 51, 51, 255);//死亡设置灰色
         this.hpEffect.gameObject.SetActive(false);
         this.mpEffect.gameObject.SetActive(false);
+        this.hpBarEffect.gameObject.SetActive(false);
 			}
 		}
 

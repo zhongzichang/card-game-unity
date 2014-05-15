@@ -15,6 +15,7 @@ namespace TangLevel
     private Transform myTransform;
     private Vector3 backupPos = Vector3.zero;
     private DirectedNavAgent agent;
+    private HeroBhvr heroBhvr;
 
     #region MonoMethods
 
@@ -25,6 +26,9 @@ namespace TangLevel
         statusBhvr = GetComponent<HeroStatusBhvr> ();
       }
       agent = GetComponent<DirectedNavAgent> ();
+
+      heroBhvr = GetComponent<HeroBhvr> ();
+
       LevelController.BigMoveStart += OnBigMoveStart;
       LevelController.BigMoveEnd += OnBigMoveEnd;
     }
@@ -101,7 +105,7 @@ namespace TangLevel
       // 如果被暂停，则恢复
       if (statusBhvr.IsPause)
         statusBhvr.IsPause = false;
-      //agent.enabled = false;
+      agent.enabled = false;
     }
 
     public void StopBigMove ()
@@ -113,7 +117,8 @@ namespace TangLevel
 
       LevelController.BigMoveCounter--;
 
-      //agent.enabled = true;
+      heroBhvr.hero.mp = 0;
+      agent.enabled = true;
     }
 
     #endregion
