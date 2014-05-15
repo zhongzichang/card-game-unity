@@ -32,7 +32,7 @@ namespace TangGame.UI
 				this.equipIcon.color = Color.white;
 				this.equipIcon.alpha = 1f;
 				this.equipIcon.spriteName = equipBase.data.icon;
-				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr((RankEnum)equipBase.data.upgrade);
+				this.equipFrames.spriteName = Global.GetPropFrameName(equipBase.data.upgrade);
 				this.label.text = "";
 				this.starList.count = equipBase.net.enchantsLv;
 				this.starList.Flush ();
@@ -40,7 +40,7 @@ namespace TangGame.UI
 				this.equipIcon.color = Color.gray;
 				this.equipIcon.alpha = 0.4f;
 				this.equipIcon.spriteName = equipBase.data.icon;
-				this.equipFrames.spriteName = "equip_frame_" + HeroBase.GetRankColorStr(RankEnum.WHITE);
+				this.equipFrames.spriteName = Global.GetPropFrameName(1);
 				this.label.text = "未装备";
 				this.starList.count = 0;
 				this.starList.Flush ();
