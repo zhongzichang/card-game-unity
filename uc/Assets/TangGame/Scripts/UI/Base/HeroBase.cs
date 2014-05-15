@@ -121,7 +121,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Strength_growth {
 			get {
-				return xml.strength_growth;
+				return xml.GetStrengthGrowth (net.evolve);
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Intellect_growth {
 			get {
-				return xml.intellect_growth;
+				return xml.GetIntellectGrowth (net.evolve);
 			}
 		}
 
@@ -139,7 +139,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Agile_growth {
 			get {
-				return xml.agile_growth;
+				return xml.GetAgileGrowth (net.evolve);
 			}
 		}
 

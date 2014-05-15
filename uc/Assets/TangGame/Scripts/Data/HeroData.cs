@@ -29,11 +29,11 @@ namespace TangGame.Xml
 		/// 英雄位置
 		public int location;
 		/// 力量成长
-		public float strength_growth;
+		public string strength_growth;
 		/// 智力成长
-		public float intellect_growth;
+		public string intellect_growth;
 		/// 敏捷成长
-		public float agile_growth;
+		public string agile_growth;
 		/// 力量
 		public int strength;
 		/// 智力
@@ -109,6 +109,46 @@ namespace TangGame.Xml
 				}
 			}
 			return equipList;
+		}
+		/// <summary>
+		/// Gets the strength growth.
+		/// 获取力量成长
+		/// </summary>
+		/// <returns>The strength growth.</returns>
+		/// <param name="evolve">Evolve.</param>
+		public float GetStrengthGrowth(int evolve){
+			if (Utils.isXMLStr_Null (strength_growth))
+				return 0;
+			string str = Utils.SplitStrByBraces (strength_growth) [0].ToString();
+			string floatStr = Utils.SplitStrByComma (str)[evolve];
+			float fl = float.Parse (floatStr);
+			return fl;
+		}
+		/// <summary>
+		/// 获取智力成长
+		/// </summary>
+		/// <returns>The intellect growth.</returns>
+		/// <param name="evolve">Evolve.</param>
+		public float GetIntellectGrowth(int evolve){
+			if (Utils.isXMLStr_Null (intellect_growth))
+				return 0;
+			string str = Utils.SplitStrByBraces (intellect_growth) [0].ToString();
+			string floatStr = Utils.SplitStrByComma (str)[evolve];
+			float fl = float.Parse (floatStr);
+			return fl;
+		}
+		/// <summary>
+		/// 获取敏捷成长
+		/// </summary>
+		/// <returns>The agile growth.</returns>
+		/// <param name="evolve">Evolve.</param>
+		public float GetAgileGrowth(int evolve){
+			if (Utils.isXMLStr_Null (agile_growth))
+				return 0;
+			string str = Utils.SplitStrByBraces (agile_growth) [0].ToString();
+			string floatStr = Utils.SplitStrByComma (str)[evolve];
+			float fl = float.Parse (floatStr);
+			return fl;
 		}
 	}
 

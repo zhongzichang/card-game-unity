@@ -187,7 +187,7 @@ namespace TangGame.UI
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "";
 			if (PropsType.EQUIP == type) {
-				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile) {
+				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength >0) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
 					infoStr += UIPanelLang.AGILE + "+";

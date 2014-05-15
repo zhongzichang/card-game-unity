@@ -120,7 +120,7 @@ namespace TangGame.UI
 			SkillItem item = Resources.Load<SkillItem> (UIContext.getWidgetsPath (UIContext.SKILL_ITEM_NAME));
 			item = NGUITools.AddChild (SkillTable, item.gameObject).GetComponent<SkillItem> ();
 			item.gameObject.name = "skill_" + skill.Xml.id;
-			item.Flush (skill,data.Net.level);
+			item.Flush (data,skill);
 		}
 	}
 }

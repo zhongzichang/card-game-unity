@@ -192,7 +192,7 @@ public class Utils
 		string[] strs = str.Split ('}');
 		ArrayList strList = new ArrayList (strs);
 		for (int i = 0; i < strList.Count; i++) {
-			if (strList [i] == null || strList [i].ToString() == "" || strList [i].ToString() == " ") {
+			if (strList [i] == null || strList [i].ToString () == "" || strList [i].ToString () == " ") {
 				strList.RemoveAt (i);
 				i--;
 			}
@@ -224,9 +224,9 @@ public class Utils
 	/// Propertieses the size of the info adaptive.
 	/// 字体背景自适应
 	/// </summary>
-	public static void TextBgAdaptiveSize(UILabel text, UISprite background){
-		if (background != null && !background.isAnchored)
-		{
+	public static void TextBgAdaptiveSize (UILabel text, UISprite background)
+	{
+		if (background != null && !background.isAnchored) {
 			Vector3 mSize = Vector3.zero;
 			Transform textTrans = text.transform;
 			Vector3 offset = textTrans.localPosition;
@@ -240,16 +240,26 @@ public class Utils
 			mSize.y *= textScale.y;
 
 			Vector4 border = background.border;
-			mSize.x += border.x + border.z + ( offset.x - border.x) * 2f;
+			mSize.x += border.x + border.z + (offset.x - border.x) * 2f;
 			mSize.y += border.y + border.w + (-offset.y - border.y) * 2f;
 
 //			background.width = Mathf.RoundToInt(mSize.x);
-			background.height = Mathf.RoundToInt(mSize.y);
+			background.height = Mathf.RoundToInt (mSize.y);
 		}
 
 
 	}
-	public static float EnchantingVariable(int rank,int enchantLevel){
+
+	public static bool isXMLStr_Null (string str)
+	{
+		if (str == "//") {
+			return true;
+		}
+		return false;
+	}
+
+	public static float EnchantingVariable (int rank, int enchantLevel)
+	{
 		//TODO only to test;
 		return 0.25f;
 	}

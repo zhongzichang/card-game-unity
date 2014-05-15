@@ -466,7 +466,7 @@ namespace TangGame.UI
 			string infoStr = "[000000]";
 			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade, data.net.enchantsLv);
 			if (PropsType.EQUIP == type) {
-				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile) {
+				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength >0) {
 					string title = UIPanelLang.STRENGTH + "," + UIPanelLang.INTELLECT + "," + UIPanelLang.AGILE;
 					AddPropertie (ref infoStr, title, data.data.strength, enchantingVariable);
 				} else {
@@ -599,7 +599,7 @@ namespace TangGame.UI
 		/// <param name="title">Title.</param>
 		/// <param name="val">Value.</param>
 		/// <param name="enchantingVariable">Enchanting variable.</param>
-		void AddPropertie (ref string infoStr, string title, int val, float enchantingVariable)
+		void AddPropertie (ref string infoStr, string title, float val, float enchantingVariable)
 		{
 			infoStr += string.Format ("{0}[ff0000] + {1}[-]", title, val);
 			if (enchantingVariable != 0 && Mathf.Round (val * enchantingVariable) != 0) {

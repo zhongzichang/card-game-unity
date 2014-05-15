@@ -18,9 +18,9 @@ namespace TangGame
     {
       heroItem.gameObject.SetActive (false);
       started = true;
-      LevelHeroPanelData data = new LevelHeroPanelData();
-      data.heroCount = 2;
-      this.mParam = data;
+      //LevelHeroPanelData data = new LevelHeroPanelData();
+      //data.heroCount = 2;
+      //this.mParam = data;
       UpdateData ();
     }
 
@@ -59,7 +59,7 @@ namespace TangGame
       }
     }
 
-    bool full;
+    /*bool full;
     void OnGUI(){
       if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
         itemList[0].SetHp(Random.Range(50, 1000), 1000);
@@ -68,6 +68,6 @@ namespace TangGame
         itemList[0].SetMp(full ? 1000 : 0, 1000);
         full = !full;
       }
-    }
+    }*/
   }
 }

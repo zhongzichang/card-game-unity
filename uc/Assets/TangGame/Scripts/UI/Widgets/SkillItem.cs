@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI;
+using System.Text.RegularExpressions;
 
 namespace TangGame.UI
 {
@@ -12,9 +13,12 @@ namespace TangGame.UI
 		public UILabel SkillLevel;
 		public UILabel SkillName;
 		private SkillBase skill;
+		HeroBase hero;
 
-		public void Flush (SkillBase skill,int herolv)
+		public void Flush (HeroBase hero,SkillBase skill)
 		{
+			this.hero = hero;
+			int herolv = hero.Net.level;
 			this.skill = skill;
 			SetSkillName (skill.Xml.name);
 			SetSkillIncon (skill.Xml.skill_icon);
@@ -34,7 +38,13 @@ namespace TangGame.UI
 
 		void OnPress(){
 			string str = skill.Xml.desc + "\n[FA8000]";
-			str += skill.Xml.desc_y;
+			if (skill.Level > 0) {
+				string desc = skill.Xml.desc_y;
+				Regex re = new Regex (@".+{(\d+)}.+");
+				string param = re.Match (desc).Groups [0].Value;
+				// TODO 具体需要商议
+				str += desc;
+			}
 			UITooltip.ShowText (str);
 		}
 

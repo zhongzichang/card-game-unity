@@ -16,9 +16,9 @@ namespace TangGame.Xml
 		/// 类型
 		public int type;
 		/// 前摇
-		public float boot_time;
+		public int boot_time;
 		/// 后摇
-		public float after_time;
+		public int after_time;
 		/// 动画循环
 		public int play_loop;
 		/// 是否大招
@@ -54,9 +54,9 @@ namespace TangGame.Xml
 		/// 技能图标
 		public string skill_icon;
 		/// 文字描述
-		public int desc;
+		public string desc;
 		/// 黄字描述
-		public int desc_y;
+		public string desc_y;
 	}
 	[XmlRoot ("root")]
 	[XmlLate("skill")]
