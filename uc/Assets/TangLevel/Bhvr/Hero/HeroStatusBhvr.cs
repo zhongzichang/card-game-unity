@@ -5,12 +5,16 @@ namespace TangLevel
 {
   public class HeroStatusBhvr : MonoBehaviour
   {
+    #region delegates
     public delegate void StatusChange (HeroStatus status);
 
     public delegate void PauseChange (bool pause);
     // 状态结束时回调
     public StatusChange statusChangedHandler;
     public PauseChange pauseChangedHandler;
+    #endregion
+
+    #region attributes
     /// <summary>
     ///   角色状态，在*inspector*中使用
     /// </summary>
@@ -19,8 +23,14 @@ namespace TangLevel
     ///   上一个状态
     /// </summary>
     public HeroStatus beforeStatus = HeroStatus.none;
-    private HeroStatus newStatus = HeroStatus.none;
+    public HeroStatus newStatus = HeroStatus.none;
+    public bool m_isPause = false;
+    public bool newIsPause = false;
+    public bool m_isBigMove = false;
+    #endregion
 
+
+    #region properties
     /// <summary>
     ///   角色状态，被脚本使用，暂停的情况下不能修改状态
     /// </summary>
@@ -29,26 +39,30 @@ namespace TangLevel
         return m_status;
       }
       set {
-        if (m_status != HeroStatus.dead && newStatus != value) {
+        if (m_status != HeroStatus.dead// 死亡后不能修改状态
+            && !m_isBigMove// 大招的时候不能修改状态
+            && newStatus != value) {
           newStatus = value;
         }
       }
     }
     // 暂停 ----
-    public bool m_isPause = false;
-    private bool newIsPause = false;
 
     public bool IsPause {
       get {
         return m_isPause;
       }
       set {
-        newIsPause = value;
+        if (m_isBigMove) {
+          if (!value) { // 大招时，只有暂停状态下才能恢复
+            newIsPause = value;
+          }
+        } else {
+          newIsPause = value;
+        }
       }
     }
     // 大招 ----
-    public bool m_isBigMove = false;
-
     public bool IsBigMove {
       get {
         return m_isBigMove;
@@ -57,7 +71,9 @@ namespace TangLevel
         m_isBigMove = value;
       }
     }
+    #endregion
 
+    #region monomethods
     void Update ()
     {
 
@@ -81,7 +97,8 @@ namespace TangLevel
 
     }
 
-    void OnEnable(){
+    void OnEnable ()
+    {
 
       m_status = HeroStatus.none;
       beforeStatus = HeroStatus.none;
@@ -92,6 +109,8 @@ namespace TangLevel
 
       m_isBigMove = false;
     }
+
+    #endregion
   }
 }
 

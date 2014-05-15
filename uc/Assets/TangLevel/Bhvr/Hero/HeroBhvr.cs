@@ -152,6 +152,11 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
         break;
       case HeroStatus.charge:
+        if (statusBhvr.IsBigMove) {
+          // 大招结束
+          Debug.Log ("big move end - hero " + hero.id);
+          bmBhvr.StopBigMove ();
+        }
         statusBhvr.Status = HeroStatus.release;
         break;
       case HeroStatus.release:
@@ -207,7 +212,7 @@ namespace TangLevel
 
           // 发大招通知
         if (skill.bigMove) {
-          Debug.Log ("bigmovestart hero " + hero.id);
+          Debug.Log ("big move start - hero " + hero.id);
           bmBhvr.StartBigMove (skill.chargeTime);
         }
 

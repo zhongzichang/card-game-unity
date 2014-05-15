@@ -29,6 +29,7 @@ namespace TangLevel
       LevelController.BigMoveEnd += OnBigMoveEnd;
     }
 
+    /*
     void Update ()
     {
       if (statusBhvr.IsBigMove) {
@@ -37,7 +38,8 @@ namespace TangLevel
           StopBigMove ();
         }
       }
-    }
+    }*/
+
     /*
     void OnEnable ()
     {
@@ -96,6 +98,9 @@ namespace TangLevel
       statusBhvr.IsBigMove = true;
       LevelController.BigMoveCounter++;
 
+      // 如果被暂停，则恢复
+      if (statusBhvr.IsPause)
+        statusBhvr.IsPause = false;
       //agent.enabled = false;
     }
 
