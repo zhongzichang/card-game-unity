@@ -108,7 +108,7 @@ namespace TangGame.Xml
         TangGame.UI.Props props = new TangGame.UI.Props ();
 				TangGame.Net.PropsNet net = new TangGame.Net.PropsNet ();
 				net.configId = item.id;
-				net.count = a * a % 12;
+				net.count = a * a % 12+1;
         props.data = item;
 				props.net = net;
         TangGame.UI.PropsCache.instance.propsTable.Add (item.id, props);
