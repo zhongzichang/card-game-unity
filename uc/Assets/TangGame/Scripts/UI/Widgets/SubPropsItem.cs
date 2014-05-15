@@ -20,8 +20,16 @@ namespace TangGame.UI
 			if (data != null) {
         this.propsIconSprite.spriteName = data.data.icon;
 				this.frameSprite.spriteName = Global.GetPropFrameName(data.data.upgrade);
-				if (data.net != null)
-					this.propsCountLabel.text = (data.net.count + count).ToString ();
+				if (data.net != null) {
+					string str;
+					if (data.net.count < count) {
+						str = "[FF0000]" + data.net.count + "[-]/" + count;
+					} else {
+						str = data.net.count + "/" + count;
+					}
+					this.propsCountLabel.text = str;
+
+				}
 				else
 					this.propsCountLabel.text = "[FF0000]0[-]/" + count;
 			}
