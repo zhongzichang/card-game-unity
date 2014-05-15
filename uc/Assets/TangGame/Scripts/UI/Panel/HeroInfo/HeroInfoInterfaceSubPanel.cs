@@ -131,7 +131,7 @@ namespace TangGame.UI
 			this.SetLevel (heroBase.Net.level);
 			this.SetScore (heroBase.Score);
 			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable [heroBase.Net.level].val);
-			this.SetStarList (heroBase.Net.evolve, true);
+			this.SetStarList (heroBase.Net.evolve, false);
 			int packageCount = 0;
       if (PropsCache.instance.propsTable.ContainsKey (heroBase.Xml.soul_rock_id)) {
         packageCount = PropsCache.instance.propsTable [heroBase.Xml.soul_rock_id].net.count;

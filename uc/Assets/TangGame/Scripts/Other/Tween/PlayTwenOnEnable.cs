@@ -12,8 +12,8 @@ public class PlayTwenOnEnable : MonoBehaviour {
 	/// 打开的动画
 	/// </summary>
 	public void StartPlayAnimation(){
-		UITweener tweener = this.GetComponent<UITweener> ();
-		if (tweener != null) {
+		UITweener[] tweeners = GetComponents<UITweener> ();
+		foreach(UITweener tweener in tweeners){
 			tweener.ResetToBeginning ();
 			tweener.Play ();
 		}
