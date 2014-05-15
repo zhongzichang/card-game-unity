@@ -22,7 +22,7 @@ namespace TangGame.Xml
 		/// 动画循环
 		public int play_loop;
 		/// 是否大招
-		public int isUltimate;
+    public bool isUltimate;
 		/// 施法距离
 		public int cast_range;
 		/// 技能系数基本参数
@@ -40,17 +40,17 @@ namespace TangGame.Xml
 		/// 作用器编号
 		public int effector_id;
 		/// 是否被伤害打断
-		public int being_interrupted_by_injuries;
+		public bool being_interrupted_by_injuries;
 		/// 是否是被动加属性技能
-		public int is_attribute_addition;
+		public bool is_attribute_addition;
 		/// 覆盖技能编号
 		public int code_coverage_skill_id;
 		/// 动画编号
 		public int animation_id;
 		/// 前摇特效
-		public int singing_effect;
+		public string singing_effect;
 		/// 后摇特效
-		public int play_effect;
+		public string play_effect;
 		/// 技能图标
 		public string skill_icon;
 		/// 文字描述

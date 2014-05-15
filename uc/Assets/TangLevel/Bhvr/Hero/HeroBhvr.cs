@@ -105,6 +105,9 @@ namespace TangLevel
         }
       }
 
+      if (statusBhvr.IsPause) {
+        statusBhvr.IsPause = false;
+      }
       statusBhvr.Status = HeroStatus.idle;
 
       // 关卡控制
@@ -330,9 +333,12 @@ namespace TangLevel
       if (dbBhvr != null) {
         dbBhvr.Pause ();
       }
+
       // 暂停行走
-      if (agent.enabled)
+
+      if (agent.enabled) {
         agent.enabled = false;
+      }
     }
 
     /// <summary>
@@ -346,8 +352,10 @@ namespace TangLevel
         dbBhvr.Resume ();
       }
       // 恢复行走
-      if (!agent.enabled)
+
+      if (!agent.enabled) {
         agent.enabled = true;
+      }
     }
 
     #endregion

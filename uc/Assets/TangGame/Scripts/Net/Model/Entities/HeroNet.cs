@@ -9,7 +9,7 @@ namespace TangGame.Net
 		/// <summary>
 		/// The identifier.
 		/// </summary>
-		public long id;
+    public int id;
 		/// <summary>
 		/// The config identifier.
 		/// </summary>

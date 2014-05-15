@@ -13,9 +13,11 @@ public class InputController : MonoBehaviour
 
   void OnDrag( DragGesture gesture ) 
 	{
-		Debug.Log ("OnDrag");
-		float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x;
-		if(new_pos >=-10.24 && new_pos<=0)
+//    Debug.Log ("DeltaMove" + gesture.DeltaMove);
+//    Debug.Log ("TotalMove" + gesture.TotalMove);
+//    Debug.Log ("Position" + gesture.Position);
+    float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x *dragScale;
+    if(new_pos >=-10.24 && new_pos<=0)
 		{
       skyLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x * dragScale/4));
       mountainLayer.transform.Translate(Vector3.right * (gesture.DeltaMove.x * dragScale/2));
@@ -25,6 +27,10 @@ public class InputController : MonoBehaviour
 
 	void OnTap( TapGesture gesture ) 
 	{
+    if (UICamera.hoveredObject != null) {
+      return;
+    }
+
     Ray ray = Camera.main.ScreenPointToRay(gesture.Position);
     RaycastHit hit;
     if(Physics.Raycast(ray, out hit)){
@@ -32,7 +38,7 @@ public class InputController : MonoBehaviour
       if(hit.collider != null)
   		{
         GameObject obj = hit.collider.gameObject;
-        Debug.Log ("OnTap " +obj.name );
+        Debug.Log ("OnTap " + obj.name);
         pressed.position = obj.transform.position;
   		}
     }

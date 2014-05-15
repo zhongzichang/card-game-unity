@@ -105,7 +105,7 @@ namespace TangLevel
       // 如果被暂停，则恢复
       if (statusBhvr.IsPause)
         statusBhvr.IsPause = false;
-      //agent.enabled = false;
+      agent.enabled = false;
     }
 
     public void StopBigMove ()
@@ -118,7 +118,7 @@ namespace TangLevel
       LevelController.BigMoveCounter--;
 
       heroBhvr.hero.mp = 0;
-      //agent.enabled = true;
+      agent.enabled = true;
     }
 
     #endregion

@@ -10,6 +10,7 @@
 using System;
 namespace TangLevel
 {
+  [Serializable]
   public class SubLevel
   {
     public int id;

@@ -6,7 +6,7 @@ namespace TangGame.Xml
 {
 	public class HeroSortData
 	{ 
-		public string location;
-		public string hero_id;
+    public int location;
+    public int hero_id;
 	}
 }

@@ -7,6 +7,8 @@ namespace TangGame
   /// 战斗界面英雄信息面板
   public class LevelHeroPanel : MonoBehaviour
   {
+    public const string NAME = "LevelHeroPanel";
+
     public GameObject itemGroup;
     public LevelHeroItem heroItem;
     private object mParam;
