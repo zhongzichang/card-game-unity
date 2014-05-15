@@ -29,7 +29,7 @@ namespace TangLevel
         return m_status;
       }
       set {
-        if (!m_isPause && newStatus != value) {
+        if (m_status != HeroStatus.dead && newStatus != value) {
           newStatus = value;
         }
       }
@@ -61,6 +61,14 @@ namespace TangLevel
     void Update ()
     {
 
+      // 暂停改变通知
+      if (m_isPause != newIsPause) {
+        m_isPause = newIsPause;
+        if (pauseChangedHandler != null) {
+          pauseChangedHandler (m_isPause);
+        }
+      }
+
       // 状态改变通知
       if (m_status != newStatus) {
         beforeStatus = m_status; // 保留状态
@@ -70,13 +78,6 @@ namespace TangLevel
         }
       } 
 
-      // 暂停改变通知
-      else if (m_isPause != newIsPause) {
-        m_isPause = newIsPause;
-        if (pauseChangedHandler != null) {
-          pauseChangedHandler (m_isPause);
-        }
-      }
 
     }
 

@@ -10,7 +10,7 @@ namespace TangLevel
     // 距离目标人物等于小于这个距离的时候人物动作由跑动改为站立(run=>idle)
     public static readonly Vector2 NOTIFIED_RANGE = new Vector2 (32F, 16F);
     // 摇杆操作，角色移动超过这个距离发通知（如果需要 nextPositionChangeHandle != null）
-    public float m_speed = 6F;
+    public float m_speed = 4F;
     private DirectedNavAgent agent;
     private HeroStatusBhvr statusBhvr;
     private Transform myTransform;

@@ -22,7 +22,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>0</skill_icon>
+		<skill_icon>s73</skill_icon>
 		<desc>0</desc>
 		<desc_y>0</desc_y>
 	</value>
@@ -49,7 +49,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>0</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>0</desc>
 		<desc_y>0</desc_y>
 	</value>

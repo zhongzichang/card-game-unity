@@ -30,11 +30,6 @@ namespace TangGame.UI
 		{
 	
 		}
-		void OnEnable(){
-			TweenAlpha al = GetComponent<TweenAlpha> ();
-			al.ResetToBeginning ();
-			al.Play ();
-		}
 
 		/// <summary>
 		/// Flush the specified data.

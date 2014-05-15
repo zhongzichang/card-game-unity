@@ -193,6 +193,7 @@ namespace TangGame.UI
 					infoStr += UIPanelLang.AGILE + "+";
 					infoStr += data.data.strength;
 					infoStr += "[33FF00] + " + Mathf.Round(data.data.strength * enchantingVariable).ToString() + "[-]";
+					infoStr += Environment.NewLine;
 				} else {
 					//		<!-- 属性加成 -->
 					//		<!-- 力量 -->
@@ -325,7 +326,7 @@ namespace TangGame.UI
 			if (PropsType.SCROLLS == type) {
         PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData(data.data.id);
         if(propsRelationData != null && propsRelationData.synthetics.Count > 0){
-          infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics[0]);
+					infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics[0].name);
         }
 			}
 			//如果是灵魂石
