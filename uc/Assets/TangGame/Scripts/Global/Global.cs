@@ -175,5 +175,18 @@ namespace TangGame
 		{
 			return evolve;
 		}
+
+    /// 获取StreamingAssets文件夹路径
+    public static string GetStreamingAssetsPath(){
+      string streamingAssetsPath = "";
+      if(Application.platform == RuntimePlatform.IPhonePlayer){
+        streamingAssetsPath = "file://" + Application.dataPath + "/Raw/";
+      }else if(Application.platform == RuntimePlatform.Android){
+        streamingAssetsPath = Application.streamingAssetsPath + "/";
+      }else{
+        streamingAssetsPath = "file://" + Application.dataPath + "/StreamingAssets/";
+      }
+      return streamingAssetsPath;
+    }
 	}
 }
