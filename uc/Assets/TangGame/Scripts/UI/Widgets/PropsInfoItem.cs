@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections;
-using TangGame.UI;
+using TangGame;
 
-namespace TangGame{
+namespace TangGame.UI{
 	/// <summary>
 	/// 用于显示道具信息的Item，比如战斗结束获得的道具，副本调用的道具等
 	/// </summary>
-	public class PropInfoItem : ViewItem {
+	public class PropsInfoItem : ViewItem {
 		public UISprite frame;
 		public UISprite icon;
 		public UILabel numLabel;

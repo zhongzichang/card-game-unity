@@ -10,6 +10,8 @@ namespace TangGame.UI{
 		public int level = 1;
 		/// 当前经验
 		public int exp;
+    /// 当前最大经验
+    public int maxExp;
 		/// 是否升级
 		public bool levelUp;
 		/// 输出伤害

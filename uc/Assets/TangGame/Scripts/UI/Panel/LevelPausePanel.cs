@@ -13,16 +13,19 @@ namespace TangGame{
 		public UILabel soundLabel;
 		public UIEventListener continueBtn;
 		public UIEventListener quitBtn;
-		public UIEventListener soundBtn;
+		public UIEventListener soundOffBtn;
+    public UIEventListener soundOnBtn;
 		public TweenScale tween;
-		public UISprite soundSprite;
+    public UISprite soundOffSprite;
+		public UISprite soundOnSprite;
 
 		private object mParam;
 
 		void Awake(){
 			continueBtn.onClick += ContinueBtnHandler;
 			quitBtn.onClick += QuitBtnHandler;
-			soundBtn.onClick += SoundBtnHandler;
+      soundOffBtn.onClick += SoundBtnHandler;
+      soundOnBtn.onClick += SoundBtnHandler;
 
 			continueLabel.text = UIPanelLang.BATTLE_CONTINUE;
 			quitLabel.text = UIPanelLang.BATTLE_QUIT;
@@ -64,10 +67,12 @@ namespace TangGame{
 		private void UpdateSound(){
 			if(Setting.soundOn){
 				soundLabel.text = UIPanelLang.BATTLE_SOUND_OPEN;
-				soundSprite.spriteName = "SoundOn";
+        soundOnSprite.gameObject.SetActive(true);
+        soundOffSprite.gameObject.SetActive(false);
 			}else{
 				soundLabel.text = UIPanelLang.BATTLE_SOUND_CLOSE;
-				soundSprite.spriteName = "SoundOff";
+        soundOnSprite.gameObject.SetActive(false);
+        soundOffSprite.gameObject.SetActive(true);
 			}
 		}
 

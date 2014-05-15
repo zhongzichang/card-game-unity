@@ -17,6 +17,13 @@ namespace TangGame.UI{
 
 		/// 结果类型
 		public BattleResultType type = BattleResultType.Lose;
+    /// 战队等级
+    public int level;
+    /// 战队获得经验
+    public int exp;
+    /// 获得金钱
+    public int gold;
+
 		/// 获得的道具
 		public List<Props> propsList = new List<Props>();
 		/// 英雄数据
