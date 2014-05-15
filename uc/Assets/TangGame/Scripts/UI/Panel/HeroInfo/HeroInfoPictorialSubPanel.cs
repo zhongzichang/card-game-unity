@@ -65,7 +65,8 @@ namespace TangGame.UI
 		/// </summary>
 		void SetHeroName (string cardHeroName)
 		{
-			this.HeroName.GetComponent<UISprite> ().spriteName = "card_name_" + cardHeroName + "big";
+			//TODO 暂时没有名字图片资源
+//			this.HeroName.GetComponent<UISprite> ().spriteName = cardHeroName;
 		}
 
 		/// <summary>
@@ -73,19 +74,7 @@ namespace TangGame.UI
 		/// </summary>
 		void SetPropertyType (AttributeTypeEnum type)
 		{
-			string resName = "icon_str";
-			switch (type) {
-			case AttributeTypeEnum.STR:
-				resName = "icon_str";
-				break;
-			case AttributeTypeEnum.INT:
-				resName = "icon_int";
-				break;
-			case AttributeTypeEnum.AGI:
-				resName = "icon_agi";
-				break;
-			}
-			this.HeroType.GetComponent<UISprite> ().spriteName = resName;
+			this.HeroType.GetComponent<UISprite> ().spriteName = Global.GetHeroTypeIconName (type);
 		}
 
 		void SetSkillGroup (SkillBase[] skillBases)
