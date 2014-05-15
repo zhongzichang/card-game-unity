@@ -93,6 +93,7 @@ namespace TangLevel
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
+      skill.bigMove = false;
       skill.cd = 2;
 
       return skill;
@@ -107,6 +108,7 @@ namespace TangLevel
       skill.chargeClip = "binghua0";
       skill.releaseClip = "binghua1";
       skill.enable = true;
+      skill.bigMove = false;
       skill.cd = 2;
 
       return skill;
@@ -141,6 +143,7 @@ namespace TangLevel
       //skill.chargeClip = "";
       skill.releaseClip = "yuehua";
       skill.enable = true;
+      skill.bigMove = false;
       skill.cd = 2;
 
       return skill;

@@ -59,8 +59,8 @@ namespace TangDragonBones
     /// </summary>
     public void Pause(){
       if (armature != null) {
-        armature.Animation.Stop ();
-        //armature.Animation.TimeScale = 0;
+        //armature.Animation.Stop ();
+        armature.Animation.TimeScale = 0;
         /*
         if (WorldClock.Clock.Contains (armature)) {
           WorldClock.Clock.Remove (armature);
@@ -73,8 +73,8 @@ namespace TangDragonBones
     /// </summary>
     public void Resume(){
       if (armature != null) {
-        armature.Animation.Play ();
-        //armature.Animation.TimeScale = 1;
+        //armature.Animation.Play ();
+        armature.Animation.TimeScale = 1;
         /*
         if (!WorldClock.Clock.Contains (armature)) {
           WorldClock.Clock.Add (armature);
@@ -88,7 +88,6 @@ namespace TangDragonBones
     /// <returns><c>true</c> if this instance is play; otherwise, <c>false</c>.</returns>
     public bool IsPlay(){
       if (armature != null) {
-
         return armature.Animation.TimeScale == 1;
       }
       return false;
