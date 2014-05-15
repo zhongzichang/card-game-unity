@@ -21,8 +21,16 @@ namespace TangGame.UI
 		public GameObject HeroTag;
 		private HeroBase data;
 
-		public int soulStoneCount;
-		public int soulStoneCountMax;
+		bool mCanCall;
+
+		public bool canCall {
+			get {
+				return soulStoneCount >= soulStoneCountMax;
+			}
+		}
+
+		int soulStoneCount;
+		int soulStoneCountMax;
 		// Use this for initialization
 		void Start ()
 		{

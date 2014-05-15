@@ -210,7 +210,9 @@ namespace TangGame.UI
 			if (!item.Data.Islock) {
 				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, item.Data, true);
 			} else{
-
+				if (item.canCall) {
+					//TODO 发送消息给服务器召唤此英雄
+				}
 			}
 		}
 		//Reposition the children on the next Update().
