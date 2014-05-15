@@ -78,7 +78,7 @@ namespace TangLevel
       //if( hero.id == 0)
       skills.Add (MockLuoshenSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
+      hero.skillQueue = new int[]{ 0, 1, 2 };
 
 
       tmp++;
@@ -118,8 +118,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      skill.effectors = new Effector[1];
-      skill.effectors[0] = MockLineFlyEffector ();
+      //skill.effectors = new Effector[1];
+      //skill.effectors[0] = MockLineFlyEffector ();
       skill.chargeClip = "luoshen";
       //skill.releaseClip = "luoshen";
       //skill.releaseSpecials = new string[2];

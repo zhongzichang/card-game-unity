@@ -59,7 +59,13 @@ namespace TangLevel
     public int hp {
       get{ return m_hp; }
       set{
-        m_hp = value < 0 ? 0 : value;
+        if (value < 0) {
+          m_hp = 0;
+        } else if (value > maxHp) {
+          m_hp = maxHp;
+        } else {
+          m_hp = value;
+        }
         if (raiseHpChange != null) {
           raiseHpChange (m_hp, maxHp);
         }
@@ -76,9 +82,15 @@ namespace TangLevel
     public int mp {
       get{ return m_mp; }
       set{
-        m_mp = value;
+        if (value < 0) {
+          m_mp = 0;
+        } else if (value > maxMp) {
+          m_mp = maxMp;
+        } else {
+          m_mp = value;
+        }
         if (raiseMpChange != null) {
-          raiseMpChange (value, maxMp);
+          raiseMpChange (m_mp, maxMp);
         }
       }
     }
