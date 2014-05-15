@@ -15,6 +15,7 @@ namespace TangLevel
     private Transform myTransform;
     private Vector3 backupPos = Vector3.zero;
     private DirectedNavAgent agent;
+    private HeroBhvr heroBhvr;
 
     #region MonoMethods
 
@@ -25,6 +26,9 @@ namespace TangLevel
         statusBhvr = GetComponent<HeroStatusBhvr> ();
       }
       agent = GetComponent<DirectedNavAgent> ();
+
+      heroBhvr = GetComponent<HeroBhvr> ();
+
       LevelController.BigMoveStart += OnBigMoveStart;
       LevelController.BigMoveEnd += OnBigMoveEnd;
     }
@@ -113,6 +117,7 @@ namespace TangLevel
 
       LevelController.BigMoveCounter--;
 
+      heroBhvr.hero.mp = 0;
       //agent.enabled = true;
     }
 
