@@ -371,6 +371,14 @@ namespace TangLevel
     }
 
     /// <summary>
+    /// 使用技能攻击，攻击目标由技能决定
+    /// </summary>
+    /// <param name="skill">Skill.</param>
+    public void Attack(Skill skill){
+      Attack (null, skill);
+    }
+
+    /// <summary>
     /// 死亡
     /// </summary>
     public void Die ()
@@ -450,6 +458,16 @@ namespace TangLevel
     public GameObject FindClosestTarget ()
     {
       return LevelController.FindClosestTarget (this);
+    }
+
+    /// <summary>
+    /// 使用大招攻击
+    /// </summary>
+    public void BigMove(){
+
+      // 获取大招
+
+
     }
 
     #endregion

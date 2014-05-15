@@ -53,13 +53,15 @@ namespace TangLevel
         return m_isPause;
       }
       set {
+        /*
         if (m_isBigMove) {
-          if (!value) { // 大招时，只有暂停状态下才能恢复
+          if (!value) { // 大招时，只有暂停状态下才能恢复，无法避免系统叫暂停的情况
             newIsPause = value;
           }
         } else {
           newIsPause = value;
-        }
+        }*/
+        newIsPause = value;
       }
     }
     // 大招 ----

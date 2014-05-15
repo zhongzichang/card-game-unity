@@ -52,7 +52,7 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 释放释放特效
+    /// 施放release特效
     /// </summary>
     /// <param name="skill">Skill.</param>
     /// <param name="source">Source.</param>
