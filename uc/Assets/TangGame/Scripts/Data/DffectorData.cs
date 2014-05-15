@@ -6,12 +6,12 @@ namespace TangGame.Xml
 {
 	public class DffectorData
 	{ 
-		public string id;
-		public string times;
-		public string loop_time;
-		public string probability;
-		public string type;
-		public string effect;
-		public string effect_id;
+    public int id;
+    public int times;
+    public int loop_time;
+    public int probability;
+    public int type;
+    public string special_effect;
+    public string effect_ids;
 	}
 }

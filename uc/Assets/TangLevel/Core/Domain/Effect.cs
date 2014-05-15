@@ -2,6 +2,7 @@
 
 namespace TangLevel
 {
+  [Serializable]
   public class Effect
   {
 
