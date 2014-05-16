@@ -211,6 +211,8 @@ namespace TangLevel
           if (UIContext.BATTLE_RESULT_PANEL.Equals (node.name)) {
             node.gameObject.SetActive (false);
             battleResultPanel = node.gameObject.GetComponent<TGU.BattleResultPanel> ();
+            battleResultPanel.winNextBtn.onClick += OnQuitBtnClick;
+            battleResultPanel.loseNextBtn.onClick += OnQuitBtnClick;
           }
           // 英雄操作面板
           else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
@@ -511,6 +513,11 @@ namespace TangLevel
             if (RaiseChangengeFailure != null) {
               RaiseChangengeFailure (null, EventArgs.Empty);
             }
+
+            // 显示战斗结果面板，隐藏其他面板
+            levelControllPanel.gameObject.SetActive (false);
+            levelResourcePanel.gameObject.SetActive (false);
+            levelHeroPanel.gameObject.SetActive (false);
             battleResultPanel.gameObject.SetActive (true);
           }
         } else {
@@ -527,6 +534,10 @@ namespace TangLevel
                 RaiseChallengeSuccess (null, EventArgs.Empty);
               }
 
+              // 显示战斗结果面板，隐藏其他面板
+              levelControllPanel.gameObject.SetActive (false);
+              levelResourcePanel.gameObject.SetActive (false);
+              levelHeroPanel.gameObject.SetActive (false);
               battleResultPanel.gameObject.SetActive (true);
             } else {
               // 子关卡完成
