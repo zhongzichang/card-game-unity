@@ -32,6 +32,7 @@ namespace TangGame.UI
 		/// 显示消耗品按钮的对象
 		/// </summary>
 		public GameObject ToggleConsumables;
+		public GameObject HeroScrolBar;
 		public GameObject PropsTable;
 		private BagPanel bagPanel;
 		private Dictionary<int, PropsItem> propsItems = new Dictionary<int, PropsItem> ();
@@ -99,6 +100,7 @@ namespace TangGame.UI
 		}
 		void PropsTableReposition(){
 			this.PropsTable.GetComponent<UITable> ().repositionNow = true;
+			BackToTop ();
 		}
 
 		/// <summary>
@@ -154,6 +156,14 @@ namespace TangGame.UI
 				}
 			}
 			this.PropsTableReposition ();
+		}
+
+		/// <summary>
+		/// 让view回到最顶层
+		/// </summary>
+		void BackToTop ()
+		{
+			this.HeroScrolBar.GetComponent <UIScrollBar> ().value = 0;
 		}
 		/// <summary>
 		/// Shows the type of the items by properties.

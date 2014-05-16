@@ -70,13 +70,16 @@ namespace TangLevel
     private static TGU.BattleResultPanel battleResultPanel;
     private static TG.LevelControllPanel levelControllPanel;
     private static TGU.LevelResourcePanel levelResourcePanel;
+    private static TGU.LevelNextPanel levelNextPanel;
     private static TUI.UIPanelNodeManager centerPanelMgr;
     private static TUI.UIPanelNodeManager ltPanelMgr;
     private static TUI.UIPanelNodeManager rtPanelMgr;
+    private static TUI.UIPanelNodeManager rightPanelMgr;
     public GameObject uiRoot;
     public UIAnchor centerAnchor;
     public UIAnchor ltAnchor;
     public UIAnchor rtAnchor;
+    public UIAnchor rightAnchor;
 
     #endregion
 
@@ -153,15 +156,18 @@ namespace TangLevel
             TUI.UIPanelNode.BlockMode.NONE);
         }
 
+        // 右上锚点
         if (rtAnchor != null) {
           rtPanelMgr = new TUI.UIPanelNodeManager (rtAnchor, OnPanelEvent);
           rtPanelMgr.LazyOpen (UIContext.LEVEL_RESOURCE_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
             TUI.UIPanelNode.BlockMode.NONE);
         }
 
-        // 右上锚点
-        if (rtAnchor != null) {
-          // 资源面板
+        // 右锚点
+        if (rightAnchor != null) {
+          rightPanelMgr = new TUI.UIPanelNodeManager (rightAnchor, OnPanelEvent);
+          rightPanelMgr.LazyOpen (UIContext.LEVEL_NEXT_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
+            TUI.UIPanelNode.BlockMode.NONE);
         }
 
       } else {
@@ -211,6 +217,8 @@ namespace TangLevel
           if (UIContext.BATTLE_RESULT_PANEL.Equals (node.name)) {
             node.gameObject.SetActive (false);
             battleResultPanel = node.gameObject.GetComponent<TGU.BattleResultPanel> ();
+            battleResultPanel.winNextBtn.onClick += OnQuitBtnClick;
+            battleResultPanel.loseNextBtn.onClick += OnQuitBtnClick;
           }
           // 英雄操作面板
           else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
@@ -225,6 +233,11 @@ namespace TangLevel
           // 资源面板
           else if (UIContext.LEVEL_RESOURCE_PANEL.Equals (node.name)) {
             levelResourcePanel = node.gameObject.GetComponent<TGU.LevelResourcePanel> ();
+          }
+          // 下一个子关卡的按钮面板
+          else if (UIContext.LEVEL_NEXT_PANEL.Equals (node.name)) {
+            levelNextPanel = node.gameObject.GetComponent<TGU.LevelNextPanel> ();
+            levelNextPanel.nextBtn.onClick = OnLevelNextBtnClick;
           }
           break;
         }
@@ -276,6 +289,17 @@ namespace TangLevel
       Pause ();
     }
 
+    /// <summary>
+    /// 下一个子关卡按钮被点击
+    /// </summary>
+    /// <param name="g">The green component.</param>
+    private static void OnLevelNextBtnClick(GameObject g){
+      //levelNextPanel.gameObject.seta
+      ChallengeNextSubLevel ();
+    }
+
+    //private static void On
+
     #endregion
 
     #region PublicStaticMethods
@@ -311,11 +335,32 @@ namespace TangLevel
           // 克隆一份场景数据
           LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy ();
         }
+
         LevelContext.selfGroup = group;
+        LevelContext.selfGroupBackup = group.DeepCopy ();
 
         LoadTargetSubLevelRes ();
 
       }
+    }
+
+    /// <summary>
+    /// 重新挑战这个关卡
+    /// </summary>
+    public static void ReChallengeLevel(){
+
+      // 显示UI
+      battleResultPanel.gameObject.SetActive (false);
+      levelControllPanel.gameObject.SetActive (true);
+      levelResourcePanel.gameObject.SetActive (true);
+      levelHeroPanel.gameObject.SetActive (true);
+
+      // 克隆一份场景数据
+      LevelContext.CurrentLevel = Config.levelTable [LevelContext.CurrentLevel.id].DeepCopy ();
+
+      LevelContext.selfGroup = LevelContext.selfGroupBackup.DeepCopy();
+
+      LoadTargetSubLevelRes ();
     }
 
     /// <summary>
@@ -511,6 +556,11 @@ namespace TangLevel
             if (RaiseChangengeFailure != null) {
               RaiseChangengeFailure (null, EventArgs.Empty);
             }
+
+            // 显示战斗结果面板，隐藏其他面板
+            levelControllPanel.gameObject.SetActive (false);
+            levelResourcePanel.gameObject.SetActive (false);
+            levelHeroPanel.gameObject.SetActive (false);
             battleResultPanel.gameObject.SetActive (true);
           }
         } else {
@@ -527,6 +577,10 @@ namespace TangLevel
                 RaiseChallengeSuccess (null, EventArgs.Empty);
               }
 
+              // 显示战斗结果面板，隐藏其他面板
+              levelControllPanel.gameObject.SetActive (false);
+              levelResourcePanel.gameObject.SetActive (false);
+              levelHeroPanel.gameObject.SetActive (false);
               battleResultPanel.gameObject.SetActive (true);
             } else {
               // 子关卡完成
@@ -535,8 +589,8 @@ namespace TangLevel
               }
 
               // 显示下一子关卡按钮
-              if (!uiMgr.nextSubLevelBtn.activeSelf)
-                uiMgr.nextSubLevelBtn.SetActive (true);
+              if (!levelNextPanel.gameObject.activeSelf)
+                levelNextPanel.gameObject.SetActive (true);
             }
           }
         }
@@ -744,8 +798,8 @@ namespace TangLevel
 
       // UI 控制 --
       // 隐藏下一个小关的按钮
-      if (uiMgr.nextSubLevelBtn.activeSelf) {
-        uiMgr.nextSubLevelBtn.SetActive (false);
+      if (levelNextPanel.gameObject.activeSelf) {
+        levelNextPanel.gameObject.SetActive (false);
       }
 
 

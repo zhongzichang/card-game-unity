@@ -100,7 +100,10 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		public void Flush (PropsDetailsPanelBean bean)
 		{
-			Props data = bean.props;
+			int propsId = bean.props.data.id;
+			if (!PropsCache.instance.propsTable.ContainsKey (propsId))
+				return;
+			Props data = PropsCache.instance.propsTable [propsId];
 			if (this.gameObject.activeSelf == false) {
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().Play (true);

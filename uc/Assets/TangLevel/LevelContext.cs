@@ -84,6 +84,12 @@ namespace TangLevel
     /// </summary>
     public static Group selfGroup;
 
+
+    /// <summary>
+    /// 我方小组(model)
+    /// </summary>
+    public static Group selfGroupBackup;
+
     #endregion
 
     // -- 场景 --
