@@ -17,7 +17,7 @@ namespace TangLevel
     /// <summary>
     /// 地图右边界
     /// </summary>
-    public const float RIGHT_BOUND = 40;
+    public const float RIGHT_BOUND = 70;
 
     /// <summary>
     /// 缺省攻击的动画剪辑
