@@ -49,6 +49,7 @@ namespace TangLevel
         if (navigable == null) {
           navigable = gobj.AddComponent<DirectedNavigable> ();
         }
+        navigable.m_speed = 6F;
         if (!navigable.enabled)
           navigable.enabled = true;
         // HeroStatusBhvr
