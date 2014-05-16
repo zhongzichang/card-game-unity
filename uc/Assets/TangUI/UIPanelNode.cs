@@ -202,6 +202,7 @@ namespace TangUI
 					Block block = NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<Block> ();
 					if (block != null) {
 						block.texture.SetActive (true);
+						block.backButton.SetActive (true);
 					}
         }
       }

@@ -5,6 +5,7 @@ public class Block : MonoBehaviour {
 
 	public GameObject sprite;
 	public GameObject texture;
+	public GameObject backButton;
 	public UIPanelNodeManager currentMgr;
 
 	// Use this for initialization
@@ -17,7 +18,7 @@ public class Block : MonoBehaviour {
 		if (uicamera != null) {
 			uiwidget.SetAnchor (uicamera.gameObject,-10,-10,10,10);
 		}
-
+		UIEventListener.Get (backButton).onClick += BackButtonOnClick;
 	}
 
 	void  OnClick(){
@@ -25,9 +26,10 @@ public class Block : MonoBehaviour {
 			currentMgr.Back ();
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void BackButtonOnClick(GameObject obj){
+		if (currentMgr != null) {
+			currentMgr.Back ();
+		}
 	}
 }
