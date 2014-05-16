@@ -21,6 +21,7 @@ namespace TangGame.UI
 		// Use this for initialization
 		void Start ()
 		{
+			SetTweenByOnClick ();
 		}
 		// Update is called once per frame
 		void Update ()
@@ -120,6 +121,29 @@ namespace TangGame.UI
 			} else {
 				StartCoroutine (BackDepth ());
 			}
+		}
+		void SetTweenByOnClick(){
+			UIPanel panel = GetComponent<UIPanel> ();
+			float currentHeight = this.GetComponent<BoxCollider> ().size.y;
+			float currentWidth = this.GetComponent<BoxCollider> ().size.x;
+			float heightRate = panel.width / currentHeight;
+			float widthRate = panel.height / currentWidth;
+			float scaleRate = heightRate < widthRate ? heightRate : widthRate;
+
+			TweenScale[] mScales = this.gameObject.GetComponents<TweenScale> ();
+			foreach (TweenScale mScale in mScales) {
+				if (mScale.tweenGroup == 2) {
+					mScale.to = new Vector3 (scaleRate,heightRate,scaleRate);
+				}
+			}
+
+			TweenPosition[] mPosis = this.gameObject.GetComponents<TweenPosition> ();
+			foreach (TweenPosition mPosi in mPosis) {
+				if (mPosi.tweenGroup == 2) {
+					mPosi.to = new Vector3 (0,currentWidth/2 * scaleRate,0);
+				}
+			}
+
 		}
 		public IEnumerator BackDepth() {
 			yield return new WaitForSeconds(0.2f);

@@ -57,13 +57,43 @@ namespace TangGame
 			"int_icon",
 			"agi_icon"
 		};
+
+    /// <summary>
+    /// 道具和英雄的颜色数组
+    /// </summary>
 		private static Color32[] mColor32 = new Color32[]{
+      new Color32 (255, 255, 255, 255),
 			new Color32 (171, 171, 171, 255),
 			new Color32 (93, 255, 0, 255),
 			new Color32 (0,192,255,255),
 			new Color32 (236,43,228,255),
 			new Color32(255,111,0,255)
-		};
+    };
+
+    /// <summary>
+    /// 道具和英雄的颜色十六进制字串数组
+    /// </summary>
+    private static string[] mColorHex = new string[]{
+      "FFFFFF",
+      "ABABAB",
+      "5DFF00",
+      "00C0FF",
+      "EC2BE4",
+      "FF6F00"
+    };
+
+    /// 英雄品质阶段对应的当前的品阶值
+    /// 1:1,0; 2:2,0; 3:2,1; 4:3,0; 5:3,1; 6:3,2; 7:4,0; 8:4,1; 9:4,2; 10:4,3 
+    private static int[] HeroUpgradeNum = new int[]{0, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
+    
+    /// 英雄品质阶段对应的当前+几的数量
+    /// 1:1,0; 2:2,0; 3:2,1; 4:3,0; 5:3,1; 6:3,2; 7:4,0; 8:4,1; 9:4,2; 10:4,3 
+    private static int[] HeroUpgradeAddNum = new int[]{0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 3};
+
+    
+    //===================================================================================================
+    //===================================================================================================
+
 		/// <summary>
 		/// Gets the color32 by rank.
 		/// 根据品阶获取颜色
@@ -77,6 +107,7 @@ namespace TangGame
 				return mColor32 [rank];
 			}
 		}
+
 		/// <summary>
 		/// Gets the hero type icon.
 		/// 根据英雄类型获取名字资源
@@ -132,43 +163,37 @@ namespace TangGame
 			return "herodetail_name_bg";//TODO + upgrade;
 		}
 
+    /// 根据品阶获取品阶的阶段颜色，如，白色（1），绿色（2），蓝色（3），紫色（4）
+    public static Color32 GetHeroUpgradeColor(int upgrade){
+      int index = GetHeroUpgradeNum(upgrade);
+      return mColor32[index];
+    }
 
+    /// 根据品阶获取品阶的阶段颜色，如，白色（1），绿色（2），蓝色（3），紫色（4）
+    public static string GetHeroUpgradeHexColor(int upgrade){
+      int index = GetHeroUpgradeNum(upgrade);
+      return mColorHex[index];
+    }
 
-		/// <summary>
-		/// Upgrades to rank.
-		/// 英雄品质转换
-		/// </summary>
-		/// <returns>The to rank.</returns>
-		/// <param name="upgrade">Upgrade.</param>
-		public static int UpgradeToRank (int upgrade)
-		{
-			float val = (float)Mathf.Sqrt ((float)(2 * upgrade + 0.25)) - (float)0.5;
-			int rank = Mathf.CeilToInt (val);
-			return rank;
-		}
-
-		/// <summary>
-		/// Ranks to upgrade.
-		/// 英雄品质转换
-		/// </summary>
-		/// <returns>The to upgrade.</returns>
-		/// <param name="rank">Rank.</param>
-		public static int RankToUpgrade (int rank)
-		{
-			int val = rank * (rank - 1) / 2 + 1; //n(n-1)/2+1
-			return val;
-		}
+    /// 根据品阶获取品阶的阶段值，如，白色（1），绿色（2），蓝色（3），紫色（4）
+    public static int GetHeroUpgradeNum(int upgrade){
+      if(upgrade < 0 || upgrade > HeroUpgradeNum.Length){
+        return 0;
+      }
+      return HeroUpgradeNum[upgrade];
+    }
 
 		/// <summary>
 		/// Gets the upgrade rem.
-		/// 获取品质的余数
+		/// 获取品质的余数，即当前品质的+几，如蓝色+2
 		/// </summary>
 		/// <returns>The upgrade rem.</returns>
-		public static int GetUpgradeRem (int upgrade)
+		public static int GetHeroUpgradeRem (int upgrade)
 		{
-			int rankTmp = Global.UpgradeToRank (upgrade);
-			int upgradeTmp = Global.RankToUpgrade (rankTmp);
-			return upgrade - upgradeTmp;
+      if(upgrade < 0 || upgrade > HeroUpgradeAddNum.Length){
+        return 0;
+      }
+      return HeroUpgradeAddNum[upgrade];
 		}
 
 		/// 获取转换英雄的星阶，考虑到界面只能显示5个星的问题，需要转换

@@ -120,13 +120,21 @@ namespace TangGame.UI
 					int len = heroBase.EquipBases.Length;
 					if (len > i && equips [i] != null) {
 						Props [i].spriteName = equips [i].data.icon;
-						if (equips [i].net != null) {
-							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = true;
-							Props [i].GetComponentsInChildren<UISprite> () [1].enabled = false;
+						UISprite icon = Props [i].GetComponentsInChildren<UISprite> () [0];
+						UISprite frame = Props [i].GetComponentsInChildren<UISprite> () [1];
 
+						icon.spriteName = equips [i].data.icon;
+						frame.spriteName = Global.GetPropFrameName (1);
+						if (equips [i].net != null) {
+							icon.color = Color.white;
+							icon.alpha = 1f;
 						} else {
-							Props [i].GetComponentsInChildren<UISprite> () [0].enabled = false;
-							Props [i].GetComponentsInChildren<UISprite> () [1].enabled = true;
+							icon.color = Color.gray;
+							icon.alpha = 0.7f;
+							if (PropsCache.instance.propsTable.ContainsKey (equips [i].data.id)) {
+								frame.spriteName = "add_icon";
+							}
+
 						}
 					}
 				}
@@ -155,7 +163,8 @@ namespace TangGame.UI
 				this.ForegroundSprite.fillAmount = 1f;
 			} else {
 				this.CountLabel.text = fragmentsCount + "/" + fragmentsCountMax;
-				this.ForegroundSprite.fillAmount = fragmentsCount / fragmentsCountMax;
+				float fillAmount = (float)fragmentsCount / (float)fragmentsCountMax;
+				this.ForegroundSprite.fillAmount = fillAmount;
 			}
 		}
 
