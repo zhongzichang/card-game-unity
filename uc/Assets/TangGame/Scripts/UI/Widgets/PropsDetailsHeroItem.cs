@@ -21,9 +21,14 @@ namespace TangGame.UI{
       }
       if(this.data == null){return;}
       PropsHeroEquipData propsHeroEquipData = this.data as PropsHeroEquipData;
-      frame.spriteName = Global.GetHeroIconFrame(propsHeroEquipData.upgrades);
+      frame.spriteName = Global.GetHeroIconFrame(propsHeroEquipData.upgrade);
       icon.spriteName = propsHeroEquipData.data.avatar;
-      label.text = propsHeroEquipData.data.name;
+      int index = Global.GetHeroUpgradeRem(propsHeroEquipData.upgrade);
+      string addStr = "";
+      if(index > 0){
+        addStr = "[" + Global.GetHeroUpgradeHexColor(propsHeroEquipData.upgrade) + "]+" + Global.GetHeroUpgradeRem(propsHeroEquipData.upgrade) + "[-]";
+      }
+      label.text = "[000000]" + propsHeroEquipData.data.name + "[-]" + addStr;
     }
 	}
 }

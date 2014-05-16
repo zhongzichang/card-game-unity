@@ -10,6 +10,7 @@ namespace TangLevel
     public static string LEVEL_CONTROLL_PANEL = "LevelControllPanel";
     public static string LEVEL_RESOURCE_PANEL = "LevelResourcePanel";
     public static string BATTLE_RESULT_PANEL = "BattleResultPanel";
+    public static string LEVEL_NEXT_PANEL = "LevelNextPanel";
   }
 }
 

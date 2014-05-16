@@ -18,7 +18,7 @@ namespace TangGame.UI{
 
     /// 添加可装备道具的英雄数据
     public void AddPropsHeroEquipData(PropsHeroEquipData data){
-      string key = data.id + "_" + data.upgrades;
+      string key = data.id + "_" + data.upgrade;
       if(!herosDic.ContainsKey(key)){
         herosDic[key] = data;
         heros.Add(data);

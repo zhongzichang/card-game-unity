@@ -203,7 +203,7 @@ namespace TangGame.UI
 			UILabel lab = HeroName.GetComponent<UILabel> ();
 			if (lab != null)
 				lab.text = heroBase.Xml.name;
-			int upgradeRem = Global.GetUpgradeRem (heroBase.Net.upgrade);
+			int upgradeRem = Global.GetHeroUpgradeRem (heroBase.Net.upgrade);
 
 			if (upgradeRem > 0) {
 				lab.text += String.Format ("[000000] + {0}[-]", upgradeRem);

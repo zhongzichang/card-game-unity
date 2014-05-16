@@ -61,23 +61,27 @@ namespace TangGame.UI{
 			float y = 0;
 			int height = 0;
 
-			if(this.mParam == null){
-				UIUtils.SetY(getLabel.transform.parent.gameObject, -y);
-				y += 65;
-				UIUtils.SetY(getGroup.gameObject, -y);
-				getGroup.height = 100;
+      bool isShow = true;
 
-				heroLabel.transform.parent.gameObject.SetActive(false);
-				heroGroup.gameObject.SetActive(false);
-				
+      PropsData props = null;
+      PropsRelationData data = null;
+      if(this.mParam != null){
+        props = (PropsData)this.mParam;
+        data = PropsCache.instance.GetPropsRelationData(props.id);
+      }
+      isShow = data != null;
+
+      if(!isShow){
+        UIUtils.SetY(getLabel.transform.parent.gameObject, -y);
+        y += 65;
+        UIUtils.SetY(getGroup.gameObject, -y);
+        getGroup.height = 100;
+        
+        heroLabel.transform.parent.gameObject.SetActive(false);
+        heroGroup.gameObject.SetActive(false);
+        
         syntheticLabel.transform.parent.gameObject.SetActive(false);
-				syntheticGroup.gameObject.SetActive(false);
-				return;
-			}
-			PropsData props = (PropsData)this.mParam;
-			PropsRelationData data = PropsCache.instance.GetPropsRelationData(props.id);
-
-			if(data == null){
+        syntheticGroup.gameObject.SetActive(false);
 				return;
 			}
 
