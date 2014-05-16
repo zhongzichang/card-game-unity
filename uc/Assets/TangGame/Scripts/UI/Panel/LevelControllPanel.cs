@@ -7,72 +7,41 @@ using PureMVC.Patterns;
 
 namespace TangGame{
 
-	public class LevelControllPanelMediator : Mediator
-	{
-		private LevelControllPanel panel;
-		
-		public LevelControllPanelMediator (LevelControllPanel panel)
-		{
-			this.panel = panel;
-		}
-		
-		public override IList<string> ListNotificationInterests ()
-		{
-			return new List<string> (){ BattleCommand.BattlePause };
-		}
-		
-		public override void HandleNotification (INotification notification)
-		{
-			switch (notification.Name) {
-			case BattleCommand.BattlePause:
-				this.panel.Play();
-				break;
-			}
-		}
-	}
-
+  /// 战斗界面的左上角暂停控制界面
 	public class LevelControllPanel : MonoBehaviour {
-		
+
 		public UIEventListener pauseBtn;
 		public UILabel countdownLabel;
 
-		private bool pause = false;
-		private float time = 120;
-
-		private LevelControllPanelMediator mediator;
-
-		void Awake(){
-			mediator = new LevelControllPanelMediator (this);
-			Facade.Instance.RegisterMediator (mediator);
-			pauseBtn.onClick += PauseBtnHandler;
-		}
+		private bool mPause = false;
+		private float mTime = 120;
 
 		void Update(){
-			if (!pause) {
-				time -= Time.deltaTime;
-				if(time >= 0){
+			if (!mPause) {
+				mTime -= Time.deltaTime;
+				if(mTime >= 0){
 					ShowCountdownTime();
 				}
 			}
 		}
 
 		private void ShowCountdownTime(){
-			int minute = (int)(time / 60f);
-			int second = (int)(time % 60f);
+			int minute = (int)(mTime / 60f);
+			int second = (int)(mTime % 60f);
 			string minuteStr = minute < 10 ? ("0" + minute) : minute.ToString ();
 			string secondStr = second < 10 ? ("0" + second) : second.ToString ();
 			countdownLabel.text = minuteStr + ":" + secondStr;
 		}
+
+    public bool pause{
+      get{return this.mPause;}
+      set{this.mPause = value;}
+    }
+
+    public float time{
+      get{return this.mTime;}
+      set{this.mTime = value;}
+    }
 	
-		public void PauseBtnHandler(GameObject go){
-			pause = true;
-			TangGame.UIContext.manger.LazyOpen("LevelPausePanel", TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, null);
-		}
-
-		public void Play(){
-			pause = false;
-			TangGame.UIContext.manger.Back();
-		}
-
 	}
 }
