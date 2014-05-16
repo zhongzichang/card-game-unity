@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TDB = TangDragonBones;
 using TG = TangGame;
+using TGU = TangGame.UI;
 using TUI = TangUI;
 
 namespace TangLevel
@@ -50,26 +51,35 @@ namespace TangLevel
 
     #endregion
 
+    #region Attributes
+
     /// <summary>
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+    private static int m_bigMoveCounter = 0;
+
+    #endregion
 
     #region UIAttribures
 
     public static GameObject levelUIRoot;
     public static UIManager uiMgr = null;
-    private static TUI.UIPanelNodeManager centerPanelMgr;
     private static TG.LevelHeroPanel levelHeroPanel;
     private static TG.LevelPausePanel levelPausePanel;
+    private static TG.LevelControllPanel levelControllPanel;
+    private static TGU.LevelResourcePanel levelResourcePanel;
+    private static TUI.UIPanelNodeManager centerPanelMgr;
+    private static TUI.UIPanelNodeManager ltPanelMgr;
+    private static TUI.UIPanelNodeManager rtPanelMgr;
     public GameObject uiRoot;
     public UIAnchor centerAnchor;
+    public UIAnchor ltAnchor;
+    public UIAnchor rtAnchor;
 
     #endregion
 
     #region Properties
-
-    private static int m_bigMoveCounter = 0;
 
     public static int BigMoveCounter {
       get {
@@ -81,7 +91,6 @@ namespace TangLevel
             BigMoveStart (null, EventArgs.Empty);
           }
           m_bigMoveCounter = value;
-          //Debug.Log ("m_bigMoveCounter " + m_bigMoveCounter);
           if (m_bigMoveCounter == 0) {
             BigMoveEnd (null, EventArgs.Empty);
           }
@@ -116,17 +125,37 @@ namespace TangLevel
 
         }
 
+        // 中心锚点
         if (centerAnchor != null) {
 
           // 下面的英雄操作面板
-          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnCenterAnchorEvent);
+          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnPanelEvent);
           centerPanelMgr.LazyOpen (UIContext.HERO_OP_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
             TUI.UIPanelNode.BlockMode.NONE);
 
           // 中间的关卡暂停面板
-          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnCenterAnchorEvent);
+          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnPanelEvent);
           centerPanelMgr.LazyOpen (UIContext.LEVEL_PAUSE_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
             TUI.UIPanelNode.BlockMode.SPRITE);
+        }
+
+        // 左上锚点
+        if (ltAnchor != null) {
+          // 控制面板
+          ltPanelMgr = new TUI.UIPanelNodeManager (ltAnchor, OnPanelEvent);
+          ltPanelMgr.LazyOpen (UIContext.LEVEL_CONTROLL_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
+            TUI.UIPanelNode.BlockMode.NONE);
+        }
+
+        if (rtAnchor != null) {
+          rtPanelMgr = new TUI.UIPanelNodeManager (rtAnchor, OnPanelEvent);
+          rtPanelMgr.LazyOpen (UIContext.LEVEL_RESOURCE_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
+            TUI.UIPanelNode.BlockMode.NONE);
+        }
+
+        // 右上锚点
+        if (rtAnchor != null) {
+          // 资源面板
         }
 
       } else {
@@ -159,7 +188,7 @@ namespace TangLevel
     /// </summary>
     /// <param name="sender">Sender.</param>
     /// <param name="args">Arguments.</param>
-    private void OnCenterAnchorEvent (object sender, TUI.PanelEventArgs args)
+    private void OnPanelEvent (object sender, TUI.PanelEventArgs args)
     {
       TUI.UIPanelNode node = sender as TUI.UIPanelNode;
       if (node != null) {
@@ -176,6 +205,15 @@ namespace TangLevel
           else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
             //node.gameObject.SetActive (false);
             levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
+          }
+          // 关卡控制面板
+          else if (UIContext.LEVEL_CONTROLL_PANEL.Equals (node.name)) {
+            levelControllPanel = node.gameObject.GetComponent<TG.LevelControllPanel> ();
+            levelControllPanel.pauseBtn.onClick += OnPauseBtnClick;
+          }
+          // 资源面板
+          else if (UIContext.LEVEL_RESOURCE_PANEL.Equals (node.name)) {
+            levelResourcePanel = node.gameObject.GetComponent<TGU.LevelResourcePanel> ();
           }
           break;
         }
@@ -201,22 +239,32 @@ namespace TangLevel
       LeftLevel ();
     }
 
-
     /// <summary>
     /// 面板上的英雄图标被点击
     /// </summary>
     /// <param name="item">Item.</param>
     private static void OnHeroIconClick (ViewItem viewItem)
     {
-      TG.LevelHeroItem item = viewItem as TG.LevelHeroItem;
-      if (item != null) {
-        // 获取相应的英雄对象
-        HeroBhvr h = LevelContext.GetHeroBhvr (item.heroId);
-        if (h != null && h.hero != null && h.hero.hp > 0 && h.hero.mp == h.hero.maxMp) {
-          h.BigMove ();
+      if (LevelContext.AliveEnemyGobjs.Count > 0) {
+        TG.LevelHeroItem item = viewItem as TG.LevelHeroItem;
+        if (item != null) {
+          // 获取相应的英雄对象
+          HeroBhvr h = LevelContext.GetHeroBhvr (item.heroId);
+          if (h != null && h.hero != null && h.hero.hp > 0 && h.hero.mp == h.hero.maxMp) {
+            h.BigMove ();
+          }
         }
       }
     }
+
+    /// <summary>
+    /// 暂停按钮被点击
+    /// </summary>
+    private static void OnPauseBtnClick (GameObject g)
+    {
+      Pause ();
+    }
+
     #endregion
 
     #region PublicStaticMethods
@@ -305,6 +353,7 @@ namespace TangLevel
     /// </summary>
     public static void Pause ()
     {
+      Debug.Log ("Pause");
       if (!LevelContext.isPause) {
         LevelContext.isPause = true;
 

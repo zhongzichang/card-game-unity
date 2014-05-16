@@ -183,7 +183,7 @@ namespace TangGame.Xml
 					equip.configId = 1003;
 					equip.enchantsLv = 1;
 					equip.enchantsExp = 30;
-					herobase.Net.equipList [3] = equip;
+					herobase.Net.equipList [4] = equip;
 				} else {
 					herobase.Xml = item;
 				}
