@@ -62,7 +62,7 @@ namespace TangGame.UI{
 			props.data.description = "这是测试道具，大家都懂得";
 
       BattleResultData data = new BattleResultData();
-      data.type = BattleResultType.Win;
+      data.type = BattleResultType.Star1;
       data.level = 20;
       data.exp = 12;
       data.gold = 807;
@@ -110,14 +110,14 @@ namespace TangGame.UI{
         loseGroup.SetActive(true);
         loseSprite.spriteName = "lose";
       }else{
+        winGroup.SetActive(true);
+        loseGroup.SetActive(false);
         foreach(UISprite star in winStars){
           star.gameObject.SetActive(false);
         }
         winSprite.gameObject.SetActive(false);
 
         if(data.type == BattleResultType.Win){
-          winGroup.SetActive(true);
-          loseGroup.SetActive(false);
           winSprite.gameObject.SetActive(true);
         }else if(data.type == BattleResultType.Star1){
           winStars[0].gameObject.SetActive(true);
