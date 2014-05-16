@@ -31,6 +31,13 @@ namespace TangGame.UI
 
 		int soulStoneCount;
 		int soulStoneCountMax;
+
+		public int SoulStoneCount {
+			get {
+				return soulStoneCount;
+			}
+		}
+
 		// Use this for initialization
 		void Start ()
 		{
@@ -80,7 +87,7 @@ namespace TangGame.UI
 			int evolve = hero.Xml.evolve;
 			Dictionary<int, Props> pTable = PropsCache.instance.propsTable;
 			if (pTable.ContainsKey (rockId)) {
-				soulStoneCount = pTable [rockId].count;
+				soulStoneCount = pTable [rockId].net.count;
 			}
 			if (evolve == 0) {
 				evolve = 1;
@@ -145,6 +152,7 @@ namespace TangGame.UI
 		{
 			if (fragmentsCount >= fragmentsCountMax) {
 				this.CountLabel.text = UIPanelLang.CALL_ME_MAYBE;
+				this.ForegroundSprite.fillAmount = 1f;
 			} else {
 				this.CountLabel.text = fragmentsCount + "/" + fragmentsCountMax;
 				this.ForegroundSprite.fillAmount = fragmentsCount / fragmentsCountMax;

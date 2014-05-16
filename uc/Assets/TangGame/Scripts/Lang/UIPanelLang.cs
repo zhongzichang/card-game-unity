@@ -88,7 +88,7 @@ namespace TangGame.UI
 		/// The CAL l_ M e_ MAYB.
 		/// 可以召唤
 		/// </summary>
-		public const string CALL_ME_MAYBE = "CALL ME MAYBE";
+		public const string CALL_ME_MAYBE = "Call Me Maybe!";
 
 
 		/// <summary>
