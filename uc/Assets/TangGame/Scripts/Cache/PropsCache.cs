@@ -56,7 +56,7 @@ namespace TangGame.UI{
           PropsHeroEquipData propsHeroEquipData = new PropsHeroEquipData();
           propsHeroEquipData.id = id;
           propsHeroEquipData.data = data;
-          propsHeroEquipData.upgrades = count;
+          propsHeroEquipData.upgrade = count;
           AddPropsHeroEquipData(id, propsHeroEquipData);
         }
         count++;

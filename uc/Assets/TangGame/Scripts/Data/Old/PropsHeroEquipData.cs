@@ -9,6 +9,6 @@ namespace TangGame.UI{
     /// 道具ID
     public int id;
 		/// 英雄阶数
-		public int upgrades;
+		public int upgrade;
 	}
 }
