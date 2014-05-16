@@ -55,7 +55,7 @@ namespace TangGame.UI
 		{
 			this.data = hero;
 			UpHeroRank ((int)data.Net.upgrade);
-			UpHeroAvatarSprite (data.Xml.avatar);
+			UpHeroAvatarSprite (data.Xml.avatar,hero.Islock);
 			UpHeroName (data.Xml.name);
 			Locked (data.Islock);
 			UpLevel (data.Net.level);
@@ -138,9 +138,7 @@ namespace TangGame.UI
 
 		private void UpHeroRank (int heroRank)
 		{
-			string frameName;
-			frameName = "hero_icon_frame_" + heroRank;
-			this.HeroAvatarFrame.spriteName = frameName;
+			this.HeroAvatarFrame.spriteName = Global.GetHeroIconFrame (heroRank);;
 		}
 
 		private void UpHeroFragments (int fragmentsCount, int fragmentsCountMax)
@@ -153,11 +151,22 @@ namespace TangGame.UI
 			}
 		}
 
-		private void UpHeroAvatarSprite (string heroAvatar)
+		private void UpHeroAvatarSprite (string heroAvatar,bool isLock)
 		{
+
+			if (isLock) {
+				heroAvatar += "_un";
+			} 
+			bool containSprite = false;
+			foreach (UISpriteData srpiteData in HeroAvatarSprite.atlas.spriteList) {
+				if (heroAvatar.Equals(srpiteData.name)) {
+					containSprite = true;
+				}
+			}
+
 			//TODO 仅仅供测试使用
-			if (string.IsNullOrEmpty (heroAvatar)) {
-				heroAvatar = "hero_icon_1_un";
+			if (!containSprite) {
+				heroAvatar = "hero_icon_un";
 				Debug.LogWarning ("the hero can't find avatar name!");
 			}
 			HeroAvatarSprite.spriteName = heroAvatar;

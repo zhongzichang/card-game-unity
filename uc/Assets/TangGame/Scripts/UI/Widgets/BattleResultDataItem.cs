@@ -36,7 +36,7 @@ namespace TangGame.UI{
 
 			levelLabel.text = tempData.level.ToString();
 			frame.spriteName = Global.GetHeroIconFrame(tempData.upgrade);
-			star.width = Global.GetHeroStar(tempData.evolve) * 21;
+			star.width = Global.GetHeroStar(tempData.evolve) * 20;
 			currDamage = 0;
 			damage = tempData.damage;
 			maxDamage = tempData.maxDamage;

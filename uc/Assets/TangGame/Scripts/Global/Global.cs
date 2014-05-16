@@ -118,7 +118,8 @@ namespace TangGame
 		/// <param name="upgrade">品质</param>
 		public static string GetHeroIconFrame (int upgrade)
 		{
-			return "hero_icon_frame_" + upgrade;
+			upgrade = upgrade < 1 ? 1 : upgrade;
+			return "hero_frame_" + upgrade;
 		}
 
 		/// <summary>

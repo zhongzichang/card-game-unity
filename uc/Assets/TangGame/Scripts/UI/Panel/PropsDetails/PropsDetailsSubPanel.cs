@@ -87,6 +87,8 @@ namespace TangGame.UI
 			if (!mStarted)
 				return;
 
+			if ((PropsType)propsXml.type == PropsType.DEBRIS)
+				return;
 			int count = SVPropsItemArray.Count;
 			if (count != 0) {
 				(SVPropsItemArray [count - 1] as SVPropsItem).IsChecked = false;
