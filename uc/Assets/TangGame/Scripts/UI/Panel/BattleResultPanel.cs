@@ -126,27 +126,26 @@ namespace TangGame.UI{
         }else if(data.type == BattleResultType.Star3){
           winStars[2].gameObject.SetActive(true);
         }
-      }
 
-
-      Vector3 tempPosition = Vector3.zero;
-      foreach(Props props in data.propsList){
-        GameObject go = UIUtils.Duplicate(this.propsInfoItem.gameObject, this.propsInfoItem.transform.parent.gameObject);
-        go.transform.localPosition = tempPosition;
-        tempPosition.x += 100;
-        PropsInfoItem item = go.GetComponent<PropsInfoItem>();
-        item.data = props;
-        items.Add(go);
-      }
-
-      tempPosition = Vector3.zero;
-      foreach(BattleResultHeroData battleResultHeroData in data.herosList){
-        GameObject go = UIUtils.Duplicate(this.heroItem.gameObject, this.heroItem.transform.parent.gameObject);
-        go.transform.localPosition = tempPosition;
-        tempPosition.x += 128;
-        BattleResultHeroItem item = go.GetComponent<BattleResultHeroItem>();
-        item.data = battleResultHeroData;
-        items.Add(go);
+        Vector3 tempPosition = Vector3.zero;
+        foreach(Props props in data.propsList){
+          GameObject go = UIUtils.Duplicate(this.propsInfoItem.gameObject, this.propsInfoItem.transform.parent.gameObject);
+          go.transform.localPosition = tempPosition;
+          tempPosition.x += 100;
+          PropsInfoItem item = go.GetComponent<PropsInfoItem>();
+          item.data = props;
+          items.Add(go);
+        }
+        
+        tempPosition = Vector3.zero;
+        foreach(BattleResultHeroData battleResultHeroData in data.herosList){
+          GameObject go = UIUtils.Duplicate(this.heroItem.gameObject, this.heroItem.transform.parent.gameObject);
+          go.transform.localPosition = tempPosition;
+          tempPosition.x += 128;
+          BattleResultHeroItem item = go.GetComponent<BattleResultHeroItem>();
+          item.data = battleResultHeroData;
+          items.Add(go);
+        }
       }
 		}
 
