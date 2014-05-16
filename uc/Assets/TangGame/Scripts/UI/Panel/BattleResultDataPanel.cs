@@ -32,6 +32,8 @@ namespace TangGame.UI{
 			data.enemysList.Add(new BattleResultHeroData());
 			data.enemysList.Add(new BattleResultHeroData());
 			data.enemysList.Add(new BattleResultHeroData());
+      data.enemysList.Add(new BattleResultHeroData());
+      data.enemysList.Add(new BattleResultHeroData());
 
 			this.mParam = data;
 
