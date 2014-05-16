@@ -1,9 +1,1 @@
-<root>
-	<value>
-		<id>1001</id>
-		<lv_id>1001</lv_id>
-		<team_lv_constraint>15</team_lv_constraint>
-		<name>失乐园</name>
-		<resource>不知道</resource>
-	</value>
-</root>
+<root><value><id>1001</id><lv_id>1001</lv_id><team_lv_constraint>15</team_lv_constraint><name>失乐园</name><resource>不知道</resource></value></root>
