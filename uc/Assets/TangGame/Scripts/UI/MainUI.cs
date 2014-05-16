@@ -39,6 +39,7 @@ namespace TangGame
       }
       if (anchorTL != null) {
         UIPanelNodeManager mgr = new UIPanelNodeManager (anchorTL);
+        mgr.LazyOpen (TangGame.UIContext.MAIN_HEAD_PANEL_NAME, UIPanelNode.OpenMode.OVERRIDE);
         UIContext.mgrTL = mgr;
       }
       if (anchorToT != null) {

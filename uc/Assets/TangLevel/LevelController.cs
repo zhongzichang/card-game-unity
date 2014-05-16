@@ -67,6 +67,7 @@ namespace TangLevel
     public static UIManager uiMgr = null;
     private static TG.LevelHeroPanel levelHeroPanel;
     private static TG.LevelPausePanel levelPausePanel;
+    private static TGU.BattleResultPanel battleResultPanel;
     private static TG.LevelControllPanel levelControllPanel;
     private static TGU.LevelResourcePanel levelResourcePanel;
     private static TUI.UIPanelNodeManager centerPanelMgr;
@@ -137,6 +138,11 @@ namespace TangLevel
           centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnPanelEvent);
           centerPanelMgr.LazyOpen (UIContext.LEVEL_PAUSE_PANEL, TUI.UIPanelNode.OpenMode.ADDITIVE, 
             TUI.UIPanelNode.BlockMode.SPRITE);
+
+          // 战斗结果面板
+          centerPanelMgr = new TUI.UIPanelNodeManager (centerAnchor, OnPanelEvent);
+          centerPanelMgr.LazyOpen (UIContext.BATTLE_RESULT_PANEL, TUI.UIPanelNode.OpenMode.OVERRIDE,
+            TUI.UIPanelNode.BlockMode.NONE);
         }
 
         // 左上锚点
@@ -200,6 +206,11 @@ namespace TangLevel
             levelPausePanel = node.gameObject.GetComponent<TG.LevelPausePanel> ();
             levelPausePanel.continueBtn.onClick += OnContinueBtnClick;
             levelPausePanel.quitBtn.onClick += OnQuitBtnClick;
+          }
+          // 战斗结果面板
+          if (UIContext.BATTLE_RESULT_PANEL.Equals (node.name)) {
+            node.gameObject.SetActive (false);
+            battleResultPanel = node.gameObject.GetComponent<TGU.BattleResultPanel> ();
           }
           // 英雄操作面板
           else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
@@ -500,6 +511,7 @@ namespace TangLevel
             if (RaiseChangengeFailure != null) {
               RaiseChangengeFailure (null, EventArgs.Empty);
             }
+            battleResultPanel.gameObject.SetActive (true);
           }
         } else {
           // 是敌方英雄
@@ -514,6 +526,8 @@ namespace TangLevel
               if (RaiseChallengeSuccess != null) {
                 RaiseChallengeSuccess (null, EventArgs.Empty);
               }
+
+              battleResultPanel.gameObject.SetActive (true);
             } else {
               // 子关卡完成
               if (RaiseSubLevelCleaned != null) {
@@ -952,7 +966,7 @@ namespace TangLevel
       List<Hero> column1 = new List<Hero> ();
       List<Hero> column2 = new List<Hero> ();
       Vector2 origin = Vector2.zero;
-      int stepx = 6; // 排与排之间的距离
+      int stepx = 16; // 排与排之间的距离
 
       if (BattleDirection.RIGHT == direction) { // 我方战队
 
@@ -966,7 +980,7 @@ namespace TangLevel
         }
 
         int offsety = 0;
-        origin = new Vector2 (0, 12);
+        origin = new Vector2 (0, 20);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
           // 如果当前英雄与前面英雄的sort相等，则 offsety++;
@@ -985,7 +999,7 @@ namespace TangLevel
         }
 
         // 对于第二列
-        origin = new Vector2 (-3, 8);
+        origin = new Vector2 (-8, 16);
         offsety = 0;
         for (int i = 0; i < column2.Count; i++) {
           // 如果当前英雄与前面英雄的sort相等，则 offsety++;
@@ -1020,7 +1034,7 @@ namespace TangLevel
 
         // 对于第一列
         int offsety = 0;
-        origin = new Vector2 (32, 12);
+        origin = new Vector2 (64, 20);
         // 对于第一列
         for (int i = 0; i < column1.Count; i++) {
           // 如果当前英雄与前面英雄的sort相等，则 offsety++;
@@ -1040,7 +1054,7 @@ namespace TangLevel
 
         // 对于第二列
         offsety = 0;
-        origin = new Vector2 (35, 8);
+        origin = new Vector2 (72, 16);
         for (int i = 0; i < column2.Count; i++) {
           // 如果当前英雄与前面英雄的sort相等，则 offsety++;
           bool useOffset = false;
