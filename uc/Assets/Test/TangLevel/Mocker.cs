@@ -47,15 +47,21 @@ namespace TangLevel
       tmpG++;
       group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
-
-        group.heros [j] = MockHero ();
+        if (j % 3 == 0)
+          group.heros [j] = MockHeroZf ();
+        else if (j % 3 == 1)
+          group.heros [j] = MockHeroXc ();
+        else if (j % 3  == 2) {
+          group.heros [j] = MockHeroZhangfei ();
+        }
       }
       return group;
     }
 
     static int tmp = 0;
-
-    public static Hero MockHero ()
+    // mock hero zf -----------------------------------------------------
+    #region zf
+    public static Hero MockHeroZf ()
     {
       Hero hero = new Hero ();  
       hero.id = tmp;
@@ -72,7 +78,7 @@ namespace TangLevel
 
       // skill
       List<Skill> skills = new List<Skill> ();
-      skills.Add (MockAttackSkill ());
+      skills.Add (MockZfAttackSkill ());
       skills.Add (MockBingHuaSkill ());
       skills.Add (MockYuehuaSkill ());
       //if( hero.id == 0)
@@ -85,11 +91,11 @@ namespace TangLevel
       return hero;
     }
 
-    public static Skill MockAttackSkill ()
+    public static Skill MockZfAttackSkill ()
     {
       Skill skill = new Skill ();
       skill.effectors = new Effector[1];
-      skill.effectors[0] = MockLineFlyEffector ();
+      skill.effectors [0] = MockLineFlyEffector ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
@@ -105,9 +111,25 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effectors = new Effector[1];
-      skill.effectors[0] = MockLineFlyEffector ();
+      skill.effectors [0] = MockLineFlyEffector ();
       skill.chargeClip = "binghua0";
       skill.releaseClip = "binghua1";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 10;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockYuehuaSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.chargeClip = "";
+      skill.releaseClip = "yuehua";
       skill.enable = true;
       skill.bigMove = false;
       skill.distance = 10;
@@ -135,23 +157,6 @@ namespace TangLevel
 
       return skill;
     }
-
-
-    public static Skill MockYuehuaSkill ()
-    {
-      Skill skill = new Skill ();
-
-      skill.effectors = new Effector[1];
-      skill.effectors[0] = MockLineFlyEffector ();
-      //skill.chargeClip = "";
-      skill.releaseClip = "yuehua";
-      skill.enable = true;
-      skill.bigMove = false;
-      skill.distance = 10;
-      skill.cd = 2;
-
-      return skill;
-    }
     // 线性飞行
     public static Effector MockLineFlyEffector ()
     {
@@ -172,6 +177,196 @@ namespace TangLevel
       effector.specialName = "Sprite_binghuajizhong";
       return effector;
     }
+    #endregion
+    // mock hero xc -----------------------------------------------------
+    #region xc
+    public static Hero MockHeroXc ()
+    {
+      Hero hero = new Hero ();  
+      hero.id = tmp;
+      hero.resName = "hero_xc";
+      hero.maxHp = 100;
+      hero.hp = 100;
+      hero.maxMp = 100;
+      hero.mp = 0;
+      hero.sort = 1;//UnityEngine.Random.Range (1, 20);
+      hero.ai = new string[]{ "AutoFire" };
+
+      // skill
+      List<Skill> skills = new List<Skill> ();
+      skills.Add (MockXcAttackSkill ());
+      skills.Add (MockQianjinzhuiSkill ());
+      skills.Add (MockZhongjiSkill ());
+      skills.Add (MockYemansicheSkill ());
+      hero.skills = skills;
+      hero.skillQueue = new int[]{ 0, 1, 2 };
+
+
+      tmp++;
+      return hero;
+    }
+
+    public static Skill MockXcAttackSkill ()
+    {
+      Skill skill = new Skill ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockQianjinzhuiSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "qianjinzhui";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockZhongjiSkill ()
+    {
+      Skill skill = new Skill ();
+
+      //skill.effectors = new Effector[1];
+      //skill.effectors[0] = MockLineFlyEffector ();
+      skill.chargeClip = "zhongji";
+      //skill.releaseClip = "luoshen";
+      //skill.releaseSpecials = new string[2];
+      //skill.releaseSpecials[0] = "Sprite_luoshen1";
+      //skill.releaseSpecials[1] = "Sprite_luoshen2";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.chargeTime = 2F;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockYemansicheSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.chargeClip = "";
+      skill.releaseClip = "yemansiche";
+      skill.enable = true;
+      skill.bigMove = true;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+    #endregion
+    // mock hero zhangfei -----------------------------------------------------
+    #region zhangfei
+    public static Hero MockHeroZhangfei ()
+    {
+      Hero hero = new Hero ();  
+      hero.id = tmp;
+      hero.resName = "hero_zhangfei";
+      hero.maxHp = 100;
+      hero.hp = 100;
+      hero.maxMp = 100;
+      hero.mp = 0;
+      hero.sort = 1;//UnityEngine.Random.Range (1, 20);
+      hero.ai = new string[]{ "AutoFire" };
+
+      // skill
+      List<Skill> skills = new List<Skill> ();
+      skills.Add (MockZhangfeiAttackSkill ());
+      skills.Add (MockShenliSkill ());
+      skills.Add (MockBaqiSkill ());
+      skills.Add (MockDaheSkill ());
+      hero.skills = skills;
+      hero.skillQueue = new int[]{ 0, 1, 2 };
+
+
+      tmp++;
+      return hero;
+    }
+
+    public static Skill MockZhangfeiAttackSkill ()
+    {
+      Skill skill = new Skill ();
+      //skill.effectors = new Effector[1];
+      //skill.effectors [0] = MockLineFlyEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockShenliSkill ()
+    {
+      Skill skill = new Skill ();
+
+      //skill.effectors = new Effector[1];
+      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.chargeClip = "shenli";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockBaqiSkill ()
+    {
+      Skill skill = new Skill ();
+
+      //skill.effectors = new Effector[1];
+      //skill.effectors[0] = MockLineFlyEffector ();
+      //skill.chargeClip = "baqi";
+      skill.releaseClip = "baqi";
+      //skill.releaseSpecials = new string[2];
+      //skill.releaseSpecials[0] = "Sprite_luoshen1";
+      //skill.releaseSpecials[1] = "Sprite_luoshen2";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.chargeTime = 2F;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+
+    public static Skill MockDaheSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
+      skill.chargeClip = "Dahe";
+      //skill.releaseClip = "Dahe";
+      skill.enable = true;
+      skill.bigMove = true;
+      skill.distance = 4;
+      skill.cd = 2;
+
+      return skill;
+    }
+    #endregion
   }
 }
 
