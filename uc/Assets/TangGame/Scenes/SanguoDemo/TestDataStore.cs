@@ -17,23 +17,7 @@ namespace TangGame.UI
         }
     }
 
-    private string[] heroIds = {"AV", "GoldenDragon", "NagaPriest", "SkeletonWarrior", 
-      "BatRider", "Golem", "Necromancersr", "SpellBreaker",
-      "Bone", "GraniteGolem", "OD", "TH",
-      "CM", "Huskar", "OK", "SuicideGoblinjr",
-      "Coco", "JUGG", "POM", "TK",
-      "DOTsr", "KOTL", "Panda", "Tank",
-      "DP", "LOA", "Pugna", "Tauren",
-      "DR", "Lich", "QOP", "Tiny",
-      "DoT", "Lina", "Razor", "Treant",
-      "DragonBaby", "Lion", "SF", "Troll",
-      "DragonTurtle", "Luna", "SG", "Ursa",
-      "ES", "MeatWagon", "SNK", "VS",
-      "Ench", "Med", "SP", "Viper",
-      "Ghoul", "NEC", "Shaman", "WR",
-      "GlaiveThrower", "Naga", "Sil", "Zeus",
-      "Goblinjr", "NagaArcher", "SkeletonArcher", 
-    };
+    private string[] heroIds = {"1", "2", "3",};
 
     /// <summary>
     /// 生成测试用随机英雄数据

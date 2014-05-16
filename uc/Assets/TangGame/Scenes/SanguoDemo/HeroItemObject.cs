@@ -65,11 +65,11 @@ namespace TangGame.UI
     }
 
     private string GetIconName(HeroItemData data){
-      return data.id;
+      return "hero_icon_" + data.id;
     }
 
     private string GetIconFrameName(HeroItemData data){
-      return string.Format("hero_icon_frame_{0}", data.rank);
+      return "hero_frame_" + data.rank.ToString ();
     }
   }
 }
