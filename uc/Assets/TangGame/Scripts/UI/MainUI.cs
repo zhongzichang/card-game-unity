@@ -48,16 +48,5 @@ namespace TangGame
         UIContext.mgrToT = mgr;
       }
     }
-
-    void OnGUI ()
-    {
-      if (GUI.Button (new Rect (10, 10, 50, 60), "Back")) {
-
-        if (TangGame.UIContext.mgrCoC != null) {
-          TangGame.UIContext.mgrCoC.Back ();
-        }
-
-      }
-    }
   }
 }
