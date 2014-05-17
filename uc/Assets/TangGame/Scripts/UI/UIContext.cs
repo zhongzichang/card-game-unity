@@ -56,7 +56,7 @@ namespace TangGame
 		/// </summary>
 		public const string FRAGMENT_PANEL_NAME = "FragmentPanel";
 
-		public const string HERO_ITEM_NAME = "HeroItem";
+		public const string HERO_VIEW_ITEM_NAME = "HeroViewItem";
 		public const string SKILL_ITEM_NAME = "SkillItem";
 		public const string PROPS_ITEM_NAME = "PropsItem";
 		public const string PANEL_BLOCK = "Block"; 
