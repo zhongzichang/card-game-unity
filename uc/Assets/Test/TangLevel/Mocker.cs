@@ -77,7 +77,7 @@ namespace TangLevel
       hero.hp = 100;
       hero.maxMp = 100;
       hero.mp = 0;
-      hero.sort = 1;//UnityEngine.Random.Range (1, 20);
+      hero.sort = 3;//UnityEngine.Random.Range (1, 20);
       if (tmp % 2 == 0)
         hero.ai = new string[]{ "AutoFire" };
       else
@@ -291,7 +291,7 @@ namespace TangLevel
       hero.hp = 100;
       hero.maxMp = 100;
       hero.mp = 0;
-      hero.sort = 1;//UnityEngine.Random.Range (1, 20);
+      hero.sort = 2;//UnityEngine.Random.Range (1, 20);
       hero.ai = new string[]{ "AutoFire" };
 
       // skill

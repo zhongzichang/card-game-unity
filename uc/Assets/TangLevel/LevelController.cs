@@ -217,8 +217,9 @@ namespace TangLevel
           if (UIContext.BATTLE_RESULT_PANEL.Equals (node.name)) {
             node.gameObject.SetActive (false);
             battleResultPanel = node.gameObject.GetComponent<TGU.BattleResultPanel> ();
-            battleResultPanel.winNextBtn.onClick += OnQuitBtnClick;
+            battleResultPanel.winNextBtn.onClick += OnQuitBtnClick; 
             battleResultPanel.loseNextBtn.onClick += OnQuitBtnClick;
+            battleResultPanel.winReplayBtn.onClick += OnReplayBtnClick;
           }
           // 英雄操作面板
           else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
@@ -260,7 +261,12 @@ namespace TangLevel
     /// <param name="g">The green component.</param>
     private void OnQuitBtnClick (GameObject g)
     {
+
       LeftLevel ();
+
+      // 暂停强设置为 home ，等加上 History 再做处理
+      PlaceController.Place = Place.home;
+
     }
 
     /// <summary>
@@ -293,12 +299,20 @@ namespace TangLevel
     /// 下一个子关卡按钮被点击
     /// </summary>
     /// <param name="g">The green component.</param>
-    private static void OnLevelNextBtnClick(GameObject g){
+    private static void OnLevelNextBtnClick (GameObject g)
+    {
       //levelNextPanel.gameObject.seta
       ChallengeNextSubLevel ();
     }
 
-    //private static void On
+    /// <summary>
+    /// 重新挑战按钮被点击
+    /// </summary>
+    /// <param name="g">The green component.</param>
+    private static void OnReplayBtnClick (GameObject g)
+    {
+      ReChallengeLevel ();
+    }
 
     #endregion
 
@@ -337,6 +351,8 @@ namespace TangLevel
         }
 
         LevelContext.selfGroup = group;
+
+        // 备份团队数据，方便重新挑战关卡使用
         LevelContext.selfGroupBackup = group.DeepCopy ();
 
         LoadTargetSubLevelRes ();
@@ -347,20 +363,45 @@ namespace TangLevel
     /// <summary>
     /// 重新挑战这个关卡
     /// </summary>
-    public static void ReChallengeLevel(){
+    private static void ReChallengeLevel ()
+    {
 
-      // 显示UI
-      battleResultPanel.gameObject.SetActive (false);
-      levelControllPanel.gameObject.SetActive (true);
-      levelResourcePanel.gameObject.SetActive (true);
-      levelHeroPanel.gameObject.SetActive (true);
+      // 确保在关卡里面
+      if (LevelContext.InLevel) {
 
-      // 克隆一份场景数据
-      LevelContext.CurrentLevel = Config.levelTable [LevelContext.CurrentLevel.id].DeepCopy ();
+        // 离开关卡
+        LeftLevel ();
 
-      LevelContext.selfGroup = LevelContext.selfGroupBackup.DeepCopy();
+        int levelId = LevelContext.CurrentLevel.id;
 
-      LoadTargetSubLevelRes ();
+        // 显示UI
+        if (!levelUIRoot.activeSelf) {
+          levelUIRoot.SetActive (true);
+        }
+
+        // 设置各个面板的显示和隐藏
+        if (!levelControllPanel.gameObject.activeSelf) {
+          levelControllPanel.gameObject.SetActive (true);
+        }
+        if (!levelResourcePanel.gameObject.activeSelf) {
+          levelResourcePanel.gameObject.SetActive (true);
+        }
+        if (battleResultPanel.gameObject.activeSelf) {
+          battleResultPanel.gameObject.SetActive (false);
+        }
+
+        // 设置当前关卡
+        if (Config.levelTable.ContainsKey (levelId)) {
+          // 克隆一份场景数据
+          LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy ();
+          // 克隆一份团队数据
+          LevelContext.selfGroup = LevelContext.selfGroupBackup.DeepCopy ();
+          LoadTargetSubLevelRes ();
+
+        }
+
+      }
+
     }
 
     /// <summary>
@@ -398,9 +439,6 @@ namespace TangLevel
       if (levelUIRoot.activeSelf) {
         levelUIRoot.SetActive (false);
       }
-
-      // 暂停强设置为 home ，等加上 History 再做处理
-      PlaceController.Place = Place.home;
 
     }
 

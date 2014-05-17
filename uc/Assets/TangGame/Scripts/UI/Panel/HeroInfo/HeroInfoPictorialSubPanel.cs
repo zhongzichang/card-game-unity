@@ -96,9 +96,9 @@ namespace TangGame.UI
 			}
 		}
 
-		void SetBackground (int rank)
+		void SetBackground (int upgrade)
 		{
-			Foreground.GetComponent<UISprite> ().color = Global.GetColor32ByRank(rank);
+			Foreground.GetComponent<UISprite> ().color = Global.GetHeroUpgradeColor(upgrade);
 		}
 
 		/// <summary>
