@@ -61,12 +61,11 @@ namespace TangLevel
 
     }
 
-    void Update()
+    void Update ()
     {
-      if( hero.hp == 0 && statusBhvr.Status != HeroStatus.dead)
-	{
-	  statusBhvr.Status = HeroStatus.dead;
-	}
+      if (hero.hp == 0 && statusBhvr.Status != HeroStatus.dead) {
+        statusBhvr.Status = HeroStatus.dead;
+      }
     }
 
     void OnEnable ()
@@ -377,10 +376,13 @@ namespace TangLevel
     public void Attack (GameObject target, Skill skill)
     {
 
-      this.target = target;
-      this.skill = skill;
+      if (statusBhvr.Status != HeroStatus.running) {
 
-      statusBhvr.Status = HeroStatus.charge;
+        this.target = target;
+        this.skill = skill;
+
+        statusBhvr.Status = HeroStatus.charge;
+      }
 
     }
 
@@ -388,7 +390,8 @@ namespace TangLevel
     /// 使用技能攻击，攻击目标由技能决定
     /// </summary>
     /// <param name="skill">Skill.</param>
-    public void Attack(Skill skill){
+    public void Attack (Skill skill)
+    {
       Attack (null, skill);
     }
 
@@ -477,7 +480,8 @@ namespace TangLevel
     /// <summary>
     /// 使用大招攻击
     /// </summary>
-    public void BigMove(){
+    public void BigMove ()
+    {
       // 获取大招
       Skill bs = null;
       foreach (Skill s in hero.skills) {
