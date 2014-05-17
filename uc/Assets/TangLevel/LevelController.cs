@@ -331,6 +331,18 @@ namespace TangLevel
     /// 挑战这个关卡
     /// </summary>
     /// <param name="levelId">关卡ID</param>
+    /// <param name="heroIds">选中的多个英雄ID</param>
+    public static void ChallengeLevel(int levelId, int[] heroIds){
+
+      // TODO 这里模拟一份团队数据
+      LevelController.ChallengeLevel (1, Mocker.MockGroup ());
+
+    }
+
+    /// <summary>
+    /// 挑战这个关卡
+    /// </summary>
+    /// <param name="levelId">关卡ID</param>
     /// <param name="group">我方小组</param>
     public static void ChallengeLevel (int levelId, Group group)
     {
