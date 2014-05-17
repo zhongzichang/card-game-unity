@@ -98,24 +98,9 @@ namespace TangGame.Xml
 		public static void LateProcess (object obj)
 		{
 			PropsRoot root = obj as PropsRoot;
-			int a = 5;
 			foreach (PropsData item in root.items) {
 				Config.propsXmlTable [item.id] = item;
 				ResolveSyntheticProps (item);
-
-				//TODO 测试数据
-				TangGame.UI.Props props = new TangGame.UI.Props ();
-				TangGame.Net.PropsNet net = new TangGame.Net.PropsNet ();
-				net.configId = item.id;
-				if (item.id % 2 == 0)
-					net.count = 20;
-				else
-					net.count = 5;
-				props.data = item;
-				props.net = net;
-				if (item.id % 3 == 1)
-					TangGame.UI.PropsCache.instance.propsTable.Add (item.id, props);
-				a++;
 			}
 		}
 
