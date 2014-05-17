@@ -65,19 +65,7 @@ namespace TangGame
 		/// The mgr center or center.
 		/// </summary>
 		public static UIPanelNodeManager mgrCoC; 
-		/// <summary>
-		/// The mgr Top right.
-		/// </summary>
-		public static UIPanelNodeManager mgrTR;
-		/// <summary>
-		/// The mgr Top or left.
-		/// </summary>
-		public static UIPanelNodeManager mgrTL;
-		/// <summary>
-		/// The mgr to top or top.
-		/// </summary>
-		public static UIPanelNodeManager mgrToT;
-
+		
 		/// UI管理
 		public static UIPanelNodeManager manger;
 

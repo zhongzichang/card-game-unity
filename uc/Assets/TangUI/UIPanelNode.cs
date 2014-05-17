@@ -199,7 +199,11 @@ namespace TangUI
         if (this.blockMode == BlockMode.TEXTURE) {
           GameObject obj = Resources.Load (
                              TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
-          NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<UITexture> ().enabled = true;
+					Block block = NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<Block> ();
+					if (block != null) {
+						block.texture.SetActive (true);
+						block.backButton.SetActive (true);
+					}
         }
       }
       return gameObject;
