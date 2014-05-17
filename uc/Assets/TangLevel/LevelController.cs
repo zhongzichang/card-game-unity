@@ -362,6 +362,17 @@ namespace TangLevel
           levelUIRoot.SetActive (true);
         }
 
+        // 设置各个面板的显示和隐藏
+        if (!levelControllPanel.gameObject.activeSelf) {
+          levelControllPanel.gameObject.SetActive (true);
+        }
+        if (!levelResourcePanel.gameObject.activeSelf) {
+          levelResourcePanel.gameObject.SetActive (true);
+        }
+        if (battleResultPanel.gameObject.activeSelf) {
+          battleResultPanel.gameObject.SetActive (false);
+        }
+
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
 
