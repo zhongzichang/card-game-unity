@@ -162,13 +162,6 @@ namespace TangGame.UI
 		}
 	#endregion
 
-		void OnGUI ()
-		{
-			if (GUILayout.Button ("refash")) {
-				this.repositionNow ();
-			}
-		}
-
 		/// <summary>
 		/// 更新某个
 		/// </summary>
