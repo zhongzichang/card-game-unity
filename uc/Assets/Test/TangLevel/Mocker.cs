@@ -40,6 +40,23 @@ namespace TangLevel
 
     static int tmpG = 0;
 
+    public static Group MockGroup(int count){
+
+      Group group = new Group ();
+      group.heros = new Hero[ count];
+      tmpG++;
+      for (int j = 0; j < group.heros.Length; j++) {
+        if (j % 3 == 0)
+          group.heros [j] = MockHeroZf ();
+        else if (j % 3 == 1)
+          group.heros [j] = MockHeroXc ();
+        else if (j % 3  == 2) {
+          group.heros [j] = MockHeroZhangfei ();
+        }
+      }
+      return group;
+    }
+
     public static Group MockGroup ()
     {
 
