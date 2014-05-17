@@ -9,7 +9,7 @@ using TangGame.UI;
 namespace TangGame.Xml
 {
 	public class HeroData
-	{ 
+	{
 		/// 编号
 		public int id;
 		/// 英雄名称
@@ -82,6 +82,8 @@ namespace TangGame.Xml
 		public string avatar;
 		/// 图鉴资源名字
 		public string portrait;
+		/// 模型资源名
+		public string model;
 		List<PropsData> equipList;
 
 		/// <summary>
@@ -90,104 +92,94 @@ namespace TangGame.Xml
 		/// </summary>
 		/// <returns>The equip list by rank.</returns>
 		/// <param name="rank">Rank.</param>
-		public List<PropsData> CurrentEquipListByRank(int heroUpgrade){
+		public List<PropsData> CurrentEquipListByRank (int heroUpgrade)
+		{
 			if (equipList == null) {
 				equipList = new List<PropsData> ();
 				ArrayList equipStrList = Utils.SplitStrByBraces (this.equip_id_list);
 				string equipStr = "";
 				if (equipStrList.Count >= heroUpgrade - 1) {
-					equipStr = equipStrList [heroUpgrade - 1].ToString();
+					equipStr = equipStrList [heroUpgrade - 1].ToString ();
 				}
 				int[] equipIds = Utils.SplitStrByCommaToInt (equipStr);
-				if(equipStr != null){
+				if (equipStr != null) {
 					foreach (int id in equipIds) {
 						if (Config.propsXmlTable.ContainsKey (id))
 							equipList.Add (Config.propsXmlTable [id]);
 						else
-							Debug.LogWarning (string.Format("找不到物品，道具id:{0}",id));
+							Debug.LogWarning (string.Format ("找不到物品，道具id:{0}", id));
 					}
 				}
 			}
 			return equipList;
 		}
+
 		/// <summary>
 		/// Gets the strength growth.
 		/// 获取力量成长
 		/// </summary>
 		/// <returns>The strength growth.</returns>
 		/// <param name="evolve">Evolve.</param>
-		public float GetStrengthGrowth(int evolve){
+		public float GetStrengthGrowth (int evolve)
+		{
 			if (Utils.isXMLStr_Null (strength_growth))
 				return 0;
-			string str = Utils.SplitStrByBraces (strength_growth) [0].ToString();
-			string floatStr = Utils.SplitStrByComma (str)[evolve];
+			string str = Utils.SplitStrByBraces (strength_growth) [0].ToString ();
+			string floatStr = Utils.SplitStrByComma (str) [evolve];
 			float fl = float.Parse (floatStr);
 			return fl;
 		}
+
 		/// <summary>
 		/// 获取智力成长
 		/// </summary>
 		/// <returns>The intellect growth.</returns>
 		/// <param name="evolve">Evolve.</param>
-		public float GetIntellectGrowth(int evolve){
+		public float GetIntellectGrowth (int evolve)
+		{
 			if (Utils.isXMLStr_Null (intellect_growth))
 				return 0;
-			string str = Utils.SplitStrByBraces (intellect_growth) [0].ToString();
-			string floatStr = Utils.SplitStrByComma (str)[evolve];
+			string str = Utils.SplitStrByBraces (intellect_growth) [0].ToString ();
+			string floatStr = Utils.SplitStrByComma (str) [evolve];
 			float fl = float.Parse (floatStr);
 			return fl;
 		}
+
 		/// <summary>
 		/// 获取敏捷成长
 		/// </summary>
 		/// <returns>The agile growth.</returns>
 		/// <param name="evolve">Evolve.</param>
-		public float GetAgileGrowth(int evolve){
+		public float GetAgileGrowth (int evolve)
+		{
 			if (Utils.isXMLStr_Null (agile_growth))
 				return 0;
-			string str = Utils.SplitStrByBraces (agile_growth) [0].ToString();
-			string floatStr = Utils.SplitStrByComma (str)[evolve];
+			string str = Utils.SplitStrByBraces (agile_growth) [0].ToString ();
+			string floatStr = Utils.SplitStrByComma (str) [evolve];
 			float fl = float.Parse (floatStr);
 			return fl;
 		}
 	}
 
-	[XmlRoot("root")]
+	[XmlRoot ("root")]
 	[XmlLate ("hero")]
 	public class HeroRoot
 	{
-		[XmlElement("value")]
+		[XmlElement ("value")]
 		public List<HeroData> items = new List<HeroData> ();
+
 		public static void LateProcess (object obj)
 		{
 			HeroRoot root = obj as HeroRoot;
 			int i = 0;
 			foreach (HeroData item in root.items) {
 				Config.heroXmlTable [item.id] = item;
-        HeroCache.instance.AddSoulStoneRelation(item);
-        PropsCache.instance.AddPropsHeroRelation(item);
+				HeroCache.instance.AddSoulStoneRelation (item);
+				PropsCache.instance.AddPropsHeroRelation (item);
 				//TODO 先写到这个地方到时候再改，测试使用数据
 				TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
-				if (item.id == 1) {
-					herobase.Xml = item;
-					herobase.Net = new TangGame.Net.HeroNet ();
-					herobase.Net.configId = item.id;
-					herobase.Net.evolve = 2;
-					herobase.Net.exp = 40;
-					herobase.Net.upgrade = 3;
-					herobase.Net.id = 10001;
-					herobase.Net.level = 5;
-					herobase.Net.equipList = new TangGame.Net.EquipNet[6];
-					TangGame.Net.EquipNet equip;
-					equip = new TangGame.Net.EquipNet ();
-					equip.configId = 1003;
-					equip.enchantsLv = 1;
-					equip.enchantsExp = 30;
-					herobase.Net.equipList [4] = equip;
-				} else {
-					herobase.Xml = item;
-				}
-        HeroCache.instance.heroBeseTable.Add (item.id, herobase);
+				herobase.Xml = item;
+				HeroCache.instance.heroBeseTable.Add (item.id, herobase);
 			}
 		}
 	}

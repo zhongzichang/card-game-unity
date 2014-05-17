@@ -60,7 +60,6 @@ namespace TangGame.UI
 
     void OnEnable ()
     {
-      LoadAnimatorObj ("hero_zf"); //TODO  测试用的
       ///注册英雄创建成功监听
       TDB.DbgoManager.RaiseLoadedEvent += OnAvatarLoaded;
     }
@@ -125,6 +124,7 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		public void RefreshPanel (HeroBase heroBase)
 		{
+			LoadAnimatorObj (heroBase.Xml.model);
 			this.heroBase = heroBase;
 			this.SetHeroName (heroBase.Xml.name);
 			this.SetHeroNameFrame (heroBase.Net.upgrade);

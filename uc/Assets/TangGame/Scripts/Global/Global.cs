@@ -94,19 +94,6 @@ namespace TangGame
     //===================================================================================================
     //===================================================================================================
 
-		/// <summary>
-		/// Gets the color32 by rank.
-		/// 根据品阶获取颜色
-		/// </summary>
-		/// <returns>The color32 by rank.</returns>
-		/// <param name="rank">Rank.</param>
-		public static Color32 GetColor32ByRank(int rank){
-			if (rank > mColor32.Length) {
-				return Color.gray;
-			} else {
-				return mColor32 [rank];
-			}
-		}
 
 		/// <summary>
 		/// Gets the hero type icon.
