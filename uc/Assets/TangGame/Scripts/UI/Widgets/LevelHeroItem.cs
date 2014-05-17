@@ -31,6 +31,8 @@ namespace TangGame{
 		private float mpFillAmount;
 		/// 用于动画的速度
 		private float speed = 3;
+    /// 用于显示MP特效标示
+    private bool showMpEffect = true;
 
 		public override void Start (){
 			hpFillAmount = hpYellow.fillAmount = hpBar.fillAmount = 1;
@@ -143,11 +145,17 @@ namespace TangGame{
 			}
 			mpFillAmount = percent;
 			if(percent >= 1){//可以释放技能了
-        this.mpEffect.gameObject.SetActive(true);
+        this.mpEffect.gameObject.SetActive(true && showMpEffect);
       }else{
         this.mpEffect.gameObject.SetActive(false);
       }
 		}
+
+    /// MP的特效开关
+    public void SwitchMpEffect(bool showMpEffect){
+      this.showMpEffect = showMpEffect;
+      this.mpEffect.gameObject.SetActive(this.showMpEffect && (mpBar.fillAmount >= 1));
+    }
 
 		/// 点击
 		private void FrameBtnClickHandler(GameObject go){
