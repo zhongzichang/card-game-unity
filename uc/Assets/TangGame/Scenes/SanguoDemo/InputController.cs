@@ -14,9 +14,10 @@ namespace TangGame
 
 		void OnDrag (DragGesture gesture)
 		{
-//    Debug.Log ("DeltaMove" + gesture.DeltaMove);
-//    Debug.Log ("TotalMove" + gesture.TotalMove);
-//    Debug.Log ("Position" + gesture.Position);
+			if (UICamera.hoveredObject != null) {
+				return;
+			}
+
 			float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x * dragScale;
 			if (new_pos >= -10.24 && new_pos <= 0) {
 				skyLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 4));
