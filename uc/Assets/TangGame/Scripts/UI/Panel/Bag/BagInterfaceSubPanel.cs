@@ -183,6 +183,7 @@ namespace TangGame.UI
 					}
 				}
 			}
+			this.PropsTableReposition ();
 		}
 		void PlayTweenItemAlpha(GameObject obj){
 			TweenAlpha al = obj.GetComponent<TweenAlpha> ();
