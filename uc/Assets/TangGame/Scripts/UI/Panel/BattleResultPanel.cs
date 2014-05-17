@@ -90,8 +90,11 @@ namespace TangGame.UI{
         }else if(data.type == BattleResultType.Star1){
           winStars[0].gameObject.SetActive(true);
         }else if(data.type == BattleResultType.Star2){
+          winStars[0].gameObject.SetActive(true);
           winStars[1].gameObject.SetActive(true);
         }else if(data.type == BattleResultType.Star3){
+          winStars[0].gameObject.SetActive(true);
+          winStars[1].gameObject.SetActive(true);
           winStars[2].gameObject.SetActive(true);
         }
 
