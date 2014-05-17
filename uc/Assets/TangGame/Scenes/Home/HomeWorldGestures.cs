@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using TangPlace;
 namespace TangGame
 {
   public class HomeWorldGestures : MonoBehaviour

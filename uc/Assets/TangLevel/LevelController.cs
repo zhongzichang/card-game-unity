@@ -5,6 +5,7 @@ using TDB = TangDragonBones;
 using TG = TangGame;
 using TGU = TangGame.UI;
 using TUI = TangUI;
+using TangPlace;
 
 namespace TangLevel
 {
@@ -265,7 +266,7 @@ namespace TangLevel
       LeftLevel ();
 
       // 暂停强设置为 home ，等加上 History 再做处理
-      PlaceController.Place = Place.home;
+      PlaceController.Back ();
 
     }
 
@@ -325,6 +326,21 @@ namespace TangLevel
         gobj = NewGobj ();
       }
       return gobj;
+    }
+
+    /// <summary>
+    /// 挑战这个关卡
+    /// </summary>
+    /// <param name="levelId">关卡ID</param>
+    /// <param name="heroIds">选中的多个英雄ID</param>
+    public static void ChallengeLevel (int levelId, int[] heroIds)
+    {
+
+      if (heroIds.Length > 0) {
+        // TODO 这里模拟一份团队数据
+        LevelController.ChallengeLevel (1, Mocker.MockGroup (heroIds.Length));
+      }
+
     }
 
     /// <summary>

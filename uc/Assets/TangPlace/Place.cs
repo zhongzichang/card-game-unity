@@ -2,10 +2,13 @@
 // Date:2014/5/10
 using System;
 
-public enum Place
+namespace TangPlace
 {
-  none,
-  welcome,
-  home,
-  level
+  public enum Place
+  {
+    none,
+    welcome,
+    home,
+    level
+  }
 }
