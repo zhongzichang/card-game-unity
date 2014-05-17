@@ -36,21 +36,21 @@ namespace TangGame.UI
 			Money.gameObject.SetActive (!skill.IsLock);
 		}
 
-		void OnPress(){
-			string str = skill.Xml.desc + "\n[FA8000]";
-			if (skill.Level > 0) {
-				string desc = skill.Xml.desc_y;
-				Regex re = new Regex (@".+{(\d+)}.+");
-				string param = re.Match (desc).Groups [0].Value;
-				// TODO 具体需要商议
-				str += desc;
-			}
-			UITooltip.ShowText (str);
-		}
-
-		void OnHover ()
-		{
-			UITooltip.ShowText ("");
+		void OnPress(bool bl){
+			//FIXME 暂时修改
+//			if (bl) {
+//				string str = skill.Xml.desc + "\n[FA8000]";
+//				if (skill.Level > 0) {
+//					string desc = skill.Xml.desc_y;
+//					Regex re = new Regex (@".+{(\d+)}.+");
+//					string param = re.Match (desc).Groups [0].Value;
+//					// TODO 具体需要商议
+//					str += desc;
+//				}
+//				UITooltip.ShowText (str);
+//			} else {
+//				UITooltip.ShowText ("");	
+//			}
 		}
 
 		public SkillBase Skill {
