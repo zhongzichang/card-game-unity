@@ -52,14 +52,5 @@ namespace TangGame.UI
 
       return obj;
     }
-
-    void OnGUI(){
-      if (GUILayout.Button ("AddHero")) {
-        AddHero (TestDataStore.Instance.RandomHero());
-      }
-      if (GUILayout.Button ("UpdateMp")) {
-          UpdateMp ("CM", 100);
-        }
-    }
   }
 }

@@ -43,6 +43,8 @@ namespace TangGame.UI
       mp.fillAmount = data.mp / data.mpMax;
       hp.fillAmount = data.hp / data.hpMax;
       stars.maxPerLine = data.stars;
+      tick.SetActive (false);
+
       stars.Reposition ();
     }
 
@@ -61,7 +63,15 @@ namespace TangGame.UI
     }
 
     public void ToggleTick(){
-      tick.SetActive (!tick.activeSelf);
+      bool toggled = tick.activeSelf;
+      if (toggled) {
+        icon.color = ColorUtil.WHITE;
+        iconFrame.color = ColorUtil.WHITE;
+      } else {
+        icon.color = ColorUtil.GRAY;
+        iconFrame.color = ColorUtil.GRAY;
+      }
+      tick.SetActive (!toggled);
     }
 
     private string GetIconName(HeroItemData data){

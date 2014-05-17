@@ -23,18 +23,28 @@ namespace TangGame.UI
     /// 生成测试用随机英雄数据
     /// </summary>
     /// <returns>The hero.</returns>
-    public HeroItemData RandomHero(){
+    public HeroItemData RandomHero (string heroId)
+    {
       HeroItemData hero = new HeroItemData ();
-      hero.order = Random.Range(0, heroIds.Length);
-      hero.id = heroIds[hero.order];
+      hero.id = heroId;
+      if (heroId.Equals("1")) {
+        hero.order = 3;
+        hero.lineType = 2;
+      }else if (heroId.Equals("2")) {
+        hero.order = 1;
+        hero.lineType = 0;
+      }else if (heroId.Equals("3")) {
+        hero.order = 2;
+        hero.lineType = 1;
+      }
       hero.name = "不告诉你";
-      hero.rank = Random.Range(1, 10);
-      hero.level = Random.Range(1, 99);
-      hero.stars = Random.Range(1, 5);
-      hero.lineType = Random.Range(0, 3);
-      hero.hp = Random.Range(1, 100);
+      hero.rank = Random.Range (1, 10);
+      hero.level = Random.Range (1, 99);
+      hero.stars = Random.Range (1, 5);
+
+      hero.hp = Random.Range (1, 100);
       hero.hpMax = 100;
-      hero.mp = Random.Range(1, 100);
+      hero.mp = Random.Range (1, 100);
       hero.mpMax = 100;
       return hero;
     }
@@ -77,8 +87,8 @@ namespace TangGame.UI
       StageItemData stage = new StageItemData ();
       stage.id = stageId;
       stage.chapterId = chapterId;
-      stage.desc = "这里有一个名叫New Blast的Boss。";
-      stage.name = "空手接白刃";
+      stage.desc = "涿县有英雄祭天地结拜桃圆，为桃园三结义。";
+      stage.name = "黄巾谋逆－涿县郊外";
       stage.maxCountById = 3;
       stage.vitCost = 6;
       if (stageId == 1) {
@@ -90,8 +100,8 @@ namespace TangGame.UI
         stage.type = 1;
         stage.status = 2;
       }
-      stage.enemyIds = "Axe,DoT,DoT,CM";
-      stage.bossId = "Zeus";
+      stage.enemyIds = "1,2";
+      stage.bossId = "3";
       stage.rewardIds = "371,372,373,374";
       return stage;
     }

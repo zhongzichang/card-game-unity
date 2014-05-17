@@ -24,6 +24,7 @@ namespace TangGame.UI
       HeroData = data;
       icon.spriteName = GetIconName(data);
       iconFrame.spriteName = GetIconFrameName(data);
+      boss.enabled = false;
       stars.maxPerLine = data.stars;
       stars.Reposition ();
     }
@@ -37,11 +38,11 @@ namespace TangGame.UI
     }
 
     private string GetIconName(HeroItemData data){
-      return data.id;
+      return "hero_icon_" + data.id.ToString();
     }
 
     private string GetIconFrameName(HeroItemData data){
-      return string.Format("hero_icon_frame_{0}", data.rank);
+      return "hero_frame_" + data.rank.ToString();
     }
   }
 }

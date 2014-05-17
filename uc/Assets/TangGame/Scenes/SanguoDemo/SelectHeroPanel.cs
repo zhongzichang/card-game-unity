@@ -12,13 +12,27 @@ namespace TangGame.UI
     public HeroListGrid backGrid;
 
     public SelectedHeroGrid selectedGrid;
+    public UIButton battleButton;
+
+    private ArrayList selectHeroes = new ArrayList();
     private Hashtable heroObjs = new Hashtable();
 
-    private void AddHero(HeroItemData data){
+    void Start(){
+      UIEventListener.Get (battleButton.gameObject).onClick += OnBattleButtonClicked;
+    }
+
+    public void AddHero(HeroItemData data){
       if(HeroStore.Instance.HasHero(data.id)){
         return;
       }
       AddHeroToList (data);
+    }
+
+    private void OnBattleButtonClicked(GameObject obj){
+      int levelId = -1;
+      Debug.Log ("===== ChallengeLevel ====");
+      // 开始战斗
+//      TangLevel.LevelController.ChallengeLevel (levelId, heroes);
     }
 
     private void AddHeroToList(HeroItemData data){
@@ -51,7 +65,12 @@ namespace TangGame.UI
       HeroItemObject obj = (HeroItemObject) heroObjs [heroId];
       if (obj == null)
         return;
-      obj.ToggleActive ();
+      if (obj.gameObject.activeSelf) {
+        obj.gameObject.SetActive (false);
+      } else {
+        selectHeroes.Add (int.Parse (obj.HeroData.id));
+        obj.gameObject.SetActive (true);
+      }
       UIGrid grid = obj.transform.parent.GetComponent<UIGrid> ();
       grid.Reposition ();
     }
@@ -87,10 +106,10 @@ namespace TangGame.UI
       return null;
     }
 
-    void OnGUI(){
-      if (GUILayout.Button ("AddHero")) {
-        AddHero (TestDataStore.Instance.RandomHero());
-      }
-    }
+//    void OnGUI(){
+//      if (GUILayout.Button ("AddHero")) {
+//        AddHero (TestDataStore.Instance.RandomHero());
+//      }
+//    }
   }
 }
