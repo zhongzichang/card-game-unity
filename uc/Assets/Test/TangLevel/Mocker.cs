@@ -224,8 +224,8 @@ namespace TangLevel
       Hero hero = new Hero ();  
       hero.id = 2;
       hero.resName = "hero_xc";
-      hero.maxHp = 100;
-      hero.hp = 100;
+      hero.maxHp = 120;
+      hero.hp = 120;
       hero.maxMp = 100;
       hero.mp = 0;
       hero.sort = 1;//UnityEngine.Random.Range (1, 20);
@@ -264,8 +264,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockHitEffector ();
       skill.chargeClip = "qianjinzhui";
       skill.releaseClip = "qianjinzhui1";
       skill.enable = true;
@@ -319,8 +319,8 @@ namespace TangLevel
       Hero hero = new Hero ();  
       hero.id = 3;
       hero.resName = "hero_zhangfei";
-      hero.maxHp = 100;
-      hero.hp = 100;
+      hero.maxHp = 120;
+      hero.hp = 120;
       hero.maxMp = 100;
       hero.mp = 0;
       hero.sort = 2;//UnityEngine.Random.Range (1, 20);
@@ -374,8 +374,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors[0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockHitEffector ();
       skill.chargeClip = "baqi";
       skill.releaseClip = "baqi1";
       //skill.releaseSpecials = new string[2];
