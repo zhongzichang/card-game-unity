@@ -8,6 +8,7 @@ using System.IO;
 using TangUtils;
 using TangGame.Xml;
 using PureMVC.Patterns;
+using TangPlace;
 
 namespace TangGame
 {

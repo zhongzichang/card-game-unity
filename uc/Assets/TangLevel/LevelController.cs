@@ -5,6 +5,7 @@ using TDB = TangDragonBones;
 using TG = TangGame;
 using TGU = TangGame.UI;
 using TUI = TangUI;
+using TangPlace;
 
 namespace TangLevel
 {
