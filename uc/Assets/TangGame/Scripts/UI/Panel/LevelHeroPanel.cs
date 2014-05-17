@@ -61,6 +61,13 @@ namespace TangGame
       }
     }
 
+    /// MP的特效开关
+    public void SwitchMpEffect(bool showMpEffect){
+      foreach( LevelHeroItem item in itemList){
+        item.SwitchMpEffect(showMpEffect);
+      }
+    }
+
     /*bool full;
     void OnGUI(){
       if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
