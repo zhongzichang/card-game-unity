@@ -266,7 +266,7 @@ namespace TangLevel
       LeftLevel ();
 
       // 暂停强设置为 home ，等加上 History 再做处理
-      PlaceController.Place = Place.home;
+      PlaceController.Back ();
 
     }
 
