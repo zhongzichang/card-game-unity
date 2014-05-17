@@ -636,11 +636,14 @@ namespace TangLevel
               levelResourcePanel.gameObject.SetActive (false);
               levelHeroPanel.gameObject.SetActive (false);
               battleResultPanel.gameObject.SetActive (true);
+
             } else {
               // 子关卡完成
               if (RaiseSubLevelCleaned != null) {
                 RaiseSubLevelCleaned (null, EventArgs.Empty);
               }
+
+              levelHeroPanel.SwitchMpEffect (false);
 
               // 显示下一子关卡按钮
               if (!levelNextPanel.gameObject.activeSelf)
@@ -851,6 +854,10 @@ namespace TangLevel
       ListenEnemyHeros ();
 
       // UI 控制 --
+
+      // 英雄头像MP效果打开
+      levelHeroPanel.SwitchMpEffect (true);
+
       // 隐藏下一个小关的按钮
       if (levelNextPanel.gameObject.activeSelf) {
         levelNextPanel.gameObject.SetActive (false);
