@@ -108,7 +108,11 @@ namespace TangLevel
       if (statusBhvr.IsPause) {
         statusBhvr.IsPause = false;
       }
+
       statusBhvr.Status = HeroStatus.idle;
+      if (dbBhvr != null) {
+        dbBhvr.Resume ();
+      }
 
       // 关卡控制
       LevelController.RaisePause += OnPause;

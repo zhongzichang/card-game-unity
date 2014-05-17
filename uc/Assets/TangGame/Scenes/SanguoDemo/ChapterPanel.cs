@@ -37,12 +37,6 @@ namespace TangGame.UI
   	
   	}
 
-//    void OnGUI(){
-//      if (GUILayout.Button ("AddCapter")) {
-//        AddChapter (TestDataStore.Instance.RandomChapter (0));
-//      }
-//    }
-
     private void OnNormalViewDragFinished(){
       int val = GetIndexByScrollBar (normalView.horizontalScrollBar.value);
       title.mainTexture = GetMapTitle (val);

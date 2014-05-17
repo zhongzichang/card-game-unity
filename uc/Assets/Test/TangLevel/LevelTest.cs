@@ -17,15 +17,16 @@ namespace TangLevel
 
 
     // test ............
+    /*
     void OnGUI ()
     {
 
       if (GUI.Button (new Rect (300, 10, 150, 50), "Load Level")) {
 
-        LevelController.ChallengeLevel (1, Mocker.MockGroup ());
+        LevelController.ChallengeLevel (1, Mocker.MockGroup (3));
 
       }
-    }
+    }*/
     // .................
   }
 }

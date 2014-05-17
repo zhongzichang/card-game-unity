@@ -337,8 +337,11 @@ namespace TangLevel
     {
 
       if (heroIds.Length > 0) {
+
+        PlaceController.Place = Place.level;
+
         // TODO 这里模拟一份团队数据
-        LevelController.ChallengeLevel (1, Mocker.MockGroup (heroIds.Length));
+        LevelController.ChallengeLevel (1, Mocker.MockGroup (heroIds));
       }
 
     }
@@ -357,6 +360,17 @@ namespace TangLevel
         // 显示UI
         if (!levelUIRoot.activeSelf) {
           levelUIRoot.SetActive (true);
+        }
+
+        // 设置各个面板的显示和隐藏
+        if (!levelControllPanel.gameObject.activeSelf) {
+          levelControllPanel.gameObject.SetActive (true);
+        }
+        if (!levelResourcePanel.gameObject.activeSelf) {
+          levelResourcePanel.gameObject.SetActive (true);
+        }
+        if (battleResultPanel.gameObject.activeSelf) {
+          battleResultPanel.gameObject.SetActive (false);
         }
 
         // 设置当前关卡
