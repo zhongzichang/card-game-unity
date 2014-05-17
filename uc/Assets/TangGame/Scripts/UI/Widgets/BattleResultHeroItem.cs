@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI;
+using TangGame.Xml;
 
 namespace TangGame{
 	
@@ -38,6 +39,12 @@ namespace TangGame{
       levelUpSprite.gameObject.SetActive(battleResultHeroData.levelUp);
       expLabel.text = "[cfa654]EXP+[-][f7e4c4]" + battleResultHeroData.exp + "[-]";
       levelLabel.text = battleResultHeroData.level.ToString();
+
+      HeroBase heroBase = HeroCache.instance.GetHero(battleResultHeroData.id);
+      if(heroBase != null){
+        frame.spriteName = Global.GetHeroIconFrame(battleResultHeroData.upgrade);
+        icon.spriteName = heroBase.Xml.avatar;
+      }
 
       float percent = battleResultHeroData.exp / battleResultHeroData.maxExp;
       expFullLabel.gameObject.SetActive(percent >= 1);

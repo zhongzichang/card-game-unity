@@ -51,38 +51,6 @@ namespace TangGame.UI{
       heroItem.gameObject.SetActive(false);
       propsInfoItem.gameObject.SetActive(false);
 
-			Props props = new Props();
-			props.data = new TangGame.Xml.PropsData();
-			props.data.name = "测试道具";
-			props.data.type = 2;
-			props.count = 2;
-			props.data.icon = "104";
-			props.data.level = 5;
-			props.data.info = "使用后可以获得一个小萝莉";
-			props.data.description = "这是测试道具，大家都懂得";
-
-      BattleResultData data = new BattleResultData();
-      data.type = BattleResultType.Star1;
-      data.level = 20;
-      data.exp = 12;
-      data.gold = 807;
-      data.propsList.Add(props);
-      data.propsList.Add(props);
-      data.propsList.Add(props);
-      data.propsList.Add(props);
-
-      BattleResultHeroData battleResultHeroData = new BattleResultHeroData();
-      battleResultHeroData.id = 1;
-      battleResultHeroData.evolve = 1;
-      battleResultHeroData.maxExp = battleResultHeroData.exp = 100;
-      battleResultHeroData.level = 20;
-      battleResultHeroData.levelUp = false;
-      battleResultHeroData.upgrade = 2;
-      data.herosList.Add(battleResultHeroData);
-      data.herosList.Add(battleResultHeroData);
-      data.herosList.Add(battleResultHeroData);
-
-      this.mParam = data;
       started = true;
       UpdateData();
 		}
@@ -122,8 +90,11 @@ namespace TangGame.UI{
         }else if(data.type == BattleResultType.Star1){
           winStars[0].gameObject.SetActive(true);
         }else if(data.type == BattleResultType.Star2){
+          winStars[0].gameObject.SetActive(true);
           winStars[1].gameObject.SetActive(true);
         }else if(data.type == BattleResultType.Star3){
+          winStars[0].gameObject.SetActive(true);
+          winStars[1].gameObject.SetActive(true);
           winStars[2].gameObject.SetActive(true);
         }
 
