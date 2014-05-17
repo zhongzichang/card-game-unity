@@ -162,13 +162,6 @@ namespace TangGame.UI
 		}
 	#endregion
 
-		void OnGUI ()
-		{
-			if (GUILayout.Button ("refash")) {
-				this.repositionNow ();
-			}
-		}
-
 		/// <summary>
 		/// 更新某个
 		/// </summary>
@@ -190,7 +183,7 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		void AddHeroItem (HeroBase data)
 		{
-			HeroItem item = Resources.Load<HeroItem> (UIContext.getWidgetsPath(UIContext.HERO_ITEM_NAME));
+			HeroItem item = Resources.Load<HeroItem> (UIContext.getWidgetsPath(UIContext.HERO_VIEW_ITEM_NAME));
 			if (data.Islock) {
 				item = NGUITools.AddChild (HeroLocking, item.gameObject).GetComponent<HeroItem> ();
 

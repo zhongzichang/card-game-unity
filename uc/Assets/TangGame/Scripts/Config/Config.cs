@@ -17,6 +17,6 @@ namespace TangGame
 		public static Dictionary<int, PropsData> propsXmlTable = new Dictionary<int, PropsData> ();
 		public static Dictionary<int,EvolveData> evolveXmlTable = new Dictionary<int, EvolveData> ();
 		public static Dictionary<int,EnchantsConsumedData> enchantsConsumedXmlTable = new Dictionary<int, EnchantsConsumedData>();
-   
+    public static Dictionary<int, LevelsData> levelsXmlTable = new Dictionary<int, LevelsData> ();
 	}
 }

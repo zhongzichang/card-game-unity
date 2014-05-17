@@ -1,6 +1,10 @@
-
 using System.Xml;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using System.Xml.Serialization;
+using TangUtils;
+using TangGame.UI;
 
 namespace TangGame.Xml
 {
@@ -46,5 +50,25 @@ namespace TangGame.Xml
 		public string lv3_dialogue;
 		/// 关卡美术资源
 		public string resources;
+
+
+    [XmlRoot ("root")]
+    [XmlLate ("levels")]
+    public class LevelsRoot
+    {
+      [XmlElement ("value")]
+      public List<LevelsData> items = new List<LevelsData> ();
+      
+      public static void LateProcess (object obj)
+      {
+        LevelsRoot root = obj as LevelsRoot;
+        int i = 0;
+        foreach (LevelsData item in root.items) {
+          Config.levelsXmlTable[item.id] = item;
+          PropsCache.instance.AddPropsLevelRelation(item);
+        }
+      }
+    }
+
 	}
 }
