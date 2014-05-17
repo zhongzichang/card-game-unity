@@ -6,6 +6,7 @@ using TG = TangGame;
 using TGU = TangGame.UI;
 using TUI = TangUI;
 using TangPlace;
+using System.Collections;
 
 namespace TangLevel
 {
@@ -630,6 +631,11 @@ namespace TangLevel
             levelResourcePanel.gameObject.SetActive (false);
             levelHeroPanel.gameObject.SetActive (false);
             battleResultPanel.gameObject.SetActive (true);
+            ArrayList heroIds = new ArrayList ();
+            foreach (Hero hero in LevelContext.selfGroup.heros) {
+              heroIds.Add (hero.id);
+            }
+            battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult(heroIds, 0);
           }
         } else {
           // 是敌方英雄
@@ -650,6 +656,13 @@ namespace TangLevel
               levelResourcePanel.gameObject.SetActive (false);
               levelHeroPanel.gameObject.SetActive (false);
               battleResultPanel.gameObject.SetActive (true);
+
+              ArrayList heroIds = new ArrayList ();
+              foreach (Hero hero in LevelContext.selfGroup.heros) {
+                heroIds.Add (hero.id);
+              }
+              int resultType = UnityEngine.Random.Range (1, 6);
+              battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult(heroIds, resultType);
 
             } else {
               // 子关卡完成
