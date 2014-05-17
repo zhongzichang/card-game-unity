@@ -120,11 +120,5 @@ namespace TangGame.UI
       if (data.IsBack()) return backGrid;
       return null;
     }
-
-//    void OnGUI(){
-//      if (GUILayout.Button ("AddHero")) {
-//        AddHero (TestDataStore.Instance.RandomHero());
-//      }
-//    }
   }
 }
