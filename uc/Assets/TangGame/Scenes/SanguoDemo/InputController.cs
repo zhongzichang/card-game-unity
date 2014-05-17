@@ -19,7 +19,7 @@ namespace TangGame
 			}
 
 			float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x * dragScale;
-			if (new_pos >= -10.24 && new_pos <= 0) {
+      if (new_pos > -10 && new_pos < 0.1) {
 				skyLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 4));
 				mountainLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 2));
 				grassLayer.transform.Translate (Vector3.right * gesture.DeltaMove.x * dragScale);
