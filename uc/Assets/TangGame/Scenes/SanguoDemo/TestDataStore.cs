@@ -4,7 +4,6 @@ using System.Collections;
 namespace TangGame.UI
 {
   public class TestDataStore {
-
     static private TestDataStore _instance = null;
     private TestDataStore(){}
 
@@ -18,6 +17,43 @@ namespace TangGame.UI
     }
 
     private string[] heroIds = {"1", "2", "3",};
+
+    /// <summary>
+    /// 生成测试用随机战斗结果
+    /// </summary>
+    /// <returns>The hero.</returns>
+    public static object RandomBattleResult (ArrayList heroIds, int resultType)
+    {
+      Props props = new Props();
+      props.data = new TangGame.Xml.PropsData();
+      props.data.name = "测试道具";
+      props.data.type = 2;
+      props.count = 2;
+      props.data.icon = "104";
+      props.data.level = 5;
+      props.data.info = "使用后可以获得一个小萝莉";
+      props.data.description = "这是测试道具，大家都懂得";
+
+      BattleResultData data = new BattleResultData();
+      data.type = (BattleResultType)resultType;
+      data.level = 20;
+      data.exp = 12;
+      data.gold = 807;
+      data.propsList.Add(props);
+
+      foreach (int heroId in heroIds) {
+        BattleResultHeroData battleResultHeroData = new BattleResultHeroData ();
+        battleResultHeroData.id = heroId;
+        battleResultHeroData.evolve = 1;
+        battleResultHeroData.maxExp = battleResultHeroData.exp = 100;
+        battleResultHeroData.level = 20;
+        battleResultHeroData.levelUp = false;
+        battleResultHeroData.upgrade = 2;
+        data.herosList.Add (battleResultHeroData);
+      }
+
+      return data;
+    }
 
     /// <summary>
     /// 生成测试用随机英雄数据

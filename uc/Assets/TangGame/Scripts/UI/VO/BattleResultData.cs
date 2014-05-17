@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace TangGame.UI{
 	/// 战斗结果面板类型，标示结果
 	public enum BattleResultType{
-		Lose,
+    Lose = 0,
 		Timeout,
 		Win,
 		Star1,

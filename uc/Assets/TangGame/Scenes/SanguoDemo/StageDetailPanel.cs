@@ -82,7 +82,7 @@ namespace TangGame.UI
     private void OnButtonClicked(GameObject obj){
 			Debug.Log ("OnButtonClicked" + obj);
 			// 进入选择英雄界面
-			UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_SELECT_HERO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
+      UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_SELECT_HERO_PANEL_NAME, UIPanelNode.OpenMode.OVERRIDE, UIPanelNode.BlockMode.TEXTURE);
     }
   }
 }
