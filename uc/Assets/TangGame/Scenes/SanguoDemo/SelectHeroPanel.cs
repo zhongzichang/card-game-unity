@@ -13,8 +13,9 @@ namespace TangGame.UI
 
     public SelectedHeroGrid selectedGrid;
     public UIButton battleButton;
+    public UILabel messageLabel;
 
-    private ArrayList selectHeroes = new ArrayList();
+    private ArrayList selectedHeroes = new ArrayList();
     private Hashtable heroObjs = new Hashtable();
 
     void Start(){
@@ -31,8 +32,20 @@ namespace TangGame.UI
     private void OnBattleButtonClicked(GameObject obj){
       int levelId = -1;
       Debug.Log ("===== ChallengeLevel ====");
-      // 开始战斗
-//      TangLevel.LevelController.ChallengeLevel (levelId, heroes);
+      if (selectedHeroes.Count == 0) {
+        StartCoroutine (ShowToast ("请选择上阵英雄"));
+      }else{
+        // 开始战斗
+        int[] heroes = (int[])selectedHeroes.ToArray ( typeof( int ));
+        TangLevel.LevelController.ChallengeLevel (levelId, heroes);
+      }
+    }
+
+    private IEnumerator ShowToast(string message){
+      messageLabel.text = message;
+      messageLabel.gameObject.SetActive (true);
+      yield return new WaitForSeconds (1);
+      messageLabel.gameObject.SetActive (false);
     }
 
     private void AddHeroToList(HeroItemData data){
@@ -65,10 +78,12 @@ namespace TangGame.UI
       HeroItemObject obj = (HeroItemObject) heroObjs [heroId];
       if (obj == null)
         return;
+      int tempId = int.Parse(obj.HeroData.id);
       if (obj.gameObject.activeSelf) {
+        selectedHeroes.Remove (tempId);
         obj.gameObject.SetActive (false);
       } else {
-        selectHeroes.Add (int.Parse (obj.HeroData.id));
+        selectedHeroes.Add (tempId);
         obj.gameObject.SetActive (true);
       }
       UIGrid grid = obj.transform.parent.GetComponent<UIGrid> ();
