@@ -58,7 +58,8 @@ namespace TangGame.UI
 		public GameObject DetailButton;
 		Props mProps;
 
-		void Start(){
+		void Start ()
+		{
 			UIEventListener.Get (DetailButton).onClick += OnDetailButtonClick;
 		}
 		// Update is called once per frame
@@ -66,8 +67,10 @@ namespace TangGame.UI
 		{
 	
 		}
-		void OnDetailButtonClick(GameObject obj){
-			TangGame.UIContext.mgrCoC.LazyOpen (PropsDetailsPanel.name, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.SPRITE,mProps.data);
+
+		void OnDetailButtonClick (GameObject obj)
+		{
+			TangGame.UIContext.mgrCoC.LazyOpen (PropsDetailsPanel.name, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, mProps.data);
 		}
 
 		/// <summary>
@@ -83,17 +86,17 @@ namespace TangGame.UI
 				this.GetComponent<TweenPosition> ().ResetToBeginning ();
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
-      this.UpPropsIcon (data.data.icon);
-      this.UpPropsFrames (data.data.upgrade);
+			this.UpPropsIcon (data.data.icon);
+			this.UpPropsFrames (data.data.upgrade);
 			this.UpPropsInfo (data);
-      this.UpPropsName (data.data.name);
-      this.UpPropsPrice (data.data.selling_price);
+			this.UpPropsName (data.data.name);
+			this.UpPropsPrice (data.data.selling_price);
 			if (data.net != null) {
-        this.UpPropsCount (data.net.count);
+				this.UpPropsCount (data.net.count);
 			} else {
 				this.UpPropsCount (0);
 			}
-      this.UpDescription (data.data.description);
+			this.UpDescription (data.data.description);
 
 		}
 
@@ -148,7 +151,7 @@ namespace TangGame.UI
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "";
 			if (PropsType.EQUIP == type) {
-				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength >0) {
+				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength > 0) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
 					infoStr += UIPanelLang.AGILE + "+";
@@ -250,17 +253,17 @@ namespace TangGame.UI
 			}
 			//如果是卷轴
 			if (PropsType.SCROLLS == type) {
-        PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData(data.data.id);
-        if(propsRelationData != null && propsRelationData.synthetics.Count > 0){
-					infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics[0].name);
-        }
+				PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData (data.data.id);
+				if (propsRelationData != null && propsRelationData.synthetics.Count > 0) {
+					infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics [0].name);
+				}
 			}
 			//如果是灵魂石
 			if (PropsType.SOULROCK == type) {
-        TangGame.Xml.HeroData heroData = HeroCache.instance.GetSoulStoneRelation(data.data.id);
-        if (heroData != null) {
-          int count = Config.evolveXmlTable [heroData.evolve].val;
-					infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroData.name);
+				TangGame.Xml.HeroData heroData = HeroCache.instance.GetSoulStoneRelation (data.data.id);
+				if (heroData != null) {
+					int count = Config.evolveXmlTable [heroData.evolve].val;
+					infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, count, heroData.name);
 				}
 
 			}
