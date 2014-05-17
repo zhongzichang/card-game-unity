@@ -57,6 +57,21 @@ namespace TangLevel
       return group;
     }
 
+    public static Group MockGroup(int[] heroIds){
+      Group group = new Group ();
+      group.heros = new Hero[heroIds.Length];
+      for (int i = 0; i < group.heros.Length; i++) {
+        if (heroIds [i] == 1) {
+          group.heros [i] = MockHeroZf ();
+        } else if (heroIds [i] == 2) {
+          group.heros [i] = MockHeroXc ();
+        } else {
+          group.heros [i] = MockHeroZhangfei ();
+        }
+      }
+      return group;
+    }
+
     public static Group MockGroup ()
     {
 

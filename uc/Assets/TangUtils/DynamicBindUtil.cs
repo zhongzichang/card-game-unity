@@ -46,7 +46,7 @@ public class DynamicBindUtil
     }
 		if (script == null)
 		{
-      Debug.LogError("bind " +scriptName + " faild");
+      Debug.Log("bind " +scriptName + " faild");
 			return null;
 		}
 		//动态进行组件和脚本变量的绑定
