@@ -33,6 +33,7 @@ namespace TangLevel
 
         // 绑定到目标身上
         myTransform.localPosition = w.target.transform.localPosition + OFFSET;
+        Hit ();
 
       } else {
         GobjManager.Release (gameObject);

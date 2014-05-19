@@ -36,7 +36,7 @@ namespace TangLevel
     {
       GameObject gobj = TD.DbgoManager.FetchUnused (hero.resName);
       if (gobj != null) {
-        gobj.transform.localScale = new Vector3 (3F, 3F, 1);
+        gobj.transform.localScale = new Vector3 (4F, 4F, 1);
         // DirectedNavAgent
         DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
         if (agent == null) {
@@ -50,7 +50,7 @@ namespace TangLevel
         if (navigable == null) {
           navigable = gobj.AddComponent<DirectedNavigable> ();
         }
-        navigable.m_speed = 8F;
+        navigable.m_speed = 10F;
         if (!navigable.enabled)
           navigable.enabled = true;
         // HeroStatusBhvr

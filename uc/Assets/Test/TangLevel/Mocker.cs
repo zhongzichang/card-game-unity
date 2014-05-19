@@ -229,7 +229,7 @@ namespace TangLevel
       hero.maxMp = 100;
       hero.mp = 0;
       hero.sort = 1;//UnityEngine.Random.Range (1, 20);
-      hero.ai = new string[]{ "AutoFire" };
+      hero.ai = new string[]{ "AutoFire", "JumpRunning" };
 
       // skill
       List<Skill> skills = new List<Skill> ();
@@ -238,7 +238,7 @@ namespace TangLevel
       skills.Add (MockZhongjiSkill ());
       skills.Add (MockYemansicheSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
+      hero.skillQueue = new int[]{ 0, 2, 3 };
 
 
       tmp++;
@@ -248,8 +248,8 @@ namespace TangLevel
     public static Skill MockXcAttackSkill ()
     {
       Skill skill = new Skill ();
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockHitEffector ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
@@ -269,7 +269,7 @@ namespace TangLevel
       skill.chargeClip = "qianjinzhui";
       skill.releaseClip = "qianjinzhui1";
       skill.enable = true;
-      skill.bigMove = false;
+      skill.bigMove = true;
       skill.distance = 6;
       skill.cd = 2;
 
@@ -280,8 +280,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors[0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockHitEffector ();
       skill.chargeClip = "zhongji";
       skill.releaseClip = "zhongji1";
       //skill.releaseSpecials = new string[2];
@@ -300,8 +300,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockHitEffector ();
       skill.chargeClip = "yemansiche";
       skill.releaseClip = "yemansiche1";
       skill.enable = true;
@@ -333,7 +333,7 @@ namespace TangLevel
       skills.Add (MockBaqiSkill ());
       skills.Add (MockDaheSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
+      hero.skillQueue = new int[]{ 0, 2, 3 };
 
 
       tmp++;
@@ -343,13 +343,13 @@ namespace TangLevel
     public static Skill MockZhangfeiAttackSkill ()
     {
       Skill skill = new Skill ();
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockHitEffector ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 12;
+      skill.distance = 8;
       skill.cd = 2;
 
       return skill;
@@ -359,12 +359,12 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockHitEffector ();
       skill.chargeClip = "shenli";
       skill.enable = true;
-      skill.bigMove = false;
-      skill.distance = 12;
+      skill.bigMove = true;
+      skill.distance = 8;
       skill.cd = 2;
 
       return skill;
@@ -384,7 +384,7 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = false;
       skill.chargeTime = 2F;
-      skill.distance = 12;
+      skill.distance = 8;
       skill.cd = 2;
 
       return skill;
@@ -400,7 +400,7 @@ namespace TangLevel
       skill.releaseClip = "dahe1";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 12;
+      skill.distance = 8;
       skill.cd = 2;
 
       return skill;
