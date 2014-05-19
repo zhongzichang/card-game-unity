@@ -134,6 +134,11 @@ namespace TangGame.UI
 		/// The FUL l_ STA.
 		/// </summary>
 		public const string FULL_STAR = "满星";
+		/// <summary>
+		/// The LOA d_ HER o_ IN.
+		/// </summary>
+		public const string LOAD_HERO_ING = "正在集合你的英雄...";
+		public const string NOT_SUMMON_HERO = "以下英雄尚未招募";
 
 		public const string EQUIP = "装备";
 		public const string OK = "确定";
