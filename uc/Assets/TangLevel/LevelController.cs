@@ -303,7 +303,7 @@ namespace TangLevel
     /// <param name="g">The green component.</param>
     private static void OnLevelNextBtnClick (GameObject g)
     {
-      //levelNextPanel.gameObject.seta
+      levelNextPanel.gameObject.SetActive (false);
       ChallengeNextSubLevel ();
     }
 
@@ -514,8 +514,6 @@ namespace TangLevel
       GameObject sgobj = sourceHeroBhvr.gameObject;
       List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
         ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
-
-      //Debug.Log (" ------- sourceHeroBhvr.hero.battleDirection = " + sourceHeroBhvr.hero.battleDirection);
 
       return FindClosestTarget (sgobj, ol);
     }

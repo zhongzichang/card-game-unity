@@ -19,6 +19,7 @@ namespace TangGame.UI
 		public GameObject HeroTable;
 		public GameObject HeroLocking;
 		public GameObject HeroUnlock;
+		public GameObject LineLabel;
 		private UIToggle lastToggle = null;
 		private Dictionary<int,HeroItem> heroItems = new Dictionary<int, HeroItem> ();
 		private HeroViewPanelMediator mediator;
@@ -31,7 +32,7 @@ namespace TangGame.UI
 
 		public class HeroViewPanelMediator : Mediator
 		{
-
+			//TODO监听
 		}
 
 		void OnEnable(){
@@ -48,19 +49,24 @@ namespace TangGame.UI
 			UIEventListener.Get (ToggleBefore.gameObject).onClick += OnToggleBeforeClick;
 			UIEventListener.Get (ToggleLater.gameObject).onClick += OnToggleLaterClick;
 			UIEventListener.Get (ToggleMedium.gameObject).onClick += OnToggleMediumClick;
-			this.LoadHeroAll ();
+			StartCoroutine(LoadHeroAll ());
 		}
 
 		/// <summary>
 		/// 加载所有的英雄
 		/// </summary>
-		void LoadHeroAll(){
-      foreach(HeroBase herobase in HeroCache.instance.heroBeseTable.Values){
-				this.UpHeroItem (herobase);
-			}
-			this.repositionNow ();
-		}
+		IEnumerator LoadHeroAll(){
 
+			UILabel lineLab = LineLabel.GetComponent<UILabel> ();
+			lineLab.text = "";
+			foreach(HeroBase herobase in HeroCache.instance.heroBeseTable.Values){
+				this.UpHeroItem (herobase);
+				yield return new WaitForSeconds (0.01f);
+			}
+			HideAllItem (false);
+			this.repositionNow ();
+			lineLab.text = UIPanelLang.NOT_SUMMON_HERO;
+		}
 	
 		// Update is called once per frame
 		void Update ()
