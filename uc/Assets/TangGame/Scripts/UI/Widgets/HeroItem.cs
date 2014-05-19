@@ -120,8 +120,8 @@ namespace TangGame.UI
 					int len = heroBase.EquipBases.Length;
 					if (len > i && equips [i] != null) {
 						Props [i].spriteName = equips [i].data.icon;
-						UISprite icon = Props [i].GetComponentsInChildren<UISprite> () [0];
-						UISprite frame = Props [i].GetComponentsInChildren<UISprite> () [1];
+						UISprite icon = Props [i].GetComponentsInChildren<UISprite> (true) [0];
+						UISprite frame = Props [i].GetComponentsInChildren<UISprite> (true) [1];
 
 						icon.spriteName = equips [i].data.icon;
 						frame.spriteName = Global.GetPropFrameName (1);
