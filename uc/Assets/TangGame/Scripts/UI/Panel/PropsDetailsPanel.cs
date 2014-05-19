@@ -69,6 +69,10 @@ namespace TangGame.UI{
         props = (PropsData)this.mParam;
         data = PropsCache.instance.GetPropsRelationData(props.id);
       }
+
+      frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.upgrade);
+      icon.spriteName = props.icon;
+
       isShow = data != null;
 
       if(!isShow){
@@ -84,9 +88,6 @@ namespace TangGame.UI{
         syntheticGroup.gameObject.SetActive(false);
 				return;
 			}
-
-      frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.upgrade);
-      icon.spriteName = props.icon;
 
 			GameObject go = null;
 			int count = 0;
