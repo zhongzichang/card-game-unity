@@ -23,7 +23,7 @@ namespace TangGame.UI
 		/// The properties table.
 		/// 道具table 对象
 		/// </summary>
-		public GameObject PropsTableObj;
+		public GameObject PropsGridObj;
 		/// <summary>
 		/// The properties item.
 		/// 道具对象
@@ -156,7 +156,7 @@ namespace TangGame.UI
 		/// 英雄对象列表
 		/// </summary>
 		Dictionary<int,HeroAvatarItem> heroAvatarItemTable = new Dictionary<int, HeroAvatarItem> ();
-/// <summary>
+		/// <summary>
 		/// The properties base item table.
 		/// 背包道具列表
 		/// </summary>
@@ -333,17 +333,49 @@ namespace TangGame.UI
 			if (propsBaseItemTable.ContainsKey (props.data.id)) {
 				item = propsBaseItemTable [props.data.id];
 			} else {
-				item = NGUITools.AddChild (PropsTableObj, PropsItemObj).GetComponent<PropsItem> ();//添加一个对象
+				item = NGUITools.AddChild (PropsGridObj, PropsItemObj).GetComponent<PropsItem> ();//添加一个对象
 				propsBaseItemTable.Add (props.data.id, item);
+				UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
+				UIEventListener.Get (item.MinusBtn.gameObject).onClick += MinusBtnOnClick;
 			}
 			item.Flush (props);
 			if (!item.gameObject.activeSelf) {
 				item.gameObject.SetActive (true);
 			}
-			UIEventListener.Get (item.gameObject).onClick -= PropsItemOnClick;
-			UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
-			this.PropsTableObj.GetComponent<UITable> ().repositionNow = true;
+			this.PropsGridObj.GetComponent<UIGrid> ().repositionNow = true;
 			return item;
+		}
+
+		/// <summary>
+		/// Minuses the button on click.
+		/// 道具减号被点击
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		void MinusBtnOnClick (GameObject obj)
+		{
+			PropsItem itemTmp = obj.transform.parent.gameObject.GetComponent<PropsItem> ();
+			if (itemTmp == null)
+				return;
+			mEnExpSum -= itemTmp.data.data.enchant_points;
+			mEnExpCurrent -= itemTmp.data.data.enchant_points;
+			int expMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp + 1);
+			while (mEnExpCurrent <= 0) {
+				if (--mEnLvUp >= 0) {
+					expMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp + 1);
+					mEnExpCurrent = expMax + mEnExpCurrent;
+				} else {
+					mEnExpCurrent = 0;
+				}
+			}
+			propsCheckedCountTable [itemTmp] -= 1;
+			if (propsCheckedCountTable [itemTmp] == 0) {
+				obj.SetActive (false);
+				itemTmp.propsCountLabel.text = itemTmp.data.net.count.ToString();
+			} else {
+				itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.net.count;
+			}
+			SetEnchantValue (expMax);
+			
 		}
 
 		/// <summary>
@@ -356,15 +388,10 @@ namespace TangGame.UI
 			PropsItem itemTmp = obj.GetComponent<PropsItem> ();
 			if (itemTmp == null)
 				return;
-
-			mEnExpSum += itemTmp.data.data.enchant_points;
-			mEnExpCurrent += itemTmp.data.data.enchant_points;
 			int expMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp + 1);
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0)
 				return;
-
-
 
 			if (propsCheckedCountTable.ContainsKey (itemTmp)) {
 				//这是已经标示的物品大于当前物品的数量
@@ -375,12 +402,29 @@ namespace TangGame.UI
 			} else {
 				propsCheckedCountTable.Add (itemTmp, 1);
 			}
+
+			itemTmp.MinusBtn.gameObject.SetActive (true);
+			mEnExpSum += itemTmp.data.data.enchant_points;
+			mEnExpCurrent += itemTmp.data.data.enchant_points;
+
+
+
 			while (mEnExpCurrent + 1 > expMax && expMax != 0) {
 				mEnLvUp++;
 				mEnExpCurrent = mEnExpCurrent - expMax;
-//				expTmp = enCXml.GetExpSpend (mEquipBase.Net.enchantsLv + mEnLvUp);
 				expMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp + 1);
 			}
+			itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.net.count;
+			SetEnchantValue (expMax);
+		}
+
+		/// <summary>
+		/// Sets the enchant value.
+		/// 设置附魔点数的值
+		/// </summary>
+		/// <param name="expMax">Exp max.</param>
+		void SetEnchantValue (int expMax)
+		{
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0) {
 				mExpSprite.fillAmount = 1f;
@@ -391,7 +435,6 @@ namespace TangGame.UI
 				mExpLab.text = mEnExpCurrent + "/" + expMax; 
 				mGoldSpendLab.text = (mEnExpSum * enCXml.gold_spend).ToString ();
 			}
-			itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.net.count;
 		}
 
 		/// <summary>
