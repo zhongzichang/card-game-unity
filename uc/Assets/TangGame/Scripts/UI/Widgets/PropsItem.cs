@@ -9,6 +9,7 @@ namespace TangGame.UI
 		public UISprite frameSprite;
 		public UILabel propsCountLabel;
 		public UISprite propsIconSprite;
+		public UISprite MinusBtn;
 		public Props data;
 		private bool showCount = true;
 
@@ -29,6 +30,9 @@ namespace TangGame.UI
 		void Update ()
 		{
 	
+		}
+		void OnEnable(){
+			MinusBtn.gameObject.SetActive (false);
 		}
 
 		/// <summary>
