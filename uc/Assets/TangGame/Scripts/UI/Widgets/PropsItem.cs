@@ -32,7 +32,9 @@ namespace TangGame.UI
 	
 		}
 		void OnEnable(){
-			MinusBtn.gameObject.SetActive (false);
+			if (MinusBtn != null) {
+				MinusBtn.gameObject.SetActive (false);
+			}
 		}
 
 		/// <summary>
