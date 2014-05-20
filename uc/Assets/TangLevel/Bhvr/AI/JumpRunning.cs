@@ -12,6 +12,7 @@ namespace TangLevel
     public static readonly string SPEED_ZERO = "speed_zero";
     public static readonly string SPEED_RESUME = "speed_resume";
     public const float ACCELERATION_SCALE = 4F; // 加速比例
+    public const float LANDING_SPEED = 6F;
     private DirectedNavigable navigable;
     private DirectedNavAgent agent;
     private HeroStatusBhvr statusBhvr;
@@ -60,7 +61,7 @@ namespace TangLevel
       // transform
       myTransform = transform;
 
-      mySpeed = navigable.Speed * 2;
+      mySpeed = navigable.Speed * 1.3F;
       acceleration = ACCELERATION_SCALE * mySpeed;
     }
 
@@ -87,7 +88,7 @@ namespace TangLevel
       if (fe != null && statusBhvr.Status == HeroStatus.running) {
 
         if (SPEED_ZERO.Equals (fe.FrameLabel)) {
-          agent.speed = 2;
+          agent.speed = LANDING_SPEED;
         } else if (SPEED_RESUME.Equals (fe.FrameLabel)) {
           speedResume = true;
         }
@@ -105,7 +106,7 @@ namespace TangLevel
         agent.speed = navigable.Speed;
         speedResume = false;
       } else if (statusBhvr.Status == HeroStatus.running) {
-        agent.speed = 2;
+        agent.speed = LANDING_SPEED;
         speedResume = true;
       }
     }
