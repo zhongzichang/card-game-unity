@@ -10,7 +10,7 @@ namespace TangGame
 		public GameObject mountainLayer;
 		public GameObject skyLayer;
 		public Transform pressed;
-		private float dragScale = 0.03f;
+		private float dragScale = 3f;
 
 		void OnDrag (DragGesture gesture)
 		{
@@ -19,7 +19,7 @@ namespace TangGame
 			}
 
 			float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x * dragScale;
-      if (new_pos > -10 && new_pos < 0.1) {
+      if (new_pos > -256 && new_pos < 512) {
 				skyLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 4));
 				mountainLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 2));
 				grassLayer.transform.Translate (Vector3.right * gesture.DeltaMove.x * dragScale);
@@ -42,10 +42,8 @@ namespace TangGame
 					Debug.Log ("OnTap " + obj.name);
 					if (obj.name == "Enhance") {
 						Debug.Log ("Boom!");
-//					TangGame.UIContext.mgrCoC.LazyOpen ();
 						UIContext.mgrCoC.LazyOpen (UIContext.ENCHANTS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
 					}else if(obj.name.Equals("Pve")){
-
 						UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_PVE_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
 					}
 				}
