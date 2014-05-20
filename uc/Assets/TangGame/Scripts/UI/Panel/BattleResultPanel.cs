@@ -34,6 +34,12 @@ namespace TangGame.UI{
 
     /// 存储创建的ITEM，便于删除销毁
     private List<GameObject> items = new List<GameObject>();
+    //显示动画使用变量
+    private int showPropsInfoItemCount;
+    private int showPropsInfoItemTotal;
+    private int showBattleResultHeroItemCount;
+    private int showBattleResultHeroItemTotal;
+    private float time = 0;
 
 		void Awake(){
 			winNextBtn.onClick += NextBtnHandler;
@@ -54,6 +60,25 @@ namespace TangGame.UI{
       started = true;
       UpdateData();
 		}
+
+    void Update(){
+      time += Time.deltaTime;
+      if(time < 0.2f){
+        return;
+      }else{
+        time = 0;
+      }
+
+      if(showPropsInfoItemCount < showPropsInfoItemTotal){
+        items[showPropsInfoItemCount].gameObject.SetActive(true);
+        showPropsInfoItemCount++;
+      }
+
+      if(showBattleResultHeroItemCount < showBattleResultHeroItemTotal){
+        items[showBattleResultHeroItemCount].gameObject.SetActive(true);
+        showBattleResultHeroItemCount++;
+      }
+    }
 
 		public object param{
 			get{return this.mParam;}
@@ -98,25 +123,32 @@ namespace TangGame.UI{
           winStars[2].gameObject.SetActive(true);
         }
 
+        showPropsInfoItemCount = 0;
+
         Vector3 tempPosition = Vector3.zero;
         foreach(Props props in data.propsList){
           GameObject go = UIUtils.Duplicate(this.propsInfoItem.gameObject, this.propsInfoItem.transform.parent.gameObject);
           go.transform.localPosition = tempPosition;
           tempPosition.x += 100;
+          go.SetActive(false);
           PropsInfoItem item = go.GetComponent<PropsInfoItem>();
           item.data = props;
           items.Add(go);
         }
-        
+        showPropsInfoItemTotal = items.Count;
+
+        showBattleResultHeroItemCount = showPropsInfoItemTotal;
         tempPosition = Vector3.zero;
         foreach(BattleResultHeroData battleResultHeroData in data.herosList){
           GameObject go = UIUtils.Duplicate(this.heroItem.gameObject, this.heroItem.transform.parent.gameObject);
           go.transform.localPosition = tempPosition;
           tempPosition.x += 128;
+          go.SetActive(false);
           BattleResultHeroItem item = go.GetComponent<BattleResultHeroItem>();
           item.data = battleResultHeroData;
           items.Add(go);
         }
+        showBattleResultHeroItemTotal = items.Count;
       }
 		}
 
@@ -132,8 +164,43 @@ namespace TangGame.UI{
 		private void DataBtnHandler(GameObject go){
 			
 		}
+    /*
+    void OnGUI(){
+      if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
+        Props props = new Props();
+        props.data = new TangGame.Xml.PropsData();
+        props.data.name = "测试道具";
+        props.data.type = 2;
+        props.count = 2;
+        props.data.icon = "104";
+        props.data.level = 5;
+        props.data.info = "使用后可以获得一个小萝莉";
+        props.data.description = "这是测试道具，大家都懂得";
+        
+        BattleResultData data = new BattleResultData();
+        data.type = BattleResultType.Star2;
+        data.level = 20;
+        data.exp = 12;
+        data.gold = 807;
+        data.propsList.Add(props);
+        data.propsList.Add(props);
+        data.propsList.Add(props);
+        data.propsList.Add(props);
 
-
+        int[] heroIds = new int[]{1,2,3};
+        foreach (int heroId in heroIds) {
+          BattleResultHeroData battleResultHeroData = new BattleResultHeroData ();
+          battleResultHeroData.id = heroId;
+          battleResultHeroData.evolve = 1;
+          battleResultHeroData.maxExp = battleResultHeroData.exp = 100;
+          battleResultHeroData.level = 20;
+          battleResultHeroData.levelUp = false;
+          battleResultHeroData.upgrade = 2;
+          data.herosList.Add (battleResultHeroData);
+        }
+        param = data;
+      }
+    }*/
 
 	}
 }
