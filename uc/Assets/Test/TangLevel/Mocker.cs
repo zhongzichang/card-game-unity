@@ -76,15 +76,8 @@ namespace TangLevel
     {
 
       Group group = new Group ();
-      int maxHeros = 5;
-      if (tmpG == 3) {
-        maxHeros = 5;
-        group.heros = new Hero[ UnityEngine.Random.Range (4, maxHeros)];
-      } else {
-        maxHeros = 2;
-        group.heros = new Hero[ UnityEngine.Random.Range (1, maxHeros)];
-      }
-      tmpG++;
+      int maxHeros = 3;
+      group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
         if (j % 3 == 0)
           group.heros [j] = MockHeroZf ();
@@ -140,7 +133,7 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = false;
       skill.distance = 20;
-      skill.cd = 2;
+      skill.cd = 3;
 
       return skill;
     }
@@ -156,7 +149,7 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = false;
       skill.distance = 20;
-      skill.cd = 2;
+      skill.cd = 3;
 
       return skill;
     }
@@ -172,7 +165,7 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = false;
       skill.distance = 20;
-      skill.cd = 2;
+      skill.cd = 3;
 
       return skill;
     }
@@ -192,7 +185,7 @@ namespace TangLevel
       skill.bigMove = true;
       skill.chargeTime = 2F;
       skill.distance = 20;
-      skill.cd = 2;
+      skill.cd = 3;
 
       return skill;
     }
@@ -254,8 +247,8 @@ namespace TangLevel
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 6;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -270,8 +263,8 @@ namespace TangLevel
       skill.releaseClip = "qianjinzhui1";
       skill.enable = true;
       skill.bigMove = true;
-      skill.distance = 6;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -290,8 +283,8 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = false;
       skill.chargeTime = 2F;
-      skill.distance = 6;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -306,8 +299,8 @@ namespace TangLevel
       skill.releaseClip = "yemansiche1";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 6;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -349,8 +342,8 @@ namespace TangLevel
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 8;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -364,8 +357,8 @@ namespace TangLevel
       skill.chargeClip = "shenli";
       skill.enable = true;
       skill.bigMove = true;
-      skill.distance = 8;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -384,8 +377,8 @@ namespace TangLevel
       skill.enable = true;
       skill.bigMove = false;
       skill.chargeTime = 2F;
-      skill.distance = 8;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
     }
@@ -394,16 +387,25 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockDaheEffect ();
       skill.chargeClip = "dahe";
       skill.releaseClip = "dahe1";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 8;
-      skill.cd = 2;
+      skill.distance = 10;
+      skill.cd = 3;
 
       return skill;
+    }
+
+    public static Effector MockDaheEffect(){
+
+
+      Effector effector = new Effector ();
+      effector.specialName = "dahe";
+
+      return effector;
     }
     #endregion
   }

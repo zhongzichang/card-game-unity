@@ -71,11 +71,10 @@ namespace TangLevel
     /// <param name="skill">Skill.</param>
     /// <param name="source">Source.</param>
     /// <param name="target">Target.</param>
-    public void Cast (Effector effector, Skill skill, GameObject source, GameObject target)
+    public void Cast (EffectorWrapper w)
     {
-      EffectorWrapper w = EffectorWrapper.W (effector, skill, gameObject, target);
 
-      string specialName = effector.specialName;
+      string specialName = w.effector.specialName;
 
       if (specialName != null) {
 
@@ -181,38 +180,9 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 接收作用器
-    /// </summary>
-    /// <param name="effector">Effector.</param>
-    /// <param name="skill">Skill.</param>
-    public void Receive (EffectorWrapper w)
-    {
-      // 作用器特效
-      string specialName = w.effector.specialName;
-      if (specialName != null) {
-        GameObject gobj = GobjManager.FetchUnused (specialName);
-
-        if (gobj != null) {
-
-          ReleaseEffectorSpecial (gobj, w);
-
-        } else {
-
-          // 添加到作用器列表
-          Add (specialName, w);
-          // 需要加载资源
-          if (!GobjManager.HasHandler (OnSpecialLoad)) {
-            GobjManager.RaiseLoadEvent += OnSpecialLoad;
-          }
-          GobjManager.LazyLoad (specialName);
-        }
-      }
-    }
-
-    /// <summary>
     /// 增加一个对象到缓存
     /// </summary>
-    public void Add (string special, SkillWrapper w)
+    private void Add (string special, SkillWrapper w)
     {
       if (wt.ContainsKey (special)) {
         wt [special].Add (w);
@@ -227,7 +197,7 @@ namespace TangLevel
     /// 删除持有某特效的所有技能和作用器
     /// </summary>
     /// <param name="special">Special.</param>
-    public void Remove (string special)
+    private void Remove (string special)
     {
       if (wt.ContainsKey (special)) {
         wt[special].Clear();

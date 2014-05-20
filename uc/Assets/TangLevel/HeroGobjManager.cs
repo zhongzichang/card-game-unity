@@ -96,6 +96,14 @@ namespace TangLevel
         if (demoBhvr != null && demoBhvr.enabled) {
           demoBhvr.enabled = false;
         }
+        // ZoffsetBhvr
+        ZoffsetBhvr zoffsetBhvr = gobj.GetComponent<ZoffsetBhvr> ();
+        if (zoffsetBhvr == null) {
+          zoffsetBhvr = gobj.AddComponent<ZoffsetBhvr> ();
+        }
+        if (!zoffsetBhvr.enabled) {
+          zoffsetBhvr.enabled = true;
+        }
 
         // AI
         if (hero.ai != null) {
