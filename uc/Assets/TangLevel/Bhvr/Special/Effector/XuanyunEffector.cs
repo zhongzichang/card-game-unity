@@ -1,19 +1,19 @@
-﻿using System;
-using Uni2DLab;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 namespace TangLevel
 {
-  public class Uni2DPlayOnceEffector : EffectorSpecialBhvr
+  public class XuanyunEffector : EffectorSpecialBhvr
   {
+
     public static Vector3 OFFSET = new Vector3 (0, 1.5F, 0);
-    private Uni2DSprite sprite;
-    private Uni2DSpriteAnimation uni2DAnimation;
+    //private Uni2DSprite sprite;
+    //private Uni2DSpriteAnimation uni2DAnimation;
     private Transform myTransform;
 
     void Awake ()
     {
-
+      /*
       sprite = GetComponent<Uni2DSprite> ();
       if (sprite != null) {
         uni2DAnimation = sprite.spriteAnimation;
@@ -21,7 +21,7 @@ namespace TangLevel
         if (uni2DAnimation.IsPlaying) {
           uni2DAnimation.Pause ();
         }
-      }
+      }*/
 
       myTransform = transform;
     }
@@ -65,20 +65,19 @@ namespace TangLevel
     public override void Play ()
     {
       isPlay = true;
-      uni2DAnimation.Play ();
+      //uni2DAnimation.Play ();
     }
 
     public override void Pause ()
     {
       isPlay = false;
-      uni2DAnimation.Pause ();
+      //uni2DAnimation.Pause ();
     }
 
     public override void Resume ()
     {
       isPlay = true;
-      uni2DAnimation.Resume ();
+      //uni2DAnimation.Resume ();
     }
   }
 }
-
