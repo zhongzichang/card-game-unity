@@ -19,6 +19,7 @@ namespace TangGame
     // Use this for initialization
     void Start () {
 
+      AutoOrientToLandScape ();
       DontDestroyOnLoad( gameObject );
 
     }
@@ -26,11 +27,17 @@ namespace TangGame
     void Update()
     {
       if( Input.GetKeyDown(KeyCode.Escape) )
-	{
-	  Application.Quit();
-	}
-    }
+    	{
+    	  Application.Quit();
+      }
+  }
 
+  public void AutoOrientToLandScape() {
+    if(Vector3.Dot(Input.acceleration.normalized,new Vector3(1,0,0)) > 0.45){   
+      Screen.orientation=ScreenOrientation.LandscapeRight;  
+    }else if(Vector3.Dot(Input.acceleration.normalized,new Vector3(-1,0,0)) > 0.45){  
+      Screen.orientation=ScreenOrientation.LandscapeLeft;   }   
+    }
   }
 
 }
