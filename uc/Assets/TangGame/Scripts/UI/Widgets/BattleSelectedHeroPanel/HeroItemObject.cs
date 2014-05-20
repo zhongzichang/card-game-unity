@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Xml;
 
 namespace TangGame.UI
 {
@@ -15,10 +16,10 @@ namespace TangGame.UI
     public GameObject tick;
     public UISprite cast;
 
-    private HeroItemData heroData;
-    public HeroItemData HeroData{
-      get { return heroData; } 
-      set { heroData=value; } 
+    private HeroItemData mData;
+    public HeroItemData data{
+      get { return mData; } 
+      set { mData=value; } 
     }
 
     private bool showLevel = true;
@@ -28,13 +29,18 @@ namespace TangGame.UI
     }
 
     public string HeroId{
-      get { return heroData.id; } 
+      get { return mData.id; } 
     }
 
     public void Refresh(HeroItemData data){
-      HeroData = data;
-      icon.spriteName = GetIconName(data);
-      iconFrame.spriteName = GetIconFrameName(data);
+      this.mData = data;
+      HeroData heroData = HeroCache.instance.GetHeroData(int.Parse(this.mData.id));
+      if(heroData != null){
+        icon.spriteName = heroData.avatar;
+      }else{
+        icon.spriteName = "";
+      }
+      iconFrame.spriteName = Global.GetHeroIconFrame(data.rank);
       if (showLevel) {
         level.text = data.level.ToString ();
       } else {
@@ -49,9 +55,9 @@ namespace TangGame.UI
     }
 
     public void UpdateMp(int mpValue){
-      mp.fillAmount = mpValue *100 / HeroData.mpMax;
+      mp.fillAmount = mpValue *100 / data.mpMax;
       mp.gameObject.SetActive (true);
-      if (HeroData.mpMax == mpValue) {
+      if (data.mpMax == mpValue) {
         cast.gameObject.SetActive (true);
       } else {
         cast.gameObject.SetActive (false);
@@ -74,12 +80,5 @@ namespace TangGame.UI
       tick.SetActive (!toggled);
     }
 
-    private string GetIconName(HeroItemData data){
-      return "hero_icon_" + data.id;
-    }
-
-    private string GetIconFrameName(HeroItemData data){
-      return "hero_frame_" + data.rank.ToString ();
-    }
   }
 }
