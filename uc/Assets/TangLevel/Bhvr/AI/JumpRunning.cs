@@ -11,6 +11,7 @@ namespace TangLevel
   {
     public static readonly string SPEED_ZERO = "speed_zero";
     public static readonly string SPEED_RESUME = "speed_resume";
+    public const float ACCELERATION_SCALE = 4F; // 加速比例
     private DirectedNavigable navigable;
     private DirectedNavAgent agent;
     private HeroStatusBhvr statusBhvr;
@@ -18,6 +19,8 @@ namespace TangLevel
     private TDB.DragonBonesBhvr dbBhvr;
     private Armature armature;
     private bool speedResume = false;
+    private float mySpeed = 0;
+    private float acceleration = 0;
 
     #region MonoBehaviours
 
@@ -51,20 +54,22 @@ namespace TangLevel
       }
       // armature
       if (armature != null) {
-        armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
         armature.AddEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
       }
 
       // transform
       myTransform = transform;
+
+      mySpeed = navigable.Speed * 2;
+      acceleration = ACCELERATION_SCALE * mySpeed;
     }
 
     void Update ()
     {
 
       if (speedResume) {
-        if (agent.speed < navigable.Speed) {
-          agent.speed += (navigable.Speed) * Time.deltaTime * 4;
+        if (agent.speed < mySpeed) {
+          agent.speed += acceleration * Time.deltaTime;
         } else {
           speedResume = false;
         }
@@ -73,15 +78,6 @@ namespace TangLevel
     }
 
     #endregion
-
-    private void OnAnimationLoopComplete (Com.Viperstudio.Events.Event e)
-    {
-      Debug.Log ("OnAnimationLoopComplete");
-      if (statusBhvr.Status == HeroStatus.running) {
-        agent.speed = 0;
-      }
-
-    }
 
     private void OnAnimationFrameEvent (Com.Viperstudio.Events.Event e)
     {
@@ -108,6 +104,9 @@ namespace TangLevel
         // 恢复速度
         agent.speed = navigable.Speed;
         speedResume = false;
+      } else if (statusBhvr.Status == HeroStatus.running) {
+        agent.speed = 0;
+        speedResume = true;
       }
     }
   }
