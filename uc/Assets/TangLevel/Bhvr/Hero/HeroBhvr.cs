@@ -229,13 +229,14 @@ namespace TangLevel
         if (skill.chargeClip != null) {
           if (animationList.Contains (skill.chargeClip)) {
             clip = skill.chargeClip;
+          } else {
+            clip = null;
           }
         }
         if (clip == null) {
           statusBhvr.Status = HeroStatus.release;
         } else {
           // 播放起手动作
-          //dbBhvr.Stop ();
           dbBhvr.GotoAndPlay (clip);
         }
 
@@ -247,12 +248,6 @@ namespace TangLevel
       
       case HeroStatus.release: // 释放 ----
 
-        // 大招结束
-        /*
-        if (skill.bigMove) {
-          Debug.Log ("bigmoveend hero "+hero.id);
-          bmBhvr.StopBigMove ();
-        }*/
 
         if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
           clip = skill.releaseClip;
@@ -376,13 +371,10 @@ namespace TangLevel
     public void Attack (GameObject target, Skill skill)
     {
 
-      if (statusBhvr.Status != HeroStatus.running) {
+      this.target = target;
+      this.skill = skill;
 
-        this.target = target;
-        this.skill = skill;
-
-        statusBhvr.Status = HeroStatus.charge;
-      }
+      statusBhvr.Status = HeroStatus.charge;
 
     }
 

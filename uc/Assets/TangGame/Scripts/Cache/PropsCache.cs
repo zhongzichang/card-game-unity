@@ -76,5 +76,32 @@ namespace TangGame.UI{
       propsRelationData.AddPropsHeroEquipData(data);
     }
 
+    /// 设置道具关卡掉落关联
+    public void AddPropsLevelRelation(LevelsData data){
+      string[] propsIds = data.props_ids.Replace("{", "").Replace("}", "").Split(',');
+      foreach(string id in propsIds){
+        if(string.IsNullOrEmpty(id)){
+          continue;
+        }
+        AddPropsLevelData(int.Parse(id), data);
+      }
+    }
+
+    /// 设置道具关卡掉落关联
+    private void AddPropsLevelData(int id, LevelsData data){
+      PropsRelationData propsRelationData = null;
+      if(!propsRelations.ContainsKey(id)){
+        propsRelationData = new PropsRelationData();
+        propsRelationData.id = id;
+        propsRelations[id] = propsRelationData;
+      }else{
+        propsRelationData = propsRelations[id];
+      }
+
+      if(!propsRelationData.levels.Contains(data)){
+        propsRelationData.levels.Add(data);
+      }
+    }
+
 	}
 }

@@ -22,18 +22,23 @@ namespace TangGame.UI
 			DynamicBindUtil.BindScriptAndProperty (HeroInfoSkillSubPanel, HeroInfoSkillSubPanel.name);
 		}
 
-		void Start ()
+		IEnumerator Start ()
 		{
-
-		}
-
-		void OnEnable ()
-		{
+			float waitTime = 0.5f;
+			TweenAlpha al = GetComponent<TweenAlpha> ();
+			if (al != null && al.duration >= 0.1f) {
+				waitTime = al.duration - 0.1f;
+			}
+			yield return new WaitForSeconds (0.5f);
+			HeroInfoInterfaceSubPanel.SetActive (true);
+			HeroInfoPictorialSubPanel.SetActive (true);
 			if (herobase != param as HeroBase) {
 				herobase = param as HeroBase;
 				this.RefreshSubPanel (herobase);
 			}
 		}
+
+
 		//TODO listener herobase change;
 		void RefreshSubPanel (HeroBase hero)
 		{
@@ -43,5 +48,6 @@ namespace TangGame.UI
 			HeroInfoSkillSubPanel.GetComponent<HeroInfoSkillSubPanel> ().Flush (hero);
 
 		}
+
 	}
 }

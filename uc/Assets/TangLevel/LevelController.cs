@@ -303,7 +303,7 @@ namespace TangLevel
     /// <param name="g">The green component.</param>
     private static void OnLevelNextBtnClick (GameObject g)
     {
-      //levelNextPanel.gameObject.seta
+      levelNextPanel.gameObject.SetActive (false);
       ChallengeNextSubLevel ();
     }
 
@@ -515,8 +515,6 @@ namespace TangLevel
       List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
         ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
 
-      //Debug.Log (" ------- sourceHeroBhvr.hero.battleDirection = " + sourceHeroBhvr.hero.battleDirection);
-
       return FindClosestTarget (sgobj, ol);
     }
 
@@ -661,7 +659,7 @@ namespace TangLevel
               foreach (Hero hero in LevelContext.selfGroup.heros) {
                 heroIds.Add (hero.id);
               }
-              int resultType = UnityEngine.Random.Range (1, 6);
+              int resultType = UnityEngine.Random.Range (2, 6); // 超时战斗结果也会返回失败
               battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult(heroIds, resultType);
 
             } else {
