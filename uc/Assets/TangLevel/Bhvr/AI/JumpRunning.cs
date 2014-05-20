@@ -87,7 +87,7 @@ namespace TangLevel
       if (fe != null && statusBhvr.Status == HeroStatus.running) {
 
         if (SPEED_ZERO.Equals (fe.FrameLabel)) {
-          agent.speed = 0;
+          agent.speed = 2;
         } else if (SPEED_RESUME.Equals (fe.FrameLabel)) {
           speedResume = true;
         }
@@ -105,7 +105,7 @@ namespace TangLevel
         agent.speed = navigable.Speed;
         speedResume = false;
       } else if (statusBhvr.Status == HeroStatus.running) {
-        agent.speed = 0;
+        agent.speed = 2;
         speedResume = true;
       }
     }

@@ -113,41 +113,46 @@ namespace TangLevel
 
       if (remainTime > skill.cd) {
 
-        // 空闲时找可攻击对象
-        if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running) {
 
+        switch (statusBhvr.Status) {
+
+        case HeroStatus.idle:
           GameObject target = heroBhvr.FindClosestTarget ();
           if (target != null) {
-
-            // Debug.Log ("find target ----" + target.name);
-
             // 判断距离是否可攻击
             float distance = Mathf.Abs (target.transform.localPosition.x - myTransform.localPosition.x);
-            if (distance - skill.distance > 0.1F) {
-
+            if (distance - skill.distance > 0.2F) {
               // 移动到可攻击位置
               navigable.NavTo (target.transform.localPosition.x, skill.distance);
-
-              // Debug.Log ("find target ---- distance " + distance + "hero.attackDistance " + hero.attackDistance);
-
             } else {
-
               // 发起攻击
               heroBhvr.Attack (target, skill);
               remainTime = 0;
-              Skill s = NextSkill;
-              if (s != null) {
-                skill = s;
-              }
+              skill = NextSkill;
             }
           }
+          break;
+        case HeroStatus.running:
+          target = heroBhvr.FindClosestTarget ();
+          if (target != null) {
+            // 判断距离是否可攻击
+            float distance = Mathf.Abs (target.transform.localPosition.x - myTransform.localPosition.x);
+            if (distance - skill.distance > 0.1F) {
+              // 移动到可攻击位置
+              navigable.NavTo (target.transform.localPosition.x, skill.distance);
+            } else {
+              statusBhvr.Status = HeroStatus.idle;
+            }
+          }
+          break;
         }
       }
 
       remainTime += Time.deltaTime;
     }
 
-    void OnEnable(){
+    void OnEnable ()
+    {
       if (skill != null) {
         remainTime = skill.cd;
       }
