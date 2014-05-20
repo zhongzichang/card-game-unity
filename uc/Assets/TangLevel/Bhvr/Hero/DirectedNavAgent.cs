@@ -48,7 +48,7 @@ namespace TangLevel
         // 目标位置 - 当前位置 < stoppingDistance
         Vector3 localPosition = myTransform.localPosition;
         float distance = Mathf.Abs (destination - localPosition.x);
-        if (distance - stoppingDistance < 0.01F) {
+        if (distance - stoppingDistance < 0.05F) {
 
           ResetPath ();
 
