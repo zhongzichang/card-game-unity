@@ -265,7 +265,8 @@ namespace TangLevel
         // 抛出作用器s
         if (skill != null && skill.effectors != null) {
           foreach (Effector e in skill.effectors) {
-            skillBhvr.Cast (e, skill, gameObject, target);
+            EffectorWrapper w = EffectorWrapper.W (e, skill, gameObject, target);
+            skillBhvr.Cast (w);
           }
         }
         break;
@@ -370,11 +371,13 @@ namespace TangLevel
     /// <param name="target">Target.</param>
     public void Attack (GameObject target, Skill skill)
     {
+      if (statusBhvr.Status == HeroStatus.idle) {
 
-      this.target = target;
-      this.skill = skill;
+        this.target = target;
+        this.skill = skill;
 
-      statusBhvr.Status = HeroStatus.charge;
+        statusBhvr.Status = HeroStatus.charge;
+      }
 
     }
 
@@ -417,7 +420,8 @@ namespace TangLevel
         break;
       case HeroStatus.charge:
       case HeroStatus.release:
-        if (!statusBhvr.IsBigMove) {
+        // 不是在施放大招，并且技能可以被打断
+        if (!statusBhvr.IsBigMove && skill.breakable) {
           statusBhvr.Status = HeroStatus.beat;
         }
         break;

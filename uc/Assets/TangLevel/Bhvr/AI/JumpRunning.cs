@@ -12,7 +12,7 @@ namespace TangLevel
     public static readonly string SPEED_ZERO = "speed_zero";
     public static readonly string SPEED_RESUME = "speed_resume";
     public const float ACCELERATION_SCALE = 4F; // 加速比例
-    public const float LANDING_SPEED = 6F;
+    public const float LANDING_SPEED = 5F;
     private DirectedNavigable navigable;
     private DirectedNavAgent agent;
     private HeroStatusBhvr statusBhvr;
