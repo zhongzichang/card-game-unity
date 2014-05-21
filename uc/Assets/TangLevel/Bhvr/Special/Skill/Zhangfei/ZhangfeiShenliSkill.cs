@@ -5,6 +5,9 @@ namespace TangLevel
 {
   public class ZhangfeiShenliSkill : SkillSpecialBhvr
   {
+
+    public Vector3 offset = new Vector3(0, 0, 1);
+
     public float effectTime = 1F;
 
     private float remainTime = 0;
@@ -26,7 +29,7 @@ namespace TangLevel
       isPlay = true;
       remainTime = effectTime;
       transform.parent = w.source.transform;
-      transform.localPosition = Vector3.zero;
+      transform.localPosition = offset;
 
     }
   }

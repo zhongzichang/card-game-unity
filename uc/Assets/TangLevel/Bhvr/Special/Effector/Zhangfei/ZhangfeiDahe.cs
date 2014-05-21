@@ -84,7 +84,6 @@ namespace TangLevel
     {
 
       isPlay = true;
-      //animator.Play ("daheClip");
 
       if (w != null && w.target != null) {
 
@@ -92,7 +91,13 @@ namespace TangLevel
         myTransform.localPosition = w.source.transform.localPosition + OFFSET;
 
         // 计算目标位置
-        tpos = myTransform.localPosition + TARGET_OFFSET;
+        Directional directional = w.source.GetComponent<Directional> ();
+        if (directional.Direction == BattleDirection.RIGHT) {
+          tpos = myTransform.localPosition + TARGET_OFFSET;
+        } else {
+          tpos = myTransform.localPosition - TARGET_OFFSET;
+        }
+
 
         myTransform.localScale = Vector3.zero;
 
