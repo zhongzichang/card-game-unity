@@ -16,7 +16,6 @@ namespace Tang
   /// </summary>
   public class Config
   {
-
     public const bool DEBUG = true;
     public static string resDirName = "Tang";
     public const string U3D_PREFAB_DIR = "Prefabs";
@@ -36,7 +35,7 @@ namespace Tang
         return ResDir + "ab/"; 
       }
     }
-    
+
     public static string XmlDir {
       get {
         return ResDir + "xml/";
@@ -47,32 +46,14 @@ namespace Tang
       get {
         string prefix = null;
 
-        // WindowsWeb OSXWeb IPhone
-        if (Application.platform == RuntimePlatform.WindowsWebPlayer || 
-          Application.platform == RuntimePlatform.OSXWebPlayer ||
-          Application.platform == RuntimePlatform.IPhonePlayer) {
-          prefix = Application.dataPath + "/resources/";
+        Debug.Log (Application.platform);
+        if (resourceStream == ResourceStream.INNER) {
+          prefix = System.IO.Path.Combine (Application.streamingAssetsPath, "resources/");
+        }else{
+          prefix = "/sdcard/" + resDirName + "/resources/";
         }
-
-    // Android
-    else if (Application.platform == RuntimePlatform.Android) {
-          if (resourceStream == ResourceStream.INNER)
-            prefix = System.IO.Path.Combine (Application.streamingAssetsPath,
-             "resources/");
-          else
-            prefix = "file:///sdcard/" + resDirName + "/resources/";
-        }
-
-    // Editor and others
-    else {
-          if (resourceStream == ResourceStream.INNER) {
-            prefix = "file://" + Application.streamingAssetsPath + "/resources/";
-          } else {
-            prefix = "file://" + Application.dataPath + "/../../resources/";
-          }
-        }
-        return prefix;
-
+        Debug.Log (prefix);
+        return "file://" + prefix;
       }
     }
   }

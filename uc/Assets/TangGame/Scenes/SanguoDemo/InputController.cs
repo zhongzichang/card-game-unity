@@ -10,7 +10,9 @@ namespace TangGame
 		public GameObject mountainLayer;
 		public GameObject skyLayer;
 		public Transform pressed;
-		private float dragScale = 3f;
+    public float dragScale = 1f;
+    public float layerMin = -780f;
+    public float layerMax = 0f;
 
 		void OnDrag (DragGesture gesture)
 		{
@@ -19,9 +21,9 @@ namespace TangGame
 			}
 
 			float new_pos = grassLayer.transform.localPosition.x + gesture.DeltaMove.x * dragScale;
-      if (new_pos > -256 && new_pos < 512) {
-				skyLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 4));
-				mountainLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 2));
+      if (new_pos > layerMin && new_pos < layerMax) {
+        skyLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 1.5f));
+        mountainLayer.transform.Translate (Vector3.right * (gesture.DeltaMove.x * dragScale / 1.2f));
 				grassLayer.transform.Translate (Vector3.right * gesture.DeltaMove.x * dragScale);
 			}
 		}
