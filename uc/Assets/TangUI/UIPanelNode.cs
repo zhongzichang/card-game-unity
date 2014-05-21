@@ -201,12 +201,12 @@ namespace TangUI
 				gameObject.name = name;
 				context.cache.Put (name, gameObject);
 				DynamicBindUtil.BindScriptAndProperty (gameObject, name);
-				//setBlock
-				GameObject obj = Resources.Load (
-					                 TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
-				mBlock = NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<Block> ();
-
-
+				if (this.blockMode != BlockMode.NONE) {
+					//setBlock
+					GameObject obj = Resources.Load (
+						                TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
+					mBlock = NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<Block> ();
+				}
 			}
 			return gameObject;
 		}

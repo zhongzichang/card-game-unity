@@ -24,6 +24,7 @@ namespace TangGame
 		public const string MAIN_STATUS_PANEL_NAME = "MainStatusPanel";
 		public const string MAIN_POPUP_PANEL_NAME = "MainPopupPanel";
 		public const string HERO_VIEW_PANEL_NAME = "HeroViewPanel";
+		public const string SELL_PANEL_NAME = "SellPanel";
 		/// <summary>
 		/// HER o_ INF o_ PANE l_ NAM.
 		/// 英雄队列面板
