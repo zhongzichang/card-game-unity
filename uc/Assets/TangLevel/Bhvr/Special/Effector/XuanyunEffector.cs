@@ -5,11 +5,12 @@ namespace TangLevel
 {
   public class XuanyunEffector : EffectorSpecialBhvr
   {
-
-    public static Vector3 OFFSET = new Vector3 (0, 1.5F, 0);
+    public static Vector3 OFFSET = new Vector3 (0, 10F, 0);
     //private Uni2DSprite sprite;
     //private Uni2DSpriteAnimation uni2DAnimation;
     private Transform myTransform;
+    public float effectTime = 5F;
+    private float remainTime = 0;
 
     void Awake ()
     {
@@ -24,6 +25,17 @@ namespace TangLevel
       }*/
 
       myTransform = transform;
+    }
+    // Update is called once per frame
+    void Update ()
+    {
+      if (isPlay) {
+        if (remainTime > 0) {
+          remainTime -= Time.deltaTime;
+        } else {
+          Release ();
+        }
+      }
     }
 
     void OnEnable ()
@@ -65,7 +77,7 @@ namespace TangLevel
     public override void Play ()
     {
       isPlay = true;
-      //uni2DAnimation.Play ();
+      remainTime = effectTime;
     }
 
     public override void Pause ()
