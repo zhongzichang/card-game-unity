@@ -45,6 +45,10 @@ namespace TangLevel
 
         // 绑定到目标身上
         myTransform.localPosition = w.target.transform.localPosition + OFFSET;
+        // 打晕
+        HeroBhvr targetHeroBhvr = w.target.GetComponent<HeroBhvr> ();
+        targetHeroBhvr.BeStun (effectTime);
+
         Hit ();
 
       } else {
