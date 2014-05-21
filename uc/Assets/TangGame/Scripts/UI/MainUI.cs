@@ -21,7 +21,7 @@ namespace TangGame
         UIPanelNodeManager mgr = new UIPanelNodeManager (anchorCoC);
         mgr.LazyOpen (TangGame.UIContext.MAIN_POPUP_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
         mgr.LazyOpen (TangGame.UIContext.MAIN_HEAD_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
-        mgr.LazyOpen (TangGame.UIContext.MAIN_STATUS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
+				mgr.LazyOpen (TangGame.UIContext.MAIN_STATUS_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE);
         UIContext.mgrCoC = mgr;
       }
     }
