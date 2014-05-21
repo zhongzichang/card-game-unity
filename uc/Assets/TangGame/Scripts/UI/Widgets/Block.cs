@@ -32,6 +32,10 @@ public class Block : MonoBehaviour
 
 	void BackButtonOnClick (GameObject obj)
 	{
+		this.Back ();
+	}
+
+	public void Back(){
 		if (currentMgr != null) {
 			currentMgr.Back ();
 			if (this.mMode == UIPanelNode.BlockMode.ADDSTATUS) {
