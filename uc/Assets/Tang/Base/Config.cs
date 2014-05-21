@@ -44,16 +44,15 @@ namespace Tang
 
     public static string ResDir {
       get {
-        string prefix = null;
-
-        Debug.Log (Application.platform);
-        if (resourceStream == ResourceStream.INNER) {
-          prefix = System.IO.Path.Combine (Application.streamingAssetsPath, "resources/");
+        if (Application.platform == RuntimePlatform.Android) {
+          if (resourceStream == ResourceStream.INNER) {
+            return System.IO.Path.Combine (Application.streamingAssetsPath, "resources/");
+          } else {
+            return "file:///sdcard/" + resDirName + "/resources/";
+          }
         }else{
-          prefix = "/sdcard/" + resDirName + "/resources/";
+          return "file://" + System.IO.Path.Combine (Application.streamingAssetsPath, "resources/");
         }
-        Debug.Log (prefix);
-        return "file://" + prefix;
       }
     }
   }
