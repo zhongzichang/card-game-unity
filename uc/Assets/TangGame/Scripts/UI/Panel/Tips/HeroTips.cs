@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TangGame.UI;
 
-namespace TangGame{
+namespace TangGame.UI{
 
-	public class PropTips : MonoBehaviour {
+  /// <summary>
+  /// 英雄Tips
+  /// </summary>
+	public class HeroTips : MonoBehaviour {
 
 		/// 该对象实例
-		private static PropTips mInstance;
+		private static HeroTips mInstance;
 
-		private PropTipsPanel panel;
+		private HeroTipsPanel panel;
 		private TweenScale tween;
 		private bool started;
 		public Vector3 position;
@@ -18,11 +20,11 @@ namespace TangGame{
 
 		// Use this for initialization
 		void Start () {
-			Object obj = Resources.Load("Prefabs/Tips/PropTipsPanel", typeof(GameObject));
+      Object obj = Resources.Load("Prefabs/Tips/HeroTipsPanel", typeof(GameObject));
 			GameObject go = GameObject.Instantiate(obj) as GameObject;
 			go.transform.parent = this.gameObject.transform;
 			go.transform.localScale = Vector3.one;
-			panel = go.GetComponent<PropTipsPanel>();
+      panel = go.GetComponent<HeroTipsPanel>();
 
 			tween = this.gameObject.AddComponent<TweenScale>();
 			tween.from = new Vector3(0, 0, 1);
@@ -68,12 +70,12 @@ namespace TangGame{
 		/// <param name="position">触发对象的世界坐标</param>
 		/// <param name="offset">触发对象显示的偏移量，一般为高度</param>
 		/// <param name="id">道具的ID</param>
-		public static PropTips Show(Vector3 position, int offset, Props prop){
+    public static HeroTips Show(Vector3 position, int offset, Props prop){
 			if(mInstance == null){
-				GameObject go = new GameObject("PropTips");
+        GameObject go = new GameObject("HeroTips");
 				go.layer = Global.UILayer;
         go.transform.parent = UICamera.current.transform.parent;
-				mInstance = go.AddComponent<PropTips>();
+        mInstance = go.AddComponent<HeroTips>();
 				go.transform.localScale = Vector3.one;
 				go.transform.localPosition = new Vector3(0, 0, -100);//Z值临时添加
 			}

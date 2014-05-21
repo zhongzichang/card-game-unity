@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using TangGame.UI;
-using TangGame.UI;
 
-namespace TangGame{
-	public class PropTipsPanel : MonoBehaviour {
+namespace TangGame.UI{
+  public class HeroTipsPanel : MonoBehaviour {
 
 		/// 效果文本和简介文本之间的间距
 		private const int SPACE = 10;
