@@ -56,11 +56,13 @@ namespace TangGame.UI
 		/// </summary>
 		public GameObject PropsName;
 		public GameObject DetailButton;
+		public GameObject SellButton;
 		Props mProps;
 
 		void Start ()
 		{
 			UIEventListener.Get (DetailButton).onClick += OnDetailButtonClick;
+			UIEventListener.Get (SellButton).onClick += OnSellButtonClick;
 		}
 		// Update is called once per frame
 		void Update ()
@@ -71,6 +73,9 @@ namespace TangGame.UI
 		void OnDetailButtonClick (GameObject obj)
 		{
 			TangGame.UIContext.mgrCoC.LazyOpen (PropsDetailsPanel.name, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, mProps.data);
+		}
+		void OnSellButtonClick(GameObject obj){
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.SELL_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, mProps);
 		}
 
 		/// <summary>
