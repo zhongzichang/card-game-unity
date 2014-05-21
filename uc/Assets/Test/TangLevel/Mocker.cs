@@ -403,7 +403,19 @@ namespace TangLevel
 
 
       Effector effector = new Effector ();
-      effector.specialName = "dahe";
+      effector.specialName = "fx_dahe";
+      effector.subEffectors = new Effector[1];
+      effector.subEffectors[0] = MockXuanyunEffect ();
+
+      return effector;
+    }
+    #endregion
+
+    #region commonfx
+    public static Effector MockXuanyunEffect(){
+
+      Effector effector = new Effector ();
+      effector.specialName = "fx_xuanyun";
 
       return effector;
     }
