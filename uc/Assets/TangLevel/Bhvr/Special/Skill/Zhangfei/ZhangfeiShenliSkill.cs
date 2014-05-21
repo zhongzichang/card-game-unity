@@ -5,65 +5,29 @@ namespace TangLevel
 {
   public class ZhangfeiShenliSkill : SkillSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0,0,1);
+    public float effectTime = 1F;
 
-    private Transform myTransform;
+    private float remainTime = 0;
 
-
-    void Awake ()
-    {
-      myTransform = transform;
-    }
     // Update is called once per frame
     void Update ()
     {
       if (isPlay) {
-
-        if (!animation.isPlaying) {
+        if (remainTime > 0) {
+          remainTime -= Time.deltaTime;
+        } else {
           Release ();
         }
-
       }
     }
 
-    void OnEnable ()
-    {
+    public override void Play(){
 
-      if (w != null && w.source != null) {
-
-        // 绑定到目标身上
-        myTransform.localPosition = w.source.transform.localPosition + OFFSET;
-        //myTransform.localPosition = Vector3.zero;
-
-      } else {
-        Release ();
-      }
-
-      // 关卡控制
-      LevelController.RaisePause += OnPause;
-      LevelController.RaiseResume += OnResume;
-    }
-
-    public override void Play ()
-    {
       isPlay = true;
-      animation.Play ();
-    }
+      remainTime = effectTime;
+      transform.parent = w.source.transform;
+      transform.localPosition = Vector3.zero;
 
-    public override void Pause ()
-    {
-      isPlay = false;
-      foreach (AnimationState state in animation) {
-        state.speed = 0;
-      }
-    }
-
-    public override void Resume ()
-    {
-      isPlay = true;
-      foreach (AnimationState state in animation) {
-        state.speed = 1;
-      }
     }
   }
 }

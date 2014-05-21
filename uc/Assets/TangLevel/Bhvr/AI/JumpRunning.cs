@@ -83,7 +83,6 @@ namespace TangLevel
     private void OnAnimationFrameEvent (Com.Viperstudio.Events.Event e)
     {
 
-      Debug.Log (e.EventType);
       DBE.FrameEvent fe = e as DBE.FrameEvent;
       if (fe != null && statusBhvr.Status == HeroStatus.running) {
 
