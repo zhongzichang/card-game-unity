@@ -66,8 +66,6 @@ namespace TangUI
     {
       if (!(context.currentNode is UIPanelRoot)) {
         context.currentNode.Remove ();
-
-    
       }
     }
   }
