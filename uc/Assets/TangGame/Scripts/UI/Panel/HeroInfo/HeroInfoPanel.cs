@@ -24,12 +24,7 @@ namespace TangGame.UI
 
 		IEnumerator Start ()
 		{
-			float waitTime = 0.5f;
-			TweenAlpha al = GetComponent<TweenAlpha> ();
-			if (al != null && al.duration >= 0.1f) {
-				waitTime = al.duration - 0.1f;
-			}
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForFixedUpdate ();
 			HeroInfoInterfaceSubPanel.SetActive (true);
 			HeroInfoPictorialSubPanel.SetActive (true);
 			if (herobase != param as HeroBase) {

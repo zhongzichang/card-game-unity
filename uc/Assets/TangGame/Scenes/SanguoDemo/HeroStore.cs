@@ -37,6 +37,13 @@ namespace TangGame.UI
       return this.heroes.ContainsKey (heroId);
     }
 
+    public HeroItemData GetHero(string heroId){
+      if(this.heroes.ContainsKey(heroId)){
+        return this.heroes [heroId] as HeroItemData;
+      }
+      return null;
+    }
+
     public HeroItemUpdateHandler GetUpdateHandler(string heroId){
 
       if (!this.handlers.ContainsKey(heroId)) {
@@ -52,8 +59,5 @@ namespace TangGame.UI
       handler.updateToggle (heroId);
     }
 
-    public HeroItemData GetHeroById(string heroId){
-      return (HeroItemData)this.heroes [heroId];
-    }
   }
 }

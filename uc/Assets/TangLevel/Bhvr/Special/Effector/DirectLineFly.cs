@@ -10,8 +10,8 @@ namespace TangLevel
   /// </summary>
   public class DirectLineFly : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0F, 1.5F, 0F);
-    public float speed = 20;
+    public static Vector3 OFFSET = new Vector3 (0F, 3F, 0F);
+    public float speed = 30;
     public float disappearDistance = 2;
     private Transform myTransform;
     // 源位置
@@ -55,14 +55,14 @@ namespace TangLevel
             // 命中目标
 
             // 发出作用器
-            SkillBhvr targetSkillBhvr = w.target.GetComponent<SkillBhvr> ();
-            if (targetSkillBhvr != null && w.effector.subEffectors != null && w.effector.subEffectors.Length > 0) {
+            SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
+            if (sourceSkillBhvr != null && w.effector.subEffectors != null && w.effector.subEffectors.Length > 0) {
               EffectorWrapper cw = EffectorWrapper.W (w.effector.subEffectors [0], w.skill, w.source, w.target);
-              targetSkillBhvr.Receive (cw);
+              sourceSkillBhvr.Cast (cw);
             }
 
             // 释放本特效资源
-            GobjManager.Release (gameObject);
+            Release ();
             isPlay = false;
 
           } else {
@@ -75,7 +75,7 @@ namespace TangLevel
 
 
           // 释放本特效资源
-          GobjManager.Release (gameObject);
+          Release ();
           isPlay = false;
 
         }
@@ -137,7 +137,7 @@ namespace TangLevel
 
       } else {
 
-        GobjManager.Release (gameObject);
+        Release ();
 
       }
     }
