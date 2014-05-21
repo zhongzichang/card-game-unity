@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace TangLevel
 {
@@ -18,7 +19,6 @@ namespace TangLevel
       myTransform = transform;
       //animator = GetComponent<Animator> ();
     }
-
     // Update is called once per frame
     void Update ()
     {
@@ -38,8 +38,32 @@ namespace TangLevel
 
         } else {
 
-          myTransform.localPosition = Vector3.Lerp (myTransform.localPosition, 
-            tpos, fraction);
+          Vector3 pos = Vector3.Lerp (myTransform.localPosition, tpos, fraction);
+          myTransform.localPosition = pos;
+
+          HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
+          SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
+          // 对方全部活着的英雄
+          List<GameObject> gl = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
+            LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+          // 在范围内的英雄
+          gl = HeroSelector.FindTargetsWithWidth (gl, pos, 3F);
+          foreach (GameObject g in gl) {
+
+            // 判断对手状态，没在放大招或者处于眩晕状态
+            HeroStatusBhvr targetStatusBhvr = g.GetComponent<HeroStatusBhvr> ();
+            if (targetStatusBhvr.Status != HeroStatus.vertigo && !targetStatusBhvr.IsBigMove) {
+              // 打晕
+              HeroBhvr targetHeroBhvr = g.GetComponent<HeroBhvr> ();
+              targetHeroBhvr.BeStun (5F);
+              // 抛出作用器
+              foreach (Effector e in w.effector.subEffectors) {
+                EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, g);
+                sourceSkillBhvr.Cast (cw);
+              }
+            }
+          }
+
         }
       }
 

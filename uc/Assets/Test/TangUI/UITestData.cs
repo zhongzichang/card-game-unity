@@ -9,7 +9,7 @@ public class UITestData : MonoBehaviour
 //		27 23 20
 		this.SetAllPropsBase ();
 		this.SetHeroBase (27,1,10,6,27,8,1004,0,11,4);
-		this.SetHeroBase (23,4,40,8,23,15,1005,0,11,5);
+		this.SetHeroBase (23,4,40,8,23,15,1005,1,11,5);
 		this.SetPropsBase (1015,50);
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);

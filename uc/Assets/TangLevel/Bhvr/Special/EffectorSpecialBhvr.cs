@@ -53,7 +53,7 @@ namespace TangLevel
           heroBhvr.Die ();
         } else {
           // 被击打
-          heroBhvr.Beat ();
+          heroBhvr.BeBeat ();
         }
       }
     }

@@ -503,50 +503,7 @@ namespace TangLevel
       }
     }
 
-    /// <summary>
-    /// 找距离最近的目标
-    /// </summary>
-    /// <returns>The target.</returns>
-    /// <param name="sourceGobj">Source gobj.</param>
-    public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
-    {
 
-      GameObject sgobj = sourceHeroBhvr.gameObject;
-      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
-        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
-
-      return FindClosestTarget (sgobj, ol);
-    }
-
-    /// <summary>
-    /// 获取距离最近的可攻击目标
-    /// </summary>
-    /// <returns>The closest target.</returns>
-    /// <param name="sgobj">Sgobj.</param>
-    /// <param name="ol">Ol.</param>
-    public static GameObject FindClosestTarget (GameObject sgobj, List<GameObject>  ol)
-    {
-      // 源对象的 x 坐标
-      float posx = sgobj.transform.localPosition.x;
-      // 最接近的对象
-      GameObject closestGobj = null;
-      // 最短的距离
-      float closestDistance = 0;
-      foreach (GameObject gobj in ol) {
-
-        if (closestGobj == null)
-          closestGobj = gobj;
-        else {
-          float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestGobj = gobj;
-          }
-        }
-      }
-
-      return closestGobj;
-    }
 
     #endregion
 

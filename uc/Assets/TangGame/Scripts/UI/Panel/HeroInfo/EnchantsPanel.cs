@@ -99,6 +99,10 @@ namespace TangGame.UI
 		/// </summary>
 		public GameObject SelectHeroPanel;
 		/// <summary>
+		/// The exp progress full.
+		/// </summary>
+		public GameObject ExpProgressFull;
+		/// <summary>
 		/// 主界面英雄头像
 		/// </summary>
 		private HeroAvatarItem heroAvatarItem;
@@ -370,7 +374,7 @@ namespace TangGame.UI
 			propsCheckedCountTable [itemTmp] -= 1;
 			if (propsCheckedCountTable [itemTmp] == 0) {
 				obj.SetActive (false);
-				itemTmp.propsCountLabel.text = itemTmp.data.net.count.ToString();
+				itemTmp.propsCountLabel.text = itemTmp.data.net.count.ToString ();
 			} else {
 				itemTmp.propsCountLabel.text = propsCheckedCountTable [itemTmp] + "/" + itemTmp.data.net.count;
 			}
@@ -427,10 +431,12 @@ namespace TangGame.UI
 		{
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0) {
+				NGUITools.SetActive (ExpProgressFull, true);
 				mExpSprite.fillAmount = 1f;
 				mExpLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
 				mGoldSpendLab.text = (enCXml.GetToMaxExp (mEquipBase.net.enchantsLv, mEquipBase.net.enchantsExp) * enCXml.gold_spend).ToString ();
 			} else {
+				NGUITools.SetActive (ExpProgressFull, false);
 				mExpSprite.fillAmount = (float)mEnExpCurrent / (float)expMax;
 				mExpLab.text = mEnExpCurrent + "/" + expMax; 
 				mGoldSpendLab.text = (mEnExpSum * enCXml.gold_spend).ToString ();
@@ -512,137 +518,155 @@ namespace TangGame.UI
 		{
 
 			PropsType type = (PropsType)data.data.type;
-			string infoStr = "";
+			string infoStr = "[000000]";
 			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade, data.net.enchantsLv);
 			if (PropsType.EQUIP == type) {
 				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength > 0) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
-					infoStr += UIPanelLang.AGILE + "+";
-					infoStr += data.data.strength;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.strength * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.AGILE + ":[CC0033] ";
+					infoStr += data.data.strength + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.strength * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				} else {
 					//		<!-- 属性加成 -->
 					//		<!-- 力量 -->
 					//		<strength>21</strength>
 					if (data.data.strength > 0) {
-						infoStr += UIPanelLang.STRENGTH + "+" + data.data.strength;
-						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.strength * enchantingVariable).ToString () + "[-]";
+						infoStr += UIPanelLang.STRENGTH + ":[CC0033] " + data.data.strength + "[-]";
+						if (enchantingVariable != 0)
+							infoStr += "[33FF00] + " + Mathf.Ceil (data.data.strength * enchantingVariable).ToString () + "[-]";
 						infoStr += Environment.NewLine;
 					}
 					//		<!-- 智力 -->
 					//		<intellect>42</intellect>
 					if (data.data.intellect > 0) {
-						infoStr += UIPanelLang.INTELLECT + "+" + data.data.intellect;
-						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.intellect * enchantingVariable).ToString () + "[-]";
+						infoStr += UIPanelLang.INTELLECT + ":[CC0033] " + data.data.intellect + "[-]";
+						if (enchantingVariable != 0)
+							infoStr += "[33FF00] + " + Mathf.Ceil (data.data.intellect * enchantingVariable).ToString () + "[-]";
 						infoStr += Environment.NewLine;
 					}
 					//		<!-- 敏捷 -->
 					//		<agile>2</agile>
 					if (data.data.agile > 0) {
-						infoStr += UIPanelLang.AGILE + "+" + data.data.agile;
-						infoStr += "[33FF00] + " + Mathf.Floor (data.data.agile * enchantingVariable).ToString () + "[-]";
+						infoStr += UIPanelLang.AGILE + ":[CC0033] " + data.data.agile + "[-]";
+						if (enchantingVariable != 0)
+							infoStr += "[33FF00] + " + Mathf.Floor (data.data.agile * enchantingVariable).ToString () + "[-]";
 						infoStr += Environment.NewLine;
 					}
 				}
 				//		<!-- 生命最大 -->
 				//		<hpMax>132</hpMax>
 				if (data.data.hpMax > 0) {
-					infoStr += UIPanelLang.HPMAX + "+" + data.data.hpMax;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.hpMax * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.HPMAX + ":[CC0033] " + data.data.hpMax + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.hpMax * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 
 				}
 				//		<!-- 攻击强度 -->
 				//		<attack_damage>23</attack_damage>
 				if (data.data.attack_damage > 0) {
-					infoStr += UIPanelLang.ATTACK_DAMAGE + "+" + data.data.attack_damage;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.attack_damage * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.ATTACK_DAMAGE + ":[CC0033] " + data.data.attack_damage + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.attack_damage * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术强度 -->
 				//		<spell_power>123</spell_power>
 				if (data.data.ability_power > 0) {
-					infoStr += UIPanelLang.SPELL_POWER + "+" + data.data.ability_power;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.ability_power * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.SPELL_POWER + ":[CC0033] " + data.data.ability_power + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.ability_power * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理防御 -->
 				//		<physical_defense>321</physical_defense>
 				if (data.data.physical_defense > 0) {
-					infoStr += UIPanelLang.PHYSICAL_DEFENSE + "+" + data.data.physical_defense;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.physical_defense * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.PHYSICAL_DEFENSE + ":[CC0033] " + data.data.physical_defense + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.physical_defense * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术防御 -->
 				//		<spell_defense>123</spell_defense>
 				if (data.data.magic_defense > 0) {
-					infoStr += UIPanelLang.SPELL_DEFENSE + "+" + data.data.magic_defense;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.magic_defense * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.SPELL_DEFENSE + ":[CC0033] " + data.data.magic_defense + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.magic_defense * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理爆击 -->
 				//		<physical_crit>12</physical_crit>
 				if (data.data.physical_crit > 0) {
-					infoStr += UIPanelLang.PHYSICAL_CRIT + "+" + data.data.physical_crit;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.physical_crit * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.PHYSICAL_CRIT + ":[CC0033] " + data.data.physical_crit + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.physical_crit * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术爆击 -->
 				//		<spell_crit>21</spell_crit>
 				if (data.data.magic_crit > 0) {
-					infoStr += UIPanelLang.SPELL_CRIT + "+" + data.data.magic_crit;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.magic_crit * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.SPELL_CRIT + ":[CC0033] " + data.data.magic_crit + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.magic_crit * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 生命回复 -->
 				//		<hp_re>12</hp_re>
 				if (data.data.hp_recovery > 0) {
-					infoStr += UIPanelLang.HP_RECOVERY + "+" + data.data.hp_recovery;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.hp_recovery * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.HP_RECOVERY + ":[CC0033] " + data.data.hp_recovery + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.hp_recovery * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 能量回复 -->
 				//		<energy_re>21</energy_re>
 				if (data.data.energy_recovery > 0) {
-					infoStr += UIPanelLang.ENERGY_RECOVERY + "+" + data.data.energy_recovery;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.energy_recovery * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.ENERGY_RECOVERY + ":[CC0033] " + data.data.energy_recovery + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.energy_recovery * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 物理穿透 -->
 				//		<physical_penetrate>12</physical_penetrate>
 				if (data.data.physical_penetration > 0) {
-					infoStr += UIPanelLang.PHYSICAL_PENETRATION + "+" + data.data.physical_penetration;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.physical_penetration * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.PHYSICAL_PENETRATION + ":[CC0033] " + data.data.physical_penetration + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.physical_penetration * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 法术穿透 -->
 				//		<spell_penetrate>21</spell_penetrate>
 				if (data.data.spell_penetration > 0) {
-					infoStr += UIPanelLang.SPELL_PENETRATION + "+" + data.data.spell_penetration;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.spell_penetration * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.SPELL_PENETRATION + ":[CC0033] " + data.data.spell_penetration + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.spell_penetration * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 吸血等级 -->
 				//		<bloodsucking_lv>12</bloodsucking_lv>
 				if (data.data.bloodsucking_lv > 0) {
-					infoStr += UIPanelLang.BLOODSUCKING_LV + "+" + data.data.bloodsucking_lv;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.bloodsucking_lv * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.BLOODSUCKING_LV + ":[CC0033] " + data.data.bloodsucking_lv + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.bloodsucking_lv * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 闪避 -->
 				//		<dodge>21</dodge>
 				if (data.data.dodge > 0) {
-					infoStr += UIPanelLang.DODGE + "+" + data.data.dodge;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.dodge * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.DODGE + ":[CC0033] " + data.data.dodge + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.dodge * enchantingVariable).ToString () + "[-]";
 					infoStr += Environment.NewLine;
 				}
 				//		<!-- 治疗效果 -->
 				//		<addition_treatment>21</addition_treatment>
 				if (data.data.addition_treatment > 0) {
-					infoStr += UIPanelLang.ADDITION_TREATMENT + "+" + data.data.addition_treatment;
-					infoStr += "[33FF00] + " + Mathf.Ceil (data.data.addition_treatment * enchantingVariable).ToString () + "[-]";
+					infoStr += UIPanelLang.ADDITION_TREATMENT + ":[CC0033] " + data.data.addition_treatment + "[-]";
+					if (enchantingVariable != 0)
+						infoStr += "[33FF00] + " + Mathf.Ceil (data.data.addition_treatment * enchantingVariable).ToString () + "[-]";
 					infoStr += "%" + Environment.NewLine;
 				}
 			}

@@ -278,6 +278,10 @@ namespace TangLevel
         FadeOut ();
         break;
 
+      case HeroStatus.vertigo: // 晕掉 ----
+        dbBhvr.GotoAndPlay (HeroStatus.idle.ToString());
+        break;
+
       default: // 其他 ----
 
         //dbBhvr.Stop ();
@@ -410,7 +414,7 @@ namespace TangLevel
     /// <summary>
     /// 被击打
     /// </summary>
-    public void Beat ()
+    public void BeBeat ()
     {
       // 下面的行为会被打断
       switch (statusBhvr.Status) {
@@ -430,6 +434,28 @@ namespace TangLevel
         agent.ResetPath ();
         statusBhvr.Status = HeroStatus.beat;
         break;
+      }
+    }
+
+    /// <summary>
+    /// 被打晕
+    /// </summary>
+    public void BeStun(float time){
+
+      // 只要不是在放大招都会晕掉
+      if (!statusBhvr.IsBigMove && statusBhvr.Status != HeroStatus.vertigo) {
+
+        agent.ResetPath ();
+        statusBhvr.Status = HeroStatus.vertigo;
+
+        VertigoBhvr vertigoBhvr = GetComponent<VertigoBhvr> ();
+        if (vertigoBhvr == null) {
+          vertigoBhvr = gameObject.AddComponent<VertigoBhvr> ();
+        }
+
+        if (!vertigoBhvr.enabled) {
+          vertigoBhvr.enabled = true;
+        }
       }
     }
 
@@ -470,7 +496,7 @@ namespace TangLevel
     /// <returns>The closest target.</returns>
     public GameObject FindClosestTarget ()
     {
-      return LevelController.FindClosestTarget (this);
+      return HeroSelector.FindClosestTarget (this);
     }
 
     /// <summary>
