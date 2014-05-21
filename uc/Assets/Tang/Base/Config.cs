@@ -43,37 +43,54 @@ namespace Tang
       }
     }
 
-    public static string ResDir {
-      get {
-        string prefix = null;
+		public static string ResDir {
+			get {
+				return GetStreamingAssetsPath () + "resources/";
+			}
+		}
 
-        // WindowsWeb OSXWeb IPhone
-        if (Application.platform == RuntimePlatform.WindowsWebPlayer || 
-          Application.platform == RuntimePlatform.OSXWebPlayer ||
-          Application.platform == RuntimePlatform.IPhonePlayer) {
-          prefix = Application.dataPath + "/resources/";
-        }
-
-    // Android
-    else if (Application.platform == RuntimePlatform.Android) {
-          if (resourceStream == ResourceStream.INNER)
-            prefix = System.IO.Path.Combine (Application.streamingAssetsPath,
-             "resources/");
-          else
-            prefix = "file:///sdcard/" + resDirName + "/resources/";
-        }
-
-    // Editor and others
-    else {
-          if (resourceStream == ResourceStream.INNER) {
-            prefix = "file://" + Application.streamingAssetsPath + "/resources/";
-          } else {
-            prefix = "file://" + Application.dataPath + "/../../resources/";
-          }
-        }
-        return prefix;
-
-      }
-    }
+		/// 获取StreamingAssets文件夹路径
+		private static string GetStreamingAssetsPath(){
+			string streamingAssetsPath = "";
+			if(Application.platform == RuntimePlatform.IPhonePlayer){
+				streamingAssetsPath = "file://" + Application.dataPath + "/Raw/";
+			}else if(Application.platform == RuntimePlatform.Android){
+				streamingAssetsPath = Application.streamingAssetsPath + "/";
+			}else{
+				streamingAssetsPath = "file://" + Application.dataPath + "/StreamingAssets/";
+			}
+			return streamingAssetsPath;
+		}
+//      get {
+//        string prefix = null;
+//
+//        // WindowsWeb OSXWeb IPhone
+//        if (Application.platform == RuntimePlatform.WindowsWebPlayer || 
+//          Application.platform == RuntimePlatform.OSXWebPlayer ||
+//          Application.platform == RuntimePlatform.IPhonePlayer) {
+//          prefix = Application.dataPath + "/resources/";
+//        }
+//
+//    // Android
+//    else if (Application.platform == RuntimePlatform.Android) {
+//          if (resourceStream == ResourceStream.INNER)
+//            prefix = System.IO.Path.Combine (Application.streamingAssetsPath,
+//             "resources/");
+//          else
+//            prefix = "file:///sdcard/" + resDirName + "/resources/";
+//        }
+//
+//    // Editor and others
+//    else {
+//          if (resourceStream == ResourceStream.INNER) {
+//            prefix = "file://" + Application.streamingAssetsPath + "/resources/";
+//          } else {
+//            prefix = "file://" + Application.dataPath + "/../../resources/";
+//          }
+//        }
+//        return prefix;
+//
+//      }
+//    }
   }
 }

@@ -261,6 +261,6 @@ public class Utils
 	public static float EnchantingVariable (int rank, int enchantLevel)
 	{
 		//TODO only to test;
-		return 0.25f;
+		return 0.25f * enchantLevel;
 	}
 }
