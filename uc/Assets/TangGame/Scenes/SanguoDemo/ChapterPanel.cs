@@ -8,7 +8,7 @@ namespace TangGame.UI
     /// <summary>
     /// 标题
     /// </summary>
-    public UITexture title;
+    public UISprite title;
 
     /// <summary>
     /// 普通副本
@@ -39,13 +39,13 @@ namespace TangGame.UI
 
     private void OnNormalViewDragFinished(){
       int val = GetIndexByScrollBar (normalView.horizontalScrollBar.value);
-      title.mainTexture = GetMapTitle (val);
+      title.spriteName = GetMapTitle (val);
       UpdatePageIndicators (val);
     }
 
     private void OnEliteViewDragFinished(){
       int val = GetIndexByScrollBar (eliteView.horizontalScrollBar.value);
-      title.mainTexture = GetMapTitle (val);
+      title.spriteName = GetMapTitle (val);
       UpdatePageIndicators (val);
     }
 
@@ -56,10 +56,8 @@ namespace TangGame.UI
       return 2;
     }
 
-    private Texture GetMapTitle(int val){
-      string maptitlePath = "Textures/BattleChapters/Title/maptitle-chapter" + val.ToString();
-      Debug.Log (maptitlePath);
-      return Resources.Load (maptitlePath) as Texture;
+    private string GetMapTitle(int val){
+      return "maptitle-chapter" + val.ToString();
     }
 
     private void UpdatePageIndicators(int val){
