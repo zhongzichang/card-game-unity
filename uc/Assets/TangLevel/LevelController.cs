@@ -304,6 +304,7 @@ namespace TangLevel
     private static void OnLevelNextBtnClick (GameObject g)
     {
       levelNextPanel.gameObject.SetActive (false);
+      Debug.Log ("OnLevelNextBtnClick");
       ChallengeNextSubLevel ();
     }
 

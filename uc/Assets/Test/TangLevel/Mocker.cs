@@ -356,6 +356,8 @@ namespace TangLevel
       skill.effectors [0] = MockShenliEffect ();
       //skill.chargeClip = "shenli";
       skill.releaseClip = "shenli";
+      skill.releaseSpecials = new string[1];
+      skill.releaseSpecials[0] = "fx_shenli_skill";
       skill.enable = true;
       skill.bigMove = true;
       skill.distance = 3;
