@@ -35,20 +35,19 @@ namespace TangGame
 		// when hero menu click show hero panel
 		void OnHeroMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.TEXTURE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_VIEW_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.ADDSTATUS);
 			this.CloseMenu ();
 		}
 
 		void OnBagMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.BAG_PANEL_NAME , UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.TEXTURE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.BAG_PANEL_NAME , UIPanelNode.OpenMode.ADDITIVE,UIPanelNode.BlockMode.ADDSTATUS);
 			this.CloseMenu ();
 		}
 
 		void OnDebrisMenuClick (GameObject obj)
 		{
-
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.FRAGMENT_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE);
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.FRAGMENT_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.ADDSTATUS);
 			this.CloseMenu ();
 		}
 

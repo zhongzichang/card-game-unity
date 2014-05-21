@@ -184,5 +184,26 @@ namespace TangGame.UI
 		/// 道具详情界面“可合成装备”
 		public const string PROPS_DETAILS_SYNTHETIC = "可合成装备" ;
 
+		/// <summary>
+		/// 出售单价
+		/// </summary>
+		public const string UNIT_PRICE = "出售单价";
+		/// <summary>
+		/// 出售总价
+		/// </summary>
+		public const string TOTAL_PRICE = "获得金钱";
+		/// <summary>
+		/// 选择出售数量
+		/// </summary>
+		public const string SELECT_NUMBER_OF_SELL ="选择出售数量";
+		/// <summary>
+		/// 最大
+		/// </summary>
+		public const string MAX = "最大";
+		/// <summary>
+		/// 确认出售
+		/// </summary>
+		public const string CONFIRM_THE_SALE = "确认出售";
+
 	}
 }

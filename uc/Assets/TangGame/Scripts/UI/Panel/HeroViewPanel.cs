@@ -61,8 +61,8 @@ namespace TangGame.UI
 			lineLab.text = "";
 			foreach(HeroBase herobase in HeroCache.instance.heroBeseTable.Values){
 				this.UpHeroItem (herobase);
-				yield return new WaitForSeconds (0.01f);
 			}
+			yield return new WaitForFixedUpdate ();
 			HideAllItem (false);
 			this.repositionNow ();
 			lineLab.text = UIPanelLang.NOT_SUMMON_HERO;

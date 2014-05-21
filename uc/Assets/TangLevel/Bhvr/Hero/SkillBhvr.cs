@@ -9,9 +9,19 @@ namespace TangLevel
 {
   public class SkillBhvr : MonoBehaviour
   {
-
+    // 当前技能
+    public Skill skill;
+    // 所有技能
+    private List<Skill> skills;
+    // 出手序列
+    private int[] skillQueue;
+    // 当前序列索引
+    private int skillQueueIndex = 0;
+    // 最近一个序列索引
+    private int lastSkillQueueIndex = 0;
     private Dictionary<string, List<SkillWrapper>> wt = new Dictionary<string, List<SkillWrapper>> ();
     private HeroBhvr heroBhvr = null;
+
 
     #region Mono
 
@@ -19,6 +29,8 @@ namespace TangLevel
     void Start ()
     {
       heroBhvr = GetComponent<HeroBhvr> ();
+      skills = heroBhvr.hero.skills;
+      skillQueue = heroBhvr.hero.skillQueue;
     }
 
     void OnDisable ()
@@ -31,6 +43,56 @@ namespace TangLevel
     #endregion
 
     #region PublicMethods
+
+    /// <summary>
+    /// 获取下一个技能
+    /// </summary>
+    /// <value>The next skill.</value>
+    public Skill NextSkill ()
+    {
+      if (skills != null && skills.Count > 0 && skillQueue != null && skillQueue.Length > 0) {
+        // 确保 skillQueueIndex  在出手序列范围内
+        if (skillQueueIndex < skillQueue.Length && skillQueueIndex >= 0) {
+          int skillIndex = skillQueue [skillQueueIndex];
+
+          // 确保技能索引在技能列表范围内
+          if (skillIndex < skills.Count && skillIndex >= 0) {
+            Skill skill = skills [skillIndex];
+
+            // 确保技能可用
+            if (skill.enable) {
+              // 找到技能
+              lastSkillQueueIndex = skillQueueIndex;
+              skillQueueIndex++;
+              return skill;
+
+            } else {
+              // 下一个技能
+              skillQueueIndex++;
+            }
+
+          } else {
+            // 下一个技能
+            skillQueueIndex++;
+
+          }
+
+        } else {
+
+          // 转到一个
+          skillQueueIndex = 0;
+
+        }
+
+        if (lastSkillQueueIndex != skillQueueIndex) { // 还没有历遍
+          // 继续下一个技能
+          return NextSkill();
+
+        }
+
+      }
+      return null;
+    }
 
     // --- 释放技能 ---
     /// <summary>
@@ -55,14 +117,14 @@ namespace TangLevel
     /// <param name="skill">Skill.</param>
     /// <param name="source">Source.</param>
     /// <param name="target">Target.</param>
-    public void CastReleaseSpecial(Skill skill, GameObject source, GameObject target){
+    public void CastReleaseSpecial (Skill skill, GameObject source, GameObject target)
+    {
 
       SkillWrapper w = SkillWrapper.W (skill, source, target);
       foreach (string specialName in skill.releaseSpecials) {
         CastSkillSpecial (specialName, w);
       }
     }
-
 
     /// <summary>
     ///  对目标抛出作用器
@@ -71,11 +133,10 @@ namespace TangLevel
     /// <param name="skill">Skill.</param>
     /// <param name="source">Source.</param>
     /// <param name="target">Target.</param>
-    public void Cast (Effector effector, Skill skill, GameObject source, GameObject target)
+    public void Cast (EffectorWrapper w)
     {
-      EffectorWrapper w = EffectorWrapper.W (effector, skill, gameObject, target);
 
-      string specialName = effector.specialName;
+      string specialName = w.effector.specialName;
 
       if (specialName != null) {
 
@@ -103,7 +164,8 @@ namespace TangLevel
 
     #region PrivateMethods
 
-    private void CastSkillSpecial(string specialName, SkillWrapper w){
+    private void CastSkillSpecial (string specialName, SkillWrapper w)
+    {
 
       // 获取特效对象
       GameObject gobj = GobjManager.FetchUnused (specialName);
@@ -181,38 +243,9 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 接收作用器
-    /// </summary>
-    /// <param name="effector">Effector.</param>
-    /// <param name="skill">Skill.</param>
-    public void Receive (EffectorWrapper w)
-    {
-      // 作用器特效
-      string specialName = w.effector.specialName;
-      if (specialName != null) {
-        GameObject gobj = GobjManager.FetchUnused (specialName);
-
-        if (gobj != null) {
-
-          ReleaseEffectorSpecial (gobj, w);
-
-        } else {
-
-          // 添加到作用器列表
-          Add (specialName, w);
-          // 需要加载资源
-          if (!GobjManager.HasHandler (OnSpecialLoad)) {
-            GobjManager.RaiseLoadEvent += OnSpecialLoad;
-          }
-          GobjManager.LazyLoad (specialName);
-        }
-      }
-    }
-
-    /// <summary>
     /// 增加一个对象到缓存
     /// </summary>
-    public void Add (string special, SkillWrapper w)
+    private void Add (string special, SkillWrapper w)
     {
       if (wt.ContainsKey (special)) {
         wt [special].Add (w);
@@ -227,10 +260,10 @@ namespace TangLevel
     /// 删除持有某特效的所有技能和作用器
     /// </summary>
     /// <param name="special">Special.</param>
-    public void Remove (string special)
+    private void Remove (string special)
     {
       if (wt.ContainsKey (special)) {
-        wt[special].Clear();
+        wt [special].Clear ();
       }
     }
 

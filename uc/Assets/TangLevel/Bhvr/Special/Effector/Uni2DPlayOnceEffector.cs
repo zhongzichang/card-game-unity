@@ -36,7 +36,7 @@ namespace TangLevel
         Hit ();
 
       } else {
-        GobjManager.Release (gameObject);
+        Release ();
       }
 
       // 关卡控制

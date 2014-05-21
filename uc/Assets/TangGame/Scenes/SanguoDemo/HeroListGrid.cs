@@ -30,7 +30,7 @@ namespace TangGame.UI
       obj.ToggleTick ();
     }
 
-    private HeroItemObject FindHeroItemObject(string heroId){
+    public HeroItemObject FindHeroItemObject(string heroId){
       return (HeroItemObject) heroObjs [heroId];
     }
 
@@ -43,11 +43,11 @@ namespace TangGame.UI
 
       Debug.Log (leftObj.name + ";" + rightObj.name);
       // 根据等级，星级和品阶依次排序
-      int ret = rightObj.HeroData.level.CompareTo(leftObj.HeroData.level);
+      int ret = rightObj.data.level.CompareTo(leftObj.data.level);
       if (ret == 0) {
-        ret = rightObj.HeroData.stars.CompareTo(leftObj.HeroData.stars);
+        ret = rightObj.data.stars.CompareTo(leftObj.data.stars);
         if (ret == 0) {
-          return  rightObj.HeroData.rank.CompareTo(leftObj.HeroData.rank);
+          return  rightObj.data.rank.CompareTo(leftObj.data.rank);
         }
       }
       return ret;

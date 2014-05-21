@@ -19,6 +19,10 @@ namespace TangLevel
       isPlay = true;
     }
 
+    public virtual void Release(){
+      GobjManager.Release (gameObject);
+    }
+
     public abstract void Play();
     #endregion
 

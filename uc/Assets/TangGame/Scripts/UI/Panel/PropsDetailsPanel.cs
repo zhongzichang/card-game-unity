@@ -53,6 +53,9 @@ namespace TangGame.UI{
 		}
 
 		private void UpdateData(){
+
+      scrollView.SetDragAmount(0, 0, false);
+
 			if(!this.started){return;}
 			foreach(ViewItem item in items){
 				GameObject.Destroy(item.gameObject);
@@ -68,6 +71,8 @@ namespace TangGame.UI{
       if(this.mParam != null){
         props = (PropsData)this.mParam;
         data = PropsCache.instance.GetPropsRelationData(props.id);
+      }else{
+        return;
       }
 
       frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.upgrade);
@@ -79,7 +84,7 @@ namespace TangGame.UI{
         UIUtils.SetY(getLabel.transform.parent.gameObject, -y);
         y += 65;
         UIUtils.SetY(getGroup.gameObject, -y);
-        getGroup.height = 100;
+        //getGroup.height = 100;
         
         heroLabel.transform.parent.gameObject.SetActive(false);
         heroGroup.gameObject.SetActive(false);
@@ -102,11 +107,11 @@ namespace TangGame.UI{
 				UIUtils.SetY(syntheticGroup.gameObject, -y);
 				height = Mathf.FloorToInt((length + 1) / 2) * 70 + 20;
 				y += height;
-				syntheticGroup.height = height;
+				//syntheticGroup.height = height;
 				count = 0;
 				foreach(PropsData propsData in data.synthetics){
 					go = UIUtils.Duplicate(syntheticItem.gameObject, syntheticGroup.gameObject);
-					go.transform.localPosition = new Vector3((count % 2) * 330, -10 + Mathf.FloorToInt(count / 2) * -70,0);
+					go.transform.localPosition = new Vector3((count % 2) * 280, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsSyntheticItem item = go.GetComponent<PropsDetailsSyntheticItem>();
 					item.data = propsData;
 					items.Add(item);
@@ -124,11 +129,11 @@ namespace TangGame.UI{
 				UIUtils.SetY(heroGroup.gameObject, -y);
 				height = Mathf.FloorToInt((length + 1) / 2) * 70 + 20;
 				y += height;
-				heroGroup.height = height;
+				//heroGroup.height = height;
 				count = 0;
 				foreach(PropsHeroEquipData propsHeroEquipData in data.heros){
 					go = UIUtils.Duplicate(heroItem.gameObject, heroGroup.gameObject);
-					go.transform.localPosition = new Vector3((count % 2) * 330, -10 + Mathf.FloorToInt(count / 2) * -70,0);
+					go.transform.localPosition = new Vector3((count % 2) * 280, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsHeroItem item = go.GetComponent<PropsDetailsHeroItem>();
 					item.data = propsHeroEquipData;
 					items.Add(item);
@@ -144,18 +149,18 @@ namespace TangGame.UI{
 			if(length > 0){
 				height = Mathf.FloorToInt((length + 1) / 2) * 70 + 20;
 				y += height;
-				getGroup.height = height;
+				//getGroup.height = height;
 				count = 0;
 				foreach(LevelsData levelData in data.levels){
 					go = UIUtils.Duplicate(getItem.gameObject, getGroup.gameObject);
-					go.transform.localPosition = new Vector3((count % 2) * 330, -10 + Mathf.FloorToInt(count / 2) * -70,0);
+					go.transform.localPosition = new Vector3((count % 2) * 280, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsGetItem item = go.GetComponent<PropsDetailsGetItem>();
 					item.data = levelData;
 					items.Add(item);
 					count++;
 				}
 			}else{
-				getGroup.height = 100;
+				//getGroup.height = 100;
 			}
 		}
 	}

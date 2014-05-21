@@ -218,8 +218,14 @@ namespace TangLevel
     /// <param name="status">Status.</param>
     private void OnStatusChanged (HeroStatus status)
     {
-
+      // 动画剪辑
       string clip = null;
+
+      // 如果前一个状态是僵直，首先恢复动作播放
+      if (statusBhvr.beforeStatus == HeroStatus.rigid && !statusBhvr.IsPause) {
+        dbBhvr.Resume ();
+      }
+
       switch (status) {
 
       case HeroStatus.charge: // 起手 ----
@@ -229,13 +235,14 @@ namespace TangLevel
         if (skill.chargeClip != null) {
           if (animationList.Contains (skill.chargeClip)) {
             clip = skill.chargeClip;
+          } else {
+            clip = null;
           }
         }
         if (clip == null) {
           statusBhvr.Status = HeroStatus.release;
         } else {
           // 播放起手动作
-          //dbBhvr.Stop ();
           dbBhvr.GotoAndPlay (clip);
         }
 
@@ -247,12 +254,6 @@ namespace TangLevel
       
       case HeroStatus.release: // 释放 ----
 
-        // 大招结束
-        /*
-        if (skill.bigMove) {
-          Debug.Log ("bigmoveend hero "+hero.id);
-          bmBhvr.StopBigMove ();
-        }*/
 
         if (skill.releaseClip != null && animationList.Contains (skill.releaseClip)) {
           clip = skill.releaseClip;
@@ -270,7 +271,8 @@ namespace TangLevel
         // 抛出作用器s
         if (skill != null && skill.effectors != null) {
           foreach (Effector e in skill.effectors) {
-            skillBhvr.Cast (e, skill, gameObject, target);
+            EffectorWrapper w = EffectorWrapper.W (e, skill, gameObject, target);
+            skillBhvr.Cast (w);
           }
         }
         break;
@@ -280,6 +282,14 @@ namespace TangLevel
         //dbBhvr.Stop ();
         armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
         FadeOut ();
+        break;
+
+      case HeroStatus.vertigo: // 晕掉 ----
+        dbBhvr.GotoAndPlay (HeroStatus.idle.ToString ());
+        break;
+
+      case HeroStatus.rigid: // 僵直 ----
+        dbBhvr.Pause ();
         break;
 
       default: // 其他 ----
@@ -375,13 +385,16 @@ namespace TangLevel
     /// <param name="target">Target.</param>
     public void Attack (GameObject target, Skill skill)
     {
-
-      if (statusBhvr.Status != HeroStatus.running) {
+      if (statusBhvr.Status == HeroStatus.idle) {
 
         this.target = target;
         this.skill = skill;
 
         statusBhvr.Status = HeroStatus.charge;
+
+        if (skill.bigMove) {
+          hero.mp = 0;
+        }
       }
 
     }
@@ -415,27 +428,76 @@ namespace TangLevel
     /// <summary>
     /// 被击打
     /// </summary>
-    public void Beat ()
+    public void BeBeat ()
     {
       // 下面的行为会被打断
       switch (statusBhvr.Status) {
 
-      case HeroStatus.idle:
-        statusBhvr.Status = HeroStatus.beat;
-        break;
       case HeroStatus.charge:
       case HeroStatus.release:
-        if (!statusBhvr.IsBigMove) {
+        // 不是在施放大招，并且技能可以被打断
+        if (!statusBhvr.IsBigMove && skill.breakable) {
           statusBhvr.Status = HeroStatus.beat;
         }
         break;
-
       case HeroStatus.running:
         agent.ResetPath ();
         statusBhvr.Status = HeroStatus.beat;
         break;
+      default:
+        statusBhvr.Status = HeroStatus.beat;
+        break;
       }
     }
+
+    /// <summary>
+    /// 被打晕
+    /// </summary>
+    public void BeStun (float time)
+    {
+
+      // 只要不是在放大招都会晕掉
+      if (!statusBhvr.IsBigMove && statusBhvr.Status != HeroStatus.vertigo) {
+
+        agent.ResetPath ();
+        statusBhvr.Status = HeroStatus.vertigo;
+
+        VertigoBhvr vertigoBhvr = GetComponent<VertigoBhvr> ();
+        if (vertigoBhvr == null) {
+          vertigoBhvr = gameObject.AddComponent<VertigoBhvr> ();
+        }
+
+        if (!vertigoBhvr.enabled) {
+          vertigoBhvr.enabled = true;
+        }
+      }
+    }
+
+    /// <summary>
+    /// 僵直
+    /// </summary>
+    public void BeRigid ()
+    {
+
+      // 只要不是在放大招都会晕掉
+      if (!statusBhvr.IsBigMove) {
+        agent.ResetPath ();
+        statusBhvr.Status = HeroStatus.rigid;
+
+      }
+    }
+
+    /// <summary>
+    /// 取消僵直
+    /// </summary>
+    /*
+    public void UnRigid ()
+    {
+      if (statusBhvr.Status == HeroStatus.rigid && !statusBhvr.IsPause) {
+        statusBhvr.Status = HeroStatus.idle;
+        dbBhvr.Resume ();
+      }
+    }*/
 
     /// <summary>
     /// 庆祝胜利
@@ -474,7 +536,7 @@ namespace TangLevel
     /// <returns>The closest target.</returns>
     public GameObject FindClosestTarget ()
     {
-      return LevelController.FindClosestTarget (this);
+      return HeroSelector.FindClosestTarget (this);
     }
 
     /// <summary>
@@ -491,8 +553,14 @@ namespace TangLevel
         }
       }
 
+      // 使用大招攻击
       if (bs != null) {
-        Attack (bs);
+        bs.cd = 0; // 设置大招cd为0，马上攻击
+        AutoFire autoFire = GetComponent<AutoFire> ();
+        if (autoFire == null) {
+          autoFire = gameObject.AddComponent<AutoFire> ();
+        }
+        autoFire.skill = bs;
       }
     }
 

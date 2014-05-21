@@ -72,7 +72,7 @@ namespace TangGame{
 			if(mInstance == null){
 				GameObject go = new GameObject("PropTips");
 				go.layer = Global.UILayer;
-				go.transform.parent = Global.uiRoot.transform;
+        go.transform.parent = UICamera.current.transform.parent;
 				mInstance = go.AddComponent<PropTips>();
 				go.transform.localScale = Vector3.one;
 				go.transform.localPosition = new Vector3(0, 0, -100);//Z值临时添加
