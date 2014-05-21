@@ -218,8 +218,14 @@ namespace TangLevel
     /// <param name="status">Status.</param>
     private void OnStatusChanged (HeroStatus status)
     {
-
+      // 动画剪辑
       string clip = null;
+
+      // 如果前一个状态是僵直，首先恢复动作播放
+      if (statusBhvr.beforeStatus == HeroStatus.rigid && !statusBhvr.IsPause) {
+        dbBhvr.Resume ();
+      }
+
       switch (status) {
 
       case HeroStatus.charge: // 起手 ----
@@ -279,7 +285,11 @@ namespace TangLevel
         break;
 
       case HeroStatus.vertigo: // 晕掉 ----
-        dbBhvr.GotoAndPlay (HeroStatus.idle.ToString());
+        dbBhvr.GotoAndPlay (HeroStatus.idle.ToString ());
+        break;
+
+      case HeroStatus.rigid: // 僵直 ----
+        dbBhvr.Pause ();
         break;
 
       default: // 其他 ----
@@ -381,6 +391,10 @@ namespace TangLevel
         this.skill = skill;
 
         statusBhvr.Status = HeroStatus.charge;
+
+        if (skill.bigMove) {
+          hero.mp = 0;
+        }
       }
 
     }
@@ -419,9 +433,6 @@ namespace TangLevel
       // 下面的行为会被打断
       switch (statusBhvr.Status) {
 
-      case HeroStatus.idle:
-        statusBhvr.Status = HeroStatus.beat;
-        break;
       case HeroStatus.charge:
       case HeroStatus.release:
         // 不是在施放大招，并且技能可以被打断
@@ -429,9 +440,11 @@ namespace TangLevel
           statusBhvr.Status = HeroStatus.beat;
         }
         break;
-
       case HeroStatus.running:
         agent.ResetPath ();
+        statusBhvr.Status = HeroStatus.beat;
+        break;
+      default:
         statusBhvr.Status = HeroStatus.beat;
         break;
       }
@@ -440,7 +453,8 @@ namespace TangLevel
     /// <summary>
     /// 被打晕
     /// </summary>
-    public void BeStun(float time){
+    public void BeStun (float time)
+    {
 
       // 只要不是在放大招都会晕掉
       if (!statusBhvr.IsBigMove && statusBhvr.Status != HeroStatus.vertigo) {
@@ -458,6 +472,32 @@ namespace TangLevel
         }
       }
     }
+
+    /// <summary>
+    /// 僵直
+    /// </summary>
+    public void BeRigid ()
+    {
+
+      // 只要不是在放大招都会晕掉
+      if (!statusBhvr.IsBigMove) {
+        agent.ResetPath ();
+        statusBhvr.Status = HeroStatus.rigid;
+
+      }
+    }
+
+    /// <summary>
+    /// 取消僵直
+    /// </summary>
+    /*
+    public void UnRigid ()
+    {
+      if (statusBhvr.Status == HeroStatus.rigid && !statusBhvr.IsPause) {
+        statusBhvr.Status = HeroStatus.idle;
+        dbBhvr.Resume ();
+      }
+    }*/
 
     /// <summary>
     /// 庆祝胜利
@@ -513,8 +553,14 @@ namespace TangLevel
         }
       }
 
+      // 使用大招攻击
       if (bs != null) {
-        Attack (bs);
+        bs.cd = 0; // 设置大招cd为0，马上攻击
+        AutoFire autoFire = GetComponent<AutoFire> ();
+        if (autoFire == null) {
+          autoFire = gameObject.AddComponent<AutoFire> ();
+        }
+        autoFire.skill = bs;
       }
     }
 

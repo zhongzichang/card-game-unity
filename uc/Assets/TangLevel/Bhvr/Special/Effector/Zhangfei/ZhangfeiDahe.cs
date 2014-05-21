@@ -53,9 +53,6 @@ namespace TangLevel
             // 判断对手状态，没在放大招或者处于眩晕状态
             HeroStatusBhvr targetStatusBhvr = g.GetComponent<HeroStatusBhvr> ();
             if (targetStatusBhvr.Status != HeroStatus.vertigo && !targetStatusBhvr.IsBigMove) {
-              // 打晕
-              HeroBhvr targetHeroBhvr = g.GetComponent<HeroBhvr> ();
-              targetHeroBhvr.BeStun (5F);
               // 抛出作用器
               foreach (Effector e in w.effector.subEffectors) {
                 EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, g);

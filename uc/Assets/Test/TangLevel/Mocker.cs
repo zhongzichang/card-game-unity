@@ -353,11 +353,12 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
-      skill.chargeClip = "shenli";
+      skill.effectors [0] = MockShenliEffect ();
+      //skill.chargeClip = "shenli";
+      skill.releaseClip = "shenli";
       skill.enable = true;
       skill.bigMove = true;
-      skill.distance = 10;
+      skill.distance = 3;
       skill.cd = 3;
 
       return skill;
@@ -406,6 +407,16 @@ namespace TangLevel
       effector.specialName = "fx_dahe";
       effector.subEffectors = new Effector[1];
       effector.subEffectors[0] = MockXuanyunEffect ();
+
+      return effector;
+    }
+
+
+    public static Effector MockShenliEffect(){
+
+
+      Effector effector = new Effector ();
+      effector.specialName = "fx_shenli";
 
       return effector;
     }
