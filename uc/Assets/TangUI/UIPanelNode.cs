@@ -288,7 +288,6 @@ namespace TangUI
 				if (raisePanelEvent != null) {
 					raisePanelEvent (this, new PanelEventArgs (EventType.OnLoad));
 				}
-				mBlock = gameObject.GetComponentInChildren<Block> ();
 				if (mBlock != null)
 					mBlock.SetBlockMode (this.blockMode);
 			} else {
