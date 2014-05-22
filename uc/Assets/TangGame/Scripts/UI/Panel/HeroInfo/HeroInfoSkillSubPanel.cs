@@ -110,17 +110,17 @@ namespace TangGame.UI
 		/// <param name="skillbases">Skillbases.</param>
 		void SetSkillGrid (SkillBase[] skillbases)
 		{
-			foreach (SkillBase skill in skillbases) {
-				this.AddHeroItem (skill);
+			for (int i = 0; i < skillbases.Length; i++) {
+				this.AddHeroItem (skillbases , i);
 			}
 		}
 
-		void AddHeroItem (SkillBase skill)
+		void AddHeroItem (SkillBase[] skills, int i)
 		{
 			SkillItem item = Resources.Load<SkillItem> (UIContext.getWidgetsPath (UIContext.SKILL_ITEM_NAME));
 			item = NGUITools.AddChild (SkillTable, item.gameObject).GetComponent<SkillItem> ();
-			item.gameObject.name = "skill_" + skill.Xml.id;
-			item.Flush (data,skill);
+			item.gameObject.name = "skill_" + i;
+			item.Flush (data,skills[i]);
 		}
 	}
 }

@@ -29,7 +29,7 @@ namespace TangGame.UI
     private void OnItemClicked(GameObject obj){
 			StageItemObject stage = (StageItemObject)gameObject.GetComponent<StageItemObject> ();  
 			// 显示关卡详细信息
-      UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_STAGE_DETAIL_PANEL_NAME, UIPanelNode.OpenMode.OVERRIDE, UIPanelNode.BlockMode.TEXTURE, stage);
+      UIContext.mgrCoC.LazyOpen (UIContext.BATTLE_STAGE_DETAIL_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.TEXTURE, stage);
     }
 
     public void UpdateStatus(int status){

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.Xml;
@@ -151,7 +151,7 @@ namespace TangGame.UI{
 				y += height;
 				//getGroup.height = height;
 				count = 0;
-				foreach(LevelsData levelData in data.levels){
+				foreach(LevelData levelData in data.levels){
 					go = UIUtils.Duplicate(getItem.gameObject, getGroup.gameObject);
 					go.transform.localPosition = new Vector3((count % 2) * 280, -10 + Mathf.FloorToInt(count / 2) * -70,0);
 					PropsDetailsGetItem item = go.GetComponent<PropsDetailsGetItem>();

@@ -8,7 +8,7 @@ using TangGame.UI;
 
 namespace TangGame.Xml
 {
-	public class LevelsData
+	public class LevelData
 	{ 
 		/// 关卡序列号
 		public int id;
@@ -57,14 +57,17 @@ namespace TangGame.Xml
     public class LevelsRoot
     {
       [XmlElement ("value")]
-      public List<LevelsData> items = new List<LevelsData> ();
+      public List<LevelData> items = new List<LevelData> ();
       
       public static void LateProcess (object obj)
       {
         LevelsRoot root = obj as LevelsRoot;
         int i = 0;
-        foreach (LevelsData item in root.items) {
+        foreach (LevelData item in root.items) {
           Config.levelsXmlTable[item.id] = item;
+          Level level = new Level();
+          level.data = item;
+          LevelCache.instance.levels[item.id] = level;
           PropsCache.instance.AddPropsLevelRelation(item);
         }
       }
