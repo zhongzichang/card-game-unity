@@ -93,6 +93,7 @@ namespace TangLevel
         armature.AddEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
         armature.AddEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
         armature.AddEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
+        armature.AddEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
         animationList = armature.Animation.AnimationList;
       }
 
@@ -126,6 +127,7 @@ namespace TangLevel
         armature.RemoveEventListener (DBE.AnimationEvent.MOVEMENT_CHANGE, OnMovementChange);
         armature.RemoveEventListener (DBE.AnimationEvent.LOOP_COMPLETE, OnAnimationLoopComplete);
         armature.RemoveEventListener (DBE.AnimationEvent.COMPLETE, OnAnimationComplete);
+        armature.RemoveEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
       }
 
       // 关卡控制
@@ -144,8 +146,9 @@ namespace TangLevel
 
       switch (statusBhvr.Status) {
       case HeroStatus.charge:
+      case HeroStatus.release:
         // 发大招通知
-        if (skill.bigMove) {
+        if (skill.bigMove && !statusBhvr.IsBigMove) {
           bmBhvr.StartBigMove (skill.chargeTime);
         }
         break;
@@ -164,15 +167,7 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
         break;
       case HeroStatus.charge:
-        if (statusBhvr.IsBigMove) {
-          // 大招结束
-          bmBhvr.StopBigMove ();
-        }
         statusBhvr.Status = HeroStatus.release;
-        if (statusBhvr.IsBigMove) {
-          // 大招结束
-          bmBhvr.StopBigMove ();
-        }
         break;
       case HeroStatus.release:
         statusBhvr.Status = HeroStatus.idle;
@@ -188,6 +183,31 @@ namespace TangLevel
       case HeroStatus.release:
         statusBhvr.Status = HeroStatus.idle;
         break;
+      }
+    }
+
+    private void OnAnimationFrameEvent (Com.Viperstudio.Events.Event e)
+    {
+
+      DBE.FrameEvent evt = e as DBE.FrameEvent;
+      if (evt != null) {
+
+        // 如果是投射事件
+        if (Config.DEFAULt_CAST_LABEL.Equals (evt.FrameLabel)) {
+
+          // 抛出作用器s
+          if (skill != null && skill.effectors != null) {
+            foreach (Effector effect in skill.effectors) {
+              EffectorWrapper w = EffectorWrapper.W (effect, skill, gameObject, target);
+              skillBhvr.Cast (w);
+            }
+          }
+
+          if (statusBhvr.IsBigMove) {
+            // 大招结束
+            bmBhvr.StopBigMove ();
+          }
+        }
       }
     }
 
@@ -268,13 +288,6 @@ namespace TangLevel
         if (skill.releaseSpecials != null) {
           skillBhvr.CastReleaseSpecial (skill, gameObject, target);
         }
-        // 抛出作用器s
-        if (skill != null && skill.effectors != null) {
-          foreach (Effector e in skill.effectors) {
-            EffectorWrapper w = EffectorWrapper.W (e, skill, gameObject, target);
-            skillBhvr.Cast (w);
-          }
-        }
         break;
 
       case HeroStatus.dead: // 死亡 ----
@@ -285,7 +298,7 @@ namespace TangLevel
         break;
 
       case HeroStatus.vertigo: // 晕掉 ----
-        dbBhvr.GotoAndPlay (HeroStatus.idle.ToString ());
+        dbBhvr.GotoAndPlay (HeroStatus.vertigo.ToString ());
         break;
 
       case HeroStatus.rigid: // 僵直 ----

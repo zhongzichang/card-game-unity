@@ -60,7 +60,7 @@ Shader "Unlit/Transparent Colored Gray"
 			fixed4 frag (v2f i) : COLOR
 			{
 				fixed4 col;
-        if (i.color.r < 1)
+        if (i.color.r < 0.001)
         {
             col = tex2D(_MainTex, i.texcoord);
             float grey = dot(col.rgb, float3(0.299, 0.587, 0.114));

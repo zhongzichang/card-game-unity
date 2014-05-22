@@ -25,6 +25,11 @@ namespace TangLevel
     public const string DEFAULT_ATTACK_CLIP = "attack";
 
     /// <summary>
+    /// 缺省投射标记
+    /// </summary>
+    public const string DEFAULt_CAST_LABEL = "cast";
+
+    /// <summary>
     ///   是否使用打包后的资源
     /// </summary>
     public static bool use_packed_res = false;
