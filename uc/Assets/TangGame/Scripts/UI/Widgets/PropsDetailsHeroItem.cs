@@ -28,7 +28,7 @@ namespace TangGame.UI{
       if(index > 0){
         addStr = "[" + Global.GetHeroUpgradeHexColor(propsHeroEquipData.upgrade) + "]+" + Global.GetHeroUpgradeRem(propsHeroEquipData.upgrade) + "[-]";
       }
-      label.text = "[000000]" + propsHeroEquipData.data.name + "[-]" + addStr;
+      label.text = "[FEDEBB]" + propsHeroEquipData.data.name + "[-]" + addStr;
     }
 	}
 }
