@@ -11,7 +11,6 @@ namespace TangLevel
     public const float DISAPPEAR_DISTANCE = 2;
     public const float SPEED = 60;
     private Transform myTransform;
-    private Animator animator;
     private Vector3 tpos = Vector3.zero;
     // Use this for initialization
     void Awake ()
