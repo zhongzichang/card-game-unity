@@ -1,6 +1,9 @@
-
 using System.Xml;
-using UnityEngine;
+using TangUtils;
+using System.Collections.Generic;
+using System.Collections;
+using System.Xml.Serialization;
+using TangGame.UI;
 
 namespace TangGame.Xml
 {
@@ -8,12 +11,19 @@ namespace TangGame.Xml
 	{ 
 		/// 怪物编号
 		public int id;
+    /// 怪物名称
+    public string name;
 		/// 怪物等级
-		public int lv;
-		/// 怪物进阶等级
-		public int up_lv;
-		/// 怪物技能等级
-		public int skill_lvs;
+		public int level;
+    /// 怪物技能
+    public string skill;
+    /// 出手序列
+    public string shot_order;
+    /// 星级
+    public int evolve;
+    /// 品阶
+    public int upgrade;
+
 		/// 力量
 		public float strength;
 		/// 智力
@@ -50,5 +60,27 @@ namespace TangGame.Xml
 		public int addition_treatment;
 		/// 技能等级
 		public int skill_lv;
+    /// 模型资源名
+    public string model;
+    /// 头像资源名
+    public string avatar;
+    /// 怪物简介
+    public string desc;
+
+    [XmlRoot ("root")]
+    [XmlLate ("monster")]
+    public class MonsterRoot
+    {
+      [XmlElement ("value")]
+      public List<MonsterData> items = new List<MonsterData> ();
+      
+      public static void LateProcess (object obj)
+      {
+        MonsterRoot root = obj as MonsterRoot;
+        foreach (MonsterData item in root.items) {
+          
+        }
+      }
+    }
 	}
 }

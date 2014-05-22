@@ -40,9 +40,9 @@ namespace TangGame.UI{
 			if(this.data == null){return;}
 			if(state){
 				Props prop = this.data as Props;
-				PropTips.Show(go.transform.position, 43, prop);
+				PropsTips.Show(go.transform.position, 43, prop);
 			}else{
-				PropTips.Hiddle();
+				PropsTips.Hiddle();
 			}
 		}
 

@@ -1,1 +1,0 @@
-<root><value><id>1001</id><next_dialogue_id>1002</next_dialogue_id><dialogue>你是谁啊？</dialogue><avatar_id>name</avatar_id><music_id>1001</music_id><sound_id>1001</sound_id></value><value><id>1002</id><next_dialogue_id>0</next_dialogue_id><dialogue>我也不知道我是谁</dialogue><avatar_id>name</avatar_id><music_id>1002</music_id><sound_id>1002</sound_id></value></root>

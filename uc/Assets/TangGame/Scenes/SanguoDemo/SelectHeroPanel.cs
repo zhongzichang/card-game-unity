@@ -45,7 +45,10 @@ namespace TangGame.UI
       if (selectedHeroes.Count == 0) {
         StartCoroutine (ShowToast ("请选择上阵英雄"));
       }else{
-        ArrayList list = new ArrayList(selectedHeroes.Keys);
+        ArrayList list = new ArrayList();
+        foreach(string key in selectedHeroes.Keys){
+          list.Add(int.Parse(key));
+        }
         // 开始战斗
         int[] heroes = (int[])list.ToArray( typeof( int ));
         TangLevel.LevelController.ChallengeLevel (levelId, heroes);

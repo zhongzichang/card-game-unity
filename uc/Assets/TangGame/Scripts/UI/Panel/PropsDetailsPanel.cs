@@ -53,6 +53,9 @@ namespace TangGame.UI{
 		}
 
 		private void UpdateData(){
+
+      scrollView.SetDragAmount(0, 0, false);
+
 			if(!this.started){return;}
 			foreach(ViewItem item in items){
 				GameObject.Destroy(item.gameObject);
