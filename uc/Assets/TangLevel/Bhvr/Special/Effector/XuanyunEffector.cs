@@ -15,7 +15,6 @@ namespace TangLevel
       myTransform = transform;
       animator = GetComponent<Animator> ();
     }
-
     // Update is called once per frame
     void Update ()
     {
@@ -24,6 +23,7 @@ namespace TangLevel
         if (remainTime > 0) {
           remainTime -= Time.deltaTime;
         } else {
+          myTransform.parent = null;
           StartRelease ();
         }
 
@@ -33,21 +33,6 @@ namespace TangLevel
     void OnEnable ()
     {
 
-      if (w != null && w.target != null) {
-
-        // 绑定到目标身上
-        myTransform.localPosition = w.target.transform.localPosition + OFFSET;
-        // 打晕
-        HeroBhvr targetHeroBhvr = w.target.GetComponent<HeroBhvr> ();
-        targetHeroBhvr.BeStun (effectTime);
-
-        Hit ();
-
-      } else {
-
-        StartRelease ();
-
-      }
 
       // 关卡控制
       LevelController.RaisePause += OnPause;
@@ -66,9 +51,26 @@ namespace TangLevel
 
     public override void Play ()
     {
-      isPlay = true;
-      remainTime = effectTime;
-      animator.speed = 1;
+
+      if (w != null && w.target != null && null != w.target.GetComponentInChildren<XuanyunEffector> ()) {
+
+        isPlay = true;
+        remainTime = effectTime;
+        animator.speed = 1;
+
+        // 绑定到目标身上
+        myTransform.parent = w.target.transform;
+        myTransform.localPosition = OFFSET;
+        // 打晕
+        HeroBhvr targetHeroBhvr = w.target.GetComponent<HeroBhvr> ();
+        targetHeroBhvr.BeStun (effectTime);
+
+        Hit ();
+      } else {
+        myTransform.parent = null;
+        StartRelease ();
+
+      }
     }
 
     public override void Pause ()
