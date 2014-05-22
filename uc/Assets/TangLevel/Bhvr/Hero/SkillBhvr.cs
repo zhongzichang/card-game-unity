@@ -22,7 +22,6 @@ namespace TangLevel
     private Dictionary<string, List<SkillWrapper>> wt = new Dictionary<string, List<SkillWrapper>> ();
     private HeroBhvr heroBhvr = null;
 
-
     #region Mono
 
     // Use this for initialization
@@ -86,14 +85,13 @@ namespace TangLevel
 
         if (lastSkillQueueIndex != skillQueueIndex) { // 还没有历遍
           // 继续下一个技能
-          return NextSkill();
+          return NextSkill ();
 
         }
 
       }
       return null;
     }
-
     // --- 释放技能 ---
     /// <summary>
     /// 释放起手特效
@@ -215,14 +213,12 @@ namespace TangLevel
     private void ReleaseSkillSpecial (GameObject gobj, SkillWrapper w)
     {
 
-      SkillSpecialBhvr[] bhvrs = gobj.GetComponents<SkillSpecialBhvr> ();
-      if (bhvrs != null) {
-        foreach (SkillSpecialBhvr bhvr in bhvrs) {
-          bhvr.w = w;
-          bhvr.Play ();
-        }
+      SkillSpecialBhvr bhvr = gobj.GetComponent<SkillSpecialBhvr> ();
+      if (bhvr != null) {
+        bhvr.w = w;
+        gobj.SetActive (true);
+        bhvr.Play ();
       }
-      gobj.SetActive (true);
 
     }
 
@@ -232,14 +228,13 @@ namespace TangLevel
     /// <param name="gobj">Gobj.</param>
     private void ReleaseEffectorSpecial (GameObject gobj, EffectorWrapper w)
     {
-      EffectorSpecialBhvr[] bhvrs = gobj.GetComponents<EffectorSpecialBhvr> ();
-      if (bhvrs != null) {
-        foreach (EffectorSpecialBhvr bhvr in bhvrs) {
-          bhvr.w = w;
-          bhvr.Play ();
-        }
+
+      EffectorSpecialBhvr bhvr = gobj.GetComponent<EffectorSpecialBhvr> ();
+      if (bhvr != null) {
+        bhvr.w = w;
+        gobj.SetActive (true);
+        bhvr.Play ();
       }
-      gobj.SetActive (true);
     }
 
     /// <summary>

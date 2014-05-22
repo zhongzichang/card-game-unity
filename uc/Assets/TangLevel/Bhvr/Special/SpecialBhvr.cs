@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace TangLevel
@@ -7,6 +8,7 @@ namespace TangLevel
   {
 
     protected bool isPlay = false;
+    protected Animator animator;
 
     #region PublicMethods
     public virtual void Pause ()
@@ -35,7 +37,15 @@ namespace TangLevel
     }
     #endregion
 
+    #region ProtectedMethods
+    public IEnumerator PlayOnce ( string paramName )
+    {
 
+      animator.SetBool( paramName, true );
+      yield return null;
+      animator.SetBool( paramName, false );
+    }
+    #endregion
 
   }
 }
