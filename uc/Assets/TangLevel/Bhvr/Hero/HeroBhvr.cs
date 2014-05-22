@@ -300,7 +300,7 @@ namespace TangLevel
         break;
 
       case HeroStatus.vertigo: // 晕掉 ----
-        dbBhvr.GotoAndPlay (HeroStatus.idle.ToString ());
+        dbBhvr.GotoAndPlay (HeroStatus.vertigo.ToString ());
         break;
 
       case HeroStatus.rigid: // 僵直 ----

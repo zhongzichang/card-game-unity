@@ -74,7 +74,7 @@ namespace TangLevel
 
 			Directional mDirectional = w.source.GetComponent<Directional> ();
 			transform.position = w.source.transform.position;
-			Vector3 osVector = new Vector3 (5.5f,5f,0);
+			Vector3 osVector = new Vector3 (5.5f,4f,0);
 			// 是否需要翻转方向
 			if (mDirectional.Direction == BattleDirection.LEFT) {
 				transform.localRotation = Quaternion.FromToRotation (Vector3.left, Vector3.right);
