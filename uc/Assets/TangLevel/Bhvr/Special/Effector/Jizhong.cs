@@ -1,33 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using Uni2DLab;
+using UnityEngine;
 
 namespace TangLevel
 {
-  public class XuanyunEffector : EffectorSpecialBhvr
+  public class Jizhong : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0, 10F, 0);
+    public static Vector3 OFFSET = new Vector3 (0, 1.5F, 0);
+
     private Transform myTransform;
-    public float effectTime = 5F;
-    private float remainTime = 0;
 
     void Awake ()
     {
       myTransform = transform;
       animator = GetComponent<Animator> ();
-    }
-
-    // Update is called once per frame
-    void Update ()
-    {
-      if (isPlay) {
-
-        if (remainTime > 0) {
-          remainTime -= Time.deltaTime;
-        } else {
-          StartRelease ();
-        }
-
-      }
     }
 
     void OnEnable ()
@@ -37,21 +23,16 @@ namespace TangLevel
 
         // 绑定到目标身上
         myTransform.localPosition = w.target.transform.localPosition + OFFSET;
-        // 打晕
-        HeroBhvr targetHeroBhvr = w.target.GetComponent<HeroBhvr> ();
-        targetHeroBhvr.BeStun (effectTime);
-
         Hit ();
 
       } else {
-
-        StartRelease ();
-
+        StartRelease();
       }
 
       // 关卡控制
       LevelController.RaisePause += OnPause;
       LevelController.RaiseResume += OnResume;
+
 
     }
 
@@ -64,17 +45,21 @@ namespace TangLevel
 
     }
 
+    private void OnAnimationEnd ()
+    {
+      StartRelease ();
+    }
+
     public override void Play ()
     {
       isPlay = true;
-      remainTime = effectTime;
-      animator.speed = 1;
+      StartPlayOnce ("isPlay");
     }
 
     public override void Pause ()
     {
       isPlay = false;
-      animator.speed = 0;
+      animator.speed = 10;
     }
 
     public override void Resume ()
@@ -84,3 +69,4 @@ namespace TangLevel
     }
   }
 }
+
