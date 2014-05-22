@@ -25,7 +25,6 @@ namespace TangLevel
 
 		void mRelease (){
 			isPlay = false;
-			transform.parent = null;
 			StartRelease ();
 		}
 
@@ -72,7 +71,20 @@ namespace TangLevel
 		}
 		public override void Play ()
 		{
-			transform.parent = w.source.transform;
+
+			Directional mDirectional = w.source.GetComponent<Directional> ();
+			transform.position = w.source.transform.position;
+			Vector3 osVector = new Vector3 (5.5f,5f,0);
+			// 是否需要翻转方向
+			if (mDirectional.Direction == BattleDirection.LEFT) {
+				transform.localRotation = Quaternion.FromToRotation (Vector3.left, Vector3.right);
+				transform.position -= osVector;
+			} else {
+				transform.localRotation = Quaternion.identity;
+				transform.position += osVector;
+			}
+
+
 			isPlay = true;
 		}
 	}
