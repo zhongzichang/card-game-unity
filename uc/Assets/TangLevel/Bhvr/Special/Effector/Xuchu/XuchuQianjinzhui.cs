@@ -7,7 +7,6 @@ namespace TangLevel
 	public class XuchuQianjinzhui : EffectorSpecialBhvr
 	{
 		private Animator mAnimator;
-		//
 		// Use this for initialization
 		void Awake ()
 		{
@@ -26,6 +25,7 @@ namespace TangLevel
 
 		void mRelease (){
 			isPlay = false;
+			transform.parent = null;
 			StartRelease ();
 		}
 
@@ -72,6 +72,7 @@ namespace TangLevel
 		}
 		public override void Play ()
 		{
+			transform.parent = w.source.transform;
 			isPlay = true;
 		}
 	}
