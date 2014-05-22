@@ -80,7 +80,8 @@ namespace TangLevel
       group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
         if (j % 3 == 0)
-          group.heros [j] = MockHeroZf ();
+          //group.heros [j] = MockHeroZf ();
+        group.heros [j] = MockHeroXc ();
         else if (j % 3 == 1)
           group.heros [j] = MockHeroXc ();
         else if (j % 3  == 2) {
@@ -194,7 +195,7 @@ namespace TangLevel
     {
 
       Effector effector = new Effector ();
-      effector.specialName = "Sprite_binghua";
+      effector.specialName = "fx_binghua";
 
       Effector[] subEffectors = new Effector[1];
       subEffectors [0] = MockHitEffector ();
@@ -206,7 +207,7 @@ namespace TangLevel
     public static Effector MockHitEffector ()
     {
       Effector effector = new Effector ();
-      effector.specialName = "Sprite_binghuajizhong";
+      effector.specialName = "fx_binghuajizhong";
       return effector;
     }
     #endregion
