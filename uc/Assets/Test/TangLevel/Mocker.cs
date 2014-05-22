@@ -80,7 +80,8 @@ namespace TangLevel
       group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
         if (j % 3 == 0)
-          group.heros [j] = MockHeroZf ();
+          //group.heros [j] = MockHeroZf ();
+        group.heros [j] = MockHeroXc ();
         else if (j % 3 == 1)
           group.heros [j] = MockHeroXc ();
         else if (j % 3  == 2) {

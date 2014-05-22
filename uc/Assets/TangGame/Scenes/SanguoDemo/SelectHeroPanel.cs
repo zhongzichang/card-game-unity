@@ -50,10 +50,31 @@ namespace TangGame.UI
           list.Add(int.Parse(key));
         }
         // 开始战斗
+        WaitingForEnterLevel ();
+
         int[] heroes = (int[])list.ToArray( typeof( int ));
         TangLevel.LevelController.ChallengeLevel (levelId, heroes);
       }
     }
+    /// <summary>
+    /// 临时补丁，等待场景加载，修改Place值，不隐藏当前主界面
+    /// </summary>
+    private void WaitingForEnterLevel(){
+      TangPlace.PlaceController mainUI = NGUITools.GetRoot (gameObject).GetComponent<TangPlace.PlaceController> ();
+      mainUI.myPlace = TangPlace.Place.level;
+     
+      TangLevel.LevelController.RaiseEnterLevelSuccess += OnEnterLevelSuccess;
+    }
+
+    /// <summary>
+    /// 场景加载完毕后回调，隐藏当前主界面，改回Place值
+    /// </summary>
+    private void OnEnterLevelSuccess(object sender, System.EventArgs args){
+      TangPlace.PlaceController mainUI = NGUITools.GetRoot (gameObject).GetComponent<TangPlace.PlaceController> ();
+      mainUI.myPlace = TangPlace.Place.home;
+      mainUI.gameObject.SetActive (false);
+    }
+
 
     private IEnumerator ShowToast(string message){
       messageLabel.text = message;

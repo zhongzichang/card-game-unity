@@ -22,18 +22,14 @@ namespace TangLevel
     private void OnStatusChanged (HeroStatus status)
     {
       if (status == HeroStatus.charge) { // 进入起手
-        myTransform.localPosition += offset;
+
+        myTransform.localPosition -= offset;
 
       } else {
 
         switch (statusBhvr.beforeStatus) {
-        case HeroStatus.charge:
-          if (status != HeroStatus.release) {
-            myTransform.localPosition -= offset;
-          }
-          break;
         case HeroStatus.release:
-          myTransform.localPosition -= offset;
+          myTransform.localPosition += offset;
           break;
         }
       }
