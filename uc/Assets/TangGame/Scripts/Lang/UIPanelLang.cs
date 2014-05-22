@@ -89,6 +89,10 @@ namespace TangGame.UI
 		/// 可以召唤
 		/// </summary>
 		public const string CALL_ME_MAYBE = "Call Me Maybe!";
+		/// <summary>
+		/// 未装备
+		/// </summary>
+		public const string NOT_EQUIPPED = "未装备";
 
 
 		/// <summary>
