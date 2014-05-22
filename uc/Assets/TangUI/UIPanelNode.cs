@@ -46,7 +46,6 @@ namespace TangUI
 			/// </summary>
 			//FIXME 暂时有问题不建议使用
 			ADDSTATUSANDPOPUP
-
 		}
 
 		private UIPanelNodeContext m_context;
@@ -204,7 +203,7 @@ namespace TangUI
 				if (this.blockMode != BlockMode.NONE) {
 					//setBlock
 					GameObject obj = Resources.Load (
-						                TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
+						                 TangGame.UIContext.getWidgetsPath (TangGame.UIContext.PANEL_BLOCK)) as GameObject;
 					mBlock = NGUITools.AddChild (gameObject, obj as GameObject).GetComponent<Block> ();
 				}
 			}
@@ -288,6 +287,8 @@ namespace TangUI
 				if (raisePanelEvent != null) {
 					raisePanelEvent (this, new PanelEventArgs (EventType.OnLoad));
 				}
+				if (mBlock == null)
+					mBlock = gameObject.GetComponentInChildren<Block> ();
 				if (mBlock != null)
 					mBlock.SetBlockMode (this.blockMode);
 			} else {
