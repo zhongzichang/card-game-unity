@@ -1,30 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Xml;
 
 namespace TangGame.UI{
 
   /// <summary>
   /// 英雄Tips
   /// </summary>
-	public class HeroTips : MonoBehaviour {
+	public class MonsterTips : MonoBehaviour {
 
 		/// 该对象实例
-		private static HeroTips mInstance;
+		private static MonsterTips mInstance;
 
-		private HeroTipsPanel panel;
+		private MonsterTipsPanel panel;
 		private TweenScale tween;
 		private bool started;
 		public Vector3 position;
 		public int offset;
-		public Props prop;
+    public MonsterData hero;
 
 		// Use this for initialization
 		void Start () {
-      Object obj = Resources.Load("Prefabs/Tips/HeroTipsPanel", typeof(GameObject));
+      Object obj = Resources.Load("Prefabs/Tips/MonsterTipsPanel", typeof(GameObject));
 			GameObject go = GameObject.Instantiate(obj) as GameObject;
 			go.transform.parent = this.gameObject.transform;
 			go.transform.localScale = Vector3.one;
-      panel = go.GetComponent<HeroTipsPanel>();
+      panel = go.GetComponent<MonsterTipsPanel>();
 
 			tween = this.gameObject.AddComponent<TweenScale>();
 			tween.from = new Vector3(0, 0, 1);
@@ -43,7 +44,7 @@ namespace TangGame.UI{
 		/// 关闭隐藏Tips
 		private void Close(){
 			this.gameObject.SetActive(false);
-			prop = null;
+			hero = null;
 		}
 
 		/// 更新数据的显示
@@ -52,7 +53,7 @@ namespace TangGame.UI{
 			tween.ResetToBeginning();
 			tween.Play();
 
-			panel.SetProp(prop);
+			panel.SetHero(hero);
 
 			this.gameObject.transform.position = this.position;
 			Vector3 temp = this.gameObject.transform.localPosition;
@@ -70,18 +71,19 @@ namespace TangGame.UI{
 		/// <param name="position">触发对象的世界坐标</param>
 		/// <param name="offset">触发对象显示的偏移量，一般为高度</param>
 		/// <param name="id">道具的ID</param>
-    public static HeroTips Show(Vector3 position, int offset, Props prop){
+    public static MonsterTips Show(Vector3 position, int offset, MonsterData hero){
 			if(mInstance == null){
-        GameObject go = new GameObject("HeroTips");
+        GameObject go = new GameObject("MonsterTips");
 				go.layer = Global.UILayer;
-        go.transform.parent = UICamera.current.transform.parent;
-        mInstance = go.AddComponent<HeroTips>();
-				go.transform.localScale = Vector3.one;
+        mInstance = go.AddComponent<MonsterTips>();
 				go.transform.localPosition = new Vector3(0, 0, -100);//Z值临时添加
 			}
+      mInstance.transform.parent = UICamera.current.transform.parent;
+      mInstance.transform.localScale = Vector3.one;
+
 			mInstance.position = position;
 			mInstance.offset = offset;
-			mInstance.prop = prop;
+      mInstance.hero = hero;
 			mInstance.Open();
 			return mInstance;
 		}

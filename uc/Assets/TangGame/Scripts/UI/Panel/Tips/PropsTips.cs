@@ -74,11 +74,12 @@ namespace TangGame.UI{
 			if(mInstance == null){
 				GameObject go = new GameObject("PropTips");
 				go.layer = Global.UILayer;
-        go.transform.parent = UICamera.current.transform.parent;
 				mInstance = go.AddComponent<PropsTips>();
-				go.transform.localScale = Vector3.one;
 				go.transform.localPosition = new Vector3(0, 0, -100);//Z值临时添加
 			}
+      mInstance.transform.parent = UICamera.current.transform.parent;
+      mInstance.transform.localScale = Vector3.one;
+
 			mInstance.position = position;
 			mInstance.offset = offset;
 			mInstance.prop = prop;

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Xml;
 
 namespace TangGame.UI{
-  public class HeroTipsPanel : MonoBehaviour {
+  public class MonsterTipsPanel : MonoBehaviour {
 
 		/// 效果文本和简介文本之间的间距
 		private const int SPACE = 10;
@@ -16,7 +17,6 @@ namespace TangGame.UI{
 		public UILabel levelLabel;
 		public UILabel effectLabel;
 		public UILabel descLabel;
-		public UILabel goldLabel;
 
 		/// TIPS高度，包含基本高度和文本高度
 		private int mHeight = 0;
@@ -53,23 +53,27 @@ namespace TangGame.UI{
 		}
 
 		/// 设置道具
-		public void SetProp(Props props){
+    public void SetHero(MonsterData hero){
 			this.effectLabel.text = "";
 			this.descLabel.text = "";
-			this.goldLabel.text = "";
-			this.frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);
-			this.icon.spriteName = props.data.icon;
-			this.goldLabel.text = props.data.selling_price.ToString();
-			this.nameLabel.text = props.data.name;
-			if(props.data.level < 1){
-				this.levelLabel.text = "";
-			}else{
-				this.levelLabel.text = string.Format(UIPanelLang.TIPS_LEVEL, props.data.level);
-			}
-			this.effectLabel.text = props.data.info;
-			this.descLabel.text = props.data.description;
+      /*
+      HeroData data = HeroCache.instance.GetHero(hero.id);
+      if(data == null){
+        Global.LogError(">> HeroTipsPanel heroData not found. hero id = " + hero.id);
+        return;
+      }
 
-			this.CalculateHeight();
+      this.frame.spriteName = Global.GetHeroIconFrame(hero.upgrade);
+      this.icon.spriteName = data.avatar;
+      this.nameLabel.text = data.name;
+
+      string levelStr = "LV." + hero.level;
+      levelStr += hero.boss ? " [FF0000]BOSS[-]" : "";
+      this.levelLabel.text = levelStr;
+
+      this.descLabel.text = data.hero_tip;
+
+			this.CalculateHeight();*/
 		}
 	}
 }
