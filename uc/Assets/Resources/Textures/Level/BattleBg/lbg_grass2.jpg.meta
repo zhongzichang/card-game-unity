@@ -1,7 +1,5 @@
 fileFormatVersion: 2
-guid: b6764346d234146eb8513080f39de91b
-labels:
-- Uni2D_SourceTexture
+guid: 05e9498a612684ca391c76eab74663e6
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -22,8 +20,8 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 4096
+  textureFormat: -1
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
     aniso: 1
