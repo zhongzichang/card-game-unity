@@ -9,7 +9,7 @@ namespace TangGame.UI
   	void Start () {
       StageDetailPanel panel = GetComponent<StageDetailPanel> ();
       StageItemData  data = TestDataStore.Instance.RandomStage(0, 1);
-      panel.Refresh (data);	
+      panel.param = data;	
   	}
   	
   	// Update is called once per frame

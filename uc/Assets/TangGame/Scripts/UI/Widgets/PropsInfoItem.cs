@@ -22,7 +22,7 @@ namespace TangGame.UI{
 			if(!this.started){return;}
 			if(this.data == null){return;}
 			Props props = this.data as Props;
-			if(props.count < 1){
+			if(props.count < 2){
 				numLabel.text = "";
 			}else{
         numLabel.text = props.count.ToString();
@@ -40,7 +40,7 @@ namespace TangGame.UI{
 			if(this.data == null){return;}
 			if(state){
 				Props prop = this.data as Props;
-				PropsTips.Show(go.transform.position, 43, prop);
+        PropsTips.Show(go.transform.position, frame.height / 2, prop);
 			}else{
 				PropsTips.Hiddle();
 			}

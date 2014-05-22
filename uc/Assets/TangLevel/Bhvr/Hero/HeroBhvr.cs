@@ -146,8 +146,9 @@ namespace TangLevel
 
       switch (statusBhvr.Status) {
       case HeroStatus.charge:
+      case HeroStatus.release:
         // 发大招通知
-        if (skill.bigMove) {
+        if (skill.bigMove && !statusBhvr.IsBigMove) {
           bmBhvr.StartBigMove (skill.chargeTime);
         }
         break;
@@ -166,15 +167,7 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
         break;
       case HeroStatus.charge:
-        if (statusBhvr.IsBigMove) {
-          // 大招结束
-          bmBhvr.StopBigMove ();
-        }
         statusBhvr.Status = HeroStatus.release;
-        if (statusBhvr.IsBigMove) {
-          // 大招结束
-          bmBhvr.StopBigMove ();
-        }
         break;
       case HeroStatus.release:
         statusBhvr.Status = HeroStatus.idle;
@@ -208,6 +201,11 @@ namespace TangLevel
               EffectorWrapper w = EffectorWrapper.W (effect, skill, gameObject, target);
               skillBhvr.Cast (w);
             }
+          }
+
+          if (statusBhvr.IsBigMove) {
+            // 大招结束
+            bmBhvr.StopBigMove ();
           }
         }
       }

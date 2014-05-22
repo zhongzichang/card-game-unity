@@ -296,7 +296,7 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockCommonHit ();
+      skill.effectors [0] = MockYemansicheEffector ();
       //skill.chargeClip = "yemansiche";
       skill.releaseClip = "yemansiche";
       skill.enable = true;
@@ -314,11 +314,15 @@ namespace TangLevel
 
       Effector effector = new Effector ();
       effector.specialName = "fx_qianjinzhui";
-      /*
-      Effector[] subEffectors = new Effector[1];
-      subEffectors [0] = MockHitEffector ();
-      effector.subEffectors = subEffectors;
-*/
+      return effector;
+    }
+
+
+    public static Effector MockYemansicheEffector ()
+    {
+
+      Effector effector = new Effector ();
+      effector.specialName = "fx_yemansiche";
       return effector;
     }
     #endregion

@@ -7,7 +7,7 @@ namespace TangLevel
   {
 
     private Transform myTransform = null;
-    private Vector3 offset = new Vector3 (-18, 160, 0);
+    private Vector3 offset = new Vector3 (32, 160, 0);
 
     // Use this for initialization
     void Awake ()
@@ -17,7 +17,13 @@ namespace TangLevel
 
     public void OnChange(Vector3 screenPosition){
 
-      myTransform.localPosition = screenPosition + offset;
+      Vector3 pixelPos = screenPosition + offset;
+
+      float x = (screenPosition.x + offset.x) *  960 / Screen.width;
+      float y = (screenPosition.y + offset.y) * 640 / Screen.height;
+
+      myTransform.localPosition = new Vector3 (x, y, pixelPos.z) ;
+      //myTransform.localPosition = pixelPos;
 
     }
 

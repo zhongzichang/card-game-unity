@@ -1,4 +1,4 @@
-using System.Xml;
+﻿using System.Xml;
 using TangUtils;
 using System.Collections.Generic;
 using System.Collections;
@@ -78,7 +78,10 @@ namespace TangGame.Xml
       {
         MonsterRoot root = obj as MonsterRoot;
         foreach (MonsterData item in root.items) {
-          
+          if(Config.monsterXmlTable.ContainsKey(item.id)){
+            Global.LogError(">> MonsterRoot repeat id = " + item.id);
+          }
+          Config.monsterXmlTable[item.id] = item;
         }
       }
     }

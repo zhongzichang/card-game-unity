@@ -16,6 +16,10 @@ namespace TangLevel
     private Vector3 backupPos = Vector3.zero;
     private DirectedNavAgent agent;
     private HeroBhvr heroBhvr;
+    private const float MAX_SCALE = 1.5F;
+    private bool scaling = false; // 是否要缩小
+    private float currentScale = 1;
+    private float scaleStep = 1F; // 每秒增加
 
     #region MonoMethods
 
@@ -33,17 +37,23 @@ namespace TangLevel
       LevelController.BigMoveEnd += OnBigMoveEnd;
     }
 
-    /*
     void Update ()
     {
       if (statusBhvr.IsBigMove) {
-        remainTime -= Time.deltaTime;
-        if (remainTime < 0) {
-          StopBigMove ();
+        if (currentScale < MAX_SCALE) {
+          currentScale += Time.deltaTime * scaleStep;
+          myTransform.localScale = new Vector3 (currentScale, currentScale, 1F);
+        }
+      } else if (scaling) {
+
+        if (1 < currentScale) {
+          currentScale -= Time.deltaTime * scaleStep;
+          myTransform.localScale = new Vector3 (currentScale, currentScale, 1F);
+        } else {
+          scaling = false;
         }
       }
-    }*/
-
+    }
     /*
     void OnEnable ()
     {
@@ -106,6 +116,7 @@ namespace TangLevel
       if (statusBhvr.IsPause)
         statusBhvr.IsPause = false;
       agent.enabled = false;
+
     }
 
     public void StopBigMove ()
@@ -119,6 +130,9 @@ namespace TangLevel
 
       heroBhvr.hero.mp = 0;
       agent.enabled = true;
+
+      // 进行缩小
+      scaling = true;
     }
 
     #endregion
