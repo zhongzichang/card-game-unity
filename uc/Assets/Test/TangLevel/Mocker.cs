@@ -483,7 +483,7 @@ namespace TangLevel
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockNearCommonAttack ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, };
+      hero.skillQueue = new int[]{ 0 };
 
       tmp++;
       return hero;
@@ -510,9 +510,8 @@ namespace TangLevel
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockNearCommonAttack ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, };
+      hero.skillQueue = new int[]{ 0 };
 
-      tmp++;
       return hero;
     }
 
@@ -537,9 +536,8 @@ namespace TangLevel
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockNearCommonAttack ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, };
+      hero.skillQueue = new int[]{ 0 };
 
-      tmp++;
       return hero;
     }
 
@@ -587,7 +585,7 @@ namespace TangLevel
 
       Skill skill = new Skill ();
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
+      skill.effectors [0] = MockCommonHit ();
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;

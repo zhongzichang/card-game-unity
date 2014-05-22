@@ -16,7 +16,7 @@ namespace TangLevel
     void Awake ()
     {
       myTransform = transform;
-      //animator = GetComponent<Animator> ();
+      animator = GetComponent<Animator> ();
     }
     // Update is called once per frame
     void Update ()
@@ -73,6 +73,8 @@ namespace TangLevel
 
     void OnDisable ()
     {
+      isPlay = false;
+
       // 关卡控制
       LevelController.RaisePause -= OnPause;
       LevelController.RaiseResume -= OnResume;
