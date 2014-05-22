@@ -26,7 +26,7 @@ namespace TangLevel
         Hit ();
 
       } else {
-        Release ();
+        StartRelease();
       }
 
       // 关卡控制
@@ -53,7 +53,7 @@ namespace TangLevel
     public override void Play ()
     {
       isPlay = true;
-      StartCoroutine (PlayOnce ("isPlay"));
+      StartPlayOnce ("isPlay");
     }
 
     public override void Pause ()

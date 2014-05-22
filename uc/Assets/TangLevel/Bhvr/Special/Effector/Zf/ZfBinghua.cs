@@ -81,7 +81,7 @@ namespace TangLevel
       LevelController.RaisePause += OnPause;
       LevelController.RaiseResume += OnResume;
 
-      StartCoroutine (PlayOnce ("isPlay"));
+      StartPlayOnce ("isPlay");
     }
 
     void OnDisable ()
