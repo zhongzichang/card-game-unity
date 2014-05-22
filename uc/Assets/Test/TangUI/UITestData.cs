@@ -42,6 +42,8 @@ public class UITestData : MonoBehaviour
 		equip.enchantsLv = equipLv;
 		equip.enchantsExp = equipExp;
 		herobase.Net.equipList [equipLocal] = equip;
+		herobase.Net.skillLevel = new int[4];
+		herobase.Net.skillLevel [0] = 8;
 	}
 
 	void SetAllPropsBase(){

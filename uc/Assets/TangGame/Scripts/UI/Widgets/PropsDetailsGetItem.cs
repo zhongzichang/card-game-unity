@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using TangGame.Xml;
 
@@ -21,7 +21,7 @@ namespace TangGame.UI{
         return;
       }
       if(this.data == null){return;}
-      LevelsData levelsData = this.data as LevelsData;
+      LevelData levelsData = this.data as LevelData;
       icon.spriteName = levelsData.resources;
       label.text = levelsData.name;
     }

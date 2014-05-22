@@ -89,6 +89,10 @@ namespace TangGame.UI
 		/// 可以召唤
 		/// </summary>
 		public const string CALL_ME_MAYBE = "Call Me Maybe!";
+		/// <summary>
+		/// 未装备
+		/// </summary>
+		public const string NOT_EQUIPPED = "未装备";
 
 
 		/// <summary>
@@ -157,6 +161,20 @@ namespace TangGame.UI
 		/// 已附魔到顶级
 		/// </summary>
 		public const string ENCHANTING_HAS_TO_TOP = "已附魔到顶级";
+
+
+    /// 关卡信息界面“体力消耗”
+    public const string STAGE_VIT = "体力消耗" ;
+    /// 关卡信息界面“敌方阵容”
+    public const string STAGE_ENEMY = "敌方阵容" ;
+    /// 关卡信息界面“可能获得”
+    public const string STAGE_REWARD = "可能获得" ;
+    /// 关卡信息界面“扫荡券”
+    public const string STAGE_SWEEP_TICKET = "扫荡券" ;
+    /// 关卡信息界面“扫荡”
+    public const string STAGE_SWEEP = "扫荡" ;
+    /// 关卡信息界面“扫荡10次”
+    public const string STAGE_SWEEP_TEN = "扫荡10次" ;
 
 		/// 战斗界面中的“退出战斗”
 		public const string BATTLE_QUIT = "退出战斗" ;

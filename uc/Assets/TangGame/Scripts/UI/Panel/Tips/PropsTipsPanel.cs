@@ -54,7 +54,10 @@ namespace TangGame.UI{
 
 		/// 设置道具
 		public void SetProp(Props props){
-			this.effectLabel.text = "";
+      UIPanel mPanel = this.GetComponent<UIPanel>();
+      mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
+      mPanel.startingRenderQueue = 10000;
+      this.effectLabel.text = "";
 			this.descLabel.text = "";
 			this.goldLabel.text = "";
 			this.frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);

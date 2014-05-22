@@ -31,7 +31,6 @@ namespace TangGame.UI
 			this.starList.showBackground = false;
 			if (equipBase.net != null) {
 				this.equipIcon.color = Color.white;
-				this.equipIcon.alpha = 1f;
 				this.equipIcon.spriteName = equipBase.data.icon;
 				this.equipFrames.spriteName = Global.GetPropFrameName (equipBase.data.upgrade);
 				this.label.text = "";
@@ -39,12 +38,11 @@ namespace TangGame.UI
 				this.starList.Flush ();
 			} else {
 				if (PropsCache.instance.propsTable.ContainsKey (equipBase.data.id)) {
-					this.label.text = "未装备";
+					this.label.text = UIPanelLang.NOT_EQUIPPED;
 				} else {
 					this.label.text = "";
 				}
-				this.equipIcon.color = Color.gray;
-				this.equipIcon.alpha = 0.4f;
+				this.equipIcon.color = new Color32 (0,255,255,255);
 				this.equipIcon.spriteName = equipBase.data.icon;
 				this.equipFrames.spriteName = Global.GetPropFrameName (1);
 				this.starList.count = 0;

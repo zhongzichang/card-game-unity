@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using TangGame.Xml;
 
 namespace TangGame.UI{
@@ -6,7 +6,7 @@ namespace TangGame.UI{
 	/// 关卡
 	public class Level {
 
-		public LevelsData data;
+		public LevelData data;
 
 
 	}

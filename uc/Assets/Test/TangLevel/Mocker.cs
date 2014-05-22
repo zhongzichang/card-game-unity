@@ -258,7 +258,7 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
+      skill.effectors [0] = MockCommonHit ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
@@ -290,7 +290,7 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
+      skill.effectors[0] = MockCommonHit ();
       skill.chargeClip = "zhongji";
       skill.releaseClip = "zhongji1";
       //skill.releaseSpecials = new string[2];
@@ -310,9 +310,9 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
-      skill.chargeClip = "yemansiche";
-      skill.releaseClip = "yemansiche1";
+      skill.effectors [0] = MockYemansicheEffector ();
+      //skill.chargeClip = "yemansiche";
+      skill.releaseClip = "yemansiche";
       skill.enable = true;
       skill.bigMove = false;
       skill.distance = 10;
@@ -326,11 +326,15 @@ namespace TangLevel
 
       Effector effector = new Effector ();
       effector.specialName = "fx_qianjinzhui";
-      /*
-      Effector[] subEffectors = new Effector[1];
-      subEffectors [0] = MockHitEffector ();
-      effector.subEffectors = subEffectors;
-*/
+      return effector;
+    }
+
+
+    public static Effector MockYemansicheEffector ()
+    {
+
+      Effector effector = new Effector ();
+      effector.specialName = "fx_yemansiche";
       return effector;
     }
 
@@ -345,8 +349,8 @@ namespace TangLevel
       Hero hero = new Hero ();  
       hero.id = 3;
       hero.resName = "hero_zhangfei";
-      hero.maxHp = 120;
-      hero.hp = 120;
+      hero.maxHp = 300;
+      hero.hp = 300;
       hero.maxMp = 100;
       hero.mp = 0;
       hero.sort = 2;//UnityEngine.Random.Range (1, 20);
@@ -370,7 +374,7 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
+      skill.effectors [0] = MockCommonHit ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
@@ -404,7 +408,7 @@ namespace TangLevel
       Skill skill = new Skill ();
 
       skill.effectors = new Effector[1];
-      skill.effectors [0] = MockHitEffector ();
+      skill.effectors[0] = MockCommonHit ();
       skill.chargeClip = "baqi";
       skill.releaseClip = "baqi1";
       //skill.releaseSpecials = new string[2];
@@ -425,8 +429,8 @@ namespace TangLevel
 
       skill.effectors = new Effector[1];
       skill.effectors [0] = MockDaheEffect ();
-      skill.chargeClip = "dahe";
-      skill.releaseClip = "dahe1";
+      //skill.chargeClip = "dahe";
+      skill.releaseClip = "dahe";
       skill.enable = true;
       skill.bigMove = false;
       skill.distance = 10;
@@ -592,6 +596,13 @@ namespace TangLevel
 
       return skill;
 
+    }
+
+    public static Effector MockCommonHit(){
+
+      Effector effector = new Effector ();
+      effector.specialName = "fx_jizhong";
+      return effector;
     }
 
     #endregion

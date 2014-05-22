@@ -17,7 +17,7 @@ namespace TangGame.UI{
 		private bool started;
 		public Vector3 position;
 		public int offset;
-    public MonsterData hero;
+    public MonsterData data;
 
 		// Use this for initialization
 		void Start () {
@@ -44,7 +44,7 @@ namespace TangGame.UI{
 		/// 关闭隐藏Tips
 		private void Close(){
 			this.gameObject.SetActive(false);
-			hero = null;
+			data = null;
 		}
 
 		/// 更新数据的显示
@@ -53,7 +53,7 @@ namespace TangGame.UI{
 			tween.ResetToBeginning();
 			tween.Play();
 
-			panel.SetHero(hero);
+			panel.SetData(data);
 
 			this.gameObject.transform.position = this.position;
 			Vector3 temp = this.gameObject.transform.localPosition;
@@ -71,7 +71,7 @@ namespace TangGame.UI{
 		/// <param name="position">触发对象的世界坐标</param>
 		/// <param name="offset">触发对象显示的偏移量，一般为高度</param>
 		/// <param name="id">道具的ID</param>
-    public static MonsterTips Show(Vector3 position, int offset, MonsterData hero){
+    public static MonsterTips Show(Vector3 position, int offset, MonsterData data){
 			if(mInstance == null){
         GameObject go = new GameObject("MonsterTips");
 				go.layer = Global.UILayer;
@@ -83,7 +83,7 @@ namespace TangGame.UI{
 
 			mInstance.position = position;
 			mInstance.offset = offset;
-      mInstance.hero = hero;
+      mInstance.data = data;
 			mInstance.Open();
 			return mInstance;
 		}

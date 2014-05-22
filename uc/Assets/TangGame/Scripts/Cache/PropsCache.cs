@@ -24,6 +24,14 @@ namespace TangGame.UI{
 		/// 道具管理数据，存储道具掉落所在的场景等
 		private Dictionary<int, PropsRelationData> propsRelations = new Dictionary<int, PropsRelationData>();
 
+    /// 获取道具数据
+    public PropsData GetPropsData(int id){
+      if(Config.propsXmlTable.ContainsKey(id)){
+        return Config.propsXmlTable[id];
+      }
+      return null;
+    }
+
 		/// 获取道具关联数据
 		public PropsRelationData GetPropsRelationData(int id){
 			if(propsRelations.ContainsKey(id)){
@@ -77,7 +85,7 @@ namespace TangGame.UI{
     }
 
     /// 设置道具关卡掉落关联
-    public void AddPropsLevelRelation(LevelsData data){
+    public void AddPropsLevelRelation(LevelData data){
       string[] propsIds = data.props_ids.Replace("{", "").Replace("}", "").Split(',');
       foreach(string id in propsIds){
         if(string.IsNullOrEmpty(id)){
@@ -88,7 +96,7 @@ namespace TangGame.UI{
     }
 
     /// 设置道具关卡掉落关联
-    private void AddPropsLevelData(int id, LevelsData data){
+    private void AddPropsLevelData(int id, LevelData data){
       PropsRelationData propsRelationData = null;
       if(!propsRelations.ContainsKey(id)){
         propsRelationData = new PropsRelationData();

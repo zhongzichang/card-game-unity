@@ -127,10 +127,8 @@ namespace TangGame.UI
 						frame.spriteName = Global.GetPropFrameName (1);
 						if (equips [i].net != null) {
 							icon.color = Color.white;
-							icon.alpha = 1f;
 						} else {
-							icon.color = Color.gray;
-							icon.alpha = 0.7f;
+							icon.color = new Color32 (0,255,255,255);
 							if (PropsCache.instance.propsTable.ContainsKey (equips [i].data.id)) {
 								frame.spriteName = "add_icon";
 							}
@@ -172,8 +170,10 @@ namespace TangGame.UI
 		{
 
 			if (isLock) {
-				heroAvatar += "_un";
-			} 
+				HeroAvatarSprite.color = new Color32 (0,255,255,255);
+			} else {
+				HeroAvatarSprite.color = Color.white;
+			}
 			bool containSprite = false;
 			foreach (UISpriteData srpiteData in HeroAvatarSprite.atlas.spriteList) {
 				if (heroAvatar.Equals(srpiteData.name)) {

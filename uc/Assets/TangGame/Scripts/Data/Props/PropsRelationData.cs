@@ -7,7 +7,7 @@ namespace TangGame.UI{
 		/// 道具ID
 		public int id;
 		/// 可掉落该物品的关卡列表
-		public List<LevelsData> levels = new List<LevelsData>();
+		public List<LevelData> levels = new List<LevelData>();
 		/// 可装备该道具的英雄列表
 		public List<PropsHeroEquipData> heros = new List<PropsHeroEquipData>();
     /// 可装备该道具的英雄列表
