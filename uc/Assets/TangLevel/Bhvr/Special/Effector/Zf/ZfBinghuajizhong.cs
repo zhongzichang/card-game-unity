@@ -47,7 +47,7 @@ namespace TangLevel
 
     private void OnAnimationEnd ()
     {
-      Release ();
+      StartRelease ();
     }
 
     public override void Play ()

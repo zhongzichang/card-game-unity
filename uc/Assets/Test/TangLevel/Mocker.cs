@@ -194,7 +194,7 @@ namespace TangLevel
     {
 
       Effector effector = new Effector ();
-      effector.specialName = "Sprite_binghua";
+      effector.specialName = "fx_binghua";
 
       Effector[] subEffectors = new Effector[1];
       subEffectors [0] = MockHitEffector ();
@@ -206,7 +206,7 @@ namespace TangLevel
     public static Effector MockHitEffector ()
     {
       Effector effector = new Effector ();
-      effector.specialName = "Sprite_binghuajizhong";
+      effector.specialName = "fx_binghuajizhong";
       return effector;
     }
     #endregion
