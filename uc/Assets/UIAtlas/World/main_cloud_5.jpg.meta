@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 36a9b5c2417c04c3090e836832fda510
+guid: d847612c210661a4c8bcef3b093769d2
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -24,49 +24,22 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 1
-  alphaIsTransparency: 1
-  textureType: 8
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 0
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: eff_UI_Main_Equip_1
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 323
-        width: 190
-        height: 187
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: eff_UI_Main_Equip_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 289
-        height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: eff_UI_Main_Equip_2
-      rect:
-        serializedVersion: 2
-        x: 291
-        y: 259
-        width: 167
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+    sprites: []
   spritePackingTag: 
   userData: 

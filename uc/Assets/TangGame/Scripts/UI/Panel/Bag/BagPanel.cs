@@ -10,6 +10,8 @@ namespace TangGame.UI
 {
 	public class BagPanel : MonoBehaviour
 	{
+    public const string NAME = "BagPanel";
+
 		public GameObject BagInterfaceSubPanel;
 		public GameObject BagPropsInfoSubPanel;
 		// Use this for initialization

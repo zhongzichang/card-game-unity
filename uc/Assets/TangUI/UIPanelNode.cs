@@ -294,6 +294,7 @@ namespace TangUI
 			} else {
 				throw new Exception ("Can not attach to previous node.");
 			}
+      UIRootBehaviour.AddContainer(gameObject);
 		}
 
 		private void FixPanelRenderQ (UIPanel panel, int renderQueue)
