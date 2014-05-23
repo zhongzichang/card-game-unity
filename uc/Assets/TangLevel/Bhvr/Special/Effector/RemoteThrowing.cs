@@ -81,6 +81,7 @@ namespace TangLevel
 
 		public override void Play ()
 		{
+			transform.localScale = Vector3.one;
 			transform.parent = w.source.transform;
 			isPlay = true;
 		}

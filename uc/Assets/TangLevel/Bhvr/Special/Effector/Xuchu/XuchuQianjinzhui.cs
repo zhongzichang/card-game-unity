@@ -73,7 +73,7 @@ namespace TangLevel
 		}
 		public override void Play ()
 		{
-
+			transform.localScale = Vector3.one;
 			Directional mDirectional = w.source.GetComponent<Directional> ();
 			transform.position = w.source.transform.position;
 			Vector3 osVector = new Vector3 (5.5f,4f,0);
