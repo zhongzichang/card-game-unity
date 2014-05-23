@@ -48,12 +48,14 @@ namespace TangLevel
       group.heros = new Hero[ count];
       tmpG++;
       for (int j = 0; j < group.heros.Length; j++) {
-        if (j % 3 == 0)
+        if (j == 0) {
           group.heros [j] = MockHeroZf ();
-        else if (j % 3 == 1)
+        } else if (j == 1) {
           group.heros [j] = MockHeroXc ();
-        else if (j % 3 == 2) {
+        } else if (j == 2) {
           group.heros [j] = MockHeroZhangfei ();
+        }else if (j == 3) {
+          group.heros [j] = MockHeroHuatuo ();
         }
       }
       return group;
@@ -68,8 +70,10 @@ namespace TangLevel
           group.heros [i] = MockHeroZf ();
         } else if (heroIds [i] == 2) {
           group.heros [i] = MockHeroXc ();
-        } else {
+        } else if( heroIds[i] == 3) {
           group.heros [i] = MockHeroZhangfei ();
+        } else if( heroIds[i] == 4) {
+          group.heros [i] = MockHeroHuatuo ();
         }
       }
       return group;
@@ -80,7 +84,7 @@ namespace TangLevel
 
       Group group = new Group ();
       int maxHeros = 5;
-      group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
+      group.heros = new Hero[ UnityEngine.Random.Range (4, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
         int id = UnityEngine.Random.Range (3, 6);
         if (id == 0)
@@ -94,7 +98,8 @@ namespace TangLevel
         } else if (id == 4) {
           group.heros [j] = MockHeroHuangjinbubing ();
         } else if (id == 5) {
-          group.heros [j] = MockHeroHuangjingongjianbing ();
+          //group.heros [j] = MockHeroHuangjingongjianbing ();
+          group.heros [j] = MockHeroXc ();
         }
       }
       return group;
@@ -122,13 +127,13 @@ namespace TangLevel
 
       // skill
       List<Skill> skills = new List<Skill> ();
-      skills.Add (MockZfAttackSkill ());
-      skills.Add (MockBingHuaSkill ());
+      //skills.Add (MockZfAttackSkill ());
+      //skills.Add (MockBingHuaSkill ());
       skills.Add (MockYuehuaSkill ());
       //if( hero.id == 0)
-      skills.Add (MockLuoshenSkill ());
+      //skills.Add (MockLuoshenSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1, 2 };
+      hero.skillQueue = new int[]{ 0 };
 
 
       tmp++;
@@ -138,8 +143,8 @@ namespace TangLevel
     public static Skill MockZfAttackSkill ()
     {
       Skill skill = new Skill ();
-      skill.effectors = new Effector[1];
-      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.effectors = new Effector[1];
+      //skill.effectors [0] = MockLineFlyEffector ();
       //skill.chargeClip = "binghua0";
       skill.releaseClip = "attack";
       skill.enable = true;
@@ -154,8 +159,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      skill.effectors = new Effector[1];
-      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.effectors = new Effector[1];
+      //skill.effectors [0] = MockLineFlyEffector ();
       skill.chargeClip = "binghua0";
       skill.releaseClip = "binghua1";
       skill.enable = true;
@@ -170,8 +175,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      skill.effectors = new Effector[1];
-      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.effectors = new Effector[1];
+      //skill.effectors [0] = MockLineFlyEffector ();
       //skill.chargeClip = "";
       skill.releaseClip = "yuehua";
       skill.enable = true;
@@ -429,7 +434,6 @@ namespace TangLevel
 
       skill.effectors = new Effector[1];
       skill.effectors [0] = MockDaheEffect ();
-      //skill.chargeClip = "dahe";
       skill.releaseClip = "dahe";
       skill.enable = true;
       skill.bigMove = false;
@@ -482,11 +486,42 @@ namespace TangLevel
       // skill
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockMediumCommonAttack ());
+      skills.Add (MockDuliSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0 };
+      hero.skillQueue = new int[]{ 0, 1 };
 
       tmp++;
       return hero;
+    }
+
+
+    public static Skill MockDuliSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockDuliEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 20;
+      skill.cd = 3;
+
+      return skill;
+    }
+
+    // 毒理
+    public static Effector MockDuliEffector ()
+    {
+      Effector effector = new Effector ();
+      effector.specialName = "fx_duli";
+
+      Effector[] subEffectors = new Effector[1];
+      subEffectors [0] = MockCommonHit ();
+      effector.subEffectors = subEffectors;
+
+      return effector;
     }
 
     #endregion

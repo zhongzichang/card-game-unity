@@ -25,6 +25,10 @@ public class Block : MonoBehaviour
 
 	void  OnClick ()
 	{
+    if(this.mMode != UIPanelNode.BlockMode.SPRITE){
+      return;
+    }
+
 		if (currentMgr != null && texture.activeSelf == false) {
 			currentMgr.Back ();
 		}
@@ -54,14 +58,9 @@ public class Block : MonoBehaviour
 		NGUITools.SetActive (this.texture, false);
 		NGUITools.SetActive (this.sprite, false);
 		NGUITools.SetActive (this.backButton, false);
-		BoxCollider collider = this.GetComponent<BoxCollider> ();
-		if (collider != null) {
-			collider.enabled = false;
-		}
 
 		if (mMode == UIPanelNode.BlockMode.SPRITE) {
 			NGUITools.SetActive (this.sprite, true);
-			collider.enabled = true;
 		}
 
 		if (mMode == UIPanelNode.BlockMode.TEXTURE) {
