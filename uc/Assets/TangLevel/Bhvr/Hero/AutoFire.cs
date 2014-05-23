@@ -50,7 +50,7 @@ namespace TangLevel
     void Update ()
     {
 
-      if (remainTime > skill.cd) {
+      if (skill != null && remainTime > skill.cd) {
 
 
         switch (statusBhvr.Status) {
