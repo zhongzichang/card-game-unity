@@ -24,18 +24,18 @@ namespace TangLevel
 
     #region Attributes
 
-    public Hero hero;
-    private DirectedNavigable navigable;
-    private DirectedNavAgent agent;
-    private HeroStatusBhvr statusBhvr;
-    private Transform myTransform;
-    private TDB.DragonBonesBhvr dbBhvr;
-    private Armature armature;
-    private SkillBhvr skillBhvr;
-    private BigMoveBhvr bmBhvr;
-    private Skill skill;
-    private GameObject target;
-    private List<string> animationList;
+    public Hero hero; // 英雄数据
+    private DirectedNavigable navigable; // 导航
+    private DirectedNavAgent agent; // 导航代理
+    private HeroStatusBhvr statusBhvr; // 状态
+    private Transform myTransform; // 变换
+    private TDB.DragonBonesBhvr dbBhvr; // Dragonbones
+    private Armature armature; // Dragonbones armature
+    private SkillBhvr skillBhvr; // 技能
+    private BigMoveBhvr bmBhvr; // 大招
+    private Skill skill; // 技能
+    private GameObject target; // 当前目标
+    private List<string> animationList; // DragonBone 动画列表
 
     #endregion
 
@@ -266,10 +266,19 @@ namespace TangLevel
           dbBhvr.GotoAndPlay (clip);
         }
 
-          // 播放起手特效
+        // 播放起手特效
         if (skill.chargeSpecials != null) {
           skillBhvr.CastChargeSpecial (skill, gameObject, target);
         }
+
+        // 抛出作用器s
+        if (skill != null && skill.chargeEffectors != null) {
+          foreach (Effector effect in skill.chargeEffectors) {
+            EffectorWrapper w = EffectorWrapper.W (effect, skill, gameObject, target);
+            skillBhvr.Cast (w);
+          }
+        }
+
         break;
       
       case HeroStatus.release: // 释放 ----
@@ -281,13 +290,21 @@ namespace TangLevel
           clip = Config.DEFAULT_ATTACK_CLIP;
         }
         // 播放施放动作
-        //dbBhvr.Stop ();
         armature.Animation.GotoAndPlay (clip, -1, -1, 1);
 
         // 播放施放特效
         if (skill.releaseSpecials != null) {
           skillBhvr.CastReleaseSpecial (skill, gameObject, target);
         }
+
+        // 抛出作用器s
+        if (skill != null && skill.releaseEffectors != null) {
+          foreach (Effector effect in skill.releaseEffectors) {
+            EffectorWrapper w = EffectorWrapper.W (effect, skill, gameObject, target);
+            skillBhvr.Cast (w);
+          }
+        }
+
         break;
 
       case HeroStatus.dead: // 死亡 ----
