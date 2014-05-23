@@ -19,6 +19,7 @@ namespace TangLevel
 				mAnimator.enabled = true;
 			} else {
 				mAnimator.enabled = false;
+				transform.parent = null;
 			}
 
 		}
@@ -73,7 +74,9 @@ namespace TangLevel
 		public override void Play ()
 		{
 			transform.position = w.target.transform.position;
-			Vector3 osVector = new Vector3 (0, 6, 0);
+			Vector3 osVector = new Vector3 (0, 2, -2);
+			transform.position += osVector;
+			transform.parent = w.target.transform;
 			isPlay = true;
 		}
 	}
