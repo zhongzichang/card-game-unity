@@ -73,7 +73,7 @@ namespace TangLevel
 		public override void Play ()
 		{
 			transform.position = w.target.transform.position;
-			Vector3 osVector = new Vector3 (0, 5, 0);
+			Vector3 osVector = new Vector3 (0, 6, 0);
 			isPlay = true;
 		}
 	}
