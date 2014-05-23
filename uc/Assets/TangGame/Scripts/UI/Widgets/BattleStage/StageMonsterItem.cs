@@ -47,7 +47,7 @@ namespace TangGame.UI{
       if(this.data == null){return;}
       if(state){
         MonsterData monsterData = this.data as MonsterData;
-        MonsterTips.Show(go.transform.position, (int)(frame.height / 2 * this.transform.localScale.y), monsterData);
+        MonsterTips.Show(go.transform.position, (int)(frame.height / 2 * this.transform.localScale.y), monsterData, isShowBossIcon);
       }else{
         MonsterTips.Hiddle();
       }

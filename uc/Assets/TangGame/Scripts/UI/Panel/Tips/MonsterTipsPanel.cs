@@ -39,11 +39,18 @@ namespace TangGame.UI{
 		}
 
 		/// 设置道具
-    public void SetData(MonsterData data){
+    public void SetData(MonsterData data, bool isBoss){
       UIPanel mPanel = this.GetComponent<UIPanel>();
       mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
       mPanel.startingRenderQueue = 10001;
-			this.descLabel.text = "";
+      this.descLabel.text = data.desc;
+      this.nameLabel.text = data.name;
+      this.frame.spriteName = Global.GetHeroIconFrame(data.upgrade);
+      this.icon.spriteName = data.avatar;
+      string levelStr = "LV." + data.level;
+      levelStr += isBoss ? " [FF0000]BOSS[-]" : "";
+      this.levelLabel.text = levelStr;
+      this.CalculateHeight();
       /*
       HeroData data = HeroCache.instance.GetHero(hero.id);
       if(data == null){
