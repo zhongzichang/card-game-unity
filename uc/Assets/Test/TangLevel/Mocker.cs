@@ -68,8 +68,10 @@ namespace TangLevel
           group.heros [i] = MockHeroZf ();
         } else if (heroIds [i] == 2) {
           group.heros [i] = MockHeroXc ();
-        } else {
+        } else if( heroIds[i] == 3) {
           group.heros [i] = MockHeroZhangfei ();
+        } else if( heroIds[i] == 4) {
+          group.heros [i] = MockHeroHuatuo ();
         }
       }
       return group;
@@ -94,7 +96,8 @@ namespace TangLevel
         } else if (id == 4) {
           group.heros [j] = MockHeroHuangjinbubing ();
         } else if (id == 5) {
-          group.heros [j] = MockHeroHuangjingongjianbing ();
+          //group.heros [j] = MockHeroHuangjingongjianbing ();
+          group.heros [j] = MockHeroXc ();
         }
       }
       return group;
@@ -482,11 +485,42 @@ namespace TangLevel
       // skill
       List<Skill> skills = new List<Skill> ();
       skills.Add (MockMediumCommonAttack ());
+      skills.Add (MockDuliSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0 };
+      hero.skillQueue = new int[]{ 0, 1 };
 
       tmp++;
       return hero;
+    }
+
+
+    public static Skill MockDuliSkill ()
+    {
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockDuliEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 20;
+      skill.cd = 3;
+
+      return skill;
+    }
+
+    // 毒理
+    public static Effector MockDuliEffector ()
+    {
+      Effector effector = new Effector ();
+      effector.specialName = "fx_duli";
+
+      Effector[] subEffectors = new Effector[1];
+      subEffectors [0] = MockCommonHit ();
+      effector.subEffectors = subEffectors;
+
+      return effector;
     }
 
     #endregion
