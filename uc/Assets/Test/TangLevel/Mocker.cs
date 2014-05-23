@@ -86,7 +86,7 @@ namespace TangLevel
       int maxHeros = 5;
       group.heros = new Hero[ UnityEngine.Random.Range (4, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
-        int id = UnityEngine.Random.Range (3, 6);
+        int id = UnityEngine.Random.Range (3, 5);
         if (id == 0)
           group.heros [j] = MockHeroZf ();
         else if (id == 1)
@@ -98,8 +98,8 @@ namespace TangLevel
         } else if (id == 4) {
           group.heros [j] = MockHeroHuangjinbubing ();
         } else if (id == 5) {
-          //group.heros [j] = MockHeroHuangjingongjianbing ();
-          group.heros [j] = MockHeroXc ();
+          group.heros [j] = MockHeroHuangjingongjianbing ();
+          //group.heros [j] = MockHeroXc ();
         }
       }
       return group;
@@ -127,13 +127,13 @@ namespace TangLevel
 
       // skill
       List<Skill> skills = new List<Skill> ();
-      //skills.Add (MockZfAttackSkill ());
-      //skills.Add (MockBingHuaSkill ());
+      skills.Add (MockZfAttackSkill ());
+      skills.Add (MockBingHuaSkill ());
       skills.Add (MockYuehuaSkill ());
       //if( hero.id == 0)
-      //skills.Add (MockLuoshenSkill ());
+      skills.Add (MockLuoshenSkill ());
       hero.skills = skills;
-      hero.skillQueue = new int[]{ 0 };
+      hero.skillQueue = new int[]{ 0, 1, 2 };
 
 
       tmp++;
@@ -143,9 +143,9 @@ namespace TangLevel
     public static Skill MockZfAttackSkill ()
     {
       Skill skill = new Skill ();
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
-      //skill.chargeClip = "binghua0";
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
+      //skill.chargeClip = "binghua";
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;
@@ -159,8 +159,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
       skill.chargeClip = "binghua0";
       skill.releaseClip = "binghua1";
       skill.enable = true;
@@ -175,8 +175,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors [0] = MockLineFlyEffector ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockLineFlyEffector ();
       //skill.chargeClip = "";
       skill.releaseClip = "yuehua";
       skill.enable = true;
@@ -191,10 +191,10 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      //skill.effectors = new Effector[1];
-      //skill.effectors[0] = MockLineFlyEffector ();
-      skill.chargeClip = "luoshen";
-      //skill.releaseClip = "luoshen";
+      skill.effectors = new Effector[1];
+      skill.effectors[0] = MockLineFlyEffector ();
+      //skill.chargeClip = "luoshen";
+      skill.releaseClip = "luoshen";
       //skill.releaseSpecials = new string[2];
       //skill.releaseSpecials[0] = "Sprite_luoshen1";
       //skill.releaseSpecials[1] = "Sprite_luoshen2";
