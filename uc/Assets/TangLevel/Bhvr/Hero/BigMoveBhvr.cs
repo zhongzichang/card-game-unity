@@ -19,7 +19,7 @@ namespace TangLevel
     private float max_scale = 1F;
     private float backup_scale = 1F;
     private float currentScale = 1;
-    private float scaleStep = 1F; // 每秒增加
+    private float scaleStep = 10F; // 每秒增加
     private bool scaling = false; // 是否要缩小
 
     #region MonoMethods
@@ -52,10 +52,12 @@ namespace TangLevel
           currentScale -= Time.deltaTime * scaleStep;
           myTransform.localScale = new Vector3 (currentScale, currentScale, 1F);
         } else {
+          myTransform.localScale = new Vector3(backup_scale, backup_scale, 1F);
           scaling = false;
         }
       }
     }
+
     /*
     void OnEnable ()
     {
@@ -120,7 +122,7 @@ namespace TangLevel
       agent.enabled = false;
 
       backup_scale = myTransform.localScale.x;
-      max_scale = backup_scale * 1.5F;
+      max_scale = backup_scale * 1.3F;
       currentScale = backup_scale;
     }
 

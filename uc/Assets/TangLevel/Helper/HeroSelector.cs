@@ -37,9 +37,10 @@ namespace TangLevel
       float closestDistance = 0;
       foreach (GameObject gobj in ol) {
 
-        if (closestGobj == null)
+        if (closestGobj == null) {
           closestGobj = gobj;
-        else {
+          closestDistance = Mathf.Abs (posx - gobj.transform.localPosition.x);
+        }else {
           float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
           if (distance < closestDistance) {
             closestDistance = distance;
@@ -68,19 +69,65 @@ namespace TangLevel
       return ret;
     }
 
-
     /// <summary>
     /// 以某一个点为中心，找出在宽度为 width ，高度不限制的英雄
     /// </summary>
-    public static List<HeroBhvr> FindHerosWithWidth (List<GameObject> ol, Vector3 center, float width)
+    public static List<T> FindHerosWithWidth<T> (List<GameObject> ol, Vector3 center, float width) where T : Component
     {
       float left = center.x - width / 2;
       float right = center.x + width / 2;
-      List<HeroBhvr> ret = new List<HeroBhvr> ();
+      List<T> ret = new List<T> ();
       foreach (GameObject g in ol) {
         Vector3 pos = g.transform.localPosition;
         if (pos.x > left && pos.x < right) {
-          ret.Add (g.GetComponent<HeroBhvr>());
+          ret.Add (g.GetComponent<T> ());
+        }
+      }
+      return ret;
+    }
+
+    /// <summary>
+    /// 找在某个点上的英雄，没有则返回 null
+    /// </summary>
+    /// <returns>The <see cref="UnityEngine.GameObject"/>.</returns>
+    /// <param name="point">Point.</param>
+    public static GameObject FindGobjAt (Vector3 point)
+    {
+      const float accuracy = 0.1F;
+      foreach (GameObject gobj in LevelContext.AliveEnemyGobjs) {
+        Vector3 tpos = gobj.transform.localPosition;
+        if (tpos.x - point.x < accuracy && tpos.y - point.y < accuracy) {
+          return gobj;
+        }
+      }
+      foreach (GameObject gobj in LevelContext.AliveSelfGobjs) {
+        Vector3 tpos = gobj.transform.localPosition;
+        if (tpos.x - point.x < accuracy && tpos.y - point.y < accuracy) {
+          return gobj;
+        }
+      }
+      return null;
+    }
+
+    /// <summary>
+    /// 找 X = xval 的垂直线上所有的英雄对象
+    /// </summary>
+    /// <returns>The gobjs at vertical line.</returns>
+    /// <param name="x">The x coordinate.</param>
+    public static List<GameObject> FindGobjsAtVerticalLine (float xval)
+    {
+      const float accuracy = 0.1F;
+      List<GameObject> ret = new List<GameObject> ();
+      foreach (GameObject gobj in LevelContext.AliveEnemyGobjs) {
+        Vector3 tpos = gobj.transform.localPosition;
+        if (Mathf.Abs(tpos.x - xval) < accuracy) {
+          ret.Add (gobj);
+        }
+      }
+      foreach (GameObject gobj in LevelContext.AliveSelfGobjs) {
+        Vector3 tpos = gobj.transform.localPosition;
+        if (Mathf.Abs(tpos.x - xval) < accuracy) {
+          ret.Add (gobj);
         }
       }
       return ret;

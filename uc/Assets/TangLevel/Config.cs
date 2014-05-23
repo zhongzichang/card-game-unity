@@ -13,32 +13,53 @@ namespace TangLevel
 {
   public class Config
   {
-
     /// <summary>
     /// 地图右边界
     /// </summary>
     public const float RIGHT_BOUND = 70;
-
+    /// <summary>
+    /// 垂直中线
+    /// </summary>
+    public const float VERTICAL_CENTER_LINE = 32;
+    /// <summary>
+    /// 上边界
+    /// </summary>
+    public const float TOP_BOUND = 20;
+    /// <summary>
+    /// 水平中线
+    /// </summary>
+    public const float HORIZONTAL_CENTER_LINE = 18;
+    /// <summary>
+    /// 下边界
+    /// </summary>
+    public const float BOTTOM_BOUND = 16;
+    /// <summary>
+    /// 五条水平线
+    /// </summary>
+    public static readonly int[] HORIZONTAL_LINES = new int[]{ 16, 17, 18, 19, 20 };
+    /// <summary>
+    /// 英雄位置 Z 轴上限
+    /// </summary>
+    public const float HERO_POS_MIN_Z = -100;
     /// <summary>
     /// 缺省攻击的动画剪辑
     /// </summary>
     public const string DEFAULT_ATTACK_CLIP = "attack";
-
     /// <summary>
     /// 缺省投射标记
     /// </summary>
     public const string DEFAULt_CAST_LABEL = "cast";
-
     /// <summary>
     ///   是否使用打包后的资源
     /// </summary>
     public static bool use_packed_res = false;
-
     /// <summary>
     /// 战斗背景资源路径
     /// </summary>
     public const string GOBJS_PATH = "Prefabs/Gobjs";
-    public static string GobjsPath(string name){
+
+    public static string GobjsPath (string name)
+    {
       return GOBJS_PATH + Tang.Config.DIR_SEP + name;
     }
 
@@ -54,7 +75,6 @@ namespace TangLevel
     /// 作用器表
     /// </summary>
     public static Dictionary<int, Effector> effectorTable = new Dictionary<int, Effector> ();
-
   }
 }
 

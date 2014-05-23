@@ -22,7 +22,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>放出一个弹跳的波动治疗友军</desc>
 		<desc_y>提升{para1}点治疗效果。</desc_y>
 	</value>
@@ -49,7 +49,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>华佗的攻击附着毒性，使目标中毒，造成魔法伤害</desc>
 		<desc_y>提升{para1}点伤害。</desc_y>
 	</value>
@@ -76,7 +76,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>华佗凭借精湛的医术为队友续命，让生命值最低的队友一段时间内不会死亡</desc>
 		<desc_y>最多可吸收伤害提升{para1}点。</desc_y>
 	</value>
@@ -103,7 +103,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>华佗使友军更强壮，增加友军最大生命值。</desc>
 		<desc_y>被动：提升{para1}点生命值。</desc_y>
 	</value>
@@ -130,7 +130,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>用力敲打地面，对中等范围的敌人造成魔法伤害并眩晕</desc>
 		<desc_y>提升{para1}点伤害||升级提升眩晕概率，对{level}以下敌人必然命中。</desc_y>
 	</value>
@@ -157,7 +157,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>对附近的敌人造成物理伤害</desc>
 		<desc_y>提升{para1}点伤害。</desc_y>
 	</value>
@@ -184,7 +184,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>许褚以巨力抓住敌人，并撕裂其战袍，降低护甲。</desc>
 		<desc_y>降低{para1}点护甲。</desc_y>
 	</value>
@@ -211,7 +211,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>增加自己的力量</desc>
 		<desc_y>被动：提升{para1}点力量。</desc_y>
 	</value>
@@ -238,7 +238,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>甄宓舞动长鞭，用气劲造成伤害</desc>
 		<desc_y>提升{para1}点伤害。</desc_y>
 	</value>
@@ -265,7 +265,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>用长鞭的气劲对敌人造成魔法伤害，使其行动受到影响，物理命中降低</desc>
 		<desc_y>提升{para1}点伤害||升级提升命中概率，对{level}以下敌人必然命中。</desc_y>
 	</value>
@@ -292,7 +292,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>用长鞭袭击敌人，造成小范围魔法伤害</desc>
 		<desc_y>提升{para1}点伤害。</desc_y>
 	</value>
@@ -319,7 +319,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>s110</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>大幅提高气劲和鞭笞的释放速度</desc>
 		<desc_y />
 	</value>
@@ -346,7 +346,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_13</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>抓住一个敌人并扔出去，对所有被砸中得敌人造成魔法伤害</desc>
 		<desc_y>提升{para1}点魔法伤害。</desc_y>
 	</value>
@@ -373,7 +373,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_14</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>激发自身的潜力，大幅增加攻击范围并提升伤害</desc>
 		<desc_y>提升{para1}点物理攻击力。</desc_y>
 	</value>
@@ -400,7 +400,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_15</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>对敌人大喝，对一个区域的敌人造成魔法伤害并晕眩敌人</desc>
 		<desc_y>提升{para1}点伤害||升级提升命中概率，对{level}以下敌人必然命中。</desc_y>
 	</value>
@@ -427,7 +427,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_16</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>张飞刚猛无匹，大幅提升护甲</desc>
 		<desc_y>被动：提升{para1}点护甲。</desc_y>
 	</value>
@@ -454,7 +454,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_17</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>x</desc>
 		<desc_y>x</desc_y>
 	</value>
@@ -481,7 +481,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_18</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>x</desc>
 		<desc_y>x</desc_y>
 	</value>
@@ -508,7 +508,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_19</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>x</desc>
 		<desc_y>x</desc_y>
 	</value>
@@ -535,7 +535,7 @@
 		<animation_id>0</animation_id>
 		<singing_effect>0</singing_effect>
 		<play_effect>0</play_effect>
-		<skill_icon>icon_20</skill_icon>
+		<skill_icon>s64</skill_icon>
 		<desc>x</desc>
 		<desc_y>x</desc_y>
 	</value>

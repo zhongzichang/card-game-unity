@@ -87,6 +87,8 @@ namespace TangLevel
           // 继续下一个技能
           return NextSkill ();
 
+        } else {
+          return skills [skillQueue [skillQueueIndex]];
         }
 
       }

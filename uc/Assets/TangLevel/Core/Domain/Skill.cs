@@ -57,6 +57,17 @@ namespace TangLevel
     /// </summary>
     public Effector[] effectors;
 
+
+    /// <summary>
+    /// 前摇作用器
+    /// </summary>
+    public Effector[] chargeEffectors;
+
+    /// <summary>
+    /// 后摇作用器
+    /// </summary>
+    public Effector[] releaseEffectors;
+
     /// <summary>
     /// 是否可打断
     /// </summary>
