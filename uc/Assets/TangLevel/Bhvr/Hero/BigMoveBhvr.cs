@@ -49,7 +49,7 @@ namespace TangLevel
       } else if (scaling) {
 
         if (backup_scale < currentScale) {
-          currentScale -= Time.deltaTime * scaleStep;
+          currentScale -= Time.deltaTime * scaleStep * 2;
           myTransform.localScale = new Vector3 (currentScale, currentScale, 1F);
         } else {
           scaling = false;
