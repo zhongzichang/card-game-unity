@@ -48,12 +48,14 @@ namespace TangLevel
       group.heros = new Hero[ count];
       tmpG++;
       for (int j = 0; j < group.heros.Length; j++) {
-        if (j % 3 == 0)
+        if (j == 0) {
           group.heros [j] = MockHeroZf ();
-        else if (j % 3 == 1)
+        } else if (j == 1) {
           group.heros [j] = MockHeroXc ();
-        else if (j % 3 == 2) {
+        } else if (j == 2) {
           group.heros [j] = MockHeroZhangfei ();
+        }else if (j == 3) {
+          group.heros [j] = MockHeroHuatuo ();
         }
       }
       return group;
@@ -68,8 +70,10 @@ namespace TangLevel
           group.heros [i] = MockHeroZf ();
         } else if (heroIds [i] == 2) {
           group.heros [i] = MockHeroXc ();
-        } else {
+        } else if (heroIds [i] == 3) {
           group.heros [i] = MockHeroZhangfei ();
+        } else {
+          group.heros [i] = MockHeroHuatuo ();
         }
       }
       return group;
@@ -80,7 +84,7 @@ namespace TangLevel
 
       Group group = new Group ();
       int maxHeros = 5;
-      group.heros = new Hero[ UnityEngine.Random.Range (2, maxHeros)];
+      group.heros = new Hero[ UnityEngine.Random.Range (4, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
         int id = UnityEngine.Random.Range (3, 6);
         if (id == 0)
