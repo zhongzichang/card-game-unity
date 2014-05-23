@@ -71,6 +71,7 @@ namespace TangLevel
 
 		public override void Play ()
 		{
+			transform.localScale = Vector3.one;
 			transform.parent = w.target.transform;
 			transform.localPosition = Vector3.zero;
 			isPlay = true;
