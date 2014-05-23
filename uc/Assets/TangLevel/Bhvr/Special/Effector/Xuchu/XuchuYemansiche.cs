@@ -44,13 +44,13 @@ namespace TangLevel
 			LevelController.RaiseResume -= OnResume;
 		}
 
-		void OnGUI ()
-		{
-			if (GUILayout.Button ("Play")) {
-				isPlay = true;
-			}
-		}
-
+//		void OnGUI ()
+//		{
+//			if (GUILayout.Button ("Play")) {
+//				isPlay = true;
+//			}
+//		}
+//
 		void mCast ()
 		{
 			if (w == null || w.source == null)

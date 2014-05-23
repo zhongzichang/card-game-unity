@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using TangGame.UI;
 using System;
-using TangGame.UI;
 
 namespace TangGame.UI
 {

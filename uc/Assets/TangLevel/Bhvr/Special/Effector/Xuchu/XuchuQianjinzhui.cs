@@ -41,11 +41,11 @@ namespace TangLevel
 			LevelController.RaisePause -= OnPause;
 			LevelController.RaiseResume -= OnResume;
 		}
-		void OnGUI(){
-			if (GUILayout.Button ("Play")) {
-				isPlay = true;
-			}
-		}
+//		void OnGUI(){
+//			if (GUILayout.Button ("Play")) {
+//				isPlay = true;
+//			}
+//		}
 
 		void mCast ()
 		{
