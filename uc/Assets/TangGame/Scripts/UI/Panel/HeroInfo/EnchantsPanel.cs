@@ -9,6 +9,9 @@ namespace TangGame.UI
 {
 	public class EnchantsPanel : MonoBehaviour
 	{
+
+    public const string NAME = "EnchantsPanel";
+
 		/// <summary>
 		/// The back.
 		/// 返回按钮

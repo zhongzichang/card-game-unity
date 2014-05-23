@@ -3,7 +3,9 @@ using System.Collections;
 
 namespace TangGame.UI
 {
-  public class ChapterPanel : MonoBehaviour {
+  public class BattleChaptersPanel : MonoBehaviour {
+
+    public const string NAME = "BattleChaptersPanel";
 
     /// <summary>
     /// 标题
