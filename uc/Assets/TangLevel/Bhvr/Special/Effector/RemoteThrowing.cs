@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace TangLevel
 {
-	public class HuatuoDuli : EffectorSpecialBhvr
+	public class RemoteThrowing : EffectorSpecialBhvr
 	{
 		private Animator mAnimator;
 		TweenPosition mTweenPosi;
