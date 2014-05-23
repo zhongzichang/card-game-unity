@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 
 namespace TangLevel
@@ -32,7 +32,6 @@ namespace TangLevel
 
     public Transform myTransform;
     private Vector3 lastScreenPos = Vector3.zero;
-
     // Use this for initialization
     void Start ()
     {
@@ -53,6 +52,12 @@ namespace TangLevel
           ResetPath ();
 
           // TODO 判断该位置是否有人，有则往中间的位置移动
+          /*
+          List<GameObject> heroGobjs = HeroSelector.FindGobjsAtVerticalLine (localPosition);
+          foreach (GameObject g in heroGobjs) {
+
+          }*/
+          myTransform.localPosition = PositionHelper.FindHeroBestPos (gameObject);
 
         } else {
 
@@ -60,7 +65,7 @@ namespace TangLevel
           float fraction = Time.deltaTime * speed / distance;
           float offsetx = Mathf.Lerp (localPosition.x, destination, fraction);
 
-          Vector3 npos = new Vector3 (offsetx, localPosition.y, -(100 - localPosition.y));
+          Vector3 npos = new Vector3 (offsetx, localPosition.y, Config.HERO_POS_MIN_Z + localPosition.y);
           myTransform.localPosition = npos;
 
           // 屏幕位置改变通知
