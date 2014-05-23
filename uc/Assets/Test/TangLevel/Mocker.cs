@@ -434,7 +434,6 @@ namespace TangLevel
 
       skill.effectors = new Effector[1];
       skill.effectors [0] = MockDaheEffect ();
-      //skill.chargeClip = "dahe";
       skill.releaseClip = "dahe";
       skill.enable = true;
       skill.bigMove = false;
