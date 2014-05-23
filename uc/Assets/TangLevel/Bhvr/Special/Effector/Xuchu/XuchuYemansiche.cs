@@ -19,7 +19,6 @@ namespace TangLevel
 				mAnimator.enabled = true;
 			} else {
 				mAnimator.enabled = false;
-				transform.parent = null;
 			}
 
 		}
@@ -27,6 +26,7 @@ namespace TangLevel
 		void mRelease ()
 		{
 			isPlay = false;
+			transform.parent = null;
 			StartRelease ();
 		}
 
@@ -60,23 +60,19 @@ namespace TangLevel
 
 			// 判断对手状态，没在放大招或者处于眩晕状态
 			HeroStatusBhvr targetStatusBhvr = w.target.GetComponent<HeroStatusBhvr> ();
-			if (targetStatusBhvr.Status != HeroStatus.vertigo && !targetStatusBhvr.IsBigMove) {
-				if (w.effector.subEffectors != null) {
-					// 抛出作用器
-					foreach (Effector e in w.effector.subEffectors) {
-						EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
-						sourceSkillBhvr.Cast (cw);
-					}
+			if (w.effector.subEffectors != null) {
+				// 抛出作用器
+				foreach (Effector e in w.effector.subEffectors) {
+					EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
+					sourceSkillBhvr.Cast (cw);
 				}
 			}
 		}
 
 		public override void Play ()
 		{
-			transform.position = w.target.transform.position;
-			Vector3 osVector = new Vector3 (0, 2, -2);
-			transform.position += osVector;
 			transform.parent = w.target.transform;
+			transform.localPosition = Vector3.zero;
 			isPlay = true;
 		}
 	}

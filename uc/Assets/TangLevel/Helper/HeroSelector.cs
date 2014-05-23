@@ -37,9 +37,10 @@ namespace TangLevel
       float closestDistance = 0;
       foreach (GameObject gobj in ol) {
 
-        if (closestGobj == null)
+        if (closestGobj == null) {
           closestGobj = gobj;
-        else {
+          closestDistance = Mathf.Abs (posx - gobj.transform.localPosition.x);
+        }else {
           float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
           if (distance < closestDistance) {
             closestDistance = distance;
