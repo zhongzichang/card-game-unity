@@ -867,7 +867,7 @@ namespace TangLevel
 
       // 释放敌方英雄
       foreach (GameObject gobj in LevelContext.enemyGobjs) {
-        HeroGobjManager.Release (gobj, true);
+        HeroGobjManager.Release (gobj, false);
       }
 
       // 确保清场

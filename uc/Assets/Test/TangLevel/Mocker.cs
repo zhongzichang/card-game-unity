@@ -309,8 +309,8 @@ namespace TangLevel
     {
       Skill skill = new Skill ();
 
-      skill.effectors = new Effector[1];
-      skill.effectors [0] = MockYemansicheEffector ();
+      skill.releaseEffectors = new Effector[1];
+      skill.releaseEffectors [0] = MockYemansicheEffector ();
       //skill.chargeClip = "yemansiche";
       skill.releaseClip = "yemansiche";
       skill.enable = true;

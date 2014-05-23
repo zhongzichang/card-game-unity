@@ -9,7 +9,6 @@ namespace TangLevel
     public const float PREFIX = 2;
     private float remain = FADE_OUT_TIME;
     private Renderer[] renderers;
-    private Material[] fadeOutMats;
     private Material[] sourceMats;
     private bool isPlaying = false;
 
@@ -28,8 +27,8 @@ namespace TangLevel
             float alpha = remain / FADE_OUT_TIME;
             if (alpha < 0)
               alpha = 0;
-            for (int i = 0; i < fadeOutMats.Length; i++) {
-              fadeOutMats[i].color = new Color (1f, 1f, 1f, alpha);
+            for (int i = 0; i < sourceMats.Length; i++) {
+              sourceMats[i].color = new Color (1f, 1f, 1f, alpha);
             }
 
           }
@@ -49,19 +48,13 @@ namespace TangLevel
     {
 
 
-      if (fadeOutMats == null) {
+      if (sourceMats == null) {
 
         renderers = GetComponentsInChildren<Renderer> ();
 
-        fadeOutMats = new Material[renderers.Length];
         sourceMats = new Material[renderers.Length];
         for (int i = 0; i < renderers.Length; i++) {
-
-          fadeOutMats [i] = new Material (renderers[i].material);
-          fadeOutMats [i].color = Color.white;
           sourceMats [i] = renderers[i].material;
-          renderers[i].material = fadeOutMats [i];
-
         }
       }
     }
@@ -70,7 +63,7 @@ namespace TangLevel
     {
 
       for (int i = 0; i < renderers.Length && i < sourceMats.Length; i++) {
-        renderers [i].material = sourceMats [i];
+        sourceMats[i].color = Color.white;
       }
 
       isPlaying = false;
