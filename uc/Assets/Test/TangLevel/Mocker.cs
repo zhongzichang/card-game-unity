@@ -481,7 +481,7 @@ namespace TangLevel
 
       // skill
       List<Skill> skills = new List<Skill> ();
-      skills.Add (MockNearCommonAttack ());
+      skills.Add (MockMediumCommonAttack ());
       hero.skills = skills;
       hero.skillQueue = new int[]{ 0 };
 
@@ -519,7 +519,7 @@ namespace TangLevel
 
     // mock hero huangjingongjianbin -----------------------------------------------------
 
-    #region huangjingongjianbin
+    #region huangjingongjianbing
 
     public static Hero MockHeroHuangjingongjianbing ()
     {
@@ -534,7 +534,7 @@ namespace TangLevel
       hero.ai = new string[]{ "AutoFire" };
 
       List<Skill> skills = new List<Skill> ();
-      skills.Add (MockNearCommonAttack ());
+      skills.Add (MockLongCommonAttack ());
       hero.skills = skills;
       hero.skillQueue = new int[]{ 0 };
 
@@ -589,7 +589,41 @@ namespace TangLevel
       skill.releaseClip = "attack";
       skill.enable = true;
       skill.bigMove = false;
-      skill.distance = 3;
+      skill.distance = 7;
+      skill.cd = 3;
+
+      return skill;
+
+    }
+
+
+    public static Skill MockMediumCommonAttack ()
+    {
+
+      Skill skill = new Skill ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockCommonHit ();
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 17;
+      skill.cd = 3;
+
+      return skill;
+
+    }
+
+
+    public static Skill MockLongCommonAttack ()
+    {
+
+      Skill skill = new Skill ();
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockCommonHit ();
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 27;
       skill.cd = 3;
 
       return skill;

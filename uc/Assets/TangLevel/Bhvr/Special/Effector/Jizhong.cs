@@ -6,7 +6,7 @@ namespace TangLevel
 {
   public class Jizhong : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0, 1.5F, 0);
+    public static Vector3 OFFSET = new Vector3 (0, 2.5F, 0);
 
     private Transform myTransform;
 
@@ -21,7 +21,7 @@ namespace TangLevel
 
       if (w != null && w.target != null) {
 
-        // 绑定到目标身上
+        // 定位到目标身上
         myTransform.localPosition = w.target.transform.localPosition + OFFSET;
         Hit ();
 
