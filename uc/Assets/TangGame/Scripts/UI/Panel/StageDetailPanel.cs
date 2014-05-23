@@ -90,7 +90,7 @@ namespace TangGame.UI
             tempPosition.y = 8;
             go.transform.localScale = new Vector3(1, 1, 1);
           }else{
-            go.transform.localScale = new Vector3(0.9f, 0.9f, 1);
+            go.transform.localScale = new Vector3(0.8f, 0.8f, 1);
           }
           go.transform.localPosition = tempPosition;
           tempPosition.x += 110;
