@@ -22,6 +22,7 @@ namespace TangGame.UI{
       panel.AddHero (TestDataStore.Instance.RandomHero("1"));
       panel.AddHero (TestDataStore.Instance.RandomHero("2"));
       panel.AddHero (TestDataStore.Instance.RandomHero("3"));
+      panel.AddHero (TestDataStore.Instance.RandomHero("4"));
     }
   }
 }

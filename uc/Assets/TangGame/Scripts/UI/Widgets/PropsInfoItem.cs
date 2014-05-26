@@ -22,10 +22,10 @@ namespace TangGame.UI{
 			if(!this.started){return;}
 			if(this.data == null){return;}
 			Props props = this.data as Props;
-			if(props.count < 2){
+			if(props.net.count < 2){
 				numLabel.text = "";
 			}else{
-        numLabel.text = props.count.ToString();
+				numLabel.text = props.net.count.ToString();
 			}
 			frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);
 			icon.spriteName = props.data.icon;

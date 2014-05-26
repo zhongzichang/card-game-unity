@@ -1,1 +1,1 @@
-<root><value><id>1001</id><lv_id>1001</lv_id><team_lv_constraint>1</team_lv_constraint><name>黄巾起义</name><resource /></value></root>
+<root><value><id>1</id><team_lv_constraint>1</team_lv_constraint><type>1</type><name>黄巾起义</name><resource /></value><value><id>2</id><team_lv_constraint>10</team_lv_constraint><type>1</type><name>讨伐董卓</name><resource /></value></root>

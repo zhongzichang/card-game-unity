@@ -28,7 +28,7 @@ namespace TangGame.UI
       props.data = new TangGame.Xml.PropsData();
       props.data.name = "测试道具";
       props.data.type = 2;
-      props.count = 2;
+			props.net.count = 2;
       props.data.icon = "104";
       props.data.level = 5;
       props.data.info = "使用后可以获得一个小萝莉";
@@ -72,6 +72,9 @@ namespace TangGame.UI
       }else if (heroId.Equals("3")) {
         hero.order = 2;
         hero.lineType = 1;
+      }else if (heroId.Equals("4")) {
+        hero.order = 4;
+        hero.lineType = 3;
       }
       hero.name = "不告诉你";
       hero.rank = Random.Range (1, 10);

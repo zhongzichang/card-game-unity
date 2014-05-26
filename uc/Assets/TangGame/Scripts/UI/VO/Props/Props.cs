@@ -10,11 +10,12 @@ namespace TangGame.UI{
 		public PropsData data;
     /// 网络数据对象
 		private PropsNet mNet;
-    /// The count. 道具数量
-    public int count;
 
 		public PropsNet net {
 			get {
+				if (mNet == null) {
+					return new PropsNet ();
+				}
 				return mNet;
 			}
 			set {

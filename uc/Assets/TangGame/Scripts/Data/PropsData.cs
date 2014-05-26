@@ -84,7 +84,6 @@ namespace TangGame.Xml
 		public Dictionary<int, int> GetSyntheticPropsTable ()
 		{
 			return syntheticPropsTable;
-
 		}
 	}
 

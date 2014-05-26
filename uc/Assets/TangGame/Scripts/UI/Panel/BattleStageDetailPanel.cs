@@ -114,7 +114,7 @@ namespace TangGame.UI
         int id = int.Parse(list[i]);
         Props props = new Props();
         props.data = PropsCache.instance.GetPropsData(id);
-        props.count = 1;
+				props.net.count = 1;
 
         GameObject go = UIUtils.Duplicate(this.propsInfoItem.gameObject, this.propsInfoItem.transform.parent.gameObject);
         go.transform.localPosition = tempPosition;

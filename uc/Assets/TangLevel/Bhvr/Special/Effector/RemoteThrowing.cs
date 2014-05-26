@@ -8,6 +8,7 @@ namespace TangLevel
 	{
 		private Animator mAnimator;
 		TweenPosition mTweenPosi;
+		public float moveSpeed = 30f;
 		// Use this for initialization
 		void Awake ()
 		{
@@ -19,6 +20,7 @@ namespace TangLevel
 		{
 			if (isPlay) {
 				mAnimator.enabled = true;
+				transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
 				mCast ();
 			} else {
 				mAnimator.enabled = false;
@@ -29,7 +31,6 @@ namespace TangLevel
 		void mRelease ()
 		{
 			isPlay = false;
-			transform.parent = null;
 			StartRelease ();
 		}
 
@@ -46,14 +47,12 @@ namespace TangLevel
 			LevelController.RaisePause -= OnPause;
 			LevelController.RaiseResume -= OnResume;
 		}
-
-//		void OnGUI ()
-//		{
-//			if (GUILayout.Button ("Play")) {
-//				isPlay = true;
-//			}
-//		}
-
+		//		void OnGUI ()
+		//		{
+		//			if (GUILayout.Button ("Play")) {
+		//				isPlay = true;
+		//			}
+		//		}
 		void mCast ()
 		{
 			Vector3 pos = transform.position;
@@ -67,22 +66,32 @@ namespace TangLevel
 			foreach (GameObject g in gl) {
 				// 判断对手状态，没在放大招或者处于眩晕状态
 				HeroStatusBhvr targetStatusBhvr = g.GetComponent<HeroStatusBhvr> ();
-				if (!XuanyunEffector.vertigos.Contains(g) && !targetStatusBhvr.IsBigMove) {
-					// 抛出作用器
-					foreach (Effector e in w.effector.subEffectors) {
-						EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, g);
-						sourceSkillBhvr.Cast (cw);
-						mRelease ();
-						return;
-					}
+				// 抛出作用器
+				foreach (Effector e in w.effector.subEffectors) {
+					EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, g);
+					sourceSkillBhvr.Cast (cw);
+					mRelease ();
+					return;
+
 				}
 			}
 		}
-
+		void OnGUI ()
+		{
+			if (GUILayout.Button ("Play")) {
+				Play ();
+			}
+		}
 		public override void Play ()
 		{
+
+			Vector3 targetPosi = w.target.transform.position;
+			Vector3 sourcePosi = w.source.transform.position;
+			targetPosi.z += 10;
+			sourcePosi.z = targetPosi.z;
 			transform.localScale = Vector3.one;
-			transform.parent = w.source.transform;
+			transform.position = sourcePosi;
+			transform.LookAt (targetPosi);
 			isPlay = true;
 		}
 	}
