@@ -149,7 +149,7 @@ namespace TangLevel
       case HeroStatus.release:
         // 发大招通知
         if (skill.bigMove && !statusBhvr.IsBigMove) {
-          bmBhvr.StartBigMove (skill.chargeTime);
+          bmBhvr.StartBigMove ();
         }
         break;
       }

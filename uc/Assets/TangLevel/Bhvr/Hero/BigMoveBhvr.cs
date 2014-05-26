@@ -1,26 +1,26 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using DBE = DragonBones.Events;
+using TDB = TangDragonBones;
+using DragonBones;
 
 namespace TangLevel
 {
   public class BigMoveBhvr : MonoBehaviour
   {
     public static readonly Vector3 OFFSET = new Vector3 (0F, 0F, -100F);
-    public float pauseTime = 2F;
-    private float remainTime = 0;
+    public const float SCALE = 1.3F;
     private HeroStatusBhvr statusBhvr;
+    private TDB.DragonBonesBhvr dbBhvr; // Dragonbones
     private HashSet<BigMoveBhvr> bigMoveSenders = new HashSet<BigMoveBhvr> ();
     private bool inited = false;
     private Transform myTransform;
     private Vector3 backupPos = Vector3.zero;
     private DirectedNavAgent agent;
     private HeroBhvr heroBhvr;
-    private float max_scale = 1F;
-    private float backup_scale = 1F;
-    private float currentScale = 1;
-    private float scaleStep = 10F; // 每秒增加
-    private bool scaling = false; // 是否要缩小
+    private Vector3 backupScale = Vector3.zero;
+    private Armature armature;
 
     #region MonoMethods
 
@@ -31,46 +31,52 @@ namespace TangLevel
         statusBhvr = GetComponent<HeroStatusBhvr> ();
       }
       agent = GetComponent<DirectedNavAgent> ();
-
       heroBhvr = GetComponent<HeroBhvr> ();
 
-      LevelController.BigMoveStart += OnBigMoveStart;
-      LevelController.BigMoveEnd += OnBigMoveEnd;
+      backupScale = myTransform.localScale;
+
     }
 
     void Update ()
     {
-      if (statusBhvr.IsBigMove) {
-        if (currentScale < max_scale) {
-          currentScale += Time.deltaTime * scaleStep;
-          myTransform.localScale = new Vector3 (currentScale, currentScale, 1F);
-        }
-
-      } else if (scaling) {
-
-        if (backup_scale < currentScale) {
-          currentScale -= Time.deltaTime * scaleStep;
-          myTransform.localScale = new Vector3 (currentScale, currentScale, 1F);
-        } else {
-          myTransform.localScale = new Vector3(backup_scale, backup_scale, 1F);
-          scaling = false;
-        }
-      }
     }
 
-    /*
     void OnEnable ()
     {
       if (!inited) {
         if (statusBhvr == null) {
           statusBhvr = GetComponent<HeroStatusBhvr> ();
         }
-
         LevelController.BigMoveStart += OnBigMoveStart;
         LevelController.BigMoveEnd += OnBigMoveEnd;
+
+        // DragonBonesBhvr
+        if (dbBhvr == null) {
+          // dragonbones behaviour
+          dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
+          dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
+          armature = dbBhvr.armature;
+        }
+        // armature
+        if (armature != null) {
+          armature.AddEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
+        }
+
         inited = true;
       }
-    }*/
+    }
+
+    void OnDisable ()
+    {
+
+      LevelController.BigMoveStart -= OnBigMoveStart;
+      LevelController.BigMoveEnd -= OnBigMoveEnd;
+
+      // armature
+      if (armature != null) {
+        armature.RemoveEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
+      }
+    }
 
     #endregion
 
@@ -102,17 +108,38 @@ namespace TangLevel
 
     #endregion
 
-    #region PublicMethods
+    #region DragonBonesEvents
 
-    public void StartBigMove (float pauseTime)
+    private void OnAnimationFrameEvent (Com.Viperstudio.Events.Event e)
     {
 
-      remainTime = pauseTime;
+      DBE.FrameEvent evt = e as DBE.FrameEvent;
+      if (evt != null) {
+
+        // 如果是人物比例还原
+        if (Config.SCALE_RESUME_LABEL.Equals (evt.FrameLabel)) {
+          // 人物比例还原
+          myTransform.localScale = backupScale;
+        }
+      }
+    }
+
+    #endregion
+
+    #region PublicMethods
+
+    /// <summary>
+    /// 开始施放大招
+    /// </summary>
+    public void StartBigMove ()
+    {
+
       backupPos = myTransform.localPosition;
       myTransform.localPosition += OFFSET;
 
-      //Debug.Log ("StartBigMove");
-      //this.enabled = true;
+      backupScale = myTransform.localScale;
+      myTransform.localScale = new Vector3 (backupScale.x * SCALE, backupScale.y * SCALE, 1);
+
       statusBhvr.IsBigMove = true;
       LevelController.BigMoveCounter++;
 
@@ -120,17 +147,15 @@ namespace TangLevel
       if (statusBhvr.IsPause)
         statusBhvr.IsPause = false;
       agent.enabled = false;
-
-      backup_scale = myTransform.localScale.x;
-      max_scale = backup_scale * 1.3F;
-      currentScale = backup_scale;
     }
 
+    /// <summary>
+    /// 大招施放完毕
+    /// </summary>
     public void StopBigMove ()
     {
       myTransform.localPosition = backupPos;
-      //Debug.Log ("StopBigMove");
-      //this.enabled = false;
+
       statusBhvr.IsBigMove = false;
 
       LevelController.BigMoveCounter--;
@@ -138,8 +163,8 @@ namespace TangLevel
       heroBhvr.hero.mp = 0;
       agent.enabled = true;
 
-      // 进行缩小
-      scaling = true;
+      // 人物比例还原
+      myTransform.localScale = backupScale;
     }
 
     #endregion
