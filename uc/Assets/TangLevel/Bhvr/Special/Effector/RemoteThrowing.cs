@@ -19,7 +19,7 @@ namespace TangLevel
 		{
 			if (isPlay) {
 				mAnimator.enabled = true;
-				mCast ();
+//				mCast ();
 			} else {
 				mAnimator.enabled = false;
 			}
@@ -29,7 +29,6 @@ namespace TangLevel
 		void mRelease ()
 		{
 			isPlay = false;
-			transform.parent = null;
 			StartRelease ();
 		}
 
@@ -78,11 +77,17 @@ namespace TangLevel
 				}
 			}
 		}
-
+		void OnGUI ()
+		{
+			if (GUILayout.Button ("Play")) {
+				Play ();
+			}
+		}
 		public override void Play ()
 		{
 			transform.localScale = Vector3.one;
-			transform.parent = w.source.transform;
+			transform.position = w.source.transform.position;
+			transform.LookAt (w.target.transform.position);
 			isPlay = true;
 		}
 	}
