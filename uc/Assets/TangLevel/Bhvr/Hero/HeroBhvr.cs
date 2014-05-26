@@ -575,13 +575,7 @@ namespace TangLevel
     public void BigMove ()
     {
       // 获取大招
-      Skill bs = null;
-      foreach (Skill s in hero.skills) {
-        if (s.bigMove) {
-          bs = s;
-          break;
-        }
-      }
+      Skill bs = BigMoveSkill();
 
       // 使用大招攻击
       if (bs != null) {
@@ -592,6 +586,17 @@ namespace TangLevel
         }
         autoFire.skill = bs;
       }
+    }
+
+    public Skill BigMoveSkill(){
+
+      foreach (Skill s in hero.skills) {
+        if (s.bigMove) {
+          return s;
+        }
+      }
+
+      return null;
     }
 
     #endregion
