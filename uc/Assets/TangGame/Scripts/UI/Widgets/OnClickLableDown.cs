@@ -6,7 +6,7 @@ public class OnClickLableDown : MonoBehaviour
 	/// <summary>
 	/// The displacement pixels. 位移多少像素
 	/// </summary>
-	public Vector3 displacementPixels = Vector3.zero;
+	public Vector3 displacementPixels = new Vector3 (2, -2, 0);
 	private UILabel[] labels;
 
 	void OnEnable(){

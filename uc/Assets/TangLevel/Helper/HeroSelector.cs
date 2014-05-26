@@ -40,7 +40,7 @@ namespace TangLevel
         if (closestGobj == null) {
           closestGobj = gobj;
           closestDistance = Mathf.Abs (posx - gobj.transform.localPosition.x);
-        }else {
+        } else {
           float distance = Mathf.Abs (posx - gobj.transform.localPosition.x);
           if (distance < closestDistance) {
             closestDistance = distance;
@@ -120,18 +120,20 @@ namespace TangLevel
       List<GameObject> ret = new List<GameObject> ();
       foreach (GameObject gobj in LevelContext.AliveEnemyGobjs) {
         Vector3 tpos = gobj.transform.localPosition;
-        if (Mathf.Abs(tpos.x - xval) < accuracy) {
+        if (Mathf.Abs (tpos.x - xval) < accuracy) {
           ret.Add (gobj);
         }
       }
       foreach (GameObject gobj in LevelContext.AliveSelfGobjs) {
         Vector3 tpos = gobj.transform.localPosition;
-        if (Mathf.Abs(tpos.x - xval) < accuracy) {
+        if (Mathf.Abs (tpos.x - xval) < accuracy) {
           ret.Add (gobj);
         }
       }
       return ret;
     }
+
+    //public static List<GameObject
   }
 }
 
