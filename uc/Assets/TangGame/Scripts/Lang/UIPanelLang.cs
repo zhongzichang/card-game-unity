@@ -201,6 +201,7 @@ namespace TangGame.UI
 		public const string PROPS_DETAILS_HERO = "可装备英雄" ;
 		/// 道具详情界面“可合成装备”
 		public const string PROPS_DETAILS_SYNTHETIC = "可合成装备" ;
+		public const string CAN_SYNTHETIC = "可合成";
 
 		/// <summary>
 		/// 出售单价

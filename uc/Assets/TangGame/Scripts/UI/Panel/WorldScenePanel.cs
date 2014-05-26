@@ -35,7 +35,7 @@ namespace TangGame.UI{
     }
 
     private void ZYBtnClickHandler(GameObject go){
-      UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.TEXTURE);
+      UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS);
     }
 
     private void FMBtnClickHandler(GameObject go){

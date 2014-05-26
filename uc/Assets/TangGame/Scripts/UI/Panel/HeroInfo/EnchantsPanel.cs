@@ -7,9 +7,7 @@ namespace TangGame.UI
 {
 	public class EnchantsPanel : MonoBehaviour
 	{
-
-    public const string NAME = "EnchantsPanel";
-
+		public const string NAME = "EnchantsPanel";
 		/// <summary>
 		/// The back.
 		/// 返回按钮
@@ -223,12 +221,13 @@ namespace TangGame.UI
 		/// <param name="equipNet">Equip net.</param>
 		void UpEquipContent (Equip equipBase)
 		{
-			this.mEquipBase = equipBase;
+			ResetPropsTable ();
 			//重置附魔点数
 			mEnExpSum = 0;
 			mEnLvUp = 0;
 			mEnExpCurrent = equipBase.net.enchantsExp;
 			propsCheckedCountTable.Clear ();
+			this.mEquipBase = equipBase;
 			enCXml = Config.enchantsConsumedXmlTable [equipBase.data.upgrade];
 			int enLv = equipBase.net.enchantsLv;
 			int enNextLv = enLv + 1;
@@ -324,6 +323,16 @@ namespace TangGame.UI
 				if (props.data.enchant_points != 0) {
 					AddPorpsItemToPropsTable (props);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Resets the properties table.
+		/// </summary>
+		void ResetPropsTable ()
+		{
+			foreach (PropsItem item in propsBaseItemTable.Values) {
+				item.MinusBtn.gameObject.SetActive (false);
 			}
 		}
 
@@ -432,10 +441,15 @@ namespace TangGame.UI
 		{
 			//如果当前装备附魔经验超出最大附魔经验则
 			if (expMax == 0) {
-				NGUITools.SetActive (ExpProgressFull, true);
+				if (propsCheckedCountTable.Count == 0) {
+					NGUITools.SetActive (ExpProgressFull, true);
+					mExpLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
+				} else {
+					int tmpExpMax = enCXml.GetExpSpend (mEquipBase.net.enchantsLv + mEnLvUp);
+					mExpLab.text = (tmpExpMax + mEnExpCurrent) + "/" + tmpExpMax;
+					mGoldSpendLab.text = (enCXml.GetToMaxExp (mEquipBase.net.enchantsLv, mEquipBase.net.enchantsExp) * enCXml.gold_spend).ToString ();
+				}
 				mExpSprite.fillAmount = 1f;
-				mExpLab.text = UIPanelLang.ENCHANTING_HAS_TO_TOP;
-				mGoldSpendLab.text = (enCXml.GetToMaxExp (mEquipBase.net.enchantsLv, mEquipBase.net.enchantsExp) * enCXml.gold_spend).ToString ();
 			} else {
 				NGUITools.SetActive (ExpProgressFull, false);
 				mExpSprite.fillAmount = (float)mEnExpCurrent / (float)expMax;
