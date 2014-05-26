@@ -20,6 +20,12 @@ namespace TangGame.UI{
 
 		/// 关卡
 		public Dictionary<int, Level> levels = new Dictionary<int, Level>();
+    /// 地图关卡关联
+    private Dictionary<int, List<Level>> mapLevels = new Dictionary<int, List<Level>>();
+
+    public void AddLevelData(LevelData data){
+
+    }
 
 		
     /// 获取怪物数据
@@ -34,6 +40,14 @@ namespace TangGame.UI{
     public Level GetLevel(int id){
       if(levels.ContainsKey(id)){
         return levels[id];
+      }
+      return null;
+    }
+
+    /// 获取地图数据
+    public MapData GetMapData(int id){
+      if(Config.mapXmlTable.ContainsKey(id)){
+        return Config.mapXmlTable[id];
       }
       return null;
     }

@@ -17,9 +17,7 @@ namespace TangGame.UI{
   /// </summary>
   public class BattleChaptersPanelData {
 
-    /// 当前章节
-    public int chapter;
-    /// 当前章节下的Stage
+    /// 当前关卡ID
     public int stage;
     /// 当前打开面板下，指定stage的附加动画类型，比如新Stage，或者掉落指引的动画
     public StageType type = StageType.New;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Xml;
 
 namespace TangGame.UI
 {
@@ -68,6 +69,9 @@ namespace TangGame.UI
     private void UpdateData(){
       if(!started){return;}
       if(mParam == null){return;}
+      BattleChaptersPanelData data = this.mParam as BattleChaptersPanelData;
+
+
     }
   	
 
