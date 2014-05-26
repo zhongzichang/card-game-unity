@@ -20,8 +20,12 @@ namespace TangLevel
 		{
 			if (isPlay) {
 				mAnimator.enabled = true;
+<<<<<<< HEAD
 				transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
 				mCast ();
+=======
+//				mCast ();
+>>>>>>> cbc68df4b2ab988b3cf5b779e808941078a3c665
 			} else {
 				mAnimator.enabled = false;
 			}
@@ -76,7 +80,12 @@ namespace TangLevel
 				}
 			}
 		}
-
+		void OnGUI ()
+		{
+			if (GUILayout.Button ("Play")) {
+				Play ();
+			}
+		}
 		public override void Play ()
 		{
 
@@ -85,8 +94,13 @@ namespace TangLevel
 			targetPosi.z += 10;
 			sourcePosi.z = targetPosi.z;
 			transform.localScale = Vector3.one;
+<<<<<<< HEAD
 			transform.position = sourcePosi;
 			transform.LookAt (targetPosi);
+=======
+			transform.position = w.source.transform.position;
+			transform.LookAt (w.target.transform.position);
+>>>>>>> cbc68df4b2ab988b3cf5b779e808941078a3c665
 			isPlay = true;
 		}
 	}
