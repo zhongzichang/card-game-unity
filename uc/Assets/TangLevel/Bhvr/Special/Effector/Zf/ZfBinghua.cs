@@ -81,7 +81,6 @@ namespace TangLevel
       LevelController.RaisePause += OnPause;
       LevelController.RaiseResume += OnResume;
 
-      StartPlayOnce ("isPlay");
     }
 
     void OnDisable ()
@@ -125,6 +124,7 @@ namespace TangLevel
         isPlay = true;
 
 
+        StartPlayOnce ("isPlay");
 
       } else {
 

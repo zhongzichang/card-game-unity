@@ -17,6 +17,7 @@ namespace TangLevel
 
 
     // test ............
+    /*
     void OnGUI ()
     {
 
@@ -26,7 +27,7 @@ namespace TangLevel
         LevelController.ChallengeLevel (1, Mocker.MockGroup (heroIds));
 
       }
-    }
+    }*/
     // .................
   }
 }

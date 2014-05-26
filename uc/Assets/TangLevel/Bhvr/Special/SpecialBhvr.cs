@@ -54,10 +54,11 @@ namespace TangLevel
     /// <param name="paramName">Parameter name.</param>
     private IEnumerator PlayOnce (string paramName)
     {
-
-      animator.SetBool (paramName, true);
-      yield return null;
-      animator.SetBool (paramName, false);
+      if (animator != null) {
+        animator.SetBool (paramName, true);
+        yield return null;
+        animator.SetBool (paramName, false);
+      }
     }
 
     private IEnumerator WaitRelease ()
