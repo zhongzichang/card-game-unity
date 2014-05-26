@@ -50,6 +50,10 @@ namespace TangLevel
     /// </summary>
     public const string DEFAULt_CAST_LABEL = "cast";
     /// <summary>
+    /// 人物比例还原
+    /// </summary>
+    public const string SCALE_RESUME_LABEL = "scale_resume";
+    /// <summary>
     ///   是否使用打包后的资源
     /// </summary>
     public static bool use_packed_res = false;
