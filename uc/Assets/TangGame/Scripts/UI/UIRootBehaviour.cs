@@ -28,14 +28,16 @@ public class UIRootBehaviour : MonoBehaviour {
       uiRoot = temp;
     }
 
-    if(uiWidget == null){
-      GameObject go = new GameObject("UIAnchorContainer");
-      uiWidget = go.AddComponent<UIWidget>();
+    if(Application.isPlaying){
+      if(uiWidget == null){
+        GameObject go = new GameObject("UIAnchorContainer");
+        uiWidget = go.AddComponent<UIWidget>();
+      }
+      
+      uiWidget.transform.parent = this.transform;
+      uiWidget.transform.localPosition = Vector3.zero;
+      uiWidget.transform.localScale = Vector3.one;
     }
-
-    uiWidget.transform.parent = this.transform;
-    uiWidget.transform.localPosition = Vector3.zero;
-    uiWidget.transform.localScale = Vector3.one;
 
     UpdateUIRoot();
 	}

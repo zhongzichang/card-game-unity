@@ -1,6 +1,10 @@
-
 using System.Xml;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using System.Xml.Serialization;
+using TangUtils;
+using TangGame.UI;
 
 namespace TangGame.Xml
 {
@@ -16,5 +20,21 @@ namespace TangGame.Xml
 		public string name;
 		/// 地图美术资源
 		public string resource;
+
+    [XmlRoot ("root")]
+    [XmlLate ("map")]
+    public class MapRoot
+    {
+      [XmlElement ("value")]
+      public List<MapData> items = new List<MapData> ();
+      
+      public static void LateProcess (object obj)
+      {
+        MapRoot root = obj as MapRoot;
+        foreach (MapData item in root.items) {
+          Config.mapXmlTable[item.id] = item;
+        }
+      }
+    }
 	}
 }
