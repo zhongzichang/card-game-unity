@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI;
-using TangGame.UI;
+
 public class UITableByHeroLevel : UITable
 {
 	

@@ -12,6 +12,8 @@ namespace TangGame.Xml
 	{ 
 		/// 关卡序列号
 		public int id;
+		/// 关卡地图
+		public int map_id;
 		/// 关卡类型
 		public int type;
 		/// 一层怪物序列
@@ -43,11 +45,11 @@ namespace TangGame.Xml
 		/// 描述
 		public string description;
 		/// 一层对话编号
-		public string lv1_dialogue;
+		public int lv1_dialogue;
 		/// 二层对话编号
-		public string lv2_dialogue;
+		public int lv2_dialogue;
 		/// 三层对话编号
-		public string lv3_dialogue;
+		public int lv3_dialogue;
 		/// 关卡美术资源
 		public string resources;
 

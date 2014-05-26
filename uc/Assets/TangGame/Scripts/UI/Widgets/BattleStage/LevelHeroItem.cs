@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TangGame.UI;
-using TangGame.UI;
 
 namespace TangGame{
   public class LevelHeroItem : ViewItem {
