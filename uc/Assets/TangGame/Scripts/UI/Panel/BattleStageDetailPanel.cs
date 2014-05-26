@@ -6,7 +6,9 @@ using TangGame.Xml;
 
 namespace TangGame.UI
 {
-  public class StageDetailPanel : MonoBehaviour {
+  public class BattleStageDetailPanel : MonoBehaviour {
+
+    public const string NAME = "BattleStageDetailPanel";
 
     public UILabel vitLabel;
     public UILabel enemyLabel;

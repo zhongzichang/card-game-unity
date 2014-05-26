@@ -30,11 +30,12 @@ public class UIRootBehaviour : MonoBehaviour {
 
     if(uiWidget == null){
       GameObject go = new GameObject("UIAnchorContainer");
-      go.transform.parent = this.transform;
-      go.transform.localPosition = Vector3.zero;
-      go.transform.localScale = Vector3.one;
       uiWidget = go.AddComponent<UIWidget>();
     }
+
+    uiWidget.transform.parent = this.transform;
+    uiWidget.transform.localPosition = Vector3.zero;
+    uiWidget.transform.localScale = Vector3.one;
 
     UpdateUIRoot();
 	}

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace TangGame.UI
@@ -7,7 +7,7 @@ namespace TangGame.UI
 
   	// Use this for initialization
   	void Start () {
-      StageDetailPanel panel = GetComponent<StageDetailPanel> ();
+      BattleStageDetailPanel panel = GetComponent<BattleStageDetailPanel> ();
       StageItemData  data = TestDataStore.Instance.RandomStage(0, 1);
       panel.param = data;	
   	}
