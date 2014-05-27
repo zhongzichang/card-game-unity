@@ -489,10 +489,10 @@ namespace TangLevel
 			//skills.Add (MockMediumCommonAttack ());
 			skills.Add (MockHuatouAttack ());
 			skills.Add (MockDuliSkill ());
-//			skills.Add (MockXumingSkill ());
+			skills.Add (MockXumingSkill ());
 			skills.Add (MockMiaoshouhuichunSkill());
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 1, 2 };
+			hero.skillQueue = new int[]{ 0, 1, 2 ,3};
 			tmp++;
 			return hero;
 		}
@@ -508,7 +508,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 27;
+			skill.distance = 35;
 			skill.cd = 3;
 
 			return skill;
@@ -524,7 +524,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 20;
+			skill.distance = 35;
 			skill.cd = 3;
 
 			return skill;
@@ -539,7 +539,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 20;
+			skill.distance = 35;
 			skill.cd = 3;
 
 			return skill;
@@ -555,7 +555,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = true;
-			skill.distance = 20;
+			skill.distance = 35;
 			skill.cd = 3;
 
 			return skill;
