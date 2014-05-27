@@ -7,10 +7,8 @@ namespace TangLevel
   public class HeroSelector
   {
     /// <summary>
-    /// 找距离最近的敌方目标
+    /// 找与指定英雄距离最近的敌方目标
     /// </summary>
-    /// <returns>The target.</returns>
-    /// <param name="sourceGobj">Source gobj.</param>
     public static GameObject FindClosestTarget (HeroBhvr sourceHeroBhvr)
     {
 
@@ -22,7 +20,7 @@ namespace TangLevel
     }
 
     /// <summary>
-    ///   找距离最近的友方目标
+    ///   找与指定英雄距离最近的友方目标
     /// </summary>
     public static GameObject FindclosestFriend(HeroBhvr sourceHeroBhvr)
     {
@@ -35,11 +33,11 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 获取距离最近的可攻击目标
+    /// 获取距离最近的目标
     /// </summary>
-    /// <returns>The closest target.</returns>
-    /// <param name="sgobj">Sgobj.</param>
-    /// <param name="ol">Ol.</param>
+    /// <returns>与指定英雄距离最近的目标</returns>
+    /// <param name="sgobj">当前英雄游戏对象</param>
+    /// <param name="ol">要计算距离的英雄列表</param>
     public static GameObject FindClosestTarget (GameObject sgobj, List<GameObject>  ol)
     {
       // 源对象的 x 坐标
@@ -49,6 +47,9 @@ namespace TangLevel
       // 最短的距离
       float closestDistance = 0;
       foreach (GameObject gobj in ol) {
+
+        if( gobj == sgobj )
+          continue;
 
         if (closestGobj == null) {
           closestGobj = gobj;
@@ -66,7 +67,7 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 以某一个点为中心，找出在宽度为 width ，高度不限制的目标
+    /// 以某一个点为中心，在指定的对象列表中，找出在宽度为 width ，高度不限制的所有目标
     /// </summary>
     public static List<GameObject> FindTargetsWithWidth (List<GameObject> ol, Vector3 center, float width)
     {
