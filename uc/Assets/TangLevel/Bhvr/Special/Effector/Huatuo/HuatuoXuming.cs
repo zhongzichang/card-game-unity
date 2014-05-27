@@ -16,15 +16,15 @@ namespace TangLevel
 		void Update ()
 		{
 			if (isPlay) {
-				mAnimator.enabled = true;
-			} else {
-				mAnimator.enabled = false;
-			}
 
+			} else {
+
+			}
 		}
 
-		void mRelease ()
+		IEnumerator mRelease ()
 		{
+			yield return new WaitForSeconds (3f);
 			isPlay = false;
 			transform.parent = null;
 			StartRelease ();
@@ -44,35 +44,28 @@ namespace TangLevel
 			LevelController.RaiseResume -= OnResume;
 		}
 
-		void OnGUI ()
-		{
-			if (GUILayout.Button ("Play")) {
-				isPlay = true;
-			}
-		}
-
 		void mCast ()
 		{
 			if (w == null || w.source == null)
 				return;
 			HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
-
 			// 判断对手状态，没在放大招或者处于眩晕状态
-			HeroStatusBhvr targetStatusBhvr = w.target.GetComponent<HeroStatusBhvr> ();
-			if (w.effector.subEffectors != null) {
-				// 抛出作用器
-				foreach (Effector e in w.effector.subEffectors) {
-					EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
-					sourceSkillBhvr.Cast (cw);
-				}
+			HeroStatusBhvr targetStatusBhvr = w.source.GetComponent<HeroStatusBhvr> ();
+			// 抛出作用器
+			foreach (Effector e in w.effector.subEffectors) {
+				EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
+				sourceSkillBhvr.Cast (cw);
 			}
+			
 		}
 
 		public override void Play ()
 		{
+			mCast ();
+			StartCoroutine (mRelease ());
 			transform.localScale = Vector3.one;
-			transform.parent = w.target.transform;
+			transform.parent = w.source.transform;
 			transform.localPosition = Vector3.zero;
 			isPlay = true;
 		}
