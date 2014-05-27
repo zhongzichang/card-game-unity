@@ -7,6 +7,24 @@ namespace TangLevel
   [Serializable]
   public class Skill
   {
+
+    // 预定义目标类型 ----
+
+    public const int TARGET_SELF = 1; // 自己
+    public const int TARGET_LOCKED = 2; // 已锁定的目标
+    public const int TARGET_SELF_WEAKEST = 4; // 友方最虚弱者
+    public const int TARGET_ENEMY_WEAKEST = 8; // 地方最虚弱者
+    public const int TARGET_REGION = 16; // 固定区域
+
+    // 预定义目标范围 ----
+    public const int RANGE_SAME_COL = 1; // 目标同排
+    public const int RANGE_NEXT_COL = 2; // 目标的后排
+    public const int RANGE_NEXT_2COL = 4; // 目标的后两排
+    public const int RANGE_AROUND = 8; // 目标周围
+    public const int RANGE_SELF_GROUP = 16; // 目标友方全体
+    public const int RANGE_ENEMY_GROUP = 32; // 目标敌方全体
+    public const int RANGE_ALL = 64; // 敌我双方全体
+
     #region Configration Attributes
 
     // -- 自身属性 --

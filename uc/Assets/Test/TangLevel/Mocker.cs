@@ -86,7 +86,7 @@ namespace TangLevel
       int maxHeros = 5;
       group.heros = new Hero[ UnityEngine.Random.Range (4, maxHeros)];
       for (int j = 0; j < group.heros.Length; j++) {
-        int id = UnityEngine.Random.Range (4, 8);
+        int id = UnityEngine.Random.Range (3, 5);
         if (id == 0)
           group.heros [j] = MockHeroZf ();
         else if (id == 1)
@@ -96,13 +96,10 @@ namespace TangLevel
         } else if (id == 3) {
           group.heros [j] = MockHeroHuatuo ();
         } else if (id == 4) {
-          group.heros [j] = MockCommonHero ("hero_huangjingongjianbing");
+          group.heros [j] = MockHeroHuangjinbubing ();
         } else if (id == 5) {
-          group.heros [j] = MockCommonHero ("hero_huangjinbubing");
-        } else if (id == 6) {
-          group.heros [j] = MockCommonHero ("hero_gongchengche");
-        } else if (id == 7) {
-          group.heros [j] = MockCommonHero ("hero_toushiche");
+          group.heros [j] = MockHeroHuangjingongjianbing ();
+          //group.heros [j] = MockHeroXc ();
         }
       }
       return group;
@@ -488,7 +485,8 @@ namespace TangLevel
 
       // skill
       List<Skill> skills = new List<Skill> ();
-      skills.Add (MockMediumCommonAttack ());
+      //skills.Add (MockMediumCommonAttack ());
+      skills.Add (MockHuatouAttack ());
       skills.Add (MockDuliSkill ());
       hero.skills = skills;
       hero.skillQueue = new int[]{ 0, 1 };
@@ -497,6 +495,21 @@ namespace TangLevel
       return hero;
     }
 
+    public static Skill MockHuatouAttack(){
+
+      Skill skill = new Skill ();
+
+      skill.effectors = new Effector[1];
+      skill.effectors [0] = MockHuatuoAttackEffector ();
+      //skill.chargeClip = "binghua0";
+      skill.releaseClip = "attack";
+      skill.enable = true;
+      skill.bigMove = false;
+      skill.distance = 27;
+      skill.cd = 3;
+
+      return skill;
+    }
 
     public static Skill MockDuliSkill ()
     {
@@ -525,6 +538,71 @@ namespace TangLevel
       effector.subEffectors = subEffectors;
 
       return effector;
+    }
+
+    // 普通攻击作用器
+    public static Effector MockHuatuoAttackEffector ()
+    {
+      Effector effector = new Effector ();
+      effector.specialName = "fx_huatuogongji";
+
+      Effector[] subEffectors = new Effector[1];
+      subEffectors [0] = MockCommonHit ();
+      effector.subEffectors = subEffectors;
+
+      return effector;
+    }
+
+    #endregion
+
+    // mock hero huangjinbubin -----------------------------------------------------
+
+    #region huangjinbubin
+
+    public static Hero MockHeroHuangjinbubing ()
+    {
+      Hero hero = new Hero ();  
+      hero.id = 4;
+      hero.resName = "hero_huangjinbubing";
+      hero.maxHp = 120;
+      hero.hp = 120;
+      hero.maxMp = 100;
+      hero.mp = 0;
+      hero.sort = 2;//UnityEngine.Random.Range (1, 20);
+      hero.ai = new string[]{ "AutoFire" };
+
+      List<Skill> skills = new List<Skill> ();
+      skills.Add (MockNearCommonAttack ());
+      hero.skills = skills;
+      hero.skillQueue = new int[]{ 0 };
+
+      return hero;
+    }
+
+    #endregion
+
+    // mock hero huangjingongjianbin -----------------------------------------------------
+
+    #region huangjingongjianbing
+
+    public static Hero MockHeroHuangjingongjianbing ()
+    {
+      Hero hero = new Hero ();  
+      hero.id = 5;
+      hero.resName = "hero_huangjingongjianbing";
+      hero.maxHp = 120;
+      hero.hp = 120;
+      hero.maxMp = 100;
+      hero.mp = 0;
+      hero.sort = 2;//UnityEngine.Random.Range (1, 20);
+      hero.ai = new string[]{ "AutoFire" };
+
+      List<Skill> skills = new List<Skill> ();
+      skills.Add (MockLongCommonAttack ());
+      hero.skills = skills;
+      hero.skillQueue = new int[]{ 0 };
+
+      return hero;
     }
 
     #endregion
