@@ -56,7 +56,6 @@ namespace TangLevel
 				EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
 				sourceSkillBhvr.Cast (cw);
 			}
-			
 		}
 
 		GameObject skillTarget;

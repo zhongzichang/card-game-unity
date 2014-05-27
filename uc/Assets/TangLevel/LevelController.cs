@@ -281,7 +281,7 @@ namespace TangLevel
         TG.LevelHeroItem item = viewItem as TG.LevelHeroItem;
         if (item != null) {
           // 获取相应的英雄对象
-          HeroBhvr h = LevelContext.GetHeroBhvr (item.heroId);
+          HeroBhvr h = LevelContext.GetHeroComponent<HeroBhvr> (item.heroId);
           if (h != null && h.hero != null && h.hero.hp > 0 && h.hero.mp == h.hero.maxMp) {
             h.BigMove ();
           }
@@ -838,7 +838,7 @@ namespace TangLevel
       // UI 控制 --
 
       // 英雄头像MP效果打开
-      levelHeroPanel.SwitchMpEffect (true);
+      //levelHeroPanel.SwitchMpEffect (true);
 
       // 隐藏下一个小关的按钮
       if (levelNextPanel.gameObject.activeSelf) {
@@ -914,6 +914,16 @@ namespace TangLevel
         }
         i++;
       }
+
+      // 监听玩家英雄的大招是否能施放
+      foreach(TG.LevelHeroItem item in levelHeroPanel.itemList)
+        {
+          BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr>(item.heroId);
+          if( bmBhvr != null )
+            {
+              bmBhvr.RaiseEvent += item.SwitchMpEffect;
+            }
+        }
     }
 
     /// <summary>
@@ -951,6 +961,17 @@ namespace TangLevel
         }
         i++;
       }
+
+      // 取消监听玩家英雄的大招是否能施放
+      foreach(TG.LevelHeroItem item in levelHeroPanel.itemList)
+        {
+          BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr>(item.heroId);
+          if( bmBhvr != null )
+            {
+              bmBhvr.RaiseEvent -= item.SwitchMpEffect;
+            }
+        }
+ 
     }
 
     /// <summary>
@@ -1246,7 +1267,8 @@ namespace TangLevel
         while (wgtEnum.MoveNext ()) {
           Hero h = heros [i];
           TG.LevelHeroItem w = wgtEnum.Current;
-
+          // 停止 MP 特效, 改为由 BigMoveBhvr 来控制
+          w.SwitchMpEffect (false);
           // 英雄头像 ----
           w.SetHeroId (h.id); // 英雄ID
           h.raiseHpChange += w.SetHp; // 英雄HP变化
