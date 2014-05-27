@@ -24,7 +24,7 @@ namespace TangLevel
     private Armature armature;
     private Skill skill;
 
-    #region MonoMethods
+#region MonoMethods
 
     void Start ()
     {
@@ -85,9 +85,9 @@ namespace TangLevel
       }
     }
 
-    #endregion
+#endregion
 
-    #region SceneEvents
+#region SceneEvents
 
     /// <summary>
     /// 大招开始
@@ -113,9 +113,9 @@ namespace TangLevel
       }
     }
 
-    #endregion
+#endregion
 
-    #region DragonBonesEvents
+#region DragonBonesEvents
 
     private void OnAnimationFrameEvent (Com.Viperstudio.Events.Event e)
     {
@@ -131,9 +131,9 @@ namespace TangLevel
       }
     }
 
-    #endregion
+#endregion
 
-    #region PublicMethods
+#region PublicMethods
 
     /// <summary>
     /// 开始施放大招
@@ -174,9 +174,9 @@ namespace TangLevel
       myTransform.localScale = backupScale;
     }
 
-    #endregion
+#endregion
 
-    #region PrivateMethods
+#region PrivateMethods
 
     private bool IsBigMoveReady ()
     {
@@ -208,18 +208,27 @@ namespace TangLevel
             LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
           target = HeroSelector.FindWeakest (targetGroup);
           if (target != null &&
-            Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) < skill.distance) {
+              Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) < skill.distance) {
             return true;
           } else {
             return false;
           }
           break;
         case Skill.TARGET_ENEMY_WEAKEST:
-
           // 敌方最虚弱者
+          targetGroup = heroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
+            LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+          target = HeroSelector.FindWeakest (targetGroup);
+          if (target != null &&
+              Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) < skill.distance) {
+            return true;
+          } else {
+            return false;
+          }
           break;
         case Skill.TARGET_REGION:
           // 指定区域
+          
           break;
         }
 
@@ -230,7 +239,7 @@ namespace TangLevel
       }
     }
 
-    #endregion
+#endregion
   }
 }
 
