@@ -23,10 +23,28 @@ namespace TangGame.UI{
     /// 地图关卡关联
     private Dictionary<int, List<Level>> mapLevels = new Dictionary<int, List<Level>>();
 
+    /// 添加关卡配置数据
     public void AddLevelData(LevelData data){
-
+      Level level = new Level();
+      level.data = data;
+      levels[data.id] = level;
+      List<Level> list = null;
+      if(!mapLevels.ContainsKey(data.map_id)){
+        list = new List<Level>();
+        mapLevels[data.map_id] = list;
+      }else{
+        list = mapLevels[data.map_id];
+      }
+      list.Add(level);
     }
 
+    /// 添加地图中的关卡列表
+    public List<Level> GetMapLevels(int mapId){
+      if(mapLevels.ContainsKey(mapId)){
+        return mapLevels[mapId];
+      }
+      return null;
+    }
 		
     /// 获取怪物数据
     public MonsterData GetMonsterData(int id){
