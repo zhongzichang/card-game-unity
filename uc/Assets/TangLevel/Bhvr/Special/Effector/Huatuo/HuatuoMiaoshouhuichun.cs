@@ -16,7 +16,13 @@ namespace TangLevel
 		void Update ()
 		{
 			if (isPlay) {
-
+				if (mTarget == transform.position) {
+					if (targetVectors.Count != 0) {
+						mCurrent = mTarget;
+						mTarget = (Vector3)targetVectors.Dequeue ();
+						MoveToBegin ();
+					}
+				}
 			} else {
 
 			}
@@ -72,35 +78,32 @@ namespace TangLevel
 
 		public override void Play ()
 		{
-			float trailTime = trailRenderer.time;
-			trailRenderer.time = 0;
-			transform.position = w.source.transform.position;
-			tweenPosi.from = transform.position;
-			trailRenderer.time = trailTime;
+			mCurrent = w.source.transform.position;
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
 			nextTarget = HeroSelector.FindclosestFriend (skillTarget.GetComponent<HeroBhvr> ());
 			isPlay = true;
-
-			StartCoroutine (MoveTo (transform.position, skillTarget.transform.position));
-			StartCoroutine (MoveTo (skillTarget.transform.position, nextTarget.transform.position));
+			float trailTime = trailRenderer.time;
+			trailRenderer.time = 0;
+			gameObject.transform.position = mCurrent;
+			mTarget = gameObject.transform.position;
+			trailRenderer.time = trailTime;
+			targetVectors.Enqueue (gameObject.transform.position);
+			targetVectors.Enqueue (skillTarget.transform.position);
+			targetVectors.Enqueue (nextTarget.transform.position);
 			StartCoroutine (mRelease ());
 
 		}
 
+		Queue targetVectors = new Queue ();
+		Vector3 mTarget;
+		Vector3 mCurrent;
 
-		IEnumerator MoveTo (Vector3 target, Vector3 next)
+		void MoveToBegin ()
 		{
-			yield return transform.position == target;
-//			GameObject obj = NGUITools.AddChild (gameObject, miaoshouhuichun_sub);
-//			obj.SetActive (true);
-//			obj.transform.parent = null;
-//			GameObject.Destroy (obj, 0.5f);
-			tweenPosi.enabled = true;
-			tweenPosi.from = target;
-			tweenPosi.to = next;
+			tweenPosi.from = mCurrent;
+			tweenPosi.to = mTarget;
 			tweenPosi.ResetToBeginning ();
 			tweenPosi.Play ();
-
 		}
 	}
 }
