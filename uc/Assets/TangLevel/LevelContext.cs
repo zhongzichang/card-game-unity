@@ -171,20 +171,33 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 根据英雄ID获取 HeroBhvr
+    /// 根据英雄ID获取 Component
     /// </summary>
     /// <returns>The hero bhvr.</returns>
     /// <param name="id">Identifier.</param>
-    public static HeroBhvr GetHeroBhvr(int id){
-      HeroBhvr h = null;
+    public static T GetHeroComponent<T>(int id) where T : Component {
+
+      T t = null;
+      // find in self group
       foreach (GameObject gobj in selfGobjs) {
-        HeroBhvr hb = gobj.GetComponent<HeroBhvr> ();
+        HeroBhvr hb = gobj.GetComponent<HeroBhvr>();
         if (hb != null && hb.hero.id == id) {
-          h = hb;
+          t = gobj.GetComponent<T> ();
           break;
         }
       }
-      return h;
+      // find in enemy group if h is null
+      if( t == null )
+        {
+          foreach (GameObject gobj in enemyGobjs) {
+            HeroBhvr hb = gobj.GetComponent<HeroBhvr>();
+            if (hb != null && hb.hero.id == id) {
+              t = gobj.GetComponent<T> ();
+              break;
+            }
+          }
+        }
+      return t;
     }
 
     /// <summary>

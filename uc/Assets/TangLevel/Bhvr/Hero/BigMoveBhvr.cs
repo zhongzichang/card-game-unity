@@ -11,9 +11,9 @@ namespace TangLevel
   {
 
     // 大招准备
-    public event EventHandler RaiseReady;
+    public delegate void BigMoveHandler(bool ready);
     // 大招不可行
-    public event EventHandler RaiseUnready;
+    public BigMoveHandler RaiseEvent;
 
     public static readonly Vector3 OFFSET = new Vector3 (0F, 0F, -100F); // 大招时的位置偏移，需要往镜头靠近
     public const float SCALE = 1.3F;
@@ -57,9 +57,9 @@ namespace TangLevel
           if( !ready )
             {
               ready = true;
-              if( RaiseReady != null )
+              if( RaiseEvent != null )
                 {
-                  RaiseReady(this, EventArgs.Empty);
+                  RaiseEvent(ready);
                 }
             }
         }
@@ -69,9 +69,9 @@ namespace TangLevel
           if( ready )
             {
               ready = false;
-              if( RaiseUnready != null )
+              if( RaiseEvent != null )
                 {
-                  RaiseUnready(this, EventArgs.Empty);
+                  RaiseEvent(ready);
                 }
             }
         }
