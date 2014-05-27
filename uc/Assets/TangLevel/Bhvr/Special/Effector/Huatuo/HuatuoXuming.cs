@@ -58,7 +58,9 @@ namespace TangLevel
 			}
 			
 		}
+
 		GameObject skillTarget;
+
 		public override void Play ()
 		{
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
@@ -66,7 +68,10 @@ namespace TangLevel
 			StartCoroutine (mRelease ());
 			transform.localScale = Vector3.one;
 			transform.parent = skillTarget.transform;
-			transform.localPosition = Vector3.zero;
+			if (skillTarget.GetComponent<Directional> ().Direction == BattleDirection.LEFT)
+				transform.localPosition = new Vector3 (0, 0, 1);
+			else
+				transform.localPosition = new Vector3 (0, 0, -1);
 			isPlay = true;
 		}
 	}
