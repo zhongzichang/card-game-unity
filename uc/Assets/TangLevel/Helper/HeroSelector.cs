@@ -133,7 +133,25 @@ namespace TangLevel
       return ret;
     }
 
-    //public static List<GameObject
+
+    /// <summary>
+    /// 获取战队里面血量最少的英雄对象
+    /// </summary>
+    /// <returns>The weakest.</returns>
+    /// <param name="list">List.</param>
+    public static GameObject FindWeakest (List<GameObject> list)
+    {
+      GameObject ret = null;
+      int minHp = int.MaxValue;
+      foreach (GameObject g in list) {
+        int hp = g.GetComponent<HeroBhvr> ().hero.hp;
+        if (hp < minHp && hp > 0) {
+          minHp = hp;
+          ret = g;
+        }
+      }
+      return ret;
+    }
   }
 }
 

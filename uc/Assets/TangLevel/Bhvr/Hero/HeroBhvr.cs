@@ -34,9 +34,17 @@ namespace TangLevel
     private SkillBhvr skillBhvr; // 技能
     private BigMoveBhvr bmBhvr; // 大招
     private Skill skill; // 技能
-    private GameObject target; // 当前目标
     private List<string> animationList; // DragonBone 动画列表
+    private GameObject mTarget; // 当前目标
 
+    #endregion
+
+    #region Properties
+    // 当前目标
+    public GameObject target{
+      get{ return mTarget; }
+      private set{ mTarget = value; }
+    }
     #endregion
 
     #region MonoBehaviours
