@@ -7,7 +7,7 @@ namespace TangLevel
   public class HeroSelector
   {
     /// <summary>
-    /// 找距离最近的目标
+    /// 找距离最近的敌方目标
     /// </summary>
     /// <returns>The target.</returns>
     /// <param name="sourceGobj">Source gobj.</param>
@@ -19,6 +19,19 @@ namespace TangLevel
         ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
 
       return FindClosestTarget (sgobj, ol);
+    }
+
+    /// <summary>
+    ///   找距离最近的友方目标
+    /// </summary>
+    public static GameObject FindclosestFriend(HeroBhvr sourceHeroBhvr)
+    {
+      GameObject sgobj = sourceHeroBhvr.gameObject;
+      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.LEFT
+        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+
+      return FindClosestTarget (sgobj, ol);
+ 
     }
 
     /// <summary>

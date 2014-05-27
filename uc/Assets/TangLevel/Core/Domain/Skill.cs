@@ -71,6 +71,11 @@ namespace TangLevel
     public int scopeType;
 
     /// <summary>
+    ///   指定区域 - 当 targetType = TARGET_RANGE 时有用
+    /// </summary>
+    public Rect region;
+
+    /// <summary>
     /// 作用器
     /// </summary>
     public Effector[] effectors;
