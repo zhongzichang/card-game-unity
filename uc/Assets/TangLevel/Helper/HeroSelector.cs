@@ -35,7 +35,7 @@ namespace TangLevel
     }
 
     /// <summary>
-    /// 获取距离最近的可攻击目标
+    /// 获取距离最近的目标
     /// </summary>
     /// <returns>The closest target.</returns>
     /// <param name="sgobj">Sgobj.</param>
@@ -49,6 +49,9 @@ namespace TangLevel
       // 最短的距离
       float closestDistance = 0;
       foreach (GameObject gobj in ol) {
+
+        if( gobj == sgobj )
+          continue;
 
         if (closestGobj == null) {
           closestGobj = gobj;
