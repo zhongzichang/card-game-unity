@@ -487,7 +487,8 @@ namespace TangLevel
 			//skills.Add (MockMediumCommonAttack ());
 			skills.Add (MockHuatouAttack ());
 			skills.Add (MockDuliSkill ());
-			skills.Add (MockXumingSkill ());
+//			skills.Add (MockXumingSkill ());
+			skills.Add (MockMiaoshouhuichunSkill());
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0, 1, 2 };
 			tmp++;
@@ -541,11 +542,39 @@ namespace TangLevel
 
 			return skill;
 		}
+
+		public static Skill MockMiaoshouhuichunSkill ()
+		{
+			Skill skill = new Skill ();
+
+			skill.effectors = new Effector[1];
+			skill.effectors [0] = MockMiaoshouhuichunEffector ();
+			//skill.chargeClip = "binghua0";
+			skill.releaseClip = "attack";
+			skill.enable = true;
+			skill.bigMove = true;
+			skill.distance = 20;
+			skill.cd = 3;
+
+			return skill;
+		}
 		// 续命
 		public static Effector MockXumingEffector ()
 		{
 			Effector effector = new Effector ();
 			effector.specialName = "fx_xuming";
+
+			Effector[] subEffectors = new Effector[1];
+			subEffectors [0] = MockCommonHit ();
+			effector.subEffectors = subEffectors;
+
+			return effector;
+		}
+		// 妙手回春
+		public static Effector MockMiaoshouhuichunEffector ()
+		{
+			Effector effector = new Effector ();
+			effector.specialName = "fx_miaoshouhuichun";
 
 			Effector[] subEffectors = new Effector[1];
 			subEffectors [0] = MockCommonHit ();
