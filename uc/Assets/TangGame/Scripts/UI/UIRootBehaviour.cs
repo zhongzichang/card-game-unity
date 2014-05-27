@@ -68,13 +68,14 @@ public class UIRootBehaviour : MonoBehaviour {
     uiRoot.manualHeight = (int)height;
     uiRoot.minimumHeight = (int)height;
 
-    uiWidget.width = (int)width;
-    uiWidget.height = (int)HEIGHT;//这里需要设定固定值
-
-    UIAnchor[] anchors = this.GetComponentsInChildren<UIAnchor>();
-    foreach(UIAnchor uiAnchor in anchors){
-      uiAnchor.container = uiWidget.gameObject;
-      uiAnchor.enabled = true;
+    if(uiWidget != null){
+      uiWidget.width = (int)width;
+      uiWidget.height = (int)HEIGHT;//这里需要设定固定值
+      UIAnchor[] anchors = this.GetComponentsInChildren<UIAnchor>();
+      foreach(UIAnchor uiAnchor in anchors){
+        uiAnchor.container = uiWidget.gameObject;
+        uiAnchor.enabled = true;
+      }
     }
 
   }
