@@ -101,6 +101,7 @@ namespace TangGame.UI
 		/// The exp progress full.
 		/// </summary>
 		public GameObject ExpProgressFull;
+		public GameObject AddExpLabel;
 		/// <summary>
 		/// 主界面英雄头像
 		/// </summary>
@@ -288,6 +289,17 @@ namespace TangGame.UI
 			heroAvatarItemTable.Clear ();
 		}
 
+		void SetAddExpLabel(int exp){
+			GameObject obj = NGUITools.AddChild (EnchantingExp, AddExpLabel);
+			UILabel lb = obj.GetComponent<UILabel> ();
+			if (lb != null) {
+				lb.text = "+" + exp;
+			}
+			TweenPosition tweenPosi = obj.GetComponent<TweenPosition> ();
+			obj.SetActive (true);
+			GameObject.Destroy (obj,tweenPosi.duration);
+		}
+
 		/// <summary>
 		/// Selects the hero.
 		/// 选择英雄
@@ -417,6 +429,7 @@ namespace TangGame.UI
 				propsCheckedCountTable.Add (itemTmp, 1);
 			}
 
+			SetAddExpLabel (itemTmp.data.data.enchant_points);
 			itemTmp.MinusBtn.gameObject.SetActive (true);
 			mEnExpSum += itemTmp.data.data.enchant_points;
 			mEnExpCurrent += itemTmp.data.data.enchant_points;
