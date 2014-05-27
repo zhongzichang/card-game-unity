@@ -20,6 +20,7 @@ namespace TangLevel
 					if (targetVectors.Count != 0) {
 						mCurrent = mTarget;
 						mTarget = (Vector3)targetVectors.Dequeue ();
+						ShowAnimation ();
 						MoveToBegin ();
 					}
 				}
@@ -101,9 +102,17 @@ namespace TangLevel
 		void MoveToBegin ()
 		{
 			tweenPosi.from = mCurrent;
+			tweenPosi.from += new Vector3 (0,3,0);
 			tweenPosi.to = mTarget;
+			tweenPosi.to += new Vector3 (0,3,0);
 			tweenPosi.ResetToBeginning ();
 			tweenPosi.Play ();
+		}
+		void ShowAnimation(){
+			GameObject obj = NGUITools.AddChild (gameObject,miaoshouhuichun_sub);
+			obj.SetActive (true);
+			obj.transform.parent = null;
+			GameObject.Destroy (obj, 0.5f);
 		}
 	}
 }
