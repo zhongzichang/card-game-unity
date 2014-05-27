@@ -50,8 +50,7 @@ namespace TangLevel
 				return;
 			HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
-			// 判断对手状态，没在放大招或者处于眩晕状态
-			HeroStatusBhvr targetStatusBhvr = w.source.GetComponent<HeroStatusBhvr> ();
+			HeroStatusBhvr targetStatusBhvr = skillTarget.GetComponent<HeroStatusBhvr> ();
 			// 抛出作用器
 			foreach (Effector e in w.effector.subEffectors) {
 				EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
@@ -59,13 +58,14 @@ namespace TangLevel
 			}
 			
 		}
-
+		GameObject skillTarget;
 		public override void Play ()
 		{
+			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
 			mCast ();
 			StartCoroutine (mRelease ());
 			transform.localScale = Vector3.one;
-			transform.parent = w.source.transform;
+			transform.parent = skillTarget.transform;
 			transform.localPosition = Vector3.zero;
 			isPlay = true;
 		}

@@ -53,7 +53,7 @@ namespace TangLevel
       isPlay = true;
 
       // 找最近的目标
-      GameObject target = HeroSelector.FindClosestTarget (w.source.GetComponent<HeroBhvr> ());
+			GameObject target = HeroSelector.FindClosestTarget (w.source.GetComponent<HeroBhvr> ());
       if (target != null) {
 
         w.target = target;
