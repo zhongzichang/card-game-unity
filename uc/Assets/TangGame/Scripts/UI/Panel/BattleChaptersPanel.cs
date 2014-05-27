@@ -70,7 +70,7 @@ namespace TangGame.UI
       for(int i = 0; i < normalChapters.Length; i++){
         BattleChapterItem battleChapterItem = normalChapters[i];
         for(int j = 0; j < battleChapterItem.list.Length; j++){
-          UIEventListener.Get(battleChapterItem.list[j].gameObject).onClick += BattleStageItemClickHandler;
+          battleChapterItem.list[j].onClick += BattleStageItemClickHandler;
         }
       }
       target.SetActive(false);
@@ -98,6 +98,11 @@ namespace TangGame.UI
       List<Level> list = LevelCache.instance.GetMapLevels(level.data.map_id);
       MapData mapData = LevelCache.instance.GetMapData(level.data.map_id);
       chapterId = level.data.map_id;
+      normalChapters[0].list[0].Show();
+      normalChapters[0].list[1].Show();
+      target.SetActive(true);
+      target.transform.parent = normalChapters[0].list[1].gameObject.transform;
+      target.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     private void Init(){
@@ -124,6 +129,7 @@ namespace TangGame.UI
           MapData mapData = LevelCache.instance.GetMapData(id);
           List<Level> list = LevelCache.instance.GetMapLevels(id);
           int c = 0;
+          list[0].net.star = 2;
           foreach(Level level in list){
             if(battleChapterItem.list.Length > c){
               battleChapterItem.list[c].data = level;
@@ -146,8 +152,9 @@ namespace TangGame.UI
     }
 
     /// 显示对象点击处理
-    private void BattleStageItemClickHandler(GameObject go){
-
+    private void BattleStageItemClickHandler(ViewItem item){
+      Global.Log(">> BattleStageItemClickHandler id=" + (item.data as Level).data.id);
+      UIContext.mgrCoC.LazyOpen(BattleStageDetailPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, item.data);
     }
 
 
