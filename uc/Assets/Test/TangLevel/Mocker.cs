@@ -94,7 +94,8 @@ namespace TangLevel
 				else if (id == 2) {
 					group.heros [j] = MockHeroZhangfei ();
 				} else if (id == 3) {
-					group.heros [j] = MockHeroHuatuo ();
+					//group.heros [j] = MockHeroHuatuo ();
+          group.heros [j] = MockHeroZf ();
 				} else if (id == 4) {
 					group.heros [j] = MockHeroHuangjinbubing ();
 				} else if (id == 5) {
@@ -616,7 +617,7 @@ namespace TangLevel
 		public static Hero MockHeroHuangjinbubing ()
 		{
 			Hero hero = new Hero ();  
-			hero.id = 4;
+			hero.id = 100;
 			hero.resName = "hero_huangjinbubing";
 			hero.maxHp = 120;
 			hero.hp = 120;
@@ -642,7 +643,7 @@ namespace TangLevel
 		public static Hero MockHeroHuangjingongjianbing ()
 		{
 			Hero hero = new Hero ();  
-			hero.id = 5;
+			hero.id = 101;
 			hero.resName = "hero_huangjingongjianbing";
 			hero.maxHp = 120;
 			hero.hp = 120;
@@ -679,7 +680,7 @@ namespace TangLevel
 		public static Hero MockCommonHero (string resName)
 		{
 			Hero hero = new Hero ();  
-			hero.id = 100;
+			hero.id = 10000;
 			hero.resName = resName;
 			hero.maxHp = 120;
 			hero.hp = 120;
