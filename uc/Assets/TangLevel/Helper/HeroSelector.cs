@@ -135,6 +135,18 @@ namespace TangLevel
 
 
     /// <summary>
+    ///   找指定英雄的己方队伍中最虚弱的英雄
+    /// </summary>
+    public static GameObject FindSelfWeakest( Hero hero)
+    {
+      List<GameObject> list = hero.battleDirection == BattleDirection.RIGHT ?
+        LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
+      
+      return FindWeakest(list);
+        
+    }
+
+    /// <summary>
     /// 获取战队里面血量最少的英雄对象
     /// </summary>
     /// <returns>The weakest.</returns>
