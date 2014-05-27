@@ -9,23 +9,35 @@ using TangUtils;
 using TangGame.Xml;
 using PureMVC.Patterns;
 using TangPlace;
+using System.Collections.Generic;
 
 namespace TangGame
 {
   public class PreloadBhvr : MonoBehaviour
   {
-    public string[] xmls;
+    private List<string> xmls = new List<string>();
     private int remainCounter = 0;
 
     void Start ()
     {
+      xmls.Add("hero");
+      xmls.Add("level_up");
+      xmls.Add("skill");
+      xmls.Add("props");
+      xmls.Add("evolve");
+      xmls.Add("enchants_consumed");
+      xmls.Add("levels");
+      xmls.Add("monster");
+      xmls.Add("map");
+
+
 
       TangScene.TS.EnsureTSGobj ();
       TangNet.TN.EnsureTNGobj ();
 
-      remainCounter = xmls.Length;
+      remainCounter = xmls.Count;
 
-      if (xmls.Length > 0) {
+      if (xmls.Count > 0) {
 
         foreach (string xml in xmls) {
           TangScene.TS.LoadXml (xml, LoadCompleted, LoadFailure, LoadBegan);
