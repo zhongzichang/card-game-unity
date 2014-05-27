@@ -21,6 +21,7 @@ namespace TangLevel
     private HeroBhvr heroBhvr;
     private Vector3 backupScale = Vector3.zero;
     private Armature armature;
+    private Skill skill;
 
     #region MonoMethods
 
@@ -33,12 +34,22 @@ namespace TangLevel
       agent = GetComponent<DirectedNavAgent> ();
       heroBhvr = GetComponent<HeroBhvr> ();
 
+      // 原始人物比例
       backupScale = myTransform.localScale;
+
+      // 获取大招技能
+      skill = heroBhvr.BigMoveSkill ();
 
     }
 
     void Update ()
     {
+      // 如果能量足够，能不能施放大招
+      if (skill != null && heroBhvr.hero.maxMp == heroBhvr.hero.mp) {
+
+
+
+      }
     }
 
     void OnEnable ()
