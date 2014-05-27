@@ -12,7 +12,8 @@ namespace TangLevel
     public static readonly Vector3 OFFSET = new Vector3 (0F, 0F, -100F);
     public const float SCALE = 1.3F;
     private HeroStatusBhvr statusBhvr;
-    private TDB.DragonBonesBhvr dbBhvr; // Dragonbones
+    private TDB.DragonBonesBhvr dbBhvr;
+    // Dragonbones
     private HashSet<BigMoveBhvr> bigMoveSenders = new HashSet<BigMoveBhvr> ();
     private bool inited = false;
     private Transform myTransform;
@@ -44,12 +45,7 @@ namespace TangLevel
 
     void Update ()
     {
-      // 如果能量足够，能不能施放大招
-      if (skill != null && heroBhvr.hero.maxMp == heroBhvr.hero.mp) {
 
-
-
-      }
     }
 
     void OnEnable ()
@@ -176,6 +172,62 @@ namespace TangLevel
 
       // 人物比例还原
       myTransform.localScale = backupScale;
+    }
+
+    #endregion
+
+    #region PrivateMethods
+
+    private bool IsBigMoveReady ()
+    {
+
+      // 如果能量足够，能不能施放大招
+      if (skill != null && heroBhvr.hero.maxMp == heroBhvr.hero.mp) {
+
+        switch (skill.targetType) {
+
+        case Skill.TARGET_SELF:
+          // 自己
+          return true;
+          break;
+        case Skill.TARGET_LOCKED:
+          // 已锁定的目标
+          GameObject target = heroBhvr.target;
+          // 目标存在，目标活着，与目标的距离小于技能攻击的距离
+          if (target != null &&
+              target.GetComponent<HeroBhvr> ().hero.hp > 0 &&
+              Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) < skill.distance) {
+            return true;
+          } else {
+            return false;
+          }
+          break;
+        case Skill.TARGET_SELF_WEAKEST:
+          // 己方最虚弱者
+          List<GameObject> targetGroup = heroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
+            LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
+          target = HeroSelector.FindWeakest (targetGroup);
+          if (target != null &&
+            Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) < skill.distance) {
+            return true;
+          } else {
+            return false;
+          }
+          break;
+        case Skill.TARGET_ENEMY_WEAKEST:
+
+          // 敌方最虚弱者
+          break;
+        case Skill.TARGET_REGION:
+          // 指定区域
+          break;
+        }
+
+        return false;
+
+      } else {
+        return false;
+      }
     }
 
     #endregion
