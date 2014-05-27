@@ -51,7 +51,7 @@ namespace TangGame.UI
     public BattleChapterItem[] eliteChapters = new BattleChapterItem[]{};
 
     /// 开启的章节
-    private int openChapter = 3;
+    private int openChapter = 1;
     /// 开启的章节ID
     private int chapterId = 0;
     /// 参数
@@ -76,7 +76,6 @@ namespace TangGame.UI
       target.SetActive(false);
       battleChapterStarItem.gameObject.SetActive(false);
       point.gameObject.SetActive(false);
-      UpdatePoints();
       started = true;
       UpdateData();
   	}
@@ -103,6 +102,7 @@ namespace TangGame.UI
       target.SetActive(true);
       target.transform.parent = normalChapters[0].list[1].gameObject.transform;
       target.transform.localPosition = new Vector3(0, 0, 0);
+      UpdatePoints();
     }
 
     private void Init(){

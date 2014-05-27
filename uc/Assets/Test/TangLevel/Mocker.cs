@@ -394,6 +394,7 @@ namespace TangLevel
 		{
 			Skill skill = new Skill ();
 
+      skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockShenliEffect ();
 			//skill.chargeClip = "shenli";
@@ -402,7 +403,7 @@ namespace TangLevel
 			skill.releaseSpecials [0] = "fx_shenli_skill";
 			skill.enable = true;
 			skill.bigMove = true;
-			skill.distance = 3;
+			skill.distance = 20;
 			skill.cd = 3;
 
 			return skill;
