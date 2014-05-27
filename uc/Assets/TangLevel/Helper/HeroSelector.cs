@@ -7,7 +7,7 @@ namespace TangLevel
   public class HeroSelector
   {
     /// <summary>
-    /// 找距离最近的目标
+    /// 找距离最近的敌方目标
     /// </summary>
     /// <returns>The target.</returns>
     /// <param name="sourceGobj">Source gobj.</param>
@@ -19,6 +19,19 @@ namespace TangLevel
         ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
 
       return FindClosestTarget (sgobj, ol);
+    }
+
+    /// <summary>
+    ///   找距离最近的友方目标
+    /// </summary>
+    public static GameObject FindclosestFriend(HeroBhvr sourceHeroBhvr)
+    {
+      GameObject sgobj = sourceHeroBhvr.gameObject;
+      List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.LEFT
+        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+
+      return FindClosestTarget (sgobj, ol);
+ 
     }
 
     /// <summary>
@@ -133,7 +146,39 @@ namespace TangLevel
       return ret;
     }
 
-    //public static List<GameObject
+
+    /// <summary>
+    ///   找指定英雄的己方队伍中最虚弱的英雄
+    /// </summary>
+    public static GameObject FindSelfWeakest( Hero hero)
+    {
+      List<GameObject> list = hero.battleDirection == BattleDirection.RIGHT ?
+        LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
+      
+      return FindWeakest(list);
+        
+    }
+
+    /// <summary>
+    /// 获取战队里面最虚弱的英雄对象
+    /// </summary>
+    /// <returns>The weakest.</returns>
+    /// <param name="list">List.</param>
+    public static GameObject FindWeakest (List<GameObject> list)
+    {
+      GameObject ret = null;
+      //int minHp = int.MaxValue;
+      float minHpPercent = 1F;
+      foreach (GameObject g in list) {
+        Hero hero = g.GetComponent<HeroBhvr> ().hero;
+        float hpPercent = (float) hero.hp / (float) hero.maxHp;
+        if (hpPercent < minHpPercent && hpPercent > 0) {
+          minHpPercent = hpPercent;
+          ret = g;
+        }
+      }
+      return ret;
+    }
   }
 }
 
