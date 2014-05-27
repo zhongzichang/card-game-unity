@@ -1,4 +1,4 @@
-using System.Xml;
+﻿using System.Xml;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
@@ -67,9 +67,7 @@ namespace TangGame.Xml
         int i = 0;
         foreach (LevelData item in root.items) {
           Config.levelsXmlTable[item.id] = item;
-          Level level = new Level();
-          level.data = item;
-          LevelCache.instance.levels[item.id] = level;
+          LevelCache.instance.AddLevelData(item);
           PropsCache.instance.AddPropsLevelRelation(item);
         }
       }
