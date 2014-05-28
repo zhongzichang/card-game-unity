@@ -50,7 +50,7 @@ namespace TangLevel
     void Update ()
     {
 
-      if (skill != null) {
+      if (skill != null && !statusBhvr.IsPause) {
 
         switch (statusBhvr.Status) {
 
@@ -86,13 +86,6 @@ namespace TangLevel
         }
       }
       remainTime += Time.deltaTime;
-    }
-
-    void OnEnable ()
-    {
-      if (skill != null) {
-        remainTime = skill.cd;
-      }
     }
   }
 }
