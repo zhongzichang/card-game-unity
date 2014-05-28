@@ -12,6 +12,8 @@ namespace TangGame.Xml
 	{ 
 		/// 地图编号
 		public int id;
+    /// 章节
+    public int index;
 		/// 开放等级限制
 		public int team_lv_constraint;
 		/// 类型

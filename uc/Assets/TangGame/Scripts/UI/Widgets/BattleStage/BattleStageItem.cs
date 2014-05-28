@@ -24,7 +24,7 @@ namespace TangGame.UI{
       if(this.data == null){return;}
       Level level = this.data as Level;
       isClick = true;
-      if(level.data.type == 1){//打过的不显示
+      if(level.data.repeat == 1){//打过的不显示
         if(level.net.star > 0){
           icon.spriteName = "stagecircle_passed";
           isClick = false;
