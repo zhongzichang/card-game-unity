@@ -12,12 +12,17 @@ namespace TangLevel
 			tweenPosi = gameObject.GetComponent<TweenPosition> ();
 			trailRenderer =	gameObject.GetComponent<TrailRenderer> ();
 		}
+
+		Vector3 lastTarget;
 		// Update is called once per frame
 		void Update ()
 		{
 			if (isPlay) {
 				if (mTarget == transform.position) {
-					ShowAnimation ();
+					if (lastTarget != mTarget) {
+						lastTarget = mTarget;
+						ShowAnimation ();
+					}
 					if (targetVectors.Count != 0) {
 						mCurrent = mTarget;
 						mTarget = (Vector3)targetVectors.Dequeue ();
@@ -83,7 +88,9 @@ namespace TangLevel
 		{
 			mCurrent = w.source.transform.position;
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
-			nextTarget = HeroSelector.FindclosestFriend (skillTarget.GetComponent<HeroBhvr> ());
+			if (skillTarget != null) {
+				nextTarget = HeroSelector.FindclosestFriend (skillTarget.GetComponent<HeroBhvr> ());
+			}
 			isPlay = true;
 			float trailTime = trailRenderer.time;
 			trailRenderer.time = 0;
