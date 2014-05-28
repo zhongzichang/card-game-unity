@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangGame.Net;
 
 public class UITestData : MonoBehaviour
 {
+	private HeroService heroService = new HeroService ();
 	// Use this for initialization
 	void Start ()
 	{
@@ -13,11 +15,20 @@ public class UITestData : MonoBehaviour
 		this.SetPropsBase (1015,50);
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);
+		heroService.getHeroes (getHeroesResponseHandler);
 	}
-	// Update is called once per frame
-	void Update ()
+	/// <summary>
+	/// Gets the heroes response handler.
+	/// </summary>
+	/// <param name="result">Result.</param>
+	private void getHeroesResponseHandler (HeroResult result)
 	{
-	
+		HeroNet[] heroNets = (HeroNet[])result.data;
+		foreach (HeroNet heroNet in heroNets) {
+			if (TangGame.UI.HeroCache.instance.heroBeseTable.ContainsKey (heroNet.configId)) {
+				TangGame.UI.HeroCache.instance.heroBeseTable [heroNet.configId].Net = heroNet;
+			}	
+		}
 	}
 
 	void SetHeroBase (int id,int evolve,int exp,int upgrade,int heroId,int level,int equipId,int equipLv,int equipExp,int equipLocal)
