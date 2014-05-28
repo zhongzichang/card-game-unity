@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-using JsonFx.Json;
+//using Pathfinding.Serialization.JsonFx;
+using Newtonsoft.Json;
 
-namespace Test{
+namespace ClientDemoTest
+{
   public class LoginRequest{
     public string username;
     public string password;
@@ -41,13 +43,12 @@ namespace Test{
 
   public class LoginService {
 
-    private JsonReader reader = new JsonReader ();
-    private JsonWriter writer = new JsonWriter();
 
     public void sendLoginData(string username, string password, System.Action<LoginResult> responseHandler) {
       string endpoint = "echo";
       System.Action<string> handler = delegate(string jsonData){
-        LoginResult result = reader.Read<LoginResult> (jsonData);
+  //      LoginResult result = JsonReader.Deserialize<LoginResult> (jsonData);
+        LoginResult result = JsonConvert.DeserializeObject<LoginResult>(jsonData);
         responseHandler (result);
       };
       RestApi.Instance.HttpPost (endpoint, MakeLoginRequest (username, password), handler);
@@ -56,7 +57,8 @@ namespace Test{
     public void getHeroes(System.Action<HeroResult> responseHandler){
       string endpoint = "get_heroes";
       System.Action<string> handler = delegate(string jsonData){
-        HeroResult result = reader.Read<HeroResult> (jsonData);
+        HeroResult result = JsonConvert.DeserializeObject<HeroResult> (jsonData);
+  //      HeroResult result = JsonReader.Deserialize<HeroResult> (jsonData);
         responseHandler (result);
       };
       RestApi.Instance.HttpGet (endpoint, handler);
@@ -67,7 +69,8 @@ namespace Test{
       request.username = username;
       request.password = password;
 
-      return writer.Write(request);
+      return JsonConvert.SerializeObject (request);
+  //    return JsonWriter.Serialize(request);
     }
 
   }

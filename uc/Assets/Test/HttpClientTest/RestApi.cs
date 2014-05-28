@@ -3,7 +3,8 @@ using System.Collections;
 
 using System.Text;
 
-namespace Test{
+namespace ClientDemoTest
+{
   public class RestApi : MonoBehaviour {
 
     private static RestApi _instance;
@@ -22,8 +23,11 @@ namespace Test{
     private string appKey = "appKey";
     private string accessToken = "accessToken";
 
-    public void HttpGet(string endpoint, System.Action<string> getResponseHandler){
-      string url = "http://localhost:4004/hero/heroList?userId=1";
+    public void HttpGet(string url, System.Action<string> getResponseHandler){
+      StartCoroutine(RestApi.Instance.WaitForResponse(new WWW(url), getResponseHandler));
+    }
+
+    public void HttpsGet(string url, System.Action<string> getResponseHandler){
       StartCoroutine(RestApi.Instance.WaitForResponse(new WWW(url), getResponseHandler));
     }
 
