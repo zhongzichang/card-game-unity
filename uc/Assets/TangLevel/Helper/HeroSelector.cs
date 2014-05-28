@@ -173,7 +173,7 @@ namespace TangLevel
       foreach (GameObject g in list) {
         Hero hero = g.GetComponent<HeroBhvr> ().hero;
         float hpPercent = (float) hero.hp / (float) hero.maxHp;
-        if (hpPercent < minHpPercent && hpPercent > 0) {
+        if (hpPercent <= minHpPercent && hpPercent > 0) {
           minHpPercent = hpPercent;
           ret = g;
         }

@@ -66,7 +66,7 @@ namespace TangLevel
           float offsetx = Mathf.Lerp (localPosition.x, destination, fraction);
 
           Vector3 npos = new Vector3 (offsetx, localPosition.y, 
-            Config.HERO_POS_MIN_Z + (localPosition.y-Config.BOTTOM_BOUND)*10);
+            Config.HERO_POS_MIN_Z + (localPosition.y-Config.BOTTOM_BOUND+1)*10);
           myTransform.localPosition = npos;
 
           // 屏幕位置改变通知

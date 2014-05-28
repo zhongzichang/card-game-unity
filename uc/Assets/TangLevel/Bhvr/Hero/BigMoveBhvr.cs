@@ -83,8 +83,6 @@ namespace TangLevel
         if (statusBhvr == null) {
           statusBhvr = GetComponent<HeroStatusBhvr> ();
         }
-        LevelController.BigMoveStart += OnBigMoveStart;
-        LevelController.BigMoveEnd += OnBigMoveEnd;
 
         // DragonBonesBhvr
         if (dbBhvr == null) {
@@ -93,12 +91,16 @@ namespace TangLevel
           dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
           armature = dbBhvr.armature;
         }
-        // armature
-        if (armature != null) {
-          armature.AddEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
-        }
 
         inited = true;
+      }
+
+      LevelController.BigMoveStart += OnBigMoveStart;
+      LevelController.BigMoveEnd += OnBigMoveEnd;
+
+      // armature
+      if (armature != null) {
+        armature.AddEventListener (DBE.FrameEvent.ANIMATION_FRAME_EVENT, OnAnimationFrameEvent);
       }
     }
 
@@ -125,6 +127,7 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private void OnBigMoveStart (object sender, EventArgs args)
     {
+      Debug.Log("OnBigMoveStart");
       if (!statusBhvr.IsBigMove) { // 本人没有放大招
         statusBhvr.IsPause = true;
       }
@@ -137,6 +140,7 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private void OnBigMoveEnd (object sender, EventArgs args)
     {
+      Debug.Log("OnBigMoveEnd");
       if (statusBhvr.IsPause) {
         statusBhvr.IsPause = false;
       }
@@ -179,10 +183,8 @@ namespace TangLevel
       statusBhvr.IsBigMove = true;
       LevelController.BigMoveCounter++;
 
-      // 如果被暂停，则恢复
-      if (statusBhvr.IsPause)
-        statusBhvr.IsPause = false;
-      agent.enabled = false;
+      armature.Animation.TimeScale = 0.5F;
+
     }
 
     /// <summary>
@@ -201,6 +203,9 @@ namespace TangLevel
 
       // 人物比例还原
       myTransform.localScale = backupScale;
+
+      armature.Animation.TimeScale = 1F;
+
     }
 
 #endregion

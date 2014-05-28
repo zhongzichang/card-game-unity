@@ -95,7 +95,8 @@ namespace TangLevel
 					group.heros [j] = MockHeroZhangfei ();
 				} else if (id == 3) {
 					//group.heros [j] = MockHeroHuatuo ();
-          group.heros [j] = MockHeroZf ();
+          //group.heros [j] = MockHeroZf ();
+					group.heros [j] = MockHeroHuangjingongjianbing ();
 				} else if (id == 4) {
 					group.heros [j] = MockHeroHuangjinbubing ();
 				} else if (id == 5) {
@@ -192,6 +193,7 @@ namespace TangLevel
 		{
 			Skill skill = new Skill ();
 
+      skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockLineFlyEffector ();
 			//skill.chargeClip = "luoshen";
@@ -202,7 +204,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.chargeTime = 2F;
-			skill.distance = 20;
+			skill.distance = 30;
 			skill.cd = 3;
 
 			return skill;
@@ -279,13 +281,14 @@ namespace TangLevel
 		{
 			Skill skill = new Skill ();
 
+      skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockQianjinzhuiEffector ();
 			//skill.chargeClip = "qianjinzhui";
 			skill.releaseClip = "qianjinzhui";
 			skill.enable = true;
 			skill.bigMove = true;
-			skill.distance = 10;
+			skill.distance = 20;
 			skill.cd = 3;
 
 			return skill;
@@ -490,9 +493,8 @@ namespace TangLevel
 			skills.Add (MockHuatouAttack ());
 			skills.Add (MockDuliSkill ());
 			skills.Add (MockXumingSkill ());
-			skills.Add (MockMiaoshouhuichunSkill());
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 1, 2 ,3};
+			hero.skillQueue = new int[]{ 0, 1, 2 };
 			tmp++;
 			return hero;
 		}
@@ -508,7 +510,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 35;
+			skill.distance = 27;
 			skill.cd = 3;
 
 			return skill;
@@ -524,7 +526,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 35;
+			skill.distance = 20;
 			skill.cd = 3;
 
 			return skill;
@@ -539,23 +541,7 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 35;
-			skill.cd = 3;
-
-			return skill;
-		}
-
-		public static Skill MockMiaoshouhuichunSkill ()
-		{
-			Skill skill = new Skill ();
-
-			skill.effectors = new Effector[1];
-			skill.effectors [0] = MockMiaoshouhuichunEffector ();
-			//skill.chargeClip = "binghua0";
-			skill.releaseClip = "attack";
-			skill.enable = true;
-			skill.bigMove = true;
-			skill.distance = 35;
+			skill.distance = 20;
 			skill.cd = 3;
 
 			return skill;
@@ -565,18 +551,6 @@ namespace TangLevel
 		{
 			Effector effector = new Effector ();
 			effector.specialName = "fx_xuming";
-
-			Effector[] subEffectors = new Effector[1];
-			subEffectors [0] = MockCommonHit ();
-			effector.subEffectors = subEffectors;
-
-			return effector;
-		}
-		// 妙手回春
-		public static Effector MockMiaoshouhuichunEffector ()
-		{
-			Effector effector = new Effector ();
-			effector.specialName = "fx_miaoshouhuichun";
 
 			Effector[] subEffectors = new Effector[1];
 			subEffectors [0] = MockCommonHit ();
