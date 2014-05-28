@@ -226,7 +226,7 @@ namespace TangLevel
           if (target != null &&
               target.GetComponent<HeroBhvr> ().hero.hp > 0 &&
               Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x)
-              < skill.distance) {
+              <= skill.distance) {
             return true;
           }
           break;
@@ -237,7 +237,7 @@ namespace TangLevel
           target = HeroSelector.FindWeakest (targetGroup);
           if (target != null &&
               Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x)
-              < skill.distance) {
+              <= skill.distance) {
             return true;
           }
           break;
@@ -248,7 +248,7 @@ namespace TangLevel
           target = HeroSelector.FindWeakest (targetGroup);
           if (target != null &&
               Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x)
-              < skill.distance) {
+              <= skill.distance) {
             return true;
           }
           break;
@@ -257,7 +257,7 @@ namespace TangLevel
           Rect region = skill.region;
           Vector2 center = new Vector2(region.x - region.width/2, region.y - region.height/2);
           if( Mathf.Abs (myTransform.localPosition.x - center.x)
-              < skill.distance){
+              <= skill.distance){
             return true;
           }
           break;
