@@ -15,7 +15,7 @@ namespace TangLevel
     {
       Vector3 pos = source.transform.localPosition;
 
-      const float accuracy = 3F;
+      const float accuracy = 4F;
 
       List<int> remainy = new List<int> ();
       remainy.AddRange (Config.HORIZONTAL_LINES);

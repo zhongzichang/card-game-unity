@@ -587,12 +587,21 @@ namespace TangLevel
 
       // 使用大招攻击
       if (bs != null) {
+
+        // 如果被其他大招暂停，恢复活动
+        if( statusBhvr.IsPause )
+          {
+            statusBhvr.IsPause = false;
+          }
+
         bs.cd = 0; // 设置大招cd为0，马上攻击
         AutoFire autoFire = GetComponent<AutoFire> ();
         if (autoFire == null) {
           autoFire = gameObject.AddComponent<AutoFire> ();
         }
-        autoFire.skill = bs;
+        autoFire.skill = bs; // 将自动攻击的技能设置为大招技能
+
+
       }
     }
 
