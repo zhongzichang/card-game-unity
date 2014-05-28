@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-//using Pathfinding.Serialization.JsonFx;
 using Newtonsoft.Json;
 
 namespace ClientDemoTest
@@ -16,7 +15,6 @@ namespace ClientDemoTest
     public void equipItem(string heroId, string equipId, System.Action<EquipItemResult> responseHandler) {
       string endpoint = "equipItem";
       System.Action<string> handler = delegate(string jsonData){
-  //      EquipItemResult result = JsonReader.Deserialize<EquipItemResult> (jsonData);
         EquipItemResult result = JsonConvert.DeserializeObject<EquipItemResult> (jsonData);
         responseHandler (result);
       };
