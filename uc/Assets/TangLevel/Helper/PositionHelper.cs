@@ -15,7 +15,7 @@ namespace TangLevel
     {
       Vector3 pos = source.transform.localPosition;
 
-      const float accuracy = 3F;
+      const float accuracy = 4F;
 
       List<int> remainy = new List<int> ();
       remainy.AddRange (Config.HORIZONTAL_LINES);
@@ -53,7 +53,7 @@ namespace TangLevel
             besty = y;
           }
         }
-        return new Vector3 (pos.x, (float) besty, Config.HERO_POS_MIN_Z + (besty-Config.BOTTOM_BOUND)*10);
+        return new Vector3 (pos.x, (float) besty, Config.HERO_POS_MIN_Z + (besty-Config.BOTTOM_BOUND+1)*10);
       } else {
         return pos;
       }

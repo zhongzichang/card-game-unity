@@ -192,6 +192,7 @@ namespace TangLevel
 		{
 			Skill skill = new Skill ();
 
+      skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockLineFlyEffector ();
 			//skill.chargeClip = "luoshen";
@@ -279,6 +280,7 @@ namespace TangLevel
 		{
 			Skill skill = new Skill ();
 
+      skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockQianjinzhuiEffector ();
 			//skill.chargeClip = "qianjinzhui";
@@ -549,6 +551,7 @@ namespace TangLevel
 		{
 			Skill skill = new Skill ();
 
+      skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockMiaoshouhuichunEffector ();
 			//skill.chargeClip = "binghua0";

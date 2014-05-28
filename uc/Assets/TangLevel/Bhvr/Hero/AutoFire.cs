@@ -50,8 +50,7 @@ namespace TangLevel
     void Update ()
     {
 
-      if (skill != null && remainTime > skill.cd) {
-
+      if (skill != null && !statusBhvr.IsPause) {
 
         switch (statusBhvr.Status) {
 
@@ -63,7 +62,7 @@ namespace TangLevel
             if (distance - skill.distance > 0.2F) {
               // 移动到可攻击位置
               navigable.NavTo (target.transform.localPosition.x, skill.distance);
-            } else {
+            } else if(remainTime > skill.cd) {
               // 发起攻击
               heroBhvr.Attack (target, skill);
               remainTime = 0;
@@ -86,15 +85,7 @@ namespace TangLevel
           break;
         }
       }
-
       remainTime += Time.deltaTime;
-    }
-
-    void OnEnable ()
-    {
-      if (skill != null) {
-        remainTime = skill.cd;
-      }
     }
   }
 }
