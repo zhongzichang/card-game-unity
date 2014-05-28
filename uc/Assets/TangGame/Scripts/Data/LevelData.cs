@@ -14,8 +14,8 @@ namespace TangGame.Xml
 		public int id;
 		/// 关卡地图
 		public int map_id;
-		/// 关卡类型
-		public int type;
+		/// 关卡重复
+    public int repeat;
 		/// 一层怪物序列
 		public string lv1_monster_ids;
 		/// 二层怪物序列
