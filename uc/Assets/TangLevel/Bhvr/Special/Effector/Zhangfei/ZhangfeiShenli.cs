@@ -37,7 +37,7 @@ namespace TangLevel
             // 放出子作用器
             if (w.effector.subEffectors != null) {
               foreach (Effector e in w.effector.subEffectors) {
-                EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, null);
+                EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
                 sourceSkillBhvr.Cast (cw);
               }
             }
