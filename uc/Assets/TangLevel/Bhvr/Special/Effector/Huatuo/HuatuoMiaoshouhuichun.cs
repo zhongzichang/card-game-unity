@@ -89,8 +89,10 @@ namespace TangLevel
 			mTarget = gameObject.transform.position;
 			trailRenderer.time = trailTime;
 			targetVectors.Enqueue (gameObject.transform.position);
-			targetVectors.Enqueue (skillTarget.transform.position);
-			targetVectors.Enqueue (nextTarget.transform.position);
+			if (skillTarget != null)
+				targetVectors.Enqueue (skillTarget.transform.position);
+			if (nextTarget != null)
+				targetVectors.Enqueue (nextTarget.transform.position);
 			StartCoroutine (mRelease ());
 
 		}
@@ -106,8 +108,10 @@ namespace TangLevel
 			tweenPosi.ResetToBeginning ();
 			tweenPosi.Play ();
 		}
-		void ShowAnimation(){
-			GameObject obj = NGUITools.AddChild (gameObject,miaoshouhuichun_sub);
+
+		void ShowAnimation ()
+		{
+			GameObject obj = NGUITools.AddChild (gameObject, miaoshouhuichun_sub);
 			obj.SetActive (true);
 			obj.transform.parent = null;
 			obj.transform.position += new Vector3 (0, 0, -5);
