@@ -62,11 +62,13 @@ namespace TangLevel
 				return;
 			HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
-			HeroStatusBhvr targetStatusBhvr = targetObj.GetComponent<HeroStatusBhvr> ();
-			// 抛出作用器
-			foreach (Effector e in w.effector.subEffectors) {
-				EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
-				sourceSkillBhvr.Cast (cw);
+			if (targetObj != null) {
+				HeroStatusBhvr targetStatusBhvr = targetObj.GetComponent<HeroStatusBhvr> ();
+				// 抛出作用器
+				foreach (Effector e in w.effector.subEffectors) {
+					EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
+					sourceSkillBhvr.Cast (cw);
+				}
 			}
 
 		}

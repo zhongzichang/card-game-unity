@@ -63,6 +63,9 @@ namespace TangLevel
 		public override void Play ()
 		{
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
+			if (skillTarget == null) {
+				skillTarget = w.source;
+			}
 			mCast ();
 			StartCoroutine (mRelease ());
 			transform.localScale = Vector3.one;
