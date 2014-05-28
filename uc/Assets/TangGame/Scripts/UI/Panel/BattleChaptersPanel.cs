@@ -58,8 +58,9 @@ namespace TangGame.UI
     private object mParam;
     private bool started;
     private bool isInit;
-    private List<int> normalIds = new List<int>();
-    private List<int> eliteIds = new List<int>();
+    //分别获取到地图数据
+    private List<MapData> normalList = new List<MapData>();
+    private List<MapData> eliteList = new List<MapData>();
 
   	void Start () {
       StarItem = battleChapterStarItem;
@@ -105,29 +106,28 @@ namespace TangGame.UI
       UpdatePoints();
     }
 
+    /// 初始化数据
     private void Init(){
       if(isInit){return;}
       isInit = true;
-      List<MapData> normalList = new List<MapData>();//分别获取到地图数据
-      List<MapData> eliteList = new List<MapData>();
       foreach(MapData data in Config.mapXmlTable.Values){
         MapType type = (MapType)data.type;
         if(type == MapType.Normal){
           normalList.Add(data);
-          normalIds.Add(data.id);
         }else if(type == MapType.Elite){
           eliteList.Add(data);
-          eliteIds.Add(data.id);
         }
       }
-      normalIds.Sort();//地图根据ID排序
-      eliteIds.Sort();
+
+      normalList.Sort(SortMap);
+      eliteList.Sort(SortMap);//排序，根据index
+
       int count = 0;
-      foreach(int id in normalIds){
+      foreach(MapData mapData in normalList){
         if(normalChapters.Length > count){
           BattleChapterItem battleChapterItem = normalChapters[count];
-          MapData mapData = LevelCache.instance.GetMapData(id);
-          List<Level> list = LevelCache.instance.GetMapLevels(id);
+          List<Level> list = LevelCache.instance.GetMapLevels(mapData.id);
+          list.Sort(SortLevel);
           int c = 0;
           list[0].net.star = 2;
           foreach(Level level in list){
@@ -140,7 +140,18 @@ namespace TangGame.UI
         count++;
       }
     }
-  	
+
+    /// List排序使用
+    private int SortMap(MapData a1, MapData a2){
+        return a1.index.CompareTo(a2.index);
+    }
+
+    /// List排序使用
+    private int SortLevel(Level a1, Level a2){
+      return a1.data.id.CompareTo(a2.data.id);
+    }
+
+
     /// 普通按钮点击处理
     private void NormalButtonClickHandler(GameObject go){
 
