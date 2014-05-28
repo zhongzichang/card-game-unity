@@ -2,9 +2,11 @@
 using System.Collections;
 using TangGame.Net;
 
+using ClientDemoTest;
+
 public class UITestData : MonoBehaviour
 {
-	private HeroService heroService = new HeroService ();
+  private LoginService loginService = new LoginService ();
 	// Use this for initialization
 	void Start ()
 	{
@@ -15,7 +17,8 @@ public class UITestData : MonoBehaviour
 		this.SetPropsBase (1015,50);
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);
-		heroService.getHeroes (getHeroesResponseHandler);
+    string userId = "1";
+    loginService.getHeroes (userId, getHeroesResponseHandler);
 	}
 	/// <summary>
 	/// Gets the heroes response handler.

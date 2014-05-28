@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using TangGame.Net;
+
 namespace ClientDemoTest{
 
   public class ClientDemo : MonoBehaviour {
@@ -15,10 +17,10 @@ namespace ClientDemoTest{
 
       GUILayout.Label (msg);
       if (GUILayout.Button ("login")) {
-        loginService.sendLoginData("user", "pass", loginResponseHandler);
+        loginService.login("user", "pass", loginResponseHandler);
       }
       if (GUILayout.Button ("getHeroes")) {
-        loginService.getHeroes (getHeroesResponseHandler);
+        loginService.getHeroes ("1", getHeroesResponseHandler);
       }
       if (GUILayout.Button ("equipItem")) {
         heroService.equipItem("", "", equipItemResponseHandler);
@@ -50,12 +52,9 @@ namespace ClientDemoTest{
 
     private void getHeroesResponseHandler (HeroResult result)
     {
-      HeroItem[] heroes = (HeroItem[])result.data;
-      foreach (HeroItem hero in heroes) {
-        Debug.Log (hero.name);
-        foreach (SkillItem skill in hero.skillLevel) {
-          Debug.Log(skill.name);
-        }
+      HeroNet[] heroes = (HeroNet[])result.data;
+      foreach (HeroNet hero in heroes) {
+        Debug.Log (hero.id);
       }
     }
 
