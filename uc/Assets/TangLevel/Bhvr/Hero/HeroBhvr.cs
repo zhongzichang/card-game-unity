@@ -24,27 +24,41 @@ namespace TangLevel
 
     #region Attributes
 
-    public Hero hero; // 英雄数据
-    private DirectedNavigable navigable; // 导航
-    private DirectedNavAgent agent; // 导航代理
-    private HeroStatusBhvr statusBhvr; // 状态
-    private Transform myTransform; // 变换
-    private TDB.DragonBonesBhvr dbBhvr; // Dragonbones
-    private Armature armature; // Dragonbones armature
-    private SkillBhvr skillBhvr; // 技能
-    private BigMoveBhvr bmBhvr; // 大招
-    private Skill skill; // 技能
-    private List<string> animationList; // DragonBone 动画列表
-    private GameObject mTarget; // 当前目标
+    public Hero hero;
+    // 英雄数据
+    private DirectedNavigable navigable;
+    // 导航
+    private DirectedNavAgent agent;
+    // 导航代理
+    private HeroStatusBhvr statusBhvr;
+    // 状态
+    private Transform myTransform;
+    // 变换
+    private TDB.DragonBonesBhvr dbBhvr;
+    // Dragonbones
+    private Armature armature;
+    // Dragonbones armature
+    private SkillBhvr skillBhvr;
+    // 技能
+    private BigMoveBhvr bmBhvr;
+    // 大招
+    private Skill skill;
+    // 技能
+    private List<string> animationList;
+    // DragonBone 动画列表
+    private GameObject mTarget;
+    // 当前目标
 
     #endregion
 
     #region Properties
+
     // 当前目标
-    public GameObject target{
+    public GameObject target {
       get{ return mTarget; }
       private set{ mTarget = value; }
     }
+
     #endregion
 
     #region MonoBehaviours
@@ -583,16 +597,15 @@ namespace TangLevel
     public void BigMove ()
     {
       // 获取大招
-      Skill bs = BigMoveSkill();
+      Skill bs = BigMoveSkill ();
 
       // 使用大招攻击
       if (bs != null) {
 
         // 如果被其他大招暂停，恢复活动
-        if( statusBhvr.IsPause )
-          {
-            statusBhvr.IsPause = false;
-          }
+        if (LevelController.BigMoveCounter > 0 && statusBhvr.IsPause) {
+          bmBhvr.BreakLock ();
+        }
 
         bs.cd = 0; // 设置大招cd为0，马上攻击
         AutoFire autoFire = GetComponent<AutoFire> ();
@@ -605,7 +618,8 @@ namespace TangLevel
       }
     }
 
-    public Skill BigMoveSkill(){
+    public Skill BigMoveSkill ()
+    {
 
       foreach (Skill s in hero.skills) {
         if (s.bigMove) {

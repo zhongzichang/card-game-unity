@@ -20,7 +20,7 @@ namespace TangLevel
         if (remainTime > 0) {
           remainTime -= Time.deltaTime;
         } else {
-          Release ();
+          StartRelease ();
         }
       }
     }

@@ -30,12 +30,20 @@ namespace TangLevel
           }
         } else {
           HeroBhvr targetHeroBhvr = w.target.GetComponent<HeroBhvr> ();
+          SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
           if (targetHeroBhvr != null) {
             // 由僵直转化为打击
             targetHeroBhvr.BeBeat ();
+            // 放出子作用器
+            if (w.effector.subEffectors != null) {
+              foreach (Effector e in w.effector.subEffectors) {
+                EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, null);
+                sourceSkillBhvr.Cast (cw);
+              }
+            }
           }
           myTransform.parent = null;
-          Release ();
+          StartRelease ();
         }
       }
     }

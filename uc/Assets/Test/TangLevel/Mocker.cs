@@ -465,8 +465,13 @@ namespace TangLevel
 			Effector effector = new Effector ();
 			effector.specialName = "fx_shenli";
 
+      effector.subEffectors = new Effector[1];
+      effector.subEffectors [0] = MockLanding ();
+
 			return effector;
 		}
+
+
 
 		#endregion
 
@@ -759,6 +764,12 @@ namespace TangLevel
 			return effector;
 		}
 
+    public static Effector MockLanding(){
+
+      Effector effector = new Effector ();
+      effector.specialName = "fx_langding";
+      return effector;
+    }
 		#endregion
 	}
 }

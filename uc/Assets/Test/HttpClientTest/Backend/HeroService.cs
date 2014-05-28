@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-using JsonFx.Json;
+//using Pathfinding.Serialization.JsonFx;
+using Newtonsoft.Json;
 
-namespace Test{
+namespace ClientDemoTest
+{
   public class EquipItemResult{
     public int id;
     public string name;
@@ -11,13 +13,11 @@ namespace Test{
 
   public class HeroService {
 
-    private JsonReader reader = new JsonReader ();
-    private JsonWriter writer = new JsonWriter();
-
     public void equipItem(string heroId, string equipId, System.Action<EquipItemResult> responseHandler) {
       string endpoint = "equipItem";
       System.Action<string> handler = delegate(string jsonData){
-        EquipItemResult result = reader.Read<EquipItemResult> (jsonData);
+  //      EquipItemResult result = JsonReader.Deserialize<EquipItemResult> (jsonData);
+        EquipItemResult result = JsonConvert.DeserializeObject<EquipItemResult> (jsonData);
         responseHandler (result);
       };
       RestApi.Instance.HttpPost (endpoint, MakeHeroRequest (), handler);
