@@ -151,7 +151,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -167,7 +167,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -183,7 +183,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -203,7 +203,7 @@ namespace TangLevel
 			skill.bigMove = true;
 			skill.chargeTime = 2F;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -270,7 +270,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -287,7 +287,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -307,7 +307,7 @@ namespace TangLevel
 			skill.bigMove = false;
 			skill.chargeTime = 2F;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -323,7 +323,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -386,7 +386,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -405,7 +405,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -425,7 +425,7 @@ namespace TangLevel
 			skill.bigMove = false;
 			skill.chargeTime = 2F;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -440,7 +440,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -515,7 +515,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -531,7 +531,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -546,7 +546,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -563,7 +563,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -717,7 +717,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 7;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 
@@ -733,7 +733,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 17;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 
@@ -749,7 +749,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 27;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 
