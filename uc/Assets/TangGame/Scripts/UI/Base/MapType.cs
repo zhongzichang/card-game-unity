@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace TangGame.UI{
@@ -15,7 +15,7 @@ namespace TangGame.UI{
     /// 经验副本
     Exp,
     /// 金钱副本
-    Gold,
+    Money,
     /// 道具副本1
     Props1,
     /// 道具副本2

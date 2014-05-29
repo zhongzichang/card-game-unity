@@ -52,7 +52,8 @@ namespace TangGame.Xml
 		public int lv3_dialogue;
 		/// 关卡美术资源
 		public string resources;
-
+    /// 关卡图标资源
+    public string icon;
 
     [XmlRoot ("root")]
     [XmlLate ("levels")]

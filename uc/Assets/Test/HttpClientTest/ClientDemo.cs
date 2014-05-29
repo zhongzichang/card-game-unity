@@ -12,7 +12,12 @@ namespace ClientDemoTest{
     private HeroApi heroApi = new HeroApi ();
     private TestApi testApi = new TestApi();
 
-    private string msg = "...";
+    private string msg;
+
+    void Start(){
+      msg = "click these function:";
+      RestApi.Instance.Host = "http://localhost:4004";
+    }
 
     void OnGUI(){
 

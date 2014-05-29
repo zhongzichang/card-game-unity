@@ -3,8 +3,15 @@ using UnityEngine;
 
 namespace TangLevel
 {
-	public class Mocker
+  public class Mocker : MonoBehaviour
 	{
+
+    // Use this for initialization
+    void Start ()
+    {
+      Mocker.Configure ();
+    }
+
 		public static void Configure ()
 		{
 			Level level = MockGrassLevel ();
@@ -134,7 +141,7 @@ namespace TangLevel
 			//if( hero.id == 0)
 			skills.Add (MockLuoshenSkill ());
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 1, 2 };
+      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
 
 
 			tmp++;
@@ -151,7 +158,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -167,7 +174,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -183,7 +190,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -197,14 +204,13 @@ namespace TangLevel
 			skill.effectors [0] = MockLineFlyEffector ();
 			//skill.chargeClip = "luoshen";
 			skill.releaseClip = "luoshen";
-			//skill.releaseSpecials = new string[2];
-			//skill.releaseSpecials[0] = "Sprite_luoshen1";
-			//skill.releaseSpecials[1] = "Sprite_luoshen2";
+      skill.releaseSpecials = new string[1];
+      skill.releaseSpecials[0] = "fx_luoshen";
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.chargeTime = 2F;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -271,7 +277,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -288,7 +294,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -308,7 +314,7 @@ namespace TangLevel
 			skill.bigMove = false;
 			skill.chargeTime = 2F;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -324,7 +330,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -387,7 +393,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -406,7 +412,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.distance = 20;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -426,7 +432,7 @@ namespace TangLevel
 			skill.bigMove = false;
 			skill.chargeTime = 2F;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -441,7 +447,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 10;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -516,7 +522,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -532,7 +538,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -547,7 +553,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -564,7 +570,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = true;
 			skill.distance = 35;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 		}
@@ -718,7 +724,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 7;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 
@@ -734,7 +740,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 17;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 
@@ -750,7 +756,7 @@ namespace TangLevel
 			skill.enable = true;
 			skill.bigMove = false;
 			skill.distance = 27;
-			skill.cd = 3;
+			skill.cd = 4;
 
 			return skill;
 
