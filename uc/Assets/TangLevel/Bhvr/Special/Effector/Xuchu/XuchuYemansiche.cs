@@ -6,6 +6,7 @@ namespace TangLevel
 {
 	public class XuchuYemansiche : EffectorSpecialBhvr
 	{
+		public GameObject FlyersObj;
 		private Animator mAnimator;
 		// Use this for initialization
 		void Awake ()
@@ -71,6 +72,16 @@ namespace TangLevel
 
 		public override void Play ()
 		{
+			GameObject flyer = NGUITools.AddChild (w.source,FlyersObj);
+			flyer.transform.parent = null;
+			TweenPosition tweenPosi  = flyer.GetComponent<TweenPosition> ();
+			tweenPosi.from = w.source.transform.position;
+			tweenPosi.to = w.target.transform.position;
+			flyer.transform.LookAt (new Vector3(w.target.transform.position.x,w.target.transform.position.y,w.source.transform.position.z));
+			flyer.SetActive (true);
+			tweenPosi.Play ();
+			Destroy (flyer,tweenPosi.duration);
+
 			transform.localScale = Vector3.one;
 			transform.parent = w.target.transform;
 			transform.localPosition = Vector3.zero;
