@@ -23,6 +23,7 @@ namespace TangLevel
 
     public virtual void Release ()
     {
+      OnRelease ();
       GobjManager.Release (gameObject);
     }
 
@@ -70,7 +71,6 @@ namespace TangLevel
     #endregion
 
 
-
     #region LevelControllerCallback
 
     protected virtual void OnPause (object sender, EventArgs args)
@@ -81,6 +81,13 @@ namespace TangLevel
     protected virtual void OnResume (object sender, EventArgs args)
     {
       Resume ();
+    }
+
+    /// <summary>
+    /// 在 Disable 之前被调用
+    /// </summary>
+    protected virtual void OnRelease(){
+
     }
 
     #endregion

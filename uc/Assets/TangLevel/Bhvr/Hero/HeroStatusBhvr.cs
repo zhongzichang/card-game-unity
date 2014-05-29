@@ -41,8 +41,23 @@ namespace TangLevel
       set {
         if (m_status != HeroStatus.dead// 死亡后不能修改状态
             && !m_isBigMove// 大招的时候不能修改状态
-            && newStatus != value) {
-          newStatus = value;
+          && newStatus != value // 状态相同不做修改
+        ) {
+
+
+          switch (m_status) {
+          // 眩晕状态下只能改为空闲
+          case HeroStatus.vertigo:
+            if (value == HeroStatus.idle) {
+              newStatus = value;
+            }
+            break;
+          default:
+            newStatus = value;
+            break;
+          }
+
+          
         }
       }
     }
@@ -81,6 +96,9 @@ namespace TangLevel
 
       // 暂停改变通知
       if (m_isPause != newIsPause) {
+        if( newIsPause && IsBigMove ){
+          Debug.Log ("pause when bigmove");
+        }
         m_isPause = newIsPause;
         if (pauseChangedHandler != null) {
           pauseChangedHandler (m_isPause);

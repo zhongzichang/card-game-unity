@@ -36,7 +36,6 @@ namespace TangLevel
     {
       GameObject gobj = TD.DbgoManager.FetchUnused (hero.resName);
       if (gobj != null) {
-        gobj.transform.localScale = new Vector3 (4F, 4F, 1);
         // DirectedNavAgent
         DirectedNavAgent agent = gobj.GetComponent<DirectedNavAgent> ();
         if (agent == null) {

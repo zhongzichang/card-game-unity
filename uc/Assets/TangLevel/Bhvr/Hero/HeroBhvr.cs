@@ -127,9 +127,7 @@ namespace TangLevel
         }
       }
 
-      if (statusBhvr.IsPause) {
-        statusBhvr.IsPause = false;
-      }
+      statusBhvr.IsPause = false;
 
       statusBhvr.Status = HeroStatus.idle;
       if (dbBhvr != null) {
@@ -566,8 +564,7 @@ namespace TangLevel
     /// </summary>
     public void Pause ()
     {
-      if (!statusBhvr.IsPause)
-        statusBhvr.IsPause = true;
+      statusBhvr.IsPause = true;
     }
 
     /// <summary>
@@ -576,9 +573,7 @@ namespace TangLevel
     public void Resume ()
     {
 
-      if (statusBhvr.IsPause) {
-        statusBhvr.IsPause = false;
-      }
+      statusBhvr.IsPause = false;
 
     }
 
@@ -603,7 +598,7 @@ namespace TangLevel
       if (bs != null) {
 
         // 如果被其他大招暂停，恢复活动
-        if (LevelController.BigMoveCounter > 0 && statusBhvr.IsPause) {
+        if (LevelController.BigMoveCounter > 0) {
           bmBhvr.BreakLock ();
         }
 
