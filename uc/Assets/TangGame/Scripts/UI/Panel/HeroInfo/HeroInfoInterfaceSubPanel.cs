@@ -121,27 +121,27 @@ namespace TangGame.UI
 		/// 刷新面板的数据
 		/// </summary>
 		/// <param name="data">Data.</param>
-		public void RefreshPanel (HeroBase heroBase)
+		public void RefreshPanel (HeroBase herobase)
 		{
-			LoadAnimatorObj (heroBase.Xml.model);
-			this.heroBase = heroBase;
-			this.SetHeroName (heroBase.Xml.name);
-			this.SetHeroNameFrame (heroBase.Net.upgrade);
-			this.SetLevel (heroBase.Net.level);
-			this.SetScore (heroBase.Score);
-			this.SetExp (heroBase.Net.exp, Config.levelUpXmlTable [heroBase.Net.level].val);
-			this.SetStarList (heroBase.Net.evolve, false);
+			LoadAnimatorObj (herobase.Xml.model);
+			this.heroBase = herobase;
+			this.SetHeroName (herobase.Xml.name);
+			this.SetHeroNameFrame (herobase.Net.upgrade);
+			this.SetLevel (herobase.Net.level);
+			this.SetScore (herobase.Score);
+			this.SetExp (herobase.Net.exp, Config.levelUpXmlTable [herobase.Net.level].val);
+			this.SetStarList (herobase.Net.evolve, false);
 			int packageCount = 0;
-			if (PropsCache.instance.propsTable.ContainsKey (heroBase.Xml.soul_rock_id)) {
-				packageCount = PropsCache.instance.propsTable [heroBase.Xml.soul_rock_id].net.count;
+			if (PropsCache.instance.propsTable.ContainsKey (herobase.Xml.soul_rock_id)) {
+				packageCount = PropsCache.instance.propsTable [herobase.Xml.soul_rock_id].net.count;
 			}
 			int mPackageCountMax = -1;
-			if (Config.evolveXmlTable.ContainsKey (heroBase.Net.evolve + 1)) {
-				mPackageCountMax = Config.evolveXmlTable [heroBase.Net.evolve + 1].val;
+			if (Config.evolveXmlTable.ContainsKey (herobase.Net.evolve + 1)) {
+				mPackageCountMax = Config.evolveXmlTable [herobase.Net.evolve + 1].val;
 			}
 			this.SetHeroPackageSoulstone (packageCount, mPackageCountMax);
-			this.SetEquipList (heroBase);
-			SetHeroType (heroBase.Attribute_Type);
+			this.SetEquipList (herobase);
+			SetHeroType (herobase.Attribute_Type);
 		}
 
 		private void SetHeroType (AttributeTypeEnum propertyType)

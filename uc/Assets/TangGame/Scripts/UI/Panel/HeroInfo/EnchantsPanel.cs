@@ -197,22 +197,23 @@ namespace TangGame.UI
 		/// 更新英雄对象
 		/// </summary>
 		/// <param name="heroBase">Hero base.</param>
-		void UpHeroContent (HeroBase heroBase)
+		void UpHeroContent (HeroBase herobase)
 		{
-			this.heroBase = heroBase;
+			this.heroBase = herobase;
 			HeroContent.SetActive (true);
 			EquipContent.SetActive (false);
 			heroAvatarItem = HeroItem.GetComponent<HeroAvatarItem> ();
-			heroAvatarItem.Flush (heroBase);
+			heroAvatarItem.Flush (herobase);
 			UILabel lab = HeroName.GetComponent<UILabel> ();
 			if (lab != null)
-				lab.text = heroBase.Xml.name;
-			int upgradeRem = Global.GetHeroUpgradeRem (heroBase.Net.upgrade);
+				lab.text = herobase.Xml.name;
+
+			int upgradeRem = Global.GetHeroUpgradeRem (herobase.Net.upgrade);
 
 			if (upgradeRem > 0) {
 				lab.text += String.Format ("[000000] + {0}[-]", upgradeRem);
 			}
-			SetEquipList (heroBase);
+			SetEquipList (herobase);
 		}
 
 		/// <summary>
@@ -289,7 +290,8 @@ namespace TangGame.UI
 			heroAvatarItemTable.Clear ();
 		}
 
-		void SetAddExpLabel(int exp){
+		void SetAddExpLabel (int exp)
+		{
 			GameObject obj = NGUITools.AddChild (EnchantingExp, AddExpLabel);
 			UILabel lb = obj.GetComponent<UILabel> ();
 			if (lb != null) {
@@ -297,7 +299,7 @@ namespace TangGame.UI
 			}
 			TweenPosition tweenPosi = obj.GetComponent<TweenPosition> ();
 			obj.SetActive (true);
-			GameObject.Destroy (obj,tweenPosi.duration);
+			GameObject.Destroy (obj, tweenPosi.duration);
 		}
 
 		/// <summary>
