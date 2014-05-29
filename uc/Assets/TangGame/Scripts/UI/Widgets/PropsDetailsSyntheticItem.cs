@@ -23,7 +23,7 @@ namespace TangGame.UI{
       }
       if(this.data == null){return;}
       PropsData propsData = this.data as PropsData;
-      frame.spriteName = Global.GetPropFrameName((PropsType)propsData.type, propsData.upgrade);
+      frame.spriteName = Global.GetPropFrameName((PropsType)propsData.type, propsData.rank);
       icon.spriteName = propsData.icon;
       label.text = propsData.name;
     }

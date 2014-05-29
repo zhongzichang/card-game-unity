@@ -33,9 +33,9 @@ namespace TangGame.UI
 		public void Flush(HeroBase herobase){
 			this.heroBase = herobase;
 			this.heroIcon.spriteName = herobase.Xml.avatar;
-			int upgrade = herobase.Net.upgrade;
-			this.heroFrames.spriteName = Global.GetHeroIconFrame (upgrade);
-			this.starlist.count = herobase.Net.evolve;
+			int rank = herobase.Net.rank;
+			this.heroFrames.spriteName = Global.GetHeroIconFrame (rank);
+			this.starlist.count = herobase.Net.star;
 			this.starlist.Flush ();
 		}
 		/// <summary>

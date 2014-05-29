@@ -7,14 +7,6 @@ namespace TangLevel
   public class LevelTest : MonoBehaviour
   {
 
-    // Use this for initialization
-    void Start ()
-    {
-
-      Mocker.Configure ();
-
-    }
-
 
     // test ............
     void OnGUI ()

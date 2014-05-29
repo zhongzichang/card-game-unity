@@ -6,7 +6,7 @@
 		<skill>{17,1}</skill>
 		<shot_order>{1}</shot_order>
 		<evolve>1</evolve>
-		<upgrade>1</upgrade>
+		<rank>1</rank>
 		<strength>22</strength>
 		<intellect>16</intellect>
 		<agile>17</agile>
@@ -35,7 +35,7 @@
 		<skill>{18,1}</skill>
 		<shot_order>{1}</shot_order>
 		<evolve>1</evolve>
-		<upgrade>2</upgrade>
+		<rank>2</rank>
 		<strength>22</strength>
 		<intellect>19</intellect>
 		<agile>22</agile>
@@ -64,7 +64,7 @@
 		<skill>{1,2,3,4}</skill>
 		<shot_order>{2,3,4}</shot_order>
 		<evolve>1</evolve>
-		<upgrade>3</upgrade>
+		<rank>3</rank>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -93,7 +93,7 @@
 		<skill>{5,6,7,8}</skill>
 		<shot_order>{2,3,4}</shot_order>
 		<evolve>1</evolve>
-		<upgrade>4</upgrade>
+		<rank>4</rank>
 		<strength>22</strength>
 		<intellect>16</intellect>
 		<agile>17</agile>
@@ -122,7 +122,7 @@
 		<skill>{9,10,11,12}</skill>
 		<shot_order>{2,3,4}</shot_order>
 		<evolve>1</evolve>
-		<upgrade>5</upgrade>
+		<rank>5</rank>
 		<strength>22</strength>
 		<intellect>19</intellect>
 		<agile>22</agile>
@@ -151,7 +151,7 @@
 		<skill>{13,14,15,16}</skill>
 		<shot_order>{2,3,4}</shot_order>
 		<evolve>1</evolve>
-		<upgrade>6</upgrade>
+		<rank>6</rank>
 		<strength>22</strength>
 		<intellect>16</intellect>
 		<agile>17</agile>

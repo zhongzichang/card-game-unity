@@ -9,7 +9,7 @@ namespace TangGame.Xml
 	public class EnchantsConsumedData
 	{ 
 		/// 品质
-		public int upgrade;
+		public int rank;
 		/// 每级消耗金币数组
 		public string exp_spend;
 		/// 每点消耗金币
@@ -84,7 +84,7 @@ namespace TangGame.Xml
 		{
 			EnchantsConsumedRoot root = obj as EnchantsConsumedRoot;
 			foreach (EnchantsConsumedData item in root.items) {
-				Config.enchantsConsumedXmlTable [item.upgrade] = item;
+				Config.enchantsConsumedXmlTable [item.rank] = item;
 			}
 		}
 	}

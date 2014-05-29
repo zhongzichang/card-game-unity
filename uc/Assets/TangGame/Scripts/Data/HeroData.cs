@@ -35,39 +35,39 @@ namespace TangGame.Xml
 		/// 敏捷成长
 		public string agile_growth;
 		/// 力量
-		public int strength;
+		public float strength;
 		/// 智力
-		public int intellect;
+		public float intellect;
 		/// 敏捷
-		public int agile;
+		public float agile;
 		/// 最大生命值
-		public int hpMax;
+		public float hpMax;
 		/// 物理攻击
-		public int attack_damage;
+		public float attack_damage;
 		/// 魔法强度
-		public int ability_power;
+		public float ability_power;
 		/// 物理护甲
-		public int physical_defense;
+		public float physical_defense;
 		/// 魔法抗性
-		public int magic_defense;
+		public float magic_defense;
 		/// 物理暴击
-		public int physical_crit;
+		public float physical_crit;
 		/// 法术暴击
-		public int magic_crit;
+		public float magic_crit;
 		/// 生命回复
-		public int hp_recovery;
+		public float hp_recovery;
 		/// 能量回复
-		public int energy_recovery;
+		public float energy_recovery;
 		/// 破甲值
-		public int physical_penetration;
+		public float physical_penetration;
 		/// 无视魔抗
-		public int spell_penetration;
+		public float spell_penetration;
 		/// 吸血等级
-		public int bloodsucking_lv;
+		public float bloodsucking_lv;
 		/// 闪避
-		public int dodge;
+		public float dodge;
 		/// 治疗效果
-		public int addition_treatment;
+		public float addition_treatment;
 		/// 进阶装备配置
 		public string equip_id_list;
 		/// 技能编号
@@ -84,6 +84,9 @@ namespace TangGame.Xml
 		public string portrait;
 		/// 模型资源名
 		public string model;
+		/// <summary>
+		/// 装备列表
+		/// </summary>
 		List<PropsData> equipList;
 
 		/// <summary>

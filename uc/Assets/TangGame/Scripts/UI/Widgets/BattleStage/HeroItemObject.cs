@@ -40,7 +40,7 @@ namespace TangGame.UI
       }else{
         icon.spriteName = "";
       }
-      iconFrame.spriteName = Global.GetHeroIconFrame(data.rank);
+      iconFrame.spriteName = Global.GetHeroIconFrame(data.rank_color);
       if (showLevel) {
         level.text = data.level.ToString ();
       } else {

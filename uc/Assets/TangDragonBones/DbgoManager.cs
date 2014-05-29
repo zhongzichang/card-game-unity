@@ -123,6 +123,7 @@ namespace TangDragonBones
       armatureGobj.transform.parent = heroObj.transform;
       armatureGobj.transform.localPosition = Vector3.zero;
       armatureGobj.transform.localRotation = Quaternion.identity;
+      armatureGobj.transform.localScale = new Vector3 (4F, 4F, 1);
       DragonBonesBhvr bhvr = heroObj.AddComponent<DragonBonesBhvr> ();
       bhvr.armature = armature;
       heroObj.AddComponent<DemoBhvr> ();

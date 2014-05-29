@@ -84,11 +84,11 @@ namespace TangGame
 
     /// 英雄品质阶段对应的当前的品阶值
     /// 1:1,0; 2:2,0; 3:2,1; 4:3,0; 5:3,1; 6:3,2; 7:4,0; 8:4,1; 9:4,2; 10:4,3 
-    private static int[] HeroUpgradeNum = new int[]{0, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
+    private static int[] HerorankNum = new int[]{0, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
     
     /// 英雄品质阶段对应的当前+几的数量
     /// 1:1,0; 2:2,0; 3:2,1; 4:3,0; 5:3,1; 6:3,2; 7:4,0; 8:4,1; 9:4,2; 10:4,3 
-    private static int[] HeroUpgradeAddNum = new int[]{0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 3};
+    private static int[] HerorankAddNum = new int[]{0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 3};
 
     
     //===================================================================================================
@@ -108,24 +108,24 @@ namespace TangGame
 		/// <summary, >
 		/// 获取道具边框的Sprite名称
 		/// </summary>
-		public static string GetPropFrameName (int upgrade){
-			return GetPropFrameName (PropsType.NONE,upgrade);
+		public static string GetPropFrameName (int rank){
+			return GetPropFrameName (PropsType.NONE,rank);
 		}
 		/// <summary, >
 		/// 获取道具边框的Sprite名称
 		/// </summary>
-		public static string GetPropFrameName (PropsType type, int upgrade)
+		public static string GetPropFrameName (PropsType type, int rank)
 		{
-			if (upgrade < 0) {
-				upgrade = 0;
+			if (rank < 0) {
+				rank = 0;
 			}
-			if (upgrade > 4) {
-				upgrade = 4;
+			if (rank > 4) {
+				rank = 4;
 			}
 			if (type == PropsType.DEBRIS) {
-				return PropsDebrisFrame [upgrade];
+				return PropsDebrisFrame [rank];
 			} else {
-				return PropsNormalFrame [upgrade];
+				return PropsNormalFrame [rank];
 			}
 		}
 
@@ -133,54 +133,54 @@ namespace TangGame
 		/// 获取英雄的品质边框
 		/// </summary>
 		/// <returns>英雄边框的Sprite名称</returns>
-		/// <param name="upgrade">品质</param>
-		public static string GetHeroIconFrame (int upgrade)
+		/// <param name="rank">品质</param>
+		public static string GetHeroIconFrame (int rank)
 		{
-			upgrade = upgrade < 1 ? 1 : upgrade;
-			return "hero_frame_" + upgrade;
+			rank = rank < 1 ? 1 : rank;
+			return "hero_frame_" + rank;
 		}
 
 		/// <summary>
 		/// 获取英雄名称的品质边框
 		/// </summary>
 		/// <returns>英雄名称边框的Sprite名称</returns>
-		/// <param name="upgrade">品质</param>
-		public static string GetHeroNameFrame (int upgrade)
+		/// <param name="rank">品质</param>
+		public static string GetHeroNameFrame (int rank)
 		{
-			return "herodetail_name_bg";//TODO + upgrade;
+			return "herodetail_name_bg";//TODO + rank;
 		}
 
     /// 根据品阶获取品阶的阶段颜色，如，白色（1），绿色（2），蓝色（3），紫色（4）
-    public static Color32 GetHeroUpgradeColor(int upgrade){
-      int index = GetHeroUpgradeNum(upgrade);
+    public static Color32 GetHerorankColor(int rank){
+      int index = GetHerorankNum(rank);
       return mColor32[index];
     }
 
     /// 根据品阶获取品阶的阶段颜色，如，白色（1），绿色（2），蓝色（3），紫色（4）
-    public static string GetHeroUpgradeHexColor(int upgrade){
-      int index = GetHeroUpgradeNum(upgrade);
+    public static string GetHerorankHexColor(int rank){
+      int index = GetHerorankNum(rank);
       return mColorHex[index];
     }
 
     /// 根据品阶获取品阶的阶段值，如，白色（1），绿色（2），蓝色（3），紫色（4）
-    public static int GetHeroUpgradeNum(int upgrade){
-      if(upgrade < 0 || upgrade > HeroUpgradeNum.Length){
+    public static int GetHerorankNum(int rank){
+      if(rank < 0 || rank > HerorankNum.Length){
         return 0;
       }
-      return HeroUpgradeNum[upgrade];
+      return HerorankNum[rank];
     }
 
 		/// <summary>
-		/// Gets the upgrade rem.
+		/// Gets the rank rem.
 		/// 获取品质的余数，即当前品质的+几，如蓝色+2
 		/// </summary>
-		/// <returns>The upgrade rem.</returns>
-		public static int GetHeroUpgradeRem (int upgrade)
+		/// <returns>The rank rem.</returns>
+		public static int GetHerorankRem (int rank)
 		{
-      if(upgrade < 0 || upgrade > HeroUpgradeAddNum.Length){
+      if(rank < 0 || rank > HerorankAddNum.Length){
         return 0;
       }
-      return HeroUpgradeAddNum[upgrade];
+      return HerorankAddNum[rank];
 		}
 
 		/// 获取转换英雄的星阶，考虑到界面只能显示5个星的问题，需要转换

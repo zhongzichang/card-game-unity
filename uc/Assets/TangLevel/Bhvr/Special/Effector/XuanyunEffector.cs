@@ -6,10 +6,11 @@ namespace TangLevel
 {
   public class XuanyunEffector : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0, 2.5F, 0);
+    public static Vector3 OFFSET = new Vector3 (0, 10F, 0);
     public static HashSet<GameObject> vertigos = new HashSet<GameObject> ();
-    private Transform myTransform;
+    public Vector3 offset = OFFSET;
     public float effectTime = 5F;
+    private Transform myTransform;
     private float remainTime = 0;
 
     void Awake ()
@@ -41,10 +42,9 @@ namespace TangLevel
         // 绑定到目标身上
         myTransform.parent = w.target.transform;
 
-        myTransform.localPosition = OFFSET;
+        myTransform.localPosition = offset;
         myTransform.localRotation = Quaternion.identity;
-        Vector3 parentLocalScale = myTransform.parent.transform.localScale;
-        myTransform.localScale = new Vector3(1/parentLocalScale.x, 1/parentLocalScale.y, 1);
+        myTransform.localScale = Vector3.one;
 
 
         // 打晕

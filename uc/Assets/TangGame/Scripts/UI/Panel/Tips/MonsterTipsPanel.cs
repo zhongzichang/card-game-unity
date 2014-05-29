@@ -45,7 +45,7 @@ namespace TangGame.UI{
       mPanel.startingRenderQueue = 10001;
       this.descLabel.text = data.desc;
       this.nameLabel.text = data.name;
-      this.frame.spriteName = Global.GetHeroIconFrame(data.upgrade);
+      this.frame.spriteName = Global.GetHeroIconFrame(data.rank);
       this.icon.spriteName = data.avatar;
       string levelStr = "LV." + data.level;
       levelStr += isBoss ? " [FF0000]BOSS[-]" : "";
@@ -58,7 +58,7 @@ namespace TangGame.UI{
         return;
       }
 
-      this.frame.spriteName = Global.GetHeroIconFrame(hero.upgrade);
+      this.frame.spriteName = Global.GetHeroIconFrame(hero.rank);
       this.icon.spriteName = data.avatar;
       this.nameLabel.text = data.name;
 

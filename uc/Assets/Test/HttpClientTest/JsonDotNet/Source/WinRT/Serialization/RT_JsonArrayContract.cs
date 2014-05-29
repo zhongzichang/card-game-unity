@@ -85,7 +85,7 @@ namespace Newtonsoft.Json.Serialization
         _genericCollectionDefinitionType = typeof(List<>).MakeGenericType(CollectionItemType);
 
         canDeserialize = true;
-        IsMultidimensionalArray = (IsArray && UnderlyingType.GetArrayRank() > 1);
+        IsMultidimensionalArray = (IsArray && UnderlyingType.GetArrayrank_color() > 1);
       }
       else if (typeof(IList).IsAssignableFrom(underlyingType))
       {
