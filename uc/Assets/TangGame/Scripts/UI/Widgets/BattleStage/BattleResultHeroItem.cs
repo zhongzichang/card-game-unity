@@ -42,7 +42,7 @@ namespace TangGame{
 
       HeroBase heroBase = HeroCache.instance.GetHero(battleResultHeroData.id);
       if(heroBase != null){
-        frame.spriteName = Global.GetHeroIconFrame(battleResultHeroData.upgrade);
+        frame.spriteName = Global.GetHeroIconFrame(battleResultHeroData.rank);
         icon.spriteName = heroBase.Xml.avatar;
       }
 

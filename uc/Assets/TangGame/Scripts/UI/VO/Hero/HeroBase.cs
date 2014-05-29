@@ -121,7 +121,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Strength_growth {
 			get {
-				return xml.GetStrengthGrowth (net.evolve);
+				return xml.GetStrengthGrowth (net.star);
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Intellect_growth {
 			get {
-				return xml.GetIntellectGrowth (net.evolve);
+				return xml.GetIntellectGrowth (net.star);
 			}
 		}
 
@@ -139,162 +139,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Agile_growth {
 			get {
-				return xml.GetAgileGrowth (net.evolve);
-			}
-		}
-
-		/// <summary>
-		/// 力量
-		/// </summary>
-		public int Strength {
-			get {
-				return xml.strength;
-			}
-		}
-
-		/// <summary>
-		/// 智力
-		/// </summary>
-		public int Intellect {
-			get {
-				return xml.intellect;
-			}
-		}
-
-		/// <summary>
-		/// 敏捷
-		/// </summary>
-		public int Agile {
-			get {
-				return xml.agile;
-			}
-		}
-
-		/// <summary>
-		/// 生命最大值
-		/// </summary>
-		public int HpMax {
-			get {
-				return xml.hpMax;
-			}
-		}
-
-		/// <summary>
-		/// 物理攻击强度
-		/// </summary>
-		public int Attack_damage {
-			get {
-				return xml.attack_damage;
-			}
-		}
-
-		/// <summary>
-		/// 法术攻击强度
-		/// </summary>
-		public int Ability_power {
-			get {
-				return xml.ability_power;
-			}
-		}
-
-		/// <summary>
-		/// 物理防御
-		/// </summary>
-		public int Physical_defense {
-			get {
-				return xml.physical_defense;
-			}
-		}
-
-		/// <summary>
-		/// 法术防御
-		/// </summary>
-		public int Magic_defense {
-			get {
-				return xml.magic_defense;
-			}
-		}
-
-		/// <summary>
-		/// 生命回复
-		/// </summary>
-		public int Hp_recovery {
-			get {
-				return xml.hp_recovery;
-			}
-		}
-
-		/// <summary>
-		/// 能量回复
-		/// </summary>
-		public int Energy_recovery {
-			get {
-				return xml.energy_recovery;
-			}
-		}
-
-		/// <summary>
-		/// 物理穿透
-		/// </summary>
-		public int Physical_penetration {
-			get {
-				return xml.physical_penetration;
-			}
-		}
-
-		/// <summary>
-		/// 法术穿透
-		/// </summary>
-		public int Spell_penetration {
-			get {
-				return xml.spell_penetration;
-			}
-		}
-
-		/// <summary>
-		/// 法术爆击
-		/// </summary>
-		/// <value>The spell crit.</value>
-		public int Magic_Crit {
-			get { 
-				return xml.magic_crit;
-			}
-		}
-
-		/// <summary>
-		/// 物理爆击
-		/// </summary>
-		/// <value>The physical_ crit.</value>
-		public int Physical_Crit {
-			get { 
-				return xml.physical_crit;
-			}
-		}
-
-		/// <summary>
-		/// 吸血等级
-		/// </summary>
-		public int Bloodsucking_lv {
-			get {
-				return xml.bloodsucking_lv;
-			}
-		}
-
-		/// <summary>
-		/// 闪避
-		/// </summary>
-		public int Dodge {
-			get {
-				return xml.dodge;
-			}
-		}
-
-		/// <summary>
-		/// 治疗加成
-		/// </summary>
-		public int Addition_treatment {
-			get {
-				return xml.addition_treatment;
+				return xml.GetAgileGrowth (net.star);
 			}
 		}
 
@@ -310,7 +155,7 @@ namespace TangGame.UI
 		public int Score {
 			get {
 				//TODO 修正算法
-				return Net.level * (Net.evolve + Net.upgrade);
+				return Net.level * (Net.star + Net.rank);
 			}
 		}
 
@@ -333,7 +178,7 @@ namespace TangGame.UI
 		private int[] Equip_Ids {
 			get { 
 				string[] strs = (string[])Utils.SplitStrByBraces (xml.equip_id_list).ToArray (typeof(string));
-				return Utils.SplitStrByCommaToInt (strs [net.upgrade - 1]);
+				return Utils.SplitStrByCommaToInt (strs [net.rank - 1]);
 			}
 		}
 
@@ -351,10 +196,10 @@ namespace TangGame.UI
 			}
 		}
 
-		public static RankEnum GetHeroesRankEnum (int rank)
+		public static rank_colorEnum GetHeroesrank_colorEnum (int rank_color)
 		{
-			float val = (float)Mathf.Sqrt ((float)(2 * rank + 0.25)) - (float)0.5;
-			return (RankEnum)(int)(val - 1);
+			float val = (float)Mathf.Sqrt ((float)(2 * rank_color + 0.25)) - (float)0.5;
+			return (rank_colorEnum)(int)(val - 1);
 		}
 	}
 
@@ -374,7 +219,7 @@ namespace TangGame.UI
 		LATER
 	}
 
-	public enum RankEnum
+	public enum rank_colorEnum
 	{
 		NONE,
 		WHITE,

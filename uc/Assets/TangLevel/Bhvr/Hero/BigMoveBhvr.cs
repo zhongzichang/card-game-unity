@@ -44,25 +44,6 @@ namespace TangLevel
 
     #region MonoMethods
 
-    void Start ()
-    {
-      myTransform = transform;
-      if (statusBhvr == null) {
-        statusBhvr = GetComponent<HeroStatusBhvr> ();
-      }
-      agent = GetComponent<DirectedNavAgent> ();
-      heroBhvr = GetComponent<HeroBhvr> ();
-
-      // 原始人物比例
-      backupScale = myTransform.localScale;
-
-      // 获取大招技能
-      skill = heroBhvr.BigMoveSkill ();
-
-      matBhvr = GetComponent<MaterialBhvr> ();
-
-    }
-
     void Update ()
     {
       if (IsBigMoveReady ()) {
@@ -86,20 +67,39 @@ namespace TangLevel
 
     void OnEnable ()
     {
-      if (!inited) {
-        if (statusBhvr == null) {
-          statusBhvr = GetComponent<HeroStatusBhvr> ();
-        }
+      // init ---
+      if (myTransform == null) {
+        myTransform = transform;
+      }
+      statusBhvr = GetComponent<HeroStatusBhvr> ();
+      if (statusBhvr == null) {
+        statusBhvr = gameObject.AddComponent<HeroStatusBhvr> ();
+      }
+      agent = GetComponent<DirectedNavAgent> ();
+      if (agent == null) {
+        agent = gameObject.AddComponent<DirectedNavAgent> ();
+      }
 
-        // DragonBonesBhvr
-        if (dbBhvr == null) {
-          // dragonbones behaviour
-          dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
-          dbBhvr.GotoAndPlay (statusBhvr.Status.ToString ());
-          armature = dbBhvr.armature;
-        }
-
-        inited = true;
+      heroBhvr = GetComponent<HeroBhvr> ();
+      if (heroBhvr == null) {
+        heroBhvr = gameObject.AddComponent<HeroBhvr> ();
+      }
+      matBhvr = GetComponent<MaterialBhvr> ();
+      if (matBhvr == null) {
+        matBhvr = gameObject.AddComponent<MaterialBhvr> ();
+      }
+      dbBhvr = GetComponent<TDB.DragonBonesBhvr> ();
+      if (dbBhvr == null) {
+        dbBhvr = gameObject.AddComponent<TDB.DragonBonesBhvr> ();
+      }
+      armature = dbBhvr.armature;
+      // 原始人物比例
+      if (backupScale == Vector3.zero) {
+        backupScale = myTransform.localScale;
+      }
+      // 获取大招技能
+      if (skill == null) {
+        skill = heroBhvr.BigMoveSkill ();
       }
 
       LevelController.BigMoveStart += OnBigMoveStart;
@@ -175,6 +175,8 @@ namespace TangLevel
     public void StartBigMove ()
     {
 
+      BreakLock ();
+
       backupPos = myTransform.localPosition;
       myTransform.localPosition += OFFSET;
 
@@ -212,7 +214,8 @@ namespace TangLevel
     /// <summary>
     /// 大招锁定
     /// </summary>
-    public void Lock(){
+    public void Lock ()
+    {
 
       if (!statusBhvr.IsBigMove) { // 本人没有放大招
         statusBhvr.IsPause = true;
@@ -225,10 +228,8 @@ namespace TangLevel
     /// </summary>
     public void BreakLock ()
     {
-      if (statusBhvr.IsPause) {
-        statusBhvr.IsPause = false;
-        matBhvr.RestoreColor ();
-      }
+      statusBhvr.IsPause = false;
+      matBhvr.RestoreColor ();
     }
 
     #endregion
@@ -285,7 +286,7 @@ namespace TangLevel
           Rect region = skill.region;
           Vector2 center = new Vector2 (region.x - region.width / 2, region.y - region.height / 2);
           if (Mathf.Abs (myTransform.localPosition.x - center.x)
-             <= skill.distance) {
+              <= skill.distance) {
             return true;
           }
           break;

@@ -60,7 +60,7 @@ namespace TangGame.UI{
       this.effectLabel.text = "";
 			this.descLabel.text = "";
 			this.goldLabel.text = "";
-			this.frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);
+			this.frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.rank);
 			this.icon.spriteName = props.data.icon;
 			this.goldLabel.text = props.data.selling_price.ToString();
 			this.nameLabel.text = props.data.name;

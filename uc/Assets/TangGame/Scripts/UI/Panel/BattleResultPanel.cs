@@ -195,7 +195,7 @@ namespace TangGame.UI{
           battleResultHeroData.maxExp = battleResultHeroData.exp = 100;
           battleResultHeroData.level = 20;
           battleResultHeroData.levelUp = false;
-          battleResultHeroData.upgrade = 2;
+          battleResultHeroData.rank = 2;
           data.herosList.Add (battleResultHeroData);
         }
         param = data;

@@ -12,7 +12,12 @@ namespace ClientDemoTest{
     private HeroApi heroApi = new HeroApi ();
     private TestApi testApi = new TestApi();
 
-    private string msg = "...";
+    private string msg;
+
+    void Start(){
+      msg = "click these function:";
+      RestApi.Instance.Host = "http://localhost:4004";
+    }
 
     void OnGUI(){
 
@@ -30,23 +35,23 @@ namespace ClientDemoTest{
         };
         heroApi.equipItem("heroId", "equipId", equipItemResponseHandler);
       }
-      if (GUILayout.Button ("upgradeRank")) {
-        System.Action<UpgradeRankResult> upgradeRankResponseHandler = delegate(UpgradeRankResult result){
+      if (GUILayout.Button ("rankrank_color")) {
+        System.Action<rankrank_colorResult> rankrank_colorResponseHandler = delegate(rankrank_colorResult result){
           Debug.Log(result.ok);
         };
-        heroApi.upgradeRank("heroId", upgradeRankResponseHandler);
+        heroApi.rankrank_color("heroId", rankrank_colorResponseHandler);
       }
-      if (GUILayout.Button ("upgradeStar")) {
-        System.Action<UpgradeStarResult> upgradeStarResponseHandler = delegate(UpgradeStarResult result){
+      if (GUILayout.Button ("rankStar")) {
+        System.Action<rankStarResult> rankStarResponseHandler = delegate(rankStarResult result){
           Debug.Log(result.ok);
         };
-        heroApi.upgradeStar("heroId", upgradeStarResponseHandler);
+        heroApi.rankStar("heroId", rankStarResponseHandler);
       }
-      if (GUILayout.Button ("upgradeSkill")) {
-        System.Action<UpgradeSkillResult> upgradeSkillResponseHandler = delegate(UpgradeSkillResult result){
+      if (GUILayout.Button ("rankSkill")) {
+        System.Action<rankSkillResult> rankSkillResponseHandler = delegate(rankSkillResult result){
           Debug.Log(result.ok);
         };
-        heroApi.upgradeSkill("heroId", "skillId", upgradeSkillResponseHandler);
+        heroApi.rankSkill("heroId", "skillId", rankSkillResponseHandler);
       }
 
       if (GUILayout.Button ("httpsGithub")) {

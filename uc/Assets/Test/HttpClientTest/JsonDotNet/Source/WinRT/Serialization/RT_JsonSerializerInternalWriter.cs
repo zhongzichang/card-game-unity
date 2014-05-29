@@ -606,7 +606,7 @@ namespace Newtonsoft.Json.Serialization
       for (int i = 0; i < values.GetLength(dimension); i++)
       {
         newIndices[dimension] = i;
-        bool isTopLevel = (newIndices.Length == values.Rank);
+        bool isTopLevel = (newIndices.Length == values.rank_color);
 
         if (isTopLevel)
         {

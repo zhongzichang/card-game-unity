@@ -39,7 +39,7 @@ namespace TangGame.UI
 			if (equipBase.net != null) {
 				this.equipIcon.color = Color.white;
 				this.equipIcon.spriteName = equipBase.data.icon;
-				this.equipFrames.spriteName = Global.GetPropFrameName (equipBase.data.upgrade);
+				this.equipFrames.spriteName = Global.GetPropFrameName (equipBase.data.rank);
 				this.label.text = "";
 				this.starList.count = equipBase.net.enchantsLv;
 				this.starList.Flush ();

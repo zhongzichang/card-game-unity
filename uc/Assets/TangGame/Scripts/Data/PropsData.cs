@@ -14,7 +14,7 @@ namespace TangGame.Xml
 		/// 类型
 		public int type;
 		/// 品质
-		public int upgrade;
+		public int rank;
 		/// 力量
 		public float strength;
 		/// 智力

@@ -27,7 +27,7 @@ namespace TangGame.UI{
       if(!this.started){return;}
       if(this.data == null){return;}
       MonsterData monsterData = this.data as MonsterData;
-      frame.spriteName = Global.GetHeroIconFrame(monsterData.upgrade);
+      frame.spriteName = Global.GetHeroIconFrame(monsterData.rank);
       icon.spriteName = monsterData.avatar;
       star.width = 20 * Global.GetHeroStar(monsterData.evolve);
     }

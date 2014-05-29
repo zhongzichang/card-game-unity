@@ -56,37 +56,37 @@ namespace TangGame.UI
 			AddPropertyItem ("[CC0000]" +UIPanelLang.INTELLECT_GROWTH +"[-]", herobase.Intellect_growth);
 			AddPropertyItem ("[CC0000]" +UIPanelLang.AGILE_GROWTH +"[-]", herobase.Agile_growth);
 
-			AddPropertyItem ("[ff8c00]" + UIPanelLang.STRENGTH + "[-]", herobase.Strength);
-			AddPropertyItem ("[ff8c00]" + UIPanelLang.INTELLECT + "[-]", herobase.Intellect);
-			AddPropertyItem ("[ff8c00]敏捷[-]", herobase.Agile);
+			AddPropertyItem ("[ff8c00]" + UIPanelLang.STRENGTH + "[-]", herobase.Net.Strength);
+			AddPropertyItem ("[ff8c00]" + UIPanelLang.INTELLECT + "[-]", herobase.Net.Intellect);
+			AddPropertyItem ("[ff8c00]敏捷[-]", herobase.Net.Agile);
 		
-			AddPropertyItem ("[ff8c00]最大生命值[-]", herobase.HpMax);
-			AddPropertyItem ("[ff8c00]物理攻击力[-]", herobase.Attack_damage);
+			AddPropertyItem ("[ff8c00]最大生命值[-]", herobase.Net.HpMax);
+			AddPropertyItem ("[ff8c00]物理攻击力[-]", herobase.Net.Attack_damage);
 
-			if (herobase.Ability_power != 0)
-				AddPropertyItem ("[ff8c00]魔法强度[-]", herobase.Ability_power);
-			if (herobase.Physical_defense != 0)
-				AddPropertyItem ("[ff8c00]物理护甲[-]", herobase.Physical_defense);
-			if (herobase.Magic_defense != 0)
-				AddPropertyItem ("[ff8c00]魔法抗性[-]", herobase.Magic_defense);
-			if (herobase.Physical_Crit != 0)
-				AddPropertyItem ("[ff8c00]物理爆击[-]", herobase.Physical_Crit);
-			if (herobase.Magic_Crit != 0)
-				AddPropertyItem ("[ff8c00]法术爆击[-]", herobase.Magic_Crit);
-			if (herobase.Hp_recovery != 0)
-				AddPropertyItem ("[ff8c00]生命回复[-]", herobase.Hp_recovery);
-			if (herobase.Energy_recovery != 0)
-				AddPropertyItem ("[ff8c00]能量回复[-]", herobase.Energy_recovery);
-			if (herobase.Dodge != 0)
-				AddPropertyItem ("[ff8c00]闪避[-]", herobase.Dodge);
-			if (herobase.Physical_penetration != 0)
-				AddPropertyItem ("[ff8c00]物理穿透[-]", herobase.Physical_penetration);
-			if (herobase.Spell_penetration != 0)
-				AddPropertyItem ("[ff8c00]法术穿透[-]", herobase.Spell_penetration);
-			if (herobase.Bloodsucking_lv != 0)
-				AddPropertyItem ("[ff8c00]吸血等级[-]", herobase.Bloodsucking_lv);
-			if (herobase.Addition_treatment != 0)
-				AddPropertyItem ("[ff8c00]治疗技能加成[-]", herobase.Addition_treatment);
+			if (herobase.Net.Ability_power != 0)
+				AddPropertyItem ("[ff8c00]魔法强度[-]", herobase.Net.Ability_power);
+			if (herobase.Net.Physical_defense != 0)
+				AddPropertyItem ("[ff8c00]物理护甲[-]", herobase.Net.Physical_defense);
+			if (herobase.Net.Magic_defense != 0)
+				AddPropertyItem ("[ff8c00]魔法抗性[-]", herobase.Net.Magic_defense);
+			if (herobase.Net.Physical_crit != 0)
+				AddPropertyItem ("[ff8c00]物理爆击[-]", herobase.Net.Physical_crit);
+			if (herobase.Net.Magic_crit != 0)
+				AddPropertyItem ("[ff8c00]法术爆击[-]", herobase.Net.Magic_crit);
+			if (herobase.Net.Hp_recovery != 0)
+				AddPropertyItem ("[ff8c00]生命回复[-]", herobase.Net.Hp_recovery);
+			if (herobase.Net.Energy_recovery != 0)
+				AddPropertyItem ("[ff8c00]能量回复[-]", herobase.Net.Energy_recovery);
+			if (herobase.Net.Dodge != 0)
+				AddPropertyItem ("[ff8c00]闪避[-]", herobase.Net.Dodge);
+			if (herobase.Net.Physical_penetration != 0)
+				AddPropertyItem ("[ff8c00]物理穿透[-]", herobase.Net.Physical_penetration);
+			if (herobase.Net.Spell_penetration != 0)
+				AddPropertyItem ("[ff8c00]法术穿透[-]", herobase.Net.Spell_penetration);
+			if (herobase.Net.Bloodsucking_lv != 0)
+				AddPropertyItem ("[ff8c00]吸血等级[-]", herobase.Net.Bloodsucking_lv);
+			if (herobase.Net.Addition_treatment != 0)
+				AddPropertyItem ("[ff8c00]治疗技能加成[-]", herobase.Net.Addition_treatment);
 		}
 
 		void AddPropertyItem (string str, float num)

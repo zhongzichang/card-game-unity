@@ -42,7 +42,7 @@ namespace TangGame.UI
     }
 
     private string GetIconFrameName(HeroItemData data){
-      return "hero_frame_" + data.rank.ToString();
+      return "hero_frame_" + data.rank_color.ToString();
     }
   }
 }

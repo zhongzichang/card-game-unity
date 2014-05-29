@@ -11,21 +11,12 @@ namespace TangLevel
     private Transform myTransform;
 
 
+    #region MonoMethods
     void Awake ()
     {
       myTransform = transform;
     }
-    // Update is called once per frame
-    void Update ()
-    {
-      if (isPlay) {
-	
-        if (!animation.isPlaying) {
-          GobjManager.Release (gameObject);
-        }
 
-      }
-    }
 
     void OnEnable ()
     {
@@ -34,10 +25,10 @@ namespace TangLevel
 
         // 绑定到目标身上
         myTransform.localPosition = w.source.transform.localPosition + OFFSET;
-        //myTransform.localPosition = Vector3.zero;
+        myTransform.localPosition = Vector3.zero;
 
       } else {
-        GobjManager.Release (gameObject);
+        StartRelease ();
       }
 
       // 关卡控制
@@ -45,26 +36,38 @@ namespace TangLevel
       LevelController.RaiseResume += OnResume;
     }
 
+    void OnDisable(){
+
+      // 关卡控制
+      LevelController.RaisePause -= OnPause;
+      LevelController.RaiseResume -= OnResume;
+    }
+    #endregion
+
+    #region AnimationEvents
+    public void OnAnimationEnd(){
+      StartRelease ();
+    }
+    #endregion
+
+    #region PublicMethods
     public override void Play ()
     {
       isPlay = true;
-      animation.Play ();
+      animator.speed = 1F;
     }
 
     public override void Pause ()
     {
       isPlay = false;
-      foreach (AnimationState state in animation) {
-        state.speed = 0;
-      }
+      animator.speed = 0F;
     }
 
     public override void Resume ()
     {
       isPlay = true;
-      foreach (AnimationState state in animation) {
-        state.speed = 1;
-      }
+      animator.speed = 1F;
     }
+    #endregion
   }
 }

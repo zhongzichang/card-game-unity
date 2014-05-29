@@ -19,7 +19,7 @@ namespace TangGame.UI
 			this.data = data;
 			if (data != null) {
         this.propsIconSprite.spriteName = data.data.icon;
-				this.frameSprite.spriteName = Global.GetPropFrameName(data.data.upgrade);
+				this.frameSprite.spriteName = Global.GetPropFrameName(data.data.rank);
 				if (data.net != null) {
 					string str;
 					if (data.net.count < count) {

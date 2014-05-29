@@ -48,7 +48,7 @@ namespace TangGame.UI
         battleResultHeroData.maxExp = battleResultHeroData.exp = 100;
         battleResultHeroData.level = 20;
         battleResultHeroData.levelUp = false;
-        battleResultHeroData.upgrade = 2;
+        battleResultHeroData.rank = 2;
         data.herosList.Add (battleResultHeroData);
       }
 
@@ -77,7 +77,7 @@ namespace TangGame.UI
         hero.lineType = 3;
       }
       hero.name = "不告诉你";
-      hero.rank = Random.Range (1, 10);
+      hero.rank_color = Random.Range (1, 10);
       hero.level = Random.Range (1, 99);
       hero.stars = Random.Range (1, 5);
 
@@ -92,7 +92,7 @@ namespace TangGame.UI
       HeroItemData enemy = new HeroItemData ();
       enemy.id = enemyId;
       enemy.name = "可怕的狗娃";
-      enemy.rank = Random.Range(1, 10);
+      enemy.rank_color = Random.Range(1, 10);
       enemy.level = Random.Range(1, 99);
       enemy.stars = Random.Range(1, 5);
       return enemy;
@@ -103,7 +103,7 @@ namespace TangGame.UI
       item.id = rewardId;
       item.name = "东南枝";
       item.type = Random.Range (1, 3);
-      item.rank = Random.Range (1, 5);
+      item.rank_color = Random.Range (1, 5);
       item.minLevel = 20;
       item.goldCost = 4000;
       item.detailDesc = "生命回复-100";

@@ -92,7 +92,7 @@ namespace TangGame
 	
     // **********************装备升级提示*************************//
     /** 装备升级的条件不满足 */
-    public const short EQUIP_UPGRADE_CONDITION_NOT_SATISFIED = 30040;
+    public const short EQUIP_rank_CONDITION_NOT_SATISFIED = 30040;
     /** 已为最高级，无法继续升级/强化 **/
     public const short EQUIP_ALREADY_TOP = 30041;
     /** 装备的使用等级超过了玩家的等级 **/
