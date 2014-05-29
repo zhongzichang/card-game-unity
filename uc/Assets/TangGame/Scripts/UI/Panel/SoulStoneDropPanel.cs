@@ -69,15 +69,16 @@ namespace TangGame.UI
 
 		public void Flush (HeroBase herobase)
 		{
-			propsRelationData = PropsCache.instance.GetPropsRelationData(herobase.Xml.soul_rock_id);
+			propsRelationData = PropsCache.instance.GetPropsRelationData (herobase.Xml.soul_rock_id);
 			SetAvatarFrame (herobase.Net.rank);
 			SetAvatarIcon (herobase.Xml.avatar);
 			SetNameLabel (herobase.Xml.name);
-			foreach (Xml.LevelData levelData in propsRelationData) {
+			foreach (Xml.LevelData levelData in propsRelationData.levels) {
 				AddStageDropItem (levelData);
 			}
 
 		}
+
 		public void SetAvatarFrame (int rank)
 		{
 			AvatarFrame.GetComponent<UISprite> ().spriteName 
