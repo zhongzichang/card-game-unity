@@ -16,7 +16,7 @@ namespace TangLevel
     /// <summary>
     /// 命中目标
     /// </summary>
-    public void Hit(){
+    public virtual void Hit(){
 
       HeroBhvr heroBhvr = w.target.GetComponent<HeroBhvr> ();
 

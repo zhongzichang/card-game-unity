@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using TangUtils;
 
 namespace TangLevel
 {
@@ -15,10 +16,14 @@ namespace TangLevel
     /// 世界位置发生变化
     /// </summary>
     public event EventHandler RaisePosChanged;
+
+    public Transform myTransform;
     // speed
     public float speed;
     // stopping distance
     public float stoppingDistance;
+    private Vector3 lastScreenPos = Vector3.zero;
+    private Vector3 lastPos = Vector3.zero;
     // destination
     public float destination {
       private set;
@@ -29,9 +34,6 @@ namespace TangLevel
       private set;
       get;
     }
-
-    public Transform myTransform;
-    private Vector3 lastScreenPos = Vector3.zero;
     // Use this for initialization
     void Start ()
     {
@@ -51,12 +53,7 @@ namespace TangLevel
 
           ResetPath ();
 
-          // TODO 判断该位置是否有人，有则往中间的位置移动
-          /*
-          List<GameObject> heroGobjs = HeroSelector.FindGobjsAtVerticalLine (localPosition);
-          foreach (GameObject g in heroGobjs) {
-
-          }*/
+          // 获取最佳位置
           myTransform.localPosition = PositionHelper.FindHeroBestPos (gameObject);
 
         } else {
@@ -66,22 +63,33 @@ namespace TangLevel
           float offsetx = Mathf.Lerp (localPosition.x, destination, fraction);
 
           Vector3 npos = new Vector3 (offsetx, localPosition.y, 
-            Config.HERO_POS_MIN_Z + (localPosition.y-Config.BOTTOM_BOUND+1)*10);
+                           Config.HERO_POS_MIN_Z + (localPosition.y - Config.BOTTOM_BOUND + 1) * 10);
           myTransform.localPosition = npos;
 
-          // 屏幕位置改变通知
-          if (raiseScrPosChanged != null) {
-            Vector3 screePos = Camera.main.WorldToScreenPoint (npos);
-            if (screePos != lastScreenPos) {
-              raiseScrPosChanged (screePos);
-              lastScreenPos = screePos;
-            }
-          }
-          // 位置改变通知
-          if (RaisePosChanged != null) {
-            RaisePosChanged (this, EventArgs.Empty);
+        }
+
+      }
+
+      Vector3 pos = myTransform.localPosition;
+
+      // 比较xy值，判断角色的位置是否发生变化
+      if (!VectorUtil.EqualsIntXY (pos, lastPos)) {
+
+        // 屏幕位置改变通知
+        if (raiseScrPosChanged != null) {
+          Vector3 screePos = Camera.main.WorldToScreenPoint (pos);
+          if (screePos != lastScreenPos) {
+            raiseScrPosChanged (screePos);
+            lastScreenPos = screePos;
           }
         }
+
+        // 位置改变通知
+        if (RaisePosChanged != null) {
+          RaisePosChanged (this, EventArgs.Empty);
+        }
+
+        lastPos = pos;
       }
     }
 
