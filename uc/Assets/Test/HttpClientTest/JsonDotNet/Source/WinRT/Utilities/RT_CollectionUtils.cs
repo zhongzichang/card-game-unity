@@ -211,7 +211,7 @@ namespace Newtonsoft.Json.Utilities
     private static void CopyFromJaggedToMultidimensionalArray(IList values, Array multidimensionalArray, int[] indices)
     {
       int dimension = indices.Length;
-      if (dimension == multidimensionalArray.Rank)
+      if (dimension == multidimensionalArray.rank_color)
       {
         multidimensionalArray.SetValue(JaggedArrayGetValue(values, indices), indices);
         return;
@@ -250,11 +250,11 @@ namespace Newtonsoft.Json.Utilities
       return currentList;
     }
 
-    public static Array ToMultidimensionalArray(IList values, Type type, int rank)
+    public static Array ToMultidimensionalArray(IList values, Type type, int rank_color)
     {
       IList<int> dimensions = GetDimensions(values);
 
-      while (dimensions.Count < rank)
+      while (dimensions.Count < rank_color)
       {
         dimensions.Add(0);
       }

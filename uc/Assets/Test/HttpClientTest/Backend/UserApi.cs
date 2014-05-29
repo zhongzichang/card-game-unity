@@ -17,7 +17,7 @@ namespace ClientDemoTest
 //    public int configId;
 //    public int level;
 //    public long exp;
-//    public int upgrade;
+//    public int rank;
 //    public int evolve;
 //    public int skillCount;
 //    public long lastUpSkillTime;

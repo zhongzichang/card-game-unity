@@ -21,12 +21,12 @@ namespace TangGame.UI{
       }
       if(this.data == null){return;}
       PropsHeroEquipData propsHeroEquipData = this.data as PropsHeroEquipData;
-      frame.spriteName = Global.GetHeroIconFrame(propsHeroEquipData.upgrade);
+      frame.spriteName = Global.GetHeroIconFrame(propsHeroEquipData.rank);
       icon.spriteName = propsHeroEquipData.data.avatar;
-      int index = Global.GetHeroUpgradeRem(propsHeroEquipData.upgrade);
+      int index = Global.GetHerorankRem(propsHeroEquipData.rank);
       string addStr = "";
       if(index > 0){
-        addStr = "[" + Global.GetHeroUpgradeHexColor(propsHeroEquipData.upgrade) + "]+" + Global.GetHeroUpgradeRem(propsHeroEquipData.upgrade) + "[-]";
+        addStr = "[" + Global.GetHerorankHexColor(propsHeroEquipData.rank) + "]+" + Global.GetHerorankRem(propsHeroEquipData.rank) + "[-]";
       }
       label.text = "[FEDEBB]" + propsHeroEquipData.data.name + "[-]" + addStr;
     }

@@ -92,7 +92,7 @@ namespace TangGame.UI
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
 			this.UpPropsIcon (data.data.icon);
-			this.UpPropsFrames (data.data.upgrade);
+			this.UpPropsFrames (data.data.rank);
 			this.UpPropsInfo (data);
 			this.UpPropsName (data.data.name);
 			this.UpPropsPrice (data.data.selling_price);
@@ -129,9 +129,9 @@ namespace TangGame.UI
 		/// Ups the properties frames.
 		/// 更新阶级
 		/// </summary>
-		public void UpPropsFrames (int upgrade)
+		public void UpPropsFrames (int rank)
 		{
-			this.Frames.GetComponent<UISprite> ().spriteName = Global.GetPropFrameName (upgrade);
+			this.Frames.GetComponent<UISprite> ().spriteName = Global.GetPropFrameName (rank);
 		}
 
 		/// <summary>

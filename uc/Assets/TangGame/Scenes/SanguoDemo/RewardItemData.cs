@@ -17,7 +17,7 @@ namespace TangGame.UI
     /// <summary>
     /// 4 品质      一个标记，用于物品外边框的显示，及一些规则的判断。白色，黄色，绿色，蓝色，紫色。                
     /// </summary>
-    public int rank;
+    public int rank_color;
     /// <summary>
     /// 买入价格      金币价格
     /// </summary>

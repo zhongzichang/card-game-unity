@@ -22,7 +22,7 @@ namespace TangGame.Xml
     /// 星级
     public int evolve;
     /// 品阶
-    public int upgrade;
+    public int rank;
 
 		/// 力量
 		public float strength;

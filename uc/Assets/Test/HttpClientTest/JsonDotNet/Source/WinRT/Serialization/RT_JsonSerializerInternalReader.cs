@@ -610,7 +610,7 @@ To fix this error either change the JSON to a {1} or change the deserialized typ
         {
           if (arrayContract.IsMultidimensionalArray)
           {
-            list = CollectionUtils.ToMultidimensionalArray(list, arrayContract.CollectionItemType, contract.CreatedType.GetArrayRank());
+            list = CollectionUtils.ToMultidimensionalArray(list, arrayContract.CollectionItemType, contract.CreatedType.GetArrayrank_color());
           }
           else if (arrayContract.IsArray)
           {
@@ -1013,7 +1013,7 @@ To fix this error either change the JSON to a {1} or change the deserialized typ
 
     private object PopulateMultidimensionalArray(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, string id)
     {
-      int rank = contract.UnderlyingType.GetArrayRank();
+      int rank_color = contract.UnderlyingType.GetArrayrank_color();
 
       if (id != null)
         AddReference(reader, id, list);
@@ -1033,7 +1033,7 @@ To fix this error either change the JSON to a {1} or change the deserialized typ
       {
         int initialDepth = reader.Depth;
 
-        if (listStack.Count == rank)
+        if (listStack.Count == rank_color)
         {
           try
           {

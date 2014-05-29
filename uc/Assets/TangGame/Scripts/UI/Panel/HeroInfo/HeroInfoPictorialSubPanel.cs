@@ -51,8 +51,8 @@ namespace TangGame.UI
 			SetHeroName (data.Xml.name);
 			SetPropertyType (data.Attribute_Type);
 			SetCardTexture (data.Xml.portrait);
-			SetBackground ((int)data.Net.upgrade);
-			SetStarList (data.Net.evolve);
+			SetBackground ((int)data.Net.rank);
+			SetStarList (data.Net.star);
 		}
 
 		void SetStarList (int count)
@@ -96,9 +96,9 @@ namespace TangGame.UI
 			}
 		}
 
-		void SetBackground (int upgrade)
+		void SetBackground (int rank)
 		{
-			Foreground.GetComponent<UISprite> ().color = Global.GetHeroUpgradeColor(upgrade);
+			Foreground.GetComponent<UISprite> ().color = Global.GetHerorankColor(rank);
 		}
 
 		/// <summary>
