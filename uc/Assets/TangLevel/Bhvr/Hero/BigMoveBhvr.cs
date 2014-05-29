@@ -174,7 +174,6 @@ namespace TangLevel
     /// </summary>
     public void StartBigMove ()
     {
-      Debug.Log ("StartBigMove");
 
       BreakLock ();
 
@@ -196,7 +195,6 @@ namespace TangLevel
     /// </summary>
     public void StopBigMove ()
     {
-      Debug.Log ("StopBigMove");
       myTransform.localPosition = backupPos;
 
       statusBhvr.IsBigMove = false;
