@@ -96,7 +96,7 @@ namespace TangGame.UI
 			if (obj != null) {
 				obj.transform.parent = AnimatorObj.transform;
 				obj.transform.localPosition = Vector3.zero;
-				obj.transform.localScale = new Vector3 (60, 60, 1);
+				obj.transform.localScale = new Vector3 (18, 18, 1);
 				obj.SetActive (true);
 				demoBhvr = obj.GetComponent<TDB.DemoBhvr> ();
 				Renderer objRender = obj.transform.GetComponentInChildren<Renderer> ();
