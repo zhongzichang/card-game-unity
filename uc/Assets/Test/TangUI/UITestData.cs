@@ -6,7 +6,7 @@ using ClientDemoTest;
 
 public class UITestData : MonoBehaviour
 {
-  private LoginService loginService = new LoginService ();
+  private UserApi userApi = new UserApi ();
 	// Use this for initialization
 	void Start ()
 	{
@@ -18,7 +18,7 @@ public class UITestData : MonoBehaviour
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);
     string userId = "1";
-    loginService.getHeroes (userId, getHeroesResponseHandler);
+    userApi.getHeroes (userId, getHeroesResponseHandler);
 	}
 	/// <summary>
 	/// Gets the heroes response handler.
@@ -26,8 +26,9 @@ public class UITestData : MonoBehaviour
 	/// <param name="result">Result.</param>
 	private void getHeroesResponseHandler (HeroResult result)
 	{
-		HeroNet[] heroNets = (HeroNet[])result.data;
-		foreach (HeroNet heroNet in heroNets) {
+    HeroNetItem[] heroNetItems = (HeroNetItem[])result.data;
+    foreach (HeroNetItem heroNetItem in heroNetItems) {
+      HeroNet heroNet = heroNetItem.Data;
 			if (TangGame.UI.HeroCache.instance.heroBeseTable.ContainsKey (heroNet.configId)) {
 				TangGame.UI.HeroCache.instance.heroBeseTable [heroNet.configId].Net = heroNet;
 			}	
