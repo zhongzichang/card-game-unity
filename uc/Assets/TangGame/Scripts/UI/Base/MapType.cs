@@ -9,7 +9,7 @@ namespace TangGame.UI{
     /// 普通
     None = 0,
     /// 精英
-    Normal,
+    Normal = 1,
     /// 精英
     Elite,
     /// 经验副本
