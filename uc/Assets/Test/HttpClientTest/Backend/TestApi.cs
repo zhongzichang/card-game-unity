@@ -9,7 +9,7 @@ namespace ClientDemoTest
     public string user_url;
   }
 
-  public class HttpsTestService {
+  public class TestApi {
 
     public void httpsLocal(System.Action<GithubApiResult> responseHandler) {
       System.Action<string> handler = delegate(string jsonData){

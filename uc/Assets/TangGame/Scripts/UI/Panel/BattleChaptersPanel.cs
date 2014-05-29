@@ -154,12 +154,34 @@ namespace TangGame.UI
 
     /// 普通按钮点击处理
     private void NormalButtonClickHandler(GameObject go){
+      UIButton btn = normalButton.GetComponent<UIButton>();
+      if(btn.normalSprite == "menuBtnSelected"){
+        return;
+      }
+      btn.normalSprite = "menuBtnSelected";
+      btn.hoverSprite = "menuBtnSelected";
+      normalButton.spriteName = "menuBtnSelected";
 
+      btn = eliteButton.GetComponent<UIButton>();
+      btn.normalSprite = "menuBtn";
+      btn.hoverSprite = "menuBtn";
+      eliteButton.spriteName = "menuBtn";
     }
 
     /// 精英按钮点击处理
     private void EliteButtonClickHandler(GameObject go){
-      
+      UIButton btn = eliteButton.GetComponent<UIButton>();
+      if(btn.normalSprite == "menuBtnSelected"){
+        return;
+      }
+      btn.normalSprite = "menuBtnSelected";
+      btn.hoverSprite = "menuBtnSelected";
+      eliteButton.spriteName = "menuBtnSelected";
+
+      btn = normalButton.GetComponent<UIButton>();
+      btn.normalSprite = "menuBtn";
+      btn.hoverSprite = "menuBtn";
+      normalButton.spriteName = "menuBtn";
     }
 
     /// 显示对象点击处理
@@ -203,8 +225,10 @@ namespace TangGame.UI
     /// 更新页数指示
     private void UpdatePageIndicators(int index){
       Transform t = pageIndicators.GetChild(index);
-      UIToggle toggle = t.GetComponent<UIToggle>();
-      toggle.value = true;
+      if(t != null){
+        UIToggle toggle = t.GetComponent<UIToggle>();
+        toggle.value = true;
+      }
     }
 
     /// 更新点的显示

@@ -499,7 +499,7 @@ namespace TangLevel
 			skills.Add (MockXumingSkill ());
 			skills.Add (MockMiaoshouhuichunSkill());
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 1, 2 ,3};
+			hero.skillQueue = new int[]{ 0, 1, 2};
 			tmp++;
 			return hero;
 		}
@@ -767,7 +767,7 @@ namespace TangLevel
     public static Effector MockLanding(){
 
       Effector effector = new Effector ();
-      effector.specialName = "fx_langding";
+      effector.specialName = "fx_landing";
       return effector;
     }
 		#endregion

@@ -5,7 +5,34 @@ using System.Text;
 
 namespace ClientDemoTest
 {
-  public class RestApi : MonoBehaviour {
+  public class RestApiParam
+  {
+    private string appId = "appId";
+    private string appKey = "appKey";
+    private string accessToken = "accessToken";
+
+    private WWWForm form =  new WWWForm();
+    public WWWForm Form{
+      get{ return form; }
+    }
+
+    public RestApiParam(){
+      form.headers["Content-Type"] = "application/json";
+      form.headers["x-appid"] = appId;
+      form.headers["x-appkey"] = appKey;
+      form.headers["Authorization"] = accessToken;
+    }
+
+    public void AddField(string key, string val){
+      form.AddField (key, val);
+    }
+
+    public void AddBinaryData(string jsonData){
+      form.AddBinaryData("data", Encoding.UTF8.GetBytes(jsonData));
+    }
+  }
+
+  public class RestApi : MonoBehaviour{
 
     private static RestApi _instance;
     public static RestApi Instance {
@@ -19,20 +46,16 @@ namespace ClientDemoTest
       }
     }
 
-    private string host = "http://localhost:4004";
+    private string host = "http://192.168.1.101:4004";
     public string Host{
       get{ return host; }
       set{ host = value; }
     }
 
-    private string appId = "appId";
-    private string appKey = "appKey";
-    private string accessToken = "accessToken";
-
     public void HttpGet(string path, System.Action<string> getResponseHandler){
       string url = host + path;
+      Debug.Log (url);
       StartCoroutine(RestApi.Instance.WaitForResponse(new WWW(url), getResponseHandler));
-
     }
 
     public void HttpsGet(string path, System.Action<string> getResponseHandler){
@@ -40,22 +63,9 @@ namespace ClientDemoTest
       StartCoroutine(RestApi.Instance.WaitForResponse(new WWW(url), getResponseHandler));
     }
 
-    public void HttpPost(string path, string jsonData, System.Action<string> postResponseHandler){
-      WWWForm form = new WWWForm();
-      Hashtable headers = form.headers;
-      headers["Content-Type"] = "application/json";
-      headers["x-appid"] = appId;
-      headers["x-appkey"] = appKey;
-      if(accessToken != null)
-        headers["Authorization"] = accessToken;
-
-      form.AddBinaryData("data", Encoding.UTF8.GetBytes(jsonData));
-
-      // string url = "https://api.kii.com/api/apps/" + appId + "/server-code/versions/current/" + endpoint;
-//      string url = host + "hero/heroList?userId=1";
+    public void HttpPost(string path, RestApiParam param, System.Action<string> postResponseHandler){
       string url = host + path;
-      WWW www = new WWW(url, form);
-      StartCoroutine(RestApi.Instance.WaitForResponse(www, postResponseHandler));
+      StartCoroutine(RestApi.Instance.WaitForResponse(new WWW(url, param.Form), postResponseHandler));
     }
 
     public IEnumerator WaitForResponse(WWW www, System.Action<string> onComplete)
