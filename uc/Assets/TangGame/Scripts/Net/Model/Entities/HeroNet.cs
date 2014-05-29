@@ -25,11 +25,11 @@ namespace TangGame.Net
 		/// <summary>
 		/// 英雄品质
 		/// </summary>
-		public int upgrade;
+		public int rank;
 		/// <summary>
 		/// 英雄星级
 		/// </summary>
-		public int evolve;
+		public int star;
 
 		public long lastUpSkillTime;
 		public int skillCount;

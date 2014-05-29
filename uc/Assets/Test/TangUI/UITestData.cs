@@ -35,7 +35,7 @@ public class UITestData : MonoBehaviour
 		}
 	}
 
-	void SetHeroBase (int id,int evolve,int exp,int upgrade,int heroId,int level,int equipId,int equipLv,int equipExp,int equipLocal)
+	void SetHeroBase (int id,int evolve,int exp,int rank,int heroId,int level,int equipId,int equipLv,int equipExp,int equipLocal)
 	{
 
 		TangGame.UI.HeroBase herobase;
@@ -45,9 +45,9 @@ public class UITestData : MonoBehaviour
 		herobase = TangGame.UI.HeroCache.instance.heroBeseTable [id];
 		herobase.Net = new TangGame.Net.HeroNet ();
 		herobase.Net.configId = herobase.Xml.id;
-		herobase.Net.evolve = evolve;
+		herobase.Net.star = evolve;
 		herobase.Net.exp = exp;
-		herobase.Net.upgrade = upgrade;
+		herobase.Net.rank = rank;
 		herobase.Net.id = heroId;
 		herobase.Net.level = level;
 		herobase.Net.equipList = new TangGame.Net.EquipNet[6];

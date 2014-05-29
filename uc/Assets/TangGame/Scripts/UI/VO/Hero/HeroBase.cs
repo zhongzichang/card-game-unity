@@ -121,7 +121,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Strength_growth {
 			get {
-				return xml.GetStrengthGrowth (net.evolve);
+				return xml.GetStrengthGrowth (net.star);
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Intellect_growth {
 			get {
-				return xml.GetIntellectGrowth (net.evolve);
+				return xml.GetIntellectGrowth (net.star);
 			}
 		}
 
@@ -139,7 +139,7 @@ namespace TangGame.UI
 		/// </summary>
 		public float Agile_growth {
 			get {
-				return xml.GetAgileGrowth (net.evolve);
+				return xml.GetAgileGrowth (net.star);
 			}
 		}
 
@@ -155,7 +155,7 @@ namespace TangGame.UI
 		public int Score {
 			get {
 				//TODO 修正算法
-				return Net.level * (Net.evolve + Net.upgrade);
+				return Net.level * (Net.star + Net.rank);
 			}
 		}
 
@@ -178,7 +178,7 @@ namespace TangGame.UI
 		private int[] Equip_Ids {
 			get { 
 				string[] strs = (string[])Utils.SplitStrByBraces (xml.equip_id_list).ToArray (typeof(string));
-				return Utils.SplitStrByCommaToInt (strs [net.upgrade - 1]);
+				return Utils.SplitStrByCommaToInt (strs [net.rank - 1]);
 			}
 		}
 
@@ -196,10 +196,10 @@ namespace TangGame.UI
 			}
 		}
 
-		public static RankEnum GetHeroesRankEnum (int rank)
+		public static rank_colorEnum GetHeroesrank_colorEnum (int rank_color)
 		{
-			float val = (float)Mathf.Sqrt ((float)(2 * rank + 0.25)) - (float)0.5;
-			return (RankEnum)(int)(val - 1);
+			float val = (float)Mathf.Sqrt ((float)(2 * rank_color + 0.25)) - (float)0.5;
+			return (rank_colorEnum)(int)(val - 1);
 		}
 	}
 
@@ -219,7 +219,7 @@ namespace TangGame.UI
 		LATER
 	}
 
-	public enum RankEnum
+	public enum rank_colorEnum
 	{
 		NONE,
 		WHITE,

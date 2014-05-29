@@ -61,14 +61,14 @@ namespace TangGame.UI
 		public void Flush (HeroBase hero)
 		{
 			this.data = hero;
-			UpHeroRank ((int)data.Net.upgrade);
+			UpHerorank_color ((int)data.Net.rank);
 			UpHeroAvatarSprite (data.Xml.avatar,hero.Islock);
 			UpHeroName (data.Xml.name);
 			Locked (data.Islock);
 			UpLevel (data.Net.level);
 			UpHeroType (data.Attribute_Type);
 			UpProps (hero);
-			SetStarList (data.Net.evolve);
+			SetStarList (data.Net.star);
 			SetFragments (data);
 			//			SetTag ();TODO
 		}
@@ -80,7 +80,7 @@ namespace TangGame.UI
 		/// <param name="hero">Hero.</param>
 		void SetFragments (HeroBase hero)
 		{
-			if (hero.Net.evolve != 0 || !hero.Islock) {
+			if (hero.Net.star != 0 || !hero.Islock) {
 				return;
 			}
 			int rockId = hero.Xml.soul_rock_id;
@@ -149,9 +149,9 @@ namespace TangGame.UI
 			this.HeroName.text = heroName;
 		}
 
-		private void UpHeroRank (int heroRank)
+		private void UpHerorank_color (int herorank_color)
 		{
-			this.HeroAvatarFrame.spriteName = Global.GetHeroIconFrame (heroRank);;
+			this.HeroAvatarFrame.spriteName = Global.GetHeroIconFrame (herorank_color);;
 		}
 
 		private void UpHeroFragments (int fragmentsCount, int fragmentsCountMax)

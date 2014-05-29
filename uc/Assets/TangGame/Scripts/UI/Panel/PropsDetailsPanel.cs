@@ -75,7 +75,7 @@ namespace TangGame.UI{
         return;
       }
 
-      frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.upgrade);
+      frame.spriteName = Global.GetPropFrameName((PropsType)props.type, props.rank);
       icon.spriteName = props.icon;
 
       isShow = data != null;

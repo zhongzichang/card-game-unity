@@ -11,7 +11,7 @@ namespace TangGame.UI
 		///进化按钮
 		public GameObject EvolveButton;
 		///进阶按钮
-		public GameObject UpgradeButton;
+		public GameObject rankButton;
 		///属性详情按钮
 		public GameObject PropertyInfoButton;
 		///技能面板按钮
@@ -126,18 +126,18 @@ namespace TangGame.UI
 			LoadAnimatorObj (herobase.Xml.model);
 			this.heroBase = herobase;
 			this.SetHeroName (herobase.Xml.name);
-			this.SetHeroNameFrame (herobase.Net.upgrade);
+			this.SetHeroNameFrame (herobase.Net.rank);
 			this.SetLevel (herobase.Net.level);
 			this.SetScore (herobase.Score);
 			this.SetExp (herobase.Net.exp, Config.levelUpXmlTable [herobase.Net.level].val);
-			this.SetStarList (herobase.Net.evolve, false);
+			this.SetStarList (herobase.Net.star, false);
 			int packageCount = 0;
 			if (PropsCache.instance.propsTable.ContainsKey (herobase.Xml.soul_rock_id)) {
 				packageCount = PropsCache.instance.propsTable [herobase.Xml.soul_rock_id].net.count;
 			}
 			int mPackageCountMax = -1;
-			if (Config.evolveXmlTable.ContainsKey (herobase.Net.evolve + 1)) {
-				mPackageCountMax = Config.evolveXmlTable [herobase.Net.evolve + 1].val;
+			if (Config.evolveXmlTable.ContainsKey (herobase.Net.star + 1)) {
+				mPackageCountMax = Config.evolveXmlTable [herobase.Net.star + 1].val;
 			}
 			this.SetHeroPackageSoulstone (packageCount, mPackageCountMax);
 			this.SetEquipList (herobase);
@@ -160,9 +160,9 @@ namespace TangGame.UI
 		/// <summary>
 		/// Sets the hero name frame.设置英雄名字框阶级
 		/// </summary>
-		void SetHeroNameFrame (int upgrade)
+		void SetHeroNameFrame (int rank)
 		{
-			//			HeroNameFrame.GetComponent<UISprite> ().spriteName = Global.GetHeroNameFrame (upgrade); //+ rank; 
+			//			HeroNameFrame.GetComponent<UISprite> ().spriteName = Global.GetHeroNameFrame (rank); //+ rank_color; 
 			//TODO  需要修改
 		}
 

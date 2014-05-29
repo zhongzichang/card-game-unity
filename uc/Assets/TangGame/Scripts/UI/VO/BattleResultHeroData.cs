@@ -19,7 +19,7 @@ namespace TangGame.UI{
 		/// 战斗中的最大输出伤害
 		public int maxDamage;
 		/// 品阶
-		public int upgrade = 1;
+		public int rank = 1;
 		/// 星阶
 		public int evolve = 1;
 

@@ -27,7 +27,7 @@ namespace TangGame.UI{
 			}else{
 				numLabel.text = props.net.count.ToString();
 			}
-			frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.upgrade);
+			frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.rank);
 			icon.spriteName = props.data.icon;
 		}
 

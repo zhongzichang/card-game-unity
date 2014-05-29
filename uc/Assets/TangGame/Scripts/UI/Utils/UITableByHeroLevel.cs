@@ -16,7 +16,7 @@ public class UITableByHeroLevel : UITable
 			return val;
 		val = Bdata.Net.level.CompareTo (Adata.Net.level);
 		if (val == 0) {
-			val = Bdata.Net.upgrade.CompareTo(Adata.Net.upgrade);
+			val = Bdata.Net.rank.CompareTo(Adata.Net.rank);
 		}
 
 		return val;

@@ -18,7 +18,7 @@ namespace TangEffect
 
 
     public const int SELECTED_ID = 1;
-    public const int UPGRADE_ID = 2;
+    public const int rank_ID = 2;
     public const int HERO_SELECTED_ID = 3;
     
 
@@ -35,7 +35,7 @@ namespace TangEffect
     /// <summary>
     ///   升级效果
     /// </summary>
-    private GameObject upgradeEffectGobj = null;
+    private GameObject rankEffectGobj = null;
 
     /// <summary>
     ///   英雄被选中的效果
@@ -70,12 +70,12 @@ namespace TangEffect
     /// <summary>
     ///   获取英雄升级特效
     /// </summary>
-    public GameObject GetUpgradeEffectGobj()
+    public GameObject GetrankEffectGobj()
     {
-      if( upgradeEffectGobj == null )
-	upgradeEffectGobj = Get(UPGRADE_ID);
+      if( rankEffectGobj == null )
+	rankEffectGobj = Get(rank_ID);
 
-      return upgradeEffectGobj;
+      return rankEffectGobj;
     }
 
     /// <summary>

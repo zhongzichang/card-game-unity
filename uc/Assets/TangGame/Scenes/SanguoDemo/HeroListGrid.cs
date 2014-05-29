@@ -47,7 +47,7 @@ namespace TangGame.UI
       if (ret == 0) {
         ret = rightObj.data.stars.CompareTo(leftObj.data.stars);
         if (ret == 0) {
-          return  rightObj.data.rank.CompareTo(leftObj.data.rank);
+          return  rightObj.data.rank_color.CompareTo(leftObj.data.rank_color);
         }
       }
       return ret;

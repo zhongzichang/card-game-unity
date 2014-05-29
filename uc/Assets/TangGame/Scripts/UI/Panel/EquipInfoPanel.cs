@@ -117,7 +117,7 @@ namespace TangGame.UI
 				return;
 			Equip data = bean.props as Equip;
 			this.UpPropsIcon (data.data.icon);
-			this.UpPropsFrames (data.data.upgrade);
+			this.UpPropsFrames (data.data.rank);
 			this.UpPropsInfo (data); //TODO 追加装备附魔信息
 			this.UpPropsName (data.data.name);
 			this.UpPropsLvLabel (data.data.level.ToString ());
@@ -155,9 +155,9 @@ namespace TangGame.UI
 		/// Ups the properties frames.
 		/// 更新阶级
 		/// </summary>
-		public void UpPropsFrames (int upgrade)
+		public void UpPropsFrames (int rank)
 		{
-			this.Frames.GetComponent<UISprite> ().spriteName = Global.GetPropFrameName (upgrade);
+			this.Frames.GetComponent<UISprite> ().spriteName = Global.GetPropFrameName (rank);
 		}
 
 		/// <summary>
@@ -183,7 +183,7 @@ namespace TangGame.UI
 			//如果网络数据未空，说明你打开了错误的页面
 			if (data.net == null)
 				return;
-			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade,data.net.enchantsLv);
+			float enchantingVariable = Utils.EnchantingVariable (data.data.rank,data.net.enchantsLv);
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "";
 			if (PropsType.EQUIP == type) {

@@ -208,10 +208,10 @@ namespace TangGame.UI
 			if (lab != null)
 				lab.text = herobase.Xml.name;
 
-			int upgradeRem = Global.GetHeroUpgradeRem (herobase.Net.upgrade);
+			int rankRem = Global.GetHerorankRem (herobase.Net.rank);
 
-			if (upgradeRem > 0) {
-				lab.text += String.Format ("[000000] + {0}[-]", upgradeRem);
+			if (rankRem > 0) {
+				lab.text += String.Format ("[000000] + {0}[-]", rankRem);
 			}
 			SetEquipList (herobase);
 		}
@@ -230,7 +230,7 @@ namespace TangGame.UI
 			mEnExpCurrent = equipBase.net.enchantsExp;
 			propsCheckedCountTable.Clear ();
 			this.mEquipBase = equipBase;
-			enCXml = Config.enchantsConsumedXmlTable [equipBase.data.upgrade];
+			enCXml = Config.enchantsConsumedXmlTable [equipBase.data.rank];
 			int enLv = equipBase.net.enchantsLv;
 			int enNextLv = enLv + 1;
 			int enExp = equipBase.net.enchantsExp;
@@ -335,6 +335,7 @@ namespace TangGame.UI
 			foreach (Props props in PropsCache.instance.propsTable.Values) {
 				//如果附魔经验为零则标示该装备不能成为附魔的消耗品
 				if (props.data.enchant_points != 0) {
+				
 					AddPorpsItemToPropsTable (props);
 				}
 			}
@@ -549,7 +550,7 @@ namespace TangGame.UI
 
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "[000000]";
-			float enchantingVariable = Utils.EnchantingVariable (data.data.upgrade, data.net.enchantsLv);
+			float enchantingVariable = Utils.EnchantingVariable (data.data.rank, data.net.enchantsLv);
 			if (PropsType.EQUIP == type) {
 				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength > 0) {
 					infoStr += UIPanelLang.STRENGTH + ",";

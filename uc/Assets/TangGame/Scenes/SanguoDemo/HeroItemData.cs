@@ -24,7 +24,7 @@ namespace TangGame.UI
     /// <summary>
     /// 品阶 进阶加品阶，白，绿，蓝，紫
     /// </summary>
-    public int rank; 
+    public int rank_color; 
 
     /// <summary>
     /// 进化-加星，1-5

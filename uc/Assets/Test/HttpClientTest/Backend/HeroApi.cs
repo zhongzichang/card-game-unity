@@ -9,15 +9,15 @@ namespace ClientDemoTest
     public bool ok;
   }
 
-  public class UpgradeRankResult{
+  public class rankrank_colorResult{
     public bool ok;
   }
 
-  public class UpgradeStarResult{
+  public class rankStarResult{
     public bool ok;
   }
 
-  public class UpgradeSkillResult{
+  public class rankSkillResult{
     public bool ok;
   }
 
@@ -35,34 +35,34 @@ namespace ClientDemoTest
       RestApi.Instance.HttpPost (path, param, handler);
     }
 
-    public void upgradeRank (string heroId, System.Action<UpgradeRankResult> responseHandler){ 
+    public void rankrank_color (string heroId, System.Action<rankrank_colorResult> responseHandler){ 
       System.Action<string> handler = delegate(string jsonData){
-        UpgradeRankResult result = JsonConvert.DeserializeObject<UpgradeRankResult> (jsonData);
+        rankrank_colorResult result = JsonConvert.DeserializeObject<rankrank_colorResult> (jsonData);
         responseHandler (result);
       };
-      string path = "/upgradeRank";
+      string path = "/rankrank_color";
       RestApiParam param = new RestApiParam();
       param.AddField("heroId", heroId);
       RestApi.Instance.HttpPost (path, param, handler);
     }
 
-    public void upgradeStar(string heroId, System.Action<UpgradeStarResult> responseHandler){ 
+    public void rankStar(string heroId, System.Action<rankStarResult> responseHandler){ 
       System.Action<string> handler = delegate(string jsonData){
-        UpgradeStarResult result = JsonConvert.DeserializeObject<UpgradeStarResult> (jsonData);
+        rankStarResult result = JsonConvert.DeserializeObject<rankStarResult> (jsonData);
         responseHandler (result);
       };
-      string path = "/upgradeStar";
+      string path = "/rankStar";
       RestApiParam param = new RestApiParam();
       param.AddField("heroId", heroId);
       RestApi.Instance.HttpPost (path, param, handler);
     }
 
-    public void upgradeSkill(string heroId, string skillId, System.Action<UpgradeSkillResult> responseHandler) {
+    public void rankSkill(string heroId, string skillId, System.Action<rankSkillResult> responseHandler) {
       System.Action<string> handler = delegate(string jsonData){
-        UpgradeSkillResult result = JsonConvert.DeserializeObject<UpgradeSkillResult> (jsonData);
+        rankSkillResult result = JsonConvert.DeserializeObject<rankSkillResult> (jsonData);
         responseHandler (result);
       };
-      string path = "/upgradeSkill";
+      string path = "/rankSkill";
       RestApiParam param = new RestApiParam();
       param.AddField("heroId", heroId);
       param.AddField("skillId", skillId);

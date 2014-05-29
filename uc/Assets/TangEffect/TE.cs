@@ -107,14 +107,14 @@ namespace TangEffect
     /// <summary>
     ///   角色升级
     /// </summary>
-    public static void ActorUpgrade (long actorId)
+    public static void Actorrank (long actorId)
     {
 
       if (pool != null) {
         GameObject actorGobj = TS.TS.GetActorGameObject (actorId);
         if (actorGobj != null) {
           // 获取特效，将特效挂在被选中的人物身上
-          GameObject effectGobj = pool.GetUpgradeEffectGobj ();
+          GameObject effectGobj = pool.GetrankEffectGobj ();
           effectGobj.transform.parent = actorGobj.transform;
           effectGobj.transform.localPosition = Vector3.zero;
           effectGobj.SetActive (true);
