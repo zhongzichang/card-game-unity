@@ -22,7 +22,7 @@ namespace TangGame.UI{
       }
       if(this.data == null){return;}
       LevelData levelsData = this.data as LevelData;
-      icon.spriteName = levelsData.resources;
+      icon.spriteName = levelsData.icon;
       label.text = levelsData.name;
     }
 	}

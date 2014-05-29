@@ -29,10 +29,10 @@ namespace TangGame.UI{
           icon.spriteName = "stagecircle_passed";
           isClick = false;
         }else{
-          icon.spriteName = level.data.resources;
+          icon.spriteName = level.data.icon;
         }
       }else{
-        icon.spriteName = level.data.resources;
+        icon.spriteName = level.data.icon;
         if(level.net.star > 0){//创建星级
           GameObject go = UIUtils.Duplicate(BattleChaptersPanel.StarItem.gameObject, this.gameObject);
           starItem = go.GetComponent<BattleChapterStarItem>();
