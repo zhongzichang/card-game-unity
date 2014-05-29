@@ -3,8 +3,15 @@ using UnityEngine;
 
 namespace TangLevel
 {
-	public class Mocker
+  public class Mocker : MonoBehaviour
 	{
+
+    // Use this for initialization
+    void Start ()
+    {
+      Mocker.Configure ();
+    }
+
 		public static void Configure ()
 		{
 			Level level = MockGrassLevel ();
