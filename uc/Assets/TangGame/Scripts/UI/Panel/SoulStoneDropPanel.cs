@@ -48,16 +48,70 @@ namespace TangGame.UI
 		/// 面板标题
 		/// </summary>
 		public GameObject TitleLabel;
-		// Use this for initialization
+		PropsRelationData propsRelationData = null;
+		private object mParam;
+
+		public object param {
+			get { 
+				return mParam;
+			}
+			set {
+				mParam = value;
+			}
+		}
+
 		void Start ()
 		{
-	
+			SetBackLabel ("返回");
+			SetTitleLabel ("获得途径：");
+			SetNumLabel ("[c0ffff]未解锁[-]");
 		}
-	
-		// Update is called once per frame
-		void Update ()
+
+		public void Flush (HeroBase herobase)
 		{
-	
+			propsRelationData = PropsCache.instance.GetPropsRelationData(herobase.Xml.soul_rock_id);
+			SetAvatarFrame (herobase.Net.rank);
+			SetAvatarIcon (herobase.Xml.avatar);
+			SetNameLabel (herobase.Xml.name);
+			foreach (Xml.LevelData levelData in propsRelationData) {
+				AddStageDropItem (levelData);
+			}
+
+		}
+		public void SetAvatarFrame (int rank)
+		{
+			AvatarFrame.GetComponent<UISprite> ().spriteName 
+			= Global.GetHeroIconFrame (rank);
+		}
+
+		public void SetAvatarIcon (string avatarName)
+		{
+			AvatarIcon.GetComponent<UISprite> ().spriteName = avatarName;
+		}
+
+		public void SetNameLabel (string text)
+		{
+			NameLabel.GetComponent<UILabel> ().text = text;
+		}
+
+		public void SetNumLabel (string text)
+		{
+			NumLabel.GetComponent<UILabel> ().text = text;
+		}
+
+		public void SetTitleLabel (string text)
+		{
+			TitleLabel.GetComponent<UILabel> ().text = text;
+		}
+
+		public void SetBackLabel (string text)
+		{
+			BackLabel.GetComponent<UILabel> ().text = text;
+		}
+
+		public void AddStageDropItem (Xml.LevelData levelData)
+		{
+			//TODO 添加一个掉落关卡item
 		}
 	}
 }
