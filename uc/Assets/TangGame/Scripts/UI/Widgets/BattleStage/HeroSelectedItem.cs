@@ -25,7 +25,7 @@ namespace TangGame.UI
     private HeroItemData mData;
     public HeroItemData data{
       get { return mData; } 
-      set { mData=value; } 
+      set { mData=value; this.UpdateData();} 
     }
 
     private bool showLevel = true;
@@ -49,8 +49,16 @@ namespace TangGame.UI
       }
     }
 
-    public void Refresh(HeroItemData data){
-      this.mData = data;
+    public override void Start (){
+      this.started = true;
+      UpdateData();
+    }
+
+
+    public void UpdateData(){
+      if(!this.started){return;}
+      if(this.mData == null){return;}
+
       HeroData heroData = HeroCache.instance.GetHeroData(int.Parse(this.mData.id));
       if(heroData != null){
         icon.spriteName = heroData.avatar;

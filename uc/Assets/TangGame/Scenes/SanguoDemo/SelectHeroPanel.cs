@@ -20,6 +20,10 @@ namespace TangGame.UI
     public HeroItemObject heroItemObject;
     /// 已经选择上阵的英雄对象
     public HeroSelectedItem heroSelectedItem;
+    /// 菜单对象
+    public SimpleMenuItem[] menus = new SimpleMenuItem[]{};
+    /// 面板对象
+    public GameObject[] grids = new GameObject[]{};
 
     /// 上阵的对象
     private Hashtable selectedHeroes = new Hashtable();
@@ -30,6 +34,24 @@ namespace TangGame.UI
       this.heroItemObject.gameObject.SetActive(false);
       this.heroSelectedItem.gameObject.SetActive(false);
       UIEventListener.Get (battleButton.gameObject).onClick += OnBattleButtonClicked;
+      for(int i = 0; i < menus.Length; i++){
+        menus[i].onClick += MenuClickHandler;
+        menus[i].index = i;
+      }
+      this.MenuClickHandler(menus[0]);
+    }
+
+    /// 菜单按钮点击处理
+    private void MenuClickHandler(ViewItem viewItem){
+      SimpleMenuItem item = viewItem as SimpleMenuItem;
+      for(int i = 0; i < menus.Length; i++){
+        if(menus[i] != item){
+          menus[i].selected = false;
+          grids[i].SetActive(false);
+        }
+      }
+      item.selected = true;
+      grids[item.index].SetActive(true);
     }
 
     public void AddHero(HeroItemData data){
@@ -126,12 +148,16 @@ namespace TangGame.UI
       HeroItemObject item = grid.FindHeroItemObject(heroId);
 
       if(selectedHeroes.ContainsKey(heroId)){//包含就取消
+
         HeroSelectedItem obj = selectedHeroes[heroId] as HeroSelectedItem;
         cancelList.Add(heroId, obj);//添加进取消列表中
         Vector3 tempV3 = obj.transform.localPosition;//保存当前的坐标
-        obj.transform.position = item.transform.position;//设置世界坐标
-
-        obj.Cancel(tempV3, obj.transform.localPosition);
+        if(item == null){
+          obj.Cancel(tempV3, tempV3 + new Vector3(0, 300, 0));
+        }else{
+          obj.transform.position = item.transform.position;//设置世界坐标
+          obj.Cancel(tempV3, obj.transform.localPosition);
+        }
         selectedHeroes.Remove(heroId);
 
         List<string> list = Sort();
@@ -223,7 +249,7 @@ namespace TangGame.UI
       hero.SetActive(true);
       HeroSelectedItem obj = hero.GetComponent<HeroSelectedItem>();
       obj.cancelCompleted += ItemCancelCompleted;
-      obj.Refresh (data);
+      obj.data = data;
       
       UIEventListener.Get (obj.gameObject).onClick += OnSelectedItemClicked;
       return obj;
