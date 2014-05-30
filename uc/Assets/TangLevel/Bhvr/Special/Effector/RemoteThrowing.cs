@@ -83,10 +83,10 @@ namespace TangLevel
 			}
 		}
 		public override void Play ()
-		{
+		{	
 
-			Vector3 targetPosi = w.target.transform.position + new Vector3(0,15,0);
-			Vector3 sourcePosi = w.source.transform.position + new Vector3(0,15,0);
+			Vector3 targetPosi = w.target.transform.position + new Vector3(0,2.5f,0);
+			Vector3 sourcePosi = w.source.transform.position + new Vector3(0,2.5f,0);
 //			targetPosi.z += 10;
 //			sourcePosi.z = targetPosi.z;
 			transform.localScale = Vector3.one;

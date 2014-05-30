@@ -97,11 +97,11 @@ namespace TangLevel
 			gameObject.transform.position = mCurrent;
 			mTarget = gameObject.transform.position;
 			trailRenderer.time = trailTime;
-			targetVectors.Enqueue (gameObject.transform.position + new Vector3(0,15,0));
+			targetVectors.Enqueue (gameObject.transform.position + new Vector3(0,2.5f,0));
 			if (skillTarget != null)
-				targetVectors.Enqueue (skillTarget.transform.position + new Vector3(0,15,0));
+				targetVectors.Enqueue (skillTarget.transform.position + new Vector3(0,2.5f,0));
 			if (nextTarget != null)
-				targetVectors.Enqueue (nextTarget.transform.position + new Vector3(0,15,0));
+				targetVectors.Enqueue (nextTarget.transform.position + new Vector3(0,2.5f,0));
 			StartCoroutine (mRelease ());
 
 		}
