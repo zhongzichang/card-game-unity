@@ -53,26 +53,18 @@ namespace TangLevel
     /// <value>The next sub level.</value>
     public static SubLevel NextSubLevel {
       get {
-        Debug.Log ("NextSubLevel.get");
         if (m_currentLevel != null) {
-          Debug.Log ("NextSubLevel.get1");
           if (InLevel) { // 在关卡里面
-            Debug.Log ("NextSubLevel.get2");
             int nextIndex = CurrentSubLevel.index + 1;
             if (m_currentLevel.subLeves.Length > nextIndex) {
-              Debug.Log ("NextSubLevel.get3");
               return m_currentLevel.subLeves [nextIndex];
             }
           } else { // 在关卡外面
-            Debug.Log ("NextSubLevel.get4");
             if (m_currentLevel.subLeves.Length > 0) {
-              Debug.Log ("NextSubLevel.get5");
               return m_currentLevel.subLeves [0];
             }
           }
         } 
-
-        Debug.Log ("NextSubLevel.get6");
         return null;
       }
     }
