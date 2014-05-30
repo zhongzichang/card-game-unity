@@ -49,13 +49,10 @@ namespace TangGame.UI
 	
 		}
 
-		public HeroBase Data {
+		public HeroBase heroBase {
 			get {
 				return data;
 			}
-//		set {
-//			data = value;
-//		}
 		}
 
 		public void Flush (HeroBase hero)

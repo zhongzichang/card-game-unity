@@ -75,8 +75,9 @@ namespace TangGame.UI
 		{
 			SetBackLabel ("返回");
 			SetTitleLabel ("获得途径：");
+			SetPromptLabel ("该灵魂石不在副本掉落");
 		}
-
+		public GameObject PromptLabel;
 		public void Flush (HeroBase herobase)
 		{
 			propsRelationData = PropsCache.instance.GetPropsRelationData (herobase.Xml.soul_rock_id);
@@ -94,8 +95,13 @@ namespace TangGame.UI
 			}
 			SetNumLabel (count,countMax);
 			DisableStageDropItemList ();
-			for (int i = 0; i < propsRelationData.levels.Count; i++) {
-				AddStageDropItem (propsRelationData.levels[i],i);
+			if (propsRelationData != null) {
+				PromptLabel.SetActive (false);
+				for (int i = 0; i < propsRelationData.levels.Count; i++) {
+					AddStageDropItem (propsRelationData.levels [i], i);
+				}
+			} else {
+				PromptLabel.SetActive (true);
 			}
 			this.StageDropGrid.GetComponent<UIGrid> ().repositionNow = true;
 		}
@@ -128,6 +134,9 @@ namespace TangGame.UI
 		public void SetTitleLabel (string text)
 		{
 			TitleLabel.GetComponent<UILabel> ().text = text;
+		}
+		public void SetPromptLabel(string text){
+			PromptLabel.GetComponent<UILabel> ().text = text;
 		}
 
 		public void SetBackLabel (string text)

@@ -8,8 +8,8 @@ public class UITableByHeroLevel : UITable
 	static public int SortByLevel (Transform a, Transform b)
 	{
 
-		HeroBase Adata = a.GetComponent<HeroItem> ().Data;
-		HeroBase Bdata = b.GetComponent<HeroItem> ().Data;
+		HeroBase Adata = a.GetComponent<HeroItem> ().heroBase;
+		HeroBase Bdata = b.GetComponent<HeroItem> ().heroBase;
 
 		int val = 0;
 		if (Bdata.Net.Equals(null) || Adata.Net.Equals(null) || Adata.Xml.Equals(null) || Bdata.Xml.Equals(null) )

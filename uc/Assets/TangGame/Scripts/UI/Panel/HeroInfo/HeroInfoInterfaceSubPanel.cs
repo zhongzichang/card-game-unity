@@ -11,7 +11,7 @@ namespace TangGame.UI
 		///进化按钮
 		public GameObject EvolveButton;
 		///进阶按钮
-		public GameObject rankButton;
+		public GameObject RankButton;
 		///属性详情按钮
 		public GameObject PropertyInfoButton;
 		///技能面板按钮
@@ -32,6 +32,10 @@ namespace TangGame.UI
 		public GameObject HeroPackageSoulstoneForegroundSprite;
 		///碎片数量的label
 		public GameObject HeroPackageSoulstoneCountLabel;
+		/// <summary>
+		/// 添加碎片按钮
+		/// </summary>
+		public GameObject AddSoulStoneBtn;
 		///角色经验label
 		public GameObject ExpLabel;
 		///角色等级label
@@ -56,6 +60,7 @@ namespace TangGame.UI
 			UIEventListener.Get (PropertyInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (SkillInfoButton.gameObject).onClick += ToggleButtonOnClick;
 			UIEventListener.Get (PictorialButton.gameObject).onClick += ToggleButtonOnClick;
+			UIEventListener.Get (AddSoulStoneBtn.gameObject).onClick += AddSoulStoneBtnOnClcik;
 		}
 
 		void OnEnable ()
@@ -281,6 +286,15 @@ namespace TangGame.UI
 				}
 			}
 			return count;
+		}
+
+		/// <summary>
+		/// Adds the soul stone button on clcik.
+		/// </summary>
+		/// <param name="go">Go.</param>
+		void AddSoulStoneBtnOnClcik (GameObject go)
+		{
+			UIContext.mgrCoC.LazyOpen (UIContext.SOUL_StTONE_DROP_PANEL,TangUI.UIPanelNode.OpenMode.ADDITIVE,heroBase);
 		}
 	}
 }

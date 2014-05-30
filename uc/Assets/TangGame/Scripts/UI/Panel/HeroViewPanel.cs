@@ -37,7 +37,7 @@ namespace TangGame.UI
 
 		void OnEnable(){
 			foreach (HeroItem item in heroItems.Values) {
-				item.Flush (item.Data);
+				item.Flush (item.heroBase);
 			}
 		}
 
@@ -80,7 +80,7 @@ namespace TangGame.UI
 		void ShowItemByHeroLocation (HeroLocationEnum em)
 		{
 			foreach (HeroItem item in heroItems.Values) {
-				if (item.Data.Xml.location.Equals ((int)em)) {
+				if (item.heroBase.Xml.location.Equals ((int)em)) {
 					item.gameObject.SetActive (true);
 				}
 			}
@@ -206,11 +206,13 @@ namespace TangGame.UI
 			HeroItem item = obj.GetComponent<HeroItem> ();
 			if (item == null)
 				return;
-			if (!item.Data.Islock) {
-				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, item.Data, true);
+			if (!item.heroBase.Islock) {
+				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, item.heroBase, true);
 			} else{
 				if (item.canCall) {
 					//TODO 发送消息给服务器召唤此英雄
+				} else {
+					UIContext.mgrCoC.LazyOpen (UIContext.SOUL_StTONE_DROP_PANEL,TangUI.UIPanelNode.OpenMode.ADDITIVE,item.heroBase);
 				}
 			}
 		}
