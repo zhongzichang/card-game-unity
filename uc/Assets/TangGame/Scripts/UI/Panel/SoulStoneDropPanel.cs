@@ -65,6 +65,9 @@ namespace TangGame.UI
 			}
 			set {
 				mParam = value;
+				if (mParam is HeroBase) {
+					Flush (mParam as HeroBase);
+				}
 			}
 		}
 
@@ -72,7 +75,6 @@ namespace TangGame.UI
 		{
 			SetBackLabel ("返回");
 			SetTitleLabel ("获得途径：");
-			SetNumLabel ("[c0ffff]未解锁[-]");
 		}
 
 		public void Flush (HeroBase herobase)
@@ -81,9 +83,21 @@ namespace TangGame.UI
 			SetAvatarFrame (herobase.Net.rank);
 			SetAvatarIcon (herobase.Xml.avatar);
 			SetNameLabel (herobase.Xml.name);
+			int count = 0;
+			int countMax = 0;
+			Props props = PropsCache.instance.GetProps (herobase.Xml.soul_rock_id);
+			if (props != null) {
+				count = props.net.count;
+			}
+			if(Config.evolveXmlTable.ContainsKey(herobase.Net.star + 1)){
+				countMax = Config.evolveXmlTable [herobase.Net.star + 1];
+			}
+			SetNumLabel (count,countMax);
+			DisableStageDropItemList ();
 			for (int i = 0; i < propsRelationData.levels.Count; i++) {
 				AddStageDropItem (propsRelationData.levels[i],i);
 			}
+			this.StageDropGrid.GetComponent<UIGrid> ().repositionNow = true;
 		}
 
 		public void SetAvatarFrame (int rank)
@@ -102,9 +116,13 @@ namespace TangGame.UI
 			NameLabel.GetComponent<UILabel> ().text = text;
 		}
 
-		public void SetNumLabel (string text)
+		public void SetNumLabel (int count,int countMax)
 		{
-			NumLabel.GetComponent<UILabel> ().text = text;
+			if (0 != countMax) {
+				NumLabel.GetComponent<UILabel> ().text = string.Format ("({0}/{1})", count, countMax);
+			} else {
+				//TODO 星级已满
+			}
 		}
 
 		public void SetTitleLabel (string text)
@@ -123,11 +141,14 @@ namespace TangGame.UI
 			if (stageDropItemList.Count < index) {
 				stageDropItem = NGUITools.AddChild (StageDropGrid, StageDropItem);
 				stageDropItemList.Add (stageDropItem);
+				UIEventListener.Get (stageDropItem.gameObject).onClick += OnStageDropItemClick;
 			} else {
 				stageDropItem = stageDropItemList [index];
 			}
 			if(!stageDropItem.activeSelf)
 				stageDropItem.SetActive (true);
+
+
 			SoulStoneStageDropItem itemScript = stageDropItem.GetComponent<SoulStoneStageDropItem> ();
 			itemScript.Flush (levelData);
 		}
@@ -137,6 +158,12 @@ namespace TangGame.UI
 		public void DisableStageDropItemList(){
 			foreach(GameObject o in stageDropItemList){
 				o.SetActive (false);
+			}
+		}
+		void OnStageDropItemClick(GameObject obj){
+			SoulStoneStageDropItem itemScript = obj.GetComponent<SoulStoneStageDropItem> ();
+			if (itemScript != null) {
+				//TODO 打开对应的面板
 			}
 		}
 	}

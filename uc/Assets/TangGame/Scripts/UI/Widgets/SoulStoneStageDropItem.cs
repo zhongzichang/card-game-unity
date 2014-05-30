@@ -10,10 +10,12 @@ namespace TangGame.UI
 		public UILabel StageNameLabel;
 		public UILabel StageTagLabel;
 		public UILabel StageNum;
+		public Xml.LevelData stageData;
 
 		public void Flush (Xml.LevelData stageData)
 		{
 			if (stageData != null) {
+				this.stageData = stageData;
 				this.StageIcon.spriteName = stageData.icon;
 				this.StageNameLabel.text = stageData.name;
 				Xml.MapData mapData = LevelCache.instance.GetMapData (stageData.map_id);

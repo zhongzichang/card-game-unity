@@ -24,13 +24,24 @@ namespace TangGame.UI{
 		/// 道具管理数据，存储道具掉落所在的场景等
 		private Dictionary<int, PropsRelationData> propsRelations = new Dictionary<int, PropsRelationData>();
 
-    /// 获取道具数据
+		/// 获取道具配置数据
     public PropsData GetPropsData(int id){
       if(Config.propsXmlTable.ContainsKey(id)){
         return Config.propsXmlTable[id];
       }
       return null;
     }
+		/// <summary>
+		/// 获取道具
+		/// </summary>
+		/// <returns>The properties.</returns>
+		/// <param name="id">Identifier.</param>
+		public Props GetProps(int id){
+			if(propsTable.ContainsKey(id)){
+				return propsTable[id];
+			}
+			return null;
+		}
 
 		/// 获取道具关联数据
 		public PropsRelationData GetPropsRelationData(int id){

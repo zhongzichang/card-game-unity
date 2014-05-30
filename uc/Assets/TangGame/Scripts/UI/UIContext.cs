@@ -26,6 +26,10 @@ namespace TangGame
 		public const string HERO_VIEW_PANEL_NAME = "HeroViewPanel";
 		public const string SELL_PANEL_NAME = "SellPanel";
 		/// <summary>
+		/// 灵魂石掉落详情面板
+		/// </summary>
+		public const string SOUL_StTONE_DROP_PANEL = "SoulStoneDropPanel";
+		/// <summary>
 		/// HER o_ INF o_ PANE l_ NAM.
 		/// 英雄队列面板
 		/// </summary>
