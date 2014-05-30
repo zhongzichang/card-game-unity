@@ -14,6 +14,7 @@ namespace TangGame.UI{
     public UIEventListener props1Btn;
     public UIEventListener props2Btn;
     public UIEventListener props3Btn;
+
     public GameObject tips;
     public TweenScale tipsTween;
     public UIEventListener tipsBackBtn;

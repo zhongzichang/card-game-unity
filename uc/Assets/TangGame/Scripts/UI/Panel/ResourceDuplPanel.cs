@@ -13,28 +13,24 @@ namespace TangGame.UI{
     public GameObject container;
     public UIEventListener expBtn;
     public UIEventListener moneyBtn;
-    public GameObject expTips;
-    public TweenScale expTipsTween;
-    public UIEventListener expTipsBackBtn;
-
-    public GameObject moneyTips;
-    public TweenScale moneyTipsTween;
-    public UIEventListener moneyTipsBackBtn;
+ 
+    public GameObject tips;
+    public UISprite title;
+    public TweenScale tipsTween;
+    public UIEventListener tipsBackBtn;
+    public UILabel awardLabel;
+    public UILabel tipsLabel;
+    public SimplePropsItem[] propsItems = new SimplePropsItem[]{};
 
     private object mParam;
 
     void Start(){
       expBtn.onClick += ExpBtnClickHandler;
       moneyBtn.onClick += MoneyBtnClickHandler;
-      expTipsBackBtn.onClick += ExpTipsBackBtnClickHandler;
-      moneyTipsBackBtn.onClick += MoneyTipsBackBtnClickHandler;
-      expTipsTween.eventReceiver = this.gameObject;
-      expTipsTween.callWhenFinished = "OnFinishedHandler";
-      moneyTipsTween.eventReceiver = this.gameObject;
-      moneyTipsTween.callWhenFinished = "OnFinishedHandler";
-
-
-      expTips.SetActive(false);
+      tipsBackBtn.onClick += TipsBackBtnClickHandler;
+      tipsTween.eventReceiver = this.gameObject;
+      tipsTween.callWhenFinished = "OnFinishedHandler";
+      tips.SetActive(false);
     }
 
     public object param{
@@ -50,23 +46,20 @@ namespace TangGame.UI{
     }
 
     private void ExpBtnClickHandler(GameObject go){
-      //expTips.SetActive(true);
-      //expTipsTween.PlayForward();
       UIContext.mgrCoC.LazyOpen(ResourceDuplSelectPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, MapType.Exp);
     }
 
     private void ExpTipsBackBtnClickHandler(GameObject go){
-      expTipsTween.PlayReverse();
+      tipsTween.PlayReverse();
     }
-
 
     private void MoneyBtnClickHandler(GameObject go){
-      moneyTips.SetActive(true);
-      moneyTipsTween.PlayForward();
+      tips.SetActive(true);
+      tipsTween.PlayForward();
     }
 
-    private void MoneyTipsBackBtnClickHandler(GameObject go){
-      moneyTipsTween.PlayReverse();
+    private void TipsBackBtnClickHandler(GameObject go){
+      tipsTween.PlayReverse();
     }
 
     private void OnFinishedHandler(UITweener tweener){
