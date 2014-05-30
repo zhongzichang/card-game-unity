@@ -101,7 +101,7 @@ namespace TangGame.UI
       normalChapters[0].list[0].Show();
       normalChapters[0].list[1].Show();
       target.SetActive(true);
-      target.transform.parent = normalChapters[0].list[1].gameObject.transform;
+      target.transform.parent = normalChapters[0].list[0].gameObject.transform;
       target.transform.localPosition = new Vector3(0, 0, 0);
       UpdatePoints();
     }
@@ -129,7 +129,7 @@ namespace TangGame.UI
           List<Level> list = LevelCache.instance.GetMapLevels(mapData.id);
           list.Sort(SortLevel);
           int c = 0;
-          list[0].net.star = 2;
+          list[0].net.star = 3;
           foreach(Level level in list){
             if(battleChapterItem.list.Length > c){
               battleChapterItem.list[c].data = level;
