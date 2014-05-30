@@ -86,7 +86,7 @@ namespace TangLevel
 
 		public override void Play ()
 		{
-			mCurrent = w.source.transform.position;
+			mCurrent = w.source.transform.position + new Vector3(0,15,0);
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
 			if (skillTarget != null) {
 				nextTarget = HeroSelector.FindclosestFriend (skillTarget.GetComponent<HeroBhvr> ());
@@ -97,11 +97,11 @@ namespace TangLevel
 			gameObject.transform.position = mCurrent;
 			mTarget = gameObject.transform.position;
 			trailRenderer.time = trailTime;
-			targetVectors.Enqueue (gameObject.transform.position);
+			targetVectors.Enqueue (gameObject.transform.position + new Vector3(0,2.5f,0));
 			if (skillTarget != null)
-				targetVectors.Enqueue (skillTarget.transform.position);
+				targetVectors.Enqueue (skillTarget.transform.position + new Vector3(0,2.5f,0));
 			if (nextTarget != null)
-				targetVectors.Enqueue (nextTarget.transform.position);
+				targetVectors.Enqueue (nextTarget.transform.position + new Vector3(0,2.5f,0));
 			StartCoroutine (mRelease ());
 
 		}
