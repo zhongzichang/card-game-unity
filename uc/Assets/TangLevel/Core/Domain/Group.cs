@@ -9,15 +9,16 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+
 namespace TangLevel
 {
   [Serializable]
   public class Group
   {
-
     public Hero[] heros;
+    public List<Hero> aliveHeros = new List<Hero> ();
 
-    public List<Hero> aliveHeros = new List<Hero>();
+    private bool mAutoFight = false;
 
     #region Constructor
 
@@ -27,13 +28,13 @@ namespace TangLevel
 
     #endregion
 
-
     #region PublicMethods
 
     /// <summary>
     /// Arrange this instance.
     /// </summary>
-    public void Arrange(){
+    public void Arrange ()
+    {
       aliveHeros.Clear ();
       for (int i = 0; i < heros.Length; i++) {
         if (heros [i].hp > 0) {
@@ -59,8 +60,29 @@ namespace TangLevel
       return other;
     }
 
-    #endregion
+    public void DisableBigMoveCloseUp ()
+    {
+      foreach (Hero h in heros) {
+        foreach (Skill s in h.skills) {
+          if (s.bigMoveCloseUp) {
+            s.bigMoveCloseUp = false;
+          }
+        }
+      }
+    }
 
+    public void EnableBigMoveCloseUp ()
+    {
+      foreach (Hero h in heros) {
+        foreach (Skill s in h.skills) {
+          if (!s.bigMoveCloseUp) {
+            s.bigMoveCloseUp = true;
+          }
+        }
+      }
+    }
+
+    #endregion
   }
 }
 
