@@ -31,6 +31,7 @@ namespace TangGame.UI{
       tipsTween.eventReceiver = this.gameObject;
       tipsTween.callWhenFinished = "OnFinishedHandler";
       tips.SetActive(false);
+      awardLabel.text = UIPanelLang.AWARD;
     }
 
     public object param{
@@ -46,7 +47,10 @@ namespace TangGame.UI{
     }
 
     private void ExpBtnClickHandler(GameObject go){
-      UIContext.mgrCoC.LazyOpen(ResourceDuplSelectPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, MapType.Exp);
+      tips.SetActive(true);
+      ShowExpTips();
+      tipsTween.PlayForward();
+      //UIContext.mgrCoC.LazyOpen(ResourceDuplSelectPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, MapType.Exp);
     }
 
     private void ExpTipsBackBtnClickHandler(GameObject go){
@@ -55,6 +59,7 @@ namespace TangGame.UI{
 
     private void MoneyBtnClickHandler(GameObject go){
       tips.SetActive(true);
+      ShowMoneyTips();
       tipsTween.PlayForward();
     }
 
@@ -68,6 +73,19 @@ namespace TangGame.UI{
       }
     }
 
+    private void ShowExpTips(){
+      title.spriteName = MapType.Exp + "Title";
+      title.MakePixelPerfect();
+      tipsLabel.text = UIPanelLang.EXP_OPEN_TIPS;
+      //public SimplePropsItem[] propsItems = new SimplePropsItem[]{};
+    }
+
+    private void ShowMoneyTips(){
+      title.spriteName = MapType.Money + "Title";
+      title.MakePixelPerfect();
+      tipsLabel.text = UIPanelLang.MONEY_OPEN_TIPS;
+      //public SimplePropsItem[] propsItems = new SimplePropsItem[]{};
+    }
   }
 }
 

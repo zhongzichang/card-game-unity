@@ -239,5 +239,11 @@ namespace TangGame.UI
 		/// </summary>
 		public const string STAGE_UNLOCKED = "关卡未解锁";
 
+    /// 奖励：
+    public const string AWARD = "奖励：";
+    /// 每周二，四，六，日05:00开启
+    public const string MONEY_OPEN_TIPS = "每周二，四，六，日05:00开启";
+    /// 每周一，三，五，日05:00开启
+    public const string EXP_OPEN_TIPS = "每周一，三，五，日05:00开启";
 	}
 }
