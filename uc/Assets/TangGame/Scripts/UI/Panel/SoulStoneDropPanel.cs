@@ -73,8 +73,8 @@ namespace TangGame.UI
 
 		void Start ()
 		{
-			SetBackLabel ("返回");
-			SetTitleLabel ("获得途径：");
+			SetBackLabel (UIPanelLang.BACK);
+			SetTitleLabel (UIPanelLang.GET_WAY);
 			SetPromptLabel ("该灵魂石不在副本掉落");
 		}
 		public GameObject PromptLabel;
