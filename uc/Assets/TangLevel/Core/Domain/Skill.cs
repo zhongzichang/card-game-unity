@@ -133,6 +133,13 @@ namespace TangLevel
 
     #endregion
 
+    #region Runtime Attributes
+    /// <summary>
+    /// 大招特写
+    /// </summary>
+    public bool bigMoveCloseUp = false;
+    #endregion
+
     #region Public Methods
     public Skill ShallowCopy(){
       return (Skill)this.MemberwiseClone ();

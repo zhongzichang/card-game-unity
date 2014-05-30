@@ -378,11 +378,21 @@ namespace TangLevel
         if (Config.levelTable.ContainsKey (levelId)) {
 
           // 克隆一份场景数据
-          LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy ();
+          Level lvl = Config.levelTable [levelId].DeepCopy ();
+          // 是否打开敌人的大招特写
+          if (lvl.enemyBigMoveCloseUp) {
+            lvl.EnableEnemyBigMoveCloseUp ();
+          } else {
+            lvl.DisableEnemyBigMoveCloseUp ();
+          }
+          // 设置为当前关卡
+          LevelContext.CurrentLevel = lvl;
         }
 
+        // 确保玩家队伍的大招特写都打开
+        group.EnableBigMoveCloseUp ();
+        // 设置为当前战斗队伍
         LevelContext.selfGroup = group;
-
         // 备份团队数据，方便重新挑战关卡使用
         LevelContext.selfGroupBackup = group.DeepCopy ();
 
@@ -503,8 +513,6 @@ namespace TangLevel
       }
     }
 
-
-
     #endregion
 
     #region Callback
@@ -590,7 +598,7 @@ namespace TangLevel
             foreach (Hero hero in LevelContext.selfGroup.heros) {
               heroIds.Add (hero.id);
             }
-            battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult(heroIds, 0);
+            battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, 0);
           }
         } else {
           // 是敌方英雄
@@ -617,7 +625,7 @@ namespace TangLevel
                 heroIds.Add (hero.id);
               }
               int resultType = UnityEngine.Random.Range (2, 6); // 超时战斗结果也会返回失败
-              battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult(heroIds, resultType);
+              battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, resultType);
 
             } else {
               // 子关卡完成
@@ -818,7 +826,12 @@ namespace TangLevel
       foreach (Hero hero in LevelContext.selfGroup.aliveHeros) {
         if (hero.hp > 0) {
           GameObject g = AddHeroToScene (hero);
+          BigMoveBhvr bmBhvr = g.GetComponent<BigMoveBhvr> ();
+          // 自动施放大招
+          bmBhvr.auto = LevelContext.CurrentLevel.autoFight;
+          // 加入我方队伍中
           LevelContext.selfGobjs.Add (g);
+          // 保存到当前子关卡开始时的英雄列表中
           LevelContext.SubLevelBeganGobjs.Add (g);
         }
       }
@@ -826,6 +839,9 @@ namespace TangLevel
       // 敌方进场
       foreach (Hero hero in enemyGroup.aliveHeros) {
         GameObject g = AddHeroToScene (hero);
+        BigMoveBhvr bmBhvr = g.GetComponent<BigMoveBhvr> ();
+        // 自动施放大招
+        bmBhvr.auto = true;
         LevelContext.enemyGobjs.Add (g);
       }
 
@@ -916,14 +932,13 @@ namespace TangLevel
       }
 
       // 监听玩家英雄的大招是否能施放
-      foreach(TG.LevelHeroItem item in levelHeroPanel.itemList)
-        {
-          BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr>(item.heroId);
-          if( bmBhvr != null )
-            {
-              bmBhvr.RaiseEvent += item.SwitchMpEffect;
-            }
+      foreach (TG.LevelHeroItem item in levelHeroPanel.itemList) {
+        BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr> (item.heroId);
+        if (bmBhvr != null) {
+          // MP 效果开关
+          bmBhvr.RaiseEvent += item.SwitchMpEffect;
         }
+      }
     }
 
     /// <summary>
@@ -963,14 +978,12 @@ namespace TangLevel
       }
 
       // 取消监听玩家英雄的大招是否能施放
-      foreach(TG.LevelHeroItem item in levelHeroPanel.itemList)
-        {
-          BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr>(item.heroId);
-          if( bmBhvr != null )
-            {
-              bmBhvr.RaiseEvent -= item.SwitchMpEffect;
-            }
+      foreach (TG.LevelHeroItem item in levelHeroPanel.itemList) {
+        BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr> (item.heroId);
+        if (bmBhvr != null) {
+          bmBhvr.RaiseEvent -= item.SwitchMpEffect;
         }
+      }
  
     }
 

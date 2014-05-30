@@ -58,8 +58,8 @@ namespace TangLevel
           if (skillIndex < skills.Count && skillIndex >= 0) {
             Skill skill = skills [skillIndex];
 
-            // 确保技能可用
-            if (skill.enable) {
+            // 确保技能可用，技能不可以是大招
+            if (skill.enable && !skill.bigMove) {
               // 找到技能
               lastSkillQueueIndex = skillQueueIndex;
               skillQueueIndex++;
@@ -88,9 +88,12 @@ namespace TangLevel
           return NextSkill ();
 
         } else {
-          return skills [skillQueue [skillQueueIndex]];
-        }
 
+          Skill skill = skills [skillQueue [skillQueueIndex]];
+          if (skill.enable && !skill.bigMove) {
+            return skill;
+          }
+        }
       }
       return null;
     }
