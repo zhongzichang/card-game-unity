@@ -91,24 +91,27 @@ namespace TangLevel
 
 			Group group = new Group ();
 			int maxHeros = 5;
-			group.heros = new Hero[ UnityEngine.Random.Range (4, maxHeros)];
+      group.heros = new Hero[ UnityEngine.Random.Range (2, 3)];
 			for (int j = 0; j < group.heros.Length; j++) {
-				int id = UnityEngine.Random.Range (3, 5);
-				if (id == 0)
+        int id = UnityEngine.Random.Range (0, 7);
+        if (id == 0)
 					group.heros [j] = MockHeroZf ();
 				else if (id == 1)
 					group.heros [j] = MockHeroXc ();
 				else if (id == 2) {
 					group.heros [j] = MockHeroZhangfei ();
 				} else if (id == 3) {
-					//group.heros [j] = MockHeroHuatuo ();
-          group.heros [j] = MockHeroZf ();
+					group.heros [j] = MockHeroHuatuo ();
 				} else if (id == 4) {
-					group.heros [j] = MockHeroHuangjinbubing ();
+					group.heros [j] = MockCommonHero ("hero_huangjinbubing");
 				} else if (id == 5) {
-					group.heros [j] = MockHeroHuangjingongjianbing ();
-					//group.heros [j] = MockHeroXc ();
-				}
+          group.heros [j] = MockCommonHero ("hero_huangjingongjianbing");
+        } else if (id == 6) {
+          group.heros [j] = MockCommonHero ("hero_toushiche");
+        } else if (id == 7) {
+          group.heros [j] = MockCommonHero ("hero_gongchengche");
+        }
+
 			}
 			return group;
 		}
