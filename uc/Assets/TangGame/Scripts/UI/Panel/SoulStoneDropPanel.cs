@@ -90,7 +90,7 @@ namespace TangGame.UI
 				count = props.net.count;
 			}
 			if(Config.evolveXmlTable.ContainsKey(herobase.Net.star + 1)){
-				countMax = Config.evolveXmlTable [herobase.Net.star + 1];
+				countMax = Config.evolveXmlTable [herobase.Net.star + 1].val;
 			}
 			SetNumLabel (count,countMax);
 			DisableStageDropItemList ();
