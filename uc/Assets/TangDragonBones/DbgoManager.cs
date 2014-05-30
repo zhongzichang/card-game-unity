@@ -218,15 +218,15 @@ namespace TangDragonBones
       TextAsset skeletonAssets = null;
 
       if (!Cache.atlasDataTable.ContainsKey (name)) {
-        string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_atlas";
+        string atlasFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + Tang.Config.DIR_SEP + "texture";
         atlasAssets = Resources.Load (atlasFilepath, typeof(TextAsset)) as TextAsset;
       }
       if (!Cache.textureTable.ContainsKey (name)) {
-        string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_texture";
+        string textureFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + Tang.Config.DIR_SEP + "texture";
         textureAssets = Resources.Load (textureFilepath, typeof(Texture)) as Texture;
       }
       if (!Cache.skeletonDataTable.ContainsKey (name)) {
-        string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + "_skeleton";
+        string skeletonFilepath = Config.DATA_PATH + Tang.Config.DIR_SEP + name + Tang.Config.DIR_SEP + "skeleton";
         skeletonAssets = Resources.Load (skeletonFilepath, typeof(TextAsset)) as TextAsset;
       }
 
