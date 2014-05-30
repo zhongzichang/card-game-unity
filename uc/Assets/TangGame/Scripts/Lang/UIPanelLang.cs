@@ -223,6 +223,14 @@ namespace TangGame.UI
 		/// 确认出售
 		/// </summary>
 		public const string CONFIRM_THE_SALE = "确认出售";
+		/// <summary>
+		/// "第{0}章"
+		/// </summary>
+		public const string MAP_INDEX = "第{0}章";
+		/// <summary>
+		/// 关卡未解锁
+		/// </summary>
+		public const string STAGE_UNLOCKED = "关卡未解锁";
 
 	}
 }

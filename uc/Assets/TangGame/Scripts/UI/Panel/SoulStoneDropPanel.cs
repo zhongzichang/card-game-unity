@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace TangGame.UI
 {
@@ -49,6 +50,13 @@ namespace TangGame.UI
 		/// </summary>
 		public GameObject TitleLabel;
 		PropsRelationData propsRelationData = null;
+		/// <summary>
+		/// The stage drop item list.
+		/// </summary>
+		List<GameObject> stageDropItemList = new List<GameObject>();
+		/// <summary>
+		/// The are my parameter.
+		/// </summary>
 		private object mParam;
 
 		public object param {
@@ -73,10 +81,9 @@ namespace TangGame.UI
 			SetAvatarFrame (herobase.Net.rank);
 			SetAvatarIcon (herobase.Xml.avatar);
 			SetNameLabel (herobase.Xml.name);
-			foreach (Xml.LevelData levelData in propsRelationData.levels) {
-				AddStageDropItem (levelData);
+			for (int i = 0; i < propsRelationData.levels.Count; i++) {
+				AddStageDropItem (propsRelationData.levels[i],i);
 			}
-
 		}
 
 		public void SetAvatarFrame (int rank)
@@ -110,9 +117,27 @@ namespace TangGame.UI
 			BackLabel.GetComponent<UILabel> ().text = text;
 		}
 
-		public void AddStageDropItem (Xml.LevelData levelData)
+		public void AddStageDropItem (Xml.LevelData levelData,int index)
 		{
-			//TODO 添加一个掉落关卡item
+			GameObject stageDropItem;
+			if (stageDropItemList.Count < index) {
+				stageDropItem = NGUITools.AddChild (StageDropGrid, StageDropItem);
+				stageDropItemList.Add (stageDropItem);
+			} else {
+				stageDropItem = stageDropItemList [index];
+			}
+			if(!stageDropItem.activeSelf)
+				stageDropItem.SetActive (true);
+			SoulStoneStageDropItem itemScript = stageDropItem.GetComponent<SoulStoneStageDropItem> ();
+			itemScript.Flush (levelData);
+		}
+		/// <summary>
+		/// Disables the stage drop item list.
+		/// </summary>
+		public void DisableStageDropItemList(){
+			foreach(GameObject o in stageDropItemList){
+				o.SetActive (false);
+			}
 		}
 	}
 }
