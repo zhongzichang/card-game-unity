@@ -602,6 +602,9 @@ namespace TangLevel
           bmBhvr.BreakLock ();
         }
 
+        // 转换状态为 idle
+        statusBhvr.Status = HeroStatus.idle;
+
         bs.cd = 0; // 设置大招cd为0，马上攻击
         AutoFire autoFire = GetComponent<AutoFire> ();
         if (autoFire == null) {

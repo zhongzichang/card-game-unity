@@ -18,6 +18,8 @@ namespace TangLevel
     // 大招时的位置偏移，需要往镜头靠近
     public const float SCALE = 1.3F;
     public static readonly Color COLOR_MASH = new Color (0.5F, 0.5F, 0.5F, 1F);
+    // 自动施放大招
+    public bool auto = false;
     private HeroStatusBhvr statusBhvr;
     private TDB.DragonBonesBhvr dbBhvr;
     private HashSet<BigMoveBhvr> bigMoveSenders = new HashSet<BigMoveBhvr> ();
@@ -47,11 +49,17 @@ namespace TangLevel
     void Update ()
     {
       if (IsBigMoveReady ()) {
-        // 可以施放大招，点亮大招按钮
-        if (!ready) {
-          ready = true;
-          if (RaiseEvent != null) {
-            RaiseEvent (ready);
+        if (auto) {
+          // 自动
+          heroBhvr.BigMove ();
+        } else {
+          // 手动
+          // 可以施放大招，点亮大招按钮
+          if (!ready) {
+            ready = true;
+            if (RaiseEvent != null) {
+              RaiseEvent (ready);
+            }
           }
         }
       } else {
@@ -177,16 +185,22 @@ namespace TangLevel
 
       BreakLock ();
 
-      backupPos = myTransform.localPosition;
-      myTransform.localPosition += OFFSET;
-
-      backupScale = myTransform.localScale;
-      myTransform.localScale = new Vector3 (backupScale.x * SCALE, backupScale.y * SCALE, 1);
 
       statusBhvr.IsBigMove = true;
-      LevelController.BigMoveCounter++;
+      agent.enabled = true;
 
-      armature.Animation.TimeScale = 0.5F;
+      if (skill.bigMoveCloseUp) {
+
+        // 位移
+        backupPos = myTransform.localPosition;
+        myTransform.localPosition += OFFSET;
+        // 放大
+        backupScale = myTransform.localScale;
+        myTransform.localScale = new Vector3 (backupScale.x * SCALE, backupScale.y * SCALE, 1);
+        // 动画速度变慢
+        armature.Animation.TimeScale = 0.5F;
+        LevelController.BigMoveCounter++;
+      }
 
     }
 
@@ -195,20 +209,19 @@ namespace TangLevel
     /// </summary>
     public void StopBigMove ()
     {
-      myTransform.localPosition = backupPos;
-
       statusBhvr.IsBigMove = false;
-
-      LevelController.BigMoveCounter--;
-
       heroBhvr.hero.mp = 0;
       agent.enabled = true;
 
-      // 人物比例还原
-      myTransform.localScale = backupScale;
-
-      armature.Animation.TimeScale = 1F;
-
+      if (skill.bigMoveCloseUp) {
+        // 位移还原
+        myTransform.localPosition = backupPos;
+        // 人物比例还原
+        myTransform.localScale = backupScale;
+        // 动画速度还原
+        armature.Animation.TimeScale = 1F;
+        LevelController.BigMoveCounter--;
+      }
     }
 
     /// <summary>
@@ -236,6 +249,10 @@ namespace TangLevel
 
     #region PrivateMethods
 
+    /// <summary>
+    /// 判断是否能放大招
+    /// </summary>
+    /// <returns><c>true</c> if this instance is big move ready; otherwise, <c>false</c>.</returns>
     private bool IsBigMoveReady ()
     {
 
@@ -253,9 +270,8 @@ namespace TangLevel
           GameObject target = heroBhvr.target;
           // 目标存在，目标活着，与目标的距离小于技能攻击的距离
           if (target != null &&
-              target.GetComponent<HeroBhvr> ().hero.hp > 0 &&
-              Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x)
-              <= skill.distance) {
+              target.GetComponent<HeroBhvr> ().hero.hp > 0
+              && Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) <= skill.distance) {
             return true;
           }
           break;
@@ -264,9 +280,8 @@ namespace TangLevel
           List<GameObject> targetGroup = heroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
             LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
           target = HeroSelector.FindWeakest (targetGroup);
-          if (target != null &&
-              Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x)
-              <= skill.distance) {
+          if (target != null
+              && Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) <= skill.distance) {
             return true;
           }
           break;
@@ -275,9 +290,8 @@ namespace TangLevel
           targetGroup = heroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
             LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
           target = HeroSelector.FindWeakest (targetGroup);
-          if (target != null &&
-              Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x)
-              <= skill.distance) {
+          if (target != null
+              && Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) <= skill.distance) {
             return true;
           }
           break;
@@ -285,8 +299,7 @@ namespace TangLevel
           // 指定区域
           Rect region = skill.region;
           Vector2 center = new Vector2 (region.x - region.width / 2, region.y - region.height / 2);
-          if (Mathf.Abs (myTransform.localPosition.x - center.x)
-              <= skill.distance) {
+          if (Mathf.Abs (myTransform.localPosition.x - center.x) <= skill.distance) {
             return true;
           }
           break;
