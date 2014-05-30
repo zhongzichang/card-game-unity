@@ -33,8 +33,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: .5, y: .5}
+  alignment: 8
+  spritePivot: {x: 1, y: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
   textureType: 8
