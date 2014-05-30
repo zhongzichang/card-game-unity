@@ -358,25 +358,23 @@ namespace TangLevel
       // 确保不在关卡里面
       if (!LevelContext.InLevel) {
 
-        // 显示UI
-        if (!levelUIRoot.activeSelf) {
-          levelUIRoot.SetActive (true);
-        }
-
-        // 设置各个面板的显示和隐藏
-        if (!levelControllPanel.gameObject.activeSelf) {
-          levelControllPanel.gameObject.SetActive (true);
-        }
-        if (!levelResourcePanel.gameObject.activeSelf) {
-          levelResourcePanel.gameObject.SetActive (true);
-        }
-        if (battleResultPanel.gameObject.activeSelf) {
-          battleResultPanel.gameObject.SetActive (false);
-        }
 
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
-
+          // 显示UI
+          if (!levelUIRoot.activeSelf) {
+            levelUIRoot.SetActive (true);
+          }
+          // 设置各个面板的显示和隐藏
+          if (!levelControllPanel.gameObject.activeSelf) {
+            levelControllPanel.gameObject.SetActive (true);
+          }
+          if (!levelResourcePanel.gameObject.activeSelf) {
+            levelResourcePanel.gameObject.SetActive (true);
+          }
+          if (battleResultPanel.gameObject.activeSelf) {
+            battleResultPanel.gameObject.SetActive (false);
+          }
           // 克隆一份场景数据
           Level lvl = Config.levelTable [levelId].DeepCopy ();
           // 是否打开敌人的大招特写
@@ -387,16 +385,19 @@ namespace TangLevel
           }
           // 设置为当前关卡
           LevelContext.CurrentLevel = lvl;
+
+          // 确保玩家队伍的大招特写都打开
+          group.EnableBigMoveCloseUp ();
+          // 设置为当前战斗队伍
+          LevelContext.selfGroup = group;
+          // 备份团队数据，方便重新挑战关卡使用
+          LevelContext.selfGroupBackup = group.DeepCopy ();
+
+          LoadTargetSubLevelRes ();
+
+        } else {
+          Debug.Log ("Level not found with id " + levelId);
         }
-
-        // 确保玩家队伍的大招特写都打开
-        group.EnableBigMoveCloseUp ();
-        // 设置为当前战斗队伍
-        LevelContext.selfGroup = group;
-        // 备份团队数据，方便重新挑战关卡使用
-        LevelContext.selfGroupBackup = group.DeepCopy ();
-
-        LoadTargetSubLevelRes ();
 
       }
     }
@@ -415,24 +416,24 @@ namespace TangLevel
 
         int levelId = LevelContext.CurrentLevel.id;
 
-        // 显示UI
-        if (!levelUIRoot.activeSelf) {
-          levelUIRoot.SetActive (true);
-        }
-
-        // 设置各个面板的显示和隐藏
-        if (!levelControllPanel.gameObject.activeSelf) {
-          levelControllPanel.gameObject.SetActive (true);
-        }
-        if (!levelResourcePanel.gameObject.activeSelf) {
-          levelResourcePanel.gameObject.SetActive (true);
-        }
-        if (battleResultPanel.gameObject.activeSelf) {
-          battleResultPanel.gameObject.SetActive (false);
-        }
-
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
+
+          // 显示UI
+          if (!levelUIRoot.activeSelf) {
+            levelUIRoot.SetActive (true);
+          }
+          // 设置各个面板的显示和隐藏
+          if (!levelControllPanel.gameObject.activeSelf) {
+            levelControllPanel.gameObject.SetActive (true);
+          }
+          if (!levelResourcePanel.gameObject.activeSelf) {
+            levelResourcePanel.gameObject.SetActive (true);
+          }
+          if (battleResultPanel.gameObject.activeSelf) {
+            battleResultPanel.gameObject.SetActive (false);
+          }
+
           // 克隆一份场景数据
           LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy ();
           // 克隆一份团队数据
@@ -440,9 +441,7 @@ namespace TangLevel
           LoadTargetSubLevelRes ();
 
         }
-
       }
-
     }
 
     /// <summary>
