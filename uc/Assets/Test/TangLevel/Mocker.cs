@@ -26,7 +26,7 @@ namespace TangLevel
 			level.id = 1;
 			level.name = "Test Level 1";
 
-			level.subLeves = new SubLevel[3];
+      level.subLevels = new SubLevel[3];
 			for (int i = 1; i < 4; i++) {
 				SubLevel subLevel = new SubLevel ();
 				subLevel.id = i;
@@ -39,7 +39,7 @@ namespace TangLevel
 					subLevel.resName = "lbg_grass3";
 				}
 
-				level.subLeves [subLevel.index] = subLevel;
+        level.subLevels [subLevel.index] = subLevel;
 				subLevel.enemyGroup = MockGroup ();
 
 			}

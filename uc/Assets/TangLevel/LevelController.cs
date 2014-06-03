@@ -605,7 +605,7 @@ namespace TangLevel
           //   如果最后的子关卡，则发出关卡已被清除通知 ，否则发出子关卡已被清除通知
           //   
           if (LevelContext.AliveEnemyGobjs.Count == 0) {
-            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLeves.Length - 1) {
+            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Length - 1) {
               // 发出关卡挑战成功
               Debug.Log ("challenge success");
               CelebrateVictory ();
