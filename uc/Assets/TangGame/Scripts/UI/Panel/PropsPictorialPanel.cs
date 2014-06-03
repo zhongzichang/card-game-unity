@@ -56,7 +56,7 @@ namespace TangGame.UI
 				Props props = new Props ();
 				props.data = list [i];
 				propsItemList [i].data = props;
-				propsItemList [i].gameObject.GetComponentInChildren<UILabel> (true).text = props.data.name;
+				propsItemList [i].gameObject.GetComponentInChildren<UILabel> ().text = props.data.name;
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace TangGame.UI
 		void SwitchToAll ()
 		{
 			CurrentPageReset ();
-			foreach (Xml.PropsData data in Config.propsXmlTable) {
+			foreach (Xml.PropsData data in Config.propsXmlTable.Values) {
 				currentPropsList.Add (data);
 			}
 			ShowCurrentPageProps (1);
@@ -139,7 +139,6 @@ namespace TangGame.UI
 		void CurrentPageReset ()
 		{
 			currentPropsList.Clear ();
-			currentPagePropsList.Clear ();
 			foreach (SimplePropsItem item in propsItemList) {
 				if (item.gameObject.activeSelf)
 					item.gameObject.SetActive (false);
