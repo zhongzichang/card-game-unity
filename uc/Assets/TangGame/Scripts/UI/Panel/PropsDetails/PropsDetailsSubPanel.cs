@@ -73,7 +73,7 @@ namespace TangGame.UI
 				}
 			}
 		}
-		bool mStarted;
+		bool mStarted = false;
 		void Start(){
 			mStarted = true;
       SVPropsItemArrayForward (propsDPbean.props.data);
@@ -116,8 +116,6 @@ namespace TangGame.UI
 		/// <param name="constraint">如果constraint 是vector3.zero 则默认位移到初始状态</param>
 		IEnumerator UpdateScrollView (Vector3 constraint)
 		{
-
-
 			yield return new WaitForSeconds (0.2F);
 			UIScrollView sVPropsItemScrollView = NGUITools.FindInParents<UIScrollView> (SVPropsItemTable.gameObject);
 			if (SVPropsItemArray.Count > 4) {
