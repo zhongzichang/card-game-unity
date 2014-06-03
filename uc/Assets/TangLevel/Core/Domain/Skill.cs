@@ -125,15 +125,15 @@ namespace TangLevel
     /// 释放特效
     /// </summary>
     public string[] releaseSpecials;
+    #endregion
+
+    #region Runtime Attributes
 
     /// <summary>
     /// 是否可以施展
     /// </summary>
     public bool enable = false;
 
-    #endregion
-
-    #region Runtime Attributes
     /// <summary>
     /// 大招特写
     /// </summary>
