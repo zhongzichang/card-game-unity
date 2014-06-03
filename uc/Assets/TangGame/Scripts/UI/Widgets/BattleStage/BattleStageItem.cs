@@ -69,7 +69,9 @@ namespace TangGame.UI{
           icon.gameObject.AddComponent<BoxCollider>();
           icon.ResizeCollider();
         }
-        UIEventListener.Get(icon.gameObject).onClick += OnClickHandler;
+        if(UIEventListener.Get(icon.gameObject).onClick == null){
+          UIEventListener.Get(icon.gameObject).onClick += OnClickHandler;
+        }
         UIButtonScale btn = icon.gameObject.AddComponent<UIButtonScale>();
         btn.hover = new Vector3(1, 1, 1);
         btn.pressed = new Vector3(0.95f, 0.95f, 0.95f);

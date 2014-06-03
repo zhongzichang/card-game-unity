@@ -8,6 +8,7 @@ namespace TangLevel
   {
     public static readonly Vector3 OFFSET = new Vector3 (0, 5, 0);
     public static readonly Vector3 TARGET_OFFSET = new Vector3 (100, 5, 0);
+    public static readonly Quaternion QUATERNION_LEFT = new Quaternion (0, 1, 0, 0);
     public const float DISAPPEAR_DISTANCE = 2;
     public const float SPEED = 60;
     private Transform myTransform;
@@ -42,6 +43,7 @@ namespace TangLevel
 
           HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
           SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
+
           // 对方全部活着的英雄
           List<GameObject> gl = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
             LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
@@ -93,8 +95,10 @@ namespace TangLevel
         // 计算目标位置
         Directional directional = w.source.GetComponent<Directional> ();
         if (directional.Direction == BattleDirection.RIGHT) {
+          myTransform.localRotation = Quaternion.identity;
           tpos = myTransform.localPosition + TARGET_OFFSET;
         } else {
+          myTransform.localRotation = QUATERNION_LEFT;
           tpos = myTransform.localPosition - TARGET_OFFSET;
         }
 

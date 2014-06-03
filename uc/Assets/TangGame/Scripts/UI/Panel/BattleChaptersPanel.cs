@@ -61,6 +61,8 @@ namespace TangGame.UI
     //分别获取到地图数据
     private List<MapData> normalList = new List<MapData>();
     private List<MapData> eliteList = new List<MapData>();
+    /// 点列表
+    private List<GameObject> pointList = new List<GameObject>();
 
   	void Start () {
       StarItem = battleChapterStarItem;
@@ -187,7 +189,7 @@ namespace TangGame.UI
     /// 显示对象点击处理
     private void BattleStageItemClickHandler(ViewItem item){
       Global.Log(">> BattleStageItemClickHandler id=" + (item.data as Level).data.id);
-      UIContext.mgrCoC.LazyOpen(BattleStageDetailPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, item.data);
+      UIContext.mgrCoC.LazyOpen(BattleStageDetailPanel.NAME, TangUI.UIPanelNode.OpenMode.OVERRIDE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, item.data);
     }
 
 
@@ -233,15 +235,17 @@ namespace TangGame.UI
 
     /// 更新点的显示
     private void UpdatePoints(){
-      BetterList<Transform> list = pageIndicators.GetChildList();
-      if(list.size < openChapter){//小于就创建
-        for(int i = 0, length = openChapter - list.size; i < length; i++){
-          UIUtils.Duplicate(point.gameObject, pageIndicators.gameObject);
+      if(pointList.Count < openChapter){//小于就创建
+        for(int i = 0, length = openChapter - pointList.Count; i < length; i++){
+          GameObject go = UIUtils.Duplicate(point.gameObject, pageIndicators.gameObject);
+          pointList.Add(go);
         }
       }else{//删除多余的pageIndicators
-        int length = list.size - openChapter;
+        int length = pointList.Count - openChapter;
         for(int i = 0; i < length; i++){
-          Destroy(list[i].gameObject);
+          GameObject go = pointList[i];
+          pointList.RemoveAt(0);
+          Destroy(go);
         }
       }
       pageIndicators.repositionNow = true;
