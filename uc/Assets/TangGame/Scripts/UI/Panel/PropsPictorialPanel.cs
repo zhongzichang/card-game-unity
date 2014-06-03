@@ -55,6 +55,7 @@ namespace TangGame.UI
 			for (int i = 0; i < list.Count; i++) {
 				Props props = new Props ();
 				props.data = list [i];
+				propsItemList [i].gameObject.SetActive (true);
 				propsItemList [i].data = props;
 				propsItemList [i].gameObject.GetComponentInChildren<UILabel> ().text = props.data.name;
 			}

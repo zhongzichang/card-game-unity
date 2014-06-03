@@ -25,6 +25,7 @@ namespace TangGame
 		public const string MAIN_POPUP_PANEL_NAME = "MainPopupPanel";
 		public const string HERO_VIEW_PANEL_NAME = "HeroViewPanel";
 		public const string SELL_PANEL_NAME = "SellPanel";
+		public const string PROPS_PICTORIAL_Panel = "PropsPictorialPanel";
 		/// <summary>
 		/// 灵魂石掉落详情面板
 		/// </summary>
