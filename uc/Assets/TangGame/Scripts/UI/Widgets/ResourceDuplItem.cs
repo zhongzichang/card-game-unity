@@ -6,13 +6,17 @@ namespace TangGame.UI{
     /// 点击处理
     public ViewItemDelegate onClick;
     public UISprite icon;
-    public UISprite notOpenIcon;
+    public UISprite background;
     public UILabel label;
 
+    /// 用于存储名称
+    private string dName;
+
     public override void Start (){
-      UIEventListener.Get(icon.gameObject).onClick += BtnClickHandler;
-      UIEventListener.Get(notOpenIcon.gameObject).onClick += BtnClickHandler;
-      icon.gameObject.SetActive(false);
+      dName = icon.spriteName;
+      UIEventListener.Get(background.gameObject).onClick += BtnClickHandler;
+      this.started = true;
+      UpdateData();
     }
 
     private void BtnClickHandler(GameObject go){
@@ -26,8 +30,13 @@ namespace TangGame.UI{
       if(this.data == null){return;}
       Level level = this.data as Level;
       if(level.data.team_lv <= Account.instance.level){
-        icon.gameObject.SetActive(true);
-        notOpenIcon.gameObject.SetActive(false);
+        icon.spriteName = dName;
+        icon.MakePixelPerfect();
+        background.color = new Color32(255, 255, 255, 255);
+      }else{
+        icon.spriteName = "notOpen";
+        icon.MakePixelPerfect();
+        background.color = new Color32(0, 255, 255, 255);
       }
     }
   }

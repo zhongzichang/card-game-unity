@@ -11,18 +11,137 @@ namespace TangGame.UI
 		public GameObject PropsPictorialItemGrid;
 		public GameObject PropsPictorialItem;
 		public GameObject PageLabel;
+
+		#region ===按钮===
+
+		public GameObject AdBtn;
+		public GameObject AgileBtn;
+		public GameObject AllBtn;
+		public GameObject HpBtn;
+		public GameObject IntellectBtn;
+		public GameObject StrengthBtn;
+		public GameObject AdditionTreatmentBtn;
+		public GameObject ApBtn;
+		public GameObject CritBtn;
+		public GameObject DefenseBtn;
+		public GameObject HpReBtn;
+		public GameObject MpReBtn;
+
+		#endregion
+
+		GameObject lastCheckedBtn;
 		public int itemCount = 12;
 		int pageIndex = 1;
 		int pageIndexMax = 1;
 		List<SimplePropsItem> propsItemList;
 		List<Xml.PropsData> currentPropsList = new List<Xml.PropsData> ();
 
+		string btnDefSpriteName = "";
+		Color btnDefSpriteColor = Color.white;
+		string btnCheckedSpriteName = "";
+		Color btnCheckedColor = Color.white;
 		void Start ()
 		{
+			lastCheckedBtn = AllBtn;
+			btnDefSpriteName = MpReBtn.GetComponent<UISprite> ().spriteName;
+			btnDefSpriteColor = MpReBtn.GetComponentInChildren<UILabel> ().color;
+			btnCheckedSpriteName = AllBtn.GetComponent<UISprite> ().spriteName;
+			btnCheckedColor = AllBtn.GetComponentInChildren<UILabel> ().color;
 			InitPorpItemList ();
 			SwitchToAll ();
 			UIEventListener.Get (ForwardBtn).onClick += ForwardBtnOnClick;
 			UIEventListener.Get (BackBtn).onClick += BackBtnOnClick;
+
+			UIEventListener.Get (AdBtn).onClick += AdBtnOnClick;
+			UIEventListener.Get (AgileBtn).onClick += AgileBtnOnClick;
+			UIEventListener.Get (AllBtn).onClick += AllBtnOnClick;
+			UIEventListener.Get (HpBtn).onClick += HpBtnOnClick;
+			UIEventListener.Get (IntellectBtn).onClick += IntellectBtnOnClick;
+			UIEventListener.Get (StrengthBtn).onClick += StrengthBtnOnClick;
+			UIEventListener.Get (AdditionTreatmentBtn).onClick += AdditionTreatmentBtnOnClick;
+			UIEventListener.Get (ApBtn).onClick += ApBtnOnClick;
+			UIEventListener.Get (CritBtn).onClick += CritBtnOnClick;
+			UIEventListener.Get (DefenseBtn).onClick += DefenseBtnOnClick;
+			UIEventListener.Get (HpReBtn).onClick += HpReBtnOnClick;
+			UIEventListener.Get (MpReBtn).onClick += MpReBtnOnClick;
+		}
+		void ToggleChecked(GameObject go){
+			lastCheckedBtn.GetComponent<UISprite> ().spriteName = btnDefSpriteName;
+			lastCheckedBtn.GetComponentInChildren<UILabel> ().color = btnDefSpriteColor;
+			go.GetComponent<UISprite> ().spriteName = btnCheckedSpriteName;
+			go.GetComponentInChildren<UILabel> ().color = btnCheckedColor;
+			lastCheckedBtn = go;
+		}
+
+		void MpReBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToEnergyRecovery ();
+		}
+
+		void HpReBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToHpRecovery ();
+		}
+
+		void DefenseBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToDefense ();
+		}
+
+		void CritBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToCrit ();
+		}
+
+		void ApBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToAP ();
+		}
+
+		void AdditionTreatmentBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToAdditionTreatment ();
+		}
+
+		void StrengthBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToStrength ();
+		}
+
+		void AdBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToAD ();
+		}
+		void AgileBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToAgile ();
+		}
+
+		void AllBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToAll ();
+		}
+
+		void HpBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToHpRecovery ();
+		}
+
+		void IntellectBtnOnClick (GameObject go)
+		{
+			ToggleChecked (go);
+			SwitchToIntellect ();
 		}
 
 		void ForwardBtnOnClick (GameObject go)
@@ -72,19 +191,20 @@ namespace TangGame.UI
 			}
 			return list;
 		}
-	
+
 		/// <summary>
 		/// 显示当前页面的道具
 		/// </summary>
 		/// <param name="index">Index.</param>
-		void ShowCurrentPageProps(int index){
+		void ShowCurrentPageProps (int index)
+		{
 			TweenAlpha alpha = PropsPictorialItemGrid.GetComponent<TweenAlpha> ();
 			alpha.ResetToBeginning ();
 			alpha.Play ();
 			List<Xml.PropsData> list = GetCurrentPagePropsList (index);
-			int indexMax = Mathf.CeilToInt((float)currentPropsList.Count / (float)itemCount);
+			int indexMax = Mathf.CeilToInt ((float)currentPropsList.Count / (float)itemCount);
 			pageIndexMax = indexMax;
-			SetPageLabel (index,indexMax);
+			SetPageLabel (index, indexMax);
 			HidePropsItems ();
 			for (int i = 0; i < list.Count; i++) {
 				Props props = new Props ();
@@ -95,21 +215,25 @@ namespace TangGame.UI
 				UIEventListener.Get (propsItemList [i].gameObject).onClick += PropsItemOnClick;
 			}
 		}
+
 		/// <summary>
 		/// 设置页面当前所在页面的标签
 		/// </summary>
 		/// <param name="index">Index.</param>
 		/// <param name="indexMax">Index max.</param>
-		void SetPageLabel(int index,int indexMax){
-			PageLabel.GetComponent<UILabel> ().text = string.Format ("{0}/{1}",index,indexMax);
+		void SetPageLabel (int index, int indexMax)
+		{
+			PageLabel.GetComponent<UILabel> ().text = string.Format ("{0}/{1}", index, indexMax);
 		}
 
-		void PropsItemOnClick(GameObject go){
+		void PropsItemOnClick (GameObject go)
+		{
 			SimplePropsItem item = go.GetComponent<SimplePropsItem> ();
 			PropsDetailsPanelBean bean = new PropsDetailsPanelBean ();
 			bean.props = item.data as Props;
-			UIContext.mgrCoC.LazyOpen (UIContext.EQUIP_DETAILS_PANEL_NAME,TangUI.UIPanelNode.OpenMode.ADDITIVE,TangUI.UIPanelNode.BlockMode.SPRITE,bean,true);
+			UIContext.mgrCoC.LazyOpen (UIContext.EQUIP_DETAILS_PANEL_NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, bean, true);
 		}
+
 		/// <summary>
 		/// 切换至全部
 		/// </summary>
@@ -180,12 +304,24 @@ namespace TangGame.UI
 		}
 
 		/// 攻击
-		void SwitchToAttack ()
+		void SwitchToAD ()
 		{
 
 			CurrentPageReset ();
 			foreach (Xml.PropsData data in Config.propsXmlTable.Values) {
-				if (data.attack_damage != 0 || data.ability_power != 0) {
+				if (data.attack_damage != 0) {
+					currentPropsList.Add (data);
+				}
+			}
+			ShowCurrentPageProps (1);
+		}
+
+		void SwitchToAP ()
+		{
+
+			CurrentPageReset ();
+			foreach (Xml.PropsData data in Config.propsXmlTable.Values) {
+				if (data.ability_power != 0) {
 					currentPropsList.Add (data);
 				}
 			}
@@ -198,7 +334,7 @@ namespace TangGame.UI
 
 			CurrentPageReset ();
 			foreach (Xml.PropsData data in Config.propsXmlTable.Values) {
-				if (data.magic_defense != 0 || data.physical_defense != 0){
+				if (data.magic_defense != 0 || data.physical_defense != 0) {
 					currentPropsList.Add (data);
 				}
 			}
@@ -265,7 +401,9 @@ namespace TangGame.UI
 			currentPropsList.Clear ();
 			HidePropsItems ();
 		}
-		void HidePropsItems(){
+
+		void HidePropsItems ()
+		{
 			foreach (SimplePropsItem item in propsItemList) {
 				if (item.gameObject.activeSelf)
 					item.gameObject.SetActive (false);
