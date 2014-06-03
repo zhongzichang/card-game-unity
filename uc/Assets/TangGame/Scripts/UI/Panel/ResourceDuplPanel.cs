@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
+using TangUtils;
 
 namespace TangGame.UI{
 
@@ -21,6 +22,7 @@ namespace TangGame.UI{
     public UILabel awardLabel;
     public UILabel tipsLabel;
     public SimplePropsItem[] propsItems = new SimplePropsItem[]{};
+    private Dictionary<MapType, string> openList = new Dictionary<MapType, string>();
 
     private object mParam;
 
@@ -32,6 +34,9 @@ namespace TangGame.UI{
       tipsTween.callWhenFinished = "OnFinishedHandler";
       tips.SetActive(false);
       awardLabel.text = UIPanelLang.AWARD;
+      openList.Add(MapType.Exp, "1,3,5,7");
+      openList.Add(MapType.Money, "2,4,6,7");
+      Global.Log(DateUtil.GetDayOfWeek());
     }
 
     public object param{
@@ -47,20 +52,23 @@ namespace TangGame.UI{
     }
 
     private void ExpBtnClickHandler(GameObject go){
-      tips.SetActive(true);
-      ShowExpTips();
-      tipsTween.PlayForward();
-      //UIContext.mgrCoC.LazyOpen(ResourceDuplSelectPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, MapType.Exp);
-    }
-
-    private void ExpTipsBackBtnClickHandler(GameObject go){
-      tipsTween.PlayReverse();
+      if(IsOpen(MapType.Exp)){
+        UIContext.mgrCoC.LazyOpen(ResourceDuplSelectPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, MapType.Exp);
+      }else{
+        tips.SetActive(true);
+        ShowExpTips();
+        tipsTween.PlayForward();
+      }
     }
 
     private void MoneyBtnClickHandler(GameObject go){
-      tips.SetActive(true);
-      ShowMoneyTips();
-      tipsTween.PlayForward();
+      if(IsOpen(MapType.Money)){
+        UIContext.mgrCoC.LazyOpen(ResourceDuplSelectPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, MapType.Money);
+      }else{
+        tips.SetActive(true);
+        ShowMoneyTips();
+        tipsTween.PlayForward();
+      }
     }
 
     private void TipsBackBtnClickHandler(GameObject go){
@@ -85,6 +93,18 @@ namespace TangGame.UI{
       title.MakePixelPerfect();
       tipsLabel.text = UIPanelLang.MONEY_OPEN_TIPS;
       //public SimplePropsItem[] propsItems = new SimplePropsItem[]{};
+    }
+
+    /// 判断是否开启
+    private bool IsOpen(MapType type){
+      if(openList.ContainsKey(type)){
+        string str = openList[type];
+        string week = DateUtil.GetDayOfWeek().ToString();
+        if(str.IndexOf(week) != -1){
+          return true;
+        }
+      }
+      return false;
     }
   }
 }

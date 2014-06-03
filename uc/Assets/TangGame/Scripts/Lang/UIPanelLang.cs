@@ -245,5 +245,21 @@ namespace TangGame.UI
     public const string MONEY_OPEN_TIPS = "每周二，四，六，日05:00开启";
     /// 每周一，三，五，日05:00开启
     public const string EXP_OPEN_TIPS = "每周一，三，五，日05:00开启";
+    /// 每周一，四，日05:00开启
+    public const string PROPS1_OPEN_TIPS = "每周一，四，日05:00开启";
+    /// 每周二，五，日05:00开启
+    public const string PROPS2_OPEN_TIPS = "每周二，五，日05:00开启";
+    /// 每周三，六，日05:00开启
+    public const string PROPS3_OPEN_TIPS = "每周三，六，日05:00开启";
+    /// 建议选择魔法伤害英雄
+    public const string PROPS1_PROPOSE = "建议选择魔法伤害英雄";
+    /// 建议选择物理伤害英雄
+    public const string PROPS2_PROPOSE = "建议选择物理伤害英雄";
+    /// 必须选择女性英雄
+    public const string PROPS3_PROPOSE = "必须选择女性英雄";
+    /// 选择难度
+    public const string SELECT_DUPL = "选择难度";
+    /// 今日剩余次数：{0}次
+    public const string SURPLUS_TIMES = "今日剩余次数：{0}次";
 	}
 }

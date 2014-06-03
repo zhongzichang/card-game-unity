@@ -22,6 +22,8 @@ namespace TangGame.UI{
     void Start(){
       this.started = true;
       closeBtn.onClick += CloseBtnClickHandler;
+      titleLabel.text = UIPanelLang.SELECT_DUPL;
+      surplusLabel.text = string.Format(UIPanelLang.SURPLUS_TIMES, 1);
       Init();
       UpdateData();
     }
@@ -77,7 +79,7 @@ namespace TangGame.UI{
     }
 
     private void CloseBtnClickHandler(GameObject go){
-
+      UIContext.mgrCoC.Back();
     }
   }
 }

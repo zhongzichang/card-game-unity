@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Created by SharpDevelop.
  * User: Cucumber
  * Date:
@@ -16,7 +16,7 @@ namespace TangUtils
 public class DateUtil
 {
 
-    /// »ñÈ¡×Ö·û´®ĞÎÊ½µÄÊ±¼äM-D H:M
+    /// è·å–å­—ç¬¦ä¸²å½¢å¼çš„æ—¶é—´M-D H:M
     public static string GetTime(long time)
     {
         string result = "";
@@ -26,7 +26,7 @@ public class DateUtil
         return result;
     }
 
-    /// »ñÈ¡×Ö·û´®ĞÎÊ½µÄÊ±¼äY-M-D H:M
+    /// è·å–å­—ç¬¦ä¸²å½¢å¼çš„æ—¶é—´Y-M-D H:M
     public static string GetYMDTime(long time)
     {
         string result = "";
@@ -34,6 +34,16 @@ public class DateUtil
         date = date.AddMilliseconds(time);
         result = date.Year + "-" + date.Month + "-" + date.Day + " " + date.Hour + ":" + date.Minute;
         return result;
+    }
+
+    /// è·å–å‘¨çš„æ˜ŸæœŸå‡ ï¼Œå¦‚ï¼Œ1,2,3ï¼Œ4,5,6,7
+    public static int GetDayOfWeek(){
+      DateTime date = DateTime.Now;
+      int result = Convert.ToInt32(date.DayOfWeek);
+      if(result == 0){
+        result = 7;
+      }
+      return result;
     }
 }
 }
