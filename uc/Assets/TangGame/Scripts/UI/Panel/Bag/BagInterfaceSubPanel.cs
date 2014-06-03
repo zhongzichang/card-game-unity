@@ -32,6 +32,8 @@ namespace TangGame.UI
 		/// 显示消耗品按钮的对象
 		/// </summary>
 		public GameObject ToggleConsumables;
+		public GameObject PropsPictorialBtn;
+
 		public GameObject HeroScrolBar;
 		public GameObject PropsTable;
 		private BagPanel bagPanel;
@@ -44,6 +46,7 @@ namespace TangGame.UI
 			UIEventListener.Get (ToggleScroll.gameObject).onClick += ToggleScrollOnClick;
 			UIEventListener.Get (ToggleSoulRock.gameObject).onClick += ToggleSoulRockOnClick;
 			UIEventListener.Get (ToggleConsumables.gameObject).onClick += ToggleConsumablesOnClick;
+			UIEventListener.Get (PropsPictorialBtn.gameObject).onClick += PropsPictorialBtnOnClick;
 
 			if(bagPanel == null)
 				bagPanel = NGUITools.FindInParents<BagPanel> (this.gameObject);
@@ -142,7 +145,12 @@ namespace TangGame.UI
 		{
 			this.ShowItemsByPropsType (PropsType.EXP, PropsType.ENCHANT);
 		}
-
+		/// <summary>
+		/// Propertieses the pictorial button on click.
+		/// </summary>
+		void PropsPictorialBtnOnClick(GameObject obj){
+			UIContext.mgrCoC.LazyOpen (UIContext.PROPS_PICTORIAL_Panel,TangUI.UIPanelNode.OpenMode.ADDITIVE,TangUI.UIPanelNode.BlockMode.TEXTURE);
+		}
 		void ShowItemsByPropsType (PropsType type)
 		{
 			foreach (PropsItem item in propsItems.Values) {
@@ -157,7 +165,6 @@ namespace TangGame.UI
 			}
 			this.PropsTableReposition ();
 		}
-
 		/// <summary>
 		/// 让view回到最顶层
 		/// </summary>
