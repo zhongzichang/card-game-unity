@@ -22,7 +22,7 @@ namespace TangGame.Xml
 		/// 动画循环
 		public int play_loop;
 		/// 是否大招
-    public bool isUltimate;
+    	public bool isUltimate;
 		/// 施法距离
 		public int cast_range;
 		/// 技能系数基本参数
@@ -45,8 +45,6 @@ namespace TangGame.Xml
 		public bool is_attribute_addition;
 		/// 覆盖技能编号
 		public int code_coverage_skill_id;
-		/// 动画编号
-		public int animation_id;
 		/// 前摇特效
 		public string singing_effect;
 		/// 后摇特效
@@ -57,6 +55,10 @@ namespace TangGame.Xml
 		public string desc;
 		/// 黄字描述
 		public string desc_y;
+		/// 前摇动画
+		public string boot_animation;
+		/// 后摇动画
+		public string after_animation;
 	}
 	[XmlRoot ("root")]
 	[XmlLate("skill")]

@@ -56,12 +56,12 @@ namespace TangLevel
         if (m_currentLevel != null) {
           if (InLevel) { // 在关卡里面
             int nextIndex = CurrentSubLevel.index + 1;
-            if (m_currentLevel.subLeves.Length > nextIndex) {
-              return m_currentLevel.subLeves [nextIndex];
+            if (m_currentLevel.subLevels.Length > nextIndex) {
+              return m_currentLevel.subLevels [nextIndex];
             }
           } else { // 在关卡外面
-            if (m_currentLevel.subLeves.Length > 0) {
-              return m_currentLevel.subLeves [0];
+            if (m_currentLevel.subLevels.Length > 0) {
+              return m_currentLevel.subLevels [0];
             }
           }
         } 

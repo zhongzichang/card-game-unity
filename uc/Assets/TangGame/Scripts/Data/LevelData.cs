@@ -54,6 +54,12 @@ namespace TangGame.Xml
 		public string resources;
     /// 关卡图标资源
     public string icon;
+    // 一层背景图
+    public string lv1_bg;
+    // 二层背景图
+    public string lv2_bg;
+    // 三层背景图
+    public string lv3_bg;
 
     [XmlRoot ("root")]
     [XmlLate ("levels")]

@@ -22,7 +22,7 @@ namespace TangLevel
     /// <summary>
     /// 子关卡
     /// </summary>
-    public SubLevel[] subLeves;
+    public SubLevel[] subLevels;
     /// <summary>
     /// 敌人的大招特写是否打开
     /// </summary>
@@ -71,9 +71,9 @@ namespace TangLevel
     {
       Level other = (Level)this.MemberwiseClone ();
 
-      other.subLeves = new SubLevel[ subLeves.Length ];
-      for (int i = 0; i < other.subLeves.Length; i++) {
-        other.subLeves [i] = subLeves [i].DeepCopy ();
+      other.subLevels = new SubLevel[ subLevels.Length ];
+      for (int i = 0; i < other.subLevels.Length; i++) {
+        other.subLevels [i] = subLevels [i].DeepCopy ();
       }
 
       return other;
@@ -81,14 +81,14 @@ namespace TangLevel
 
     public void DisableEnemyBigMoveCloseUp ()
     {
-      foreach (SubLevel slvl in subLeves) {
+      foreach (SubLevel slvl in subLevels) {
         slvl.enemyGroup.DisableBigMoveCloseUp ();
       }
     }
 
     public void EnableEnemyBigMoveCloseUp ()
     {
-      foreach (SubLevel slvl in subLeves) {
+      foreach (SubLevel slvl in subLevels) {
         slvl.enemyGroup.EnableBigMoveCloseUp ();
       }
     }
