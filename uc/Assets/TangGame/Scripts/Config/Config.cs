@@ -24,5 +24,7 @@ namespace TangGame
     public static Dictionary<int, MapData> mapXmlTable = new Dictionary<int, MapData> ();
     // 作用器表
     public static Dictionary<int, EffectorData> effectorXmlTable = new Dictionary<int, EffectorData> ();
+    // 英雄排序表
+    public static Dictionary<int,int> heroSortTable = new Dictionary<int, int>();
 	}
 }

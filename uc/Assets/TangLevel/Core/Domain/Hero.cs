@@ -144,7 +144,7 @@ namespace TangLevel
       // 配置值
       h.name = d.name;
       h.resName = d.avatar;
-      h.sort = sd.location;
+      //h.sort = sd.location;
       //h.skills = null;
       //h.skillQueue = null;
       //h.ai
