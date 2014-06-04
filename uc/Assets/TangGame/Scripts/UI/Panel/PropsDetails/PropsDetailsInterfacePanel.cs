@@ -82,10 +82,13 @@ namespace TangGame.UI
 		/// The synthesis button label.
 		/// </summary>
 		public GameObject SynthesisBtnLabel;
+		bool started;
 		// Use this for initialization
 		void Start ()
 		{
 			this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.SYNTHESIS_FORMULA;
+			started = true;
+			Flush (propsDPbean);
 		}
 		// Update is called once per frame
 		void Update ()
@@ -100,22 +103,30 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		public void Flush (PropsDetailsPanelBean bean)
 		{
-			int propsId = bean.props.data.id;
-			if (!PropsCache.instance.propsTable.ContainsKey (propsId))
+			if (!started)
 				return;
-			Props data = PropsCache.instance.propsTable [propsId];
+			int propsId = bean.props.data.id;
+			if (!Config.propsXmlTable.ContainsKey (propsId))
+				return;
+			Props props;
+			if (!PropsCache.instance.propsTable.ContainsKey (propsId)) {
+				props = new Props ();
+				props.data = Config.propsXmlTable [propsId];
+			} else {
+				props = PropsCache.instance.propsTable[propsId];
+			}
 			if (this.gameObject.activeSelf == false) {
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
-			this.UpPropsIcon (data.data.icon);
-			this.UpPropsFrames (data.data.rank);
-			this.UpPropsInfo (data);
-			this.UpPropsName (data.data.name);
-			this.UpPropsLvLabel (data.data.level.ToString ());
+			this.UpPropsIcon (props.data.icon);
+			this.UpPropsFrames (props.data.rank);
+			this.UpPropsInfo (props);
+			this.UpPropsName (props.data.name);
+			this.UpPropsLvLabel (props.data.level.ToString ());
 			int propsCount = 0;
-			if (data.net != null) {
-        propsCount = data.net.count;
+			if (props.net != null) {
+				propsCount = props.net.count;
 			} 
 			this.UpPropsCount (propsCount);
 
@@ -133,7 +144,7 @@ namespace TangGame.UI
 					}
 				}
 			} 
-			this.UpDescription (data.data.description);
+			this.UpDescription (props.data.description);
 
 
 		}
@@ -189,7 +200,7 @@ namespace TangGame.UI
 			PropsType type = (PropsType)data.data.type;
 			string infoStr = "";
 			if (PropsType.EQUIP == type) {
-				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength >0) {
+				if (data.data.strength == data.data.intellect && data.data.intellect == data.data.agile && data.data.strength > 0) {
 					infoStr += UIPanelLang.STRENGTH + ",";
 					infoStr += UIPanelLang.INTELLECT + ",";
 					infoStr += UIPanelLang.AGILE + "+";
@@ -291,18 +302,18 @@ namespace TangGame.UI
 			}
 			//如果是卷轴
 			if (PropsType.SCROLLS == type) {
-        PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData(data.data.id);
-        if(propsRelationData != null && propsRelationData.synthetics.Count > 0){
-					infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics[0].name);
-        }
+				PropsRelationData propsRelationData = PropsCache.instance.GetPropsRelationData (data.data.id);
+				if (propsRelationData != null && propsRelationData.synthetics.Count > 0) {
+					infoStr += string.Format (UIPanelLang.RELL_INFO, propsRelationData.synthetics [0].name);
+				}
 			}
 			//如果是灵魂石
 			if (PropsType.SOULROCK == type) {
-        TangGame.Xml.HeroData heroData = HeroCache.instance.GetSoulStoneRelation(data.data.id);
-        if (heroData != null) {
-          int count = Config.evolveXmlTable [heroData.evolve].val;
-          infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroData.name);
-        }
+				TangGame.Xml.HeroData heroData = HeroCache.instance.GetSoulStoneRelation (data.data.id);
+				if (heroData != null) {
+					int count = Config.evolveXmlTable [heroData.evolve].val;
+					infoStr += string.Format (UIPanelLang.SOUL_STONE_INFO, Config.evolveXmlTable [count], heroData.name);
+				}
 
 			}
 			//如果是消耗品
