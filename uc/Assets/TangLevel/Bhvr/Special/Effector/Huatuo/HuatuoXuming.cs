@@ -7,6 +7,7 @@ namespace TangLevel
 	public class HuatuoXuming : EffectorSpecialBhvr
 	{
 		private Animator mAnimator;
+		float duration = 5f;
 		// Use this for initialization
 		void Awake ()
 		{
@@ -16,15 +17,18 @@ namespace TangLevel
 		void Update ()
 		{
 			if (isPlay) {
-
+				duration -= Time.deltaTime;
+				if (duration <= 0) {
+					mAnimator.enabled = true;
+					mRelease ();
+				}
 			} else {
-
+				mAnimator.enabled = false;
 			}
 		}
 
-		IEnumerator mRelease ()
+		void mRelease ()
 		{
-			yield return new WaitForSeconds (3f);
 			isPlay = false;
 			transform.parent = null;
 			StartRelease ();
@@ -62,12 +66,12 @@ namespace TangLevel
 
 		public override void Play ()
 		{
+			duration = 5f;
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
 			if (skillTarget == null) {
 				skillTarget = w.source;
 			}
 			mCast ();
-			StartCoroutine (mRelease ());
 			transform.localScale = Vector3.one;
 			transform.parent = skillTarget.transform;
 			if (skillTarget.GetComponent<Directional> ().Direction == BattleDirection.LEFT)
