@@ -33,22 +33,16 @@ namespace TangGame.Xml
 		public int target_type;
 		/// 范围类型
 		public int range_type;
-		/// 作用器次数
-		public int effector_times;
-		/// 多重作用器序列
-		public int effector_sequence;
-		/// 作用器编号
-		public int effector_id;
 		/// 是否被伤害打断
 		public bool being_interrupted_by_injuries;
 		/// 是否是被动加属性技能
 		public bool is_attribute_addition;
 		/// 覆盖技能编号
 		public int code_coverage_skill_id;
-		/// 前摇特效
-		public string singing_effect;
-		/// 后摇特效
-		public string play_effect;
+    /// 前摇特效s
+    public string singing_effects;
+    /// 后摇特效s
+    public string play_effects;
 		/// 技能图标
 		public string skill_icon;
 		/// 文字描述
@@ -58,7 +52,13 @@ namespace TangGame.Xml
 		/// 前摇动画
 		public string boot_animation;
 		/// 后摇动画
-		public string after_animation;
+    public string after_animation;
+    /// 作用器编号
+    public string effector_ids;
+    /// 前摇作用器编号
+    public string boot_effector_ids;
+    /// 后摇作用器编号
+    public string after_effector_ids;
 	}
 	[XmlRoot ("root")]
 	[XmlLate("skill")]
