@@ -14,6 +14,10 @@ namespace TangLevel
   public class Config
   {
     /// <summary>
+    /// 秒转换为毫秒
+    /// </summary>
+    public const float SECOND_TO_MIL = 1000F;
+    /// <summary>
     /// 地图右边界
     /// </summary>
     public const float RIGHT_BOUND = 70;

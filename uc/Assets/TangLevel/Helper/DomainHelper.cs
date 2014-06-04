@@ -130,8 +130,8 @@ namespace TangLevel
       s.id = data.id;
       s.cd = data.cool_time;
 
-      s.chargeTime = ((float)data.boot_time) / 1000;
-      s.releaseTime = ((float)data.after_time) / 1000;
+      s.chargeTime = ((float)data.boot_time) / Config.SECOND_TO_MIL; // 配置文件以毫秒为单位
+      s.releaseTime = ((float)data.after_time) / Config.SECOND_TO_MIL;
       s.chargeClip = data.boot_animation;
       s.releaseClip = data.after_animation;
       if (!String.IsNullOrEmpty (data.singing_effect)) {
