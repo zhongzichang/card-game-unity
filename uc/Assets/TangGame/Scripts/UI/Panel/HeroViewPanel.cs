@@ -35,7 +35,8 @@ namespace TangGame.UI
 			//TODO监听
 		}
 
-		void OnEnable(){
+		void OnEnable ()
+		{
 			foreach (HeroItem item in heroItems.Values) {
 				item.Flush (item.heroBase);
 			}
@@ -49,25 +50,36 @@ namespace TangGame.UI
 			UIEventListener.Get (ToggleBefore.gameObject).onClick += OnToggleBeforeClick;
 			UIEventListener.Get (ToggleLater.gameObject).onClick += OnToggleLaterClick;
 			UIEventListener.Get (ToggleMedium.gameObject).onClick += OnToggleMediumClick;
-			StartCoroutine(LoadHeroAll ());
+			StartCoroutine (LoadHeroAll ());
 		}
 
 		/// <summary>
 		/// 加载所有的英雄
 		/// </summary>
-		IEnumerator LoadHeroAll(){
+		IEnumerator LoadHeroAll ()
+		{
 
 			UILabel lineLab = LineLabel.GetComponent<UILabel> ();
 			lineLab.text = "";
-			foreach(HeroBase herobase in HeroCache.instance.heroBeseTable.Values){
-				this.UpHeroItem (herobase);
+			List<HeroBase> herobaseList = new List<HeroBase> ();
+			foreach (HeroBase herobase in HeroCache.instance.heroBeseTable.Values) {
+				herobaseList.Add (herobase);
 			}
-			yield return new WaitForFixedUpdate ();
-			HideAllItem (false);
-			this.repositionNow ();
+			herobaseList.Sort (UITableByHeroFragments.SortById);
+			herobaseList.Sort (UITableByHeroFragments.SortByFragments);
+			herobaseList.Sort (UITableByHeroLevel.SortByLevel);
+			foreach (HeroBase herobase in herobaseList) {
+				yield return new WaitForFixedUpdate ();
+				this.UpHeroItem (herobase);
+				HideAllItem (false);
+				this.repositionNow ();
+			}
 			lineLab.text = UIPanelLang.NOT_SUMMON_HERO;
 		}
 	
+
+
+
 		// Update is called once per frame
 		void Update ()
 		{
@@ -172,7 +184,8 @@ namespace TangGame.UI
 		/// 更新某个
 		/// </summary>
 		/// <param name="herobase">Herobase.</param>
-		void UpHeroItem(HeroBase herobase){
+		void UpHeroItem (HeroBase herobase)
+		{
 			if (heroItems.ContainsKey (herobase.Xml.id)) {
 				HeroItem item = heroItems [herobase.Xml.id];
 				if (item.transform.parent == HeroLocking.transform && !herobase.Islock) {
@@ -189,7 +202,7 @@ namespace TangGame.UI
 		/// <param name="data">Data.</param>
 		void AddHeroItem (HeroBase data)
 		{
-			HeroItem item = Resources.Load<HeroItem> (UIContext.getWidgetsPath(UIContext.HERO_VIEW_ITEM_NAME));
+			HeroItem item = Resources.Load<HeroItem> (UIContext.getWidgetsPath (UIContext.HERO_VIEW_ITEM_NAME));
 			if (data.Islock) {
 				item = NGUITools.AddChild (HeroLocking, item.gameObject).GetComponent<HeroItem> ();
 
@@ -202,17 +215,18 @@ namespace TangGame.UI
 			UIEventListener.Get (item.gameObject).onClick += ItemOnClick;
 		}
 
-		public void ItemOnClick(GameObject obj){
+		public void ItemOnClick (GameObject obj)
+		{
 			HeroItem item = obj.GetComponent<HeroItem> ();
 			if (item == null)
 				return;
 			if (!item.heroBase.Islock) {
 				TangGame.UIContext.mgrCoC.LazyOpen (UIContext.HERO_INFO_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, item.heroBase, true);
-			} else{
+			} else {
 				if (item.canCall) {
 					//TODO 发送消息给服务器召唤此英雄
 				} else {
-					UIContext.mgrCoC.LazyOpen (UIContext.SOUL_StTONE_DROP_PANEL,TangUI.UIPanelNode.OpenMode.ADDITIVE,item.heroBase);
+					UIContext.mgrCoC.LazyOpen (UIContext.SOUL_StTONE_DROP_PANEL, TangUI.UIPanelNode.OpenMode.ADDITIVE, item.heroBase);
 				}
 			}
 		}

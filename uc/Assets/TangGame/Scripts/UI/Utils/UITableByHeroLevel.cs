@@ -5,20 +5,24 @@ using TangGame.UI;
 public class UITableByHeroLevel : UITable
 {
 	
-	static public int SortByLevel (Transform a, Transform b)
+	private int SortByLevel (Transform a, Transform b)
 	{
-
 		HeroBase Adata = a.GetComponent<HeroItem> ().heroBase;
 		HeroBase Bdata = b.GetComponent<HeroItem> ().heroBase;
-
+		return SortByLevel(Adata,Bdata);
+	}
+	static public int SortByLevel (HeroBase aBase, HeroBase bBase)
+	{
 		int val = 0;
-		if (Bdata.Net.Equals(null) || Adata.Net.Equals(null) || Adata.Xml.Equals(null) || Bdata.Xml.Equals(null) )
+		if (bBase.Net.Equals (null) || aBase.Net.Equals (null) || aBase.Xml.Equals (null) || bBase.Xml.Equals (null))
 			return val;
-		val = Bdata.Net.level.CompareTo (Adata.Net.level);
+		val = bBase.Net.level.CompareTo (aBase.Net.level);
 		if (val == 0) {
-			val = Bdata.Net.rank.CompareTo(Adata.Net.rank);
+			val = bBase.Net.rank.CompareTo (aBase.Net.rank);
 		}
-
+		if (val == 0) {
+			val = UITableByHeroFragments.SortByFragments(aBase,bBase);
+		}
 		return val;
 	}
 
