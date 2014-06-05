@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using TGX = TangGame.Xml;
 using TG = TangGame;
+using TU = TangUtils;
 
 namespace TangLevel
 {
   public class DomainHelper
   {
+
+    public const char SEP = ',';
 
     /// <summary>
     /// 从统一配置中 build 一个关卡配置
@@ -16,10 +19,8 @@ namespace TangLevel
     {
       Dictionary<int, Level> table = new Dictionary<int, Level> ();
       foreach (TGX.LevelData data in TG.Config.levelsXmlTable.Values) {
-
         Level level = BuildLevel (data);
         table.Add (level.id, level);
-
       }
       return table;
     }
@@ -85,8 +86,9 @@ namespace TangLevel
     /// </summary>
     /// <returns>The monster.</returns>
     /// <param name="data">Data.</param>
-    private static Hero BuildMonster (TGX.MonsterData data)
+    private static Hero BuildMonster (int monsterId)
     {
+
       /*
        *    public string name;
     public string resName;
@@ -110,12 +112,36 @@ namespace TangLevel
     private int m_hp;
     public int maxMp;
     private int m_mp;*/
-      Hero h = new Hero ();
-      h.name = data.name;
-      h.resName = data.model;
 
-      return h;
+      if (TG.Config.monsterXmlTable.ContainsKey (monsterId) &&
+          TG.Config.heroSortTable.ContainsKey (monsterId)) {
 
+        TGX.MonsterData data = TG.Config.monsterXmlTable [monsterId];
+        int sort = TG.Config.heroSortTable [monsterId];
+
+        Hero h = new Hero ();
+        // ID
+        h.id = data.id;
+        // 名字
+        h.name = data.name;
+        // 资源名字
+        h.resName = data.model;
+        // 出场次序
+        h.sort = sort;
+        // 技能
+        int[] skillIds = TU.TypeUtil.StringToIntArray (data.skill, SEP);
+        if (skillIds != null) {
+          for (int i = 0; i < skillIds.Length; i++) {
+            h.skills.Add (BuildSkill (skillIds [i]));
+          }
+        }
+
+
+        return h;
+
+      } else {
+        return null;
+      }
     }
 
     /// <summary>
@@ -123,143 +149,112 @@ namespace TangLevel
     /// </summary>
     /// <returns>The skill.</returns>
     /// <param name="data">Data.</param>
-    private static Skill BuildSkill (TGX.SkillData data)
+    private static Skill BuildSkill (int skillId)
     {
+      if (TG.Config.skillXmlTable.ContainsKey (skillId)) {
 
-      Skill s = new Skill ();
-      s.id = data.id;
-      s.cd = data.cool_time;
+        TGX.SkillData data = TG.Config.skillXmlTable [skillId];
 
-      s.chargeTime = ((float)data.boot_time) / Config.SECOND_TO_MIL; // 配置文件以毫秒为单位
-      s.releaseTime = ((float)data.after_time) / Config.SECOND_TO_MIL;
-      s.chargeClip = data.boot_animation;
-      s.releaseClip = data.after_animation;
-      if (!String.IsNullOrEmpty (data.singing_effect)) {
-        s.chargeSpecials = data.singing_effect.Split (new char[]{ ',' });
-      }
-      if (!String.IsNullOrEmpty (data.play_effect)) {
-        s.releaseSpecials = data.play_effect.Split (new char[]{ ',' });
-      }
+        Skill s = new Skill ();
 
-      s.bigMove = data.isUltimate;
-      s.distance = data.cast_range;
-      s.targetType = data.target_type;
-      s.scopeType = data.range_type;
-      s.breakable = data.being_interrupted_by_injuries;
-      s.attributePersistence = data.is_attribute_addition;
-      s.replaceSkillId = data.code_coverage_skill_id;
+        // ID
+        s.id = data.id;
 
-      // 作用器
-      //s.chargeEffectors;
-      //s.releaseEffectors;
-      //s.effectors;
+        // 冷却时间
+        s.cd = data.cool_time;
 
-      return s;
+        // 动作时间
+        s.chargeTime = ((float)data.boot_time) / Config.SECOND_TO_MIL; // 配置文件以毫秒为单位
+        s.releaseTime = ((float)data.after_time) / Config.SECOND_TO_MIL;
 
+        // 动画剪辑
+        s.chargeClip = data.boot_animation;
+        s.releaseClip = data.after_animation;
 
-      /*
-       *
-       *
-    /// <summary>
-      /// 编号
-      /// </summary>
-      public int id;
+        // 特效
+        if (!String.IsNullOrEmpty (data.singing_effects)) {
+          s.chargeSpecials = data.singing_effects.Split (new char[]{ SEP });
+        }
+        if (!String.IsNullOrEmpty (data.play_effects)) {
+          s.releaseSpecials = data.play_effects.Split (new char[]{ SEP });
+        }
 
-      /// <summary>
-      /// 冷却时间
-      /// </summary>
-      public float cd;
+        // 大招
+        s.bigMove = data.isUltimate;
+        // 攻击距离
+        s.distance = data.cast_range;
+        // 目标类型
+        s.targetType = data.target_type;
+        // 范围类型
+        s.scopeType = data.range_type;
+        // 是否可打断
+        s.breakable = data.being_interrupted_by_injuries;
+        // 是否永久增加属性
+        s.attributePersistence = data.is_attribute_addition;
+        // 替换技能ID
+        s.replaceSkillId = data.code_coverage_skill_id;
 
-      /// <summary>
-      /// 起手动作时间
-      /// </summary>
-      public float chargeTime;
+        // 作用器
+        string effectorIds = data.effector_ids;
+        if (!String.IsNullOrEmpty (data.effector_ids)) {
+          s.effectors = BuildEffectors (data.effector_ids);
+        }
+        // 前摇作用器
+        if (!String.IsNullOrEmpty (data.boot_effector_ids)) {
+          s.chargeEffectors = BuildEffectors (data.boot_effector_ids);
+        }
+        // 后摇作用器
+        if (!string.IsNullOrEmpty (data.after_effector_ids)) {
+          s.releaseEffectors = BuildEffectors (data.after_effector_ids);
+        }
 
-      /// <summary>
-      /// 释放动作时间
-      /// </summary>
-      public float releaseTime;
-
-      /// <summary>
-      /// 是否大招
-      /// </summary>
-      public bool bigMove;
-
-      /// <summary>
-      /// 攻击距离
-      /// </summary>
-      public float distance;
-
-      // 技能系统基本参数
-      // 升级提升参数
-
-      /// 目标类型
-      public int targetType;
-
-      /// <summary>
-      /// 范围类型
-      /// </summary>
-      public int scopeType;
-
-      /// <summary>
-      ///   指定区域 - 当 targetType = TARGET_RANGE 时有用
-      /// </summary>
-      public Rect region;
-
-      /// <summary>
-      /// 作用器
-      /// </summary>
-      public Effector[] effectors;
+        return s;
+      } 
 
 
-      /// <summary>
-      /// 前摇作用器
-      /// </summary>
-      public Effector[] chargeEffectors;
-
-      /// <summary>
-      /// 后摇作用器
-      /// </summary>
-      public Effector[] releaseEffectors;
-
-      /// <summary>
-      /// 是否可打断
-      /// </summary>
-      public bool breakable;
-
-      /// <summary>
-      /// 永久增加属性
-      /// </summary>
-      public bool attributePersistence;
-
-      /// <summary>
-      /// 被替换释放的另一个技能ID
-      /// </summary>
-      public int replaceSkillId;
-
-      /// <summary>
-      /// 蓄力动画剪辑
-      /// </summary>
-      public string chargeClip;
-
-      /// <summary>
-      /// 释放动画剪辑
-      /// </summary>
-      public string releaseClip;
-
-      /// <summary>
-      /// 蓄力特效
-      /// </summary>
-      public string[] chargeSpecials;
-
-      /// <summary>
-      /// 释放特效
-      /// </summary>
-      public string[] releaseSpecials;
-       */
-      return s;
+      return null;
     }
 
+    /// <summary>
+    /// 生成作用器
+    /// </summary>
+    /// <returns>The effectors.</returns>
+    /// <param name="data">Data.</param>
+    private static Effector[] BuildEffectors (string textIds)
+    {
+
+      int[] effectorIds = TU.TypeUtil.StringToIntArray (textIds, SEP);
+      if (effectorIds != null) {
+        List<Effector> list = new List<Effector> ();
+        foreach (int id in effectorIds) {
+          list.Add (GetEffector (id));
+        }
+        return list.ToArray ();
+      }
+      return null;
+
+    }
+
+    private static Effector GetEffector (int id)
+    {
+      if (TG.Config.effectorXmlTable.ContainsKey (id)) {
+        TGX.EffectorData data = TG.Config.effectorXmlTable [id];
+        Effector effector = new Effector ();
+        effector.specialName = data.special_effect; // 特效资源名称
+        effector.probability = data.probability; // 概率
+        effector.radius = data.radius; // 范围半径
+        effector.times = data.times; // 次数
+        effector.timeSpan = data.loop_time; // 间隔时间
+        effector.type = data.type; // 类型
+        if (!String.IsNullOrEmpty (data.effect_ids)) {
+          // 效果编码
+          effector.effectCodes = TU.TypeUtil.StringToIntArray (data.effect_ids, SEP);
+        }
+        return effector;
+      } else {
+        return null;
+      }
+    }
   }
 }
 

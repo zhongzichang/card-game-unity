@@ -6,7 +6,10 @@ namespace TangLevel
 {
 	public class HuatuoXuming : EffectorSpecialBhvr
 	{
+		public bool releaseOnSourceDead = false;
+		public bool releaseOnTargetDead = false;
 		private Animator mAnimator;
+		float duration = 5f;
 		// Use this for initialization
 		void Awake ()
 		{
@@ -15,16 +18,43 @@ namespace TangLevel
 		// Update is called once per frame
 		void Update ()
 		{
+		
+			if (releaseOnSourceDead) {
+				ReleaseOnSourceDead ();
+			}
+			if (releaseOnTargetDead) {
+				ReleaseOnTargetDead ();
+			}
+
 			if (isPlay) {
-
+				mAnimator.enabled = true;
+				duration -= Time.deltaTime;
+				if (duration <= 0) {
+					mRelease ();
+				}
 			} else {
-
+				mAnimator.enabled = false;
+			}
+		}
+		/// <summary>
+		/// 在施放则死了的情况下释放技能
+		/// </summary>
+		void ReleaseOnSourceDead(){
+			if (w.source.GetComponent<HeroBhvr>().hero.hp <= 0) {
+				mRelease ();
+			}
+		}
+		/// <summary>
+		/// 在目标则死了的情况下释放技能
+		/// </summary>
+		void ReleaseOnTargetDead(){
+			if (skillTarget.GetComponent<HeroBhvr>().hero.hp <= 0) {
+				mRelease ();
 			}
 		}
 
-		IEnumerator mRelease ()
+		void mRelease ()
 		{
-			yield return new WaitForSeconds (3f);
 			isPlay = false;
 			transform.parent = null;
 			StartRelease ();
@@ -53,7 +83,7 @@ namespace TangLevel
 			HeroStatusBhvr targetStatusBhvr = skillTarget.GetComponent<HeroStatusBhvr> ();
 			// 抛出作用器
 			foreach (Effector e in w.effector.subEffectors) {
-				EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, w.target);
+				EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, skillTarget);
 				sourceSkillBhvr.Cast (cw);
 			}
 		}
@@ -62,12 +92,12 @@ namespace TangLevel
 
 		public override void Play ()
 		{
+			duration = 5f;
 			skillTarget = HeroSelector.FindSelfWeakest (w.source.GetComponent<HeroBhvr> ().hero);
 			if (skillTarget == null) {
 				skillTarget = w.source;
 			}
 			mCast ();
-			StartCoroutine (mRelease ());
 			transform.localScale = Vector3.one;
 			transform.parent = skillTarget.transform;
 			if (skillTarget.GetComponent<Directional> ().Direction == BattleDirection.LEFT)

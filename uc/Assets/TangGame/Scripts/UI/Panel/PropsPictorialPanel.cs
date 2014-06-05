@@ -214,6 +214,7 @@ namespace TangGame.UI
 				propsItemList [i].gameObject.GetComponentInChildren<UILabel> ().text = props.data.name;
 				UIEventListener.Get (propsItemList [i].gameObject).onClick += PropsItemOnClick;
 			}
+			PropsPictorialItemGrid.GetComponent<UIGrid> ().repositionNow = true;
 		}
 
 		/// <summary>

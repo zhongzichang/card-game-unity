@@ -4,11 +4,23 @@ using System.Collections.Generic;
 
 namespace TangLevel
 {
-	public class RemoteThrowing : EffectorSpecialBhvr
+	public class RemoteStraightSkillEffects : EffectorSpecialBhvr
 	{
+		/// <summary>
+		/// 技能的速度
+		/// </summary>
+		public float moveSpeed = 80f;
+
+		/// <summary>
+		/// 是否为范围攻击
+		/// </summary>
+		public bool rangeAttack = false;
+
+		public bool releaseOnSourceDead = false;
+		public bool releaseOnTargetDead = false;
 		private Animator mAnimator;
 		TweenPosition mTweenPosi;
-		public float moveSpeed = 30f;
+		GameObject targetObj;
 		// Use this for initialization
 		void Awake ()
 		{
@@ -18,6 +30,14 @@ namespace TangLevel
 		// Update is called once per frame
 		void Update ()
 		{
+
+			if (releaseOnSourceDead) {
+				ReleaseOnSourceDead ();
+			}
+			if (releaseOnTargetDead) {
+				ReleaseOnTargetDead ();
+			}
+
 			if (isPlay) {
 				mAnimator.enabled = true;
 				transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
@@ -26,6 +46,32 @@ namespace TangLevel
 				mAnimator.enabled = false;
 			}
 
+			Vector2 sourcePosiV2 = new Vector2 (w.source.transform.position.x,w.source.transform.position.y);
+			Vector2 mPosiV2 = new Vector2 (transform.position.x,transform.position.y);
+			float mDistance = Vector2.Distance (sourcePosiV2,mPosiV2);
+			if (mDistance >= w.skill.distance) {
+				mRelease ();
+			}
+		}
+
+		/// <summary>
+		/// 在施放则死了的情况下释放技能
+		/// </summary>
+		void ReleaseOnSourceDead ()
+		{
+			if (w.source.GetComponent<HeroBhvr> ().hero.hp <= 0) {
+				mRelease ();
+			}
+		}
+
+		/// <summary>
+		/// 在目标则死了的情况下释放技能
+		/// </summary>
+		void ReleaseOnTargetDead ()
+		{
+			if (w.target.GetComponent<HeroBhvr> ().hero.hp <= 0) {
+				mRelease ();
+			}
 		}
 
 		void mRelease ()
@@ -47,12 +93,8 @@ namespace TangLevel
 			LevelController.RaisePause -= OnPause;
 			LevelController.RaiseResume -= OnResume;
 		}
-		//		void OnGUI ()
-		//		{
-		//			if (GUILayout.Button ("Play")) {
-		//				isPlay = true;
-		//			}
-		//		}
+
+
 		void mCast ()
 		{
 			Vector3 pos = transform.position;
@@ -70,25 +112,18 @@ namespace TangLevel
 				foreach (Effector e in w.effector.subEffectors) {
 					EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, g);
 					sourceSkillBhvr.Cast (cw);
-					mRelease ();
-					return;
-
+					if (!rangeAttack) {
+						mRelease ();
+						return;
+					}
 				}
 			}
 		}
-		void OnGUI ()
-		{
-			if (GUILayout.Button ("Play")) {
-				Play ();
-			}
-		}
+
 		public override void Play ()
 		{	
-
-			Vector3 targetPosi = w.target.transform.position + new Vector3(0,2.5f,0);
-			Vector3 sourcePosi = w.source.transform.position + new Vector3(0,2.5f,0);
-//			targetPosi.z += 10;
-//			sourcePosi.z = targetPosi.z;
+			Vector3 targetPosi = w.target.transform.position + new Vector3 (0, 2.5f, 0);
+			Vector3 sourcePosi = w.source.transform.position + new Vector3 (0, 2.5f, 0);
 			transform.localScale = Vector3.one;
 			transform.position = sourcePosi;
 			transform.LookAt (targetPosi);
