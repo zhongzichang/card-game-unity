@@ -396,7 +396,7 @@ namespace TangLevel
           LoadTargetSubLevelRes ();
 
         } else {
-          Debug.Log ("Level not found with id " + levelId);
+          Debug.Log ("Level not found by id " + levelId);
         }
 
       }

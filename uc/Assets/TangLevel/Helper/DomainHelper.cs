@@ -26,6 +26,7 @@ namespace TangLevel
     {
       if (TG.Config.levelsXmlTable != null && TG.Config.levelsXmlTable.Count > 0) {
         foreach (TGX.LevelData data in TG.Config.levelsXmlTable.Values) {
+          Debug.Log ("level - transform by id " + data.id);
           Level level = BuildLevel (data);
           Config.levelTable.Add (level.id, level);
         }
