@@ -6,30 +6,30 @@ namespace TangGame.UI{
   /// <summary>
   /// 邮件面板
   /// </summary>
-  public class MailPanel : ViewPanel {
-    public const string NAME = "MailPanel";
+  public class TaskPanel : ViewPanel {
+    public const string NAME = "TaskPanel";
 
     public UILabel titleLabel;
-    public MailItem mailItem;
+    public TaskItem taskItem;
     public UIScrollView scrollView;
     public UIEventListener closeBtn;
 
     private object mParam;
     private bool started;
-    private List<MailItem> items = new List<MailItem>();
+    private List<TaskItem> items = new List<TaskItem>();
 
     void Start(){
       closeBtn.onClick += CloseBtnClickHandler;
       titleLabel.text = UIPanelLang.MAILBOX;
       this.started = true;
-      this.mailItem.gameObject.SetActive(false);
+      this.taskItem.gameObject.SetActive(false);
 
-      MailCache.instance.list.Add(new Mail());
-      MailCache.instance.list.Add(new Mail());
-      MailCache.instance.list.Add(new Mail());
-      MailCache.instance.list.Add(new Mail());
-      MailCache.instance.list.Add(new Mail());
-      MailCache.instance.list.Add(new Mail());
+      TaskCache.instance.list.Add(new Task());
+      TaskCache.instance.list.Add(new Task());
+      TaskCache.instance.list.Add(new Task());
+      TaskCache.instance.list.Add(new Task());
+      TaskCache.instance.list.Add(new Task());
+      TaskCache.instance.list.Add(new Task());
       this.UpdateData();
     }
 
@@ -41,19 +41,19 @@ namespace TangGame.UI{
 
     private void UpdateData(){
       if(!this.started){return;}
-      foreach(MailItem item in items){
+      foreach(TaskItem item in items){
         GameObject.Destroy(item);
       }
       items.Clear();
 
       GameObject go = null;
-      Vector3 position = mailItem.transform.localPosition;
-      foreach(Mail mail in MailCache.instance.list){
-        go = UIUtils.Duplicate(mailItem.gameObject, mailItem.transform.parent.gameObject);
+      Vector3 position = taskItem.transform.localPosition;
+      foreach(Task task in TaskCache.instance.list){
+        go = UIUtils.Duplicate(taskItem.gameObject, taskItem.transform.parent.gameObject);
         go.transform.localPosition = position;
-        MailItem item = go.GetComponent<MailItem>();
+        TaskItem item = go.GetComponent<TaskItem>();
         items.Add(item);
-        item.data = mail;
+        item.data = task;
         position.y = position.y - 134;
       }
     }
@@ -63,7 +63,7 @@ namespace TangGame.UI{
     }
 
     private void ItemClickHandler(ViewItem viewItem){
-      UIContext.mgrCoC.LazyOpen(MailDetailsPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, viewItem.data);
+
     }
   }
 }
