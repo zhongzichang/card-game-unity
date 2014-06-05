@@ -3,26 +3,33 @@ using System.Collections.Generic;
 using TGX = TangGame.Xml;
 using TG = TangGame;
 using TU = TangUtils;
+using UnityEngine;
 
 namespace TangLevel
 {
-  public class DomainHelper
+  public class DomainHelper : MonoBehaviour
   {
-
     public const char SEP = ',';
+
+    void OnEnable ()
+    {
+      if (Config.levelTable.Count == 0) {
+        BuildLevelTable ();
+      }
+    }
 
     /// <summary>
     /// 从统一配置中 build 一个关卡配置
     /// </summary>
     /// <returns>The level table.</returns>
-    public static Dictionary<int, Level> BuildLevelTable ()
+    public static void BuildLevelTable ()
     {
-      Dictionary<int, Level> table = new Dictionary<int, Level> ();
-      foreach (TGX.LevelData data in TG.Config.levelsXmlTable.Values) {
-        Level level = BuildLevel (data);
-        table.Add (level.id, level);
+      if (TG.Config.levelsXmlTable != null && TG.Config.levelsXmlTable.Count > 0) {
+        foreach (TGX.LevelData data in TG.Config.levelsXmlTable.Values) {
+          Level level = BuildLevel (data);
+          Config.levelTable.Add (level.id, level);
+        }
       }
-      return table;
     }
 
     /// <summary>
@@ -36,7 +43,6 @@ namespace TangLevel
       level.id = data.id;
       // 子关卡
       List<SubLevel> subLevels = BuildSubLevels (data);
-
       level.subLevels = subLevels.ToArray ();
       return level;
     }
@@ -70,16 +76,21 @@ namespace TangLevel
       SubLevel l = new SubLevel ();
       l.resName = background;
 
-      string[] tmpIds = monsterIds.Split (new Char[]{ ',' });
-      int[] realIds = new int[tmpIds.Length];
-      for (int i = 0; i < realIds.Length; i++) {
-        realIds [i] = int.Parse (tmpIds [i]);
+      int[] realIds = TU.TypeUtil.StringToIntArray (monsterIds, SEP);
+      if (realIds != null) {
+        // group and heros
+        Group g = new Group ();
+        Hero[] heros = new Hero[realIds.Length];
+        for (int i = 0; i < realIds.Length; i++) {
+          Hero h = BuildMonster (realIds [i]);
+          heros [i] = h;
+        }
+        g.heros = heros;
+
       }
 
-      l.enemyGroup = new Group ();
       return l;
     }
-
 
     /// <summary>
     /// 建造一个怪物
@@ -88,30 +99,6 @@ namespace TangLevel
     /// <param name="data">Data.</param>
     private static Hero BuildMonster (int monsterId)
     {
-
-      /*
-       *    public string name;
-    public string resName;
-    /// <summary>
-    /// 出场顺序值
-    /// </summary>
-    public int sort;
-    /// <summary>
-    /// 英雄技能
-    /// </summary>
-    public List<Skill> skills;
-    /// <summary>
-    /// 出手序列
-    /// </summary>
-    public int[] skillQueue;
-    /// <summary>
-    /// 英雄的 AI，可以有多个
-    /// </summary>
-    public string[] ai;
-    public int maxHp;
-    private int m_hp;
-    public int maxMp;
-    private int m_mp;*/
 
       if (TG.Config.monsterXmlTable.ContainsKey (monsterId) &&
           TG.Config.heroSortTable.ContainsKey (monsterId)) {
@@ -135,6 +122,18 @@ namespace TangLevel
             h.skills.Add (BuildSkill (skillIds [i]));
           }
         }
+        // 技能出手序列
+        if (!String.IsNullOrEmpty (data.shot_order)) {
+          h.skillQueue = TU.TypeUtil.StringToIntArray (data.shot_order, SEP);
+        }
+
+        // hp
+        h.maxHp = data.hpMax;
+        h.hp = data.hpMax;
+
+        // mp
+        h.maxMp = Config.MAX_HP;
+        h.mp = 0;
 
 
         return h;
