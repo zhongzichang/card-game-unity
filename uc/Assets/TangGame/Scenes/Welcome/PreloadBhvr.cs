@@ -29,7 +29,7 @@ namespace TangGame
       xmls.Add("levels");
       xmls.Add("monster");
       xmls.Add("map");
-
+      xmls.Add("name");
 
 
       TangScene.TS.EnsureTSGobj ();
