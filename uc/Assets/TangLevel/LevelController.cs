@@ -340,9 +340,8 @@ namespace TangLevel
       if (heroIds.Length > 0) {
 
         PlaceController.Place = Place.level;
-
-        // TODO 这里模拟一份团队数据
-        LevelController.ChallengeLevel (1, Mocker.MockGroup (heroIds));
+        Debug.Log (" Set levelId=1001 for debuging ");
+        LevelController.ChallengeLevel ( 1001, Mocker.MockGroup (heroIds));
       }
 
     }

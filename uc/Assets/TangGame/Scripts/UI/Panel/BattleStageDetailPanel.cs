@@ -75,7 +75,7 @@ namespace TangGame.UI
 
       string[] list = new string[]{};
       if(!string.IsNullOrEmpty(level.data.monster_ids)){
-        list = level.data.monster_ids.Replace("{", "").Replace("}", "").Split(',');
+        list = level.data.monster_ids.Replace("[", "").Replace("]", "").Split(',');
       }
 
       int index = list.Length - 5;
@@ -107,7 +107,7 @@ namespace TangGame.UI
 
       list = new string[]{};
       if(!string.IsNullOrEmpty(level.data.props_ids)){
-        list = level.data.props_ids.Replace("{", "").Replace("}", "").Split(',');
+        list = level.data.props_ids.Replace("[", "").Replace("]", "").Split(',');
       }
       tempPosition = this.propsInfoItem.transform.localPosition;
       for(int i = 0, length = list.Length; i < length; i++){

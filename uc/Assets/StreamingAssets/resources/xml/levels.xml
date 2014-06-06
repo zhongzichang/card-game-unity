@@ -4,9 +4,9 @@
     <id>1001</id>
     <map_id>1</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -14,26 +14,26 @@
     <lv_constraint_num>0</lv_constraint_num>
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
-    <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <name>开始的敌方</name>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
     <lv3_dialogue>1003</lv3_dialogue>
     <resources/>
     <icon>stage-1</icon>
-    <lv1_bg/>
-    <lv2_bg/>
-    <lv3_bg/>
+    <lv1_bg>lbg_grass1</lv1_bg>
+    <lv2_bg>lbg_grass2</lv2_bg>
+    <lv3_bg>lbg_grass3</lv3_bg>
   </value>
   <value>
     <id>1002</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -42,8 +42,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -58,9 +58,9 @@
     <id>1003</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -69,8 +69,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -85,9 +85,9 @@
     <id>1004</id>
     <map_id>1</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -96,8 +96,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -112,9 +112,9 @@
     <id>1005</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -123,8 +123,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -139,9 +139,9 @@
     <id>1006</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -150,8 +150,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -166,9 +166,9 @@
     <id>1007</id>
     <map_id>1</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -177,8 +177,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -193,9 +193,9 @@
     <id>1008</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -204,8 +204,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -220,9 +220,9 @@
     <id>1009</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -231,8 +231,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -247,9 +247,9 @@
     <id>1010</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -258,8 +258,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -274,9 +274,9 @@
     <id>1011</id>
     <map_id>1</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -285,8 +285,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -301,9 +301,9 @@
     <id>1012</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -312,8 +312,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -328,9 +328,9 @@
     <id>1013</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -339,8 +339,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -355,9 +355,9 @@
     <id>1014</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -366,8 +366,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -382,9 +382,9 @@
     <id>1015</id>
     <map_id>1</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -393,8 +393,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -409,9 +409,9 @@
     <id>1016</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -420,8 +420,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -436,9 +436,9 @@
     <id>1017</id>
     <map_id>1</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -447,8 +447,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -463,9 +463,9 @@
     <id>1018</id>
     <map_id>1</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -474,8 +474,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>      </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -490,9 +490,9 @@
     <id>1019</id>
     <map_id>2</map_id>
     <repeat>1</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -501,8 +501,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -517,9 +517,9 @@
     <id>1020</id>
     <map_id>2</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -528,8 +528,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -544,9 +544,9 @@
     <id>2001</id>
     <map_id>201</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -555,8 +555,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -571,9 +571,9 @@
     <id>2002</id>
     <map_id>201</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -582,8 +582,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -598,9 +598,9 @@
     <id>2003</id>
     <map_id>201</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -609,8 +609,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -625,9 +625,9 @@
     <id>2004</id>
     <map_id>201</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -636,8 +636,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -652,9 +652,9 @@
     <id>2011</id>
     <map_id>202</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -663,8 +663,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>     </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -679,9 +679,9 @@
     <id>2012</id>
     <map_id>202</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -690,8 +690,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>     </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -706,9 +706,9 @@
     <id>2013</id>
     <map_id>202</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -717,8 +717,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>     </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -733,9 +733,9 @@
     <id>2014</id>
     <map_id>202</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -744,8 +744,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>     </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -760,9 +760,9 @@
     <id>3001</id>
     <map_id>301</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -771,8 +771,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -787,9 +787,9 @@
     <id>3002</id>
     <map_id>301</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -798,8 +798,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -814,9 +814,9 @@
     <id>3003</id>
     <map_id>301</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -825,8 +825,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -841,9 +841,9 @@
     <id>3004</id>
     <map_id>301</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -852,8 +852,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -868,9 +868,9 @@
     <id>3011</id>
     <map_id>302</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -879,8 +879,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -895,9 +895,9 @@
     <id>3012</id>
     <map_id>302</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -906,8 +906,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -922,9 +922,9 @@
     <id>3013</id>
     <map_id>302</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -933,8 +933,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -949,9 +949,9 @@
     <id>3014</id>
     <map_id>302</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -960,8 +960,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>    </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -976,9 +976,9 @@
     <id>3021</id>
     <map_id>303</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -987,8 +987,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>   </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -1003,9 +1003,9 @@
     <id>3022</id>
     <map_id>303</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -1014,8 +1014,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>   </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -1030,9 +1030,9 @@
     <id>3023</id>
     <map_id>303</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -1041,8 +1041,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>   </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>
@@ -1057,9 +1057,9 @@
     <id>3024</id>
     <map_id>303</map_id>
     <repeat>0</repeat>
-    <lv1_monster_ids>{1,1,2}</lv1_monster_ids>
-    <lv2_monster_ids>{1,2,2}</lv2_monster_ids>
-    <lv3_monster_ids>{3,4,5,6,2}</lv3_monster_ids>
+    <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
+    <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
+    <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
     <energy_consumption>6</energy_consumption>
     <team_exp>6</team_exp>
     <hero_exp>48</hero_exp>
@@ -1068,8 +1068,8 @@
     <type_constraint_num>0</type_constraint_num>
     <team_lv>1</team_lv>
     <name>   </name>
-    <monster_ids>{1,2,3,4,5,6}</monster_ids>
-    <props_ids>{1001,1003,1005}</props_ids>
+    <monster_ids>[1,2,3,4,5,6]</monster_ids>
+    <props_ids>[1001,1003,1005]</props_ids>
     <description>    </description>
     <lv1_dialogue>1001</lv1_dialogue>
     <lv2_dialogue>1002</lv2_dialogue>

@@ -9,9 +9,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -29,9 +29,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_1</avatar>
@@ -48,9 +48,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.2}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.8}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.2}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.2]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.8]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.2]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -68,9 +68,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,5}</skill_ids>
-		<shot_order>{2,3,5}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,5]</skill_ids>
+		<shot_order>[2,3,5]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_2</avatar>
@@ -87,9 +87,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.3}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.9}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.3}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.3]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.9]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.3]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -107,9 +107,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,6}</skill_ids>
-		<shot_order>{2,3,6}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,6]</skill_ids>
+		<shot_order>[2,3,6]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_3</avatar>
@@ -126,9 +126,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.4}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.10}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.4}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.4]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.10]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.4]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -146,9 +146,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,7}</skill_ids>
-		<shot_order>{2,3,7}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,7]</skill_ids>
+		<shot_order>[2,3,7]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_4</avatar>
@@ -165,9 +165,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.5}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.11}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.5}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.5]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.11]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.5]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -185,9 +185,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,8}</skill_ids>
-		<shot_order>{2,3,8}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,8]</skill_ids>
+		<shot_order>[2,3,8]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_5</avatar>
@@ -204,9 +204,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.6}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.12}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.6}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.6]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.12]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.6]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -224,9 +224,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,9}</skill_ids>
-		<shot_order>{2,3,9}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,9]</skill_ids>
+		<shot_order>[2,3,9]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_6</avatar>
@@ -243,9 +243,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.7}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.13}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.7}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.7]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.13]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.7]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -263,9 +263,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,10}</skill_ids>
-		<shot_order>{2,3,10}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,10]</skill_ids>
+		<shot_order>[2,3,10]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_7</avatar>
@@ -282,9 +282,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.8}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.14}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.8}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.8]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.14]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.8]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -302,9 +302,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,11}</skill_ids>
-		<shot_order>{2,3,11}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,11]</skill_ids>
+		<shot_order>[2,3,11]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_8</avatar>
@@ -321,9 +321,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.9}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.15}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.9}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.9]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.15]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.9]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -341,9 +341,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,12}</skill_ids>
-		<shot_order>{2,3,12}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,12]</skill_ids>
+		<shot_order>[2,3,12]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_9</avatar>
@@ -360,9 +360,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.10}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.16}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.10}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.10]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.16]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.10]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -380,9 +380,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,13}</skill_ids>
-		<shot_order>{2,3,13}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,13]</skill_ids>
+		<shot_order>[2,3,13]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_10</avatar>
@@ -399,9 +399,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.11}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.17}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.11}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.11]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.17]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.11]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -419,9 +419,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,14}</skill_ids>
-		<shot_order>{2,3,14}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,14]</skill_ids>
+		<shot_order>[2,3,14]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_11</avatar>
@@ -438,9 +438,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.12}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.18}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.12}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.12]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.18]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.12]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -458,9 +458,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,15}</skill_ids>
-		<shot_order>{2,3,15}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,15]</skill_ids>
+		<shot_order>[2,3,15]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_12</avatar>
@@ -477,9 +477,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.13}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.19}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.13}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.13]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.19]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.13]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -497,9 +497,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,16}</skill_ids>
-		<shot_order>{2,3,16}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,16]</skill_ids>
+		<shot_order>[2,3,16]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_13</avatar>
@@ -516,9 +516,9 @@
 		<gender>1</gender>
 		<attribute_type>2</attribute_type>
 		<location>3</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -536,9 +536,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>后排治疗英雄，拥有强大的治疗能力。</hero_info>
 		<hero_tip>传说中的医圣</hero_tip>
 		<avatar>hero_icon_14</avatar>
@@ -555,9 +555,9 @@
 		<gender>1</gender>
 		<attribute_type>2</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -575,9 +575,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_15</avatar>
@@ -594,9 +594,9 @@
 		<gender>1</gender>
 		<attribute_type>2</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -614,9 +614,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_16</avatar>
@@ -633,9 +633,9 @@
 		<gender>1</gender>
 		<attribute_type>2</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -653,9 +653,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_17</avatar>
@@ -672,9 +672,9 @@
 		<gender>1</gender>
 		<attribute_type>2</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -692,9 +692,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_18</avatar>
@@ -711,9 +711,9 @@
 		<gender>1</gender>
 		<attribute_type>2</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -731,9 +731,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_19</avatar>
@@ -750,9 +750,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{13,4.2,5.6,6.8,9}</strength_growth>
-		<intellect_growth>{1.5,2.25,3,3.75,4.5}</intellect_growth>
-		<agile_growth>{1.9,2.85,3.8,4.75,5.7}</agile_growth>
+		<strength_growth>[13,4.2,5.6,6.8,9]</strength_growth>
+		<intellect_growth>[1.5,2.25,3,3.75,4.5]</intellect_growth>
+		<agile_growth>[1.9,2.85,3.8,4.75,5.7]</agile_growth>
 		<strength>22</strength>
 		<intellect>16</intellect>
 		<agile>17</agile>
@@ -770,9 +770,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{5,6,7,8}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[5,6,7,8]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>前排肉盾英雄，可以震晕敌人。</hero_info>
 		<hero_tip>我是憨厚的闷墩儿</hero_tip>
 		<avatar>hero_icon_20</avatar>
@@ -789,9 +789,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -809,9 +809,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_21</avatar>
@@ -828,9 +828,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -848,9 +848,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_22</avatar>
@@ -867,9 +867,9 @@
 		<gender>2</gender>
 		<attribute_type>3</attribute_type>
 		<location>2</location>
-		<strength_growth>{1.9,2.85,3.8,4.75,5.7}</strength_growth>
-		<intellect_growth>{1.7,2.55,3.4,4.25,5.1}</intellect_growth>
-		<agile_growth>{2.8,4.2,5.6,7,8.4}</agile_growth>
+		<strength_growth>[1.9,2.85,3.8,4.75,5.7]</strength_growth>
+		<intellect_growth>[1.7,2.55,3.4,4.25,5.1]</intellect_growth>
+		<agile_growth>[2.8,4.2,5.6,7,8.4]</agile_growth>
 		<strength>22</strength>
 		<intellect>19</intellect>
 		<agile>22</agile>
@@ -887,9 +887,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{9,10,11,12}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[9,10,11,12]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>中排输出英雄。</hero_info>
 		<hero_tip>我是美女我怕谁</hero_tip>
 		<avatar>hero_icon_23</avatar>
@@ -906,9 +906,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -926,9 +926,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_24</avatar>
@@ -945,9 +945,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -965,9 +965,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_25</avatar>
@@ -984,9 +984,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1004,9 +1004,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_26</avatar>
@@ -1023,9 +1023,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{13,4.2,5.6,6.8,9}</strength_growth>
-		<intellect_growth>{1.5,2.25,3,3.75,4.5}</intellect_growth>
-		<agile_growth>{1.9,2.85,3.8,4.75,5.7}</agile_growth>
+		<strength_growth>[13,4.2,5.6,6.8,9]</strength_growth>
+		<intellect_growth>[1.5,2.25,3,3.75,4.5]</intellect_growth>
+		<agile_growth>[1.9,2.85,3.8,4.75,5.7]</agile_growth>
 		<strength>22</strength>
 		<intellect>16</intellect>
 		<agile>17</agile>
@@ -1043,9 +1043,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{13,14,15,16}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[13,14,15,16]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>前排肉盾英雄，可以把敌人丢出去。</hero_info>
 		<hero_tip>你是猴子请来的救兵吗？</hero_tip>
 		<avatar>hero_icon_27</avatar>
@@ -1062,9 +1062,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.1}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.7}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.1}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.1]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.7]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.1]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1082,9 +1082,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,4}</skill_ids>
-		<shot_order>{2,3,4}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,4]</skill_ids>
+		<shot_order>[2,3,4]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_28</avatar>
@@ -1101,9 +1101,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.2}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.8}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.2}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.2]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.8]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.2]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1121,9 +1121,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,5}</skill_ids>
-		<shot_order>{2,3,5}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,5]</skill_ids>
+		<shot_order>[2,3,5]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_29</avatar>
@@ -1140,9 +1140,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.3}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.9}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.3}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.3]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.9]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.3]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1160,9 +1160,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,6}</skill_ids>
-		<shot_order>{2,3,6}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,6]</skill_ids>
+		<shot_order>[2,3,6]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_30</avatar>
@@ -1179,9 +1179,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.4}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.10}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.4}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.4]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.10]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.4]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1199,9 +1199,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,7}</skill_ids>
-		<shot_order>{2,3,7}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,7]</skill_ids>
+		<shot_order>[2,3,7]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_31</avatar>
@@ -1218,9 +1218,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.5}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.11}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.5}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.5]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.11]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.5]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1238,9 +1238,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,8}</skill_ids>
-		<shot_order>{2,3,8}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,8]</skill_ids>
+		<shot_order>[2,3,8]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_32</avatar>
@@ -1257,9 +1257,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.6}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.12}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.6}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.6]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.12]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.6]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1277,9 +1277,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,9}</skill_ids>
-		<shot_order>{2,3,9}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,9]</skill_ids>
+		<shot_order>[2,3,9]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_33</avatar>
@@ -1296,9 +1296,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.7}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.13}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.7}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.7]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.13]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.7]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1316,9 +1316,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,10}</skill_ids>
-		<shot_order>{2,3,10}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,10]</skill_ids>
+		<shot_order>[2,3,10]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_34</avatar>
@@ -1335,9 +1335,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.8}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.14}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.8}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.8]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.14]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.8]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1355,9 +1355,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,11}</skill_ids>
-		<shot_order>{2,3,11}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,11]</skill_ids>
+		<shot_order>[2,3,11]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_35</avatar>
@@ -1374,9 +1374,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.9}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.15}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.9}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.9]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.15]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.9]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1394,9 +1394,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,12}</skill_ids>
-		<shot_order>{2,3,12}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,12]</skill_ids>
+		<shot_order>[2,3,12]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_36</avatar>
@@ -1413,9 +1413,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.10}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.16}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.10}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.10]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.16]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.10]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1433,9 +1433,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,13}</skill_ids>
-		<shot_order>{2,3,13}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,13]</skill_ids>
+		<shot_order>[2,3,13]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_37</avatar>
@@ -1452,9 +1452,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.11}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.17}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.11}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.11]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.17]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.11]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1472,9 +1472,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,14}</skill_ids>
-		<shot_order>{2,3,14}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,14]</skill_ids>
+		<shot_order>[2,3,14]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_38</avatar>
@@ -1491,9 +1491,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.12}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.18}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.12}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.12]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.18]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.12]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1511,9 +1511,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,15}</skill_ids>
-		<shot_order>{2,3,15}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,15]</skill_ids>
+		<shot_order>[2,3,15]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_39</avatar>
@@ -1530,9 +1530,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.13}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.19}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.13}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.13]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.19]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.13]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1550,9 +1550,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,16}</skill_ids>
-		<shot_order>{2,3,16}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,16]</skill_ids>
+		<shot_order>[2,3,16]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_40</avatar>
@@ -1569,9 +1569,9 @@
 		<gender>2</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.14}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.20}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.14}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.14]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.20]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.14]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1589,9 +1589,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,17}</skill_ids>
-		<shot_order>{2,3,17}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,17]</skill_ids>
+		<shot_order>[2,3,17]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_41</avatar>
@@ -1608,9 +1608,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.15}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.21}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.15}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.15]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.21]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.15]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1628,9 +1628,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,18}</skill_ids>
-		<shot_order>{2,3,18}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,18]</skill_ids>
+		<shot_order>[2,3,18]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_42</avatar>
@@ -1647,9 +1647,9 @@
 		<gender>1</gender>
 		<attribute_type>1</attribute_type>
 		<location>1</location>
-		<strength_growth>{1.5,2.55,3.4,4.25,5.16}</strength_growth>
-		<intellect_growth>{3.2,4.35,5.8,7.25,8.22}</intellect_growth>
-		<agile_growth>{1.5,2.55,3.4,4.25,5.16}</agile_growth>
+		<strength_growth>[1.5,2.55,3.4,4.25,5.16]</strength_growth>
+		<intellect_growth>[3.2,4.35,5.8,7.25,8.22]</intellect_growth>
+		<agile_growth>[1.5,2.55,3.4,4.25,5.16]</agile_growth>
 		<strength>17</strength>
 		<intellect>28</intellect>
 		<agile>22</agile>
@@ -1667,9 +1667,9 @@
 		<bloodsucking_lv>0</bloodsucking_lv>
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
-		<equip_id_list>{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}{1001,1002,1003,1004,1005,1006}{1002,1003,1004,1005,1006,1007}{1003,1004,1005,1006,1007,1008}{1004,1005,1006,1007,1008,1009}{1005,1006,1007,1008,1009,1010}</equip_id_list>
-		<skill_ids>{1,2,3,19}</skill_ids>
-		<shot_order>{2,3,19}</shot_order>
+		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
+		<skill_ids>[1,2,3,19]</skill_ids>
+		<shot_order>[2,3,19]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_43</avatar>

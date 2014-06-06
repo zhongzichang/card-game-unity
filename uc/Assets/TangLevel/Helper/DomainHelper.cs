@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TGX = TangGame.Xml;
 using TG = TangGame;
 using TU = TangUtils;
 using UnityEngine;
+using Procurios.Public;
 
 namespace TangLevel
 {
@@ -26,7 +28,7 @@ namespace TangLevel
     {
       if (TG.Config.levelsXmlTable != null && TG.Config.levelsXmlTable.Count > 0) {
         foreach (TGX.LevelData data in TG.Config.levelsXmlTable.Values) {
-          Debug.Log ("level - transform by id " + data.id);
+          //Debug.Log ("level - transform by id " + data.id);
           Level level = BuildLevel (data);
           Config.levelTable.Add (level.id, level);
         }
@@ -57,10 +59,19 @@ namespace TangLevel
     {
 
       List<SubLevel> subLevels = new List<SubLevel> ();
-      SubLevel l1 = new SubLevel ();
       if (!String.IsNullOrEmpty (data.lv1_bg) && !String.IsNullOrEmpty (data.lv1_monster_ids)) {
-        l1 = BuildLevel (data.lv1_bg, data.lv1_monster_ids);
-        subLevels.Add (l1);
+        SubLevel lvl = BuildSubLevel (data.lv1_bg, data.lv1_monster_ids);
+        subLevels.Add (lvl);
+      }
+
+      if (!String.IsNullOrEmpty (data.lv2_bg) && !String.IsNullOrEmpty (data.lv2_monster_ids)) {
+        SubLevel lvl = BuildSubLevel (data.lv2_bg, data.lv2_monster_ids);
+        subLevels.Add (lvl);
+      }
+
+      if (!String.IsNullOrEmpty (data.lv3_bg) && !String.IsNullOrEmpty (data.lv3_monster_ids)) {
+        SubLevel lvl = BuildSubLevel (data.lv3_bg, data.lv3_monster_ids);
+        subLevels.Add (lvl);
       }
       return subLevels;
 
@@ -72,24 +83,34 @@ namespace TangLevel
     /// <returns>The level.</returns>
     /// <param name="background">Background.</param>
     /// <param name="monsterIds">Monster identifiers.</param>
-    private static SubLevel BuildLevel (string background, string monsterIds)
+    private static SubLevel BuildSubLevel (string background, string monsterIds)
     {
       SubLevel l = new SubLevel ();
       l.resName = background;
+      Group g = new Group ();
 
-      int[] realIds = TU.TypeUtil.StringToIntArray (monsterIds, SEP);
+      ArrayList realIds = JSON.JsonDecode (monsterIds) as ArrayList;
       if (realIds != null) {
         // group and heros
-        Group g = new Group ();
-        Hero[] heros = new Hero[realIds.Length];
-        for (int i = 0; i < realIds.Length; i++) {
-          Hero h = BuildMonster (realIds [i]);
-          heros [i] = h;
+        Hero[] heros = new Hero[realIds.Count];
+        for (int i = 0; i < realIds.Count; i++) {
+          int hId = Convert.ToInt32 ((double)(realIds [i]));
+          Hero h = BuildMonster (hId);
+          if (h != null) {
+            heros [i] = h;
+          } else {
+            Debug.Log ("TangLevel: Fail to transform monster data by monster id " + hId);
+          }
         }
-        g.heros = heros;
 
+        g.heros = heros;
       }
 
+      if (g.heros == null || g.heros.Length == 0) {
+        Debug.LogError ("TangLevel: Failure to create group for level by monsterIds " + monsterIds);
+      }
+
+      l.enemyGroup = g;
       return l;
     }
 
@@ -101,8 +122,7 @@ namespace TangLevel
     private static Hero BuildMonster (int monsterId)
     {
 
-      if (TG.Config.monsterXmlTable.ContainsKey (monsterId) &&
-          TG.Config.heroSortTable.ContainsKey (monsterId)) {
+      if (TG.Config.monsterXmlTable.ContainsKey (monsterId)) {
 
         TGX.MonsterData data = TG.Config.monsterXmlTable [monsterId];
         int sort = TG.Config.heroSortTable [monsterId];
@@ -117,15 +137,29 @@ namespace TangLevel
         // 出场次序
         h.sort = sort;
         // 技能
-        int[] skillIds = TU.TypeUtil.StringToIntArray (data.skill, SEP);
+        ArrayList skillIds = JSON.JsonDecode (data.skill) as ArrayList;
         if (skillIds != null) {
-          for (int i = 0; i < skillIds.Length; i++) {
-            h.skills.Add (BuildSkill (skillIds [i]));
+          h.skills = new List<Skill> ();
+          for (int i = 0; i < skillIds.Count; i++) {
+            h.skills.Add (BuildSkill (Convert.ToInt32 ((double)skillIds [i])));
           }
+        }
+        if (h.skills == null || h.skills.Count == 0) {
+          Debug.Log ("TangLevel: Failure to find skills for monster by id " + h.id);
         }
         // 技能出手序列
         if (!String.IsNullOrEmpty (data.shot_order)) {
-          h.skillQueue = TU.TypeUtil.StringToIntArray (data.shot_order, SEP);
+          ArrayList list = JSON.JsonDecode (data.shot_order) as ArrayList;
+          if (list != null) {
+            ArrayList intList = TU.TypeUtil.DoubleToInt (list);
+            if (intList != null) {
+              h.skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (intList);
+            }
+          }
+        }
+        if (h.skillQueue == null || h.skillQueue.Length == 0) {
+          Debug.Log ("TangLevel: Failure to find skill queue for monster by id " + h.id);
+
         }
 
         // hp
@@ -173,10 +207,16 @@ namespace TangLevel
 
         // 特效
         if (!String.IsNullOrEmpty (data.singing_effects)) {
-          s.chargeSpecials = data.singing_effects.Split (new char[]{ SEP });
+          ArrayList list = JSON.JsonDecode (data.singing_effects) as ArrayList;
+          if (list != null) {
+            s.chargeSpecials = TU.TypeUtil.ToArray<ArrayList, string> (list);
+          }
         }
         if (!String.IsNullOrEmpty (data.play_effects)) {
-          s.releaseSpecials = data.play_effects.Split (new char[]{ SEP });
+          ArrayList list = JSON.JsonDecode (data.play_effects) as ArrayList;
+          if (list != null) {
+            s.releaseSpecials = TU.TypeUtil.ToArray<ArrayList, string> (list);
+          }
         }
 
         // 大招
@@ -209,10 +249,13 @@ namespace TangLevel
         }
 
         return s;
-      } 
 
+      } else {
 
-      return null;
+        Debug.Log ("TangLevel: Fail to find skill by id " + skillId);
+
+        return null;
+      }
     }
 
     /// <summary>
@@ -248,7 +291,10 @@ namespace TangLevel
         effector.type = data.type; // 类型
         if (!String.IsNullOrEmpty (data.effect_ids)) {
           // 效果编码
-          effector.effectCodes = TU.TypeUtil.StringToIntArray (data.effect_ids, SEP);
+          ArrayList list = JSON.JsonDecode (data.effect_ids) as ArrayList;
+          if (list != null) {
+            effector.effectCodes = TU.TypeUtil.ToArray<ArrayList, int> (list);
+          }
         }
         return effector;
       } else {

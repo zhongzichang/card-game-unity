@@ -188,8 +188,8 @@ public class Utils
 	/// <param name="str">String.</param>
 	public static ArrayList SplitStrByBraces (string str)
 	{
-		str = str.Replace ("{", "");
-		string[] strs = str.Split ('}');
+    str = str.Replace ("[", "");
+    string[] strs = str.Split (']');
 		ArrayList strList = new ArrayList (strs);
 		for (int i = 0; i < strList.Count; i++) {
 			if (strList [i] == null || strList [i].ToString () == "" || strList [i].ToString () == " ") {
