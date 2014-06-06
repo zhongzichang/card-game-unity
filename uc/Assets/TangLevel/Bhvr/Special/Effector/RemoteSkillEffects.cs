@@ -44,11 +44,12 @@ namespace TangLevel
 		/// 是否为范围攻击
 		/// </summary>
 		public bool rangeAttack = false;
-		public bool releaseOnSourceDead = true;
+		public bool releaseOnSourceDead = false;
 		public bool releaseOnTargetDead = false;
 		private Animator mAnimator;
 		GameObject targetObj;
 
+		int firstNamHash;
 		// Use this for initialization
 		void Awake ()
 		{
@@ -71,15 +72,44 @@ namespace TangLevel
 				mAnimator.enabled = true;
 				switch (mTrajectorie) {
 				case Trajectories.Straight:
+					if (mMoving)
+						transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
 					StraightCast ();
 					break;
+				case Trajectories.Parabola:
+					if (mMoving) {
+						moveSpeed = w.skill.distance / mAnimator.GetCurrentAnimatorStateInfo (0).length;
+						Vector3 moveDis = Vector3.forward * moveSpeed * Time.deltaTime;
+						if (!float.IsNaN (moveDis.x) && !float.IsNaN (moveDis.y) && !float.IsNaN (moveDis.z))
+							transform.Translate (moveDis);
+					}
+					break;
 				}
+
 
 			} else {
 				mAnimator.enabled = false;
 			}
 
 			ReleaseOnBeyondDistance ();
+		}
+
+		bool mMoving = false;
+
+		/// <summary>
+		/// 开始移动
+		/// </summary>
+		void StartMove ()
+		{
+			mMoving = true;
+		}
+
+		/// <summary>
+		/// 停止移动
+		/// </summary>
+		void StopMove ()
+		{
+			mMoving = false;
 		}
 
 		/// <summary>
@@ -145,21 +175,20 @@ namespace TangLevel
 		/// <returns>The caset.</returns>
 		void RangeCaset ()
 		{
-				Vector3 pos = emissions.transform.position;
-				HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
-				SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
-				// 对方全部活着的英雄
-				List<GameObject> gl = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
+			Vector3 pos = emissions.transform.position;
+			HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
+			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
+			// 对方全部活着的英雄
+			List<GameObject> gl = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
 				LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
-				// 在范围内的英雄
-				gl = HeroSelector.FindTargetsWithWidth (gl, pos, 10F);
-				mCast (gl);
+			// 在范围内的英雄
+			gl = HeroSelector.FindTargetsWithWidth (gl, pos, 20F);
+			mCast (gl);
 		
 		}
 
 		void StraightCast ()
 		{
-			transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
 			Vector3 pos = emissions.transform.position;
 			HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
@@ -171,11 +200,15 @@ namespace TangLevel
 			mCast (gl);
 		}
 
+		bool castStarted = false;
+
 		/// <summary>
 		/// 对英雄抛出作用器
 		/// </summary>
 		/// <param name="gl">Gl.</param>
-		void mCast(List<GameObject> gl){
+		void mCast (List<GameObject> gl)
+		{
+			castStarted = true;
 			foreach (GameObject g in gl) {
 				SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
 				// 抛出作用器
@@ -190,13 +223,27 @@ namespace TangLevel
 			}
 		}
 
+		Vector3 targetPosi;
+		Vector3 sourcePosi;
+
 		public override void Play ()
 		{	
-			Vector3 targetPosi = w.target.transform.position + new Vector3 (0, 2.5f, 0);
-			Vector3 sourcePosi = w.source.transform.position + new Vector3 (0, 2.5f, 0);
-			emissions.transform.localScale = Vector3.one;
-			emissions.transform.position = sourcePosi;
-			emissions.transform.LookAt (targetPosi);
+			targetPosi = w.target.transform.position;
+			sourcePosi = w.source.transform.position;
+			transform.localScale = Vector3.one;
+			transform.position = sourcePosi;
+			if (mTrajectorie == Trajectories.Straight) {
+				targetPosi += new Vector3 (0, 2.5f, 0);
+				sourcePosi += new Vector3 (0, 2.5f, 0);
+				transform.LookAt (targetPosi);
+				StartMove ();
+			}
+			if (mTrajectorie == Trajectories.Parabola) {
+				transform.position = w.source.transform.position;
+				targetPosi.z = w.source.transform.position.z;
+				targetPosi.y = w.source.transform.position.y;
+				transform.LookAt (targetPosi);
+			}
 			isPlay = true;
 		}
 	}
