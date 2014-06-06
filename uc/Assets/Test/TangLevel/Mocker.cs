@@ -94,6 +94,7 @@ namespace TangLevel
       group.heros = new Hero[ UnityEngine.Random.Range (2, 3)];
 			for (int j = 0; j < group.heros.Length; j++) {
         int id = UnityEngine.Random.Range (0, 7);
+				id = 6;
         if (id == 0)
 					group.heros [j] = MockHeroZf ();
 				else if (id == 1)
@@ -107,7 +108,7 @@ namespace TangLevel
 				} else if (id == 5) {
           group.heros [j] = MockCommonHero ("hero_huangjingongjianbing");
         } else if (id == 6) {
-          group.heros [j] = MockCommonHero ("hero_toushiche");
+					group.heros [j] = MockHeroToushiche ();
         } else if (id == 7) {
           group.heros [j] = MockCommonHero ("hero_gongchengche");
         }
@@ -676,6 +677,60 @@ namespace TangLevel
 			hero.skillQueue = new int[]{ 0 };
 
 			return hero;
+		}
+
+		#endregion
+		#region 投石车
+
+		public static Hero MockHeroToushiche ()
+		{
+			Hero hero = new Hero ();  
+			hero.id = 101;
+			hero.resName = "hero_toushiche";
+			hero.maxHp = 120;
+			hero.hp = 120;
+			hero.maxMp = 100;
+			hero.mp = 0;
+			hero.sort = 2;//UnityEngine.Random.Range (1, 20);
+			hero.ai = new string[]{ "AutoFire" };
+
+			List<Skill> skills = new List<Skill> ();
+			skills.Add (MockToushicheAttack ());
+			hero.skills = skills;
+			hero.skillQueue = new int[]{ 0 };
+
+			return hero;
+		}
+		// 投石车普通攻击作用器
+		public static Effector MockToushicheAttackEffector ()
+		{
+			Effector effector = new Effector ();
+			effector.specialName = "fx_toushi";
+			Effector[] subEffectors = new Effector[1];
+			subEffectors [0] = MockCommonHit ();
+			effector.subEffectors = subEffectors;
+
+			return effector;
+		}
+		/// <summary>
+		/// 投石车普通攻击技能
+		/// </summary>
+		/// <returns>The toushiche attack.</returns>
+		public static Skill MockToushicheAttack ()
+		{
+
+			Skill skill = new Skill ();
+
+			skill.effectors = new Effector[1];
+			skill.effectors [0] = MockToushicheAttackEffector ();
+			//skill.chargeClip = "binghua0";
+			skill.releaseClip = "attack";
+			skill.enable = true;
+			skill.bigMove = false;
+			skill.distance = 30;
+			skill.cd = 3f;
+
+			return skill;
 		}
 
 		#endregion
