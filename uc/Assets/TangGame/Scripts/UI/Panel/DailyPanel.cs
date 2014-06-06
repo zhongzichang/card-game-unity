@@ -20,7 +20,7 @@ namespace TangGame.UI{
 
     void Start(){
       closeBtn.onClick += CloseBtnClickHandler;
-      titleLabel.text = UIPanelLang.MAILBOX;
+      titleLabel.text = UIPanelLang.DAILY;
       this.started = true;
       this.dailyItem.gameObject.SetActive(false);
 

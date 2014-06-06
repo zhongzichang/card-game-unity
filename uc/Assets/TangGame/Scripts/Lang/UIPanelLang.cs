@@ -270,5 +270,12 @@ namespace TangGame.UI
     public const string MAIL_ATTACHMENT = "附件：";
     /// 领取
     public const string MAIL_RECEIVE = "领取";
+
+    /// 任务
+    public const string TASK = "任务";
+
+    /// 每日活动
+    public const string DAILY = "每日活动";
+
 	}
 }
