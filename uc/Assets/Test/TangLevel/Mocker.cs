@@ -727,8 +727,8 @@ namespace TangLevel
 			skill.releaseClip = "attack";
 			skill.enable = true;
 			skill.bigMove = false;
-			skill.distance = 20;
-			skill.cd = 2;
+			skill.distance = 30;
+			skill.cd = 3f;
 
 			return skill;
 		}

@@ -239,11 +239,11 @@ namespace TangLevel
 				StartMove ();
 			}
 			if (mTrajectorie == Trajectories.Parabola) {
-				transform.position = w.source.transform.position;
 				targetPosi.z = w.source.transform.position.z;
 				targetPosi.y = w.source.transform.position.y;
 				transform.LookAt (targetPosi);
 			}
+			transform.position = sourcePosi;
 			isPlay = true;
 		}
 	}
