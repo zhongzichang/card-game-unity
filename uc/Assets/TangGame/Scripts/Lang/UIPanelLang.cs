@@ -261,5 +261,21 @@ namespace TangGame.UI
     public const string SELECT_DUPL = "选择难度";
     /// 今日剩余次数：{0}次
     public const string SURPLUS_TIMES = "今日剩余次数：{0}次";
+
+    /// 信箱
+    public const string MAILBOX = "信箱";
+    /// 发件人：
+    public const string MAIL_SENDER = "[67412a]发件人：[-][a40700]{0}[-]";
+    /// 附件：
+    public const string MAIL_ATTACHMENT = "附件：";
+    /// 领取
+    public const string MAIL_RECEIVE = "领取";
+
+    /// 任务
+    public const string TASK = "任务";
+
+    /// 每日活动
+    public const string DAILY = "每日活动";
+
 	}
 }

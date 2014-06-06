@@ -13,6 +13,8 @@ namespace TangLevel
 {
   public class Config
   {
+
+    #region Constants
     /// <summary>
     /// 秒转换为毫秒
     /// </summary>
@@ -65,12 +67,13 @@ namespace TangLevel
     /// 战斗背景资源路径
     /// </summary>
     public const string GOBJS_PATH = "Prefabs/Gobjs";
+    /// <summary>
+    /// 最大 HP
+    /// </summary>
+    public const int MAX_HP = 1000; 
+    #endregion
 
-    public static string GobjsPath (string name)
-    {
-      return GOBJS_PATH + Tang.Config.DIR_SEP + name;
-    }
-
+    #region Statics
     /// <summary>
     /// 关卡表
     /// </summary>
@@ -83,6 +86,14 @@ namespace TangLevel
     /// 作用器表
     /// </summary>
     public static Dictionary<int, Effector> effectorTable = new Dictionary<int, Effector> ();
+    #endregion
+
+    #region PublicMethods
+    public static string GobjsPath (string name)
+    {
+      return GOBJS_PATH + Tang.Config.DIR_SEP + name;
+    }
+    #endregion
   }
 }
 
