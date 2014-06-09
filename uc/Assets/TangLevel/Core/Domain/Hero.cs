@@ -32,7 +32,7 @@ namespace TangLevel
     // --- 人物属性 ---
 
     #region Configration Attributes
-
+    public int configId;
     public string name;
     public string resName;
     /// <summary>

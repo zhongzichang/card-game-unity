@@ -12,7 +12,19 @@ namespace TangLevel
 {
   public class DomainHelper : MonoBehaviour
   {
+
+
     public const char SEP = ',';
+
+    private static int autoIncrId = 10000;
+
+    #region Properties
+    private static int AutoIncrId {
+      get{
+        return autoIncrId++;
+      }
+    }
+    #endregion
 
     #region Monos
 
@@ -44,6 +56,7 @@ namespace TangLevel
       if (hb != null) {
 
         Hero hero = new Hero ();
+        hero.configId = hb.Xml.id;
         hero.id = id;
         hero.resName = hb.Xml.model;
         hero.maxHp = Mathf.FloorToInt (hb.Net.HpMax);
@@ -89,7 +102,9 @@ namespace TangLevel
 
     #endregion
 
-    #region Config
+
+
+    #region Private
 
     /// <summary>
     /// 从统一配置中 build 一个关卡配置
@@ -200,7 +215,8 @@ namespace TangLevel
 
         Hero h = new Hero ();
         // ID
-        h.id = data.id;
+        h.configId = data.id; // 配置ID
+        h.id = AutoIncrId; // 自增ID
         // 名字
         h.name = data.name;
         // 资源名字
@@ -386,6 +402,7 @@ namespace TangLevel
         return null;
       }
     }
+
 
     #endregion
   }
