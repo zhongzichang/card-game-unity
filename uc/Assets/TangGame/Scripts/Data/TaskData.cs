@@ -16,16 +16,21 @@ namespace TangGame.Xml
     public int preId;
     /// 计数器
     public int count;
-    /// 战队经验
+    /// 战队经验奖励
     public int exp;
-    /// 金钱
+    /// 金钱奖励
     public int moeny;
-    /// 元宝
+    /// 元宝奖励
     public int ingot;
-    /// 体力
+    /// 体力奖励
     public int vitality;
     /// 物品奖励
     public string award;
+    /// 前往打开面板的类型
+    public int openPanelType;
+    /// 前往打开面板的传递值
+    public string openPanelValue;
+
   }
 
   [XmlRoot ("root")]

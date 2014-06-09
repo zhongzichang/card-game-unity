@@ -28,6 +28,10 @@ namespace TangGame.Xml
     public int vitality;
     /// 物品奖励
     public string award;
+    /// 前往打开面板的类型
+    public int openPanelType;
+    /// 前往打开面板的传递值
+    public string openPanelValue;
   }
 
   [XmlRoot ("root")]
