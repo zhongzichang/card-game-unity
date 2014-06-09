@@ -12,7 +12,7 @@ public class UITestData : MonoBehaviour
 	{
 //		27 23 20
 		this.SetAllPropsBase ();
-		this.SetHeroBase (27,1,10,6,27,8,1004,0,11,4);
+    this.SetHeroBase (1,1,10,6,27,8,1004,0,11,4);
 		this.SetHeroBase (23,4,40,8,23,15,1005,1,11,5);
 		this.SetPropsBase (1015,50);
 		this.SetPropsBase (1016,88);
@@ -44,7 +44,8 @@ public class UITestData : MonoBehaviour
 		}
 		herobase = TangGame.UI.HeroCache.instance.heroBeseTable [id];
 		herobase.Net = new TangGame.Net.HeroNet ();
-		herobase.Net.configId = herobase.Xml.id;
+    herobase.Net.configId = herobase.Xml.id;
+    herobase.Net.id = id;
 		herobase.Net.star = evolve;
 		herobase.Net.exp = exp;
 		herobase.Net.rank = rank;

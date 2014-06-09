@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine;
 
 namespace TangUtils
 {
@@ -41,7 +42,7 @@ namespace TangUtils
     {
       T[] array = new T[list.Count];
       for (int i = 0; i < array.Length; i++) {
-        array [i] = (T) list [i];
+        array [i] = (T)list [i];
       }
       return array;
     }

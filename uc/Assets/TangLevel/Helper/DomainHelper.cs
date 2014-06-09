@@ -70,14 +70,16 @@ namespace TangLevel
 
         // skills
         ArrayList skillIdList = JSON.JsonDecode (hb.Xml.skill_ids) as ArrayList;
-        if (skillIdList != null) {
-          int[] skillIds = TU.TypeUtil.ToArray<ArrayList, int> (skillIdList);
+        ArrayList skillIdIntList = TU.TypeUtil.DoubleToInt(skillIdList);
+        if (skillIdIntList != null) {
+          int[] skillIds = TU.TypeUtil.ToArray<ArrayList, int> (skillIdIntList);
           if (skillIds != null) {
             Dictionary<int,Skill> skills = new Dictionary<int, Skill> ();
             for (int i = 0; i < skillIds.Length; i++) {
               Skill skill = BuildSkill (skillIds[i]);
               if (skill != null) {
                 skill.grade = hb.Net.skillLevel[i];
+                skill.enable = true;
                 skills.Add (skillIds[i], skill);
               }
             }
@@ -88,8 +90,9 @@ namespace TangLevel
         // skill queue
         if (hero.skills != null && hero.skills.Count > 0) {
           ArrayList skillQueueList = JSON.JsonDecode (hb.Xml.shot_order) as ArrayList;
-          if (skillQueueList != null) {
-            int[] skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (skillQueueList);
+          ArrayList skillQueueIntList = TU.TypeUtil.DoubleToInt(skillQueueList);
+          if (skillQueueIntList != null) {
+            int[] skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (skillQueueIntList);
             hero.skillQueue = skillQueue;
           }
         }
@@ -229,7 +232,10 @@ namespace TangLevel
           h.skills = new Dictionary<int, Skill> ();
           for (int i = 0; i < skillIds.Count; i++) {
             int skillId = Convert.ToInt32 ((double)skillIds [i]);
-            h.skills.Add (skillId, BuildSkill (skillId));
+            Skill s = BuildSkill (skillId);
+            s.enable = true;
+            h.skills.Add (skillId, s);
+
           }
         }
         if (h.skills == null || h.skills.Count == 0) {
