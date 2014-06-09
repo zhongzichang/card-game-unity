@@ -41,7 +41,7 @@ namespace TangGame.Xml
     {
       DailyRoot root = obj as DailyRoot;
       foreach (DailyData item in root.items) {
-        //Config.skillXmlTable [item.id] = item;
+        Config.dailyTable[item.id] = item;
       }
     }
   }

@@ -70,7 +70,7 @@ namespace TangGame.UI{
     }
 
     private void CloseBtnClickHandler(GameObject go){
-
+      UIContext.mgrCoC.Back();
     }
 
     private void NameBtnClickHandler(GameObject go){
@@ -82,7 +82,7 @@ namespace TangGame.UI{
     }
 
     private void SettingBtnClickHandler(GameObject go){
-      
+      UIContext.mgrCoC.LazyOpen(SettingPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE, null);
     }
 
     private void RandomBtnClickHandler(GameObject go){

@@ -54,7 +54,7 @@ namespace TangGame.UI{
         TaskItem item = go.GetComponent<TaskItem>();
         items.Add(item);
         item.data = task;
-        position.y = position.y - 134;
+        position.y = position.y - 141;
       }
     }
 

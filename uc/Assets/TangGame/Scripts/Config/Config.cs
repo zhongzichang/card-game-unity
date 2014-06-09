@@ -25,6 +25,10 @@ namespace TangGame
     // 作用器表
     public static Dictionary<int, EffectorData> effectorXmlTable = new Dictionary<int, EffectorData> ();
     // 英雄排序表
-    public static Dictionary<int,int> heroSortTable = new Dictionary<int, int>();
+    public static Dictionary<int, int> heroSortTable = new Dictionary<int, int>();
+    // 任务数据
+    public static Dictionary<int, TaskData> taskTable = new Dictionary<int, TaskData>();
+    // 每日活动数据
+    public static Dictionary<int, DailyData> dailyTable = new Dictionary<int, DailyData>();
 	}
 }

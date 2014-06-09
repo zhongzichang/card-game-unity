@@ -54,7 +54,7 @@ namespace TangGame.UI{
         DailyItem item = go.GetComponent<DailyItem>();
         items.Add(item);
         item.data = daily;
-        position.y = position.y - 134;
+        position.y = position.y - 141;
       }
     }
 

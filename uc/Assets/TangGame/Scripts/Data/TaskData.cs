@@ -39,7 +39,7 @@ namespace TangGame.Xml
     {
       TaskRoot root = obj as TaskRoot;
       foreach (TaskData item in root.items) {
-        //Config.skillXmlTable [item.id] = item;
+        Config.taskTable[item.id] = item;
       }
     }
   }
