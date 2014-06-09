@@ -2,31 +2,41 @@
 <root>
   <value>
     <id>1</id>
-    <name>    </name>
-    <cool_time>0</cool_time>
+    <name>冰花</name>
+    <cool_time>4000</cool_time>
     <type>0</type>
-    <boot_time>0</boot_time>
-    <after_time>0</after_time>
-    <play_loop>0</play_loop>
-    <isUltimate>0</isUltimate>
-    <cast_range>0</cast_range>
-    <skill_coefficient>0</skill_coefficient>
-    <up_add>5</up_add>
-    <target_type>0</target_type>
-    <range_type>0</range_type>
-    <effector_times>0</effector_times>
-    <effector_sequence>0</effector_sequence>
-    <effector_id>0</effector_id>
-    <being_interrupted_by_injuries>0</being_interrupted_by_injuries>
-    <is_attribute_addition>0</is_attribute_addition>
-    <code_coverage_skill_id>0</code_coverage_skill_id>
-    <boot_animation>0</boot_animation>
-    <after_animation>0</after_animation>
-    <singing_effect>0</singing_effect>
-    <play_effect>0</play_effect>
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>0</isUltimate> <!-- 是否大招 -->
+    <cast_range>0</cast_range> <!-- 释放距离 -->
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <target_type>0</target_type> <!-- 目标类型 -->
+    <range_type>0</range_type> <!-- 范围类型 -->
+
+    <!-- 下面3个属性不再使用 -->
+    <effector_times>0</effector_times> <!-- 作用次数 @deprecated  -->
+    <effector_sequence>0</effector_sequence> <!-- 多重作用器序列 @deprecated -->
+    <effector_id>0</effector_id> <!-- 作用器编号 @deprecated -->
+
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>0</after_animation> <!-- 后摇动画 -->
+    <singing_effect>0</singing_effect> <!-- 前摇特效 -->
+    <play_effect>0</play_effect> <!-- 后摇特效 -->
     <skill_icon>icon_1</skill_icon>
-    <desc>             </desc>
-    <desc_y>  {para1}      </desc_y>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <!-- 下面3个属性为新增 -->
+    <boot_loop_times>1</boot_loop_times><!-- 前摇循环次数，0代表无限循环 -->
+    <after_loop_times>1</after_loop_times><!-- 后摇循环次数，0代表无限循环 -->
+    <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+
+    
   </value>
   <value>
     <id>2</id>
@@ -560,13 +570,4 @@
     <desc>x</desc>
     <desc_y>x</desc_y>
   </value>
-  <value/>
-  <value/>
-  <value/>
-  <value/>
-  <value/>
-  <value/>
-  <value/>
-  <value/>
-  <value/>
 </root>

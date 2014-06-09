@@ -40,16 +40,6 @@ namespace TangLevel
     public float cd;
 
     /// <summary>
-    /// 起手动作时间
-    /// </summary>
-    public float chargeTime;
-
-    /// <summary>
-    /// 释放动作时间
-    /// </summary>
-    public float releaseTime;
-
-    /// <summary>
     /// 是否大招
     /// </summary>
     public bool bigMove;
@@ -80,17 +70,6 @@ namespace TangLevel
     /// </summary>
     public Effector[] effectors;
 
-
-    /// <summary>
-    /// 前摇作用器
-    /// </summary>
-    public Effector[] chargeEffectors;
-
-    /// <summary>
-    /// 后摇作用器
-    /// </summary>
-    public Effector[] releaseEffectors;
-
     /// <summary>
     /// 是否可打断
     /// </summary>
@@ -107,6 +86,26 @@ namespace TangLevel
     public int replaceSkillId;
 
     /// <summary>
+    /// 蓄力特效
+    /// </summary>
+    public string[] chargeSpecials;
+
+    /// <summary>
+    /// 释放特效
+    /// </summary>
+    public string[] releaseSpecials;
+
+    /// <summary>
+    /// 起手动作时间
+    /// </summary>
+    public float chargeTime;
+
+    /// <summary>
+    /// 释放动作时间
+    /// </summary>
+    public float releaseTime;
+
+    /// <summary>
     /// 蓄力动画剪辑
     /// </summary>
     public string chargeClip;
@@ -117,14 +116,20 @@ namespace TangLevel
     public string releaseClip;
 
     /// <summary>
-    /// 蓄力特效
+    /// 前摇作用器
     /// </summary>
-    public string[] chargeSpecials;
+    public Effector[] chargeEffectors;
 
     /// <summary>
-    /// 释放特效
+    /// 后摇作用器
     /// </summary>
-    public string[] releaseSpecials;
+    public Effector[] releaseEffectors;
+
+    /// <summary>
+    /// 循环次数，0表示无限循环
+    /// </summary>
+    public int loopTimes;
+
     #endregion
 
     #region Runtime Attributes
@@ -138,11 +143,31 @@ namespace TangLevel
     /// 大招特写
     /// </summary>
     public bool bigMoveCloseUp = false;
+
+    /// <summary>
+    /// 循环索引，循环到哪一次
+    /// </summary>
+    /// 
+    public int loopIndex = 0;
+    /// <summary>
+    /// 前摇计时器
+    /// </summary>
+    public float chargeTimer = 0;
+
+    /// <summary>
+    /// 后摇计时器
+    /// </summary>
+    public float releaseTimer = 0;
     #endregion
 
     #region Public Methods
     public Skill ShallowCopy(){
       return (Skill)this.MemberwiseClone ();
+    }
+    public void Reset(){
+      loopIndex = 0;
+      chargeTimer = 0;
+      releaseTimer = 0;
     }
     #endregion
 

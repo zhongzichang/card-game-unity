@@ -195,7 +195,7 @@ namespace TangLevel
         s.id = data.id;
 
         // 冷却时间
-        s.cd = data.cool_time;
+        s.cd = ((float)data.cool_time) / Config.SECOND_TO_MIL;
 
         // 动作时间
         s.chargeTime = ((float)data.boot_time) / Config.SECOND_TO_MIL; // 配置文件以毫秒为单位
@@ -283,6 +283,7 @@ namespace TangLevel
       if (TG.Config.effectorXmlTable.ContainsKey (id)) {
         TGX.EffectorData data = TG.Config.effectorXmlTable [id];
         Effector effector = new Effector ();
+        effector.id = data.id;
         effector.specialName = data.special_effect; // 特效资源名称
         effector.probability = data.probability; // 概率
         effector.radius = data.radius; // 范围半径

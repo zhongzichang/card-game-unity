@@ -54,7 +54,7 @@
     <bloodsucking_lv>0</bloodsucking_lv>
     <dodge>0</dodge>
     <addition_treatment>0</addition_treatment>
-    <model>hero_zf</model>
+    <model>hero_zhangfei</model>
     <avatar/>
     <desc>      </desc>
   </value>
@@ -83,7 +83,7 @@
     <bloodsucking_lv>0</bloodsucking_lv>
     <dodge>0</dodge>
     <addition_treatment>0</addition_treatment>
-    <model>model_14</model>
+    <model>hero_xc</model>
     <avatar>head_1</avatar>
     <desc>   </desc>
   </value>

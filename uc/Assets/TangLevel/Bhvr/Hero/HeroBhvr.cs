@@ -187,7 +187,20 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
         break;
       case HeroStatus.charge:
-        statusBhvr.Status = HeroStatus.release;
+        if (skill.loopTimes == 0) {
+          // 不做处理，继续循环
+        } else if (skill.loopTimes == 1) {
+          // 只播放一次
+          statusBhvr.Status = HeroStatus.release;
+        } else if (skill.loopTimes > 0) {
+          // 播放多次
+          // 播放索引增加
+          skill.loopIndex++;
+          if (skill.loopIndex >= skill.loopTimes) {
+            // 播放的次数已经足够，转换成释放状态
+            statusBhvr.Status = HeroStatus.release;
+          }
+        }
         break;
       case HeroStatus.release:
         statusBhvr.Status = HeroStatus.idle;
@@ -217,8 +230,16 @@ namespace TangLevel
 
           // 抛出作用器s
           if (skill != null && skill.effectors != null) {
-            foreach (Effector effect in skill.effectors) {
-              EffectorWrapper w = EffectorWrapper.W (effect, skill, gameObject, target);
+            if (skill.loopTimes == 1) {
+              // 播放一次
+              foreach (Effector effect in skill.effectors) {
+                EffectorWrapper w = EffectorWrapper.W (effect, skill, gameObject, target);
+                skillBhvr.Cast (w);
+              }
+            } else if (skill.loopTimes == 0 || skill.loopTimes > 1) {
+              // 播放多次
+              int remain = skill.loopIndex % skill.loopTimes;
+              EffectorWrapper w = EffectorWrapper.W (skill.effectors [remain], skill, gameObject, target);
               skillBhvr.Cast (w);
             }
           }
@@ -437,6 +458,7 @@ namespace TangLevel
     {
       if (statusBhvr.Status == HeroStatus.idle) {
 
+        skill.Reset ();
         this.target = target;
         this.skill = skill;
 
