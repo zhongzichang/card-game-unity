@@ -40,6 +40,11 @@ namespace TangLevel
     public float cd;
 
     /// <summary>
+    /// 普通攻击
+    /// </summary>
+    public bool normal;
+
+    /// <summary>
     /// 是否大招
     /// </summary>
     public bool bigMove;
@@ -158,6 +163,11 @@ namespace TangLevel
     /// 后摇计时器
     /// </summary>
     public float releaseTimer = 0;
+
+    /// <summary>
+    /// 等级
+    /// </summary>
+    public int grade = 0;
     #endregion
 
     #region Public Methods

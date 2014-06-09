@@ -6,12 +6,15 @@ using TG = TangGame;
 using TU = TangUtils;
 using UnityEngine;
 using Procurios.Public;
+using TGUI = TangGame.UI;
 
 namespace TangLevel
 {
   public class DomainHelper : MonoBehaviour
   {
     public const char SEP = ',';
+
+    #region Monos
 
     void OnEnable ()
     {
@@ -20,11 +23,79 @@ namespace TangLevel
       }
     }
 
+    #endregion
+
+    #region Public
+
+    public static Group GetInitGroup(int[] heroIds){
+
+      Group g = new Group ();
+      g.heros = new Hero[heroIds.Length];
+      for (int i = 0; i < heroIds.Length; i++) {
+        g.heros [i] = GetInitHero (heroIds [i]);
+      }
+      return g;
+
+    }
+
+    public static Hero GetInitHero (int id)
+    {
+      TGUI.HeroBase hb = TGUI.HeroCache.instance.GetHero (id);
+      if (hb != null) {
+
+        Hero hero = new Hero ();
+        hero.id = id;
+        hero.resName = hb.Xml.model;
+        hero.maxHp = Mathf.FloorToInt (hb.Net.HpMax);
+        hero.hp = hero.maxHp;
+        hero.maxMp = Config.MAX_HP;
+        hero.mp = 0;
+        if (TG.Config.heroSortTable.ContainsKey (id)) {
+          hero.sort = TG.Config.heroSortTable [id];
+        }
+        hero.battleDirection = BattleDirection.RIGHT;
+
+        // skills
+        ArrayList skillIdList = JSON.JsonDecode (hb.Xml.skill_ids) as ArrayList;
+        if (skillIdList != null) {
+          int[] skillIds = TU.TypeUtil.ToArray<ArrayList, int> (skillIdList);
+          if (skillIds != null) {
+            Dictionary<int,Skill> skills = new Dictionary<int, Skill> ();
+            for (int i = 0; i < skillIds.Length; i++) {
+              Skill skill = BuildSkill (skillIds[i]);
+              if (skill != null) {
+                skill.grade = hb.Net.skillLevel[i];
+                skills.Add (skillIds[i], skill);
+              }
+            }
+            hero.skills = skills;
+          }
+        }
+
+        // skill queue
+        if (hero.skills != null && hero.skills.Count > 0) {
+          ArrayList skillQueueList = JSON.JsonDecode (hb.Xml.shot_order) as ArrayList;
+          if (skillQueueList != null) {
+            int[] skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (skillQueueList);
+            hero.skillQueue = skillQueue;
+          }
+        }
+
+        return hero;
+      }
+
+      return null;
+    }
+
+    #endregion
+
+    #region Config
+
     /// <summary>
     /// 从统一配置中 build 一个关卡配置
     /// </summary>
     /// <returns>The level table.</returns>
-    public static void BuildLevelTable ()
+    private static void BuildLevelTable ()
     {
       if (TG.Config.levelsXmlTable != null && TG.Config.levelsXmlTable.Count > 0) {
         foreach (TGX.LevelData data in TG.Config.levelsXmlTable.Values) {
@@ -40,7 +111,7 @@ namespace TangLevel
     /// </summary>
     /// <returns>The level.</returns>
     /// <param name="data">Data.</param>
-    public static Level BuildLevel (TGX.LevelData data)
+    private static Level BuildLevel (TGX.LevelData data)
     {
       Level level = new Level ();
       level.id = data.id;
@@ -55,7 +126,7 @@ namespace TangLevel
     /// </summary>
     /// <returns>The conf.</returns>
     /// <param name="data">Data.</param>
-    public static List<SubLevel> BuildSubLevels (TGX.LevelData data)
+    private static List<SubLevel> BuildSubLevels (TGX.LevelData data)
     {
 
       List<SubLevel> subLevels = new List<SubLevel> ();
@@ -139,9 +210,10 @@ namespace TangLevel
         // 技能
         ArrayList skillIds = JSON.JsonDecode (data.skill) as ArrayList;
         if (skillIds != null) {
-          h.skills = new List<Skill> ();
+          h.skills = new Dictionary<int, Skill> ();
           for (int i = 0; i < skillIds.Count; i++) {
-            h.skills.Add (BuildSkill (Convert.ToInt32 ((double)skillIds [i])));
+            int skillId = Convert.ToInt32 ((double)skillIds [i]);
+            h.skills.Add (skillId, BuildSkill (skillId));
           }
         }
         if (h.skills == null || h.skills.Count == 0) {
@@ -194,6 +266,9 @@ namespace TangLevel
         // ID
         s.id = data.id;
 
+        // 循环次数, 0 为无限循环
+        s.loopTimes = data.play_loop;
+
         // 冷却时间
         s.cd = ((float)data.cool_time) / Config.SECOND_TO_MIL;
 
@@ -221,6 +296,8 @@ namespace TangLevel
 
         // 大招
         s.bigMove = data.isUltimate;
+        // 等于 0 时是普通攻击
+        s.normal = data.type == 0;
         // 攻击距离
         s.distance = data.cast_range;
         // 目标类型
@@ -266,14 +343,21 @@ namespace TangLevel
     private static Effector[] BuildEffectors (string textIds)
     {
 
-      int[] effectorIds = TU.TypeUtil.StringToIntArray (textIds, SEP);
-      if (effectorIds != null) {
-        List<Effector> list = new List<Effector> ();
-        foreach (int id in effectorIds) {
-          list.Add (GetEffector (id));
+      ArrayList list = JSON.JsonDecode (textIds) as ArrayList;
+      if (list != null) {
+        ArrayList intList = TU.TypeUtil.DoubleToInt (list);
+        if (intList != null) {
+          int[] effectorIds = TU.TypeUtil.ToArray<ArrayList, int> (intList);
+          if (effectorIds != null) {
+            List<Effector> effectors = new List<Effector> ();
+            foreach (int id in effectorIds) {
+              list.Add (GetEffector (id));
+            }
+            return effectors.ToArray ();
+          }
         }
-        return list.ToArray ();
       }
+
       return null;
 
     }
@@ -302,6 +386,8 @@ namespace TangLevel
         return null;
       }
     }
+
+    #endregion
   }
 }
 

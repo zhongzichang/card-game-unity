@@ -2,38 +2,38 @@
 <root>
   <value>
     <id>1</id>
-    <name>   </name>
-    <level>1</level>
-    <skill>[17,1]</skill>
-    <shot_order>[1]</shot_order>
-    <evolve>1</evolve>
-    <upgrade>1</upgrade>
-    <strength>22</strength>
-    <intellect>16</intellect>
-    <agile>17</agile>
-    <hpMax>574</hpMax>
-    <attack_damage>30</attack_damage>
-    <ability_power>20</ability_power>
-    <physical_defense>3</physical_defense>
-    <magic_defense>1</magic_defense>
-    <physical_crit>2</physical_crit>
-    <magic_crit>0</magic_crit>
-    <hp_recovery>0</hp_recovery>
-    <energy_recovery>0</energy_recovery>
-    <physical_penetration>0</physical_penetration>
-    <spell_penetration>0</spell_penetration>
-    <bloodsucking_lv>0</bloodsucking_lv>
-    <dodge>0</dodge>
-    <addition_treatment>0</addition_treatment>
-    <model>hero_zf</model>
-    <avatar/>
-    <desc>      </desc>
+    <name>普通怪物</name>
+    <level>1</level> <!-- 级别 -->
+    <skill>[1]</skill> <!-- 技能IDs -->
+    <shot_order>[1]</shot_order> <!-- 攻击序列 -->
+    <evolve>1</evolve> <!-- -->
+    <upgrade>1</upgrade> <!-- -->
+    <strength>22</strength> <!-- 力量 -->
+    <intellect>16</intellect> <!-- 智力 -->
+    <agile>17</agile> <!-- 敏捷 -->
+    <hpMax>574</hpMax> <!-- 最大HP -->
+    <attack_damage>30</attack_damage> <!-- 攻击伤害 -->
+    <ability_power>20</ability_power> <!-- -->
+    <physical_defense>3</physical_defense> <!-- 物理防御 -->
+    <magic_defense>1</magic_defense> <!-- 魔法防御 -->
+    <physical_crit>2</physical_crit> <!-- 物理暴击 -->
+    <magic_crit>0</magic_crit> <!-- 魔法暴击 -->
+    <hp_recovery>0</hp_recovery> <!-- HP恢复 -->
+    <energy_recovery>0</energy_recovery> <!-- 能量恢复 -->
+    <physical_penetration>0</physical_penetration> <!-- 破甲 -->
+    <spell_penetration>0</spell_penetration> <!-- 无视魔抗 -->
+    <bloodsucking_lv>0</bloodsucking_lv> <!-- 吸血等级 -->
+    <dodge>0</dodge> <!-- 闪避 -->
+    <addition_treatment>0</addition_treatment> <!-- 治疗 -->
+    <model>hero_zf</model> <!-- -->
+    <avatar/> <!-- -->
+    <desc></desc> <!-- -->
   </value>
   <value>
     <id>2</id>
     <name>    </name>
     <level>1</level>
-    <skill>[18,1]</skill>
+    <skill>[1]</skill>
     <shot_order>[1]</shot_order>
     <evolve>1</evolve>
     <upgrade>2</upgrade>

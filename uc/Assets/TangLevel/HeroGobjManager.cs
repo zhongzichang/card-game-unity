@@ -103,6 +103,13 @@ namespace TangLevel
         if (!zoffsetBhvr.enabled) {
           zoffsetBhvr.enabled = true;
         }
+        AutoFire autoFire = gobj.GetComponent<AutoFire> ();
+        if (autoFire == null) {
+          autoFire = gobj.AddComponent<AutoFire> ();
+        }
+        if (!autoFire.enabled) {
+          autoFire.enabled = true;
+        }
 
         // AI
         if (hero.ai != null) {

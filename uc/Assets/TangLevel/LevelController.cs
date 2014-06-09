@@ -7,6 +7,7 @@ using TGU = TangGame.UI;
 using TUI = TangUI;
 using TangPlace;
 using System.Collections;
+using TU = TangUtils;
 
 namespace TangLevel
 {
@@ -340,8 +341,9 @@ namespace TangLevel
       if (heroIds.Length > 0) {
 
         PlaceController.Place = Place.level;
-        Debug.Log (" Set levelId=1001 for debuging ");
-        LevelController.ChallengeLevel ( 1001, Mocker.MockGroup (heroIds));
+        Debug.Log ("TangLevel: Set levelId=1001 for debuging ");
+        Debug.Log ("TangLevel: HeroIds = " + TU.TextUtil.Join(heroIds));
+        LevelController.ChallengeLevel (1001, DomainHelper.GetInitGroup (heroIds));
       }
 
     }

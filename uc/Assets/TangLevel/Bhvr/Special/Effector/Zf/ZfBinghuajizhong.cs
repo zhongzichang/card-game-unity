@@ -58,7 +58,7 @@ namespace TangLevel
     public override void Pause ()
     {
       isPlay = false;
-      animator.speed = 10;
+      animator.speed = 0;
     }
 
     public override void Resume ()

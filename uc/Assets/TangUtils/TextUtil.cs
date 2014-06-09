@@ -2,41 +2,41 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace TangUtils
 {
 
-public class TextUtil
-{
+  public class TextUtil
+  {
 
     /// 判断字符串是否为数字
-    public static bool IsNumeric(string stringToTest)
+    public static bool IsNumeric (string stringToTest)
     {
-        int result;
-        return int.TryParse(stringToTest, out result);
+      int result;
+      return int.TryParse (stringToTest, out result);
     }
 
     /// 处理颜色文本字符串
-    public static string PackColorText(string color, string text)
+    public static string PackColorText (string color, string text)
     {
-        return "["+ color +"]" + text + "[-]";
+      return "[" + color + "]" + text + "[-]";
     }
 
     /// 替换文本
-    public static string Replace(string text, string data)
+    public static string Replace (string text, string data)
     {
-        return string.Format(text, data);
+      return string.Format (text, data);
     }
 
     /// 替换文本
-    public static string Replace(string text, string[] data)
+    public static string Replace (string text, string[] data)
     {
-        string result = text;
-        for(int i = 0; i < data.Length; i++)
-        {
-            result = result.Replace("{" + i + "}", data[i]);
-        }
-        return result;
+      string result = text;
+      for (int i = 0; i < data.Length; i++) {
+        result = result.Replace ("{" + i + "}", data [i]);
+      }
+      return result;
     }
 
     /**
@@ -46,10 +46,10 @@ public class TextUtil
      * @param max 验证的最大长度，默认为16
      * @return 合法返回true，否则返回false
      */
-    public static bool ZhValidator(string input, int min, int max)
+    public static bool ZhValidator (string input, int min, int max)
     {
-        Regex rg = new Regex("^[\u4e00-\u9fa5a-zA-Z0-9]{" + min + "," + max + "}$", RegexOptions.Multiline | RegexOptions.Singleline);
-        return rg.IsMatch(input);
+      Regex rg = new Regex ("^[\u4e00-\u9fa5a-zA-Z0-9]{" + min + "," + max + "}$", RegexOptions.Multiline | RegexOptions.Singleline);
+      return rg.IsMatch (input);
     }
 
     /**
@@ -57,10 +57,10 @@ public class TextUtil
      * @param input 传入的字符串
      * @return 合法返回true，否则返回false
      */
-    public static bool NumberValidator(string input)
+    public static bool NumberValidator (string input)
     {
-        Regex rg = new Regex("^[1-9][0-9]{0," + (input.Length - 1) + "}$", RegexOptions.Multiline | RegexOptions.Singleline);
-        return rg.IsMatch(input);
+      Regex rg = new Regex ("^[1-9][0-9]{0," + (input.Length - 1) + "}$", RegexOptions.Multiline | RegexOptions.Singleline);
+      return rg.IsMatch (input);
     }
 
     /**
@@ -68,9 +68,9 @@ public class TextUtil
      * @param input:String 传入的字符串
      * @return 存在返回true，否则false
      * */
-    public static bool IsKeyWords(string input)
+    public static bool IsKeyWords (string input)
     {
-        return false;
+      return false;
     }
 
 
@@ -79,9 +79,9 @@ public class TextUtil
      * @param input:String 传入的字符串
      * @return 被替换后的字符串，一个关键词被替换成“**”
      * */
-    public static string KeyWordsReplace(string input)
+    public static string KeyWordsReplace (string input)
     {
-        string result = input;
+      string result = input;
 //			if(CommonAssets.keyWords)
 //			{
 //				for each(var str:String in CommonAssets.keyWords)
@@ -90,7 +90,7 @@ public class TextUtil
 //					result = result.replace(re, "**");
 //				}
 //			}
-        return result;
+      return result;
     }
 
     /**
@@ -105,18 +105,27 @@ public class TextUtil
      *      Mono.Xml2.XmlTextReader.ReadText (Boolean notWhitespace)... )
      *
      * */
-    public static string GetTextWithoutBOM(byte[] bytes)
+    public static string GetTextWithoutBOM (byte[] bytes)
     {
-        MemoryStream memoryStream = new MemoryStream(bytes);
-        StreamReader streamReader = new StreamReader(memoryStream, true);
+      MemoryStream memoryStream = new MemoryStream (bytes);
+      StreamReader streamReader = new StreamReader (memoryStream, true);
 
-        string result = streamReader.ReadToEnd();
+      string result = streamReader.ReadToEnd ();
 
-        streamReader.Close();
-        memoryStream.Close();
+      streamReader.Close ();
+      memoryStream.Close ();
 
-        return result;
+      return result;
     }
 
-}
+    public static string Join<T>(T[] array){
+
+      StringBuilder sb = new StringBuilder ();
+      for (int i = 0; i < array.Length; i++) {
+        sb.Append (',').Append (array [i].ToString ());
+      }
+      return sb.Remove (0, 1).Insert(0,'[').Append(']').ToString ();
+    }
+
+  }
 }

@@ -229,7 +229,7 @@ namespace TangLevel
         if (Config.DEFAULt_CAST_LABEL.Equals (evt.FrameLabel)) {
 
           // 抛出作用器s
-          if (skill != null && skill.effectors != null) {
+          if (skill != null && skill.effectors != null && skill.effectors.Length > 0) {
             if (skill.loopTimes == 1) {
               // 播放一次
               foreach (Effector effect in skill.effectors) {
@@ -238,7 +238,7 @@ namespace TangLevel
               }
             } else if (skill.loopTimes == 0 || skill.loopTimes > 1) {
               // 播放多次
-              int remain = skill.loopIndex % skill.loopTimes;
+              int remain = skill.loopIndex % skill.effectors.Length;
               EffectorWrapper w = EffectorWrapper.W (skill.effectors [remain], skill, gameObject, target);
               skillBhvr.Cast (w);
             }
@@ -641,7 +641,7 @@ namespace TangLevel
     public Skill BigMoveSkill ()
     {
 
-      foreach (Skill s in hero.skills) {
+      foreach (Skill s in hero.skills.Values) {
         if (s.bigMove) {
           return s;
         }
