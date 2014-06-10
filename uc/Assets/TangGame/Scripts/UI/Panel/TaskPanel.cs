@@ -59,7 +59,7 @@ namespace TangGame.UI{
     }
 
     private void CloseBtnClickHandler(GameObject go){
-
+      this.GetComponentInChildren<Block>().Back();
     }
 
     private void ItemClickHandler(ViewItem viewItem){

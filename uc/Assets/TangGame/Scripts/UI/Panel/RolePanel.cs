@@ -35,6 +35,7 @@ namespace TangGame.UI{
     public UIEventListener cancelBtn;
     public UIEventListener backBtn;
     public TweenScale nameTween;
+    public UIInput input;
 
     private object mParam;
     private bool started;
@@ -50,10 +51,11 @@ namespace TangGame.UI{
       cancelBtn.onClick += CancelBtnClickHandler;
       backBtn.onClick += BackBtnClickHandler;
 
-
       nameTween.eventReceiver = this.gameObject;
       nameTween.callWhenFinished = "OnFinishedHandler";
       this.nameGroup.SetActive(false);
+
+      if (input != null) EventDelegate.Add(input.onChange, InputChangeHandler);
 
       this.started = true;
       this.UpdateData();
@@ -118,6 +120,10 @@ namespace TangGame.UI{
       nameTween.PlayReverse();
     }
 
+    /// 输入改变处理
+    private void InputChangeHandler(){
+      Debug.Log(input.value);
+    }
 
   }
 }

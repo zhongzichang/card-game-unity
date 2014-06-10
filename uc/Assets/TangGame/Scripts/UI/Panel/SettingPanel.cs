@@ -17,10 +17,33 @@ namespace TangGame.UI{
     public UILabel exchangeLabel;
     public SettingItem[] items = new SettingItem[]{};
 
+    //===============================
+    public GameObject exchangeGroup;
+    public UILabel titleLabel;
+    public UILabel exchangeInputLabel;
+    public UILabel okLabel;
+    public UILabel cancelLabel;
+    public UIEventListener okBtn;
+    public UIEventListener cancelBtn;
+    public UIEventListener backBtn;
+    public TweenScale tween;
+    public UIInput input;
+
     void Start(){
       closeBtn.onClick += CloseBtnClickHandler;
       soundBtn.onClick += SoundBtnClickHandler;
       exchangeBtn.onClick += ExchangeBtnClickHandler;
+
+      okBtn.onClick += OkBtnClickHandler;
+      cancelBtn.onClick += CancelBtnClickHandler;
+      backBtn.onClick += BackBtnClickHandler;
+
+      tween.eventReceiver = this.gameObject;
+      tween.callWhenFinished = "OnFinishedHandler";
+      this.exchangeGroup.SetActive(false);
+
+      if (input != null) EventDelegate.Add(input.onChange, InputChangeHandler);
+
       Init();
     }
 
@@ -52,7 +75,40 @@ namespace TangGame.UI{
     }
 
     private void ExchangeBtnClickHandler(GameObject go){
+      OpenExchangeGroup();
+    }
+
+    private void OkBtnClickHandler(GameObject go){
       
+    }
+    
+    private void CancelBtnClickHandler(GameObject go){
+      CloseExchangeGroup();
+    }
+    
+    private void BackBtnClickHandler(GameObject go){
+      CloseExchangeGroup();
+    }
+
+    /// 打开修改名称面板
+    private void OpenExchangeGroup(){
+      this.exchangeGroup.SetActive(true);
+      tween.PlayForward();
+    }
+    
+    /// 关闭修改名称面板
+    private void CloseExchangeGroup(){
+      tween.PlayReverse();
+    }
+
+    private void OnFinishedHandler(UITweener tweener){
+      if(tweener.transform.localScale.x < 0.001){
+        this.exchangeGroup.SetActive(false);
+      }
+    }
+
+    private void InputChangeHandler(){
+      Debug.Log(input.value);
     }
   }
 }
