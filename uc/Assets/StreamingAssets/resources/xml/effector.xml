@@ -8,5 +8,17 @@
     <times>1</times>
     <loop_time>0</loop_time>
     <type>0</type>
+    <sub_ids>[2]</sub_ids>
   </value>
+  <value>
+    <id>2</id>
+    <special_effect>fx_binghuajizhong</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+    <effect_id>1</effect_id>
+  </value>
+
 </root>

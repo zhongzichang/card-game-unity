@@ -373,7 +373,7 @@ namespace TangLevel
           if (effectorIds != null) {
             List<Effector> effectors = new List<Effector> ();
             foreach (int id in effectorIds) {
-              list.Add (GetEffector (id));
+              effectors.Add (GetEffector (id));
             }
             return effectors.ToArray ();
           }
@@ -386,6 +386,7 @@ namespace TangLevel
 
     private static Effector GetEffector (int id)
     {
+
       if (TG.Config.effectorXmlTable.ContainsKey (id)) {
         TGX.EffectorData data = TG.Config.effectorXmlTable [id];
         Effector effector = new Effector ();
@@ -396,11 +397,16 @@ namespace TangLevel
         effector.times = data.times; // 次数
         effector.timeSpan = data.loop_time; // 间隔时间
         effector.type = data.type; // 类型
-        if (!String.IsNullOrEmpty (data.effect_ids)) {
-          // 效果编码
-          ArrayList list = JSON.JsonDecode (data.effect_ids) as ArrayList;
-          if (list != null) {
-            effector.effectCodes = TU.TypeUtil.ToArray<ArrayList, int> (list);
+        effector.effectCode = data.effect_id;
+        if (!String.IsNullOrEmpty (data.sub_ids)) {
+          // 子作用器Ids
+          ArrayList list = JSON.JsonDecode (data.sub_ids) as ArrayList;
+          ArrayList intList = TU.TypeUtil.DoubleToInt (list);
+          if (intList != null) {
+            effector.subEffectors = new Effector[intList.Count];
+            for (int i=0;i<intList.Count;i++) {
+              effector.subEffectors [i] = GetEffector ((int)intList[i]);
+            }
           }
         }
         return effector;

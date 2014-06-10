@@ -112,7 +112,6 @@ namespace TangGame.Net
 		public float HpMax {
 			get {
           if (hpMax == 0) {
-          Debug.Log ("=== " + configId + "===");
             return Config.heroXmlTable [configId].hpMax;
           }
 				return hpMax;
