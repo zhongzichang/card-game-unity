@@ -19,11 +19,13 @@ namespace TangLevel
     private static int autoIncrId = 10000;
 
     #region Properties
+
     private static int AutoIncrId {
-      get{
+      get {
         return autoIncrId++;
       }
     }
+
     #endregion
 
     #region Monos
@@ -39,7 +41,8 @@ namespace TangLevel
 
     #region Public
 
-    public static Group GetInitGroup(int[] heroIds){
+    public static Group GetInitGroup (int[] heroIds)
+    {
 
       Group g = new Group ();
       g.heros = new Hero[heroIds.Length];
@@ -70,17 +73,17 @@ namespace TangLevel
 
         // skills
         ArrayList skillIdList = JSON.JsonDecode (hb.Xml.skill_ids) as ArrayList;
-        ArrayList skillIdIntList = TU.TypeUtil.DoubleToInt(skillIdList);
-        if (skillIdIntList != null) {
-          int[] skillIds = TU.TypeUtil.ToArray<ArrayList, int> (skillIdIntList);
+        //ArrayList skillIdIntList = TU.TypeUtil.DoubleToInt(skillIdList);
+        if (skillIdList != null) {
+          int[] skillIds = TU.TypeUtil.ToArray<ArrayList, int> (skillIdList);
           if (skillIds != null) {
             Dictionary<int,Skill> skills = new Dictionary<int, Skill> ();
             for (int i = 0; i < skillIds.Length; i++) {
-              Skill skill = BuildSkill (skillIds[i]);
+              Skill skill = BuildSkill (skillIds [i]);
               if (skill != null) {
-                skill.grade = hb.Net.skillLevel[i];
+                skill.grade = hb.Net.skillLevel [i];
                 skill.enable = true;
-                skills.Add (skillIds[i], skill);
+                skills.Add (skillIds [i], skill);
               }
             }
             hero.skills = skills;
@@ -90,9 +93,9 @@ namespace TangLevel
         // skill queue
         if (hero.skills != null && hero.skills.Count > 0) {
           ArrayList skillQueueList = JSON.JsonDecode (hb.Xml.shot_order) as ArrayList;
-          ArrayList skillQueueIntList = TU.TypeUtil.DoubleToInt(skillQueueList);
-          if (skillQueueIntList != null) {
-            int[] skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (skillQueueIntList);
+          //ArrayList skillQueueIntList = TU.TypeUtil.DoubleToInt(skillQueueList);
+          if (skillQueueList != null) {
+            int[] skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (skillQueueList);
             hero.skillQueue = skillQueue;
           }
         }
@@ -183,7 +186,7 @@ namespace TangLevel
         // group and heros
         Hero[] heros = new Hero[realIds.Count];
         for (int i = 0; i < realIds.Count; i++) {
-          int hId = Convert.ToInt32 ((double)(realIds [i]));
+          int hId = (int)(realIds [i]);
           Hero h = BuildMonster (hId);
           if (h != null) {
             heros [i] = h;
@@ -231,11 +234,10 @@ namespace TangLevel
         if (skillIds != null) {
           h.skills = new Dictionary<int, Skill> ();
           for (int i = 0; i < skillIds.Count; i++) {
-            int skillId = Convert.ToInt32 ((double)skillIds [i]);
+            int skillId = (int)skillIds [i];
             Skill s = BuildSkill (skillId);
             s.enable = true;
             h.skills.Add (skillId, s);
-
           }
         }
         if (h.skills == null || h.skills.Count == 0) {
@@ -245,10 +247,7 @@ namespace TangLevel
         if (!String.IsNullOrEmpty (data.shot_order)) {
           ArrayList list = JSON.JsonDecode (data.shot_order) as ArrayList;
           if (list != null) {
-            ArrayList intList = TU.TypeUtil.DoubleToInt (list);
-            if (intList != null) {
-              h.skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (intList);
-            }
+            h.skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (list);
           }
         }
         if (h.skillQueue == null || h.skillQueue.Length == 0) {
@@ -367,16 +366,13 @@ namespace TangLevel
 
       ArrayList list = JSON.JsonDecode (textIds) as ArrayList;
       if (list != null) {
-        ArrayList intList = TU.TypeUtil.DoubleToInt (list);
-        if (intList != null) {
-          int[] effectorIds = TU.TypeUtil.ToArray<ArrayList, int> (intList);
-          if (effectorIds != null) {
-            List<Effector> effectors = new List<Effector> ();
-            foreach (int id in effectorIds) {
-              effectors.Add (GetEffector (id));
-            }
-            return effectors.ToArray ();
+        int[] effectorIds = TU.TypeUtil.ToArray<ArrayList, int> (list);
+        if (effectorIds != null) {
+          List<Effector> effectors = new List<Effector> ();
+          foreach (int id in effectorIds) {
+            effectors.Add (GetEffector (id));
           }
+          return effectors.ToArray ();
         }
       }
 
@@ -401,12 +397,9 @@ namespace TangLevel
         if (!String.IsNullOrEmpty (data.sub_ids)) {
           // 子作用器Ids
           ArrayList list = JSON.JsonDecode (data.sub_ids) as ArrayList;
-          ArrayList intList = TU.TypeUtil.DoubleToInt (list);
-          if (intList != null) {
-            effector.subEffectors = new Effector[intList.Count];
-            for (int i=0;i<intList.Count;i++) {
-              effector.subEffectors [i] = GetEffector ((int)intList[i]);
-            }
+          effector.subEffectors = new Effector[list.Count];
+          for (int i = 0; i < list.Count; i++) {
+            effector.subEffectors [i] = GetEffector ((int)list [i]);
           }
         }
         return effector;
