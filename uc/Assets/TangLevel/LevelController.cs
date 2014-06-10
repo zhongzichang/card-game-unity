@@ -61,6 +61,10 @@ namespace TangLevel
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
     private static int m_bigMoveCounter = 0;
+    private static bool lazyShowSuccess = false;
+    // 显示挑战成功信息
+    private static bool lazyShowFailure = false;
+    // 显示挑战失败信息
 
     #endregion
 
@@ -193,6 +197,20 @@ namespace TangLevel
     {
       TDB.DbgoManager.RaiseLoadedEvent -= OnDragonBonesResLoaded;
     }
+
+    void Update ()
+    {
+
+      if (lazyShowFailure) {
+        lazyShowFailure = false;
+        StartCoroutine (ShowFailure ());
+      } else if (lazyShowSuccess) {
+        lazyShowSuccess = false;
+        StartCoroutine (ShowSuccess ());
+      }
+
+    }
+
 
     #endregion
 
@@ -342,7 +360,7 @@ namespace TangLevel
 
         PlaceController.Place = Place.level;
         Debug.Log ("TangLevel: Set levelId=1001 for debuging ");
-        Debug.Log ("TangLevel: HeroIds = " + TU.TextUtil.Join(heroIds));
+        Debug.Log ("TangLevel: HeroIds = " + TU.TextUtil.Join (heroIds));
         LevelController.ChallengeLevel (1001, DomainHelper.GetInitGroup (heroIds));
       }
 
@@ -584,50 +602,27 @@ namespace TangLevel
           // 是己方英雄
           // 如果己方英雄全部死亡，则发出挑战失败通知
           if (LevelContext.AliveSelfGobjs.Count == 0) {
-            Debug.Log ("challenge failure");
-            if (RaiseChangengeFailure != null) {
-              RaiseChangengeFailure (null, EventArgs.Empty);
-            }
 
-            // 显示战斗结果面板，隐藏其他面板
-            levelControllPanel.gameObject.SetActive (false);
-            levelResourcePanel.gameObject.SetActive (false);
-            levelHeroPanel.gameObject.SetActive (false);
-            battleResultPanel.gameObject.SetActive (true);
-            ArrayList heroIds = new ArrayList ();
-            foreach (Hero hero in LevelContext.selfGroup.heros) {
-              heroIds.Add (hero.id);
-            }
-            battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, 0);
+            Debug.Log ("challenge failure");
+            lazyShowFailure = true;
           }
+
         } else {
+
           // 是敌方英雄
           // 如果敌方英雄全部死亡，
           //   如果最后的子关卡，则发出关卡已被清除通知 ，否则发出子关卡已被清除通知
           //   
           if (LevelContext.AliveEnemyGobjs.Count == 0) {
             if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Length - 1) {
+
               // 发出关卡挑战成功
               Debug.Log ("challenge success");
               CelebrateVictory ();
-              if (RaiseChallengeSuccess != null) {
-                RaiseChallengeSuccess (null, EventArgs.Empty);
-              }
-
-              // 显示战斗结果面板，隐藏其他面板
-              levelControllPanel.gameObject.SetActive (false);
-              levelResourcePanel.gameObject.SetActive (false);
-              levelHeroPanel.gameObject.SetActive (false);
-              battleResultPanel.gameObject.SetActive (true);
-
-              ArrayList heroIds = new ArrayList ();
-              foreach (Hero hero in LevelContext.selfGroup.heros) {
-                heroIds.Add (hero.id);
-              }
-              int resultType = UnityEngine.Random.Range (2, 6); // 超时战斗结果也会返回失败
-              battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, resultType);
+              lazyShowSuccess = true;
 
             } else {
+
               // 子关卡完成
               if (RaiseSubLevelCleaned != null) {
                 RaiseSubLevelCleaned (null, EventArgs.Empty);
@@ -1349,6 +1344,61 @@ namespace TangLevel
       }
       return gobj;
       
+    }
+
+    private static IEnumerator ShowSuccess ()
+    {
+
+      yield return new WaitForSeconds (3);
+
+      if (RaiseChallengeSuccess != null) {
+        RaiseChallengeSuccess (null, EventArgs.Empty);
+      }
+
+      // 释放己方英雄
+      foreach (GameObject gobj in LevelContext.selfGobjs) {
+        HeroGobjManager.Release (gobj);
+      }
+
+      // 显示战斗结果面板，隐藏其他面板
+      levelControllPanel.gameObject.SetActive (false);
+      levelResourcePanel.gameObject.SetActive (false);
+      levelHeroPanel.gameObject.SetActive (false);
+      battleResultPanel.gameObject.SetActive (true);
+
+      ArrayList heroIds = new ArrayList ();
+      foreach (Hero hero in LevelContext.selfGroup.heros) {
+        heroIds.Add (hero.id);
+      }
+      int resultType = UnityEngine.Random.Range (2, 6); // 超时战斗结果也会返回失败
+      battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, resultType);
+
+    }
+
+    private static IEnumerator ShowFailure ()
+    {
+
+      yield return new WaitForSeconds (3);
+
+      // 释放敌方英雄
+      foreach (GameObject gobj in LevelContext.enemyGobjs) {
+        HeroGobjManager.Release (gobj, false);
+      }
+
+      if (RaiseChangengeFailure != null) {
+        RaiseChangengeFailure (null, EventArgs.Empty);
+      }
+
+      // 显示战斗结果面板，隐藏其他面板
+      levelControllPanel.gameObject.SetActive (false);
+      levelResourcePanel.gameObject.SetActive (false);
+      levelHeroPanel.gameObject.SetActive (false);
+      battleResultPanel.gameObject.SetActive (true);
+      ArrayList heroIds = new ArrayList ();
+      foreach (Hero hero in LevelContext.selfGroup.heros) {
+        heroIds.Add (hero.id);
+      }
+      battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, 0);
     }
 
     #endregion

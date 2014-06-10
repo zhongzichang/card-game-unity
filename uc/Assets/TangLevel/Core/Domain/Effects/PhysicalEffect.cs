@@ -28,7 +28,7 @@ namespace TangLevel
         // 如果作用器减少HP
         // TODO 测试用，请使用正式的伤害计算公式
         bool crit = UnityEngine.Random.Range (0F, 1F) < 0.3F ? true : false;
-        int hurt = crit ? UnityEngine.Random.Range (20, 40) : UnityEngine.Random.Range (1, 20);
+        int hurt = crit ? UnityEngine.Random.Range (50, 100) : UnityEngine.Random.Range (1, 50);
 
         heroBhvr.hero.hp -= hurt;
 

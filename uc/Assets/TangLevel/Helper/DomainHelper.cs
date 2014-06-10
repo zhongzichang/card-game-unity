@@ -153,16 +153,19 @@ namespace TangLevel
       List<SubLevel> subLevels = new List<SubLevel> ();
       if (!String.IsNullOrEmpty (data.lv1_bg) && !String.IsNullOrEmpty (data.lv1_monster_ids)) {
         SubLevel lvl = BuildSubLevel (data.lv1_bg, data.lv1_monster_ids);
+        lvl.index = 0;
         subLevels.Add (lvl);
       }
 
       if (!String.IsNullOrEmpty (data.lv2_bg) && !String.IsNullOrEmpty (data.lv2_monster_ids)) {
         SubLevel lvl = BuildSubLevel (data.lv2_bg, data.lv2_monster_ids);
+        lvl.index = 1;
         subLevels.Add (lvl);
       }
 
       if (!String.IsNullOrEmpty (data.lv3_bg) && !String.IsNullOrEmpty (data.lv3_monster_ids)) {
         SubLevel lvl = BuildSubLevel (data.lv3_bg, data.lv3_monster_ids);
+        lvl.index = 2;
         subLevels.Add (lvl);
       }
       return subLevels;
