@@ -16,7 +16,7 @@ namespace TangLevel
     public int type; // 类型
     public int radius; // 作用范围
     public string specialName;
-    public int effectCode; // 效果编号
+    public Effect effect; // 效果
     #endregion
 
     #region Runtime

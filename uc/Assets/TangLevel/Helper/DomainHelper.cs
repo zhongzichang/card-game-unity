@@ -393,9 +393,18 @@ namespace TangLevel
         effector.times = data.times; // 次数
         effector.timeSpan = data.loop_time; // 间隔时间
         effector.type = data.type; // 类型
-        effector.effectCode = data.effect_id;
+
+        // 效果
+        if (data.effect_code > 0) {
+          ArrayList list = null;
+          if (!String.IsNullOrEmpty (data.effect_params)) {
+            list = JSON.JsonDecode (data.effect_params) as ArrayList;
+          }
+          effector.effect = EffectEjector.Instance.NewEffect (data.effect_code, list);
+        }
+
+        // 子作用器Ids
         if (!String.IsNullOrEmpty (data.sub_ids)) {
-          // 子作用器Ids
           ArrayList list = JSON.JsonDecode (data.sub_ids) as ArrayList;
           effector.subEffectors = new Effector[list.Count];
           for (int i = 0; i < list.Count; i++) {

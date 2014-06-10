@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace TangLevel
 {
@@ -8,14 +9,16 @@ namespace TangLevel
 类型表示是按百分比，还是绝对值。
 值为具体值，可能由技能表para传入。
 */
+  [EffectAttribute(CODE)]
   public class IncrePropEffect : Effect
   {
 
-    public const int TYPE = 3;
+    public const int CODE = 3;
+    public IncrePropEffect() : base(CODE) {
 
-    public override void Arise ()
+    }
+    public static void Arise (Effect effect, EffectorWrapper w)
     {
-      throw new NotImplementedException ();
     }
   }
 }

@@ -1,10 +1,33 @@
 ﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace TangLevel
 {
+
+  [ System.AttributeUsage (System.AttributeTargets.Class)]
+  public class EffectAttribute : Attribute
+  {
+    private int code;
+
+    public EffectAttribute (int code)
+    {
+      this.code = code;
+    }
+
+    public int GetCode ()
+    {
+      return code;
+    }
+  }
+
   [Serializable]
   public abstract class Effect
   {
+    /// <summary>
+    /// 伤害冒字偏移
+    /// </summary>
+    public static readonly Vector3 HURT_TEXT_OFFSET = new Vector3 (0, 160, 0);
     /*
      * 1  物理伤害
 2 魔法伤害
@@ -34,16 +57,12 @@ namespace TangLevel
 26  淘汰
 27  前摇时间伤害
 28  亡灵*/
-    public int type = 0;
+    public int code;
+    public ArrayList paramList;
 
-    public Effect(){
-
+    public Effect(int code){
+      this.code = code;
     }
-
-    /// <summary>
-    /// 发生
-    /// </summary>
-    public abstract void Arise();
 
   }
 }

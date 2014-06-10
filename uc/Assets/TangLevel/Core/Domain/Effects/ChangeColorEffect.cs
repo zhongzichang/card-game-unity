@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Collections;
 
 namespace TangLevel
 {
   /* 改变角色贴图颜色 */
-  public class ChangeColorEffect
+  [EffectAttribute(CODE)]
+  public class ChangeColorEffect: Effect
   {
-    public ChangeColorEffect ()
+    public const int CODE = 22;
+
+    public ChangeColorEffect() : base(CODE) {
+
+    }
+
+    public static void Arise (Effect effect, EffectorWrapper w)
     {
     }
   }

@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections;
 
 namespace TangLevel
 {
   /* 眩晕，参数为概率，10000表示100% */
+  [EffectAttribute(CODE)]
   public class VertigoEffect : Effect
   {
-    public const int TYPE = 10;
+    public const int CODE = 10;
+    public VertigoEffect() : base(CODE) {
 
-
-    public override void Arise ()
+    }
+    public static void Arise (Effect effect, EffectorWrapper w)
     {
-      throw new NotImplementedException ();
     }
   }
 }
