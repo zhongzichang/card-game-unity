@@ -30,7 +30,8 @@ namespace TangGame
       xmls.Add("monster");
       xmls.Add("map");
       xmls.Add("name");
-
+      xmls.Add("task");
+      xmls.Add("daily");
 
       TangScene.TS.EnsureTSGobj ();
       TangNet.TN.EnsureTNGobj ();

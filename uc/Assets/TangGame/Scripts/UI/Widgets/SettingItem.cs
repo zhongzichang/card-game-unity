@@ -36,7 +36,7 @@ namespace TangGame.UI{
         this.mask.SetActive(this.selected);
       }
       if(btnLabel != null){
-        btnLabel.text = this.selected ? "开" : "关";
+        btnLabel.text = this.selected ? UIPanelLang.OPEN : UIPanelLang.CLOSE;
       }
     }
     

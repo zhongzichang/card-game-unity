@@ -24,12 +24,16 @@ namespace TangGame.UI{
       this.started = true;
       this.taskItem.gameObject.SetActive(false);
 
-      TaskCache.instance.list.Add(new Task());
-      TaskCache.instance.list.Add(new Task());
-      TaskCache.instance.list.Add(new Task());
-      TaskCache.instance.list.Add(new Task());
-      TaskCache.instance.list.Add(new Task());
-      TaskCache.instance.list.Add(new Task());
+      //=====测试=====
+      //1,4,5
+      int[] ids = new int[]{1,4,5};
+      foreach(int tid in ids){
+        Task task = new Task();
+        task.data = Config.taskTable[tid];
+        TaskCache.instance.list.Add(task);
+      }
+      //=====测试=====
+
       this.UpdateData();
     }
 

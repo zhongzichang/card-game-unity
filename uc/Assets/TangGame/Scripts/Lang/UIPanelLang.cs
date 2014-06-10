@@ -144,8 +144,12 @@ namespace TangGame.UI
 		public const string LOAD_HERO_ING = "正在集合你的英雄...";
 		public const string NOT_SUMMON_HERO = "以下英雄尚未招募";
 
+    /// 装备
 		public const string EQUIP = "装备";
+    /// 确定
 		public const string OK = "确定";
+    /// 取消
+    public const string CANCEL = "取消";
 		/// <summary>
 		/// The UNENCHANTE.
 		/// 未附魔
@@ -277,5 +281,34 @@ namespace TangGame.UI
     /// 每日活动
     public const string DAILY = "每日活动";
 
+    /// 战队等级
+    public const string ROLE_TEAM_LEVEL = "[D7A453]战队等级：[-][FFEAC9]{0}[-]";
+    /// 战队经验
+    public const string ROLE_TEAM_EXP = "[D7A453]战队经验：[-][FFEAC9]{0}/{1}[-]";
+    /// 英雄等级上限
+    public const string ROLE_HERO_LEVEL_MAX = "[D7A453]英雄等级上限：[-][FFEAC9]{0}[-]";
+    /// 账号ID
+    public const string ROLE_ID = "[D7A453]账号ID：[-][FFEAC9]{0}[-]";
+    /// 更换昵称
+    public const string ROLE_CHANGE_NAME = "更换昵称";
+    /// 更换头像
+    public const string ROLE_CHANGE_AVATAR = "更换头像";
+    /// 系统设置
+    public const string SYSTEM_SETTING = "系统设置";
+    /// 为您的队伍取个名字：
+    public const string TEAM_NAME = "为您的队伍取个名字：";
+
+    /// 输入兑换券
+    public const string INPUT_EXCHANGE = "输入兑换券";
+    /// 请输入兑换码：
+    public const string INPUT_EXCHANGE_TITLE = "请输入兑换码：";
+    /// 请输入兑换码
+    public const string INPUT_EXCHANGE_TEXT = "请输入兑换码";
+    /// 信息提醒
+    public const string INFO_ALERT = "信息提醒";
+    /// 开
+    public const string OPEN = "开";
+    /// 关
+    public const string CLOSE = "关";
 	}
 }

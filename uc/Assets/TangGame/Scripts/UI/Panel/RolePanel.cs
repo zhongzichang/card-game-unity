@@ -55,7 +55,17 @@ namespace TangGame.UI{
       nameTween.callWhenFinished = "OnFinishedHandler";
       this.nameGroup.SetActive(false);
 
-      if (input != null) EventDelegate.Add(input.onChange, InputChangeHandler);
+      EventDelegate.Add(input.onChange, InputChangeHandler);
+      nameLabel.text = Account.instance.name;
+      input.value = Account.instance.name;
+
+      nameBtnLabel.text = UIPanelLang.ROLE_CHANGE_NAME;
+      avatarBtnLabel.text = UIPanelLang.ROLE_CHANGE_AVATAR;
+      settingBtnLabel.text = UIPanelLang.SYSTEM_SETTING;
+
+      titleLabel.text = UIPanelLang.TEAM_NAME;
+      okLabel.text = UIPanelLang.OK;
+      cancelLabel.text = UIPanelLang.CANCEL;
 
       this.started = true;
       this.UpdateData();
@@ -69,6 +79,12 @@ namespace TangGame.UI{
 
     private void UpdateData(){
       if(!this.started){return;}
+      levelLabel.text = string.Format(UIPanelLang.ROLE_TEAM_LEVEL, Account.instance.level);
+      expLabel.text = string.Format(UIPanelLang.ROLE_TEAM_EXP, Account.instance.exp, Account.instance.expMax);
+      heroLevelLabel.text = string.Format(UIPanelLang.ROLE_HERO_LEVEL_MAX, Account.instance.level);
+      idLabel.text = string.Format(UIPanelLang.ROLE_ID, Account.instance.id);
+
+
     }
 
     private void CloseBtnClickHandler(GameObject go){
@@ -88,7 +104,7 @@ namespace TangGame.UI{
     }
 
     private void RandomBtnClickHandler(GameObject go){
-      changeNameLabel.text = NameCache.instance.GetRandomName();
+      input.value = NameCache.instance.GetRandomName();
     }
 
     private void OkBtnClickHandler(GameObject go){

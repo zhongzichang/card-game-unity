@@ -6,6 +6,10 @@ namespace TangGame.UI{
 	public class TaskItem : ViewItem {
     public ViewItemDelegate onClick;
 
+    public UILabel conditionLabel;
+    public UISprite icon;
+    public UILabel titleLabel;
+
     public UIEventListener btn;
     
     public override void Start ()
@@ -21,6 +25,13 @@ namespace TangGame.UI{
         return;
       }
       if(this.data == null){return;}
+      Task task = this.data as Task;
+      if(task.data == null){
+        Global.Log(">> TaskItem task.xml == null.");
+        return;
+      }
+      this.conditionLabel.text = task.data.condition;
+      this.titleLabel.text = task.data.name;
     }
 
     private void BtnClickHandler(GameObject go){

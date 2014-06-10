@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TangGame.Xml;
 
 namespace TangGame.UI{
   /// <summary>
@@ -24,12 +25,13 @@ namespace TangGame.UI{
       this.started = true;
       this.dailyItem.gameObject.SetActive(false);
 
-      DailyCache.instance.list.Add(new Daily());
-      DailyCache.instance.list.Add(new Daily());
-      DailyCache.instance.list.Add(new Daily());
-      DailyCache.instance.list.Add(new Daily());
-      DailyCache.instance.list.Add(new Daily());
-      DailyCache.instance.list.Add(new Daily());
+      //=====测试=====
+      foreach(DailyData tData in Config.dailyTable.Values){
+        Daily daily = new Daily();
+        daily.data = tData;
+        DailyCache.instance.list.Add(daily);
+      }
+      //=====测试=====
       this.UpdateData();
     }
 
@@ -54,6 +56,7 @@ namespace TangGame.UI{
         DailyItem item = go.GetComponent<DailyItem>();
         items.Add(item);
         item.data = daily;
+        item.onClick += ItemClickHandler;
         position.y = position.y - 141;
       }
     }

@@ -10,16 +10,18 @@ namespace TangGame.UI{
 
     public const string NAME = "SettingPanel";
 
+    public UILabel titleLabel;
     public UIEventListener closeBtn;
     public UIEventListener soundBtn;
     public UILabel soundLabel;
     public UIEventListener exchangeBtn;
     public UILabel exchangeLabel;
+    public UILabel infoAlertLabel;
     public SettingItem[] items = new SettingItem[]{};
 
     //===============================
     public GameObject exchangeGroup;
-    public UILabel titleLabel;
+    public UILabel exchangeTitleLabel;
     public UILabel exchangeInputLabel;
     public UILabel okLabel;
     public UILabel cancelLabel;
@@ -28,6 +30,9 @@ namespace TangGame.UI{
     public UIEventListener backBtn;
     public TweenScale tween;
     public UIInput input;
+
+
+    private object mParam;
 
     void Start(){
       closeBtn.onClick += CloseBtnClickHandler;
@@ -44,6 +49,12 @@ namespace TangGame.UI{
 
       if (input != null) EventDelegate.Add(input.onChange, InputChangeHandler);
 
+      titleLabel.text = UIPanelLang.SYSTEM_SETTING;
+      okLabel.text = UIPanelLang.OK;
+      cancelLabel.text = UIPanelLang.CANCEL;
+      exchangeLabel.text = UIPanelLang.INPUT_EXCHANGE;
+      exchangeTitleLabel.text = UIPanelLang.INPUT_EXCHANGE_TITLE;
+      infoAlertLabel.text = UIPanelLang.INFO_ALERT;
       Init();
     }
 
@@ -51,6 +62,14 @@ namespace TangGame.UI{
       foreach(SettingItem item in items){
         item.onClick += ItemClickHandler;
       }
+    }
+
+    public object param{
+      get{return mParam;}
+      set{mParam = value; UpdateData();}
+    }
+
+    private void UpdateData(){
     }
 
     private void ItemClickHandler(ViewItem viewItem){
@@ -92,6 +111,9 @@ namespace TangGame.UI{
 
     /// 打开修改名称面板
     private void OpenExchangeGroup(){
+      input.value = "";
+      exchangeInputLabel.text = UIPanelLang.INPUT_EXCHANGE_TEXT;
+
       this.exchangeGroup.SetActive(true);
       tween.PlayForward();
     }
