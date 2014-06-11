@@ -1,17 +1,43 @@
 <?xml version="1.0"?>
 <root>
+  <!-- 普通击中 -->
   <value>
     <id>1</id>
+    <special_effect>fx_jizhong</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+    <effect_code>1</effect_code>
+  </value>
+
+  <!-- 眩晕 -->
+  <value>
+    <id>2</id>
+    <special_effect>fx_xuanyun</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+  </value>
+
+  <!-- 冰花 -->
+  <value>
+    <id>111</id>
     <special_effect>fx_binghua</special_effect>
     <probability>1</probability>
     <radius>0</radius>
     <times>1</times>
     <loop_time>0</loop_time>
     <type>0</type>
-    <sub_ids>[2]</sub_ids>
+    <sub_ids>[112]</sub_ids>
   </value>
+
+  <!-- 冰花击中 -->
   <value>
-    <id>2</id>
+    <id>112</id>
     <special_effect>fx_binghuajizhong</special_effect>
     <probability>1</probability>
     <radius>0</radius>
@@ -20,5 +46,64 @@
     <type>0</type>
     <effect_code>1</effect_code>
   </value>
+
+  <!-- 野蛮撕扯 -->
+  <value>
+    <id>121</id>
+    <special_effect>fx_yemansiche</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+    <effect_code>1</effect_code>
+  </value>
+
+  <!-- 千斤坠 -->
+  <value>
+    <id>122</id>
+    <special_effect>fx_qianjinzhui</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+    <effect_code>1</effect_code>
+  </value>
+
+  <!-- 神力 -->
+  <value>
+    <id>131</id>
+    <special_effect>fx_shenli</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+  </value>
+  <!-- 大喝 -->
+  <value>
+    <id>132</id>
+    <special_effect>fx_dahe</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+    <sub_ids>[2]</sub_ids>
+  </value>
+
+  <!-- 妙手回春 -->
+  <value>
+    <id>141</id>
+    <special_effect>fx_miaoshouhuichun</special_effect>
+    <probability>1</probability>
+    <radius>0</radius>
+    <times>1</times>
+    <loop_time>0</loop_time>
+    <type>0</type>
+  </value>
+  
+
 
 </root>

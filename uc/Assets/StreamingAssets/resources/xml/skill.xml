@@ -2,92 +2,175 @@
 <root>
   <value>
     <id>1</id>
-    <name>冰花</name>
-    <cool_time>4000</cool_time>
+    <name>普通攻击</name>
     <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time>
     <boot_time>0</boot_time> <!-- 前摇时间 -->
     <after_time>0</after_time> <!-- 后摇时间 -->
     <play_loop>0</play_loop> <!-- 播放次数 -->
     <isUltimate>false</isUltimate> <!-- 是否大招 -->
     <cast_range>10</cast_range> <!-- 释放距离 -->
-    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
-    <up_add>5</up_add> <!-- 升级提升系数 -->
     <target_type>2</target_type> <!-- 目标类型 -->
     <range_type>1</range_type> <!-- 范围类型 -->
-    <!-- 下面3个属性不再使用 -->
-    <effector_times>0</effector_times> <!-- 作用次数 @deprecated  -->
-    <effector_sequence>0</effector_sequence> <!-- 多重作用器序列 @deprecated -->
-    <effector_id>0</effector_id> <!-- 作用器编号 @deprecated -->
     <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
-    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
     <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
     <boot_animation>0</boot_animation> <!-- 前摇动画 -->
     <after_animation>attack</after_animation> <!-- 后摇动画 -->
-    <singing_effect></singing_effect> <!-- 前摇特效 -->
-    <play_effect></play_effect> <!-- 后摇特效 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>111</id>
+    <name>冰花</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
     <skill_icon>icon_1</skill_icon>
     <desc></desc>
     <desc_y>{para1}</desc_y>
-    <!-- 下面属性为新增 -->
-    <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
-  </value>
-  <value>
-    <id>2</id>
-    <name>冰花</name>
-    <cool_time>4000</cool_time>
-    <type>0</type>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
     <boot_time>0</boot_time> <!-- 前摇时间 -->
     <after_time>0</after_time> <!-- 后摇时间 -->
     <play_loop>0</play_loop> <!-- 播放次数 -->
     <isUltimate>false</isUltimate> <!-- 是否大招 -->
     <cast_range>20</cast_range> <!-- 释放距离 -->
-    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
-    <up_add>5</up_add> <!-- 升级提升系数 -->
     <target_type>2</target_type> <!-- 目标类型 -->
     <range_type>1</range_type> <!-- 范围类型 -->
     <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
-    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
-    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
-    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
-    <after_animation>attack</after_animation> <!-- 后摇动画 -->
-    <singing_effect></singing_effect> <!-- 前摇特效 -->
-    <play_effect></play_effect> <!-- 后摇特效 -->
-    <skill_icon>icon_1</skill_icon>
-    <desc></desc>
-    <desc_y>{para1}</desc_y>
-    <!-- 下面属性为新增 -->
-    <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
-  </value>
-  <value>
-    <id>11</id>
-    <name>冰花</name>
-    <cool_time>4000</cool_time>
-    <type>0</type>
-    <boot_time>0</boot_time> <!-- 前摇时间 -->
-    <after_time>0</after_time> <!-- 后摇时间 -->
-    <play_loop>0</play_loop> <!-- 播放次数 -->
-    <isUltimate>false</isUltimate> <!-- 是否大招 -->
-    <cast_range>20</cast_range> <!-- 释放距离 -->
-    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
-    <up_add>5</up_add> <!-- 升级提升系数 -->
-    <target_type>2</target_type> <!-- 目标类型 -->
-    <range_type>1</range_type> <!-- 范围类型 -->
-    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
-    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
     <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
     <boot_animation>0</boot_animation> <!-- 前摇动画 -->
     <after_animation>binghua</after_animation> <!-- 后摇动画 -->
-    <singing_effect></singing_effect> <!-- 前摇特效 -->
-    <play_effect></play_effect> <!-- 后摇特效 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[111]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>121</id>
+    <name>许褚普通攻击</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
     <skill_icon>icon_1</skill_icon>
     <desc></desc>
     <desc_y>{para1}</desc_y>
-    <!-- 下面属性为新增 -->
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>attack</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
     <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
   </value>
+
   <value>
-    <id>21</id>
+    <id>122</id>
+    <name>千斤坠</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>true</isUltimate> <!-- 是否大招 -->
+    <cast_range>30</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>qianjinzhui</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[122]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>123</id>
+    <name>重击</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>zhongji</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>124</id>
     <name>野蛮撕扯</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>yemansiche</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[121]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>125</id>
+    <name>虎痴</name>
     <cool_time>4000</cool_time>
     <type>0</type>
     <boot_time>0</boot_time> <!-- 前摇时间 -->
@@ -100,17 +183,293 @@
     <target_type>2</target_type> <!-- 目标类型 -->
     <range_type>1</range_type> <!-- 范围类型 -->
     <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
-    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <is_attribute_addition>true</is_attribute_addition> <!-- 永久增加其属性 -->
     <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
-    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
-    <after_animation>yemansiche</after_animation> <!-- 后摇动画 -->
-    <singing_effect></singing_effect> <!-- 前摇特效 -->
-    <play_effect></play_effect> <!-- 后摇特效 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation></after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
     <skill_icon>icon_1</skill_icon>
     <desc></desc>
     <desc_y>{para1}</desc_y>
-    <!-- 下面属性为新增 -->
+  </value>
+
+  <value>
+    <id>131</id>
+    <name>张飞普通攻击</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>attack</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
     <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
   </value>
+
+
+  <value>
+    <id>132</id>
+    <name>神力</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>true</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>shenli</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects>["fx_shenli_skill"]</play_effects> <!-- 后摇特效 -->
+    <effector_ids>[131]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>133</id>
+    <name>霸气</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>baqi</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[1]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+
+  <value>
+    <id>134</id>
+    <name>大喝</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>0</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation>0</boot_animation> <!-- 前摇动画 -->
+    <after_animation>dahe</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[132]</effector_ids><!-- 作用器IDs，每一个 @cast 事件抛出一个作用器 -->
+  </value>
+ 
+  <value>
+    <id>135</id>
+    <name>刚猛</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>true</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation></after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+  </value>
+
+ 
+  <value>
+    <id>141</id>
+    <name>华佗普通攻击</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>false</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation>attack</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[1]</effector_ids>
+  </value>
+  <value>
+    <id>142</id>
+    <name>妙手回春</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>false</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>true</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>1</target_type> <!-- 目标类型 -->
+    <range_type>32</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation>miaoshouhuichun</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[141]</effector_ids>
+  </value>
+  <value>
+    <id>143</id>
+    <name>毒理</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>false</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation>attack</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[1]</effector_ids>
+  </value>
+  <value>
+    <id>144</id>
+    <name>续命</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>false</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation>xuming</after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids>[1]</effector_ids>
+  </value>
+  <value>
+    <id>145</id>
+    <name>圣手</name>
+    <type>0</type>
+    <skill_coefficient>0</skill_coefficient> <!-- 系数 -->
+    <up_add>5</up_add> <!-- 升级提升系数 -->
+    <is_attribute_addition>false</is_attribute_addition> <!-- 永久增加其属性 -->
+    <skill_icon>icon_1</skill_icon>
+    <desc></desc>
+    <desc_y>{para1}</desc_y>
+
+    <cool_time>4000</cool_time> <!-- 冷却时间 -->
+    <boot_time>0</boot_time> <!-- 前摇时间 -->
+    <after_time>0</after_time> <!-- 后摇时间 -->
+    <play_loop>0</play_loop> <!-- 播放次数 -->
+    <isUltimate>false</isUltimate> <!-- 是否大招 -->
+    <cast_range>20</cast_range> <!-- 释放距离 -->
+    <target_type>2</target_type> <!-- 目标类型 -->
+    <range_type>1</range_type> <!-- 范围类型 -->
+    <being_interrupted_by_injuries>0</being_interrupted_by_injuries> <!-- 被伤害打断 -->
+    <code_coverage_skill_id>0</code_coverage_skill_id> <!-- 覆盖技能编号 -->
+    <boot_animation></boot_animation> <!-- 前摇动画 -->
+    <after_animation></after_animation> <!-- 后摇动画 -->
+    <singing_effects></singing_effects> <!-- 前摇特效 -->
+    <play_effects></play_effects> <!-- 后摇特效 -->
+    <effector_ids></effector_ids>
+  </value>
+
 
 </root>

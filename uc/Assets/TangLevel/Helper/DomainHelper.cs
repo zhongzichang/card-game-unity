@@ -73,17 +73,21 @@ namespace TangLevel
 
         // skills
         ArrayList skillIdList = JSON.JsonDecode (hb.Xml.skill_ids) as ArrayList;
-        //ArrayList skillIdIntList = TU.TypeUtil.DoubleToInt(skillIdList);
         if (skillIdList != null) {
           int[] skillIds = TU.TypeUtil.ToArray<ArrayList, int> (skillIdList);
           if (skillIds != null) {
             Dictionary<int,Skill> skills = new Dictionary<int, Skill> ();
-            for (int i = 0; i < skillIds.Length; i++) {
-              Skill skill = BuildSkill (skillIds [i]);
+            int counter = 0;
+            foreach (int skillId in skillIds) {
+              Skill skill = BuildSkill (skillId);
               if (skill != null) {
-                skill.grade = hb.Net.skillLevel [i];
+                if (!skill.normal) { // 非普通技能才由等级
+                  // WARN : hb.Net.skillLevel这个数组存在的问题时，需要确保技能顺序的正确
+                  skill.grade = hb.Net.skillLevel [counter];
+                  counter++;
+                }
                 skill.enable = true;
-                skills.Add (skillIds [i], skill);
+                skills.Add (skillId, skill);
               }
             }
             hero.skills = skills;
@@ -93,7 +97,6 @@ namespace TangLevel
         // skill queue
         if (hero.skills != null && hero.skills.Count > 0) {
           ArrayList skillQueueList = JSON.JsonDecode (hb.Xml.shot_order) as ArrayList;
-          //ArrayList skillQueueIntList = TU.TypeUtil.DoubleToInt(skillQueueList);
           if (skillQueueList != null) {
             int[] skillQueue = TU.TypeUtil.ToArray<ArrayList, int> (skillQueueList);
             hero.skillQueue = skillQueue;

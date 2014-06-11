@@ -72,7 +72,7 @@ namespace TangLevel
 				return;
 			HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
-			if (targetObj != null) {
+      if (targetObj != null && w.effector.subEffectors != null) {
 				HeroStatusBhvr targetStatusBhvr = targetObj.GetComponent<HeroStatusBhvr> ();
 				// 抛出作用器
 				foreach (Effector e in w.effector.subEffectors) {

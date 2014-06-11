@@ -1,7 +1,7 @@
 <root>
 	<value>
 		<id>1</id>
-		<name>廖化</name>
+		<name>甄宓</name>
 		<showView>1</showView>
 		<soul_rock_id>0</soul_rock_id>
 		<evolve>1</evolve>
@@ -30,8 +30,8 @@
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
 		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
-		<skill_ids>[11]</skill_ids>
-		<shot_order>[11]</shot_order>
+		<skill_ids>[111]</skill_ids>
+		<shot_order>[111]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_1</avatar>
@@ -40,7 +40,7 @@
 	</value>
 	<value>
 		<id>2</id>
-		<name>太史慈</name>
+		<name>许褚</name>
 		<showView>1</showView>
 		<soul_rock_id>0</soul_rock_id>
 		<evolve>1</evolve>
@@ -69,8 +69,8 @@
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
 		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
-		<skill_ids>[21]</skill_ids>
-		<shot_order>[21]</shot_order>
+		<skill_ids>[121,122,123,124,125]</skill_ids>
+		<shot_order>[121,123,124]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_2</avatar>
@@ -79,7 +79,7 @@
 	</value>
 	<value>
 		<id>3</id>
-		<name>管辂</name>
+		<name>张飞</name>
 		<showView>1</showView>
 		<soul_rock_id>0</soul_rock_id>
 		<evolve>1</evolve>
@@ -108,8 +108,8 @@
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
 		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
-		<skill_ids>[1]</skill_ids>
-		<shot_order>[1]</shot_order>
+		<skill_ids>[131,132,133,134,135]</skill_ids>
+		<shot_order>[131,133,134]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_3</avatar>
@@ -118,7 +118,7 @@
 	</value>
 	<value>
 		<id>4</id>
-		<name>司马徽</name>
+		<name>华佗</name>
 		<showView>1</showView>
 		<soul_rock_id>0</soul_rock_id>
 		<evolve>1</evolve>
@@ -147,8 +147,8 @@
 		<dodge>0</dodge>
 		<addition_treatment>0</addition_treatment>
 		<equip_id_list>[1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010][1001,1002,1003,1004,1005,1006][1002,1003,1004,1005,1006,1007][1003,1004,1005,1006,1007,1008][1004,1005,1006,1007,1008,1009][1005,1006,1007,1008,1009,1010]</equip_id_list>
-		<skill_ids>[1]</skill_ids>
-		<shot_order>[1]</shot_order>
+		<skill_ids>[141,142,143,144,145]</skill_ids>
+		<shot_order>[141,143,144]</shot_order>
 		<hero_info>XXXX</hero_info>
 		<hero_tip>XXXX</hero_tip>
 		<avatar>hero_icon_4</avatar>

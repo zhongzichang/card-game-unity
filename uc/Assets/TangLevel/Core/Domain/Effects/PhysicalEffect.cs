@@ -47,7 +47,7 @@ namespace TangLevel
         // TODO 测试用，MP 增加
         HeroBhvr hb = w.source.GetComponent<HeroBhvr> ();
         if (hb != null) {
-          hb.hero.mp += hurt;
+          hb.hero.mp += 300;
         }
 
         // HP 小于等于0时，角色死亡

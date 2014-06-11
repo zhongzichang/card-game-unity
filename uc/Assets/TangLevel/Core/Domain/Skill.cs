@@ -17,13 +17,14 @@ namespace TangLevel
     public const int TARGET_REGION = 16; // 固定区域
 
     // 预定义目标范围 ----
-    public const int RANGE_SAME_COL = 1; // 目标同排
-    public const int RANGE_NEXT_COL = 2; // 目标的后排
-    public const int RANGE_NEXT_2COL = 4; // 目标的后两排
-    public const int RANGE_AROUND = 8; // 目标周围
-    public const int RANGE_SELF_GROUP = 16; // 目标友方全体
-    public const int RANGE_ENEMY_GROUP = 32; // 目标敌方全体
-    public const int RANGE_ALL = 64; // 敌我双方全体
+    public const int RANGE_TARGET = 1; // 目标本身
+    public const int RANGE_SAME_COL = 2; // 目标同排
+    public const int RANGE_NEXT_COL = 4; // 目标的后排
+    public const int RANGE_NEXT_2COL = 8; // 目标的后两排
+    public const int RANGE_AROUND = 16; // 目标周围
+    public const int RANGE_SELF_GROUP = 32; // 目标友方全体
+    public const int RANGE_ENEMY_GROUP = 64; // 目标敌方全体
+    public const int RANGE_ALL = 128; // 敌我双方全体
 
     #region Configration Attributes
 

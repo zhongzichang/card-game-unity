@@ -77,7 +77,7 @@ namespace TangLevel
           int skillIndex = skillQueue [skillQueueIndex];
 
           // 确保技能索引在技能列表范围内
-          if (skillIndex < skills.Count && skillIndex >= 0) {
+          if (skills.ContainsKey (skillIndex)) {
             Skill skill = skills [skillIndex];
 
             // 确保技能可用，技能不可以是大招
