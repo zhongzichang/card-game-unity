@@ -702,7 +702,7 @@ namespace TangLevel
 
 			List<Skill> skills = new List<Skill> ();
 			skills.Add (MockToushicheAttack ());
-			hero.skills = skills;
+      //hero.skills = skills;
 			hero.skillQueue = new int[]{ 0 };
 
 			return hero;
