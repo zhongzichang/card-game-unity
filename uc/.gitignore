@@ -18,6 +18,8 @@ ProjectSettings/
 *.sln
 *.userprefs
 .DS_Store
+Thumb.db
+Thumb.db.meta
 
 # Build results
 [Dd]ebug/
