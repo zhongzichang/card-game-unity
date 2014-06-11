@@ -194,6 +194,8 @@ namespace TangLevel
         for (int i = 0; i < realIds.Count; i++) {
           int hId = (int)(realIds [i]);
           Hero h = BuildMonster (hId);
+          // 出场次序
+          h.sort = i;
           if (h != null) {
             heros [i] = h;
           } else {
@@ -223,7 +225,6 @@ namespace TangLevel
       if (TG.Config.monsterXmlTable.ContainsKey (monsterId)) {
 
         TGX.MonsterData data = TG.Config.monsterXmlTable [monsterId];
-        int sort = TG.Config.heroSortTable [monsterId];
 
         Hero h = new Hero ();
         // ID
@@ -233,8 +234,6 @@ namespace TangLevel
         h.name = data.name;
         // 资源名字
         h.resName = data.model;
-        // 出场次序
-        h.sort = sort;
         // 技能
         ArrayList skillIds = JSON.JsonDecode (data.skill) as ArrayList;
         if (skillIds != null) {
