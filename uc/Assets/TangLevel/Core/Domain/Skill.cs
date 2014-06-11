@@ -17,13 +17,14 @@ namespace TangLevel
     public const int TARGET_REGION = 16; // 固定区域
 
     // 预定义目标范围 ----
-    public const int RANGE_SAME_COL = 1; // 目标同排
-    public const int RANGE_NEXT_COL = 2; // 目标的后排
-    public const int RANGE_NEXT_2COL = 4; // 目标的后两排
-    public const int RANGE_AROUND = 8; // 目标周围
-    public const int RANGE_SELF_GROUP = 16; // 目标友方全体
-    public const int RANGE_ENEMY_GROUP = 32; // 目标敌方全体
-    public const int RANGE_ALL = 64; // 敌我双方全体
+    public const int RANGE_TARGET = 1; // 目标本身
+    public const int RANGE_SAME_COL = 2; // 目标同排
+    public const int RANGE_NEXT_COL = 4; // 目标的后排
+    public const int RANGE_NEXT_2COL = 8; // 目标的后两排
+    public const int RANGE_AROUND = 16; // 目标周围
+    public const int RANGE_SELF_GROUP = 32; // 目标友方全体
+    public const int RANGE_ENEMY_GROUP = 64; // 目标敌方全体
+    public const int RANGE_ALL = 128; // 敌我双方全体
 
     #region Configration Attributes
 
@@ -40,14 +41,9 @@ namespace TangLevel
     public float cd;
 
     /// <summary>
-    /// 起手动作时间
+    /// 普通攻击
     /// </summary>
-    public float chargeTime;
-
-    /// <summary>
-    /// 释放动作时间
-    /// </summary>
-    public float releaseTime;
+    public bool normal;
 
     /// <summary>
     /// 是否大招
@@ -80,17 +76,6 @@ namespace TangLevel
     /// </summary>
     public Effector[] effectors;
 
-
-    /// <summary>
-    /// 前摇作用器
-    /// </summary>
-    public Effector[] chargeEffectors;
-
-    /// <summary>
-    /// 后摇作用器
-    /// </summary>
-    public Effector[] releaseEffectors;
-
     /// <summary>
     /// 是否可打断
     /// </summary>
@@ -107,6 +92,26 @@ namespace TangLevel
     public int replaceSkillId;
 
     /// <summary>
+    /// 蓄力特效
+    /// </summary>
+    public string[] chargeSpecials;
+
+    /// <summary>
+    /// 释放特效
+    /// </summary>
+    public string[] releaseSpecials;
+
+    /// <summary>
+    /// 起手动作时间
+    /// </summary>
+    public float chargeTime;
+
+    /// <summary>
+    /// 释放动作时间
+    /// </summary>
+    public float releaseTime;
+
+    /// <summary>
     /// 蓄力动画剪辑
     /// </summary>
     public string chargeClip;
@@ -117,14 +122,20 @@ namespace TangLevel
     public string releaseClip;
 
     /// <summary>
-    /// 蓄力特效
+    /// 前摇作用器
     /// </summary>
-    public string[] chargeSpecials;
+    public Effector[] chargeEffectors;
 
     /// <summary>
-    /// 释放特效
+    /// 后摇作用器
     /// </summary>
-    public string[] releaseSpecials;
+    public Effector[] releaseEffectors;
+
+    /// <summary>
+    /// 循环次数，0表示无限循环
+    /// </summary>
+    public int loopTimes;
+
     #endregion
 
     #region Runtime Attributes
@@ -138,11 +149,36 @@ namespace TangLevel
     /// 大招特写
     /// </summary>
     public bool bigMoveCloseUp = false;
+
+    /// <summary>
+    /// 循环索引，循环到哪一次
+    /// </summary>
+    /// 
+    public int loopIndex = 0;
+    /// <summary>
+    /// 前摇计时器
+    /// </summary>
+    public float chargeTimer = 0;
+
+    /// <summary>
+    /// 后摇计时器
+    /// </summary>
+    public float releaseTimer = 0;
+
+    /// <summary>
+    /// 等级
+    /// </summary>
+    public int grade = 0;
     #endregion
 
     #region Public Methods
     public Skill ShallowCopy(){
       return (Skill)this.MemberwiseClone ();
+    }
+    public void Reset(){
+      loopIndex = 0;
+      chargeTimer = 0;
+      releaseTimer = 0;
     }
     #endregion
 

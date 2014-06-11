@@ -13,12 +13,14 @@ namespace TangGame.Xml
     public int type; // 类型
     public int radius; // 范围半径
     public string special_effect; // 特效资源名称
-    public string effect_ids; // 作用效果IDs
+    public int effect_code; // 效果编号
+    public string effect_params; // 效果参数s
+    public string sub_ids; // 子作用器IDs
   }
 
 
   [XmlRoot ("root")]
-  [XmlLate("effectors")]
+  [XmlLate("effector")]
   public class EffectorRoot
   {
     [XmlElement ("value")]

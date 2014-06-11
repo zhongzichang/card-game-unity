@@ -9,13 +9,14 @@ namespace TangLevel
 
     #region Self
     // -- 自身属性 --
+    public int id;
     public int times; // 作用次数
     public float timeSpan; // 时间间隔
     public float probability; // 概率
     public int type; // 类型
     public int radius; // 作用范围
     public string specialName;
-    public int[] effectCodes; // 效果编号
+    public Effect effect; // 效果
     #endregion
 
     #region Runtime

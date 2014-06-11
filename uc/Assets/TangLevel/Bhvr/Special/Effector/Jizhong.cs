@@ -5,7 +5,7 @@ namespace TangLevel
 {
   public class Jizhong : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0, 2.5F, 0);
+    public static Vector3 OFFSET = new Vector3 (0, 4F, 0);
 
     private Transform myTransform;
 

@@ -20,7 +20,7 @@ namespace TangLevel
 
       if (w != null && w.target != null) {
 
-        // 绑定到目标身上
+        // 定位到目标身上
         myTransform.localPosition = w.target.transform.localPosition + OFFSET;
         Hit ();
 
@@ -58,7 +58,7 @@ namespace TangLevel
     public override void Pause ()
     {
       isPlay = false;
-      animator.speed = 10;
+      animator.speed = 0;
     }
 
     public override void Resume ()
