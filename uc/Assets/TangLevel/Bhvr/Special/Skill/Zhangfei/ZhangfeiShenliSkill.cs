@@ -9,8 +9,14 @@ namespace TangLevel
     public Vector3 offset = new Vector3(0, 0, 1);
 
     public float effectTime = 1F;
-
     private float remainTime = 0;
+
+    private Transform myTransform;
+
+    void Awake(){
+      myTransform = transform;
+      animator = GetComponent<Animator> ();
+    }
 
     // Update is called once per frame
     void Update ()
@@ -19,11 +25,13 @@ namespace TangLevel
         if (remainTime > 0) {
           remainTime -= Time.deltaTime;
         } else {
-          Release ();
+          StartRelease ();
         }
       }
     }
 
+
+    #region PublicMethods
     public override void Play(){
 
       isPlay = true;
@@ -32,5 +40,29 @@ namespace TangLevel
       transform.localPosition = offset;
 
     }
+
+
+    public override void Pause ()
+    {
+      isPlay = false;
+      animator.speed = 0F;
+    }
+
+    public override void Resume ()
+    {
+      isPlay = true;
+      animator.speed = 1F;
+    }
+
+    #endregion
+
+    #region ProtectedMethods
+    protected override void OnRelease ()
+    {
+      if (myTransform != null) {
+        myTransform.parent = null;
+      }
+    }
+    #endregion
   }
 }

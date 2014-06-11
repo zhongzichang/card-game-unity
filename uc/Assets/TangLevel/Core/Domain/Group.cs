@@ -63,7 +63,7 @@ namespace TangLevel
     public void DisableBigMoveCloseUp ()
     {
       foreach (Hero h in heros) {
-        foreach (Skill s in h.skills) {
+        foreach (Skill s in h.skills.Values) {
           if (s.bigMoveCloseUp) {
             s.bigMoveCloseUp = false;
           }
@@ -74,7 +74,7 @@ namespace TangLevel
     public void EnableBigMoveCloseUp ()
     {
       foreach (Hero h in heros) {
-        foreach (Skill s in h.skills) {
+        foreach (Skill s in h.skills.Values) {
           if (!s.bigMoveCloseUp) {
             s.bigMoveCloseUp = true;
           }

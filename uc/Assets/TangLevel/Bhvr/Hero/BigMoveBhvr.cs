@@ -15,33 +15,37 @@ namespace TangLevel
     // 大招不可行
     public BigMoveHandler RaiseEvent;
     public static readonly Vector3 OFFSET = new Vector3 (0F, 0F, 0F);
-    // 大招时的位置偏移，需要往镜头靠近
+    // 大招时的大小比例
     public const float SCALE = 1.3F;
+    // 放大招时的时间比例
+    public const float TIME_SCALE = 1F;
+    // 其他人放大招，自己被定住时的材质颜色
     public static readonly Color COLOR_MASH = new Color (0.5F, 0.5F, 0.5F, 1F);
     // 自动施放大招
     public bool auto = false;
+    // 接收到的所有大招发送者
+    private HashSet<BigMoveBhvr> bigMoveSenders = new HashSet<BigMoveBhvr> ();
+    // 该组件是否已初始化
+    private bool inited = false;
+    // Transform
+    private Transform myTransform;
+    // 备份的位置
+    private Vector3 backupPos = Vector3.zero;
+    // 导航代理
+    private DirectedNavAgent agent;
+    // heroBhvr
+    private HeroBhvr heroBhvr;
+    // 大招前的人物比例
+    private Vector3 backupScale = Vector3.zero;
+    // Dragonbones armature
+    private Armature armature;
+    // 大招对应的技能
+    private Skill skill;
+    // 大招是否准备好
+    private bool ready = false;
+    // 其他组件
     private HeroStatusBhvr statusBhvr;
     private TDB.DragonBonesBhvr dbBhvr;
-    private HashSet<BigMoveBhvr> bigMoveSenders = new HashSet<BigMoveBhvr> ();
-    // 接收到的所有大招发送者
-    private bool inited = false;
-    // 该组件是否已初始化
-    private Transform myTransform;
-    // Transform
-    private Vector3 backupPos = Vector3.zero;
-    // 备份的位置
-    private DirectedNavAgent agent;
-    // 导航代理
-    private HeroBhvr heroBhvr;
-    // heroBhvr
-    private Vector3 backupScale = Vector3.zero;
-    // 大招前的人物比例
-    private Armature armature;
-    // Dragonbones armature
-    private Skill skill;
-    // 大招对应的技能
-    private bool ready = false;
-    // 大招是否准备好
     private MaterialBhvr matBhvr;
 
     #region MonoMethods
@@ -50,10 +54,10 @@ namespace TangLevel
     {
       if (IsBigMoveReady ()) {
         if (auto) {
-          // 自动
+          // 自动，能量满了自动施放大招
           heroBhvr.BigMove ();
         } else {
-          // 手动
+          // 手动，点击英雄头像施放大招
           // 可以施放大招，点亮大招按钮
           if (!ready) {
             ready = true;
@@ -198,7 +202,7 @@ namespace TangLevel
         backupScale = myTransform.localScale;
         myTransform.localScale = new Vector3 (backupScale.x * SCALE, backupScale.y * SCALE, 1);
         // 动画速度变慢
-        armature.Animation.TimeScale = 0.5F;
+        armature.Animation.TimeScale = TIME_SCALE;
         LevelController.BigMoveCounter++;
       }
 

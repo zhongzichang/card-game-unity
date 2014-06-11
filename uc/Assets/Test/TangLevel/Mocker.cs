@@ -138,12 +138,15 @@ namespace TangLevel
 				hero.ai = new string[]{ "AutoFire" };
 
 			// skill
-			List<Skill> skills = new List<Skill> ();
-			skills.Add (MockZfAttackSkill ());
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      Skill s = MockZfAttackSkill ();
+      skills.Add (s.id, s);
+      /*
 			skills.Add (MockBingHuaSkill ());
 			skills.Add (MockYuehuaSkill ());
 			//if( hero.id == 0)
 			skills.Add (MockLuoshenSkill ());
+   */   
 			hero.skills = skills;
       hero.skillQueue = new int[]{ 0, 1, 2, 3 };
 
@@ -257,12 +260,13 @@ namespace TangLevel
 			hero.sort = 1;//UnityEngine.Random.Range (1, 20);
 			hero.ai = new string[]{ "AutoFire", "JumpRunning" };
 
-			// skill
-			List<Skill> skills = new List<Skill> ();
+      // skill
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      /*
 			skills.Add (MockXcAttackSkill ());
 			skills.Add (MockQianjinzhuiSkill ());
 			skills.Add (MockZhongjiSkill ());
-			skills.Add (MockYemansicheSkill ());
+			skills.Add (MockYemansicheSkill ());*/
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0, 2, 3 };
 
@@ -373,12 +377,13 @@ namespace TangLevel
 			hero.sort = 2;//UnityEngine.Random.Range (1, 20);
 			hero.ai = new string[]{ "AutoFire" };
 
-			// skill
-			List<Skill> skills = new List<Skill> ();
+      // skill
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      /*
 			skills.Add (MockZhangfeiAttackSkill ());
 			skills.Add (MockShenliSkill ());
 			skills.Add (MockBaqiSkill ());
-			skills.Add (MockDaheSkill ());
+			skills.Add (MockDaheSkill ());*/
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0, 2, 3 };
 
@@ -501,13 +506,14 @@ namespace TangLevel
 			hero.sort = 2;//UnityEngine.Random.Range (1, 20);
 			hero.ai = new string[]{ "AutoFire" };
 
-			// skill
-			List<Skill> skills = new List<Skill> ();
+      // skill
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      /*
 			//skills.Add (MockMediumCommonAttack ());
 			skills.Add (MockHuatouAttack ());
 			skills.Add (MockDuliSkill ());
 			skills.Add (MockXumingSkill ());
-			skills.Add (MockMiaoshouhuichunSkill());
+      skills.Add (MockMiaoshouhuichunSkill());*/
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0, 1, 2};
 			tmp++;
@@ -645,8 +651,8 @@ namespace TangLevel
 			hero.sort = 2;//UnityEngine.Random.Range (1, 20);
 			hero.ai = new string[]{ "AutoFire" };
 
-			List<Skill> skills = new List<Skill> ();
-			skills.Add (MockNearCommonAttack ());
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      //skills.Add (MockNearCommonAttack ());
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0 };
 
@@ -671,8 +677,8 @@ namespace TangLevel
 			hero.sort = 2;//UnityEngine.Random.Range (1, 20);
 			hero.ai = new string[]{ "AutoFire" };
 
-			List<Skill> skills = new List<Skill> ();
-			skills.Add (MockLongCommonAttack ());
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      //skills.Add (MockLongCommonAttack ());
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0 };
 
@@ -696,7 +702,7 @@ namespace TangLevel
 
 			List<Skill> skills = new List<Skill> ();
 			skills.Add (MockToushicheAttack ());
-			hero.skills = skills;
+      //hero.skills = skills;
 			hero.skillQueue = new int[]{ 0 };
 
 			return hero;
@@ -762,9 +768,9 @@ namespace TangLevel
 			hero.sort = 2;
 			hero.ai = new string[]{ "AutoFire" };
 
-			// skill
-			List<Skill> skills = new List<Skill> ();
-			skills.Add (MockNearCommonAttack ());
+      // skill
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      //skills.Add (MockNearCommonAttack ());
 			hero.skills = skills;
 			hero.skillQueue = new int[]{ 0 };
 

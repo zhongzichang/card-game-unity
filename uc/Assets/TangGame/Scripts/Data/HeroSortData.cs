@@ -5,20 +5,24 @@ using System.Collections.Generic;
 
 namespace TangGame.Xml
 {
+
+  public class HeroSortData{
+    public int location;
+    public int hero_id;
+  }
+
   [XmlRoot ("root")]
   [XmlLate ("hero_sort")]
-  public class HeroSortData
+  public class HeroSortRoot
   {
     [XmlElement ("value")]
-    public List<int> items = new List<int> ();
+    public List<HeroSortData> items = new List<HeroSortData> ();
 
     public static void LateProcess (object obj)
     {
-      HeroSortData root = obj as HeroSortData;
-      int count = 0;
-      foreach (int item in root.items) {
-        Config.heroSortTable [item] = count;
-        count++;
+      HeroSortRoot root = obj as HeroSortRoot;
+      foreach (HeroSortData item in root.items) {
+        Config.heroSortTable [item.hero_id] = item.location;
       }
     }
   }

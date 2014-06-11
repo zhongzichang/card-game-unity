@@ -41,7 +41,7 @@ namespace TangGame.UI
       if (leftObj == null || rightObj == null)
         return 0;
 
-      Debug.Log (leftObj.name + ";" + rightObj.name);
+      //Debug.Log (leftObj.name + ";" + rightObj.name);
       // 根据等级，星级和品阶依次排序
       int ret = rightObj.data.level.CompareTo(leftObj.data.level);
       if (ret == 0) {

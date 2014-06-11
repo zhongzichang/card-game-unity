@@ -111,8 +111,9 @@ namespace TangGame.Net
 
 		public float HpMax {
 			get {
-				if (hpMax == 0)
-					return Config.heroXmlTable [configId].hpMax;
+          if (hpMax == 0) {
+            return Config.heroXmlTable [configId].hpMax;
+          }
 				return hpMax;
 			}
 		}

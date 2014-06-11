@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections;
 
 namespace TangLevel
 {
   /* 更改目标的显示模型 */
+  [EffectAttribute(CODE)]
   public class ChangeModelEffect : Effect
   {
-    public const int TYPE = 23;
-    public override void Arise ()
+    public const int CODE = 23;
+    public ChangeModelEffect() : base(CODE) {
+
+    }
+    public static void Arise (Effect effect, EffectorWrapper w)
     {
     }
   }

@@ -97,7 +97,7 @@ namespace TangGame.UI{
 
     /// 设置道具关卡掉落关联
     public void AddPropsLevelRelation(LevelData data){
-			string[] propsIds = data.props_ids.Replace("[", "").Replace("]", "").Split(',');
+      string[] propsIds = data.props_ids.Replace("[", "").Replace("]", "").Split(',');
       foreach(string id in propsIds){
         if(string.IsNullOrEmpty(id)){
           continue;

@@ -20,18 +20,19 @@ namespace TangGame
 
     void Start ()
     {
+      xmls.Add("daily");
+      xmls.Add("effector");
+      xmls.Add("enchants_consumed");
+      xmls.Add("evolve");
       xmls.Add("hero");
       xmls.Add("level_up");
-      xmls.Add("skill");
-      xmls.Add("props");
-      xmls.Add("evolve");
-      xmls.Add("enchants_consumed");
       xmls.Add("levels");
-      xmls.Add("monster");
       xmls.Add("map");
+      xmls.Add("monster");
       xmls.Add("name");
+      xmls.Add("props");
+      xmls.Add("skill");
       xmls.Add("task");
-      xmls.Add("daily");
 
       TangScene.TS.EnsureTSGobj ();
       TangNet.TN.EnsureTNGobj ();

@@ -12,7 +12,7 @@ namespace TangLevel
     // 当前技能
     public Skill skill;
     // 所有技能
-    private List<Skill> skills;
+    private Dictionary<int, Skill> skills;
     // 出手序列
     private int[] skillQueue;
     // 当前序列索引
@@ -21,6 +21,7 @@ namespace TangLevel
     private int lastSkillQueueIndex = 0;
     private Dictionary<string, List<SkillWrapper>> wt = new Dictionary<string, List<SkillWrapper>> ();
     private HeroBhvr heroBhvr = null;
+    private HeroStatusBhvr statusBhvr = null;
 
     #region Mono
 
@@ -28,8 +29,29 @@ namespace TangLevel
     void Start ()
     {
       heroBhvr = GetComponent<HeroBhvr> ();
+      statusBhvr = GetComponent<HeroStatusBhvr> ();
       skills = heroBhvr.hero.skills;
       skillQueue = heroBhvr.hero.skillQueue;
+    }
+
+    void Update ()
+    {
+      if (skill != null) {
+        // 前摇计时器
+        if (skill.chargeTime > 0 && statusBhvr.Status == HeroStatus.charge) {
+          skill.chargeTimer += Time.deltaTime;
+          if (skill.chargeTimer > skill.chargeTime) { // 前摇时间结束
+            statusBhvr.Status = HeroStatus.release;
+          }
+        }
+        // 后摇计时器s
+        if (skill.releaseTime > 0 && statusBhvr.Status == HeroStatus.charge) {
+          skill.releaseTimer += Time.deltaTime;
+          if (skill.releaseTimer > skill.releaseTime) { // 后摇时间结束
+            statusBhvr.Status = HeroStatus.idle;
+          }
+        }
+      }
     }
 
     void OnDisable ()
@@ -55,7 +77,7 @@ namespace TangLevel
           int skillIndex = skillQueue [skillQueueIndex];
 
           // 确保技能索引在技能列表范围内
-          if (skillIndex < skills.Count && skillIndex >= 0) {
+          if (skills.ContainsKey (skillIndex)) {
             Skill skill = skills [skillIndex];
 
             // 确保技能可用，技能不可以是大招

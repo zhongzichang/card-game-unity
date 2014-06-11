@@ -50,10 +50,11 @@ namespace TangLevel
           // 在范围内的英雄
           gl = HeroSelector.FindTargetsWithWidth (gl, pos, 3F);
           foreach (GameObject g in gl) {
-
             // 判断对手状态，没在放大招或者处于眩晕状态
             HeroStatusBhvr targetStatusBhvr = g.GetComponent<HeroStatusBhvr> ();
-            if (!XuanyunEffector.vertigos.Contains(g) && !targetStatusBhvr.IsBigMove) {
+            if (w.effector.subEffectors != null // 有子作用器
+              && !XuanyunEffector.vertigos.Contains(g)  // 还没有被作用
+              && !targetStatusBhvr.IsBigMove) { // 对方不是处于大招状态
               // 抛出作用器
               foreach (Effector e in w.effector.subEffectors) {
                 EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, g);

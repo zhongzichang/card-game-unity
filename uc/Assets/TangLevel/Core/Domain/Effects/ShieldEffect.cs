@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace TangLevel
 {
@@ -8,10 +9,14 @@ namespace TangLevel
 3.吸收任意伤害。
 4.吸收伤害并回血
 吸收伤害达到限额后，盾会失效。吸收具体的值与魔法伤害效果算法相同，通常由技能表para 传入。*/
+  [EffectAttribute(CODE)]
   public class ShieldEffect : Effect
   {
-    public const int TYPE = 19;
-    public override void Arise ()
+    public const int CODE = 19;
+    public ShieldEffect() : base(CODE) {
+
+    }
+    public static void Arise (Effect effect, EffectorWrapper w)
     {
     }
   }

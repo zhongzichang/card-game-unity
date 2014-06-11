@@ -32,7 +32,7 @@ namespace TangLevel
     // --- 人物属性 ---
 
     #region Configration Attributes
-
+    public int configId;
     public string name;
     public string resName;
     /// <summary>
@@ -42,7 +42,7 @@ namespace TangLevel
     /// <summary>
     /// 英雄技能
     /// </summary>
-    public List<Skill> skills;
+    public Dictionary<int, Skill> skills;
     /// <summary>
     /// 出手序列
     /// </summary>
