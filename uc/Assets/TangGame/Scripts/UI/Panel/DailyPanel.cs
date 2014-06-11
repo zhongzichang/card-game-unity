@@ -56,7 +56,8 @@ namespace TangGame.UI{
         DailyItem item = go.GetComponent<DailyItem>();
         items.Add(item);
         item.data = daily;
-        item.onClick += ItemClickHandler;
+        item.onClick += ItemBtnClickHandler;
+        UIEventListener.Get(go).onClick += ItemClickHandler;
         position.y = position.y - 141;
       }
     }
@@ -65,8 +66,30 @@ namespace TangGame.UI{
       this.GetComponentInChildren<Block>().Back();
     }
 
-    private void ItemClickHandler(ViewItem viewItem){
+    private void ItemClickHandler(GameObject go){
+      DailyItem item = go.GetComponent<DailyItem>();
+      Daily daily = item.data as Daily;
 
+
+      Debug.Log(daily.data.id);
+    }
+
+    private void ItemBtnClickHandler(ViewItem viewItem){
+      DailyItem item = viewItem as DailyItem;
+      Daily daily = viewItem.data as Daily;
+      if(daily.data.id == 1 || daily.data.id == 2){
+
+      }else{
+        if(daily.data.openPanelType == 0){
+          UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, null);
+        }else if(daily.data.openPanelType == 2){
+          UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, null);
+        }else if(daily.data.openPanelType == 3){
+          UIContext.mgrCoC.LazyOpen(ResourceDuplPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, null);
+        }else if(daily.data.openPanelType == 4){
+          UIContext.mgrCoC.LazyOpen(PropsDuplPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, null);
+        }
+      }
     }
   }
 }

@@ -310,5 +310,7 @@ namespace TangGame.UI
     public const string OPEN = "开";
     /// 关
     public const string CLOSE = "关";
+    /// 前往
+    public const string GOTO = "前往";
 	}
 }
