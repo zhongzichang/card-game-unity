@@ -24,7 +24,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>1</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,4]</price_list>
   <selling_price>1</selling_price>
@@ -57,7 +57,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,5]</price_list>
   <selling_price>1</selling_price>
@@ -90,7 +90,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,6]</price_list>
   <selling_price>1</selling_price>
@@ -123,7 +123,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,7]</price_list>
   <selling_price>1</selling_price>
@@ -156,7 +156,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,8]</price_list>
   <selling_price>1</selling_price>
@@ -189,7 +189,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,9]</price_list>
   <selling_price>1</selling_price>
@@ -222,7 +222,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,10]</price_list>
   <selling_price>1</selling_price>
@@ -255,7 +255,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,11]</price_list>
   <selling_price>1</selling_price>
@@ -288,7 +288,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,12]</price_list>
   <selling_price>1</selling_price>
@@ -321,7 +321,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,13]</price_list>
   <selling_price>1</selling_price>
@@ -354,7 +354,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>2</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,14]</price_list>
   <selling_price>1</selling_price>
@@ -387,7 +387,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>8</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,15]</price_list>
   <selling_price>1</selling_price>
@@ -552,7 +552,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,20]</price_list>
   <selling_price>1</selling_price>
@@ -585,7 +585,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,21]</price_list>
   <selling_price>1</selling_price>
@@ -717,7 +717,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,25]</price_list>
   <selling_price>1</selling_price>
@@ -750,7 +750,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,26]</price_list>
   <selling_price>1</selling_price>
@@ -783,7 +783,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,27]</price_list>
   <selling_price>1</selling_price>
@@ -816,7 +816,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,28]</price_list>
   <selling_price>1</selling_price>
@@ -914,7 +914,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>10</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,31]</price_list>
   <selling_price>1</selling_price>
@@ -947,7 +947,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>11</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,32]</price_list>
   <selling_price>1</selling_price>
@@ -980,7 +980,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>11</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,33]</price_list>
   <selling_price>1</selling_price>
@@ -1013,7 +1013,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>11</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,34]</price_list>
   <selling_price>1</selling_price>
@@ -1046,7 +1046,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>12</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,35]</price_list>
   <selling_price>1</selling_price>
@@ -1079,7 +1079,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>13</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,36]</price_list>
   <selling_price>1</selling_price>
@@ -1607,7 +1607,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>20</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,52]</price_list>
   <selling_price>1</selling_price>
@@ -1706,7 +1706,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>20</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,55]</price_list>
   <selling_price>1</selling_price>
@@ -2135,7 +2135,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>27</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,68]</price_list>
   <selling_price>1</selling_price>
@@ -4049,7 +4049,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,126]</price_list>
   <selling_price>1</selling_price>
@@ -4082,7 +4082,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,127]</price_list>
   <selling_price>1</selling_price>
@@ -4115,7 +4115,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,128]</price_list>
   <selling_price>1</selling_price>
@@ -4148,7 +4148,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,129]</price_list>
   <selling_price>1</selling_price>
@@ -4181,7 +4181,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,130]</price_list>
   <selling_price>1</selling_price>
@@ -4214,7 +4214,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,131]</price_list>
   <selling_price>1</selling_price>
@@ -4247,7 +4247,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,132]</price_list>
   <selling_price>1</selling_price>
@@ -4280,7 +4280,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,133]</price_list>
   <selling_price>10000</selling_price>
@@ -4313,7 +4313,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,134]</price_list>
   <selling_price>20000</selling_price>
@@ -4346,7 +4346,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,135]</price_list>
   <selling_price>50000</selling_price>
@@ -4379,7 +4379,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,136]</price_list>
   <selling_price>100000</selling_price>
@@ -4412,7 +4412,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,137]</price_list>
   <selling_price>600000</selling_price>
@@ -4511,7 +4511,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>15</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,140]</price_list>
   <selling_price>1</selling_price>
@@ -4643,7 +4643,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,144]</price_list>
   <selling_price>1</selling_price>
@@ -4676,7 +4676,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,145]</price_list>
   <selling_price>1</selling_price>
@@ -4709,7 +4709,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,146]</price_list>
   <selling_price>1</selling_price>
@@ -4742,7 +4742,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,147]</price_list>
   <selling_price>1</selling_price>
@@ -4775,7 +4775,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,148]</price_list>
   <selling_price>1</selling_price>
@@ -4808,7 +4808,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,149]</price_list>
   <selling_price>1</selling_price>
@@ -4841,7 +4841,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,150]</price_list>
   <selling_price>1</selling_price>
@@ -4874,7 +4874,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,151]</price_list>
   <selling_price>1</selling_price>
@@ -4907,7 +4907,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,152]</price_list>
   <selling_price>1</selling_price>
@@ -4940,7 +4940,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,153]</price_list>
   <selling_price>1</selling_price>
@@ -4973,7 +4973,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,154]</price_list>
   <selling_price>1</selling_price>
@@ -5006,7 +5006,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,155]</price_list>
   <selling_price>1</selling_price>
@@ -5039,7 +5039,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,156]</price_list>
   <selling_price>1</selling_price>
@@ -5072,7 +5072,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,157]</price_list>
   <selling_price>1</selling_price>
@@ -5105,7 +5105,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,158]</price_list>
   <selling_price>1</selling_price>
@@ -5138,7 +5138,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,159]</price_list>
   <selling_price>1</selling_price>
@@ -5171,7 +5171,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,160]</price_list>
   <selling_price>1</selling_price>
@@ -5204,7 +5204,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,161]</price_list>
   <selling_price>1</selling_price>
@@ -5237,7 +5237,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,162]</price_list>
   <selling_price>1</selling_price>
@@ -5270,7 +5270,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,163]</price_list>
   <selling_price>1</selling_price>
@@ -5303,7 +5303,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,164]</price_list>
   <selling_price>1</selling_price>
@@ -5336,7 +5336,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,165]</price_list>
   <selling_price>1</selling_price>
@@ -5369,7 +5369,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,166]</price_list>
   <selling_price>1</selling_price>
@@ -5402,7 +5402,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,167]</price_list>
   <selling_price>1</selling_price>
@@ -5435,7 +5435,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,168]</price_list>
   <selling_price>1</selling_price>
@@ -5468,7 +5468,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,169]</price_list>
   <selling_price>1</selling_price>
@@ -5501,7 +5501,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,170]</price_list>
   <selling_price>1</selling_price>
@@ -5534,7 +5534,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,171]</price_list>
   <selling_price>1</selling_price>
@@ -5567,7 +5567,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,172]</price_list>
   <selling_price>1</selling_price>
@@ -5600,7 +5600,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,173]</price_list>
   <selling_price>1</selling_price>
@@ -5633,7 +5633,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,174]</price_list>
   <selling_price>1</selling_price>
@@ -5666,7 +5666,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,175]</price_list>
   <selling_price>1</selling_price>
@@ -5699,7 +5699,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,176]</price_list>
   <selling_price>1</selling_price>
@@ -5732,7 +5732,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,177]</price_list>
   <selling_price>1</selling_price>
@@ -5765,7 +5765,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,178]</price_list>
   <selling_price>1</selling_price>
@@ -5798,7 +5798,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,179]</price_list>
   <selling_price>1</selling_price>
@@ -5831,7 +5831,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,180]</price_list>
   <selling_price>1</selling_price>
@@ -5864,7 +5864,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,181]</price_list>
   <selling_price>1</selling_price>
@@ -5897,7 +5897,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,182]</price_list>
   <selling_price>1</selling_price>
@@ -5930,7 +5930,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,183]</price_list>
   <selling_price>1</selling_price>
@@ -5963,7 +5963,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,184]</price_list>
   <selling_price>1</selling_price>
@@ -5996,7 +5996,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,185]</price_list>
   <selling_price>1</selling_price>
@@ -6029,7 +6029,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,186]</price_list>
   <selling_price>1</selling_price>
@@ -6062,7 +6062,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,187]</price_list>
   <selling_price>1</selling_price>
@@ -6095,7 +6095,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,188]</price_list>
   <selling_price>1</selling_price>
@@ -6128,7 +6128,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,189]</price_list>
   <selling_price>1</selling_price>
@@ -6161,7 +6161,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,190]</price_list>
   <selling_price>1</selling_price>
@@ -6194,7 +6194,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,191]</price_list>
   <selling_price>1</selling_price>
@@ -6227,7 +6227,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,192]</price_list>
   <selling_price>1</selling_price>
@@ -6260,7 +6260,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,193]</price_list>
   <selling_price>1</selling_price>
@@ -6293,7 +6293,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,194]</price_list>
   <selling_price>1</selling_price>
@@ -6326,7 +6326,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,195]</price_list>
   <selling_price>1</selling_price>
@@ -6359,7 +6359,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,196]</price_list>
   <selling_price>1</selling_price>
@@ -6392,7 +6392,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,197]</price_list>
   <selling_price>1</selling_price>
@@ -6425,7 +6425,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,198]</price_list>
   <selling_price>1</selling_price>
@@ -6458,7 +6458,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,199]</price_list>
   <selling_price>1</selling_price>
@@ -6491,7 +6491,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,200]</price_list>
   <selling_price>1</selling_price>
@@ -6524,7 +6524,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,201]</price_list>
   <selling_price>1</selling_price>
@@ -7448,7 +7448,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,229]</price_list>
   <selling_price>1</selling_price>
@@ -7481,7 +7481,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,230]</price_list>
   <selling_price>1</selling_price>
@@ -7514,7 +7514,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,231]</price_list>
   <selling_price>1</selling_price>
@@ -7547,7 +7547,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,232]</price_list>
   <selling_price>1</selling_price>
@@ -7580,7 +7580,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,233]</price_list>
   <selling_price>1</selling_price>
@@ -7613,7 +7613,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,234]</price_list>
   <selling_price>1</selling_price>
@@ -7646,7 +7646,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,235]</price_list>
   <selling_price>1</selling_price>
@@ -7679,7 +7679,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,236]</price_list>
   <selling_price>1</selling_price>
@@ -7712,7 +7712,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,237]</price_list>
   <selling_price>1</selling_price>
@@ -7745,7 +7745,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,238]</price_list>
   <selling_price>1</selling_price>
@@ -7778,7 +7778,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,239]</price_list>
   <selling_price>1</selling_price>
@@ -7811,7 +7811,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,240]</price_list>
   <selling_price>1</selling_price>
@@ -7844,7 +7844,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,241]</price_list>
   <selling_price>1</selling_price>
@@ -7877,7 +7877,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,242]</price_list>
   <selling_price>1</selling_price>
@@ -7910,7 +7910,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,243]</price_list>
   <selling_price>1</selling_price>
@@ -7943,7 +7943,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,244]</price_list>
   <selling_price>1</selling_price>
@@ -7976,7 +7976,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,245]</price_list>
   <selling_price>1</selling_price>
@@ -8009,7 +8009,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,246]</price_list>
   <selling_price>1</selling_price>
@@ -8042,7 +8042,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,247]</price_list>
   <selling_price>1</selling_price>
@@ -8075,7 +8075,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,248]</price_list>
   <selling_price>1</selling_price>
@@ -8108,7 +8108,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,249]</price_list>
   <selling_price>1</selling_price>
@@ -8141,7 +8141,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,250]</price_list>
   <selling_price>1</selling_price>
@@ -8174,7 +8174,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,251]</price_list>
   <selling_price>1</selling_price>
@@ -8207,7 +8207,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,252]</price_list>
   <selling_price>1</selling_price>
@@ -8240,7 +8240,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,253]</price_list>
   <selling_price>1</selling_price>
@@ -8273,7 +8273,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,254]</price_list>
   <selling_price>1</selling_price>
@@ -8306,7 +8306,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,255]</price_list>
   <selling_price>1</selling_price>
@@ -8339,7 +8339,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,256]</price_list>
   <selling_price>1</selling_price>
@@ -8372,7 +8372,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,257]</price_list>
   <selling_price>1</selling_price>
@@ -8405,7 +8405,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,258]</price_list>
   <selling_price>1</selling_price>
@@ -8438,7 +8438,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,259]</price_list>
   <selling_price>1</selling_price>
@@ -8471,7 +8471,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,260]</price_list>
   <selling_price>1</selling_price>
@@ -8504,7 +8504,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,261]</price_list>
   <selling_price>1</selling_price>
@@ -8537,7 +8537,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,262]</price_list>
   <selling_price>1</selling_price>
@@ -8570,7 +8570,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,263]</price_list>
   <selling_price>1</selling_price>
@@ -8603,7 +8603,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,264]</price_list>
   <selling_price>1</selling_price>
@@ -8636,7 +8636,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,265]</price_list>
   <selling_price>1</selling_price>
@@ -8669,7 +8669,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,266]</price_list>
   <selling_price>1</selling_price>
@@ -8702,7 +8702,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,267]</price_list>
   <selling_price>1</selling_price>
@@ -8735,7 +8735,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,268]</price_list>
   <selling_price>1</selling_price>
@@ -8768,7 +8768,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,269]</price_list>
   <selling_price>1</selling_price>
@@ -8801,7 +8801,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,270]</price_list>
   <selling_price>1</selling_price>
@@ -8834,7 +8834,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,271]</price_list>
   <selling_price>1</selling_price>
@@ -8867,7 +8867,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,272]</price_list>
   <selling_price>1</selling_price>
@@ -8900,7 +8900,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,273]</price_list>
   <selling_price>1</selling_price>
@@ -8933,7 +8933,7 @@
   <addition_treatment>0</addition_treatment>
   <reduce_energy>0</reduce_energy>
   <level>0</level>
-  <synthetic_props>//</synthetic_props>
+  <synthetic_props></synthetic_props>
   <synthetic_spend>1</synthetic_spend>
   <price_list>[1,2,3,274]</price_list>
   <selling_price>1</selling_price>

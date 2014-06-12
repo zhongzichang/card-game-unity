@@ -59,7 +59,7 @@ namespace TangGame.UI{
     }
 
     private void CloseBtnClickHandler(GameObject go){
-
+      UIContext.mgrCoC.Back();
     }
 
     private void ItemClickHandler(ViewItem viewItem){

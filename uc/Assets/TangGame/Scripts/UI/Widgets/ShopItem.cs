@@ -12,5 +12,14 @@ namespace TangGame.UI{
     public GameObject mask;
     public SimplePropsItem props;
    
+    public override void Start (){
+      mask.SetActive(false);
+      ingotIcon.SetActive(false);
+      this.started = true;
+    }
+
+    public override void UpdateData (){
+      if(!this.started){return;}
+    }
   }
 }

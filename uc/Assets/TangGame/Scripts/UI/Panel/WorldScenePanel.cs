@@ -14,12 +14,25 @@ namespace TangGame.UI{
     /// 附魔按钮
     public UIEventListener fmBtn;
 
+    /// 时光按钮
+    public UIEventListener sgBtn;
+    /// 邮件按钮
+    public UIEventListener mailBtn;
+    /// 商店按钮
+    public UIEventListener shopBtn;
+    /// 试炼按钮
+    public UIEventListener slBtn;
+
     private float x = 0;
 
     // Use this for initialization
     void Start () {
       zyBtn.onClick += ZYBtnClickHandler;
       fmBtn.onClick += FMBtnClickHandler;
+      sgBtn.onClick += SGBtnClickHandler;
+      mailBtn.onClick += MailBtnClickHandler;
+      shopBtn.onClick += ShopBtnClickHandler;
+      slBtn.onClick += SLBtnClickHandler;
     }
     
     void LateUpdate(){
@@ -42,6 +55,22 @@ namespace TangGame.UI{
 
     private void FMBtnClickHandler(GameObject go){
       UIContext.mgrCoC.LazyOpen(EnchantsPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.TEXTURE);
+    }
+
+    private void SGBtnClickHandler(GameObject go){
+      UIContext.mgrCoC.LazyOpen(ResourceDuplPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS);
+    }
+
+    private void MailBtnClickHandler(GameObject go){
+      UIContext.mgrCoC.LazyOpen(MailPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.SPRITE);
+    }
+
+    private void ShopBtnClickHandler(GameObject go){
+      UIContext.mgrCoC.LazyOpen(ShopPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS);
+    }
+
+    private void SLBtnClickHandler(GameObject go){
+      UIContext.mgrCoC.LazyOpen(PropsDuplPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS);
     }
   }
 }
