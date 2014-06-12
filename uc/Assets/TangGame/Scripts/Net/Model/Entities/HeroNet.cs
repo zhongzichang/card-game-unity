@@ -70,6 +70,8 @@ namespace TangGame.Net
 		public float dodge;
 		/// 治疗效果
 		public float addition_treatment;
+    // 能量消耗降低
+    public float energy_consume_dec;
 
 
 		#endregion
