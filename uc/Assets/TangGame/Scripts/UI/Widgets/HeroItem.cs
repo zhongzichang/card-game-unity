@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
@@ -116,11 +116,11 @@ namespace TangGame.UI
 				for (int i = 0; i < Props.Length; i++) {
 					int len = heroBase.EquipBases.Length;
 					if (len > i && equips [i] != null) {
-						Props [i].spriteName = equips [i].data.icon;
+						Props [i].spriteName = equips [i].data.Icon;
 						UISprite icon = Props [i].GetComponentsInChildren<UISprite> (true) [0];
 						UISprite frame = Props [i].GetComponentsInChildren<UISprite> (true) [1];
 
-						icon.spriteName = equips [i].data.icon;
+						icon.spriteName = equips [i].data.Icon;
 						frame.spriteName = Global.GetPropFrameName (1);
 						if (equips [i].net != null) {
 							icon.color = Color.white;

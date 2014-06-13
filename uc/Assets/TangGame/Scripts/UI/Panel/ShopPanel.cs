@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TangGame.Xml;
 
 namespace TangGame.UI{
   /// <summary>
@@ -71,6 +72,23 @@ namespace TangGame.UI{
 
     private void UpdateData(){
       if(!this.started){return;}
+
+      List<Goods> list = new List<Goods>();
+      int count = 0;
+      foreach(PropsData data in Config.propsXmlTable.Values){
+        Goods goods = new Goods();
+        goods.data = data;
+        goods.isSell = count / 2 == 1;
+        goods.num = count;
+        count ++;
+        list.Add(goods);
+        if(count >= 6){
+          break;
+        }
+      }
+      for(int i = 0; i < items.Count; i++){
+        items[i].data = list[i];
+      }
     }
 
     private void RefreshBtnClickHandler(GameObject go){

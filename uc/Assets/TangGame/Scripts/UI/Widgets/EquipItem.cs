@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
@@ -38,7 +38,7 @@ namespace TangGame.UI
 			this.ResetStarList ();
 			if (equipBase.net != null) {
 				this.equipIcon.color = Color.white;
-				this.equipIcon.spriteName = equipBase.data.icon;
+				this.equipIcon.spriteName = equipBase.data.Icon;
 				this.equipFrames.spriteName = Global.GetPropFrameName (equipBase.data.rank);
 				this.label.text = "";
 				this.starList.count = equipBase.net.enchantsLv;
@@ -61,7 +61,7 @@ namespace TangGame.UI
 					//TODO add 图标为灰色
 				}
 				this.equipIcon.color = new Color32 (0, 255, 255, 255);
-				this.equipIcon.spriteName = equipBase.data.icon;
+				this.equipIcon.spriteName = equipBase.data.Icon;
 				this.equipFrames.spriteName = Global.GetPropFrameName (1);
 				this.starList.count = 0;
 				this.starList.Flush ();

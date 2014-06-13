@@ -29,7 +29,7 @@ namespace TangGame.UI
       props.data.name = "测试道具";
       props.data.type = 2;
 			props.net.count = 2;
-      props.data.icon = "104";
+      props.data.Icon = "104";
       props.data.level = 5;
       props.data.info = "使用后可以获得一个小萝莉";
       props.data.description = "这是测试道具，大家都懂得";

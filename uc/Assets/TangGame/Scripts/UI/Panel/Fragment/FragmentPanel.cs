@@ -9,6 +9,8 @@ namespace TangGame.UI
 {
 	public class FragmentPanel : MonoBehaviour
 	{
+    public const string NAME = "FragmentPanel";
+
 		/// <summary>
 		/// The fragment interface sub panel.
 		/// 碎片列表主面板
@@ -43,5 +45,9 @@ namespace TangGame.UI
 				mInfoPanel.syntPanel = mSyntPanel;
 
 		}
+
+    void OnDisable(){
+      mInfoPanel.gameObject.SetActive (false);
+    }
 	}
 }

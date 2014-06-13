@@ -22,7 +22,7 @@ namespace TangGame
 		{
 			UIEventListener.Get (HeroMenu.gameObject).onClick += OnHeroMenuClick;
 			UIEventListener.Get (BagMenu.gameObject).onClick += OnBagMenuClick;
-			//UIEventListener.Get (FragmentsMenu.gameObject).onClick += OnDebrisMenuClick;
+			UIEventListener.Get (FragmentsMenu.gameObject).onClick += OnDebrisMenuClick;
 			UIEventListener.Get (TaskMenu.gameObject).onClick += OnTaskMenuClick;
       UIEventListener.Get (ActivityMenu.gameObject).onClick += OnActivityMenuClick;
 
@@ -49,7 +49,7 @@ namespace TangGame
 
 		void OnDebrisMenuClick (GameObject obj)
 		{
-			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.FRAGMENT_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.ADDSTATUS);
+      TangGame.UIContext.mgrCoC.LazyOpen (FragmentPanel.NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.ADDSTATUS);
 			this.CloseMenu ();
 		}
 
