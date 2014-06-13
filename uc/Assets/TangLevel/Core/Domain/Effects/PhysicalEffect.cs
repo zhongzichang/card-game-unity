@@ -62,11 +62,11 @@ namespace TangLevel
             // 受方死亡
             tgtHeroBhvr.Die ();
             // 攻方能量增加
-            mpInc = 300;
+            mpInc = 1000;
           } else {
             // 被击打
             tgtHeroBhvr.BeBeat ();
-            mpInc = 200;
+            mpInc = 1000;
           }
           srcHero.mp += mpInc;
           //Vector3 scrScreenPos = Camera.main.WorldToScreenPoint (w.source.transform.localPosition) + HURT_TEXT_OFFSET;

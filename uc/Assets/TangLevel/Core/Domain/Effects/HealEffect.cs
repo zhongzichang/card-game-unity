@@ -16,6 +16,8 @@ namespace TangLevel
     public static void Arise (Effect effect, EffectorWrapper w)
     {
 
+      Debug.Log ("heal effect arising ..........");
+
       HeroBhvr tgtHeroBhvr = w.target.GetComponent<HeroBhvr> ();
       HeroBhvr srcHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 

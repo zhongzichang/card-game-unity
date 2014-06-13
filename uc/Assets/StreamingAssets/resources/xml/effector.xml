@@ -40,6 +40,7 @@
   <loop_time>0</loop_time>
   <probability>1</probability>
   <type>1</type>
+  <special_effect>fx_heal</special_effect>
   <effect_code>4</effect_code>
   <effect_params>[]</effect_params>
   <sub_ids>[]</sub_ids>
