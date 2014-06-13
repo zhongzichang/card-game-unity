@@ -25,6 +25,7 @@ namespace TangGame
       xmls.Add("enchants_consumed");
       xmls.Add("evolve");
       xmls.Add("hero");
+      xmls.Add("hero_sort");
       xmls.Add("level_up");
       xmls.Add("levels");
       xmls.Add("map");

@@ -66,8 +66,9 @@ namespace TangLevel
         hero.hp = hero.maxHp;
         hero.maxMp = Config.MAX_HP;
         hero.mp = 0;
-        if (TG.Config.heroSortTable.ContainsKey (id)) {
-          hero.sort = TG.Config.heroSortTable [id];
+        if (TG.Config.heroSortTable.ContainsKey (hero.configId)) {
+          hero.sort = TG.Config.heroSortTable [hero.configId];
+          Debug.Log ("+++++++ " + hero.id + " - " + hero.configId + " - " + hero.sort);
         }
         hero.battleDirection = BattleDirection.RIGHT;
 

@@ -16,7 +16,7 @@
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[29]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -29,21 +29,21 @@
  </value>
  <value>
   <id>141</id>
-  <name>普攻</name>
+  <name>华佗普攻</name>
   <cool_time>4000</cool_time>
   <type>1</type>
   <boot_time>0</boot_time>
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>27</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>13</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[29]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -63,14 +63,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>1</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>29</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>5</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[141]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -90,14 +90,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>27</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>6</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[142]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -117,14 +117,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>27</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>7</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[143]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -144,14 +144,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>27</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>8</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -164,21 +164,21 @@
  </value>
  <value>
   <id>201</id>
-  <name>普攻</name>
+  <name>许褚普攻</name>
   <cool_time>4000</cool_time>
   <type>1</type>
   <boot_time>0</boot_time>
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>17</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>13</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[29]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -198,14 +198,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>1</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>19</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>9</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[202]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -225,7 +225,7 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>17</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>10</up_add>
   <target_type>2</target_type>
@@ -252,14 +252,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>17</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>11</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[201]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -279,14 +279,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>17</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>12</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>1</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -299,21 +299,21 @@
  </value>
  <value>
   <id>231</id>
-  <name>普攻</name>
+  <name>甄宓普攻</name>
   <cool_time>4000</cool_time>
   <type>1</type>
   <boot_time>0</boot_time>
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>37</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>13</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[29]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -333,18 +333,18 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>1</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>39</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>13</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[233]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
-  <after_animation>feihunbian</after_animation>
+  <after_animation>luoshen</after_animation>
   <singing_effects>[]</singing_effects>
   <play_effects>[]</play_effects>
   <skill_icon>icon_9</skill_icon>
@@ -360,18 +360,18 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>37</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>14</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[231]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
-  <after_animation>jieqijing</after_animation>
+  <after_animation>binghua</after_animation>
   <singing_effects>[]</singing_effects>
   <play_effects>[]</play_effects>
   <skill_icon>icon_10</skill_icon>
@@ -387,18 +387,18 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>37</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>15</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[231]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
-  <after_animation>biantai</after_animation>
+  <after_animation>yuehua</after_animation>
   <singing_effects>[]</singing_effects>
   <play_effects>[]</play_effects>
   <skill_icon>icon_11</skill_icon>
@@ -414,14 +414,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>37</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>16</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[231]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -434,21 +434,21 @@
  </value>
  <value>
   <id>271</id>
-  <name>普攻</name>
+  <name>张飞普攻</name>
   <cool_time>4000</cool_time>
   <type>1</type>
   <boot_time>0</boot_time>
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>10</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>13</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[29]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -468,14 +468,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>1</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>12</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>17</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[271]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -495,7 +495,7 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>10</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>18</up_add>
   <target_type>2</target_type>
@@ -522,14 +522,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>10</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>19</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[272]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>0</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
@@ -549,14 +549,14 @@
   <after_time>0</after_time>
   <play_loop>1</play_loop>
   <isUltimate>0</isUltimate>
-  <cast_range>20</cast_range>
+  <cast_range>10</cast_range>
   <skill_coefficient>10</skill_coefficient>
   <up_add>20</up_add>
   <target_type>2</target_type>
   <range_type>1</range_type>
   <effector_times>1</effector_times>
   <effector_sequence>[]</effector_sequence>
-  <effector_ids>[1]</effector_ids>
+  <effector_ids>[]</effector_ids>
   <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
   <is_attribute_addition>1</is_attribute_addition>
   <code_coverage_skill_id>0</code_coverage_skill_id>
