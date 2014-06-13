@@ -96,13 +96,11 @@ namespace TangLevel
             foreach (int skillId in skillIds) {
               Skill skill = BuildSkill (skillId);
               if (skill != null) {
-                if (!skill.normal) { // 非普通技能才由等级
-                  // WARN : hb.Net.skillLevel这个数组存在的问题时，需要确保技能顺序的正确
-                  skill.grade = hb.Net.skillLevel [counter];
-                  counter++;
-                }
+                // WARN : hb.Net.skillLevel这个数组存在的问题时，需要确保技能顺序的正确
+                skill.grade = hb.Net.skillLevel [counter];
                 skill.enable = true;
                 skills.Add (skillId, skill);
+                counter++;
               }
             }
             hero.skills = skills;

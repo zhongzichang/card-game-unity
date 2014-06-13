@@ -12,10 +12,10 @@ public class UITestData : MonoBehaviour
 	{
 //		27 23 20
 		this.SetAllPropsBase ();
-    this.SetHeroBase (1,1,10,6,1,8,1004,0,11,4);
-    this.SetHeroBase (2,4,40,8,2,15,1005,1,11,5);
-    this.SetHeroBase (3,4,40,8,3,15,1005,1,11,5);
-    this.SetHeroBase (4,4,40,8,4,15,1005,1,11,5);
+    this.SetHeroBase (1,1,10,6,23,8,1004,0,11,4);
+    this.SetHeroBase (2,4,40,8,20,15,1005,1,11,5);
+    this.SetHeroBase (3,4,40,8,27,15,1005,1,11,5);
+    this.SetHeroBase (4,4,40,8,14,15,1005,1,11,5);
 		this.SetPropsBase (1015,50);
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);
@@ -37,32 +37,38 @@ public class UITestData : MonoBehaviour
 		}
 	}
 
-	void SetHeroBase (int id,int evolve,int exp,int rank,int heroId,
+  void SetHeroBase (int id,int evolve,int exp,int rank,int configId,
     int level, int equipId,int equipLv,int equipExp,int equipLocal)
 	{
 
-		TangGame.UI.HeroBase herobase;
-		if (!TangGame.UI.HeroCache.instance.heroBeseTable.ContainsKey (id)) {
-			return;
+    if (TangGame.Config.heroXmlTable.ContainsKey (configId)) {
+
+      TangGame.UI.HeroBase herobase = new TangGame.UI.HeroBase ();
+
+      herobase.Xml = TangGame.Config.heroXmlTable[configId];
+      herobase.Net = new TangGame.Net.HeroNet ();
+      herobase.Net.configId = herobase.Xml.id;
+      herobase.Net.id = id;
+      herobase.Net.star = evolve;
+      herobase.Net.exp = exp;
+      herobase.Net.rank = rank;
+      herobase.Net.level = level;
+      herobase.Net.equipList = new TangGame.Net.EquipNet[6];
+      TangGame.Net.EquipNet equip;
+      equip = new TangGame.Net.EquipNet ();
+      equip.configId = equipId;
+      equip.enchantsLv = equipLv;
+      equip.enchantsExp = equipExp;
+      herobase.Net.equipList [equipLocal] = equip;
+      herobase.Net.skillLevel = new int[5];
+      for (int i = 0; i < herobase.Net.skillLevel.Length; i++) {
+        herobase.Net.skillLevel [i] = 8;
+      }
+
+      TangGame.UI.HeroCache.instance.heroBeseTable.Add (id, herobase);
+
 		}
-		herobase = TangGame.UI.HeroCache.instance.heroBeseTable [id];
-		herobase.Net = new TangGame.Net.HeroNet ();
-    herobase.Net.configId = herobase.Xml.id;
-    herobase.Net.id = id;
-		herobase.Net.star = evolve;
-		herobase.Net.exp = exp;
-		herobase.Net.rank = rank;
-		herobase.Net.id = heroId;
-		herobase.Net.level = level;
-		herobase.Net.equipList = new TangGame.Net.EquipNet[6];
-		TangGame.Net.EquipNet equip;
-		equip = new TangGame.Net.EquipNet ();
-		equip.configId = equipId;
-		equip.enchantsLv = equipLv;
-		equip.enchantsExp = equipExp;
-		herobase.Net.equipList [equipLocal] = equip;
-		herobase.Net.skillLevel = new int[4];
-		herobase.Net.skillLevel [0] = 8;
+
 	}
 
 	void SetAllPropsBase(){
