@@ -136,6 +136,16 @@ namespace TangLevel
     /// </summary>
     public int loopTimes;
 
+    /// <summary>
+    /// 技能系数
+    /// </summary>
+    public int coefficient;
+
+    /// <summary>
+    /// 增量
+    /// </summary>
+    public int increment;
+
     #endregion
 
     #region Runtime Attributes

@@ -4,7 +4,7 @@
     <id>1</id>
     <name>普通怪物</name>
     <level>1</level> <!-- 级别 -->
-    <skill>[1]</skill> <!-- 技能IDs -->
+    <skill>[[1,1]]</skill> <!-- 技能IDs -->
     <shot_order>[1]</shot_order> <!-- 攻击序列 -->
     <evolve>1</evolve> <!-- -->
     <upgrade>1</upgrade> <!-- -->

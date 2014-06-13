@@ -71,6 +71,21 @@ namespace TangLevel
         }
         hero.battleDirection = BattleDirection.RIGHT;
 
+        hero.physicalAttack = hb.Net.attack_damage; // 物理攻击
+        hero.magicPower = hb.Net.ability_power; // 魔法强度
+        hero.physicalDefense = hb.Net.physical_defense; // 物理防御
+        hero.magicDefense = hb.Net.magic_defense; // 魔法防御
+        hero.physicalCrit = hb.Net.physical_crit; // 物理暴击
+        hero.magicCrit = hb.Net.magic_crit; // 魔法暴击
+        hero.hpRecovery = hb.Net.hp_recovery; // 生命恢复
+        hero.mpRecovery = hb.Net.energy_recovery; // 能量恢复
+        hero.routPhysicalDefense = hb.Net.physical_penetration; // 破甲
+        hero.routMagicDefense = hb.Net.spell_penetration; // 无视魔抗
+        hero.bloodSuckingGrade = hb.Net.bloodsucking_lv; // 吸血等级
+        hero.eva = hb.Net.dodge; // 闪避
+        hero.healEffect = hb.Net.addition_treatment; // 治疗效果
+        hero.mp_consume_dec = hb.Net.energy_consume_dec; // 能量消耗降低
+
         // skills
         ArrayList skillIdList = JSON.JsonDecode (hb.Xml.skill_ids) as ArrayList;
         if (skillIdList != null) {
@@ -235,15 +250,15 @@ namespace TangLevel
         // 资源名字
         h.resName = data.model;
         // 技能
-        ArrayList skillIds = JSON.JsonDecode (data.skill) as ArrayList;
-        if (skillIds != null) {
-          h.skills = new Dictionary<int, Skill> ();
-          for (int i = 0; i < skillIds.Count; i++) {
-            int skillId = (int)skillIds [i];
-            Skill s = BuildSkill (skillId);
-            s.enable = true;
-            h.skills.Add (skillId, s);
-          }
+        ArrayList skillGrades = JSON.JsonDecode (data.skill) as ArrayList;
+        foreach (object obj in skillGrades) {
+          ArrayList skillGrade = obj as ArrayList;
+          int skillId = (int)skillGrade [0];
+          int grade = (int)skillGrade [1];
+          Skill s = BuildSkill (skillId);
+          s.enable = true;
+          s.grade = grade;
+          h.skills.Add (skillId, s);
         }
         if (h.skills == null || h.skills.Count == 0) {
           Debug.Log ("TangLevel: Failure to find skills for monster by id " + h.id);
@@ -257,7 +272,6 @@ namespace TangLevel
         }
         if (h.skillQueue == null || h.skillQueue.Length == 0) {
           Debug.Log ("TangLevel: Failure to find skill queue for monster by id " + h.id);
-
         }
 
         // hp
@@ -268,6 +282,19 @@ namespace TangLevel
         h.maxMp = Config.MAX_HP;
         h.mp = 0;
 
+        h.physicalAttack = data.attack_damage; // 物理攻击
+        h.magicPower = data.ability_power; // 魔法攻击
+        h.physicalDefense = data.physical_defense; // 物理防御
+        h.magicDefense = data.magic_defense; // 魔法防御
+        h.physicalCrit = data.physical_crit; // 物理暴击
+        h.magicCrit = data.magic_crit; // 魔法暴击
+        h.hpRecovery = data.hp_recovery; // 生命恢复
+        h.mpRecovery = data.energy_recovery; // 能量恢复
+        h.routPhysicalDefense = data.physical_penetration; // 破甲
+        h.routMagicDefense = data.spell_penetration; // 无视魔抗
+        h.bloodSuckingGrade = data.bloodsucking_lv; // 吸血等级
+        h.eva = data.dodge; // 闪避
+        h.healEffect = data.addition_treatment; // 治疗效果
 
         return h;
 
@@ -336,6 +363,10 @@ namespace TangLevel
         s.attributePersistence = data.is_attribute_addition;
         // 替换技能ID
         s.replaceSkillId = data.code_coverage_skill_id;
+        // 基础系数
+        s.coefficient = data.skill_coefficient;
+        // 升级提升系数
+        s.increment = data.up_add;
 
         // 作用器
         string effectorIds = data.effector_ids;
