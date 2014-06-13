@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using TangGame.UI;
 using TangGame.Xml;
@@ -43,7 +43,7 @@ namespace TangGame.UI
 			this.starList.cellHeight = 12;
 			this.starList.showBackground = false;
 			if (equipBase != null && equipBase.net != null) {
-				this.equipIcon.spriteName = equipBase.data.icon;
+				this.equipIcon.spriteName = equipBase.data.Icon;
 				this.equipFrames.spriteName = Global.GetPropFrameName(equipBase.data.rank);
 				this.starList.count = equipBase.net.enchantsLv;
 			} else {

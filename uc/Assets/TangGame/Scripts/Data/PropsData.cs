@@ -3,6 +3,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace TangGame.Xml
 {
@@ -68,6 +69,20 @@ namespace TangGame.Xml
 		public int experience;
 		/// 图标编号
 		public string icon;
+    /// 图标编号,临时处理图标问题
+    public string Icon{
+      get{
+        try{
+          string temp = icon.Replace("item", "");
+          int index = int.Parse(temp);
+          return (100 + index).ToString();
+        }catch(Exception ex){
+          return UnityEngine.Random.Range(101, 143).ToString();
+        }
+      }
+      set{this.icon = value;}
+    }
+
 		/// 物品描述1
 		public string info;
 		/// 物品描述2

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
@@ -91,7 +91,7 @@ namespace TangGame.UI
 				this.GetComponent<TweenPosition> ().ResetToBeginning ();
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
-			this.UpPropsIcon (data.data.icon);
+			this.UpPropsIcon (data.data.Icon);
 			this.UpPropsFrames (data.data.rank);
 			this.UpPropsInfo (data);
 			this.UpPropsName (data.data.name);

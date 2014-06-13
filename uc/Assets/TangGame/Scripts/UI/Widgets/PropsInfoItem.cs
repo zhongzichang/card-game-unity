@@ -28,7 +28,7 @@ namespace TangGame.UI{
 				numLabel.text = props.net.count.ToString();
 			}
 			frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.rank);
-			icon.spriteName = props.data.icon;
+			icon.spriteName = props.data.Icon;
 		}
 
 		public override void OnDestroy (){

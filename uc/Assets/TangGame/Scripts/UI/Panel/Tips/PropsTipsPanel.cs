@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace TangGame.UI{
@@ -61,7 +61,7 @@ namespace TangGame.UI{
 			this.descLabel.text = "";
 			this.goldLabel.text = "";
 			this.frame.spriteName = Global.GetPropFrameName((PropsType)props.data.type, props.data.rank);
-			this.icon.spriteName = props.data.icon;
+			this.icon.spriteName = props.data.Icon;
 			this.goldLabel.text = props.data.selling_price.ToString();
 			this.nameLabel.text = props.data.name;
 			if(props.data.level < 1){

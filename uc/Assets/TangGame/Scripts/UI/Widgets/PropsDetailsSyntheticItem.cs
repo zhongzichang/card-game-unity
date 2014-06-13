@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using TangGame.Xml;
 
@@ -24,7 +24,7 @@ namespace TangGame.UI{
       if(this.data == null){return;}
       PropsData propsData = this.data as PropsData;
       frame.spriteName = Global.GetPropFrameName((PropsType)propsData.type, propsData.rank);
-      icon.spriteName = propsData.icon;
+      icon.spriteName = propsData.Icon;
       label.text = propsData.name;
     }
 	}

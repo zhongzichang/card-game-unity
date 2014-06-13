@@ -95,8 +95,18 @@ namespace TangGame.UI
 			}
 			set {
 				mProps = value;
+        UpdateData();
 			}
 		}
+
+    private void UpdateData(){
+      if(!this.gameObject.activeSelf){
+        this.gameObject.SetActive(true);
+        TweenPosition tween = this.gameObject.GetComponent<TweenPosition>();
+        tween.ResetToBeginning();
+        tween.Play();
+      }
+    }
 
 		#endregion
 

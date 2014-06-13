@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TangGame.UI;
@@ -117,7 +117,7 @@ namespace TangGame.UI
 			if (!(bean.props is Equip))
 				return;
 			Equip data = bean.props as Equip;
-			this.UpPropsIcon (data.data.icon);
+			this.UpPropsIcon (data.data.Icon);
 			this.UpPropsFrames (data.data.rank);
 			this.UpPropsInfo (data); //TODO 追加装备附魔信息
 			this.UpPropsName (data.data.name);

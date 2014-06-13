@@ -52,11 +52,12 @@ namespace TangGame.UI
 		void LoadAllScrollItem ()
 		{
 			//FIXME 修改prefab的加载方式
-			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
+			PropsItem itemObj = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
+      PropsItem item = null;
       foreach (Props props in PropsCache.instance.propsTable.Values) {
 				if (PropsType.DEBRIS != (PropsType)props.data.type)
 					continue;
-				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
+        item = NGUITools.AddChild (PropsTable.gameObject, itemObj.gameObject).GetComponent<PropsItem> ();
 				item.Flush (props);
 				scrollItems.Add (item.data.data.id, item);
 				UIEventListener.Get (item.gameObject).onClick += ScrollItemOnClick;
