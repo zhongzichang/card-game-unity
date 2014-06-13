@@ -35,6 +35,7 @@ namespace TangGame.UI{
 
     private void Init(){
       foreach(ResourceDuplItem item in list){
+        Debug.Log ("ItemClickHandler");
         item.onClick += ItemClickHandler;
       }
     }
@@ -76,6 +77,10 @@ namespace TangGame.UI{
 
     private void ItemClickHandler(ViewItem vi){
       ResourceDuplItem item = vi as ResourceDuplItem;
+      // TODO
+      int stageId = 1;
+      Level level = LevelCache.instance.GetLevel(stageId);
+      UIContext.mgrCoC.LazyOpen(BattleStageDetailPanel.NAME, TangUI.UIPanelNode.OpenMode.OVERRIDE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, level);
     }
 
     private void CloseBtnClickHandler(GameObject go){

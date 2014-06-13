@@ -48,7 +48,7 @@ namespace TangGame.UI
 				this.starList.count = equipBase.net.enchantsLv;
 			} else {
 				this.equipIcon.spriteName = "";
-				this.equipFrames.spriteName = "item_icon_1";
+        this.equipFrames.spriteName = "item_frame_1";
 			}
 			this.starList.Flush ();
 		}
