@@ -20,46 +20,54 @@ namespace TangLevel
     public static void Arise (Effect effect, EffectorWrapper w)
     {
 
-      HeroBhvr heroBhvr = w.target.GetComponent<HeroBhvr> ();
+      HeroBhvr tgtHeroBhvr = w.target.GetComponent<HeroBhvr> ();
+      HeroBhvr srcHeroBhvr = w.source.GetComponent<HeroBhvr> ();
 
-      // 只有英雄还没死，才会进行伤害计算
-      if (heroBhvr.hero.hp > 0) {
+      if( tgtHeroBhvr != null && srcHeroBhvr != null && tgtHeroBhvr.hero.hp > 0 ){
+
+        Hero srcHero = srcHeroBhvr.hero;
+        Hero tgtHero = tgtHeroBhvr.hero;
+
+        // 只有英雄还没死，才会进行伤害计算
+        int hurt = (int)(srcHero.physicalAttack * (1 - 0.01F * tgtHero.physicalDefense / (1 + 0.01F * tgtHero.physicalDefense)));
 
         // 如果作用器减少HP
-        // TODO 测试用，请使用正式的伤害计算公式
         bool crit = UnityEngine.Random.Range (0F, 1F) < 0.3F ? true : false;
-        int hurt = crit ? UnityEngine.Random.Range (50, 100) : UnityEngine.Random.Range (1, 50);
-
-        heroBhvr.hero.hp -= hurt;
-
-        // 伤害冒字
-        TG.BattleTxt battleTxt = new TG.BattleTxt ();
-        battleTxt.type = TG.BattleTxtType.Hurt;
-        battleTxt.value = hurt;
-        battleTxt.crit = crit;
-        if (heroBhvr.hero.battleDirection == BattleDirection.RIGHT)
-          battleTxt.self = true;
-        else
-          battleTxt.self = false;
-        battleTxt.position = Camera.main.WorldToScreenPoint (w.target.transform.localPosition) + HURT_TEXT_OFFSET;
-        Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
-
-        // TODO 测试用，MP 增加
-        HeroBhvr hb = w.source.GetComponent<HeroBhvr> ();
-        if (hb != null) {
-          hb.hero.mp += 300;
+        if (crit) {
+          hurt = hurt * 2;
         }
+
+        // 目标减少血量
+        tgtHero.hp -= hurt;
+
+        bool self = false; // 是否主攻队伍
+        if (tgtHeroBhvr.hero.battleDirection == BattleDirection.RIGHT) {
+          self = true;
+        }
+        // 屏幕坐标
+        Vector3 screenPos = Camera.main.WorldToScreenPoint (w.target.transform.localPosition) + HURT_TEXT_OFFSET;
+        // 伤害冒字
+        BattleTextController.Bubbling(TG.BattleTxtType.Hurt, hurt, screenPos, crit, self );
+
+
+        // MP 增加
+        int mpInc = 0;
 
         // HP 小于等于0时，角色死亡
-        if (heroBhvr.hero.hp == 0) {
-          heroBhvr.Die ();
+        if (tgtHero.hp == 0) {
+          // 受方死亡
+          tgtHeroBhvr.Die ();
+          // 攻方能量增加
+          mpInc = 300;
         } else {
           // 被击打
-          heroBhvr.BeBeat ();
+          tgtHeroBhvr.BeBeat ();
+          mpInc = 200;
         }
+        srcHero.mp += mpInc;
+        BattleTextController.Bubbling(TG.BattleTxtType.Energy, mpInc, screenPos, crit, self );
       }
     }
-
   }
 }
 

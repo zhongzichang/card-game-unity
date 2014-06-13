@@ -36,13 +36,9 @@ namespace TangLevel
     public string name;
     public string resName;
     /// <summary>
-    /// 出场顺序值
-    /// </summary>
-    public int sort;
-    /// <summary>
     /// 英雄技能
     /// </summary>
-    public Dictionary<int, Skill> skills;
+    public Dictionary<int, Skill> skills = new Dictionary<int, Skill>();
     /// <summary>
     /// 出手序列
     /// </summary>
@@ -51,16 +47,18 @@ namespace TangLevel
     /// 英雄的 AI，可以有多个
     /// </summary>
     public string[] ai;
-    public int maxHp;
-    private int m_hp;
-    public int maxMp;
-    private int m_mp;
-
     #endregion
 
     #region Variable Attributes
 
     public int id;
+    public int maxHp;
+    public int maxMp;
+
+    /// <summary>
+    /// 出场顺序值
+    /// </summary>
+    public int sort;
     /// <summary>
     /// 等级
     /// </summary>
@@ -73,6 +71,38 @@ namespace TangLevel
     /// 战斗方向
     /// </summary>
     public BattleDirection battleDirection = BattleDirection.RIGHT;
+
+    /// 物理攻击
+    public float physicalAttack;
+    /// 魔法强度
+    public float magicPower;
+    /// 物理护甲
+    public float physicalDefense;
+    /// 魔法抗性
+    public float magicDefense;
+    /// 物理暴击
+    public float physicalCrit;
+    /// 法术暴击
+    public float magicCrit;
+    /// 生命回复
+    public float hpRecovery;
+    /// 能量回复
+    public float mpRecovery;
+    /// 破甲值
+    public float routPhysicalDefense;
+    /// 无视魔抗，破魔值
+    public float routMagicDefense;
+    /// 吸血等级
+    public float bloodSuckingGrade;
+    /// 闪避
+    public float eva;
+    /// 治疗效果
+    public float healEffect;
+    // 能量消耗降低
+    public float mp_consume_dec;
+
+    private int m_hp;
+    private int m_mp;
 
     #endregion
 
