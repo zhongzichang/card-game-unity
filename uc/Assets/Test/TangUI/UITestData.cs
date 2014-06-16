@@ -62,7 +62,7 @@ public class UITestData : MonoBehaviour
       herobase.Net.equipList [equipLocal] = equip;
       herobase.Net.skillLevel = new int[5];
       for (int i = 0; i < herobase.Net.skillLevel.Length; i++) {
-        herobase.Net.skillLevel [i] = 8;
+        herobase.Net.skillLevel [i] = 20;
       }
 
       TangGame.UI.HeroCache.instance.heroBeseTable.Add (id, herobase);

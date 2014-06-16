@@ -123,8 +123,6 @@ namespace TangLevel
             }
           }
         }
-
-
       }
 
       return gobj;

@@ -11,10 +11,10 @@ namespace TangLevel
     * 物理伤害＝物理攻击＊（1-0.01*护甲／（1+0.01*护甲））
   */
   [EffectAttribute(CODE)]
-  public class PhysicalEffect : Effect
+  public class CommonPhysicalEffect : Effect
   {
-    public const int CODE = 1;
-    public PhysicalEffect() : base(CODE) {
+    public const int CODE = 29;
+    public CommonPhysicalEffect() : base(CODE) {
 
     }
     public static void Arise (Effect effect, EffectorWrapper w)
@@ -31,8 +31,7 @@ namespace TangLevel
 
         // 只有英雄还没死，才会进行伤害计算
 
-        int hurt = (int)(srcHero.physicalAttack * skill.coefficient + skill.increment * skill.grade);
-        hurt = (int)(hurt * (1 - 0.01F * tgtHero.physicalDefense / (1 + 0.01F * tgtHero.physicalDefense)));
+        int hurt = (int)(srcHero.physicalAttack * (1 - 0.01F * tgtHero.physicalDefense / (1 + 0.01F * tgtHero.physicalDefense)));
 
         if (hurt != 0) {
 
@@ -62,11 +61,11 @@ namespace TangLevel
             // 受方死亡
             tgtHeroBhvr.Die ();
             // 攻方能量增加
-            mpInc = 1000;
+            mpInc = 300;
           } else {
             // 被击打
             tgtHeroBhvr.BeBeat ();
-            mpInc = 1000;
+            mpInc = 200;
           }
           srcHero.mp += mpInc;
           //Vector3 scrScreenPos = Camera.main.WorldToScreenPoint (w.source.transform.localPosition) + HURT_TEXT_OFFSET;

@@ -43,4 +43,8 @@ namespace TangGame.UI
 			}
 		}
 	}
+	public enum SkillType{
+		NONE,
+		NormalAttack
+	}
 }

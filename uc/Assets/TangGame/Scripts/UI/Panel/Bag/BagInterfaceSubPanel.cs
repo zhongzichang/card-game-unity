@@ -50,7 +50,6 @@ namespace TangGame.UI
 
 			if(bagPanel == null)
 				bagPanel = NGUITools.FindInParents<BagPanel> (this.gameObject);
-
 			LoadAllPropsItem ();
 		}
 		/// <summary>
@@ -58,7 +57,10 @@ namespace TangGame.UI
 		/// 加载所有的物品对象到列表中去
 		/// </summary>
 		public void LoadAllPropsItem(){
-			//FIXME 修改prefab的加载方式
+			StartCoroutine (LoadAllPropsItemAtMount());
+		}
+
+		IEnumerator LoadAllPropsItemAtMount(){
 			PropsItem item = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
 			foreach (Props propsBase in PropsCache.instance.propsTable.Values) {
 				item = NGUITools.AddChild (PropsTable.gameObject, item.gameObject).GetComponent<PropsItem> ();
@@ -66,9 +68,9 @@ namespace TangGame.UI
 				item.gameObject.name = propsBase.data.id.ToString ();
 				propsItems.Add (item.data.data.id, item);
 				UIEventListener.Get (item.gameObject).onClick += PropsItemOnClick;
-
+				PropsTable.GetComponent<UITable> ().repositionNow = true;
+				yield return new WaitForFixedUpdate ();
 			}
-			PropsTable.GetComponent<UITable> ().repositionNow = true;
 			this.PlayTweenItemAlpha (item.gameObject);
 		}
 

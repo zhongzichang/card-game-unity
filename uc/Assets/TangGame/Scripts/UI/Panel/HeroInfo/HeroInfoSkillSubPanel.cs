@@ -59,7 +59,7 @@ namespace TangGame.UI
 			if (SkillNumTime.activeSelf != skillTimeBool)
 				this.SkillNumTime.SetActive (skillTimeBool);
 
-			string minuteStr = minute.ToString();
+			string minuteStr = minute.ToString ();
 			string secondStr = second.ToString ();
 			if (minute < 10) {
 				minuteStr = 0 + minuteStr;
@@ -111,7 +111,8 @@ namespace TangGame.UI
 		void SetSkillGrid (SkillBase[] skillbases)
 		{
 			for (int i = 0; i < skillbases.Length; i++) {
-				this.AddHeroItem (skillbases , i);
+				if (skillbases [i].Xml.type != (int)SkillType.NormalAttack)
+					this.AddHeroItem (skillbases, i);
 			}
 		}
 
@@ -120,7 +121,7 @@ namespace TangGame.UI
 			SkillItem item = Resources.Load<SkillItem> (UIContext.getWidgetsPath (UIContext.SKILL_ITEM_NAME));
 			item = NGUITools.AddChild (SkillTable, item.gameObject).GetComponent<SkillItem> ();
 			item.gameObject.name = "skill_" + i;
-			item.Flush (data,skills[i]);
+			item.Flush (data, skills [i]);
 		}
 	}
 }

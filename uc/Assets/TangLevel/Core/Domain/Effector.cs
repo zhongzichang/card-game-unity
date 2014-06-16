@@ -17,6 +17,7 @@ namespace TangLevel
     public int radius; // 作用范围
     public string specialName;
     public Effect effect; // 效果
+    public string[] scripts; // 脚本，该作用器需要悬挂的脚本
     #endregion
 
     #region Runtime
