@@ -88,17 +88,19 @@ namespace TangGame.UI
 			skillGroup [1] = Skill2;
 			skillGroup [2] = Skill3;
 			skillGroup [3] = Skill4;
+			int groupIndex = 0;
 			for (int i = 0; i < skillBases.Length; i++) {
 				if (skillBases [i] == null || skillGroup.Length < i) {
 					return;
 				}
-				skillGroup [i].GetComponent<UISprite> ().spriteName = skillBases [i].Xml.skill_icon;
+				if (skillBases [i].Xml.type != (int)SkillType.NormalAttack)
+					skillGroup [groupIndex++].GetComponent<UISprite> ().spriteName = skillBases [i].Xml.skill_icon;
 			}
 		}
 
 		void SetBackground (int rank)
 		{
-			Foreground.GetComponent<UISprite> ().color = Global.GetHerorankColor(rank);
+			Foreground.GetComponent<UISprite> ().color = Global.GetHerorankColor (rank);
 		}
 
 		/// <summary>
@@ -122,7 +124,9 @@ namespace TangGame.UI
 				StartCoroutine (BackDepth ());
 			}
 		}
-		void SetTweenByOnClick(){
+
+		void SetTweenByOnClick ()
+		{
 			UIPanel panel = GetComponent<UIPanel> ();
 			float currentHeight = this.GetComponent<BoxCollider> ().size.y;
 			float currentWidth = this.GetComponent<BoxCollider> ().size.x;
@@ -133,20 +137,22 @@ namespace TangGame.UI
 			TweenScale[] mScales = this.gameObject.GetComponents<TweenScale> ();
 			foreach (TweenScale mScale in mScales) {
 				if (mScale.tweenGroup == 2) {
-					mScale.to = new Vector3 (scaleRate,heightRate,scaleRate);
+					mScale.to = new Vector3 (scaleRate, heightRate, scaleRate);
 				}
 			}
 
 			TweenPosition[] mPosis = this.gameObject.GetComponents<TweenPosition> ();
 			foreach (TweenPosition mPosi in mPosis) {
 				if (mPosi.tweenGroup == 2) {
-					mPosi.to = new Vector3 (0,currentWidth/2 * scaleRate,0);
+					mPosi.to = new Vector3 (0, currentWidth / 2 * scaleRate, 0);
 				}
 			}
 
 		}
-		public IEnumerator BackDepth() {
-			yield return new WaitForSeconds(0.2f);
+
+		public IEnumerator BackDepth ()
+		{
+			yield return new WaitForSeconds (0.2f);
 			GetComponent<UIPanel> ().startingRenderQueue -= 1000;
 			GetComponent<UIPanel> ().depth -= 1000;
 		}
