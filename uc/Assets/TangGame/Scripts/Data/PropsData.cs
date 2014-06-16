@@ -77,7 +77,9 @@ namespace TangGame.Xml
           int index = int.Parse(temp);
           return (100 + index).ToString();
         }catch(Exception ex){
-          return UnityEngine.Random.Range(101, 143).ToString();
+					int index = UnityEngine.Random.Range(1, 40);
+					icon = index.ToString();
+					return (100 + index).ToString();
         }
       }
       set{this.icon = value;}

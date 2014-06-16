@@ -4,7 +4,7 @@
 /// 2014-5-10
 /// </summary>
 using UnityEngine;
-
+using TangUI;
 namespace TangGame.UI
 {
 	public class FragmentPropsInfoSubPanel : MonoBehaviour
@@ -13,23 +13,11 @@ namespace TangGame.UI
 		/// 该面板当前的道具
 		/// </summary>
 		Props mProps;
-		/// <summary>
-		/// 道具合成面板，父面板初始化时会被赋值
-		/// </summary>
-		FragmentSynthesisSubPanel mSyntPanel;
 
 		void Start(){
 			UIEventListener.Get (SellBtn).onClick += SellBtnOnClick;
 			UIEventListener.Get (SynthesisBtn).onClick += SynthesisBtnOnClick;
 		}
-
-		void Flush (Props props)
-		{
-			if (mProps != props) {
-				mProps = props;
-			}
-		}
-
 		void UpPropsItem (Props props)
 		{
 			PropsItem item = this.PropsItem.GetComponent<PropsItem> ();
@@ -74,23 +62,15 @@ namespace TangGame.UI
 
 		#region hero the object onclick
 		public void SynthesisBtnOnClick(GameObject obj){
-			//TODO 打开合成碎片面板
+			TangGame.UIContext.mgrCoC.LazyOpen (FragmentSynthesisSubPanel.NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, mProps);
 		}
 		public void SellBtnOnClick(GameObject obj){
-			//TODO 打开出售碎片面板
+			TangGame.UIContext.mgrCoC.LazyOpen (UIContext.SELL_PANEL_NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.SPRITE, mProps);
 		}
 		#endregion
 
 		#region here the objet's properties
 
-		public FragmentSynthesisSubPanel syntPanel {
-			get {
-				return mSyntPanel;
-			}
-			set {
-				mSyntPanel = value;
-			}
-		}
 
 		public Props props {
 			get {
@@ -101,15 +81,20 @@ namespace TangGame.UI
         UpdateData();
 			}
 		}
-
-    private void UpdateData(){
-      if(!this.gameObject.activeSelf){
-        this.gameObject.SetActive(true);
-        TweenPosition tween = this.gameObject.GetComponent<TweenPosition>();
-        tween.ResetToBeginning();
-        tween.Play();
-      }
-    }
+		private void UpdateData(){
+			if(!this.gameObject.activeSelf){
+				this.gameObject.SetActive(true);
+				TweenPosition tween = this.gameObject.GetComponent<TweenPosition>();
+				tween.ResetToBeginning();
+				tween.Play();
+			}
+			UpPropsItem (mProps);
+			UpPropsName (mProps.data.name);
+			UpPropsCount (mProps.net.count);
+			UpPropsInfo (mProps.data.info);
+			UpPropsDesc (mProps.data.description);
+			UpPrice (mProps.data.selling_price);
+		}
 
 		#endregion
 
