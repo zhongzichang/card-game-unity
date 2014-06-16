@@ -46,7 +46,7 @@ namespace TangGame.UI
 				PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().PropsDPbean = propsDPbean;
 		}
 
-		//=====================对象属性相关／property=================
+		#region =====================对象属性相关／property=================
 		public object param {
 			get {
 				return mParam;
@@ -64,6 +64,7 @@ namespace TangGame.UI
 				propsDPbean = value;
 			}
 		}
+		#endregion
 	}
 	/// <summary>
 	/// Properties details panel bean.
