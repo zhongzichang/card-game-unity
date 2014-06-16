@@ -18,13 +18,16 @@ namespace TangGame.UI
 		/// </summary>
 		FragmentSynthesisSubPanel mSyntPanel;
 
+		void Start(){
+			UIEventListener.Get (SellBtn).onClick += SellBtnOnClick;
+			UIEventListener.Get (SynthesisBtn).onClick += SynthesisBtnOnClick;
+		}
+
 		void Flush (Props props)
 		{
 			if (mProps != props) {
 				mProps = props;
 			}
-
-
 		}
 
 		void UpPropsItem (Props props)
@@ -71,10 +74,10 @@ namespace TangGame.UI
 
 		#region hero the object onclick
 		public void SynthesisBtnOnClick(GameObject obj){
-			
+			//TODO 打开合成碎片面板
 		}
-		public void SellBtnOnClick(){
-
+		public void SellBtnOnClick(GameObject obj){
+			//TODO 打开出售碎片面板
 		}
 		#endregion
 

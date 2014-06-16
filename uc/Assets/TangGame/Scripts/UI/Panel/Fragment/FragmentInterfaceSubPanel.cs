@@ -51,20 +51,24 @@ namespace TangGame.UI
 		/// </summary>
 		void LoadAllScrollItem ()
 		{
-			//FIXME 修改prefab的加载方式
+			StartCoroutine (LoadAllScrollItemAtMount());
+		}
+
+		IEnumerator LoadAllScrollItemAtMount(){
 			PropsItem itemObj = Resources.Load<PropsItem> (UIContext.getWidgetsPath (UIContext.PROPS_ITEM_NAME));
-      PropsItem item = null;
-      foreach (Props props in PropsCache.instance.propsTable.Values) {
+			PropsItem item = null;
+			foreach (Props props in PropsCache.instance.propsTable.Values) {
 				if (PropsType.DEBRIS != (PropsType)props.data.type)
 					continue;
-        item = NGUITools.AddChild (PropsTable.gameObject, itemObj.gameObject).GetComponent<PropsItem> ();
+				item = NGUITools.AddChild (PropsTable.gameObject, itemObj.gameObject).GetComponent<PropsItem> ();
 				item.Flush (props);
 				scrollItems.Add (item.data.data.id, item);
 				UIEventListener.Get (item.gameObject).onClick += ScrollItemOnClick;
-
+				yield return new WaitForFixedUpdate ();
+				this.SortSorollTableView ();
 			}
-			this.SortSorollTableView ();
 		}
+
 		/// <summary>
 		/// Shows the type of the scroll item by.
 		/// </summary>
@@ -83,13 +87,13 @@ namespace TangGame.UI
 
         mType = (PropsType)propsRelationData.synthetics[0].type;
 				if (type == PropsType.NONE) {
-					item.gameObject.SetActive (itemStatus);
+					item.gameObject.SetActive (true);
 					continue;
 				}
 				if (type == mType) {
-					item.gameObject.SetActive (!itemStatus);
+					item.gameObject.SetActive (true);
 				} else {
-					item.gameObject.SetActive (!itemStatus);
+					item.gameObject.SetActive (false);
 				}
 			}
 			this.SortSorollTableView ();
