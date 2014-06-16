@@ -1077,7 +1077,6 @@ namespace TangLevel
         if (agent != null) {
           agent.raiseScrPosChanged += uiMgr.redHpPosMonitors [i].OnChange;
         }
-          
 
         // 监听英雄的死亡
         HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
@@ -1494,4 +1493,3 @@ namespace TangLevel
     #endregion
   }
 }
-

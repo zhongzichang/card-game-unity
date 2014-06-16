@@ -164,22 +164,27 @@ namespace TangLevel
       string specialName = w.effector.specialName;
 
       if (specialName != null) {
-
-        // 获取特效对象
-        GameObject gobj = GobjManager.FetchUnused (specialName);
-        if (gobj != null) {
-
-          ReleaseEffectorSpecial (gobj, w);
-
+        if (specialName.StartsWith (Config.DBFX_PREFIX)) {
+          // dbfx
+          GameObject gobj = EffectorGobjManager.FetchUnused (w.effector);
+          if (gobj != null) {
+            ReleaseEffectorSpecial (gobj, w);
+          }
         } else {
 
-          // 添加到作用器列表
-          Add (specialName, w);
-          // 需要加载资源
-          if (!GobjManager.HasHandler (OnSpecialLoad)) {
-            GobjManager.RaiseLoadEvent += OnSpecialLoad;
+          // 获取特效对象
+          GameObject gobj = GobjManager.FetchUnused (specialName);
+          if (gobj != null) {
+            ReleaseEffectorSpecial (gobj, w);
+          } else {
+            // 添加到作用器列表
+            Add (specialName, w);
+            // 需要加载资源
+            if (!GobjManager.HasHandler (OnSpecialLoad)) {
+              GobjManager.RaiseLoadEvent += OnSpecialLoad;
+            }
+            GobjManager.LazyLoad (specialName);
           }
-          GobjManager.LazyLoad (specialName);
         }
       }
 
