@@ -68,6 +68,10 @@ namespace TangLevel
     /// </summary>
     public const string GOBJS_PATH = "Prefabs/Gobjs";
     /// <summary>
+    /// The DBF x_ PREFI.
+    /// </summary>
+    public const string DBFX_PREFIX = "dbfx_";
+    /// <summary>
     /// 最大 HP
     /// </summary>
     public const int MAX_HP = 1000; 

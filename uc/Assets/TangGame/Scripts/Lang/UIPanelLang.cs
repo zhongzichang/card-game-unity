@@ -312,5 +312,11 @@ namespace TangGame.UI
     public const string CLOSE = "关";
     /// 前往
     public const string GOTO = "前往";
+
+    /// 再抽一次
+    public const string LOTTERY_ONE = "再抽一次";
+    /// 再抽十次
+    public const string LOTTERY_TEN = "再抽十次";
+
 	}
 }
