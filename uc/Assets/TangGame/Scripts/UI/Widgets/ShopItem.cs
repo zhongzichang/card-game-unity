@@ -9,14 +9,14 @@ namespace TangGame.UI{
     public UILabel nameLabel;
     public UILabel priceLabel;
     public GameObject ingotIcon;
-    public GameObject moenyIcon;
+    public GameObject moneyIcon;
     public GameObject mask;
     public SimplePropsItem propsItem;
    
     public override void Start (){
       mask.SetActive(false);
       ingotIcon.SetActive(false);
-      moenyIcon.SetActive(false);
+      moneyIcon.SetActive(false);
       this.started = true;
       UpdateData();
     }
@@ -41,7 +41,7 @@ namespace TangGame.UI{
           ingotIcon.SetActive(true);
           priceLabel.text = temp.ToString();
         }else{
-          moenyIcon.SetActive(true);
+          moneyIcon.SetActive(true);
           temp = (int)arrayList[0];
           priceLabel.text = temp.ToString();
         }

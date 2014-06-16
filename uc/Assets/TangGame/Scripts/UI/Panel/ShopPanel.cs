@@ -52,6 +52,7 @@ namespace TangGame.UI{
     private void Init(){
       Vector3 localPosition = shopItem.transform.localPosition;
       Vector3 temp = localPosition;
+      UIEventListener.Get(shopItem.gameObject).onClick += ItemClickHandler;
       items.Add(shopItem);
       for(int i = 1; i < 6; i++){
         GameObject go = UIUtils.Duplicate(shopItem.gameObject, shopItem.transform.parent.gameObject);
@@ -60,6 +61,7 @@ namespace TangGame.UI{
         temp.y -= (int)(i / 3) * 210;
         go.transform.localPosition = temp;
         ShopItem item = go.GetComponent<ShopItem>();
+        UIEventListener.Get(go).onClick += ItemClickHandler;
         items.Add(item);
       }
 
@@ -79,7 +81,7 @@ namespace TangGame.UI{
         Goods goods = new Goods();
         goods.data = data;
         goods.isSell = count / 2 == 1;
-        goods.num = count;
+        goods.num = count + 1;
         count ++;
         list.Add(goods);
         if(count >= 6){
@@ -101,6 +103,14 @@ namespace TangGame.UI{
       tipsLabel.text = str;
       OpenTips();
       UpdateTips();
+    }
+
+    private void ItemClickHandler(GameObject go){
+      ShopItem item = go.GetComponent<ShopItem>();
+      Goods goods = item.data as Goods;
+      if(!goods.isSell){
+        UIContext.mgrCoC.LazyOpen(ShopBuyPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, item.data);
+      }
     }
 
     /// 更新Tips相关
