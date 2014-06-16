@@ -175,6 +175,17 @@ namespace TangLevel
           // 获取特效对象
           GameObject gobj = GobjManager.FetchUnused (specialName);
           if (gobj != null) {
+
+            // 确保脚本正确挂载
+            if (w.effector.scripts != null && w.effector.scripts.Length > 0) {
+              foreach (string script in w.effector.scripts) {
+                Component comp = gobj.GetComponent (script);
+                if (comp == null) {
+                  comp = gobj.AddComponent (script);
+                }
+              }
+            }
+
             ReleaseEffectorSpecial (gobj, w);
           } else {
             // 添加到作用器列表

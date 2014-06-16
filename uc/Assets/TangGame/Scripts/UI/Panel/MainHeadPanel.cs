@@ -12,7 +12,6 @@ namespace TangGame.UI{
     public UIEventListener headBtn;
 
     private object mParam;
-    private bool started;
 
     void Start(){
       headBtn.onClick += HeadBtnClickHandler;
