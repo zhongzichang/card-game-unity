@@ -21,11 +21,6 @@ namespace TangGame.UI
 		/// 单个碎片的信息面板
 		/// </summary>
 		public GameObject FragmentPropsInfoSubPanel;
-		/// <summary>
-		/// The fragment synthesis sub panel.
-		/// 碎片合成面板
-		/// </summary>
-		public GameObject FragmentSynthesisSubPanel;
 
 		private FragmentInterfaceSubPanel mInterPanel;
 		private FragmentPropsInfoSubPanel mInfoPanel;
@@ -34,15 +29,11 @@ namespace TangGame.UI
 
 		void Awake(){
 			DynamicBindUtil.BindScriptAndProperty (FragmentPropsInfoSubPanel,FragmentPropsInfoSubPanel.name);
-			DynamicBindUtil.BindScriptAndProperty (FragmentSynthesisSubPanel, FragmentSynthesisSubPanel.name);
 			DynamicBindUtil.BindScriptAndProperty (FragmentInterfaceSubPanel, FragmentInterfaceSubPanel.name);
 			mInterPanel = FragmentInterfaceSubPanel.GetComponent<FragmentInterfaceSubPanel> ();
 			mInfoPanel = FragmentPropsInfoSubPanel.GetComponent<FragmentPropsInfoSubPanel> ();
-			mSyntPanel = FragmentSynthesisSubPanel.GetComponent < FragmentSynthesisSubPanel> ();
 			if (mInterPanel != null)
 				mInterPanel.infoPanel = mInfoPanel;
-			if (mInfoPanel != null)
-				mInfoPanel.syntPanel = mSyntPanel;
 
 		}
 

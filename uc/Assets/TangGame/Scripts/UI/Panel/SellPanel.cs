@@ -13,7 +13,7 @@ namespace TangGame.UI
 			}
 			set {
 				mParam = value;
-				Flush();
+				Flush ();
 			}
 		}
 
@@ -33,8 +33,8 @@ namespace TangGame.UI
 		void Start ()
 		{
 			UnitPriceStrLabel.GetComponent<UILabel> ().text = UIPanelLang.UNIT_PRICE + "：";
-			TotalPriceStrLabel.GetComponent<UILabel> ().text = UIPanelLang.TOTAL_PRICE+ "：";
-			PropsNumStrLabl.GetComponent<UILabel> ().text = UIPanelLang.SELECT_NUMBER_OF_SELL+ "：";
+			TotalPriceStrLabel.GetComponent<UILabel> ().text = UIPanelLang.TOTAL_PRICE + "：";
+			PropsNumStrLabl.GetComponent<UILabel> ().text = UIPanelLang.SELECT_NUMBER_OF_SELL + "：";
 			MaxBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.MAX;
 			SellBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.CONFIRM_THE_SALE;
 
@@ -43,13 +43,15 @@ namespace TangGame.UI
 			UIEventListener.Get (SellBtn).onClick += OnSellBtnClick;
 			UIEventListener.Get (MaxBtn).onClick += OnMaxBtnClick;
 			isStarted = true;
-			Flush();
+			Flush ();
 		}
 
-		void OnMaxBtnClick(GameObject go){
+		void OnMaxBtnClick (GameObject go)
+		{
 			sellCount = mProps.net.count;
 			Flush ();
 		}
+
 		void OnSellBtnClick (GameObject go)
 		{
 			//TODO
@@ -83,34 +85,66 @@ namespace TangGame.UI
 		}
 
 		int sellCount = 1;
+
 		public void Flush (Props props)
 		{
 			this.mProps = props;
+			UpPropsIcon (props.data.Icon);
 			UpCount (props.net.count);
 			UpName (props.data.name);
 			UpUnitPrice (props.data.selling_price);
 			int totalPrice = props.data.selling_price * sellCount; 
 			UpTotalPrice (totalPrice);
-			UpPropsSellNum (sellCount,props.net.count);
+			UpPropsSellNum (sellCount, props.net.count);
 		}
+
+		public GameObject PropsFrame;
+
+		void UpPropsFrame (int rank)
+		{
+			string spriteName = Global.GetPropFrameName (rank);
+			PropsFrame.GetComponent<UISprite> ().spriteName = spriteName;
+		}
+
+		public GameObject PropsIcon;
+
+		void UpPropsIcon (string spriteName)
+		{
+			PropsIcon.GetComponent<UISprite> ().spriteName = spriteName;
+		}
+
 		public GameObject PropsCountLabel;
-		void UpCount(int count){
-			PropsCountLabel.GetComponent<UILabel> ().text = string.Format (UIPanelLang.HAS_NUMBER_OF_PROPS,count);
+
+		void UpCount (int count)
+		{
+			PropsCountLabel.GetComponent<UILabel> ().text = string.Format (UIPanelLang.HAS_NUMBER_OF_PROPS, count);
 		}
+
 		public GameObject PropsNameLabel;
-		void UpName(string name){
+
+		void UpName (string name)
+		{
 			PropsNameLabel.GetComponent<UILabel> ().text = name;
 		}
+
 		public GameObject UnitPriceLabel;
-		void UpUnitPrice(int price){
-			UnitPriceLabel.GetComponent<UILabel> ().text = price.ToString();
+
+		void UpUnitPrice (int price)
+		{
+			UnitPriceLabel.GetComponent<UILabel> ().text = price.ToString ();
 		}
+
 		public GameObject TotalPriceLabel;
-		void UpTotalPrice(int pirce){
-			TotalPriceLabel.GetComponent<UILabel> ().text = pirce.ToString();
+
+		void UpTotalPrice (int pirce)
+		{
+			TotalPriceLabel.GetComponent<UILabel> ().text = pirce.ToString ();
 		}
+
 		public GameObject PropsSellNumLabl;
-		void UpPropsSellNum(int count,int countMax){
+
+		void UpPropsSellNum (int count, int countMax)
+		{
 			PropsSellNumLabl.GetComponent<UILabel> ().text = string.Format ("{0}/{1}", count, countMax);
 		}
 	}
