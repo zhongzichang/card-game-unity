@@ -818,7 +818,7 @@ namespace TangLevel
       }
 
       // 所需作用器资源已经存在
-      if (requiredEffectorGobjTable.Count == 0) {
+      if (requiredHeroGobjTable.Count == 0 && requiredEffectorGobjTable.Count == 0) {
         // 通知所有的资源已经准备完毕
         AllSubLevelResourceReady ();
       }
