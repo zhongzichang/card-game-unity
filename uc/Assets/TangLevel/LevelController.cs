@@ -60,6 +60,7 @@ namespace TangLevel
     /// 子关卡需要的英雄游戏对象以及数量
     /// </summary>
     public static Dictionary<string, int> requiredHeroGobjTable = new Dictionary<string, int> ();
+    public static Dictionary<string, int> requiredEffectorGobjTable = new Dictionary<string, int> ();
     private static int m_bigMoveCounter = 0;
     private static bool lazyShowSuccess = false;
     // 显示挑战成功信息
@@ -569,11 +570,23 @@ namespace TangLevel
       // 修正英雄资源需求表
       if (requiredHeroGobjTable.ContainsKey (name)) {
         requiredHeroGobjTable [name] = requiredHeroGobjTable [name] - 1;
+      } 
+      // 修正作用器资源需求表
+      else if (requiredEffectorGobjTable.ContainsKey (name)) {
+        requiredEffectorGobjTable [name] = requiredEffectorGobjTable [name] - 1;
       }
+
 
       // 检查所有需求是否完成
       bool loadedCompleted = true;
       foreach (KeyValuePair<string, int> kvp in requiredHeroGobjTable) {
+        if (kvp.Value > 0) {
+          loadedCompleted = false;
+          break;
+        }
+      }
+
+      foreach (KeyValuePair<string, int> kvp in requiredEffectorGobjTable) {
         if (kvp.Value > 0) {
           loadedCompleted = false;
           break;
@@ -745,12 +758,69 @@ namespace TangLevel
         Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
       }
 
-      // 所需英雄资源已经存在
-      if (requiredHeroGobjTable.Count == 0) {
+      // 加载作用器
+      LoadSubLevelEffectorResources ();
 
+    }
+
+    /// <summary>
+    /// 计算加载子关卡所需要的作用器
+    /// </summary>
+    private static void LoadSubLevelEffectorResources ()
+    {
+      Debug.Log ("LoadSubLevelEffectorResources");
+
+      // -- 加载场景中的其他资源 --
+
+      // -- 加载作用器 --
+      // 统计需要加载的作用器对象数量
+      requiredEffectorGobjTable.Clear ();
+
+      // 临时作用器表
+      Dictionary<string, int> tmpEffectorTable = new Dictionary<string, int> ();
+      // -- 统计敌方作用器资源 --
+      if (LevelContext.TargetSubLevel.enemyGroup != null) {
+        foreach (Hero hero in LevelContext.TargetSubLevel.enemyGroup.heros) {
+          foreach (Skill skill in hero.skills.Values) {
+            if (skill.enable) {
+              foreach (Effector effector in skill.effectors) {
+                AddEffector (effector, tmpEffectorTable);
+              }
+            }
+          }
+        }
+      }
+
+      // -- 统计我方作用器资源 --
+      if (LevelContext.selfGroup != null) {
+        foreach (Hero hero in LevelContext.selfGroup.heros) {
+          foreach (Skill skill in hero.skills.Values) {
+            if (skill.enable) {
+              foreach (Effector effector in skill.effectors) {
+                AddEffector (effector, tmpEffectorTable);
+              }
+            }
+          }
+        }
+      }
+
+      // 加载所需要的作用器资源
+      foreach (KeyValuePair<string, int> kvp in tmpEffectorTable) {
+        // 已有的作用器数量
+        int has = EffectorGobjManager.Size (kvp.Key);
+        int need = 0;
+        if (has < kvp.Value) {
+          need = kvp.Value - has;
+          requiredEffectorGobjTable [kvp.Key] = need;
+          EffectorGobjManager.LazyLoad (kvp.Key, need);
+        }
+        Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
+      }
+
+      // 所需作用器资源已经存在
+      if (requiredEffectorGobjTable.Count == 0) {
         // 通知所有的资源已经准备完毕
         AllSubLevelResourceReady ();
-
       }
     }
 
@@ -1399,6 +1469,26 @@ namespace TangLevel
         heroIds.Add (hero.id);
       }
       battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, 0);
+    }
+
+    private static void AddEffector (Effector effector, Dictionary<string, int> counterTable)
+    {
+
+      if (effector.specialName != null && effector.specialName.StartsWith (Config.DBFX_PREFIX)) {
+
+        if (counterTable.ContainsKey (effector.specialName)) {
+          int count = counterTable [effector.specialName] + 1;
+          counterTable [effector.specialName] = count;
+        } else {
+          counterTable.Add (effector.specialName, 1);
+        }
+
+        if (effector.subEffectors != null && effector.subEffectors.Length > 0) {
+          foreach (Effector sub in effector.subEffectors) {
+            AddEffector (sub, counterTable);
+          }
+        }
+      }
     }
 
     #endregion
