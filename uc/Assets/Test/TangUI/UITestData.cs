@@ -65,7 +65,11 @@ public class UITestData : MonoBehaviour
         herobase.Net.skillLevel [i] = 20;
       }
 
-      TangGame.UI.HeroCache.instance.heroBeseTable.Add (id, herobase);
+			if (TangGame.UI.HeroCache.instance.heroBeseTable.ContainsKey (configId)) {
+				TangGame.UI.HeroCache.instance.heroBeseTable [configId] = herobase;
+			} else {
+				TangGame.UI.HeroCache.instance.heroBeseTable.Add (configId, herobase);
+			}
 
 		}
 
