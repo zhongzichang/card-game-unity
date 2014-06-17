@@ -73,11 +73,17 @@ namespace TangGame.UI
 				}
 			}
 		}
+
 		bool mStarted = false;
-		void Start(){
+
+		void Start ()
+		{
 			mStarted = true;
-      SVPropsItemArrayForward (propsDPbean.props.data);
+			SVPropsItemArrayForward (propsDPbean.props.data);
+			UIEventListener.Get (BackBtn).onClick += OnBackBtnClick;
 		}
+
+
 		/// <summary>
 		/// SVs the properties item array forward.
 		/// 点击到下一个道具
@@ -87,8 +93,10 @@ namespace TangGame.UI
 			if (!mStarted)
 				return;
 
-			if ((PropsType)propsXml.type == PropsType.DEBRIS)
-				return;
+//			if ((PropsType)propsXml.type == PropsType.DEBRIS)
+//				return;
+
+
 			int count = SVPropsItemArray.Count;
 			if (count != 0) {
 				(SVPropsItemArray [count - 1] as SVPropsItem).IsChecked = false;
@@ -141,6 +149,38 @@ namespace TangGame.UI
 		}
 
 		/// <summary>
+		/// 灵魂石头掉落关卡的组
+		/// </summary>
+		public GameObject StageDropGrid;
+		/// <summary>
+		/// The stage drop item.
+		/// 灵魂石掉落关卡项
+		/// </summary>
+		public GameObject StageDropItem;
+		/// <summary>
+		/// The stage drop item list.
+		/// </summary>
+		List<GameObject> stageDropItemList = new List<GameObject> ();
+
+		public void AddStageDropItem (Xml.LevelData levelData, int index)
+		{
+			GameObject stageDropItem;
+			if (stageDropItemList != null && stageDropItemList.Count <= index) {
+				stageDropItem = NGUITools.AddChild (StageDropGrid, StageDropItem);
+				stageDropItemList.Add (stageDropItem);
+				UIEventListener.Get (stageDropItem.gameObject).onClick += OnStageDropItemClick;
+			} else {
+				stageDropItem = stageDropItemList [index];
+			}
+			if (!stageDropItem.activeSelf)
+				stageDropItem.SetActive (true);
+
+
+			EquipStageDropItem itemScript = stageDropItem.GetComponent<EquipStageDropItem> ();
+			itemScript.Flush (levelData);
+		}
+
+		/// <summary>
 		/// SVs the properties item array back.
 		/// 返回上一个道具
 		/// </summary>
@@ -149,6 +189,15 @@ namespace TangGame.UI
 			if (SVPropsItemArray.Count >= 2) {
 				SVPropsItem item = SVPropsItemArray [SVPropsItemArray.Count - 2] as SVPropsItem;
 				BackToSVPropsItem (item);
+			} else {
+				EquipDetailsPanel equipDetailsPanel = transform.parent.gameObject.GetComponent<EquipDetailsPanel> ();
+				if (equipDetailsPanel != null) {
+					PropsDetailsInterfacePanel pdiPanel = equipDetailsPanel.PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ();
+					UIPlayTween[] playtwens = pdiPanel.SynthesisBtn.GetComponents<UIPlayTween> ();
+					foreach (UIPlayTween playtwen in playtwens) {
+						playtwen.Play (false);
+					}
+				}
 			}
 		}
 
@@ -204,6 +253,12 @@ namespace TangGame.UI
 
 		}
 
+		public GameObject DropContent;
+		public GameObject SyntheticContent;
+
+		public GameObject BackBtn;
+		public GameObject SynthesisBtn;
+
 		/// <summary>
 		/// Sets the current properties item.
 		/// 设置当前道具
@@ -211,16 +266,41 @@ namespace TangGame.UI
 		/// <param name="svpItem">Svp item.</param>
 		void SetCurrentPropsItem (SVPropsItem svpItem)
 		{
-			this.ClearSubPropsItemArray ();
+
 			svpItem.IsChecked = true;
 			if (SVPropsItemArray.LastIndexOf (svpItem) != 0) {
 				svpItem.Arrow.SetActive (true);
 			} 
 
+			this.ClearSubPropsItemArray ();
 			Props props = svpItem.data;
+			PropsItemNameLabel.GetComponent<UILabel> ().text = props.data.name;
+
+			if (svpItem.data.data.GetSyntheticPropsTable ().Count == 0) {
+				DropContent.SetActive (true);
+				SyntheticContent.SetActive (false);
+				BackBtn.SetActive (true);
+				SynthesisBtn.SetActive (false);
+				PropsRelationData propsRelationData = null;
+				propsRelationData = PropsCache.instance.GetPropsRelationData (props.data.id);
+				if (propsRelationData != null) {
+					for (int i = 0; i < propsRelationData.levels.Count; i++) {
+						if (i == 3)
+							break;
+						AddStageDropItem (propsRelationData.levels [i], i);
+					}
+				}
+
+				return;
+			} else {
+				DropContent.SetActive (false);
+				SyntheticContent.SetActive (true);
+				BackBtn.SetActive (false);
+				SynthesisBtn.SetActive (true);
+			}
+
 			PropsItem mainPropsItem = MainPropsItem.GetComponent<PropsItem> ();
 			mainPropsItem.ShowCount = false;
-			PropsItemNameLabel.GetComponent<UILabel> ().text = props.data.name;
 			mainPropsItem.Flush (props);
 			mainPropsItem.GetComponent<TweenAlpha> ().ResetToBeginning ();
 			mainPropsItem.GetComponent<TweenAlpha> ().Play ();
@@ -231,8 +311,8 @@ namespace TangGame.UI
 				propsItem.transform.localScale = SubPropsItem.transform.localScale;
 				propsItem.gameObject.SetActive (true);
 				SubPropsItemArray.Add (propsItem);
-        if (PropsCache.instance.propsTable.ContainsKey (propsKeyVal.Key))
-          propsItem.Flush (PropsCache.instance.propsTable [propsKeyVal.Key], propsKeyVal.Value);
+				if (PropsCache.instance.propsTable.ContainsKey (propsKeyVal.Key))
+					propsItem.Flush (PropsCache.instance.propsTable [propsKeyVal.Key], propsKeyVal.Value);
 				else if (Config.propsXmlTable.ContainsKey (propsKeyVal.Key))
 					propsItem.Flush (Config.propsXmlTable [propsKeyVal.Key], propsKeyVal.Value);
 				else
@@ -254,7 +334,9 @@ namespace TangGame.UI
 		void OnSubPropsItemOnClick (GameObject obj)
 		{
 			SubPropsItem item = obj.GetComponent<SubPropsItem> ();
-			SVPropsItemArrayForward (item.data.data);
+
+			SVPropsItemArrayForward (item.data.data);	
+
 		}
 
 		/// <summary>
@@ -265,6 +347,22 @@ namespace TangGame.UI
 		{
 			SVPropsItem item = obj.GetComponent<SVPropsItem> ();
 			BackToSVPropsItem (item);
+		}
+
+		void OnBackBtnClick (GameObject go)
+		{
+			SVPropsItemArrayBack ();
+		}
+
+		void OnStageDropItemClick (GameObject obj)
+		{
+			EquipStageDropItem itemScript = obj.GetComponent<EquipStageDropItem> ();
+			if (itemScript != null) {
+				BattleChaptersPanelData data = new BattleChaptersPanelData ();
+				data.stage = itemScript.stageData.id;
+				data.type = StageType.Guide;
+				UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, data);
+			}
 		}
 	}
 }
