@@ -14,6 +14,7 @@ namespace TangGame.UI
 		private object mParam;
 		public GameObject PropsDetailsInterfacePanel;
 		public GameObject PropsDetailsSubPanel;
+		public GameObject SynthesisBtnLabel;
 		private PropsDetailsPanelBean propsDPbean;
 		bool mStarted;
 		void Start(){
@@ -24,6 +25,7 @@ namespace TangGame.UI
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsInterfacePanel, PropsDetailsInterfacePanel.name);
 			DynamicBindUtil.BindScriptAndProperty (PropsDetailsSubPanel, PropsDetailsSubPanel.name);
 		}
+
 
 		/// <summary>
 		/// Ups the sub panels.
@@ -44,6 +46,7 @@ namespace TangGame.UI
 				PropsDetailsSubPanel.GetComponent<PropsDetailsSubPanel> ().PropsDPbean = propsDPbean;
 			if (PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> () != null)
 				PropsDetailsInterfacePanel.GetComponent<PropsDetailsInterfacePanel> ().PropsDPbean = propsDPbean;
+
 		}
 
 		#region =====================对象属性相关／property=================

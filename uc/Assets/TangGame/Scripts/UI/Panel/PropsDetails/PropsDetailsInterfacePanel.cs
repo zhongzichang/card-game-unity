@@ -119,6 +119,11 @@ namespace TangGame.UI
 				this.gameObject.SetActive (true);
 				this.GetComponent<TweenPosition> ().Play (true);
 			}
+
+			if (props.data.GetSyntheticPropsTable ().Count <= 0) {
+				this.SynthesisBtnLabel.GetComponent<UILabel> ().text = UIPanelLang.GET_WAY;
+			}
+
 			this.UpPropsIcon (props.data.Icon);
 			this.UpPropsFrames (props.data.rank);
 			this.UpPropsInfo (props);
