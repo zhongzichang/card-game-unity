@@ -160,19 +160,19 @@ namespace TangGame.UI
 		/// <summary>
 		/// The stage drop item list.
 		/// </summary>
-		List<GameObject> stageDropItemList = new List<GameObject>();
+		List<GameObject> stageDropItemList = new List<GameObject> ();
 
-		public void AddStageDropItem (Xml.LevelData levelData,int index)
+		public void AddStageDropItem (Xml.LevelData levelData, int index)
 		{
 			GameObject stageDropItem;
-			if (stageDropItemList.Count < index) {
+			if (stageDropItemList != null && stageDropItemList.Count <= index) {
 				stageDropItem = NGUITools.AddChild (StageDropGrid, StageDropItem);
 				stageDropItemList.Add (stageDropItem);
 				UIEventListener.Get (stageDropItem.gameObject).onClick += OnStageDropItemClick;
 			} else {
 				stageDropItem = stageDropItemList [index];
 			}
-			if(!stageDropItem.activeSelf)
+			if (!stageDropItem.activeSelf)
 				stageDropItem.SetActive (true);
 
 
@@ -285,6 +285,8 @@ namespace TangGame.UI
 				propsRelationData = PropsCache.instance.GetPropsRelationData (props.data.id);
 				if (propsRelationData != null) {
 					for (int i = 0; i < propsRelationData.levels.Count; i++) {
+						if (i == 3)
+							break;
 						AddStageDropItem (propsRelationData.levels [i], i);
 					}
 				}
@@ -333,7 +335,7 @@ namespace TangGame.UI
 		{
 			SubPropsItem item = obj.GetComponent<SubPropsItem> ();
 
-				SVPropsItemArrayForward (item.data.data);	
+			SVPropsItemArrayForward (item.data.data);	
 
 		}
 
@@ -352,10 +354,14 @@ namespace TangGame.UI
 			SVPropsItemArrayBack ();
 		}
 
-		void OnStageDropItemClick(GameObject obj){
+		void OnStageDropItemClick (GameObject obj)
+		{
 			EquipStageDropItem itemScript = obj.GetComponent<EquipStageDropItem> ();
 			if (itemScript != null) {
-				//TODO 打开对应的面板
+				BattleChaptersPanelData data = new BattleChaptersPanelData ();
+				data.stage = itemScript.stageData.id;
+				data.type = StageType.Guide;
+				UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, data);
 			}
 		}
 	}

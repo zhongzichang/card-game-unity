@@ -172,7 +172,10 @@ namespace TangGame.UI
 		void OnStageDropItemClick(GameObject obj){
 			SoulStoneStageDropItem itemScript = obj.GetComponent<SoulStoneStageDropItem> ();
 			if (itemScript != null) {
-				//TODO 打开对应的面板
+				BattleChaptersPanelData data = new BattleChaptersPanelData ();
+				data.stage = itemScript.stageData.id;
+				data.type = StageType.Guide;
+				UIContext.mgrCoC.LazyOpen(BattleChaptersPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS, data);
 			}
 		}
 	}
