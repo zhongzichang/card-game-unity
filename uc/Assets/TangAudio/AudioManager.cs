@@ -72,8 +72,9 @@ namespace TangAudio
     private static void OnAbLoadedCompleted (AssetBundle ab)
     {
       AudioClip audio = ab.Load (ab.name) as AudioClip;
-      if (audio != null && !audioTable.ContainsKey(ab.name)) {
+      if (audio != null && !audioTable.ContainsKey (ab.name)) {
         audioTable.Add (audio.name, audio);
+        Notify (audio.name, true);
       }
     }
 
@@ -97,6 +98,9 @@ namespace TangAudio
       AudioClip audio = Resources.Load (filepath) as AudioClip;
       if (audio != null) {
         audioTable.Add (audio.name, audio);
+        Notify (audio.name, true);
+      } else {
+        Notify (name, false);
       }
     }
 

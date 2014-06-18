@@ -118,13 +118,37 @@ namespace TangUtils
       return result;
     }
 
-    public static string Join<T>(T[] array){
-
+    /// <summary>
+    /// 将一个泛型数组连成一个字符串
+    /// </summary>
+    /// <param name="array">Array.</param>
+    /// <typeparam name="T">The 1st type parameter.</typeparam>
+    public static string Join<T> (T[] array)
+    {
       StringBuilder sb = new StringBuilder ();
       for (int i = 0; i < array.Length; i++) {
         sb.Append (',').Append (array [i].ToString ());
       }
-      return sb.Remove (0, 1).Insert(0,'[').Append(']').ToString ();
+      return sb.Remove (0, 1).Insert (0, '[').Append (']').ToString ();
+    }
+
+    /// <summary>
+    /// 去掉扩展名
+    /// </summary>
+    /// <returns>The ext name.</returns>
+    /// <param name="fullname">Fullname.</param>
+    public static string RemoveExtName(string fullname){
+
+      if (fullname != null) {
+
+        int lastIndex = fullname.LastIndexOf('.');
+        if (lastIndex > 0) {
+          return fullname.Substring (0, lastIndex);
+        } 
+      }
+
+      return fullname;
+
     }
 
   }

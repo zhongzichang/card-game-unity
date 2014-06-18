@@ -160,22 +160,19 @@ namespace TangLevel
     /// <param name="target">Target.</param>
     public void Cast (EffectorWrapper w)
     {
-
       string specialName = w.effector.specialName;
-
       if (specialName != null) {
         if (specialName.StartsWith (Config.DBFX_PREFIX)) {
-          // dbfx
+          // 如果是 DragonBones 特效
           GameObject gobj = EffectorGobjManager.FetchUnused (w.effector);
           if (gobj != null) {
             ReleaseEffectorSpecial (gobj, w);
           }
         } else {
-
+          // Unity 特效
           // 获取特效对象
           GameObject gobj = GobjManager.FetchUnused (specialName);
           if (gobj != null) {
-
             // 确保脚本正确挂载
             if (w.effector.scripts != null && w.effector.scripts.Length > 0) {
               foreach (string script in w.effector.scripts) {
@@ -185,7 +182,6 @@ namespace TangLevel
                 }
               }
             }
-
             ReleaseEffectorSpecial (gobj, w);
           } else {
             // 添加到作用器列表
@@ -198,7 +194,6 @@ namespace TangLevel
           }
         }
       }
-
     }
 
     #endregion
