@@ -84,7 +84,15 @@ namespace TangGame.UI
 			}
 		}
 
+		/// <summary>
+		/// 出售数量
+		/// </summary>
 		int sellCount = 1;
+
+		void OnDisable ()
+		{
+			sellCount = 1;
+		}
 
 		public void Flush (Props props)
 		{

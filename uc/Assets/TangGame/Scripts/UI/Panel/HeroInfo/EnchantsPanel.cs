@@ -247,7 +247,7 @@ namespace TangGame.UI
 			} else {
 				UpUnenchanted (enLv);
 				UpEquipsInfo (equipBase);
-				PropsTableLoad ();
+				StartCoroutine (PropsTableLoad ());
 				mGoldSpendLab.text = UIPanelLang.ENCHANTING_IS_NOT_SELECTED;
 				int expToMax = enCXml.GetToMaxExp (enLv, enExp);
 				mGemSpendLab.text = (expToMax * enCXml.gem_spend).ToString ();
@@ -329,13 +329,18 @@ namespace TangGame.UI
 		/// <summary>
 		/// Propertieses the table load.
 		/// </summary>
-		void PropsTableLoad ()
+		IEnumerator PropsTableLoad ()
 		{
 
+			List<Props> propsList = new List<Props> ();
 			foreach (Props props in PropsCache.instance.propsTable.Values) {
+				propsList.Add (props);
+			}
+			propsList.Sort (Global.PropsSortByEnchantsPonts);
+			foreach (Props props in propsList) {
 				//如果附魔经验为零则标示该装备不能成为附魔的消耗品
 				if (props.data.enchant_points != 0) {
-				
+					yield return new WaitForFixedUpdate ();
 					AddPorpsItemToPropsTable (props);
 				}
 			}
