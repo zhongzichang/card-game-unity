@@ -116,6 +116,30 @@ namespace TangUI
 		}
 
 		/// <summary>
+		/// 使打开的所有面板向左平移
+		/// </summary>
+		void PanLeftAllPanel ()
+		{
+			UIPanelNode pNode = preNode;
+			while (!(pNode is UIPanelRoot)) {
+				pNode.gameObject.transform.localPosition += Vector3.left * 2000;
+				pNode = pNode.preNode;
+			}
+		}
+
+		/// <summary>
+		/// 使打开的所有面板向右平移
+		/// </summary>
+		void PanRightAllPanel ()
+		{
+			UIPanelNode pNode = preNode;
+			while (!(pNode is UIPanelRoot)) {
+				pNode.gameObject.transform.localPosition += Vector3.right * 2000;
+				pNode = pNode.preNode;
+			}
+		}
+
+		/// <summary>
 		///   Launch
 		/// </summary>
 		public void Launch (OpenMode openMode, BlockMode blockMode, object param, 
@@ -126,6 +150,11 @@ namespace TangUI
 			this.param = param;
 			this.isBaseTemplate = isBaseTemplate;
 			this.raisePanelEvent = handler;
+
+
+			if (blockMode != BlockMode.NONE && BlockMode.SPRITE != blockMode) {
+				PanLeftAllPanel ();
+			}
 
 			if (isBaseTemplate) { // 使用模版
 
@@ -294,7 +323,7 @@ namespace TangUI
 			} else {
 				throw new Exception ("Can not attach to previous node.");
 			}
-      UIRootBehaviour.AddContainer(gameObject);
+			UIRootBehaviour.AddContainer (gameObject);
 		}
 
 		private void FixPanelRenderQ (UIPanel panel, int renderQueue)
@@ -312,6 +341,9 @@ namespace TangUI
 		public void Remove ()
 		{
 			if (!(this is UIPanelRoot)) {
+				if (blockMode != BlockMode.NONE && BlockMode.SPRITE != blockMode) {
+					PanRightAllPanel ();
+				}
 
 				if (isBaseTemplate) {
 					NGUITools.Destroy (gameObject);

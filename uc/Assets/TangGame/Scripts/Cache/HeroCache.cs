@@ -160,7 +160,7 @@ namespace TangGame.UI
 			return null;
 		}
 
-		/// 获取英雄数据
+		/// 获取英雄本地配置信息
 		public HeroData GetHeroData (int id)
 		{
 			if (Config.heroXmlTable.ContainsKey (id)) {
