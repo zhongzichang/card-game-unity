@@ -115,7 +115,15 @@ namespace TangGame.UI
 			return null;
 		}
 
-
+		/// <summary>
+		/// 根据网络id获取英雄
+		/// 与GetHeroByNetID作用相同
+		/// </summary>
+		/// <returns>The hero.</returns>
+		/// <param name="netId">Net identifier.</param>
+		public HeroBase GetHero(int netId){
+			return GetHeroByNetID (netId);
+		}
 		/// <summary>
 		/// 根据网络id获取英雄
 		/// </summary>
