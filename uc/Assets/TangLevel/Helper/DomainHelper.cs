@@ -55,7 +55,7 @@ namespace TangLevel
 
     public static Hero GetInitHero (int id)
     {
-      TGUI.HeroBase hb = TGUI.HeroCache.instance.GetMyHeroByConfigID (id);
+      TGUI.HeroBase hb = TGUI.HeroCache.instance.GetHero (id);
       if (hb != null) {
 
         Hero hero = new Hero ();
