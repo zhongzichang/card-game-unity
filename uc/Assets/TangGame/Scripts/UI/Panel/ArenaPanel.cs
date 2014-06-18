@@ -55,7 +55,7 @@ namespace TangGame.UI{
     }
 
     private void AdjustBtnClickHandler(GameObject go){
-
+      UIContext.mgrCoC.LazyOpen(ArenaAdjustHeroPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.TEXTURE);
     }
 
     private void RuleBtnClickHandler(GameObject go){
