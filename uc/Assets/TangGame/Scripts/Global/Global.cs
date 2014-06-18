@@ -201,5 +201,19 @@ namespace TangGame
       }
       return streamingAssetsPath;
     }
+
+		#region====对象排序===
+
+		/// <summary>
+		/// 道具根据附魔点进行排序
+		/// </summary>
+		/// <returns>The sort by enchants ponts.</returns>
+		/// <param name="propsA">Properties a.</param>
+		/// <param name="propsB">Properties b.</param>
+		static public int PropsSortByEnchantsPonts (Props propsA, Props propsB)
+		{
+			return propsA.data.enchant_points.CompareTo (propsB.data.enchant_points);
+		}
+		#endregion===========
 	}
 }

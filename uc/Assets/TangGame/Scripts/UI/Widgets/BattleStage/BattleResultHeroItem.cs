@@ -40,7 +40,7 @@ namespace TangGame{
       expLabel.text = "[cfa654]EXP+[-][f7e4c4]" + battleResultHeroData.exp + "[-]";
       levelLabel.text = battleResultHeroData.level.ToString();
 
-      HeroBase heroBase = HeroCache.instance.GetHero(battleResultHeroData.id);
+      HeroBase heroBase = HeroCache.instance.GetMyHeroByConfigID(battleResultHeroData.id);
       if(heroBase != null){
         frame.spriteName = Global.GetHeroIconFrame(battleResultHeroData.rank);
         icon.spriteName = heroBase.Xml.avatar;

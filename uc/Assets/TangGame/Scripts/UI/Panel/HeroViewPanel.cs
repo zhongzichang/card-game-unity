@@ -62,7 +62,7 @@ namespace TangGame.UI
 			UILabel lineLab = LineLabel.GetComponent<UILabel> ();
 			lineLab.text = "";
 			List<HeroBase> herobaseList = new List<HeroBase> ();
-			foreach (HeroBase herobase in HeroCache.instance.heroBeseTable.Values) {
+			foreach (HeroBase herobase in HeroCache.instance.MHeroBeseTable.Values) {
 				herobaseList.Add (herobase);
 			}
 			herobaseList.Sort (UITableByHeroFragments.SortById);

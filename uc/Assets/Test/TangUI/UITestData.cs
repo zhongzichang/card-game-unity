@@ -31,9 +31,7 @@ public class UITestData : MonoBehaviour
     HeroNetItem[] heroNetItems = (HeroNetItem[])result.data;
     foreach (HeroNetItem heroNetItem in heroNetItems) {
       HeroNet heroNet = heroNetItem.Data;
-			if (TangGame.UI.HeroCache.instance.heroBeseTable.ContainsKey (heroNet.configId)) {
-				TangGame.UI.HeroCache.instance.heroBeseTable [heroNet.configId].Net = heroNet;
-			}	
+			TangGame.UI.HeroCache.instance.UpdataMyHeroBaseTable (heroNet);
 		}
 	}
 
@@ -65,11 +63,8 @@ public class UITestData : MonoBehaviour
         herobase.Net.skillLevel [i] = 20;
       }
 
-			if (TangGame.UI.HeroCache.instance.heroBeseTable.ContainsKey (configId)) {
-				TangGame.UI.HeroCache.instance.heroBeseTable [configId] = herobase;
-			} else {
-				TangGame.UI.HeroCache.instance.heroBeseTable.Add (configId, herobase);
-			}
+			TangGame.UI.HeroCache.instance.UpdataMyHeroBaseTable (herobase.Net);
+			TangGame.UI.HeroCache.instance.UpdataMyHeroBaseTable (herobase.Xml);
 
 		}
 
