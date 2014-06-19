@@ -26,7 +26,33 @@ namespace TangGame.UI{
 
     /// 拥有的英雄列表
     public List<ArenaHero> GetOwnList(){
+
+      if(ownList.Count < 1){
+        ArenaHero hero = new ArenaHero();
+        hero.id = 14;
+        ownList.Add(hero);
+        
+        hero = new ArenaHero();
+        hero.id = 27;
+        ownList.Add(hero);
+        
+        hero = new ArenaHero();
+        hero.id = 20;
+        ownList.Add(hero);
+        
+        hero = new ArenaHero();
+        hero.id = 23;
+        ownList.Add(hero);
+
+        
+        //ownList.Sort(SortOrder);
+      }
       return ownList;
+    }
+
+    /// ArenaAdjustHeroItem的排序
+    private int SortOrder(ArenaHero item1, ArenaHero item2){
+      return item1.sortOrder.CompareTo(item2.sortOrder);
     }
 
   }
