@@ -66,6 +66,7 @@ namespace TangLevel
         hero.hp = hero.maxHp;
         hero.maxMp = Config.MAX_HP;
         hero.mp = 0;
+        hero.cd = Config.HERO_CD;
         if (TG.Config.heroSortTable.ContainsKey (hero.configId)) {
           hero.sort = TG.Config.heroSortTable [hero.configId];
           Debug.Log ("+++++++ " + hero.id + " - " + hero.configId + " - " + hero.sort);
@@ -280,6 +281,9 @@ namespace TangLevel
         // mp
         h.maxMp = Config.MAX_HP;
         h.mp = 0;
+
+        // cd
+        h.cd = Config.HERO_CD;
 
         h.physicalAttack = data.attack_damage; // 物理攻击
         h.magicPower = data.ability_power; // 魔法攻击

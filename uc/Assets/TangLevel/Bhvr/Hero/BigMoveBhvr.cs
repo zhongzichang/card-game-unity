@@ -263,6 +263,8 @@ namespace TangLevel
       // 如果能量足够，能不能施放大招
       if (skill != null && heroBhvr.hero.maxMp == heroBhvr.hero.mp) {
 
+        GameObject target;
+
         switch (skill.targetType) {
 
         case Skill.TARGET_SELF:
@@ -271,10 +273,13 @@ namespace TangLevel
           break;
         case Skill.TARGET_LOCKED:
           // 已锁定的目标
-          GameObject target = heroBhvr.target;
+          target = heroBhvr.target;
+          if (target.GetComponent<HeroBhvr> ().hero.hp <= 0) {
+            // 锁定的目标已死，则重新找新的目标
+            target = HeroSelector.FindClosestTarget (heroBhvr);
+          }
           // 目标存在，目标活着，与目标的距离小于技能攻击的距离
-          if (target != null &&
-              target.GetComponent<HeroBhvr> ().hero.hp > 0
+          if (target != null
               && Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) <= skill.distance) {
             return true;
           }

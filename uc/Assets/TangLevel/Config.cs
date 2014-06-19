@@ -75,6 +75,14 @@ namespace TangLevel
     /// 最大 HP
     /// </summary>
     public const int MAX_HP = 1000; 
+    /// <summary>
+    /// 公共CD
+    /// </summary>
+    public const float HERO_CD = 6F;
+    /// <summary>
+    /// 公共速度
+    /// </summary>
+    public const float HERO_SPEED = 1F;
     #endregion
 
     #region Statics

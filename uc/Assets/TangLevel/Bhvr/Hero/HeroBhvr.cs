@@ -291,6 +291,9 @@ namespace TangLevel
 
       case HeroStatus.charge: // 起手 ----
 
+        // 设置技能下一次可以使用的时间
+        skill.nextFire = Time.time + skill.cd;
+
         // 有则播放，无则转到释放状态
 
         if (skill.chargeClip != null) {
@@ -632,7 +635,7 @@ namespace TangLevel
         if (autoFire == null) {
           autoFire = gameObject.AddComponent<AutoFire> ();
         }
-        autoFire.skill = bs; // 将自动攻击的技能设置为大招技能
+        autoFire.nextSkill = bs; // 将自动攻击的技能设置为大招技能
 
 
       }
