@@ -136,6 +136,15 @@ namespace TangGame.UI
 			return GetMyHeroByNetID (netId);
 		}
 
+    /// 根据配置表id获取英雄
+    public HeroBase GetHeroByID (int id)
+    {
+      if (mHeroBeseTable.ContainsKey (id)) {
+        return mHeroBeseTable [id];
+      }
+      return null;
+    }
+
 		/// 灵魂石ID与英雄的关联
 		private Dictionary<int, HeroData> soulStoneRelations = new Dictionary<int, HeroData> ();
 

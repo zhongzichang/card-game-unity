@@ -23,6 +23,7 @@ namespace TangGame.UI{
       }
       this.started = true;
       UpdateData();
+      UpdateSelected();
     }
 
     public override void UpdateData (){
