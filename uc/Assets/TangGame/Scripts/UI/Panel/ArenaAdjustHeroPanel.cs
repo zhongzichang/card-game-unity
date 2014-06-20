@@ -72,6 +72,7 @@ namespace TangGame.UI{
       }
       cancelList.Clear();
 
+      List<ArenaHero> tempSelectedList = new List<ArenaHero>();
       /// 拥有的英雄列表
       List<ArenaHero> ownDataList = ArenaCache.instance.GetOwnList();
       foreach(ArenaHero arenaHero in ownDataList){
@@ -80,7 +81,29 @@ namespace TangGame.UI{
         item.data = arenaHero;
         UIEventListener.Get(go).onClick += OwnItemClickHandler;
         ownList.Add(item);
+
+        if(arenaHero.isSelected){
+          tempSelectedList.Add(arenaHero);
+        }
       }
+
+      // 创建选择的英雄
+      foreach(ArenaHero arenaHero in tempSelectedList){
+        GameObject go = UIUtils.Duplicate(arenaAdjustHeroSelectedItem.gameObject, selectedGroup);
+        ArenaAdjustHeroSelectedItem item = go.GetComponent<ArenaAdjustHeroSelectedItem>();
+        item.data = arenaHero;
+        item.cancelCompleted += ItemCancelCompleted;
+        UIEventListener.Get(go).onClick += SelectedItemClickHandler;
+        selectedList.Add(item);
+      }
+
+      selectedList.Sort(SortOrder);
+      for(int i = 0, length = selectedList.Count; i < length; i++){
+        ArenaAdjustHeroSelectedItem tempItem = selectedList[i];
+        Vector3 tempPosition = new Vector3(-130 * i, 0, 0);
+        tempItem.transform.localPosition = tempPosition;
+      }
+      //==============================================================================================
 
       this.UpdateShowItem(selectedMenu.index);
     }

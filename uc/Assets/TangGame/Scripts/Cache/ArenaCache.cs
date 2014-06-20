@@ -19,8 +19,6 @@ namespace TangGame.UI{
       }
     }
 
-    /// 选中上阵的英雄列表
-    public List<ArenaHero> selectedList = new List<ArenaHero>();
     /// 拥有的英雄列表
     public List<ArenaHero> ownList = new List<ArenaHero>();
 
@@ -34,6 +32,7 @@ namespace TangGame.UI{
         
         hero = new ArenaHero();
         hero.id = 27;
+        hero.isSelected = true;
         ownList.Add(hero);
         
         hero = new ArenaHero();
@@ -42,6 +41,7 @@ namespace TangGame.UI{
         
         hero = new ArenaHero();
         hero.id = 23;
+        hero.isSelected = true;
         ownList.Add(hero);
 
         
@@ -51,9 +51,13 @@ namespace TangGame.UI{
     }
 
     /// ArenaAdjustHeroItem的排序
-    private int SortOrder(ArenaHero item1, ArenaHero item2){
+    public int SortOrder(ArenaHero item1, ArenaHero item2){
       return item1.sortOrder.CompareTo(item2.sortOrder);
     }
 
+    /// ArenaAdjustHeroItem的排序降序
+    public int SortOrderByDescending(ArenaHero item1, ArenaHero item2){
+      return item2.sortOrder.CompareTo(item1.sortOrder);
+    }
   }
 }

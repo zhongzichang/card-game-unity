@@ -15,12 +15,13 @@ namespace TangGame.UI{
     public override void Start (){
       this.started = true;
       UpdateData();
+      UpdateSelected();
     }
 
     public override void UpdateData (){
       ArenaHero hero = this.data as ArenaHero;
       this.index = hero.sortOrder;
-
+      this.selected = hero.isSelected;
       if(!this.started){return;}
       HeroBase heroBase = hero.heroBase;
       if(heroBase == null){
@@ -35,6 +36,7 @@ namespace TangGame.UI{
     }
 
     public override void UpdateSelected (){
+      if(!this.started){return;}
       if(this.selected){
         frame.color = Color.gray;
         icon.color = Color.gray;
