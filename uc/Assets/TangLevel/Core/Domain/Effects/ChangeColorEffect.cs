@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine;
 
 namespace TangLevel
 {
@@ -15,6 +16,13 @@ namespace TangLevel
 
     public static void Arise (Effect effect, EffectorWrapper w)
     {
+
+      Color color = (Color) effect.paramList [0];
+
+      GameObject target = w.target;
+
+      target.GetComponent<MaterialBhvr> ().color = color;
+
     }
   }
 }
