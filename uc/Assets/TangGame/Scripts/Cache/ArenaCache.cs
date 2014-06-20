@@ -19,8 +19,6 @@ namespace TangGame.UI{
       }
     }
 
-    /// 选中上阵的英雄列表
-    public List<ArenaHero> selectedList = new List<ArenaHero>();
     /// 拥有的英雄列表
     public List<ArenaHero> ownList = new List<ArenaHero>();
 
@@ -34,6 +32,7 @@ namespace TangGame.UI{
         
         hero = new ArenaHero();
         hero.id = 27;
+        hero.isSelected = true;
         ownList.Add(hero);
         
         hero = new ArenaHero();
