@@ -37,6 +37,8 @@ namespace TangLevel
     void Update ()
     {
       if (skill != null) {
+
+        // 当技能配置文件中的前摇或后摇的时间 > 0 ; -------------
         // 前摇计时器
         if (skill.chargeTime > 0 && statusBhvr.Status == HeroStatus.charge) {
           skill.chargeTimer += Time.deltaTime;
@@ -81,7 +83,7 @@ namespace TangLevel
             Skill skill = skills [skillIndex];
 
             // 确保技能可用，技能不可以是大招
-            if (skill.enable && !skill.bigMove) {
+            if (skill.enable && !skill.bigMove && Time.time > skill.nextFire) {
               // 找到技能
               lastSkillQueueIndex = skillQueueIndex;
               skillQueueIndex++;
@@ -112,7 +114,7 @@ namespace TangLevel
         } else {
 
           Skill skill = skills [skillQueue [skillQueueIndex]];
-          if (skill.enable && !skill.bigMove) {
+          if (skill.enable && !skill.bigMove && Time.time > skill.nextFire) {
             return skill;
           }
         }

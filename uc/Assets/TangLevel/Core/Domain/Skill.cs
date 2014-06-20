@@ -179,6 +179,11 @@ namespace TangLevel
     /// 等级
     /// </summary>
     public int grade = 0;
+
+    /// <summary>
+    /// 下一次可以使用该技能的时间
+    /// </summary>
+    public float nextFire;
     #endregion
 
     #region Public Methods

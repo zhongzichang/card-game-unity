@@ -54,6 +54,8 @@ namespace TangLevel
     public int id;
     public int maxHp;
     public int maxMp;
+    public float cd;
+    public float speed;
 
     /// <summary>
     /// 出场顺序值
@@ -146,6 +148,7 @@ namespace TangLevel
 
     public Hero ()
     {
+
     }
 
     #endregion
