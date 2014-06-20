@@ -29,11 +29,16 @@ namespace TangGame.UI{
 
 		/// 复制GameObject，固定设置了localScale，父对象
 		public static GameObject Duplicate(GameObject go, GameObject parent){
-			GameObject result = GameObject.Instantiate(go) as GameObject;
-			result.SetActive(true);
-			result.transform.parent = parent.transform;
-			result.transform.localScale = Vector3.one;
-			return result;
+      return Duplicate(go, parent.transform);
 		}
+
+    /// 复制GameObject，固定设置了localScale，父对象
+    public static GameObject Duplicate(GameObject go, Transform parent){
+      GameObject result = GameObject.Instantiate(go) as GameObject;
+      result.SetActive(true);
+      result.transform.parent = parent;
+      result.transform.localScale = Vector3.one;
+      return result;
+    }
 	}
 }

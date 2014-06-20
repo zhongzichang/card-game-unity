@@ -23,7 +23,7 @@ namespace TangGame.UI{
       HeroBase hero = this.data as HeroBase;
 			
       frame.spriteName = Global.GetHeroIconFrame(hero.Net.rank);
-      star.width = Global.GetHeroStar(hero.Net.star) * 20;
+      star.width = Global.GetHeroStar(hero.Net.star) * (int)star.localSize.x;
       icon.spriteName = hero.Xml.avatar;
 		}
 
