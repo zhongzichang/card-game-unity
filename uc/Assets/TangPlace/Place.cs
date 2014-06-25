@@ -9,6 +9,7 @@ namespace TangPlace
     none,
     welcome,
     home,
-    level
+    level,
+    adventure
   }
 }

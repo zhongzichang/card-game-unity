@@ -83,6 +83,10 @@ namespace TangLevel
     /// 公共速度
     /// </summary>
     public const float HERO_SPEED = 1F;
+    /// <summary>
+    /// 列阵距离
+    /// </summary>
+    public const float EMBATTLE_DISTANCE = 10;
     #endregion
 
     #region Statics

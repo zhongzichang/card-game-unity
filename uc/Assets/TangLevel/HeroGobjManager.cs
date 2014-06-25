@@ -104,6 +104,15 @@ namespace TangLevel
         if (!zoffsetBhvr.enabled) {
           zoffsetBhvr.enabled = true;
         }
+        // Group Status Behaviour
+        GroupBhvr groupBhvr = gobj.GetComponent<GroupBhvr> ();
+        if (groupBhvr == null) {
+          groupBhvr = gobj.AddComponent<GroupBhvr> ();
+        }
+        if (!groupBhvr.enabled) {
+          groupBhvr.enabled = true;
+        }
+
         // Auto fire
         AutoFire autoFire = gobj.GetComponent<AutoFire> ();
         if (autoFire == null) {

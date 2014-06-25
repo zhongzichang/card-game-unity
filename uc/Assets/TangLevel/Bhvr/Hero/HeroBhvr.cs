@@ -48,7 +48,7 @@ namespace TangLevel
     // DragonBone 动画列表
     private GameObject mTarget;
     // 当前目标
-
+    private GroupBhvr groupBhvr;
     #endregion
 
     #region Properties
@@ -127,12 +127,23 @@ namespace TangLevel
         }
       }
 
-      statusBhvr.IsPause = false;
+      // 战队状态行为
+      if (groupBhvr == null) {
+        groupBhvr = GetComponent<GroupBhvr> ();
+        if (groupBhvr == null) {
+          groupBhvr = gameObject.AddComponent<GroupBhvr> ();
+        }
+        groupBhvr.statusChangedHandler += OnGroupStatusChanged;
+      }
 
+      // 重置
+      statusBhvr.IsPause = false;
       statusBhvr.Status = HeroStatus.idle;
       if (dbBhvr != null) {
         dbBhvr.Resume ();
       }
+
+      //
 
       // 关卡控制
       LevelController.RaisePause += OnPause;
@@ -153,7 +164,6 @@ namespace TangLevel
       // 关卡控制
       LevelController.RaisePause -= OnPause;
       LevelController.RaiseResume -= OnResume;
-
     
     }
 
@@ -206,7 +216,6 @@ namespace TangLevel
         statusBhvr.Status = HeroStatus.idle;
         break;
       }
-
     }
 
     private void OnAnimationComplete (Com.Viperstudio.Events.Event e)
@@ -372,6 +381,25 @@ namespace TangLevel
         dbBhvr.GotoAndPlay (status.ToString ());
         break;
       }
+    }
+
+    /// <summary>
+    /// 战队状态回调
+    /// </summary>
+    /// <param name="status">Status.</param>
+    private void OnGroupStatusChanged(GroupStatus status){
+
+      switch (status) {
+      case GroupStatus.relax:
+        break;
+      case GroupStatus.walk:
+        break;
+      case GroupStatus.embattle:
+        break;
+      case GroupStatus.battle:
+        break;
+      }
+
     }
 
     #endregion
