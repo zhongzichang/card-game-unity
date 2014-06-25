@@ -37,6 +37,8 @@ namespace TangLevel
     void Update ()
     {
       if (skill != null) {
+
+        // 当技能配置文件中的前摇或后摇的时间 > 0 ; -------------
         // 前摇计时器
         if (skill.chargeTime > 0 && statusBhvr.Status == HeroStatus.charge) {
           skill.chargeTimer += Time.deltaTime;
@@ -81,7 +83,7 @@ namespace TangLevel
             Skill skill = skills [skillIndex];
 
             // 确保技能可用，技能不可以是大招
-            if (skill.enable && !skill.bigMove) {
+            if (skill.enable && !skill.bigMove && Time.time > skill.nextFire) {
               // 找到技能
               lastSkillQueueIndex = skillQueueIndex;
               skillQueueIndex++;
@@ -112,7 +114,7 @@ namespace TangLevel
         } else {
 
           Skill skill = skills [skillQueue [skillQueueIndex]];
-          if (skill.enable && !skill.bigMove) {
+          if (skill.enable && !skill.bigMove && Time.time > skill.nextFire) {
             return skill;
           }
         }
@@ -160,22 +162,19 @@ namespace TangLevel
     /// <param name="target">Target.</param>
     public void Cast (EffectorWrapper w)
     {
-
       string specialName = w.effector.specialName;
-
       if (specialName != null) {
         if (specialName.StartsWith (Config.DBFX_PREFIX)) {
-          // dbfx
+          // 如果是 DragonBones 特效
           GameObject gobj = EffectorGobjManager.FetchUnused (w.effector);
           if (gobj != null) {
             ReleaseEffectorSpecial (gobj, w);
           }
         } else {
-
+          // Unity 特效
           // 获取特效对象
           GameObject gobj = GobjManager.FetchUnused (specialName);
           if (gobj != null) {
-
             // 确保脚本正确挂载
             if (w.effector.scripts != null && w.effector.scripts.Length > 0) {
               foreach (string script in w.effector.scripts) {
@@ -185,7 +184,6 @@ namespace TangLevel
                 }
               }
             }
-
             ReleaseEffectorSpecial (gobj, w);
           } else {
             // 添加到作用器列表
@@ -198,7 +196,6 @@ namespace TangLevel
           }
         }
       }
-
     }
 
     #endregion

@@ -1,18 +1,21 @@
-/**
+﻿/**
  * Created by emacs
  * Date: 2013/10/16
  * Author: zzc
  */
 using UnityEngine;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using PureMVC.Patterns;
 using TangUtils;
 using TangGame.Xml;
-using PureMVC.Patterns;
 using TangPlace;
-using System.Collections.Generic;
+using TangGame.UI;
 
 namespace TangGame
 {
+  /// 进入游戏前的加载
   public class PreloadBhvr : MonoBehaviour
   {
     private List<string> xmls = new List<string>();
@@ -35,8 +38,10 @@ namespace TangGame
       xmls.Add("skill");
       xmls.Add("task");
 
+      // 下载资源需要
       TangScene.TS.EnsureTSGobj ();
-      TangNet.TN.EnsureTNGobj ();
+      // 与平台通信初始化
+      PlatformMoudle.instance.Init();
 
       remainCounter = xmls.Count;
 
@@ -50,6 +55,14 @@ namespace TangGame
       }
 
       PlaceController.Place = Place.welcome;
+
+      StartCoroutine(LoadText(GameCache.instance.serverListUrl, ServerListLoadCompleted));
+
+    }
+
+    /// 服务器列表下载完成
+    private void ServerListLoadCompleted(string text){
+
     }
 
     private void LoadCompleted (WWW www)
@@ -86,6 +99,8 @@ namespace TangGame
 
     private void PreloadCompleted ()
     {
+      GameCache.instance.isLoadCompleted = true;
+
       /*
       TsEffectRoot tsEffectRoot = null;
       object[] attributes = typeof(TsEffectRoot).GetCustomAttributes (typeof(XmlLateAttribute), false);
@@ -99,11 +114,23 @@ namespace TangGame
       TangEffect.TE.EnsureTEGobj (tsEffectRoot.items);
       */
 
-      OnPreloadCompleted();
+      //OnPreloadCompleted();
     }
 
     private void OnPreloadCompleted(){
       Facade.Instance.SendNotification(NtftNames.TG_PRELOAD_COMPLETED);
+    }
+
+    /// www下载
+    IEnumerator LoadText(string url, System.Action<string> onComplete){
+      WWW www = new WWW(url);
+      yield return www;
+      if (www.error == null) {
+        onComplete(www.text); 
+      } else {
+        Global.LogError (">> www.url " + www.url);
+        Global.LogError (">> www.error " + www.error);
+      }
     }
 
   }

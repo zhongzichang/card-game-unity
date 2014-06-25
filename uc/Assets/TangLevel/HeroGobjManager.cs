@@ -2,6 +2,7 @@
 using UnityEngine;
 using TS = TangScene;
 using TD = TangDragonBones;
+using TA = TangAudio;
 
 namespace TangLevel
 {
@@ -103,6 +104,7 @@ namespace TangLevel
         if (!zoffsetBhvr.enabled) {
           zoffsetBhvr.enabled = true;
         }
+        // Auto fire
         AutoFire autoFire = gobj.GetComponent<AutoFire> ();
         if (autoFire == null) {
           autoFire = gobj.AddComponent<AutoFire> ();

@@ -24,6 +24,8 @@ namespace TangGame.UI{
     public UIEventListener slBtn;
     /// 宝箱按钮
     public UIEventListener chestBtn;
+    /// 竞技场按钮
+    public UIEventListener arenaBtn;
 
     private float x = 0;
 
@@ -36,6 +38,7 @@ namespace TangGame.UI{
       shopBtn.onClick += ShopBtnClickHandler;
       slBtn.onClick += SLBtnClickHandler;
       chestBtn.onClick += ChestBtnClickHandler;
+      arenaBtn.onClick += ArenaBtnClickHandler;
     }
     
     void LateUpdate(){
@@ -79,5 +82,11 @@ namespace TangGame.UI{
     private void ChestBtnClickHandler(GameObject go){
       UIContext.mgrCoC.LazyOpen(ChestPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS);
     }
+
+    private void ArenaBtnClickHandler(GameObject go){
+      UIContext.mgrCoC.LazyOpen(ArenaPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.ADDSTATUS);
+    }
+
+
   }
 }

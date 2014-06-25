@@ -32,7 +32,7 @@ namespace TangGame
 			handleTable.Add( TN.NtftNames.TN_CONNECT_FAILURE, HandleConnectFailure );
 			handleTable.Add( TN.NtftNames.TN_EXCEPTION, HandleException );
 			handleTable.Add( TN.NtftNames.TN_CONNECTION_CLOSE, HandleConnectionClose );
-}
+    }
 
 		public override IList<string> ListNotificationInterests()
 		{
@@ -52,7 +52,7 @@ namespace TangGame
 		}
 
     private void HandlePreloadCompleted(INotification notification){
-      WelcomeNetworkBhvr networkBehaviour = this.gameObject.GetComponent<WelcomeNetworkBhvr>();
+      Global.LogError(">> HandlePreloadCompleted");
       //TN.ConnectBean bean = notification.Body as TN.ConnectBean;
 			//TangNet.TN.Connect(networkBehaviour.server, networkBehaviour.port);
 			//Facade.SendNotification(NtftNames.TG_LOADING_MESSAGE, LoadingLang.NETWORK_CONNECTING);
@@ -61,26 +61,31 @@ namespace TangGame
 
     private void HandleConnectSuccess( INotification notification )
     {
+      Global.LogError(">> HandleConnectSuccess");
     }
 
     
     private void ShowErrorMessge (string message)
     {
+      Global.LogError(">> ShowErrorMessge");
       //Facade.SendNotification(NtftNames.TG_SHOW_ERROR_MESSAGE, message);
     }
 
 		private void HandleConnectFailure( INotification notification )
 		{
+      Global.LogError(">> HandleConnectFailure");
       //ShowErrorMessge(LoadingLang.NETWORK_CONNECT_FAILED);
 		}
 
 		private void HandleConnectionClose( INotification notification )
 		{
+      Global.LogError(">> HandleConnectionClose");
       //ShowErrorMessge(LoadingLang.NETWORK_CONNECT_CLOSED);
 		}
 
 		private void HandleException( INotification notification )
 		{
+      Global.LogError(">> HandleException");
       //ShowErrorMessge(LoadingLang.NETWORK_CONNECT_EXCEPTION);
 		}
 		

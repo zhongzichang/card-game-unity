@@ -14,6 +14,13 @@ namespace TangLevel
 
     public static void Arise (Effect effect, EffectorWrapper w)
     {
+
+      int eva = (int)effect.paramList [0];
+
+      HeroBhvr heroBvhr = w.target.GetComponent<HeroBhvr> ();
+
+      heroBvhr.hero.eva = eva;
+
     }
   }
 }

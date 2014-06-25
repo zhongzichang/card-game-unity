@@ -11,9 +11,13 @@ namespace TangLevel
     public ChangeModelEffect() : base(CODE) {
 
     }
+
+    // 作用开始
     public static void Arise (Effect effect, EffectorWrapper w)
     {
+
     }
+
   }
 }
 

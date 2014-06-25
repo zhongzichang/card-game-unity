@@ -47,6 +47,10 @@ namespace TangLevel
     /// 英雄的 AI，可以有多个
     /// </summary>
     public string[] ai;
+    /// <summary>
+    /// 配置冷却时间
+    /// </summary>
+    public float configCd;
     #endregion
 
     #region Variable Attributes
@@ -54,6 +58,8 @@ namespace TangLevel
     public int id;
     public int maxHp;
     public int maxMp;
+    public float cd; // 冷却时间
+    public float speedScale; // 动画速度缩放
 
     /// <summary>
     /// 出场顺序值
@@ -146,6 +152,7 @@ namespace TangLevel
 
     public Hero ()
     {
+
     }
 
     #endregion
