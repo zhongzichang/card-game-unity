@@ -5,6 +5,8 @@ namespace TangLevel
 {
   public class Mocker : MonoBehaviour
 	{
+    private static int skillIdCounter = 1;
+    private static int heroIdCounter = 1;
 
     // Use this for initialization
     void Awake ()
@@ -53,7 +55,6 @@ namespace TangLevel
 
 			Group group = new Group ();
 			group.heros = new Hero[ count];
-			tmpG++;
 			for (int j = 0; j < group.heros.Length; j++) {
 				if (j == 0) {
 					group.heros [j] = MockHeroZf ();
@@ -64,6 +65,8 @@ namespace TangLevel
 				} else if (j == 3) {
 					group.heros [j] = MockHeroHuatuo ();
 				}
+        group.heros [j].id = heroIdCounter++;
+        group.heros [j].cd = Config.HERO_CD;
 			}
 			return group;
 		}
@@ -81,7 +84,9 @@ namespace TangLevel
 					group.heros [i] = MockHeroZhangfei ();
 				} else if (heroIds [i] == 4) {
 					group.heros [i] = MockHeroHuatuo ();
-				}
+        }
+        group.heros [i].id = heroIdCounter++;
+        group.heros [i].cd = Config.HERO_CD;
 			}
 			return group;
 		}
@@ -94,7 +99,6 @@ namespace TangLevel
       group.heros = new Hero[ UnityEngine.Random.Range (2, 3)];
 			for (int j = 0; j < group.heros.Length; j++) {
         int id = UnityEngine.Random.Range (0, 7);
-				id = 6;
         if (id == 0)
 					group.heros [j] = MockHeroZf ();
 				else if (id == 1)
@@ -112,6 +116,8 @@ namespace TangLevel
         } else if (id == 7) {
           group.heros [j] = MockCommonHero ("hero_gongchengche");
         }
+        group.heros [j].id = heroIdCounter++;
+        group.heros [j].cd = Config.HERO_CD;
 
 			}
 			return group;
@@ -139,16 +145,17 @@ namespace TangLevel
 
 			// skill
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      Skill s = MockZfAttackSkill ();
-      skills.Add (s.id, s);
-      /*
-			skills.Add (MockBingHuaSkill ());
-			skills.Add (MockYuehuaSkill ());
-			//if( hero.id == 0)
-			skills.Add (MockLuoshenSkill ());
-   */   
+      Skill s1 = MockZfAttackSkill ();
+      skills.Add (s1.id, s1);
+      Skill s2 = MockBingHuaSkill ();
+      skills.Add (s2.id, s2);
+      Skill s3 = MockYuehuaSkill ();
+      skills.Add (s3.id, s3);
+      Skill s4 = MockLuoshenSkill ();
+      skills.Add (s4.id, s4);
+
 			hero.skills = skills;
-      hero.skillQueue = new int[]{ 0, 1, 2, 3 };
+      hero.skillQueue = new int[]{ s1.id, s2.id, s3.id, s4.id };
 
 
 			tmp++;
@@ -158,6 +165,7 @@ namespace TangLevel
 		public static Skill MockZfAttackSkill ()
 		{
 			Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockLineFlyEffector ();
 			//skill.chargeClip = "binghua";
@@ -172,8 +180,8 @@ namespace TangLevel
 
 		public static Skill MockBingHuaSkill ()
 		{
-			Skill skill = new Skill ();
-
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockLineFlyEffector ();
 			skill.chargeClip = "binghua0";
@@ -188,9 +196,11 @@ namespace TangLevel
 
 		public static Skill MockYuehuaSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
-			skill.effectors = new Effector[1];
+      skill.id = skillIdCounter++;
+      skill.effectors = new Effector[1];
 			skill.effectors [0] = MockLineFlyEffector ();
 			//skill.chargeClip = "";
 			skill.releaseClip = "yuehua";
@@ -205,7 +215,7 @@ namespace TangLevel
 		public static Skill MockLuoshenSkill ()
 		{
 			Skill skill = new Skill ();
-
+      skill.id = skillIdCounter++;
       skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockLineFlyEffector ();
@@ -262,13 +272,16 @@ namespace TangLevel
 
       // skill
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      /*
-			skills.Add (MockXcAttackSkill ());
-			skills.Add (MockQianjinzhuiSkill ());
-			skills.Add (MockZhongjiSkill ());
-			skills.Add (MockYemansicheSkill ());*/
+      Skill s1 = MockXcAttackSkill ();
+      skills.Add (s1.id, s1);
+      Skill s2 = MockQianjinzhuiSkill ();
+      skills.Add (s2.id, s2);
+      Skill s3 = MockZhongjiSkill ();
+      skills.Add (s3.id, s3);
+      Skill s4 = MockYemansicheSkill ();
+      skills.Add (s4.id, s4);
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 2, 3 };
+      hero.skillQueue = new int[]{ s1.id, s2.id, s3.id, s4.id };
 
 
 			tmp++;
@@ -277,7 +290,8 @@ namespace TangLevel
 
 		public static Skill MockXcAttackSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
 			//skill.chargeClip = "binghua0";
@@ -293,7 +307,7 @@ namespace TangLevel
 		public static Skill MockQianjinzhuiSkill ()
 		{
 			Skill skill = new Skill ();
-
+      skill.id = skillIdCounter++;
       skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockQianjinzhuiEffector ();
@@ -309,7 +323,8 @@ namespace TangLevel
 
 		public static Skill MockZhongjiSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
@@ -329,7 +344,8 @@ namespace TangLevel
 
 		public static Skill MockYemansicheSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.releaseEffectors = new Effector[1];
 			skill.releaseEffectors [0] = MockYemansicheEffector ();
@@ -379,13 +395,16 @@ namespace TangLevel
 
       // skill
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      /*
-			skills.Add (MockZhangfeiAttackSkill ());
-			skills.Add (MockShenliSkill ());
-			skills.Add (MockBaqiSkill ());
-			skills.Add (MockDaheSkill ());*/
+      Skill s1 = MockZhangfeiAttackSkill ();
+      skills.Add (s1.id, s1);
+      Skill s2 = MockShenliSkill ();
+      skills.Add (s2.id, s2);
+      Skill s3 = MockBaqiSkill ();
+      skills.Add (s3.id, s3);
+      Skill s4 = MockDaheSkill ();
+      skills.Add (s4.id, s4);
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 2, 3 };
+      hero.skillQueue = new int[]{ s1.id, s3.id, s4.id };
 
 
 			tmp++;
@@ -394,7 +413,8 @@ namespace TangLevel
 
 		public static Skill MockZhangfeiAttackSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
 			//skill.chargeClip = "binghua0";
@@ -409,7 +429,8 @@ namespace TangLevel
 
 		public static Skill MockShenliSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
       skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
@@ -428,7 +449,8 @@ namespace TangLevel
 
 		public static Skill MockBaqiSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
@@ -448,7 +470,8 @@ namespace TangLevel
 
 		public static Skill MockDaheSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockDaheEffect ();
@@ -508,14 +531,18 @@ namespace TangLevel
 
       // skill
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      /*
-			//skills.Add (MockMediumCommonAttack ());
-			skills.Add (MockHuatouAttack ());
-			skills.Add (MockDuliSkill ());
-			skills.Add (MockXumingSkill ());
-      skills.Add (MockMiaoshouhuichunSkill());*/
+      //Skill s1 = MockMediumCommonAttack ();
+      //skills.Add (s1.id, s1);
+      Skill s2 = MockHuatouAttack ();
+      skills.Add (s2.id, s2);
+      Skill s3 = MockDuliSkill ();
+      skills.Add (s3.id, s3);
+      Skill s4 = MockXumingSkill ();
+      skills.Add (s4.id, s4);
+      Skill s5 = MockMiaoshouhuichunSkill ();
+      skills.Add (s5.id, s5);
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0, 1, 2};
+      hero.skillQueue = new int[]{ s2.id, s3.id, s4.id, s5.id};
 			tmp++;
 			return hero;
 		}
@@ -523,7 +550,8 @@ namespace TangLevel
 		public static Skill MockHuatouAttack ()
 		{
 
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockHuatuoAttackEffector ();
@@ -539,7 +567,8 @@ namespace TangLevel
 
 		public static Skill MockDuliSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockDuliEffector ();
@@ -554,7 +583,8 @@ namespace TangLevel
 		}
 		public static Skill MockXumingSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockXumingEffector ();
@@ -570,7 +600,8 @@ namespace TangLevel
 
 		public static Skill MockMiaoshouhuichunSkill ()
 		{
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
       skill.targetType = Skill.TARGET_LOCKED;
 			skill.effectors = new Effector[1];
@@ -652,9 +683,10 @@ namespace TangLevel
 			hero.ai = new string[]{ "AutoFire" };
 
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      //skills.Add (MockNearCommonAttack ());
+      Skill s = MockNearCommonAttack ();
+      skills.Add (s.id, s);
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0 };
+      hero.skillQueue = new int[]{ s.id };
 
 			return hero;
 		}
@@ -678,9 +710,10 @@ namespace TangLevel
 			hero.ai = new string[]{ "AutoFire" };
 
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      //skills.Add (MockLongCommonAttack ());
+      Skill s = MockLongCommonAttack ();
+      skills.Add (s.id, s);
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0 };
+      hero.skillQueue = new int[]{ s.id };
 
 			return hero;
 		}
@@ -700,10 +733,11 @@ namespace TangLevel
 			hero.sort = 2;//UnityEngine.Random.Range (1, 20);
 			hero.ai = new string[]{ "AutoFire" };
 
-			List<Skill> skills = new List<Skill> ();
-			skills.Add (MockToushicheAttack ());
-      //hero.skills = skills;
-			hero.skillQueue = new int[]{ 0 };
+      Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
+      Skill s = MockToushicheAttack ();
+      skills.Add (s.id, s);
+      hero.skills = skills;
+      hero.skillQueue = new int[]{ s.id };
 
 			return hero;
 		}
@@ -725,7 +759,8 @@ namespace TangLevel
 		public static Skill MockToushicheAttack ()
 		{
 
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockToushicheAttackEffector ();
@@ -770,9 +805,10 @@ namespace TangLevel
 
       // skill
       Dictionary<int, Skill> skills = new Dictionary<int, Skill> ();
-      //skills.Add (MockNearCommonAttack ());
+      Skill s = MockNearCommonAttack ();
+      skills.Add (s.id, s);
 			hero.skills = skills;
-			hero.skillQueue = new int[]{ 0 };
+      hero.skillQueue = new int[]{ s.id };
 
 
 			return hero;
@@ -781,7 +817,8 @@ namespace TangLevel
 		public static Skill MockNearCommonAttack ()
 		{
 
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
 			skill.releaseClip = "attack";
@@ -797,7 +834,8 @@ namespace TangLevel
 		public static Skill MockMediumCommonAttack ()
 		{
 
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
 			skill.releaseClip = "attack";
@@ -813,7 +851,8 @@ namespace TangLevel
 		public static Skill MockLongCommonAttack ()
 		{
 
-			Skill skill = new Skill ();
+      Skill skill = new Skill ();
+      skill.id = skillIdCounter++;
 			skill.effectors = new Effector[1];
 			skill.effectors [0] = MockCommonHit ();
 			skill.releaseClip = "attack";

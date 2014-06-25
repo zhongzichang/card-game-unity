@@ -15,10 +15,14 @@ namespace TangLevel
   [Serializable]
   public class Group
   {
+
+
+
     public Hero[] heros;
     public List<Hero> aliveHeros = new List<Hero> ();
 
     private bool mAutoFight = false;
+
 
     #region Constructor
 

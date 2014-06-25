@@ -19,6 +19,8 @@ namespace TangLevel
     private Transform myTransform;
     private HeroBhvr heroBhvr;
     private SkillBhvr skillBhvr;
+    private GroupBhvr groupBhvr;
+
     private float remainTime = period;
 
     void Start ()
@@ -46,13 +48,18 @@ namespace TangLevel
       // transform
       myTransform = transform;
 
+      // group bhvr
+      groupBhvr = GetComponent<GroupBhvr> ();
+      if (groupBhvr == null) {
+        groupBhvr = gameObject.AddComponent<GroupBhvr> ();
+      }
+
     }
 
     void Update ()
     {
-
-      if (!statusBhvr.IsPause) {
-        // 公共冷却时间已过，没有被暂停
+      // 确保没有被暂停，并且战队处于战斗状态
+      if (!statusBhvr.IsPause && groupBhvr.Status == GroupStatus.battle) {
 
         if (nextSkill == null) {
           // 如果技能为空，获取一个技能
