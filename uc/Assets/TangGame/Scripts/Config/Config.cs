@@ -11,6 +11,7 @@ namespace TangGame
 		// XML 配置 ------
 		// 所有加载后的XML对象
 		public static Dictionary<string, object> xmlObjTable = new Dictionary<string, object> ();
+
 		public static Dictionary<int,HeroData> heroXmlTable = new Dictionary<int, HeroData> ();
 		public static Dictionary<int,LevelUpData> levelUpXmlTable = new Dictionary<int,LevelUpData> ();
 		public static Dictionary<int,SkillData> skillXmlTable = new Dictionary<int, SkillData> ();
