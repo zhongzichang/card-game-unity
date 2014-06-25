@@ -66,7 +66,7 @@ public class PlatformMoudle : MonoBehaviour {
   
   public static void _SendPlatformData(string jsonString){
     initializeClass();
-    mModule.CallStatic("handleUnityData", new object[] {jsonOption});
+    mModule.CallStatic("handleUnityData", new object[] {jsonString});
   }
   #endif
 

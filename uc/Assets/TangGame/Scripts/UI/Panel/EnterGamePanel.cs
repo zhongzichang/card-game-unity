@@ -30,7 +30,19 @@ namespace TangGame.UI{
 
     void Start(){
       serverListGroup.SetActive(false);
-      enterBtn.gameObject.SetActive(false);
+      enterBtn.gameObject.SetActive(true);
+      loginIdLabel.text = "";
+      loginNameLabel.text = "";
+      loginChangeBtn.onClick += ChangeServerClickHandler;
+      enterBtn.onClick += EnterBtnClickrHandler;
+    }
+
+    private void ChangeServerClickHandler(GameObject go){
+
+    }
+
+    private void EnterBtnClickrHandler(GameObject go){
+      Application.LoadLevel("Home");
     }
   }
 }
