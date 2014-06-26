@@ -78,7 +78,7 @@ namespace TangLevel
     /// <summary>
     /// 公共CD
     /// </summary>
-    public const float HERO_CD = 6F;
+    public const float HERO_CD = 3F;
     /// <summary>
     /// 公共速度
     /// </summary>
