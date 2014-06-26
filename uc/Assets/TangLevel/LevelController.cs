@@ -1133,6 +1133,10 @@ namespace TangLevel
       if (gobj != null) {
         gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
         gobj.SetActive (true);
+        GroupBhvr gbhvr = gobj.GetComponent<GroupBhvr> ();
+        if (gbhvr != null) {
+          gbhvr.Status = GroupStatus.battle;
+        }
       }
       return gobj;
     }
