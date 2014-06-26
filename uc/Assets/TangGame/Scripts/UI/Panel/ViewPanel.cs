@@ -2,14 +2,10 @@
 using System.Collections;
 
 public class ViewPanel : MonoBehaviour {
-	public const string NAME = "ViewPanel";
 	
   private object mData;
   protected bool started = false;
 
-	public virtual string panelName{
-		get{return NAME;}
-	}
 
   public object data{
     get{return this.mData;}
