@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace TangLevel
+namespace TangLevel.Playback.Adv
 {
 
   /// <summary>
@@ -10,11 +10,8 @@ namespace TangLevel
   public class Move : Action
   {
 
-    public Vector3 destination;
+    public float x;
 
-    public Move ()
-    {
-    }
   }
 }
 

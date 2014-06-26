@@ -1,16 +1,17 @@
 ﻿using System;
+using TP = TangLevel.Playback;
 
 namespace TangLevel
 {
   public class PlaybackMocker
   {
-    public static LevelRecord MockRecrod ()
+    public static TP.LevelRecord MockRecrod ()
     {
 
-      LevelRecord record = new LevelRecord ();
+      TP.LevelRecord record = new TP.LevelRecord ();
 
       record.id = 1;
-      record.selfGroup = Mocker.MockGroup ();
+      record.attackGroup = Mocker.MockGroup ();
       record.level = Mocker.MockGrassLevel ();
 
       return record;

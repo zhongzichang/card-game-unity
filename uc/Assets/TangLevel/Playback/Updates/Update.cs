@@ -1,11 +1,9 @@
 ﻿using System;
 
-namespace TangLevel
+namespace TangLevel.Playback
 {
   public class Update
   {
-
-
 
     public Update ()
     {

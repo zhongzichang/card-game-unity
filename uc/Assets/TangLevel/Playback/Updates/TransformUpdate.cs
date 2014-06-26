@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace TangLevel
+namespace TangLevel.Playback
 {
   public class TransformUpdate : Update
   {
@@ -10,9 +10,9 @@ namespace TangLevel
     public Quaternion rotate;
     public Vector3 scale;
 
-
     public TransformUpdate ()
     {
+
     }
   }
 }

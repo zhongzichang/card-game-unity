@@ -287,7 +287,7 @@ namespace TangLevel
         case Skill.TARGET_SELF_WEAKEST:
           // 己方最虚弱者
           List<GameObject> targetGroup = heroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
-            LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
+            LevelContext.AliveSelfGobjs : LevelContext.AliveDefenseGobjs;
           target = HeroSelector.FindWeakest (targetGroup);
           if (target != null
               && Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) <= skill.distance) {
@@ -297,7 +297,7 @@ namespace TangLevel
         case Skill.TARGET_ENEMY_WEAKEST:
           // 敌方最虚弱者
           targetGroup = heroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
-            LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+            LevelContext.AliveDefenseGobjs : LevelContext.AliveSelfGobjs;
           target = HeroSelector.FindWeakest (targetGroup);
           if (target != null
               && Mathf.Abs (myTransform.localPosition.x - target.transform.localPosition.x) <= skill.distance) {

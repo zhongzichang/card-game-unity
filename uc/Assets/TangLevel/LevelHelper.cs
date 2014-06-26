@@ -34,7 +34,7 @@ namespace TangLevel
 
       resRemain++;
       Tang.AssetBundleLoader.LoadAsync(subLevel.resName, OnLoadCompleted);
-      Hero[] heros = subLevel.enemyGroup.heros;
+      Hero[] heros = subLevel.defenseGroup.heros;
       for(int i=0; i<heros.Length; i++ ){
         Tang.AssetBundleLoader.LoadAsync(heros[i].resName, OnLoadCompleted);
       }

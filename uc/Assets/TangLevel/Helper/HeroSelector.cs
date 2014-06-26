@@ -14,7 +14,7 @@ namespace TangLevel
 
       GameObject sgobj = sourceHeroBhvr.gameObject;
       List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT 
-        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+        ? LevelContext.AliveDefenseGobjs : LevelContext.AliveSelfGobjs;
 
       return FindClosestTarget (sgobj, ol);
     }
@@ -26,7 +26,7 @@ namespace TangLevel
     {
       GameObject sgobj = sourceHeroBhvr.gameObject;
       List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.LEFT
-        ? LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+        ? LevelContext.AliveDefenseGobjs : LevelContext.AliveSelfGobjs;
 
       return FindClosestTarget (sgobj, ol);
  
@@ -108,7 +108,7 @@ namespace TangLevel
     public static GameObject FindGobjAt (Vector3 point)
     {
       const float accuracy = 0.1F;
-      foreach (GameObject gobj in LevelContext.AliveEnemyGobjs) {
+      foreach (GameObject gobj in LevelContext.AliveDefenseGobjs) {
         Vector3 tpos = gobj.transform.localPosition;
         if (tpos.x - point.x < accuracy && tpos.y - point.y < accuracy) {
           return gobj;
@@ -132,7 +132,7 @@ namespace TangLevel
     {
       const float accuracy = 0.1F;
       List<GameObject> ret = new List<GameObject> ();
-      foreach (GameObject gobj in LevelContext.AliveEnemyGobjs) {
+      foreach (GameObject gobj in LevelContext.AliveDefenseGobjs) {
         Vector3 tpos = gobj.transform.localPosition;
         if (Mathf.Abs (tpos.x - xval) < accuracy) {
           ret.Add (gobj);
@@ -154,7 +154,7 @@ namespace TangLevel
     public static GameObject FindSelfWeakest( Hero hero)
     {
       List<GameObject> list = hero.battleDirection == BattleDirection.RIGHT ?
-        LevelContext.AliveSelfGobjs : LevelContext.AliveEnemyGobjs;
+        LevelContext.AliveSelfGobjs : LevelContext.AliveDefenseGobjs;
       
       return FindWeakest(list);
         
