@@ -10,9 +10,9 @@ namespace TangLevel
     public Quaternion rotate;
     public Vector3 scale;
 
-
     public TransformUpdate ()
     {
+
     }
   }
 }

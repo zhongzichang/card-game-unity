@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace TangLevel
 {
@@ -7,11 +8,8 @@ namespace TangLevel
   {
 
     // transfrom
-    private Vector3 position;
+    List<Frame> frames = new List<Frame> ();
 
-    public Timeline ()
-    {
-    }
   }
 }
 

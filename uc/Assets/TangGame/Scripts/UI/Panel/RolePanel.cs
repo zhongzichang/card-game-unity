@@ -38,7 +38,6 @@ namespace TangGame.UI{
     public UIInput input;
 
     private object mParam;
-    private bool started;
 
     void Start(){
       closeBtn.onClick += CloseBtnClickHandler;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TangLevel
+namespace TangLevel.Playback.Adv
 {
   public class Attack : Action
   {
