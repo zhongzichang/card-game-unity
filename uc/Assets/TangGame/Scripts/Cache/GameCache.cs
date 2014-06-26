@@ -26,7 +26,6 @@ namespace TangGame.UI{
     public int versionCode;
     /// 游戏的网管地址
     public string netWorkUrl = "";
-    /// 用于标示预下载资源是否下载完成
-    public bool isLoadCompleted = false;
+
   }
 }

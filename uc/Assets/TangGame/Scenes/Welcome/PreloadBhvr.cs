@@ -38,32 +38,29 @@ namespace TangGame
       xmls.Add("skill");
       xmls.Add("task");
 
+      PlaceController.Place = Place.welcome;
+      Invoke("Init", 0.1f);
+    }
+
+    /// 初始化
+    private void Init(){
       // 下载资源需要
       TangScene.TS.EnsureTSGobj ();
       // 与平台通信初始化
       PlatformMoudle.instance.Init();
-
+      
       remainCounter = xmls.Count;
-
+      
       if (xmls.Count > 0) {
-
+        
         foreach (string xml in xmls) {
           TangScene.TS.LoadXml (xml, LoadCompleted, LoadFailure, LoadBegan);
         }   
       } else {
         OnPreloadCompleted();
       }
-
-      PlaceController.Place = Place.welcome;
-
-      StartCoroutine(LoadText(GameCache.instance.serverListUrl, ServerListLoadCompleted));
-
     }
 
-    /// 服务器列表下载完成
-    private void ServerListLoadCompleted(string text){
-
-    }
 
     private void LoadCompleted (WWW www)
     {
@@ -99,7 +96,7 @@ namespace TangGame
 
     private void PreloadCompleted ()
     {
-      GameCache.instance.isLoadCompleted = true;
+      OnPreloadCompleted();
 
       /*
       TsEffectRoot tsEffectRoot = null;
@@ -113,25 +110,13 @@ namespace TangGame
       }
       TangEffect.TE.EnsureTEGobj (tsEffectRoot.items);
       */
-
-      //OnPreloadCompleted();
     }
 
     private void OnPreloadCompleted(){
       Facade.Instance.SendNotification(NtftNames.TG_PRELOAD_COMPLETED);
     }
 
-    /// www下载
-    IEnumerator LoadText(string url, System.Action<string> onComplete){
-      WWW www = new WWW(url);
-      yield return www;
-      if (www.error == null) {
-        onComplete(www.text); 
-      } else {
-        Global.LogError (">> www.url " + www.url);
-        Global.LogError (">> www.error " + www.error);
-      }
-    }
+
 
   }
 }

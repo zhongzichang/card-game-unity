@@ -27,7 +27,7 @@ namespace TangGame
 		{
       this.gameObject = gameObject;
 
-      handleTable.Add( NtftNames.TG_PRELOAD_COMPLETED, HandlePreloadCompleted );
+      //handleTable.Add( NtftNames.TG_PRELOAD_COMPLETED, HandlePreloadCompleted );
 			handleTable.Add( TN.NtftNames.TN_CONNECT_SUCCESS, HandleConnectSuccess );
 			handleTable.Add( TN.NtftNames.TN_CONNECT_FAILURE, HandleConnectFailure );
 			handleTable.Add( TN.NtftNames.TN_EXCEPTION, HandleException );
