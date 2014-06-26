@@ -34,14 +34,14 @@ namespace TangLevel
           // 目标增加血量
           tgtHero.hp += heal;
 
-          bool self = false; // 是否主攻队伍
+          bool attack = false; // 是否主攻队伍
           if (tgtHeroBhvr.hero.battleDirection == BattleDirection.RIGHT) {
-            self = true;
+            attack = true;
           }
           // 屏幕坐标
           Vector3 screenPos = Camera.main.WorldToScreenPoint (w.target.transform.localPosition) + HURT_TEXT_OFFSET;
           // 伤害冒字，伤害为负就是加血
-          BattleTextController.Bubbling (TG.BattleTxtType.Hurt, -heal, screenPos, false, self);
+          BattleTextController.Bubbling (TG.BattleTxtType.Hurt, -heal, screenPos, false, attack);
 
           // TODO 测试用，MP 增加
           if (srcHeroBhvr != null) {
@@ -65,7 +65,7 @@ namespace TangLevel
 
           srcHero.mp += mpInc;
           //Vector3 scrScreenPos = Camera.main.WorldToScreenPoint (w.source.transform.localPosition) + HURT_TEXT_OFFSET;
-          //BattleTextController.Bubbling(TG.BattleTxtType.Energy, mpInc, scrScreenPos, crit, self );
+          //BattleTextController.Bubbling(TG.BattleTxtType.Energy, mpInc, scrScreenPos, crit, attack );
         }
       }
 

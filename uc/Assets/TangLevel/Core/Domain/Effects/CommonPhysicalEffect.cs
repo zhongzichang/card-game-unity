@@ -44,14 +44,14 @@ namespace TangLevel
           // 目标减少血量
           tgtHero.hp -= hurt;
 
-          bool self = false; // 是否主攻队伍
+          bool attack = false; // 是否主攻队伍
           if (tgtHeroBhvr.hero.battleDirection == BattleDirection.RIGHT) {
-            self = true;
+            attack = true;
           }
           // 屏幕坐标
           Vector3 screenPos = Camera.main.WorldToScreenPoint (w.target.transform.localPosition) + HURT_TEXT_OFFSET;
           // 伤害冒字
-          BattleTextController.Bubbling (TG.BattleTxtType.Hurt, hurt, screenPos, crit, self);
+          BattleTextController.Bubbling (TG.BattleTxtType.Hurt, hurt, screenPos, crit, attack);
 
           // MP 增加
           int mpInc = 0;
@@ -69,7 +69,7 @@ namespace TangLevel
           }
           srcHero.mp += mpInc;
           //Vector3 scrScreenPos = Camera.main.WorldToScreenPoint (w.source.transform.localPosition) + HURT_TEXT_OFFSET;
-          //BattleTextController.Bubbling(TG.BattleTxtType.Energy, mpInc, scrScreenPos, crit, self );
+          //BattleTextController.Bubbling(TG.BattleTxtType.Energy, mpInc, scrScreenPos, crit, attack );
         }
       }
     }
