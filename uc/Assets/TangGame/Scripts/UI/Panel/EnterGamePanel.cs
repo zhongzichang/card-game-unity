@@ -58,11 +58,14 @@ namespace TangGame.UI{
     public UILabel allServerLabel;
     public ServerInfoItem serverInfoItem;
 
+    private List<GameObject> items = new List<GameObject>();
+
     void Awake(){
       Facade.Instance.RegisterMediator(new EnterGameMediator (this));//注册
     }
 
     void Start(){
+      serverInfoItem.gameObject.SetActive(false);
       serverListGroup.SetActive(false);
       enterBtn.gameObject.SetActive(false);
       loginIdLabel.text = "";
@@ -71,6 +74,8 @@ namespace TangGame.UI{
       enterBtn.onClick += EnterBtnClickrHandler;
       selectedBtn.onClick += SelectedBtnClickrHandler;
       StartCoroutine(LoadText(GameCache.instance.serverListUrl, ServerListLoadCompleted));
+
+      CreateServerList();
     }
 
     void OnDestroy (){
@@ -110,6 +115,23 @@ namespace TangGame.UI{
         Global.LogError (">>LoadText www.url " + www.url);
         Global.LogError (">>LoadText www.error " + www.error);
       }
+    }
+
+    private void CreateServerList(){
+      foreach(GameObject go in items){
+        GameObject.Destroy(go);
+      }
+      items.Clear();
+
+      Vector3 tempPosition = serverInfoItem.transform.localPosition;
+      for(int i = 0; i < 10; i++){
+        GameObject go = UIUtils.Duplicate(serverInfoItem.gameObject, serverInfoItem.transform.parent);
+        go.transform.localPosition = tempPosition;
+        tempPosition.y -= 50;
+        ServerInfoItem item = go.GetComponent<ServerInfoItem>();
+        items.Add(go);
+      }
+
     }
   }
 }
