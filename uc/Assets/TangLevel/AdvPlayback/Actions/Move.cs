@@ -10,11 +10,8 @@ namespace TangLevel.Playback.Adv
   public class Move : Action
   {
 
-    public Vector3 destination;
+    public float x;
 
-    public Move ()
-    {
-    }
   }
 }
 

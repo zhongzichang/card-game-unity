@@ -26,7 +26,7 @@ namespace TangLevel
     /// <summary>
     /// 敌人的大招特写是否打开
     /// </summary>
-    public bool enemyBigMoveCloseUp = false;
+    public bool defenseBigMoveCloseUp = false;
 
     /// <summary>
     /// 自动战斗是否可以设置
@@ -79,17 +79,17 @@ namespace TangLevel
       return other;
     }
 
-    public void DisableEnemyBigMoveCloseUp ()
+    public void DisableDefenseBigMoveCloseUp ()
     {
       foreach (SubLevel slvl in subLevels) {
-        slvl.enemyGroup.DisableBigMoveCloseUp ();
+        slvl.defenseGroup.DisableBigMoveCloseUp ();
       }
     }
 
-    public void EnableEnemyBigMoveCloseUp ()
+    public void EnableDefenseBigMoveCloseUp ()
     {
       foreach (SubLevel slvl in subLevels) {
-        slvl.enemyGroup.EnableBigMoveCloseUp ();
+        slvl.defenseGroup.EnableBigMoveCloseUp ();
       }
     }
 

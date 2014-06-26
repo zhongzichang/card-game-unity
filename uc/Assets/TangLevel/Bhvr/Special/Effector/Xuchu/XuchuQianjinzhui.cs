@@ -55,7 +55,7 @@ namespace TangLevel
 			SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
 			// 对方全部活着的英雄
 			List<GameObject> gl = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
-				LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+        LevelContext.AliveDefenseGobjs : LevelContext.AliveSelfGobjs;
 			gl = HeroSelector.FindTargetsWithWidth (gl, transform.position, 3F);
 			foreach (GameObject g in gl) {
 				// 判断对手状态，没在放大招或者处于眩晕状态

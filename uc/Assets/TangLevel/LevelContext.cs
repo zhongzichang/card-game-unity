@@ -103,7 +103,7 @@ namespace TangLevel
     /// <summary>
     /// 敌方所有 GameObject
     /// </summary>
-    public static List<GameObject> enemyGobjs = new List<GameObject> ();
+    public static List<GameObject> defenseGobjs = new List<GameObject> ();
     /// <summary>
     /// 我方所有 GameObject
     /// </summary>
@@ -111,21 +111,21 @@ namespace TangLevel
     /// <summary>
     /// 活着的敌方英雄
     /// </summary>
-    private static List<GameObject> aliveEnemyGobjs = new List<GameObject> ();
+    private static List<GameObject> aliveDefenseGobjs = new List<GameObject> ();
 
-    public static List<GameObject> AliveEnemyGobjs {
+    public static List<GameObject> AliveDefenseGobjs {
       get {
-        aliveEnemyGobjs.Clear ();
-        if (enemyGobjs.Count > 0) {
-          foreach (GameObject gobj in enemyGobjs) {
+        aliveDefenseGobjs.Clear ();
+        if (defenseGobjs.Count > 0) {
+          foreach (GameObject gobj in defenseGobjs) {
             HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
             if (heroBhvr != null) {
               if (heroBhvr.hero.hp > 0)
-                aliveEnemyGobjs.Add (gobj);
+                aliveDefenseGobjs.Add (gobj);
             }
           }
         }
-        return aliveEnemyGobjs;
+        return aliveDefenseGobjs;
       }
     }
 
@@ -186,10 +186,10 @@ namespace TangLevel
           break;
         }
       }
-      // find in enemy group if h is null
+      // find in defense group if h is null
       if( t == null )
         {
-          foreach (GameObject gobj in enemyGobjs) {
+          foreach (GameObject gobj in defenseGobjs) {
             HeroBhvr hb = gobj.GetComponent<HeroBhvr>();
             if (hb != null && hb.hero.id == id) {
               t = gobj.GetComponent<T> ();

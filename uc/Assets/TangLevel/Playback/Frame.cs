@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TangLevel
+namespace TangLevel.Playback
 {
   public class Frame
   {

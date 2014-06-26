@@ -227,7 +227,7 @@ namespace TangLevel
         Debug.LogError ("TangLevel: Failure to create group for level by monsterIds " + monsterIds);
       }
 
-      l.enemyGroup = g;
+      l.defenseGroup = g;
       return l;
     }
 

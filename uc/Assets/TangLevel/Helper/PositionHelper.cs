@@ -21,7 +21,7 @@ namespace TangLevel
       remainy.AddRange (Config.HORIZONTAL_LINES);
 
       // 找出 X = pos.x 上的所有对象的 Y 值，然后从 remainy 中去掉
-      foreach (GameObject gobj in LevelContext.AliveEnemyGobjs) {
+      foreach (GameObject gobj in LevelContext.AliveDefenseGobjs) {
         if (gobj != source) {
           Vector3 tpos = gobj.transform.localPosition;
           if (Mathf.Abs (tpos.x - pos.x) < accuracy) {

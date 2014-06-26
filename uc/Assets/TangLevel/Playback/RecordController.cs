@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TangLevel
+namespace TangLevel.Playback
 {
   public class RecordController
   {
@@ -10,7 +10,7 @@ namespace TangLevel
     public static void StartRecording ()
     {
 
-      record.selfGroup = LevelContext.selfGroup;
+      record.attackGroup = LevelContext.selfGroup;
       record.level = LevelContext.CurrentLevel;
 
     }

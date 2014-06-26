@@ -42,7 +42,7 @@ namespace TangLevel
 				}
 
         level.subLevels [subLevel.index] = subLevel;
-				subLevel.enemyGroup = MockGroup ();
+        subLevel.defenseGroup = MockGroup ();
 
 			}
 			return level;

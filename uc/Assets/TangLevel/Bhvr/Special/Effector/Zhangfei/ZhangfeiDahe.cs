@@ -46,7 +46,7 @@ namespace TangLevel
 
           // 对方全部活着的英雄
           List<GameObject> gl = sourceHeroBhvr.hero.battleDirection == BattleDirection.RIGHT ? 
-            LevelContext.AliveEnemyGobjs : LevelContext.AliveSelfGobjs;
+            LevelContext.AliveDefenseGobjs : LevelContext.AliveSelfGobjs;
           // 在范围内的英雄
           gl = HeroSelector.FindTargetsWithWidth (gl, pos, 3F);
           foreach (GameObject g in gl) {

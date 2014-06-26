@@ -9,15 +9,16 @@ using TangPlace;
 using System.Collections;
 using TU = TangUtils;
 
-namespace TangLevel
+namespace TangLevel.Playback.Adv
 {
-  public class AdventureController : MonoBehaviour
+  /// <summary>
+  /// Level controller.
+  /// </summary>
+  public class AdvPlaybackController : MonoBehaviour
   {
 
-
-
-    public static readonly string GOBJ_NAME = "AdventureController";
-    public static readonly string UI_ROOT_NAME = "LevelUIRoot";
+    public static readonly string GOBJ_NAME = "PlaybackController";
+    public static readonly string UI_ROOT_NAME = "PlaybackUIRoot";
 
     #region Events
 
@@ -66,7 +67,6 @@ namespace TangLevel
     // 显示挑战成功信息
     private static bool lazyShowFailure = false;
     // 显示挑战失败信息
-    private static bool lazyStartNav = false;
 
     #endregion
 
@@ -211,11 +211,6 @@ namespace TangLevel
         StartCoroutine (ShowSuccess ());
       }
 
-      if (lazyStartNav) {
-        lazyStartNav = false;
-        StartCoroutine (StartNav ());
-      }
-
     }
 
 
@@ -353,6 +348,16 @@ namespace TangLevel
         gobj = NewGobj ();
       }
       return gobj;
+    }
+
+    /// <summary>
+    /// 开始回放
+    /// </summary>
+    /// <param name="recordId">Record identifier.</param>
+    public static void StartPlayback(int recordId){
+
+      // TODO
+
     }
 
     /// <summary>
@@ -788,7 +793,7 @@ namespace TangLevel
       if (LevelContext.TargetSubLevel.defenseGroup != null) {
         foreach (Hero hero in LevelContext.TargetSubLevel.defenseGroup.heros) {
           foreach (Skill skill in hero.skills.Values) {
-            if (skill.enable && skill.effectors != null) {
+            if (skill.enable) {
               foreach (Effector effector in skill.effectors) {
                 AddEffector (effector, tmpEffectorTable);
               }
@@ -801,7 +806,7 @@ namespace TangLevel
       if (LevelContext.selfGroup != null) {
         foreach (Hero hero in LevelContext.selfGroup.heros) {
           foreach (Skill skill in hero.skills.Values) {
-            if (skill.enable && skill.effectors != null) {
+            if (skill.enable) {
               foreach (Effector effector in skill.effectors) {
                 AddEffector (effector, tmpEffectorTable);
               }
@@ -913,11 +918,7 @@ namespace TangLevel
         BigMoveBhvr bmBhvr = g.GetComponent<BigMoveBhvr> ();
         // 自动施放大招
         bmBhvr.auto = true;
-
-        AutoFire autoFire = g.GetComponent<AutoFire> ();
-
         LevelContext.defenseGobjs.Add (g);
-
       }
 
       // 监听场景中的英雄
@@ -936,8 +937,7 @@ namespace TangLevel
         levelNextPanel.gameObject.SetActive (false);
       }
 
-      // 让战队开始寻路
-      lazyStartNav = true;
+
     }
 
     /// <summary>
@@ -1144,6 +1144,10 @@ namespace TangLevel
       if (gobj != null) {
         gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
         gobj.SetActive (true);
+        GroupBhvr gbhvr = gobj.GetComponent<GroupBhvr> ();
+        if (gbhvr != null) {
+          gbhvr.Status = GroupStatus.battle;
+        }
       }
       return gobj;
     }
@@ -1501,20 +1505,6 @@ namespace TangLevel
       }
     }
 
-    private static IEnumerator StartNav ()
-    {
-
-      yield return new WaitForSeconds (1F);
-
-      // 获取目标位置x
-      float destinationX = GroupController.GetGroupX (LevelContext.AliveDefenseGobjs);
-      GroupController.NavTo (LevelContext.AliveSelfGobjs, destinationX, Config.EMBATTLE_DISTANCE);
-
-    }
-
     #endregion
-
-
   }
 }
-
