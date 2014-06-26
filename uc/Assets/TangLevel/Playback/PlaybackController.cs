@@ -415,9 +415,9 @@ namespace TangLevel.Playback
           // 确保玩家队伍的大招特写都打开
           group.EnableBigMoveCloseUp ();
           // 设置为当前战斗队伍
-          LevelContext.selfGroup = group;
+          LevelContext.attackGroup = group;
           // 备份团队数据，方便重新挑战关卡使用
-          LevelContext.selfGroupBackup = group.DeepCopy ();
+          LevelContext.attackGroupBackup = group.DeepCopy ();
 
           LoadTargetSubLevelRes ();
 
@@ -463,7 +463,7 @@ namespace TangLevel.Playback
           // 克隆一份场景数据
           LevelContext.CurrentLevel = Config.levelTable [levelId].DeepCopy ();
           // 克隆一份团队数据
-          LevelContext.selfGroup = LevelContext.selfGroupBackup.DeepCopy ();
+          LevelContext.attackGroup = LevelContext.attackGroupBackup.DeepCopy ();
           LoadTargetSubLevelRes ();
 
         }
@@ -741,8 +741,8 @@ namespace TangLevel.Playback
       }
 
       // -- 统计我方英雄资源 --
-      if (LevelContext.selfGroup != null) {
-        foreach (Hero hero in LevelContext.selfGroup.heros) {
+      if (LevelContext.attackGroup != null) {
+        foreach (Hero hero in LevelContext.attackGroup.heros) {
           if (tmpHeroTable.ContainsKey (hero.resName)) {
             int count = tmpHeroTable [hero.resName] + 1;
             tmpHeroTable [hero.resName] = count;
@@ -798,8 +798,8 @@ namespace TangLevel.Playback
       }
 
       // -- 统计我方作用器资源 --
-      if (LevelContext.selfGroup != null) {
-        foreach (Hero hero in LevelContext.selfGroup.heros) {
+      if (LevelContext.attackGroup != null) {
+        foreach (Hero hero in LevelContext.attackGroup.heros) {
           foreach (Skill skill in hero.skills.Values) {
             if (skill.enable) {
               foreach (Effector effector in skill.effectors) {
@@ -873,7 +873,7 @@ namespace TangLevel.Playback
 
       // 确保清场
       LevelContext.defenseGobjs.Clear ();
-      LevelContext.selfGobjs.Clear ();
+      LevelContext.attackGobjs.Clear ();
 
       // 创建背景
       GameObject bgGobj = GobjManager.FetchUnused (LevelContext.CurrentSubLevel.resName);
@@ -884,24 +884,24 @@ namespace TangLevel.Playback
       }
 
       // 整理双方战队 - 去掉死亡的队员
-      LevelContext.selfGroup.Arrange ();
+      LevelContext.attackGroup.Arrange ();
       LevelContext.CurrentSubLevel.defenseGroup.Arrange ();
 
       // 敌方小组列阵
       Group defenseGroup = LevelContext.CurrentSubLevel.defenseGroup;
       Embattle (defenseGroup, BattleDirection.LEFT);
       // 我方小组列阵
-      Embattle (LevelContext.selfGroup, BattleDirection.RIGHT);
+      Embattle (LevelContext.attackGroup, BattleDirection.RIGHT);
 
       // 我方进场
-      foreach (Hero hero in LevelContext.selfGroup.aliveHeros) {
+      foreach (Hero hero in LevelContext.attackGroup.aliveHeros) {
         if (hero.hp > 0) {
           GameObject g = AddHeroToScene (hero);
           BigMoveBhvr bmBhvr = g.GetComponent<BigMoveBhvr> ();
           // 自动施放大招
           bmBhvr.auto = LevelContext.CurrentLevel.autoFight;
           // 加入我方队伍中
-          LevelContext.selfGobjs.Add (g);
+          LevelContext.attackGobjs.Add (g);
           // 保存到当前子关卡开始时的英雄列表中
           LevelContext.SubLevelBeganGobjs.Add (g);
         }
@@ -948,7 +948,7 @@ namespace TangLevel.Playback
       UnlistendefenseHeros ();
 
       // 释放己方英雄
-      foreach (GameObject gobj in LevelContext.selfGobjs) {
+      foreach (GameObject gobj in LevelContext.attackGobjs) {
         HeroGobjManager.Release (gobj);
       }
 
@@ -959,7 +959,7 @@ namespace TangLevel.Playback
 
       // 确保清场
       LevelContext.defenseGobjs.Clear ();
-      LevelContext.selfGobjs.Clear ();
+      LevelContext.attackGobjs.Clear ();
       LevelContext.SubLevelBeganGobjs.Clear ();
 
       // 释放其他(背景，特效)资源
@@ -968,12 +968,12 @@ namespace TangLevel.Playback
     }
 
     /// <summary>
-    /// Listens the selft heros.
+    /// Listens the attackt heros.
     /// </summary>
     private static void ListenSelftHeros ()
     {
       // 得到进子关卡时的英雄数据
-      List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
+      List<Hero>.Enumerator heroEnum = LevelContext.attackGroup.aliveHeros.GetEnumerator ();
       // 得到进子关卡时的英雄游戏对象
       List<GameObject>.Enumerator gobjEnum = LevelContext.SubLevelBeganGobjs.GetEnumerator ();
 
@@ -1018,7 +1018,7 @@ namespace TangLevel.Playback
     private static void UnlistenSelfHeros ()
     {
       // 得到进子关卡时的英雄数据
-      List<Hero>.Enumerator heroEnum = LevelContext.selfGroup.aliveHeros.GetEnumerator ();
+      List<Hero>.Enumerator heroEnum = LevelContext.attackGroup.aliveHeros.GetEnumerator ();
       // 得到进子关卡时的英雄游戏对象
       List<GameObject>.Enumerator gobjEnum = LevelContext.SubLevelBeganGobjs.GetEnumerator ();
 
@@ -1326,7 +1326,7 @@ namespace TangLevel.Playback
     private static void CelebrateVictory ()
     {
 
-      foreach (GameObject g in LevelContext.selfGobjs) {
+      foreach (GameObject g in LevelContext.attackGobjs) {
 
         HeroBhvr heroBhvr = g.GetComponent<HeroBhvr> ();
         if (heroBhvr == null) {
@@ -1345,9 +1345,9 @@ namespace TangLevel.Playback
       if (levelHeroPanel != null) {
 
         // 创建英雄UI操作面板
-        Hero[] heros = LevelContext.selfGroup.heros;
+        Hero[] heros = LevelContext.attackGroup.heros;
         TG.LevelHeroPanelData data = new TG.LevelHeroPanelData ();
-        data.heroCount = LevelContext.selfGroup.heros.Length;
+        data.heroCount = LevelContext.attackGroup.heros.Length;
         levelHeroPanel.param = data;
         List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
         int i = 0;
@@ -1378,7 +1378,7 @@ namespace TangLevel.Playback
       if (levelHeroPanel != null) {
 
         // 创建英雄UI操作面板
-        Hero[] heros = LevelContext.selfGroup.heros;
+        Hero[] heros = LevelContext.attackGroup.heros;
         List<TG.LevelHeroItem>.Enumerator wgtEnum = levelHeroPanel.itemList.GetEnumerator ();
         int i = 0;
         while (wgtEnum.MoveNext ()) {
@@ -1435,7 +1435,7 @@ namespace TangLevel.Playback
       }
 
       // 释放己方英雄
-      foreach (GameObject gobj in LevelContext.selfGobjs) {
+      foreach (GameObject gobj in LevelContext.attackGobjs) {
         HeroGobjManager.Release (gobj);
       }
 
@@ -1446,7 +1446,7 @@ namespace TangLevel.Playback
       battleResultPanel.gameObject.SetActive (true);
 
       ArrayList heroIds = new ArrayList ();
-      foreach (Hero hero in LevelContext.selfGroup.heros) {
+      foreach (Hero hero in LevelContext.attackGroup.heros) {
         heroIds.Add (hero.id);
       }
       int resultType = UnityEngine.Random.Range (2, 6); // 超时战斗结果也会返回失败
@@ -1474,7 +1474,7 @@ namespace TangLevel.Playback
       levelHeroPanel.gameObject.SetActive (false);
       battleResultPanel.gameObject.SetActive (true);
       ArrayList heroIds = new ArrayList ();
-      foreach (Hero hero in LevelContext.selfGroup.heros) {
+      foreach (Hero hero in LevelContext.attackGroup.heros) {
         heroIds.Add (hero.id);
       }
       battleResultPanel.param = TangGame.UI.TestDataStore.RandomBattleResult (heroIds, 0);

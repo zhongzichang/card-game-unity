@@ -82,13 +82,13 @@ namespace TangLevel
     /// <summary>
     /// 我方小组(model)
     /// </summary>
-    public static Group selfGroup;
+    public static Group attackGroup;
 
 
     /// <summary>
     /// 我方小组(model)
     /// </summary>
-    public static Group selfGroupBackup;
+    public static Group attackGroupBackup;
 
     #endregion
 
@@ -107,7 +107,7 @@ namespace TangLevel
     /// <summary>
     /// 我方所有 GameObject
     /// </summary>
-    public static List<GameObject> selfGobjs = new List<GameObject> ();
+    public static List<GameObject> attackGobjs = new List<GameObject> ();
     /// <summary>
     /// 活着的敌方英雄
     /// </summary>
@@ -137,8 +137,8 @@ namespace TangLevel
     public static List<GameObject> AliveSelfGobjs {
       get {
         aliveSelfGobjs.Clear ();
-        if (selfGobjs.Count > 0) {
-          foreach (GameObject gobj in selfGobjs) {
+        if (attackGobjs.Count > 0) {
+          foreach (GameObject gobj in attackGobjs) {
             HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
             if (heroBhvr != null) {
               if (heroBhvr.hero.hp > 0)
@@ -153,12 +153,12 @@ namespace TangLevel
     /// <summary>
     /// 根据ID获取活着的我方英雄对象
     /// </summary>
-    /// <returns>The alive self gobj.</returns>
+    /// <returns>The alive attack gobj.</returns>
     /// <param name="id">Identifier.</param>
     public static GameObject GetAliveSelfGobj (int id)
     {
       GameObject g = null;
-      foreach (GameObject gobj in selfGobjs) {
+      foreach (GameObject gobj in attackGobjs) {
         HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
         if (heroBhvr != null) {
           if (heroBhvr.hero.id == id) {
@@ -178,8 +178,8 @@ namespace TangLevel
     public static T GetHeroComponent<T>(int id) where T : Component {
 
       T t = null;
-      // find in self group
-      foreach (GameObject gobj in selfGobjs) {
+      // find in attack group
+      foreach (GameObject gobj in attackGobjs) {
         HeroBhvr hb = gobj.GetComponent<HeroBhvr>();
         if (hb != null && hb.hero.id == id) {
           t = gobj.GetComponent<T> ();

@@ -24,7 +24,8 @@ namespace TangLevel.Playback.Adv
 
     public void Start (Group attackGroup, Level level)
     {
-
+      record.attackGroup = attackGroup;
+      record.level = level;
       recording = true;
     }
 

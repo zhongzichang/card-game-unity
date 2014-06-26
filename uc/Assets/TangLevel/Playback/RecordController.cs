@@ -10,7 +10,7 @@ namespace TangLevel.Playback
     public static void StartRecording ()
     {
 
-      record.attackGroup = LevelContext.selfGroup;
+      record.attackGroup = LevelContext.attackGroup;
       record.level = LevelContext.CurrentLevel;
 
     }
