@@ -7,7 +7,7 @@ namespace TangLevel
   public class RecorderBhvr : MonoBehaviour
   {
 
-    public const int SAMPLES = 24;
+    public const int SAMPLES = 120;
     private TPA.LevelRecorder recorder;
     private TPA.Frame currentFrame;
     private float timeInSecond;
@@ -24,7 +24,7 @@ namespace TangLevel
       preFrameIndex = 0;
       secondsPerFrame = 60F / SAMPLES; 
 
-      LevelController.RaiseEnterLevelSuccess += OnEnterLevelSuccess;
+      LevelController.RaiseChallengeStart += OnChallengeStart;
       LevelController.RaiseChallengeSuccess += OnChallengeSuccess;
       LevelController.RaiseChangengeFailure += OnChallengeFailure;
 
@@ -40,7 +40,7 @@ namespace TangLevel
     }
 
 
-    private void OnEnterLevelSuccess (object sender, EventArgs args)
+    private void OnChallengeStart (object sender, EventArgs args)
     {
       recorder.Start (LevelContext.attackGobjs, LevelContext.defenseGobjs, LevelContext.CurrentLevel);
 
@@ -94,9 +94,13 @@ namespace TangLevel
     private void CheckFrame(){
 
       if (frameIndex != preFrameIndex) {
+
+        Debug.Log ("frame create ...");
+
         currentFrame.duration = frameIndex - preFrameIndex;
         recorder.AddKeyFrame (currentFrame);
         currentFrame = new TPA.Frame ();
+        preFrameIndex = frameIndex;
       }
 
     }

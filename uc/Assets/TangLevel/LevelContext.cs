@@ -49,7 +49,7 @@ namespace TangLevel
     /// <value>The current level.</value>
     public static Level CurrentLevel {
       get{ return m_currentLevel; }
-      set{ m_currentLevel = value; }
+      set{ m_currentLevel = value; CurrentSubLevel = value.subLevels [0]; }
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ namespace TangLevel
     public static SubLevel NextSubLevel {
       get {
         if (m_currentLevel != null) {
-          if (Challenging) { // 挑战已经开始，不是第一个子关卡
+          if (CurrentSubLevel != null) { // 挑战已经开始，不是第一个子关卡
             int nextIndex = CurrentSubLevel.index + 1;
             if (m_currentLevel.subLevels.Length > nextIndex) {
               return m_currentLevel.subLevels [nextIndex];
@@ -80,16 +80,6 @@ namespace TangLevel
           }
         } 
         return null;
-      }
-    }
-
-    /// <summary>
-    /// 目标子关卡
-    /// </summary>
-    /// <value>The target sub level.</value>
-    public static SubLevel TargetSubLevel {
-      get {
-        return NextSubLevel;
       }
     }
 

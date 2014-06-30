@@ -31,6 +31,10 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler RaiseSubLevelCleaned;
     /// <summary>
+    /// 挑战开始
+    /// </summary>
+    public static event EventHandler RaiseChallengeStart;
+    /// <summary>
     /// 挑战成功
     /// </summary>
     public static event EventHandler RaiseChallengeSuccess;
@@ -409,6 +413,7 @@ namespace TangLevel
           }
           // 设置为当前关卡
           LevelContext.CurrentLevel = lvl;
+          LevelContext.CurrentSubLevel = lvl.subLevels [0];
 
           // 确保玩家队伍的大招特写都打开
           group.EnableBigMoveCloseUp ();
@@ -418,7 +423,7 @@ namespace TangLevel
           LevelContext.attackGroupBackup = group.DeepCopy ();
 
           // 加载目标子关卡资源
-          LoadTargetSubLevelRes ();
+          LoadCurrentSubLevelRes ();
 
 
         } else {
@@ -466,7 +471,7 @@ namespace TangLevel
           LevelContext.attackGroup = LevelContext.attackGroupBackup.DeepCopy ();
 
           // 加载目标子关卡资源
-          LoadTargetSubLevelRes ();
+          LoadCurrentSubLevelRes ();
 
         }
       }
@@ -555,7 +560,7 @@ namespace TangLevel
 
       Debug.Log ("OnSubLevelMapLoaded");
 
-      if (args.Name == LevelContext.TargetSubLevel.resName) {
+      if (args.Name == LevelContext.CurrentSubLevel.resName) {
 
         if (GobjManager.HasHandler (OnSubLevelMapLoaded)) {
           GobjManager.RaiseLoadEvent -= OnSubLevelMapLoaded;
@@ -693,12 +698,12 @@ namespace TangLevel
     /// 加载目标子关卡的资源
     /// </summary>
     /// <param name="levelId">Level identifier.</param>
-    private static void LoadTargetSubLevelRes ()
+    private static void LoadCurrentSubLevelRes ()
     {
 
       Debug.Log ("LoadTargetSubLevelRes");
 
-      SubLevel subLevel = LevelContext.TargetSubLevel;
+      SubLevel subLevel = LevelContext.CurrentSubLevel;
       Debug.Log ("subLevel.resName " + subLevel.resName);
       GameObject bgGobj = GobjManager.FetchUnused (subLevel.resName);
       if (bgGobj == null) {
@@ -733,8 +738,8 @@ namespace TangLevel
       // 临时英雄表
       Dictionary<string, int> tmpHeroTable = new Dictionary<string, int> ();
       // -- 统计敌方英雄资源 --
-      if (LevelContext.TargetSubLevel.defenseGroup != null) {
-        foreach (Hero hero in LevelContext.TargetSubLevel.defenseGroup.heros) {
+      if (LevelContext.CurrentSubLevel.defenseGroup != null) {
+        foreach (Hero hero in LevelContext.CurrentSubLevel.defenseGroup.heros) {
           if (tmpHeroTable.ContainsKey (hero.resName)) {
             int count = tmpHeroTable [hero.resName] + 1;
             tmpHeroTable [hero.resName] = count;
@@ -788,8 +793,8 @@ namespace TangLevel
       // 临时作用器表
       Dictionary<string, int> tmpEffectorTable = new Dictionary<string, int> ();
       // -- 统计敌方作用器资源 --
-      if (LevelContext.TargetSubLevel.defenseGroup != null) {
-        foreach (Hero hero in LevelContext.TargetSubLevel.defenseGroup.heros) {
+      if (LevelContext.CurrentSubLevel.defenseGroup != null) {
+        foreach (Hero hero in LevelContext.CurrentSubLevel.defenseGroup.heros) {
           foreach (Skill skill in hero.skills.Values) {
             if (skill.enable && skill.effectors != null) {
               foreach (Effector effector in skill.effectors) {
@@ -850,12 +855,13 @@ namespace TangLevel
         // 进入子关卡
         EnterNextSubLevel ();
 
-        // 设置关卡状态 InLevel
-        LevelContext.Challenging = true;
 
         // 发出关卡进入成功通知
         if (RaiseEnterLevelSuccess != null)
           RaiseEnterLevelSuccess (null, EventArgs.Empty);
+
+        // 挑战开始
+        LevelContext.Challenging = true;
 
       } else { // 已经在关卡里面
 
@@ -872,7 +878,6 @@ namespace TangLevel
     /// </summary>
     private static void EnterNextSubLevel ()
     {
-      LevelContext.CurrentSubLevel = LevelContext.TargetSubLevel;
 
       // 确保清场
       LevelContext.defenseGobjs.Clear ();
@@ -1313,13 +1318,15 @@ namespace TangLevel
       // 如果子关卡还没有加载，加载子关卡资源
       // 否则进入子关卡
 
-      if (LevelContext.TargetSubLevel != null) {
+      if (LevelContext.NextSubLevel != null) {
 
         // 离开子关卡
         LeftSubLevel ();
 
+        LevelContext.CurrentSubLevel = LevelContext.NextSubLevel;
+
         // 加载目标子关卡资源
-        LoadTargetSubLevelRes ();
+        LoadCurrentSubLevelRes ();
       }
     }
 
