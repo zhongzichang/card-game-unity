@@ -64,10 +64,9 @@ namespace TangLevel
     public static Dictionary<string, int> requiredEffectorGobjTable = new Dictionary<string, int> ();
     private static int m_bigMoveCounter = 0;
     private static bool lazyShowSuccess = false;
-// 显示挑战成功信息
+    // 显示挑战成功信息
     private static bool lazyShowFailure = false;
-// 显示挑战失败信息
-    private static TPA.LevelRecorder recorder = null;
+    // 显示挑战失败信息
 
     #endregion
 
@@ -183,10 +182,11 @@ namespace TangLevel
       } else {
         Debug.LogError ("Can not found Level UI Root");
       }
+
       // Scene ----
 
       LevelContext.InLevel = false;
-
+      LevelContext.Challenging = false;
 
     }
 
@@ -377,9 +377,11 @@ namespace TangLevel
     public static void ChallengeLevel (int levelId, Group group)
     {
 
-      // 确保不在关卡里面
+      // 确保没有在挑战
       if (!LevelContext.InLevel) {
 
+        // 挑战中
+        LevelContext.InLevel = true;
 
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
@@ -418,8 +420,6 @@ namespace TangLevel
           // 加载目标子关卡资源
           LoadTargetSubLevelRes ();
 
-          // 战斗记录
-          recorder = TPA.LevelRecorder.NewInstance ();
 
         } else {
           Debug.Log ("Level not found by id " + levelId);
@@ -468,9 +468,6 @@ namespace TangLevel
           // 加载目标子关卡资源
           LoadTargetSubLevelRes ();
 
-          // 战斗记录
-          recorder = TPA.LevelRecorder.NewInstance ();
-
         }
       }
     }
@@ -494,8 +491,9 @@ namespace TangLevel
       // 先退出子关卡
       LeftSubLevel ();
 
-      // TODO 发出离开关卡通知
+      // 发出离开关卡通知
       LevelContext.InLevel = false;
+      LevelContext.Challenging = false;
 
       // 取消 HeroOpPanel 对 英雄数据变化的监听
       UnsetHeroOpPanel ();
@@ -793,7 +791,7 @@ namespace TangLevel
       if (LevelContext.TargetSubLevel.defenseGroup != null) {
         foreach (Hero hero in LevelContext.TargetSubLevel.defenseGroup.heros) {
           foreach (Skill skill in hero.skills.Values) {
-            if (skill.enable) {
+            if (skill.enable && skill.effectors != null) {
               foreach (Effector effector in skill.effectors) {
                 AddEffector (effector, tmpEffectorTable);
               }
@@ -806,7 +804,7 @@ namespace TangLevel
       if (LevelContext.attackGroup != null) {
         foreach (Hero hero in LevelContext.attackGroup.heros) {
           foreach (Skill skill in hero.skills.Values) {
-            if (skill.enable) {
+            if (skill.enable && skill.effectors != null) {
               foreach (Effector effector in skill.effectors) {
                 AddEffector (effector, tmpEffectorTable);
               }
@@ -844,7 +842,7 @@ namespace TangLevel
       Debug.Log ("AllSubLevelResourceReady");
 
 
-      if (!LevelContext.InLevel) { // 如果还在关卡外面
+      if (!LevelContext.Challenging) { // 挑战还没开始
 
         // 首次进入子关卡 ----
         SetupHeroOpPanel ();
@@ -853,7 +851,7 @@ namespace TangLevel
         EnterNextSubLevel ();
 
         // 设置关卡状态 InLevel
-        LevelContext.InLevel = true;
+        LevelContext.Challenging = true;
 
         // 发出关卡进入成功通知
         if (RaiseEnterLevelSuccess != null)
@@ -1432,10 +1430,6 @@ namespace TangLevel
 
     private static IEnumerator ShowSuccess ()
     {
-      // 战斗记录停止
-      recorder.Stop ();
-      // 保存战斗记录
-      recorder.Save ();
 
       yield return new WaitForSeconds (3);
 
@@ -1465,12 +1459,6 @@ namespace TangLevel
 
     private static IEnumerator ShowFailure ()
     {
-
-      // 战斗记录停止
-      recorder.Stop ();
-      // 保存战斗记录
-      recorder.Save ();
-
       yield return new WaitForSeconds (3);
 
       // 释放敌方英雄

@@ -18,7 +18,6 @@ namespace TangLevel
     /// <param name="screenPos">Screen position.</param>
     public static void Bubbling (TG.BattleTxtType type, int value, Vector3 screenPos, bool crit, bool self)
     {
-
       TG.BattleTxt battleTxt = new TG.BattleTxt ();
       battleTxt.type = type;
       battleTxt.value = value;

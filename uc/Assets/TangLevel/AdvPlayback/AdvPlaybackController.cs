@@ -185,6 +185,7 @@ namespace TangLevel.Playback.Adv
       // Scene ----
 
       LevelContext.InLevel = false;
+      LevelContext.Challenging = false;
 
 
     }
@@ -389,6 +390,7 @@ namespace TangLevel.Playback.Adv
       // 确保不在关卡里面
       if (!LevelContext.InLevel) {
 
+        LevelContext.InLevel = true;
 
         // 设置当前关卡
         if (Config.levelTable.ContainsKey (levelId)) {
@@ -496,6 +498,7 @@ namespace TangLevel.Playback.Adv
 
       // TODO 发出离开关卡通知
       LevelContext.InLevel = false;
+      LevelContext.Challenging = false;
 
       // 取消 HeroOpPanel 对 英雄数据变化的监听
       UnsetHeroOpPanel ();
@@ -844,7 +847,7 @@ namespace TangLevel.Playback.Adv
       Debug.Log ("AllSubLevelResourceReady");
 
 
-      if (!LevelContext.InLevel) { // 如果还在关卡外面
+      if (!LevelContext.Challenging) { // 如果还在关卡外面
 
         // 首次进入子关卡 ----
         SetupHeroOpPanel ();
@@ -852,8 +855,8 @@ namespace TangLevel.Playback.Adv
         // 进入子关卡
         EnterNextSubLevel ();
 
-        // 设置关卡状态 InLevel
-        LevelContext.InLevel = true;
+        // 设置挑战状态
+        LevelContext.Challenging = true;
 
         // 发出关卡进入成功通知
         if (RaiseEnterLevelSuccess != null)

@@ -10,6 +10,7 @@ namespace TangPlace
     welcome,
     home,
     level,
-    adventure
+    adventure,
+    playback
   }
 }

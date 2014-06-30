@@ -5,14 +5,13 @@ namespace TangLevel.Playback.Adv
 {
   public class Frame
   {
-
     public int duration;
 
-    public List<Action> actions = new List<Action>();
+    public List<Action> actions = new List<Action> ();
 
-    public Frame ()
+    public void AddAction (Action action)
     {
-
+      actions.Add (action);
     }
   }
 }

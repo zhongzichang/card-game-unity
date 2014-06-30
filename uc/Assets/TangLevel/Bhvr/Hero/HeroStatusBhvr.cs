@@ -8,8 +8,9 @@ namespace TangLevel
     #region delegates
 
     public delegate void StatusChange (HeroStatus status);
-
     public delegate void PauseChange (bool pause);
+    public event EventHandler changeHandler;
+
     // 状态结束时回调
     public StatusChange statusChangedHandler;
     public PauseChange pauseChangedHandler;
@@ -114,6 +115,9 @@ namespace TangLevel
         newStatus = HeroStatus.none; // 新状态设置为 none
         if (statusChangedHandler != null) {
           statusChangedHandler (m_status);
+        }
+        if (changeHandler != null) {
+          changeHandler (this, new HeroStatusEvent(m_status));
         }
       } 
 

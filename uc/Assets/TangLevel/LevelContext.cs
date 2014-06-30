@@ -9,25 +9,39 @@
 // ------------------------------------------------------------------------------
 using System.Collections.Generic;
 using UnityEngine;
+using TP = TangLevel.Playback.Adv;
 
 namespace TangLevel
 {
   public class LevelContext
   {
+    #region Attributes
+
+    private static Level m_currentLevel = null;
+
+    #endregion
+
     // -- 关卡 --
 
     #region Level
 
     /// <summary>
-    /// 是否在关卡里面
+    /// 正在挑战，第一个子关卡的所有资源加载后
+    /// </summary>
+    /// <value><c>true</c> if challenging; otherwise, <c>false</c>.</value>
+    public static bool Challenging {
+      get;
+      set;
+    }
+
+    /// <summary>
+    /// 是否在关卡里面，玩家点击挑战按钮后，该状态设置为 true，离开关卡后，该状态设置为 false
     /// </summary>
     /// <value><c>true</c> if in level; otherwise, <c>false</c>.</value>
     public static bool InLevel {
       get;
       set;
     }
-
-    private static Level m_currentLevel = null;
 
     /// <summary>
     /// 当前关卡
@@ -54,12 +68,12 @@ namespace TangLevel
     public static SubLevel NextSubLevel {
       get {
         if (m_currentLevel != null) {
-          if (InLevel) { // 在关卡里面
+          if (Challenging) { // 挑战已经开始，不是第一个子关卡
             int nextIndex = CurrentSubLevel.index + 1;
             if (m_currentLevel.subLevels.Length > nextIndex) {
               return m_currentLevel.subLevels [nextIndex];
             }
-          } else { // 在关卡外面
+          } else { // 挑战还没开始，第一个子关卡
             if (m_currentLevel.subLevels.Length > 0) {
               return m_currentLevel.subLevels [0];
             }
@@ -89,6 +103,11 @@ namespace TangLevel
     /// 我方小组(model)
     /// </summary>
     public static Group attackGroupBackup;
+
+    /// <summary>
+    /// 录像机
+    /// </summary>
+    public static TP.LevelRecorder recorder;
 
     #endregion
 
@@ -175,28 +194,28 @@ namespace TangLevel
     /// </summary>
     /// <returns>The hero bhvr.</returns>
     /// <param name="id">Identifier.</param>
-    public static T GetHeroComponent<T>(int id) where T : Component {
+    public static T GetHeroComponent<T> (int id) where T : Component
+    {
 
       T t = null;
       // find in attack group
       foreach (GameObject gobj in attackGobjs) {
-        HeroBhvr hb = gobj.GetComponent<HeroBhvr>();
+        HeroBhvr hb = gobj.GetComponent<HeroBhvr> ();
         if (hb != null && hb.hero.id == id) {
           t = gobj.GetComponent<T> ();
           break;
         }
       }
       // find in defense group if h is null
-      if( t == null )
-        {
-          foreach (GameObject gobj in defenseGobjs) {
-            HeroBhvr hb = gobj.GetComponent<HeroBhvr>();
-            if (hb != null && hb.hero.id == id) {
-              t = gobj.GetComponent<T> ();
-              break;
-            }
+      if (t == null) {
+        foreach (GameObject gobj in defenseGobjs) {
+          HeroBhvr hb = gobj.GetComponent<HeroBhvr> ();
+          if (hb != null && hb.hero.id == id) {
+            t = gobj.GetComponent<T> ();
+            break;
           }
         }
+      }
       return t;
     }
 
