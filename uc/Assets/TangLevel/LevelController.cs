@@ -860,8 +860,6 @@ namespace TangLevel
         if (RaiseEnterLevelSuccess != null)
           RaiseEnterLevelSuccess (null, EventArgs.Empty);
 
-        // 挑战开始
-        LevelContext.Challenging = true;
 
       } else { // 已经在关卡里面
 
@@ -940,7 +938,14 @@ namespace TangLevel
         levelNextPanel.gameObject.SetActive (false);
       }
 
+      if (!LevelContext.Challenging) {
+        // 挑战开始
+        LevelContext.Challenging = true;
 
+        if (RaiseChallengeStart != null) {
+          RaiseChallengeStart (null, EventArgs.Empty);
+        }
+      }
     }
 
     /// <summary>
