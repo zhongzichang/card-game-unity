@@ -1,30 +1,28 @@
 ﻿using System;
 using UnityEngine;
-using TPA = TangLevel.Playback.Adv;
+using TP = TangLevel.Playback;
 
 namespace TangLevel
 {
   public class RecorderBhvr : MonoBehaviour
   {
 
-    public const int SAMPLES = 120;
-    private TPA.LevelRecorder recorder;
-    private TPA.Frame currentFrame;
-    private float timeInSecond;
+    private TP.LevelRecorder recorder;
     private int frameIndex = 0;
-    private int preFrameIndex = 0;
-    private float secondsPerFrame;
+    private int lastKeyFrameIndex = 0;
+    private int keyFrameCounter = 0;
+
+    //private TP.Frame currentFrame;
 
     void Start ()
     {
 
-      recorder = TPA.LevelRecorder.NewInstance ();
-      currentFrame = new TPA.Frame ();
+      recorder = new TP.LevelRecorder();
+      //currentFrame = new TP.Frame ();
       frameIndex = 0;
-      preFrameIndex = 0;
-      secondsPerFrame = 60F / SAMPLES; 
+      lastKeyFrameIndex = 0;
 
-      LevelController.RaiseChallengeStart += OnChallengeStart;
+      LevelController.RaiseBattleStart += OnBattleStart;
       LevelController.RaiseChallengeSuccess += OnChallengeSuccess;
       LevelController.RaiseChangengeFailure += OnChallengeFailure;
 
@@ -33,46 +31,40 @@ namespace TangLevel
     void Update ()
     {
       if (recorder.IsRecording) {
-        timeInSecond += Time.deltaTime;
         // 设置当前帧索引
-        frameIndex = (int)(timeInSecond / secondsPerFrame);
+        frameIndex++;
       }
     }
 
 
-    private void OnChallengeStart (object sender, EventArgs args)
+    private void OnBattleStart (object sender, EventArgs args)
     {
-      recorder.Start (LevelContext.attackGobjs, LevelContext.defenseGobjs, LevelContext.CurrentLevel);
+      //recorder.Start (LevelContext.attackGobjs, LevelContext.defenseGobjs, LevelContext.CurrentLevel);
 
-      foreach (GameObject gobj in LevelContext.attackGobjs) {
 
-        // 监听攻方英雄的状态变化
-        HeroStatusBhvr sttsBhvr = gobj.GetComponent<HeroStatusBhvr> ();
-        sttsBhvr.changeHandler += OnHeroStatusChange;
-      }
-      foreach (GameObject gobj in LevelContext.defenseGobjs) {
-
-        // 监听守方英雄的状态变化
-        HeroStatusBhvr sttsBhvr = gobj.GetComponent<HeroStatusBhvr> ();
-        sttsBhvr.changeHandler += OnHeroStatusChange;
-      }
-
-      timeInSecond = 0;
+      frameIndex = 0;
+      keyFrameCounter = 0;
     }
 
     private void OnChallengeSuccess (object sender, EventArgs args)
     {
       CheckFrame ();
 
-      recorder.Stop ();
-      recorder.Save ();
+      //recorder.Stop ();
+      //recorder.Save ();
+
+      //Debug.Log (Procurios.Public.JSON.JsonEncode (recorder.Record));
     }
 
     private void OnChallengeFailure (object sender, EventArgs args)
     {
       CheckFrame ();
-      recorder.Stop ();
-      recorder.Save ();
+
+      //recorder.Stop ();
+      //recorder.Save ();
+
+      //Debug.Log (Procurios.Public.JSON.JsonEncode (recorder.Record));
+      //Debug.Log (recorder.Record.timelines [0].frames.Count);
     }
 
     private void OnHeroStatusChange (object sender, EventArgs args)
@@ -85,22 +77,44 @@ namespace TangLevel
       HeroStatusBhvr sttsBhvr = (HeroStatusBhvr)sender;
       if (sttsBhvr != null) {
         HeroBhvr heroBhvr = sttsBhvr.GetComponent<HeroBhvr> ();
-        TPA.Action action = new TPA.StatusChange (heroBhvr.hero.id, hsArgs.Status);
-        currentFrame.actions.Add (action);
+        //TP.Action action = new TPA.StatusChange (heroBhvr.hero.id, hsArgs.Status);
+        //currentFrame.actions.Add (action);
+
+        switch (hsArgs.Status) {
+        case HeroStatus.running:
+          // 开始移动
+          //action = new TPA.PosChange (heroBhvr.hero.id, sttsBhvr.transform.position.x);
+          //currentFrame.AddAction (action);
+          break;
+        }
+
+        switch (sttsBhvr.beforeStatus) {
+        case HeroStatus.running:
+          // 停止移动
+          //action = new TPA.PosChange (heroBhvr.hero.id, sttsBhvr.transform.position.x);
+          //currentFrame.AddAction (action);
+          break;
+        }
+
       }
 
     }
 
-    private void CheckFrame(){
+    private void CheckFrame ()
+    {
+      if (frameIndex != lastKeyFrameIndex) {
 
-      if (frameIndex != preFrameIndex) {
+        // 设置当前帧持续帧数
+        //currentFrame.duration = frameIndex - lastKeyFrameIndex;
+        //recorder.AddKeyFrame (currentFrame);
 
-        Debug.Log ("frame create ...");
+        // 创建新帧，并且设置新帧为当前帧
+        //currentFrame = new TPA.Frame ();
 
-        currentFrame.duration = frameIndex - preFrameIndex;
-        recorder.AddKeyFrame (currentFrame);
-        currentFrame = new TPA.Frame ();
-        preFrameIndex = frameIndex;
+        // 前一个关键帧索引
+        lastKeyFrameIndex = frameIndex;
+        // 关键帧计数++
+        keyFrameCounter++;
       }
 
     }

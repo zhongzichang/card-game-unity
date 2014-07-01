@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace TangLevel.Playback
 {
-  public class Frame
+  public class Frame<T>
   {
     public int duration;
-    public List<Update> updates = new List<Update>();
+    public T val;
+
   }
 }
 

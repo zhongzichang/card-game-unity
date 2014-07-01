@@ -1,14 +1,13 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections.Generic;
 
 namespace TangLevel.Playback
 {
-  public class Timeline
+  public class Timeline<T>
   {
 
-    // transfrom
-    List<Frame> frames = new List<Frame> ();
+    public List<Frame<T>> frames = new List<Frame<T>> ();
+
 
   }
 }

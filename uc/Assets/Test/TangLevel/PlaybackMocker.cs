@@ -11,8 +11,8 @@ namespace TangLevel
       TP.LevelRecord record = new TP.LevelRecord ();
 
       record.id = 1;
-      record.attackGroup = Mocker.MockGroup ();
-      record.level = Mocker.MockGrassLevel ();
+      //record.attackGroup = Mocker.MockGroup ();
+      //record.level = Mocker.MockGrassLevel ();
 
       return record;
 

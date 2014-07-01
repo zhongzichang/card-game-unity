@@ -8,7 +8,6 @@ using TUI = TangUI;
 using TangPlace;
 using System.Collections;
 using TU = TangUtils;
-using TPA = TangLevel.Playback.Adv;
 
 namespace TangLevel
 {
@@ -33,7 +32,7 @@ namespace TangLevel
     /// <summary>
     /// 挑战开始
     /// </summary>
-    public static event EventHandler RaiseChallengeStart;
+    public static event EventHandler RaiseBattleStart;
     /// <summary>
     /// 挑战成功
     /// </summary>
@@ -847,9 +846,11 @@ namespace TangLevel
       Debug.Log ("AllSubLevelResourceReady");
 
 
-      if (!LevelContext.Challenging) { // 挑战还没开始
+      if (LevelContext.CurrentSubLevel.index == 0) {
 
         // 首次进入子关卡 ----
+
+        // 设置英雄操作面板
         SetupHeroOpPanel ();
 
         // 进入子关卡
@@ -931,21 +932,18 @@ namespace TangLevel
       // UI 控制 --
 
       // 英雄头像MP效果打开
-      //levelHeroPanel.SwitchMpEffect (true);
+      // levelHeroPanel.SwitchMpEffect (true);
 
       // 隐藏下一个小关的按钮
       if (levelNextPanel.gameObject.activeSelf) {
         levelNextPanel.gameObject.SetActive (false);
       }
 
-      if (!LevelContext.Challenging) {
-        // 挑战开始
-        LevelContext.Challenging = true;
-
-        if (RaiseChallengeStart != null) {
-          RaiseChallengeStart (null, EventArgs.Empty);
-        }
+      // 战斗开始
+      if (RaiseBattleStart != null) {
+        RaiseBattleStart (null, EventArgs.Empty);
       }
+
     }
 
     /// <summary>
