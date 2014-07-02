@@ -8,14 +8,15 @@ namespace TangLevel
     public static TP.LevelRecord MockRecrod ()
     {
 
-      TP.LevelRecord record = new TP.LevelRecord ();
+      //TP.LevelRecord record = new TP.LevelRecord ();
 
-      record.id = 1;
+      //record.id = 1;
       //record.attackGroup = Mocker.MockGroup ();
       //record.level = Mocker.MockGrassLevel ();
 
-      return record;
+      //return record;
 
+      return null;
     }
   }
 }

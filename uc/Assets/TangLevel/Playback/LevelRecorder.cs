@@ -19,7 +19,7 @@ namespace TangLevel.Playback
     }
 
     public void Start(){
-      record = new LevelRecord ();
+      //ecord = new LevelRecord ();
       isRecording = true;
     }
 

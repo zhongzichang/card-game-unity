@@ -8,7 +8,6 @@ namespace TangLevel.Playback
 
     public List<Frame<T>> frames = new List<Frame<T>> ();
 
-
   }
 }
 

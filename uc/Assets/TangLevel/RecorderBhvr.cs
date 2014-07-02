@@ -7,22 +7,26 @@ namespace TangLevel
   public class RecorderBhvr : MonoBehaviour
   {
 
-    private TP.LevelRecorder recorder;
+    //private TP.LevelRecorder recorder;
     private int frameIndex = 0;
     private int lastKeyFrameIndex = 0;
     private int keyFrameCounter = 0;
+    private bool recording = false;
+    private TP.LevelRecord record;
 
-    //private TP.Frame currentFrame;
+    // 测试用
+    private static int recordCounter = 1;
 
     void Start ()
     {
 
-      recorder = new TP.LevelRecorder();
-      //currentFrame = new TP.Frame ();
+      //recorder = new TP.LevelRecorder ();
       frameIndex = 0;
       lastKeyFrameIndex = 0;
 
-      LevelController.RaiseBattleStart += OnBattleStart;
+      LevelController.RaiseEnterLevelSuccess += OnEnterLevelSuccess;
+      LevelController.RaiseEnterSubLevel += OnEnterSubLevel;
+      LevelController.RaiseLeftSubLevel += OnLeftSubLevel;
       LevelController.RaiseChallengeSuccess += OnChallengeSuccess;
       LevelController.RaiseChangengeFailure += OnChallengeFailure;
 
@@ -30,94 +34,108 @@ namespace TangLevel
 
     void Update ()
     {
-      if (recorder.IsRecording) {
-        // 设置当前帧索引
+      if (recording) {
         frameIndex++;
       }
     }
 
-
-    private void OnBattleStart (object sender, EventArgs args)
+    /// <summary>
+    /// 进入关卡
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnEnterLevelSuccess (object sender, EventArgs args)
     {
-      //recorder.Start (LevelContext.attackGobjs, LevelContext.defenseGobjs, LevelContext.CurrentLevel);
+
+      record = new TP.LevelRecord (recordCounter++, LevelContext.CurrentLevel.id);
 
 
+    }
+
+    /// <summary>
+    /// 进入子关卡
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnEnterSubLevel (object sender, EventArgs args)
+    {
+      // 子关卡录像初始化
       frameIndex = 0;
       keyFrameCounter = 0;
+      recording = true;
+
+      // 对每一个攻方英雄进行录像
+      foreach (GameObject heroGobj in LevelContext.AliveSelfGobjs) {
+        HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
+        if (hrBhvr == null) {
+          hrBhvr = heroGobj.AddComponent<HeroRecordBhvr> ();
+        }
+      }
+
+      // 对每一个守方英雄进行录像
+      foreach (GameObject heroGobj in LevelContext.AliveDefenseGobjs) {
+        HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
+        if (hrBhvr == null) {
+          hrBhvr = heroGobj.AddComponent<HeroRecordBhvr> ();
+        }
+      }
+
     }
 
+    /// <summary>
+    /// 离开子关卡
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
+    private void OnLeftSubLevel (object sender, EventArgs args)
+    {
+
+      TP.SubLevelRecord subLevelRecord = new TP.SubLevelRecord ();
+
+      // 获取每一个英雄的录像
+      foreach (GameObject heroGobj in LevelContext.attackGobjs) {
+        HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
+        HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
+        if (hrBhvr.Anim != null) {
+          subLevelRecord.heroAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
+        }
+      }
+
+      foreach (GameObject heroGobj in LevelContext.defenseGobjs) {
+        HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
+        HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
+        if (hrBhvr.Anim != null) {
+          subLevelRecord.heroAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
+        }
+      }
+
+      record.subLevelRecords.Add (subLevelRecord);
+    }
+
+    /// <summary>
+    /// 挑战成功
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
     private void OnChallengeSuccess (object sender, EventArgs args)
     {
-      CheckFrame ();
-
-      //recorder.Stop ();
-      //recorder.Save ();
-
-      //Debug.Log (Procurios.Public.JSON.JsonEncode (recorder.Record));
+      // 保存录像
+      Cache.recordTable.Add (record.id, record);
     }
 
+    /// <summary>
+    /// 挑战失败
+    /// </summary>
+    /// <param name="sender">Sender.</param>
+    /// <param name="args">Arguments.</param>
     private void OnChallengeFailure (object sender, EventArgs args)
     {
-      CheckFrame ();
+      // 保存录像
+      Cache.recordTable.Add (record.id, record);
 
-      //recorder.Stop ();
-      //recorder.Save ();
-
-      //Debug.Log (Procurios.Public.JSON.JsonEncode (recorder.Record));
-      //Debug.Log (recorder.Record.timelines [0].frames.Count);
+      Debug.Log ("Cache.recordTable.Count:"+Cache.recordTable.Count);
     }
 
-    private void OnHeroStatusChange (object sender, EventArgs args)
-    {
-
-      CheckFrame ();
-
-      HeroStatusEvent hsArgs = (HeroStatusEvent)args;
-
-      HeroStatusBhvr sttsBhvr = (HeroStatusBhvr)sender;
-      if (sttsBhvr != null) {
-        HeroBhvr heroBhvr = sttsBhvr.GetComponent<HeroBhvr> ();
-        //TP.Action action = new TPA.StatusChange (heroBhvr.hero.id, hsArgs.Status);
-        //currentFrame.actions.Add (action);
-
-        switch (hsArgs.Status) {
-        case HeroStatus.running:
-          // 开始移动
-          //action = new TPA.PosChange (heroBhvr.hero.id, sttsBhvr.transform.position.x);
-          //currentFrame.AddAction (action);
-          break;
-        }
-
-        switch (sttsBhvr.beforeStatus) {
-        case HeroStatus.running:
-          // 停止移动
-          //action = new TPA.PosChange (heroBhvr.hero.id, sttsBhvr.transform.position.x);
-          //currentFrame.AddAction (action);
-          break;
-        }
-
-      }
-
-    }
-
-    private void CheckFrame ()
-    {
-      if (frameIndex != lastKeyFrameIndex) {
-
-        // 设置当前帧持续帧数
-        //currentFrame.duration = frameIndex - lastKeyFrameIndex;
-        //recorder.AddKeyFrame (currentFrame);
-
-        // 创建新帧，并且设置新帧为当前帧
-        //currentFrame = new TPA.Frame ();
-
-        // 前一个关键帧索引
-        lastKeyFrameIndex = frameIndex;
-        // 关键帧计数++
-        keyFrameCounter++;
-      }
-
-    }
   }
 }
 

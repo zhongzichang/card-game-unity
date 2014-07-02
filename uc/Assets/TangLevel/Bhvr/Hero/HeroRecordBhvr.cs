@@ -12,25 +12,31 @@ namespace TangLevel
 
     private TP.HeroAnimation anim;
 
+    public TP.HeroAnimation Anim{
+      get {
+        return anim;
+      }
+    }
 
     void OnEnable ()
     {
-
+      // status behaviour
       if (statusBhvr == null) {
         statusBhvr = GetComponent<HeroStatusBhvr> ();
         statusBhvr.statusChangedHandler += OnStatusChange;
       }
 
+      // hero behaviour
       if (heroBhvr == null) {
         heroBhvr = GetComponent<HeroBhvr> ();
       }
 
+      // animation
       anim = new TP.HeroAnimation (heroBhvr.hero.id);
 
     }
 
-    void OnDisable ()
-    {
+    void OnDisable(){
       if (statusBhvr != null) {
         statusBhvr.statusChangedHandler -= OnStatusChange;
       }

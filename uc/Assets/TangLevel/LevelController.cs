@@ -30,9 +30,21 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler RaiseSubLevelCleaned;
     /// <summary>
-    /// 挑战开始
+    /// 进入子关卡
+    /// </summary>
+    public static event EventHandler RaiseEnterSubLevel;
+    /// <summary>
+    /// 离开子关卡
+    /// </summary>
+    public static event EventHandler RaiseLeftSubLevel;
+    /// <summary>
+    /// 战斗开始
     /// </summary>
     public static event EventHandler RaiseBattleStart;
+    /// <summary>
+    /// 战斗结束
+    /// </summary>
+    public static event EventHandler RaiseBattleOver;
     /// <summary>
     /// 挑战成功
     /// </summary>
@@ -626,10 +638,18 @@ namespace TangLevel
 
         if (bhvr.hero.battleDirection == BattleDirection.RIGHT) {
           // 是己方英雄
+
           // 如果己方英雄全部死亡，则发出挑战失败通知
           if (LevelContext.AliveSelfGobjs.Count == 0) {
 
             Debug.Log ("challenge failure");
+
+            // 战斗结束
+            if (RaiseBattleOver != null) {
+              RaiseBattleOver (null, EventArgs.Empty);
+            }
+
+            // 显示挑战失败面板
             lazyShowFailure = true;
           }
 
@@ -640,11 +660,19 @@ namespace TangLevel
           //   如果最后的子关卡，则发出关卡已被清除通知 ，否则发出子关卡已被清除通知
           //   
           if (LevelContext.AliveDefenseGobjs.Count == 0) {
+
+
             if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Length - 1) {
+
+              // 如果是最后一关 ---
 
               // 发出关卡挑战成功
               Debug.Log ("challenge success");
+
+              // 英雄们庆祝胜利
               CelebrateVictory ();
+
+              // 显示挑战成功面板
               lazyShowSuccess = true;
 
             } else {
@@ -659,6 +687,11 @@ namespace TangLevel
               // 显示下一子关卡按钮
               if (!levelNextPanel.gameObject.activeSelf)
                 levelNextPanel.gameObject.SetActive (true);
+            }
+
+            // 战斗结束
+            if (RaiseBattleOver != null) {
+              RaiseBattleOver (null, EventArgs.Empty);
             }
           }
         }
@@ -853,14 +886,12 @@ namespace TangLevel
         // 设置英雄操作面板
         SetupHeroOpPanel ();
 
-        // 进入子关卡
-        EnterNextSubLevel ();
-
-
         // 发出关卡进入成功通知
         if (RaiseEnterLevelSuccess != null)
           RaiseEnterLevelSuccess (null, EventArgs.Empty);
 
+        // 进入子关卡
+        EnterSubLevel ();
 
       } else { // 已经在关卡里面
 
@@ -868,14 +899,14 @@ namespace TangLevel
         // TODO 用于优化子关卡加载
 
         // 进入子关卡
-        EnterNextSubLevel ();
+        EnterSubLevel ();
       }
     }
 
     /// <summary>
     /// 进入下一个子关卡
     /// </summary>
-    private static void EnterNextSubLevel ()
+    private static void EnterSubLevel ()
     {
 
       // 确保清场
@@ -939,6 +970,11 @@ namespace TangLevel
         levelNextPanel.gameObject.SetActive (false);
       }
 
+      // 发出进入子关卡通知
+      if (RaiseEnterSubLevel != null) {
+        RaiseEnterSubLevel (null, EventArgs.Empty);
+      }
+
       // 战斗开始
       if (RaiseBattleStart != null) {
         RaiseBattleStart (null, EventArgs.Empty);
@@ -975,6 +1011,11 @@ namespace TangLevel
 
       // 释放其他(背景，特效)资源
       GobjManager.ReleaseAll (false);
+
+      // 发出离开子关卡通知
+      if (RaiseLeftSubLevel != null) {
+        RaiseLeftSubLevel (null, EventArgs.Empty);
+      }
 
     }
 

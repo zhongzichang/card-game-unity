@@ -11,18 +11,19 @@ namespace TangLevel.Playback
     public int frameRate = 24; // 每秒多少帧
     public string version = "1.0.0";
 
-    [NonSerialized]
-    public List<GameObject> attackGroup; // 进攻方
-    [NonSerialized]
-    public List<GameObject> defenseGroup; // 防守方
-
     // ID
     public int id;
-    // 关卡
-    public Level level;
-    // 英雄动画
-    public Dictionary<int, HeroAnimation> heroAnims = new Dictionary<int, HeroAnimation>();
 
+    // 关卡ID
+    public int levelId;
+
+    // 子关卡录像
+    public List<SubLevelRecord> subLevelRecords = new List<SubLevelRecord>();
+
+    public LevelRecord(int id, int levelId){
+      this.id = id;
+      this.levelId = levelId;
+    }
 
   }
 }
