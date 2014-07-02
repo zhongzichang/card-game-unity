@@ -25,6 +25,19 @@ namespace TangLevel.Playback
       this.levelId = levelId;
     }
 
+
+    /// <summary>
+    /// 从 LevelRecord 中生成 Level
+    /// </summary>
+    /// <returns>The level.</returns>
+    /// <param name="record">Record.</param>
+    public static Level MakeLevel(LevelRecord record){
+
+      Level level = new Level ();
+      return level;
+
+    }
+
   }
 }
 
