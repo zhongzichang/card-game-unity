@@ -94,11 +94,6 @@ namespace TangLevel
     /// </summary>
     public static Group attackGroupBackup;
 
-    /// <summary>
-    /// 录像机
-    /// </summary>
-    public static TP.LevelRecorder recorder;
-
     #endregion
 
     // -- 场景 --

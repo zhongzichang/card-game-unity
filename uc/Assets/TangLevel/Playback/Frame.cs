@@ -6,7 +6,7 @@ namespace TangLevel.Playback
 {
   public class Frame<T>
   {
-    public int duration;
+    public int index;
     public T val;
 
   }

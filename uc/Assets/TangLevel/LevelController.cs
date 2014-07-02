@@ -26,6 +26,10 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler RaiseEnterLevelSuccess;
     /// <summary>
+    /// 离开关卡
+    /// </summary>
+    public static event EventHandler RaiseLeftLevel;
+    /// <summary>
     /// 子关卡的怪物已被清除完毕
     /// </summary>
     public static event EventHandler RaiseSubLevelCleaned;
@@ -525,6 +529,10 @@ namespace TangLevel
         levelUIRoot.SetActive (false);
       }
 
+      if (RaiseLeftLevel != null) {
+        RaiseLeftLevel (null, EventArgs.Empty);
+      }
+
     }
 
     /// <summary>
@@ -709,9 +717,6 @@ namespace TangLevel
 
         // 英雄的位置超过设定的边际
         if (agent.myTransform.localPosition.x > Config.RIGHT_BOUND) {
-
-          // 离开当前子关卡
-          LeftSubLevel ();
 
           // 进入下一个子关卡
           ContinueNextSubLevel ();
