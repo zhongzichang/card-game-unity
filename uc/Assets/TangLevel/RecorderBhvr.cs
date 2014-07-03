@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using TP = TangLevel.Playback;
+using System.Collections.Generic;
+
 
 namespace TangLevel
 {
@@ -13,6 +15,8 @@ namespace TangLevel
     private int keyFrameCounter = 0;
     private bool recording = false;
     private TP.LevelRecord record;
+    private List<GameObject> attackGroup;
+    private List<GameObject> defenseGroup;
 
     // 测试用
     private static int recordCounter = 1;
@@ -48,7 +52,7 @@ namespace TangLevel
     private void OnEnterLevelSuccess (object sender, EventArgs args)
     {
 
-      record = new TP.LevelRecord (recordCounter++, LevelContext.CurrentLevel.id);
+      record = new TP.LevelRecord (recordCounter++);
 
     }
 
@@ -82,8 +86,11 @@ namespace TangLevel
       keyFrameCounter = 0;
       recording = true;
 
+      attackGroup = LevelContext.AliveSelfGobjs;
+      defenseGroup = LevelContext.AliveDefenseGobjs;
+
       // 对每一个攻方英雄进行录像
-      foreach (GameObject heroGobj in LevelContext.AliveSelfGobjs) {
+      foreach (GameObject heroGobj in attackGroup) {
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr == null) {
           hrBhvr = heroGobj.AddComponent<HeroRecordBhvr> ();
@@ -91,7 +98,7 @@ namespace TangLevel
       }
 
       // 对每一个守方英雄进行录像
-      foreach (GameObject heroGobj in LevelContext.AliveDefenseGobjs) {
+      foreach (GameObject heroGobj in defenseGroup) {
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr == null) {
           hrBhvr = heroGobj.AddComponent<HeroRecordBhvr> ();
@@ -110,21 +117,23 @@ namespace TangLevel
       recording = false;
 
       TP.SubLevelRecord subLevelRecord = new TP.SubLevelRecord ();
+      subLevelRecord.bg = LevelContext.CurrentSubLevel.resName;
 
-      // 获取每一个英雄的录像
-      foreach (GameObject heroGobj in LevelContext.attackGobjs) {
+      // 获取每一个英雄的录像 ---
+
+      foreach (GameObject heroGobj in defenseGroup) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr.Anim != null) {
-          subLevelRecord.heroAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
+          subLevelRecord.attackerAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
         }
       }
 
-      foreach (GameObject heroGobj in LevelContext.defenseGobjs) {
+      foreach (GameObject heroGobj in defenseGroup) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr.Anim != null) {
-          subLevelRecord.heroAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
+          subLevelRecord.defenseAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
         }
       }
 

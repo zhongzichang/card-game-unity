@@ -670,7 +670,7 @@ namespace TangLevel
           if (LevelContext.AliveDefenseGobjs.Count == 0) {
 
 
-            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Length - 1) {
+            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Count - 1) {
 
               // 如果是最后一关 ---
 

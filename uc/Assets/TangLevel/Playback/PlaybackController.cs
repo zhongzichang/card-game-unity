@@ -372,46 +372,18 @@ namespace TangLevel.Playback
     /// <summary>
     /// 开始回放
     /// </summary>
-    /// <param name="id">录像的ID</param>
-    public static void Play (int id)
+    /// <param name="record">录像</param>
+    public static void Play (LevelRecord record)
     {
 
-      // 实际情况需要在网上下载录像数据才能进行播放
-      if (Cache.recordTable.ContainsKey (id)) {
+      Level level = LevelRecord.MakeLevel (record);
 
-        LevelRecord record = Cache.recordTable[id];
-
-      }
+      ChallengeLevel (level);
 
     }
 
 
-
-
-    /// <summary>
-    /// 挑战这个关卡
-    /// </summary>
-    /// <param name="levelId">关卡ID</param>
-    /// <param name="heroIds">选中的多个英雄ID</param>
-    public static void ChallengeLevel (int levelId, int[] heroIds)
-    {
-
-      if (heroIds.Length > 0) {
-
-        PlaceController.Place = Place.level;
-        Debug.Log ("TangLevel: Set levelId=1001 for debuging ");
-        Debug.Log ("TangLevel: HeroIds = " + TU.TextUtil.Join (heroIds));
-        LevelController.ChallengeLevel (1001, DomainHelper.GetInitGroup (heroIds));
-      }
-
-    }
-
-    /// <summary>
-    /// 挑战这个关卡
-    /// </summary>
-    /// <param name="levelId">关卡ID</param>
-    /// <param name="group">我方小组</param>
-    public static void ChallengeLevel (int levelId, Group group)
+    public static void ChallengeLevel (Level level)
     {
 
       // 确保没有在挑战
@@ -421,47 +393,40 @@ namespace TangLevel.Playback
         LevelContext.InLevel = true;
 
         // 设置当前关卡
-        if (Config.levelTable.ContainsKey (levelId)) {
-          // 显示UI
-          if (!levelUIRoot.activeSelf) {
-            levelUIRoot.SetActive (true);
-          }
-          // 设置各个面板的显示和隐藏
-          if (!levelControllPanel.gameObject.activeSelf) {
-            levelControllPanel.gameObject.SetActive (true);
-          }
-          if (!levelResourcePanel.gameObject.activeSelf) {
-            levelResourcePanel.gameObject.SetActive (true);
-          }
-          if (battleResultPanel.gameObject.activeSelf) {
-            battleResultPanel.gameObject.SetActive (false);
-          }
-          // 克隆一份场景数据
-          Level lvl = Config.levelTable [levelId].DeepCopy ();
-          // 是否打开敌人的大招特写
-          if (lvl.defenseBigMoveCloseUp) {
-            lvl.EnableDefenseBigMoveCloseUp ();
-          } else {
-            lvl.DisableDefenseBigMoveCloseUp ();
-          }
-          // 设置为当前关卡
-          LevelContext.CurrentLevel = lvl;
-          LevelContext.CurrentSubLevel = lvl.subLevels [0];
-
-          // 确保玩家队伍的大招特写都打开
-          group.EnableBigMoveCloseUp ();
-          // 设置为当前战斗队伍
-          LevelContext.attackGroup = group;
-          // 备份团队数据，方便重新挑战关卡使用
-          LevelContext.attackGroupBackup = group.DeepCopy ();
-
-          // 加载目标子关卡资源
-          LoadCurrentSubLevelRes ();
-
-
-        } else {
-          Debug.Log ("Level not found by id " + levelId);
+        // 显示UI
+        if (!levelUIRoot.activeSelf) {
+          levelUIRoot.SetActive (true);
         }
+        // 设置各个面板的显示和隐藏
+        if (!levelControllPanel.gameObject.activeSelf) {
+          levelControllPanel.gameObject.SetActive (true);
+        }
+        if (!levelResourcePanel.gameObject.activeSelf) {
+          levelResourcePanel.gameObject.SetActive (true);
+        }
+        if (battleResultPanel.gameObject.activeSelf) {
+          battleResultPanel.gameObject.SetActive (false);
+        }
+        // 是否打开敌人的大招特写
+        if (level.defenseBigMoveCloseUp) {
+          level.EnableDefenseBigMoveCloseUp ();
+        } else {
+          level.DisableDefenseBigMoveCloseUp ();
+        }
+        // 设置为当前关卡
+        LevelContext.CurrentLevel = level;
+        LevelContext.CurrentSubLevel = level.subLevels [0];
+
+        Group group = level.attackGroup;
+        // 确保玩家队伍的大招特写都打开
+        group.EnableBigMoveCloseUp ();
+        // 设置为当前战斗队伍
+        LevelContext.attackGroup = group;
+        // 备份团队数据，方便重新挑战关卡使用
+        LevelContext.attackGroupBackup = group.DeepCopy ();
+
+        // 加载目标子关卡资源
+        LoadCurrentSubLevelRes ();
 
       }
     }
@@ -688,7 +653,7 @@ namespace TangLevel.Playback
           if (LevelContext.AliveDefenseGobjs.Count == 0) {
 
 
-            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Length - 1) {
+            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Count - 1) {
 
               // 如果是最后一关 ---
 

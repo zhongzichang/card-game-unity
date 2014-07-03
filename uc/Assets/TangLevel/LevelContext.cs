@@ -70,11 +70,11 @@ namespace TangLevel
         if (m_currentLevel != null) {
           if (CurrentSubLevel != null) { // 挑战已经开始，不是第一个子关卡
             int nextIndex = CurrentSubLevel.index + 1;
-            if (m_currentLevel.subLevels.Length > nextIndex) {
+            if (m_currentLevel.subLevels.Count > nextIndex) {
               return m_currentLevel.subLevels [nextIndex];
             }
           } else { // 挑战还没开始，第一个子关卡
-            if (m_currentLevel.subLevels.Length > 0) {
+            if (m_currentLevel.subLevels.Count > 0) {
               return m_currentLevel.subLevels [0];
             }
           }
