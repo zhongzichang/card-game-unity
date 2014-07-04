@@ -9,27 +9,28 @@ namespace TangLevel
   public class RecorderBhvr : MonoBehaviour
   {
 
-    //private TP.LevelRecorder recorder;
-    public static int frameIndex = 0;
-    private int lastKeyFrameIndex = 0;
-    private int keyFrameCounter = 0;
-    private bool recording = false;
+    public const int FRAME_RATE = 24;
 
+    public static int frameIndex = 0;
+
+    private bool recording = false;
     private TP.LevelRecord record; // 当前关卡录像
     private TP.SubLevelRecord subLevelRecord; // 当前子关卡录像
-
     private List<GameObject> attackGobjs;
     private List<GameObject> defenseGobjs;
+    private float time;
+    private float secondsPerFrame  = 1F/FRAME_RATE;
 
     // 测试用
     private static int recordCounter = 1;
+
 
     void Start ()
     {
 
       //recorder = new TP.LevelRecorder ();
+      time = 0;
       frameIndex = 0;
-      lastKeyFrameIndex = 0;
 
       // 进入和离开关卡
       LevelController.RaiseEnterLevelSuccess += OnEnterLevelSuccess;
@@ -43,7 +44,8 @@ namespace TangLevel
     void Update ()
     {
       if (recording) {
-        frameIndex++;
+        time += Time.deltaTime;
+        frameIndex = (int)(time / secondsPerFrame);
       }
     }
 
@@ -54,10 +56,8 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private void OnEnterLevelSuccess (object sender, EventArgs args)
     {
-
       record = new TP.LevelRecord (recordCounter++);
       record.attackGroup = LevelContext.attackGroup.DeepCopy();
-
     }
 
 
@@ -86,9 +86,9 @@ namespace TangLevel
     private void OnEnterSubLevel (object sender, EventArgs args)
     {
       // 子关卡录像初始化
-      frameIndex = 0;
-      keyFrameCounter = 0;
       recording = true;
+      time = 0;
+      frameIndex = 0;
 
       // 创建当前子关卡录像
       subLevelRecord = new TP.SubLevelRecord ();
