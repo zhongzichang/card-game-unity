@@ -8,9 +8,11 @@ namespace TangGame
 {
   public class BattleTxtPanelMediator : Mediator
   {
+    public const string NAME = "BattleTxtPanelMediator";
+
     private BattleTxtPanel panel;
 
-    public BattleTxtPanelMediator (BattleTxtPanel panel)
+    public BattleTxtPanelMediator (BattleTxtPanel panel) : base(NAME)
     {
       this.panel = panel;
     }

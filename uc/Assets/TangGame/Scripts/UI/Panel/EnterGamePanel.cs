@@ -12,7 +12,7 @@ namespace TangGame.UI{
 
     private EnterGamePanel panel;
     
-    public EnterGameMediator (EnterGamePanel panel)
+    public EnterGameMediator (EnterGamePanel panel) : base (NAME)
     {
       this.panel = panel;
     }

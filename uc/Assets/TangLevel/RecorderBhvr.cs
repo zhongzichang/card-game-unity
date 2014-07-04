@@ -14,9 +14,12 @@ namespace TangLevel
     private int lastKeyFrameIndex = 0;
     private int keyFrameCounter = 0;
     private bool recording = false;
-    private TP.LevelRecord record;
-    private List<GameObject> attackGroup;
-    private List<GameObject> defenseGroup;
+
+    private TP.LevelRecord record; // 当前关卡录像
+    private TP.SubLevelRecord subLevelRecord; // 当前子关卡录像
+
+    private List<GameObject> attackGobjs;
+    private List<GameObject> defenseGobjs;
 
     // 测试用
     private static int recordCounter = 1;
@@ -53,6 +56,7 @@ namespace TangLevel
     {
 
       record = new TP.LevelRecord (recordCounter++);
+      record.attackGroup = LevelContext.attackGroup.DeepCopy();
 
     }
 
@@ -69,9 +73,9 @@ namespace TangLevel
 
       Debug.Log ("Cache.recordTable.Count:"+Cache.recordTable.Count);
 
-      string jsontext = Newtonsoft.Json.JsonConvert.SerializeObject (record);
+      //string jsontext = Newtonsoft.Json.JsonConvert.SerializeObject (record);
 
-      Debug.Log (jsontext);
+      //Debug.Log (jsontext);
     }
 
     /// <summary>
@@ -86,11 +90,18 @@ namespace TangLevel
       keyFrameCounter = 0;
       recording = true;
 
-      attackGroup = LevelContext.AliveSelfGobjs;
-      defenseGroup = LevelContext.AliveDefenseGobjs;
+      // 创建当前子关卡录像
+      subLevelRecord = new TP.SubLevelRecord ();
+      // 子关卡背景
+      subLevelRecord.bg = LevelContext.CurrentSubLevel.resName;
+      // 子关卡防守小组
+      subLevelRecord.defenseGroup = LevelContext.CurrentSubLevel.defenseGroup.DeepCopy ();
+
+      attackGobjs = LevelContext.AliveSelfGobjs;
+      defenseGobjs = LevelContext.AliveDefenseGobjs;
 
       // 对每一个攻方英雄进行录像
-      foreach (GameObject heroGobj in attackGroup) {
+      foreach (GameObject heroGobj in attackGobjs) {
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr == null) {
           hrBhvr = heroGobj.AddComponent<HeroRecordBhvr> ();
@@ -98,7 +109,7 @@ namespace TangLevel
       }
 
       // 对每一个守方英雄进行录像
-      foreach (GameObject heroGobj in defenseGroup) {
+      foreach (GameObject heroGobj in defenseGobjs) {
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr == null) {
           hrBhvr = heroGobj.AddComponent<HeroRecordBhvr> ();
@@ -116,12 +127,9 @@ namespace TangLevel
     {
       recording = false;
 
-      TP.SubLevelRecord subLevelRecord = new TP.SubLevelRecord ();
-      subLevelRecord.bg = LevelContext.CurrentSubLevel.resName;
-
       // 获取每一个英雄的录像 ---
 
-      foreach (GameObject heroGobj in defenseGroup) {
+      foreach (GameObject heroGobj in defenseGobjs) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr.Anim != null) {
@@ -129,7 +137,7 @@ namespace TangLevel
         }
       }
 
-      foreach (GameObject heroGobj in defenseGroup) {
+      foreach (GameObject heroGobj in defenseGobjs) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr.Anim != null) {

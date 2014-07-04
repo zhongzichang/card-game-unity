@@ -16,6 +16,8 @@ namespace TangLevel.Playback
     // ID
     public int id;
 
+    public Group attackGroup;
+
     // 子关卡录像
     public List<SubLevelRecord> subLevelRecords = new List<SubLevelRecord> ();
 
@@ -38,28 +40,22 @@ namespace TangLevel.Playback
       List<SubLevel> subLevels = new List<SubLevel> ();
       int indexCounter = 0;
 
-      // 生成攻击小组
-
-      Debug.Log ("record.subLevelRecords [0].attackerAnims:" + record.subLevelRecords [0].attackerAnims.Count);
-      int[] attackerIds = CollectionUtil.KeysToArray (record.subLevelRecords [0].attackerAnims);
-      Group attackerGroup = DomainHelper.GetInitGroup (attackerIds);
+      // 攻击小组
+      level.attackGroup = record.attackGroup.DeepCopy();
 
       foreach (SubLevelRecord subRecord in record.subLevelRecords) {
 
-        // 生成防守小组
-        int[] defenseIds = CollectionUtil.KeysToArray (subRecord.defenseAnims);
-        //Group defenseGroup = DomainHelper.GetInitGroup (defenseIds);
-        Group defenseGroup = DomainHelper.BuildMonsterGroup (defenseIds);
-
+        // 防守小组
         SubLevel subLevel = new SubLevel ();
         subLevel.index = indexCounter; // 索引
         subLevel.resName = subRecord.bg; // 资源
-        subLevel.defenseGroup = defenseGroup; // 防守小组
+        subLevel.defenseGroup = subRecord.defenseGroup.DeepCopy(); // 防守小组
 
         subLevels.Add (subLevel);
 
         indexCounter++;
       }
+
       level.subLevels = subLevels;
 
       return level;

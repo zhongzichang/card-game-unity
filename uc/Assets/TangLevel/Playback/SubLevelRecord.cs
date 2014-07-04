@@ -11,6 +11,8 @@ namespace TangLevel.Playback
     /// </summary>
     public string bg;
 
+    public Group defenseGroup;
+
     // 攻击方英雄动画
     public Dictionary<int, HeroAnimation> attackerAnims = new Dictionary<int, HeroAnimation>();
 

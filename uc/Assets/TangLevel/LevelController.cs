@@ -380,7 +380,6 @@ namespace TangLevel
 
       if (heroIds.Length > 0) {
 
-        PlaceController.Place = Place.level;
         Debug.Log ("TangLevel: Set levelId=1001 for debuging ");
         Debug.Log ("TangLevel: HeroIds = " + TU.TextUtil.Join (heroIds));
         LevelController.ChallengeLevel (1001, DomainHelper.GetInitGroup (heroIds));
@@ -395,6 +394,8 @@ namespace TangLevel
     /// <param name="group">我方小组</param>
     public static void ChallengeLevel (int levelId, Group group)
     {
+
+      PlaceController.Place = Place.level;
 
       // 确保没有在挑战
       if (!LevelContext.InLevel) {

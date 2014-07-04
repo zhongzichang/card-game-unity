@@ -92,21 +92,21 @@ namespace TangLevel.Playback
 
     public static GameObject levelUIRoot;
     public static UIManager uiMgr = null;
-    private static TG.LevelHeroPanel levelHeroPanel;
-    private static TG.LevelPausePanel levelPausePanel;
-    private static TGU.BattleResultPanel battleResultPanel;
-    private static TG.LevelControllPanel levelControllPanel;
-    private static TGU.LevelResourcePanel levelResourcePanel;
-    private static TGU.LevelNextPanel levelNextPanel;
-    private static TUI.UIPanelNodeManager centerPanelMgr;
-    private static TUI.UIPanelNodeManager ltPanelMgr;
-    private static TUI.UIPanelNodeManager rtPanelMgr;
-    private static TUI.UIPanelNodeManager rightPanelMgr;
-    public GameObject uiRoot;
-    public UIAnchor centerAnchor;
-    public UIAnchor ltAnchor;
-    public UIAnchor rtAnchor;
-    public UIAnchor rightAnchor;
+    private static TG.LevelHeroPanel levelHeroPanel; // 英雄
+    private static TG.LevelPausePanel levelPausePanel; // 暂停
+    private static TGU.BattleResultPanel battleResultPanel; // 战斗结果
+    private static TG.LevelControllPanel levelControllPanel; // 关卡控制
+    private static TGU.LevelResourcePanel levelResourcePanel; // 资源
+    private static TGU.LevelNextPanel levelNextPanel; // 下一个
+    private static TUI.UIPanelNodeManager centerPanelMgr; // 中心面板管理
+    private static TUI.UIPanelNodeManager ltPanelMgr; // 左上面板管理
+    private static TUI.UIPanelNodeManager rtPanelMgr; // 右上面板管理
+    private static TUI.UIPanelNodeManager rightPanelMgr; // 右边面板管理
+    public GameObject uiRoot; // UIRoot
+    public UIAnchor centerAnchor; // 中心锚点
+    public UIAnchor ltAnchor; // 左上锚点
+    public UIAnchor rtAnchor; // 右上锚点
+    public UIAnchor rightAnchor; // 右边锚点
 
     #endregion
 
@@ -267,6 +267,8 @@ namespace TangLevel.Playback
           else if (UIContext.HERO_OP_PANEL.Equals (node.name)) {
             //node.gameObject.SetActive (false);
             levelHeroPanel = node.gameObject.GetComponent<TG.LevelHeroPanel> ();
+            // 英雄头像MP效果不显示
+            levelHeroPanel.SwitchMpEffect (false);
           }
           // 关卡控制面板
           else if (UIContext.LEVEL_CONTROLL_PANEL.Equals (node.name)) {
@@ -385,9 +387,11 @@ namespace TangLevel.Playback
 
     public static void ChallengeLevel (Level level)
     {
+      PlaceController.Place = Place.playback;
 
       // 确保没有在挑战
       if (!LevelContext.InLevel) {
+
 
         // 挑战中
         LevelContext.InLevel = true;
@@ -673,7 +677,6 @@ namespace TangLevel.Playback
                 RaiseSubLevelCleaned (null, EventArgs.Empty);
               }
 
-              levelHeroPanel.SwitchMpEffect (false);
 
               // 显示下一子关卡按钮
               if (!levelNextPanel.gameObject.activeSelf)
@@ -950,8 +953,6 @@ namespace TangLevel.Playback
 
       // UI 控制 --
 
-      // 英雄头像MP效果打开
-      // levelHeroPanel.SwitchMpEffect (true);
 
       // 隐藏下一个小关的按钮
       if (levelNextPanel.gameObject.activeSelf) {
@@ -1042,14 +1043,6 @@ namespace TangLevel.Playback
         i++;
       }
 
-      // 监听玩家英雄的大招是否能施放
-      foreach (TG.LevelHeroItem item in levelHeroPanel.itemList) {
-        BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr> (item.heroId);
-        if (bmBhvr != null) {
-          // MP 效果开关
-          bmBhvr.RaiseEvent += item.SwitchMpEffect;
-        }
-      }
     }
 
     /// <summary>
@@ -1086,14 +1079,6 @@ namespace TangLevel.Playback
           heroBhvr.RaiseDead -= OnHeroDead;
         }
         i++;
-      }
-
-      // 取消监听玩家英雄的大招是否能施放
-      foreach (TG.LevelHeroItem item in levelHeroPanel.itemList) {
-        BigMoveBhvr bmBhvr = LevelContext.GetHeroComponent<BigMoveBhvr> (item.heroId);
-        if (bmBhvr != null) {
-          bmBhvr.RaiseEvent -= item.SwitchMpEffect;
-        }
       }
 
     }
@@ -1179,9 +1164,15 @@ namespace TangLevel.Playback
       if (gobj != null) {
         gobj.transform.localPosition = new Vector3 (hero.birthPoint.x, hero.birthPoint.y, 0);
         gobj.SetActive (true);
+        // Set Group Status To Battle
         GroupBhvr gbhvr = gobj.GetComponent<GroupBhvr> ();
         if (gbhvr != null) {
           gbhvr.Status = GroupStatus.battle;
+        }
+        // Disable AutoFire
+        AutoFire autoFire = gobj.GetComponent<AutoFire> ();
+        if (autoFire != null) {
+          autoFire.enabled = false;
         }
       }
       return gobj;
@@ -1396,13 +1387,10 @@ namespace TangLevel.Playback
         while (wgtEnum.MoveNext ()) {
           Hero h = heros [i];
           TG.LevelHeroItem w = wgtEnum.Current;
-          // 停止 MP 特效, 改为由 BigMoveBhvr 来控制
-          w.SwitchMpEffect (false);
           // 英雄头像 ----
           w.SetHeroId (h.id); // 英雄ID
           h.raiseHpChange += w.SetHp; // 英雄HP变化
           h.raiseMpChange += w.SetMp; // 英雄MP变化
-          w.onClick += OnHeroIconClick; // 英雄头像点击
           i++;
 
         }

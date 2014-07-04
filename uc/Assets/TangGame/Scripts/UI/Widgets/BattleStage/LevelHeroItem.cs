@@ -82,7 +82,7 @@ namespace TangGame{
 		}
 
 		/// 更新HP
-		public void SetHp(int hp, int maxHp){
+    public void SetHp(int hp, int maxHp){
 			this.hp = hp;
 			this.maxHp = maxHp;
 			if(!this.started){return;}
@@ -90,7 +90,7 @@ namespace TangGame{
 		}
 
 		/// 更新MP
-		public void SetMp(int mp, int maxMp){
+    public void SetMp(int mp, int maxMp){
 			this.mp = mp;
 			this.maxMp = maxMp;
 			if(!this.started){return;}
