@@ -72,7 +72,6 @@ namespace TangLevel
 
         if (TG.Config.heroSortTable.ContainsKey (hero.configId)) {
           hero.sort = TG.Config.heroSortTable [hero.configId];
-          Debug.Log ("+++++++ " + hero.id + " - " + hero.configId + " - " + hero.sort);
         }
         hero.battleDirection = BattleDirection.RIGHT;
 

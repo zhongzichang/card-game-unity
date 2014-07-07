@@ -83,10 +83,12 @@ namespace TangLevel
 
     }
 
+
     void Update ()
     {
       if (hero.hp == 0 && statusBhvr.Status != HeroStatus.dead) {
-        statusBhvr.Status = HeroStatus.dead;
+        //statusBhvr.Status = HeroStatus.dead;
+        Die ();
       }
     }
 
@@ -362,6 +364,11 @@ namespace TangLevel
 
       case HeroStatus.dead: // 死亡 ----
 
+        // 发出死亡通知
+        if (RaiseDead != null) {
+          RaiseDead (this, EventArgs.Empty);
+        }
+
         //dbBhvr.Stop ();
         armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
         FadeOut ();
@@ -523,9 +530,6 @@ namespace TangLevel
       }
 
       statusBhvr.Status = HeroStatus.dead;
-      if (RaiseDead != null) {
-        RaiseDead (this, EventArgs.Empty);
-      }
     }
 
     /// <summary>

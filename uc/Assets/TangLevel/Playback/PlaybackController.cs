@@ -377,9 +377,8 @@ namespace TangLevel.Playback
     /// <param name="record">录像</param>
     public static void Play (LevelRecord record)
     {
-
+      LevelContext.CurrentLevelRecord = record;
       Level level = LevelRecord.MakeLevel (record);
-
       ChallengeLevel (level);
 
     }

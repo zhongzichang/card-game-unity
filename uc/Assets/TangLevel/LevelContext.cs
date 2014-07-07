@@ -94,6 +94,12 @@ namespace TangLevel
     /// </summary>
     public static Group attackGroupBackup;
 
+
+    public static TP.LevelRecord CurrentLevelRecord {
+      get;
+      set;
+    }
+
     #endregion
 
     // -- 场景 --

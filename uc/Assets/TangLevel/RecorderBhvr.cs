@@ -16,8 +16,8 @@ namespace TangLevel
     private bool recording = false;
     private TP.LevelRecord record; // 当前关卡录像
     private TP.SubLevelRecord subLevelRecord; // 当前子关卡录像
-    private List<GameObject> attackGobjs;
-    private List<GameObject> defenseGobjs;
+    private List<GameObject> attackGobjs = new List<GameObject>();
+    private List<GameObject> defenseGobjs = new List<GameObject>();
     private float time;
     private float secondsPerFrame  = 1F/FRAME_RATE;
 
@@ -28,7 +28,6 @@ namespace TangLevel
     void Start ()
     {
 
-      //recorder = new TP.LevelRecorder ();
       time = 0;
       frameIndex = 0;
 
@@ -97,8 +96,14 @@ namespace TangLevel
       // 子关卡防守小组
       subLevelRecord.defenseGroup = LevelContext.CurrentSubLevel.defenseGroup.DeepCopy ();
 
-      attackGobjs = LevelContext.AliveSelfGobjs;
-      defenseGobjs = LevelContext.AliveDefenseGobjs;
+      attackGobjs.Clear ();
+      foreach (GameObject g in LevelContext.AliveSelfGobjs) {
+        attackGobjs.Add (g);
+      }
+      defenseGobjs.Clear ();
+      foreach (GameObject g in LevelContext.AliveDefenseGobjs) {
+        defenseGobjs.Add (g);
+      }
 
       // 对每一个攻方英雄进行录像
       foreach (GameObject heroGobj in attackGobjs) {
@@ -129,18 +134,24 @@ namespace TangLevel
 
       // 获取每一个英雄的录像 ---
 
-      foreach (GameObject heroGobj in defenseGobjs) {
+      // 攻方英雄
+      Debug.Log ("attackGobjs.Count:"+attackGobjs.Count);
+      foreach (GameObject heroGobj in attackGobjs) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr.Anim != null) {
+          hrBhvr.EndRecord ();
           subLevelRecord.attackerAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
         }
       }
 
+      // 守方英雄
+      Debug.Log ("defenseGobjs.Count:"+defenseGobjs.Count);
       foreach (GameObject heroGobj in defenseGobjs) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
         if (hrBhvr.Anim != null) {
+          hrBhvr.EndRecord ();
           subLevelRecord.defenseAnims.Add (heroBhvr.hero.id, hrBhvr.Anim);
         }
       }
