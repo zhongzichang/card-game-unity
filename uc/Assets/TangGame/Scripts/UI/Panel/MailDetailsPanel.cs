@@ -15,7 +15,8 @@ namespace TangGame.UI{
     public UILabel btnLabel;
     public UILabel attachmentLabel;
     public UIEventListener btn;
-
+    public UISprite attachmentGroup;
+    public UIScrollView scrollView;
 
     private object mParam;
     private bool started;
@@ -39,7 +40,22 @@ namespace TangGame.UI{
       if(this.mParam == null){return;}
       Mail mail = this.mParam as Mail;
 
+      scrollView.SetDragAmount(0, 0, false);
 
+      this.titleLabel.text = mail.title;
+      this.contentLabel.text = mail.content;
+
+      float y = 0;
+      Vector3 temp = this.sendLabel.transform.localPosition;//设置坐标
+      y = -this.contentLabel.height - 20;
+      temp.y = y;
+      this.sendLabel.transform.localPosition = temp;
+      this.sendLabel.text = mail.sender;
+
+      temp = this.attachmentGroup.transform.localPosition;
+      y -= 45;
+      temp.y = y;
+      this.attachmentGroup.transform.localPosition = temp;
     }
 
     private void BtnClickHandler(GameObject go){

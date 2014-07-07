@@ -7,7 +7,10 @@ namespace TangGame.UI{
     public ViewItemDelegate onClick;
 
     public UIEventListener btn;
-    
+    public UILabel titleLabel;
+    public UILabel sendLabel;
+    public UILabel timeLabel;
+
     public override void Start ()
     {
       btn.onClick += BtnClickHandler;
@@ -21,6 +24,9 @@ namespace TangGame.UI{
         return;
       }
       if(this.data == null){return;}
+      Mail mail = this.data as Mail;
+      titleLabel.text = mail.title;
+      sendLabel.text = string.Format(UIPanelLang.MAIL_SENDER, mail.sender);
     }
 
     private void BtnClickHandler(GameObject go){
