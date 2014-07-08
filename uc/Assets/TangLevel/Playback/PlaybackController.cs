@@ -392,6 +392,8 @@ namespace TangLevel.Playback
     /// <param name="record">录像</param>
     public static void Play (LevelRecord record)
     {
+
+      LevelContext.isPlayback = true;
       LevelContext.CurrentLevelRecord = record;
       Level level = LevelRecord.MakeLevel (record);
       ChallengeLevel (level);
@@ -399,7 +401,7 @@ namespace TangLevel.Playback
     }
 
 
-    public static void ChallengeLevel (Level level)
+    private static void ChallengeLevel (Level level)
     {
       PlaceController.Place = Place.playback;
 

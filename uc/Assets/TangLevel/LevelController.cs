@@ -394,8 +394,8 @@ namespace TangLevel
     /// <param name="group">我方小组</param>
     public static void ChallengeLevel (int levelId, Group group)
     {
-
       PlaceController.Place = Place.level;
+      LevelContext.isPlayback = false;
 
       // 确保没有在挑战
       if (!LevelContext.InLevel) {

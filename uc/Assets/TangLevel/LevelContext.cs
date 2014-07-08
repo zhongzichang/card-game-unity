@@ -17,6 +17,11 @@ namespace TangLevel
   {
     #region Attributes
 
+    /// <summary>
+    /// 是否回放
+    /// </summary>
+    public static bool isPlayback = false;
+
     private static Level m_currentLevel = null;
 
     #endregion
