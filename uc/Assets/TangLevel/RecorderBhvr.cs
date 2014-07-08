@@ -2,7 +2,7 @@
 using UnityEngine;
 using TP = TangLevel.Playback;
 using System.Collections.Generic;
-
+using TG = TangGame;
 
 namespace TangLevel
 {
@@ -127,6 +127,10 @@ namespace TangLevel
         }
       }
 
+      // 文字动画
+      TP.TextAnimationController.Anim = new TP.TextAnimation ();
+      BattleTextController.RaiseBubbing += TP.TextAnimationController.OnTextBubbing;
+
     }
 
     /// <summary>
@@ -162,8 +166,17 @@ namespace TangLevel
         }
       }
 
+      // 文字动画
+      BattleTextController.RaiseBubbing -= TP.TextAnimationController.OnTextBubbing;
+      if (TP.TextAnimationController.Anim != null) {
+        subLevelRecord.textAnimation = TP.TextAnimationController.Anim;
+        TP.TextAnimationController.Anim = null;
+      }
+
+      // 加入到关卡中
       record.subLevelRecords.Add (subLevelRecord);
     }
+
   }
 }
 

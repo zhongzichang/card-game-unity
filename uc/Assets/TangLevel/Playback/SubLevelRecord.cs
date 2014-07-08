@@ -19,6 +19,9 @@ namespace TangLevel.Playback
     // 防守方英雄动画
     public Dictionary<int, HeroAnimation> defenseAnims = new Dictionary<int, HeroAnimation>();
 
+    // 文字动画
+    public TextAnimation textAnimation;
+
   }
 }
 
