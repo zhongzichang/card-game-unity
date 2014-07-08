@@ -70,7 +70,9 @@ namespace TangGame.UI{
       DailyItem item = go.GetComponent<DailyItem>();
       Daily daily = item.data as Daily;
 
-
+      if(daily.data.id == 1 || daily.data.id == 2){
+        MsgTips.Show("任务尚未完成");
+      }
       Debug.Log(daily.data.id);
     }
 
