@@ -11,9 +11,13 @@ namespace TangLevel
     private HeroBhvr heroBhvr;
     private Transform myTransform;
 
+    // 行走
+    private TP.Frame<TP.RunAction> runActionFrame;
+    private TP.RunAction runAction;
+
+    // 其他动作
     private TP.HeroAnimation anim;
     private TP.Frame<TP.Action> actionFrame;
-    private TP.RunAction runAction;
 
     public TP.HeroAnimation Anim {
       get {
@@ -34,6 +38,8 @@ namespace TangLevel
       if (heroBhvr == null) {
         heroBhvr = GetComponent<HeroBhvr> ();
       }
+      heroBhvr.hero.raiseHpChange += OnHpChange;
+      heroBhvr.hero.raiseMpChange += OnMpChange;
 
       if (myTransform == null) {
         myTransform = transform;
@@ -49,6 +55,10 @@ namespace TangLevel
       if (statusBhvr != null) {
         statusBhvr.statusChangedHandler -= OnStatusChange;
       }
+      if (heroBhvr != null) {
+        heroBhvr.hero.raiseMpChange -= OnMpChange;
+        heroBhvr.hero.raiseMpChange -= OnMpChange;
+      }
     }
 
     /// <summary>
@@ -56,11 +66,13 @@ namespace TangLevel
     /// </summary>
     public void EndRecord ()
     {
-      if (runAction != null) {
+      if (runAction != null && runActionFrame != null) {
         // 补充目标值
         runAction.stopx = myTransform.position.x;
+        anim.runActionTimeline.frames.Add (runActionFrame);
+
         runAction = null;
-        actionFrame = null;
+        runActionFrame = null;
       }
 
     }
@@ -72,37 +84,63 @@ namespace TangLevel
 
 
       switch (status) {
+
       case HeroStatus.running:
         // 英雄开始移动
         // run ation
         runAction = new TP.RunAction (myTransform.position.x);
-        actionFrame = new TP.Frame<TP.Action> ();
-        actionFrame.index = frameIndex;
-        actionFrame.val = runAction;
-        anim.actionTimeline.frames.Add (actionFrame);
-
+        runActionFrame = new TP.Frame<TP.RunAction> (frameIndex, runAction);
         break;
 
-      case HeroStatus.dead:
-        actionFrame = new TP.Frame<TP.Action> ();
-        actionFrame.index = frameIndex;
-        actionFrame.val = new TP.DeadAction ();
-        anim.actionTimeline.frames.Add (actionFrame);
+      case HeroStatus.charge:
+        // 攻击
+        int skillId = heroBhvr.skill.id;
+        int targetId = 0;
+        if (heroBhvr.target != null) {
+          HeroBhvr tgtHeroBhvr = heroBhvr.target.GetComponent<HeroBhvr> ();
+          targetId = tgtHeroBhvr.hero.id;
+        }
+        TP.SkillAction skillAction = new TP.SkillAction (heroBhvr.skill.id, targetId);
+        TP.Frame<TP.SkillAction> skillActionFrame = new TP.Frame<TP.SkillAction> (frameIndex, skillAction);
+        anim.skillActionTimeline.frames.Add (skillActionFrame);
         break;
-      }
 
-      switch (statusBhvr.beforeStatus) {
-      case HeroStatus.running:
-
-        // 英雄移动结束
-        if (runAction != null) {
-          runAction.stopx = myTransform.position.x;
-          runAction = null;
-          actionFrame = null;
+      default:
+        // 其他动作的记录
+        actionFrame = TP.FrameFactory.NewActionFrame (frameIndex, status);
+        if (actionFrame != null) {
+          anim.actionTimeline.frames.Add (actionFrame);
         }
         break;
       }
 
+      // 前一个动作是什么
+      switch (statusBhvr.beforeStatus) {
+      case HeroStatus.running:
+
+        // 英雄移动结束，或者英雄移动的目标位置
+        if (runAction != null && runActionFrame != null) {
+          runAction.stopx = myTransform.position.x;
+          anim.runActionTimeline.frames.Add (runActionFrame);
+
+          runAction = null;
+          runActionFrame = null;
+        }
+        break;
+      }
+
+    }
+
+    private void OnHpChange (int val, int max)
+    {
+      TP.Frame<int> frame = new TP.Frame<int> (RecorderBhvr.frameIndex, val);
+      anim.hpTimeline.frames.Add (frame);
+    }
+
+    private void OnMpChange (int val, int max)
+    {
+      TP.Frame<int> frame = new TP.Frame<int> (RecorderBhvr.frameIndex, val);
+      anim.mpTimeline.frames.Add (frame);
     }
 
   }

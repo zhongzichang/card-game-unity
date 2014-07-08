@@ -14,15 +14,17 @@ namespace TangLevel
     public static int frameIndex = 0;
 
     private bool recording = false;
-    private TP.LevelRecord record; // 当前关卡录像
-    private TP.SubLevelRecord subLevelRecord; // 当前子关卡录像
-    private List<GameObject> attackGobjs = new List<GameObject>();
-    private List<GameObject> defenseGobjs = new List<GameObject>();
+    private TP.LevelRecord record;
+    // 当前关卡录像
+    private TP.SubLevelRecord subLevelRecord;
+    // 当前子关卡录像
+    private List<GameObject> attackGobjs = new List<GameObject> ();
+    private List<GameObject> defenseGobjs = new List<GameObject> ();
     private float time;
-    private float secondsPerFrame  = 1F/FRAME_RATE;
+    private float secondsPerFrame = 1F / FRAME_RATE;
 
     // 测试用
-    private static int recordCounter = 1;
+    private static int recordId = 1;
 
 
     void Start ()
@@ -55,8 +57,8 @@ namespace TangLevel
     /// <param name="args">Arguments.</param>
     private void OnEnterLevelSuccess (object sender, EventArgs args)
     {
-      record = new TP.LevelRecord (recordCounter++);
-      record.attackGroup = LevelContext.attackGroup.DeepCopy();
+      record = new TP.LevelRecord (recordId);
+      record.attackGroup = LevelContext.attackGroup.DeepCopy ();
     }
 
 
@@ -68,9 +70,13 @@ namespace TangLevel
     private void OnLeftLevel (object sender, EventArgs args)
     {
       // 保存录像
-      Cache.recordTable.Add (record.id, record);
+      if (Cache.recordTable.ContainsKey (record.id)) {
+        Cache.recordTable [record.id] = record;
+      } else {
+        Cache.recordTable.Add (record.id, record);
+      }
 
-      Debug.Log ("Cache.recordTable.Count:"+Cache.recordTable.Count);
+      Debug.Log ("Cache.recordTable.Count:" + Cache.recordTable.Count);
 
       //string jsontext = Newtonsoft.Json.JsonConvert.SerializeObject (record);
 
@@ -135,7 +141,7 @@ namespace TangLevel
       // 获取每一个英雄的录像 ---
 
       // 攻方英雄
-      Debug.Log ("attackGobjs.Count:"+attackGobjs.Count);
+      //Debug.Log ("attackGobjs.Count:"+attackGobjs.Count);
       foreach (GameObject heroGobj in attackGobjs) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();
@@ -146,7 +152,7 @@ namespace TangLevel
       }
 
       // 守方英雄
-      Debug.Log ("defenseGobjs.Count:"+defenseGobjs.Count);
+      //Debug.Log ("defenseGobjs.Count:"+defenseGobjs.Count);
       foreach (GameObject heroGobj in defenseGobjs) {
         HeroBhvr heroBhvr = heroGobj.GetComponent<HeroBhvr> ();
         HeroRecordBhvr hrBhvr = heroGobj.GetComponent<HeroRecordBhvr> ();

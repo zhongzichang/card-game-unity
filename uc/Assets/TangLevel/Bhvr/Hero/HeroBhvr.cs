@@ -26,6 +26,8 @@ namespace TangLevel
 
     public Hero hero;
     // 英雄数据
+    public Skill skill;
+    // 技能
     private DirectedNavigable navigable;
     // 导航
     private DirectedNavAgent agent;
@@ -42,8 +44,6 @@ namespace TangLevel
     // 技能
     private BigMoveBhvr bmBhvr;
     // 大招
-    private Skill skill;
-    // 技能
     private List<string> animationList;
     // DragonBone 动画列表
     private GameObject mTarget;

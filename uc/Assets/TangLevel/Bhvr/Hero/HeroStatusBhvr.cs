@@ -8,7 +8,9 @@ namespace TangLevel
     #region delegates
 
     public delegate void StatusChange (HeroStatus status);
+
     public delegate void PauseChange (bool pause);
+
     public event EventHandler changeHandler;
 
     // 状态结束时回调
@@ -44,12 +46,11 @@ namespace TangLevel
         return m_status;
       }
       set {
-        if ((m_status != HeroStatus.dead // 死亡后不能修改状态
-          && !m_isBigMove // 大招的时候不能修改状态
-          && newStatus != value // 状态相同不做修改
-          && (newStatus != HeroStatus.vertigo // 已经改为眩晕状态，暂时就不能修改成其他状态，需要等眩晕生效后才能修改
-          )
-          || HeroStatus.dead == value) // 死亡状态肯定能设置
+        if (m_status != HeroStatus.dead // 死亡后不能修改状态
+            && !m_isBigMove // 大招的时候不能修改状态
+            && newStatus != value // 状态相同不做修改
+            && (newStatus != HeroStatus.vertigo // 已经改为眩晕状态，暂时就不能修改成其他状态，需要等眩晕生效后才能修改
+            || HeroStatus.dead == value) // 死亡状态肯定能设置
         ) {
           switch (m_status) {
           // 眩晕状态下只能改为空闲
@@ -119,7 +120,7 @@ namespace TangLevel
           statusChangedHandler (m_status);
         }
         if (changeHandler != null) {
-          changeHandler (this, new HeroStatusEvent(m_status));
+          changeHandler (this, new HeroStatusEvent (m_status));
         }
       } 
 
