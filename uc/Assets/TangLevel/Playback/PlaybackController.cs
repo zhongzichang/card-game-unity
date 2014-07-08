@@ -92,21 +92,36 @@ namespace TangLevel.Playback
 
     public static GameObject levelUIRoot;
     public static UIManager uiMgr = null;
-    private static TG.LevelHeroPanel levelHeroPanel; // 英雄
-    private static TG.LevelPausePanel levelPausePanel; // 暂停
-    private static TGU.BattleResultPanel battleResultPanel; // 战斗结果
-    private static TG.LevelControllPanel levelControllPanel; // 关卡控制
-    private static TGU.LevelResourcePanel levelResourcePanel; // 资源
-    private static TGU.LevelNextPanel levelNextPanel; // 下一个
-    private static TUI.UIPanelNodeManager centerPanelMgr; // 中心面板管理
-    private static TUI.UIPanelNodeManager ltPanelMgr; // 左上面板管理
-    private static TUI.UIPanelNodeManager rtPanelMgr; // 右上面板管理
-    private static TUI.UIPanelNodeManager rightPanelMgr; // 右边面板管理
-    public GameObject uiRoot; // UIRoot
-    public UIAnchor centerAnchor; // 中心锚点
-    public UIAnchor ltAnchor; // 左上锚点
-    public UIAnchor rtAnchor; // 右上锚点
-    public UIAnchor rightAnchor; // 右边锚点
+    private static TG.LevelHeroPanel levelHeroPanel;
+    // 英雄
+    private static TG.LevelPausePanel levelPausePanel;
+    // 暂停
+    private static TGU.BattleResultPanel battleResultPanel;
+    // 战斗结果
+    private static TG.LevelControllPanel levelControllPanel;
+    // 关卡控制
+    private static TGU.LevelResourcePanel levelResourcePanel;
+    // 资源
+    private static TGU.LevelNextPanel levelNextPanel;
+    // 下一个
+    private static TUI.UIPanelNodeManager centerPanelMgr;
+    // 中心面板管理
+    private static TUI.UIPanelNodeManager ltPanelMgr;
+    // 左上面板管理
+    private static TUI.UIPanelNodeManager rtPanelMgr;
+    // 右上面板管理
+    private static TUI.UIPanelNodeManager rightPanelMgr;
+    // 右边面板管理
+    public GameObject uiRoot;
+    // UIRoot
+    public UIAnchor centerAnchor;
+    // 中心锚点
+    public UIAnchor ltAnchor;
+    // 左上锚点
+    public UIAnchor rtAnchor;
+    // 右上锚点
+    public UIAnchor rightAnchor;
+    // 右边锚点
 
     #endregion
 
@@ -526,7 +541,7 @@ namespace TangLevel.Playback
     /// </summary>
     public static void Pause ()
     {
-      Debug.Log ("Pause");
+      //Debug.Log ("Pause");
       if (!LevelContext.isPause) {
         LevelContext.isPause = true;
 
@@ -723,10 +738,10 @@ namespace TangLevel.Playback
     private static void LoadCurrentSubLevelRes ()
     {
 
-      Debug.Log ("LoadTargetSubLevelRes");
+      //Debug.Log ("LoadTargetSubLevelRes");
 
       SubLevel subLevel = LevelContext.CurrentSubLevel;
-      Debug.Log ("subLevel.resName " + subLevel.resName);
+      //Debug.Log ("subLevel.resName " + subLevel.resName);
       GameObject bgGobj = GobjManager.FetchUnused (subLevel.resName);
       if (bgGobj == null) {
 
@@ -749,7 +764,7 @@ namespace TangLevel.Playback
     /// </summary>
     private static void LoadSubLevelHeroResources ()
     {
-      Debug.Log ("LoadSubLevelHeroResources");
+      //Debug.Log ("LoadSubLevelHeroResources");
 
       // -- 加载场景中的其他资源 --
 
@@ -791,7 +806,7 @@ namespace TangLevel.Playback
           requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
         }
-        Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
+        //Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
       }
 
       // 加载作用器
@@ -804,7 +819,7 @@ namespace TangLevel.Playback
     /// </summary>
     private static void LoadSubLevelEffectorResources ()
     {
-      Debug.Log ("LoadSubLevelEffectorResources");
+      //Debug.Log ("LoadSubLevelEffectorResources");
 
       // -- 加载场景中的其他资源 --
 
@@ -866,7 +881,7 @@ namespace TangLevel.Playback
     private static void AllSubLevelResourceReady ()
     {
 
-      Debug.Log ("AllSubLevelResourceReady");
+      //Debug.Log ("AllSubLevelResourceReady");
 
 
       if (LevelContext.CurrentSubLevel.index == 0) {
@@ -900,6 +915,7 @@ namespace TangLevel.Playback
     {
 
       // 确保清场
+      LevelContext.heroGobjs.Clear ();
       LevelContext.defenseGobjs.Clear ();
       LevelContext.attackGobjs.Clear ();
 
@@ -907,7 +923,7 @@ namespace TangLevel.Playback
       GameObject bgGobj = GobjManager.FetchUnused (LevelContext.CurrentSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
+        //Debug.Log ("Background Created.");
         LevelContext.background = bgGobj;
       }
 
@@ -932,6 +948,8 @@ namespace TangLevel.Playback
           LevelContext.attackGobjs.Add (g);
           // 保存到当前子关卡开始时的英雄列表中
           LevelContext.SubLevelBeganGobjs.Add (g);
+          // 加入到场景英雄表中
+          LevelContext.heroGobjs.Add (hero.id, g);
         }
       }
 
@@ -942,6 +960,8 @@ namespace TangLevel.Playback
         // 自动施放大招
         bmBhvr.auto = true;
         LevelContext.defenseGobjs.Add (g);
+        // 加入到场景英雄表中
+        LevelContext.heroGobjs.Add (hero.id, g);
       }
 
       // 监听场景中的英雄

@@ -28,7 +28,7 @@ namespace TangLevel
     private List<GameObject> attackGobjs = new List<GameObject>();
     private List<GameObject> defenseGobjs = new List<GameObject>();
 
-    void Start ()
+    void Awake ()
     {
 
       // 进入和离开关卡
@@ -95,10 +95,13 @@ namespace TangLevel
         defenseGobjs.Add (g);
       }
 
+      //Debug.Log ("Add Playback Components =======");
       foreach (GameObject gobj in attackGobjs) {
+        //Debug.Log ("0 =======");
         HeroBhvr hBhvr = gobj.GetComponent<HeroBhvr> ();
         HeroPlaybackBhvr hpBhvr = gobj.GetComponent<HeroPlaybackBhvr> ();
         if (hpBhvr == null) {
+          //Debug.Log ("1 =======");
           hpBhvr = gobj.AddComponent<HeroPlaybackBhvr> ();
         }
         hpBhvr.Anim = subLevelRecord.attackerAnims[hBhvr.hero.id];
@@ -106,9 +109,11 @@ namespace TangLevel
       }
 
       foreach (GameObject gobj in defenseGobjs) {
+        //Debug.Log ("2 =======");
         HeroBhvr hBhvr = gobj.GetComponent<HeroBhvr> ();
         HeroPlaybackBhvr hpBhvr = gobj.GetComponent<HeroPlaybackBhvr> ();
         if (hpBhvr == null) {
+          //Debug.Log ("3 =======");
           hpBhvr = gobj.AddComponent<HeroPlaybackBhvr> ();
         }
         hpBhvr.Anim = subLevelRecord.defenseAnims[hBhvr.hero.id];

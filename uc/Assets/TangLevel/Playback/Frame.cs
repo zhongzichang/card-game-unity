@@ -9,6 +9,10 @@ namespace TangLevel.Playback
     public int index;
     public T val;
 
+    public Frame(int index, T val){
+      this.index = index;
+      this.val = val;
+    }
   }
 }
 

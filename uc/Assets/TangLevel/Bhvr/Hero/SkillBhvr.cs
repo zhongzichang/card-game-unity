@@ -12,7 +12,7 @@ namespace TangLevel
     // 当前技能
     public Skill skill;
     // 所有技能
-    private Dictionary<int, Skill> skills;
+    public Dictionary<int, Skill> skills;
     // 出手序列
     private int[] skillQueue;
     // 当前序列索引

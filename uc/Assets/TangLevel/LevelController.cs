@@ -541,7 +541,7 @@ namespace TangLevel
     /// </summary>
     public static void Pause ()
     {
-      Debug.Log ("Pause");
+      //Debug.Log ("Pause");
       if (!LevelContext.isPause) {
         LevelContext.isPause = true;
 
@@ -578,7 +578,7 @@ namespace TangLevel
     private static void OnSubLevelMapLoaded (object sender, LoadResultEventArgs args)
     {
 
-      Debug.Log ("OnSubLevelMapLoaded");
+      //Debug.Log ("OnSubLevelMapLoaded");
 
       if (args.Name == LevelContext.CurrentSubLevel.resName) {
 
@@ -739,10 +739,10 @@ namespace TangLevel
     private static void LoadCurrentSubLevelRes ()
     {
 
-      Debug.Log ("LoadTargetSubLevelRes");
+      //Debug.Log ("LoadTargetSubLevelRes");
 
       SubLevel subLevel = LevelContext.CurrentSubLevel;
-      Debug.Log ("subLevel.resName " + subLevel.resName);
+      //Debug.Log ("subLevel.resName " + subLevel.resName);
       GameObject bgGobj = GobjManager.FetchUnused (subLevel.resName);
       if (bgGobj == null) {
 
@@ -765,7 +765,7 @@ namespace TangLevel
     /// </summary>
     private static void LoadSubLevelHeroResources ()
     {
-      Debug.Log ("LoadSubLevelHeroResources");
+      //Debug.Log ("LoadSubLevelHeroResources");
 
       // -- 加载场景中的其他资源 --
 
@@ -807,7 +807,7 @@ namespace TangLevel
           requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
         }
-        Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
+        //Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
       }
 
       // 加载作用器
@@ -820,7 +820,7 @@ namespace TangLevel
     /// </summary>
     private static void LoadSubLevelEffectorResources ()
     {
-      Debug.Log ("LoadSubLevelEffectorResources");
+      //Debug.Log ("LoadSubLevelEffectorResources");
 
       // -- 加载场景中的其他资源 --
 
@@ -882,7 +882,7 @@ namespace TangLevel
     private static void AllSubLevelResourceReady ()
     {
 
-      Debug.Log ("AllSubLevelResourceReady");
+      //Debug.Log ("AllSubLevelResourceReady");
 
 
       if (LevelContext.CurrentSubLevel.index == 0) {
@@ -916,6 +916,7 @@ namespace TangLevel
     {
 
       // 确保清场
+      LevelContext.heroGobjs.Clear ();
       LevelContext.defenseGobjs.Clear ();
       LevelContext.attackGobjs.Clear ();
 
@@ -923,7 +924,7 @@ namespace TangLevel
       GameObject bgGobj = GobjManager.FetchUnused (LevelContext.CurrentSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
+        //Debug.Log ("Background Created.");
         LevelContext.background = bgGobj;
       }
 
@@ -946,8 +947,10 @@ namespace TangLevel
           bmBhvr.auto = LevelContext.CurrentLevel.autoFight;
           // 加入我方队伍中
           LevelContext.attackGobjs.Add (g);
-          // 保存到当前子关卡开始时的英雄列表中
+          // 保存到当前子关卡开场时的英雄列表中
           LevelContext.SubLevelBeganGobjs.Add (g);
+          // 保存到场景所有英雄的表中
+          LevelContext.heroGobjs.Add (hero.id, g);
         }
       }
 
@@ -958,6 +961,8 @@ namespace TangLevel
         // 自动施放大招
         bmBhvr.auto = true;
         LevelContext.defenseGobjs.Add (g);
+        // 保存到场景所有英雄的表中
+        LevelContext.heroGobjs.Add (hero.id, g);
       }
 
       // 监听场景中的英雄
