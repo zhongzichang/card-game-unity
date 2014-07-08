@@ -46,7 +46,6 @@ namespace TangGame.UI{
       if(closing){return;}
       time += Time.deltaTime;
       if(time > 1.5f){
-        closing = true;
         Close();
       }
     }
@@ -56,6 +55,7 @@ namespace TangGame.UI{
         time = 0;
         closing = false;
 				this.gameObject.SetActive(true);
+        tween.enabled = false;
         tween.ResetToBeginning();
 				UpdateDisplay();
 			}
@@ -63,6 +63,7 @@ namespace TangGame.UI{
 
 		/// 关闭隐藏Tips
 		private void Close(){
+      closing = true;
       time = 0;
       tween.Play();
 		}
@@ -77,7 +78,6 @@ namespace TangGame.UI{
         closing = false;
         this.gameObject.SetActive(false);
     }
-
 
 		//=====================================================================================
 		//=====================================================================================
