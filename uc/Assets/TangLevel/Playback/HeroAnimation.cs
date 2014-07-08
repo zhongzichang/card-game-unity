@@ -9,6 +9,7 @@ namespace TangLevel.Playback
 
     public Timeline<HeroStatus> statusTimeline = new Timeline<HeroStatus>();
     public Timeline<float> posxTimeline = new Timeline<float>();
+    public Timeline<Action> actionTimeline = new Timeline<Action> ();
 
     public HeroAnimation (int heroId)
     {
