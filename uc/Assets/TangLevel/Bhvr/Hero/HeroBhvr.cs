@@ -49,6 +49,7 @@ namespace TangLevel
     private GameObject mTarget;
     // 当前目标
     private GroupBhvr groupBhvr;
+
     #endregion
 
     #region Properties
@@ -394,7 +395,8 @@ namespace TangLevel
     /// 战队状态回调
     /// </summary>
     /// <param name="status">Status.</param>
-    private void OnGroupStatusChanged(GroupStatus status){
+    private void OnGroupStatusChanged (GroupStatus status)
+    {
 
       switch (status) {
       case GroupStatus.relax:
@@ -494,7 +496,13 @@ namespace TangLevel
     /// <param name="target">Target.</param>
     public void Attack (GameObject target, Skill skill)
     {
-      if (statusBhvr.Status == HeroStatus.idle) {
+
+      if (statusBhvr.Status == HeroStatus.running) {
+        agent.ResetPath ();
+      }
+
+      if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running
+          ) {
 
         skill.Reset ();
         this.target = target;

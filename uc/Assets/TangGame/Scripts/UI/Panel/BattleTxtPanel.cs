@@ -12,7 +12,7 @@ namespace TangGame
 
     private BattleTxtPanel panel;
 
-    public BattleTxtPanelMediator (BattleTxtPanel panel) : base(NAME)
+    public BattleTxtPanelMediator (BattleTxtPanel panel) : base (NAME)
     {
       this.panel = panel;
     }
@@ -35,62 +35,71 @@ namespace TangGame
   public class BattleTxtPanel : MonoBehaviour
   {
     public GameObject greenLabel;
-	public GameObject orangeLabel;
-	public GameObject redLabel;
-	public GameObject yellowLabel;
-	public GameObject textSprite;
+    public GameObject orangeLabel;
+    public GameObject redLabel;
+    public GameObject yellowLabel;
+    public GameObject textSprite;
     private BattleTxtPanelMediator mediator;
 
     void Awake ()
     {
-      mediator = new BattleTxtPanelMediator (this);
-      Facade.Instance.RegisterMediator (mediator);
 
-	  greenLabel.SetActive (false);
-			orangeLabel.SetActive (false);
-			redLabel.SetActive (false);
-			yellowLabel.SetActive (false);
-			textSprite.SetActive (false);
+      mediator = new BattleTxtPanelMediator (this);
+      greenLabel.SetActive (false);
+      orangeLabel.SetActive (false);
+      redLabel.SetActive (false);
+      yellowLabel.SetActive (false);
+      textSprite.SetActive (false);
+    }
+
+    void OnEnable ()
+    {
+      Facade.Instance.RegisterMediator (mediator);
+    }
+
+    void OnDisable ()
+    {
+      Facade.Instance.RemoveMediator (mediator.MediatorName);
     }
 
     public void ShowBattleTxt (BattleTxt txt)
     {
       GameObject label = null;
-		if (txt.type == BattleTxtType.Hurt) {
-			if(txt.value < 1){
-				label = greenLabel;
-			}else if(txt.self){
-				label = redLabel;
-			}else{
-				label = orangeLabel;
-			}
-		} else if (txt.type == BattleTxtType.Text) {
-			label = textSprite;
-		}else if (txt.type == BattleTxtType.Energy) {
-			label = yellowLabel;
-		}
+      if (txt.type == BattleTxtType.Hurt) {
+        if (txt.value < 1) {
+          label = greenLabel;
+        } else if (txt.self) {
+          label = redLabel;
+        } else {
+          label = orangeLabel;
+        }
+      } else if (txt.type == BattleTxtType.Text) {
+        label = textSprite;
+      } else if (txt.type == BattleTxtType.Energy) {
+        label = yellowLabel;
+      }
 
       GameObject go = GameObject.Instantiate (label) as GameObject;
       go.transform.parent = this.gameObject.transform;
       go.SetActive (true);
       go.transform.localScale = Vector3.one;
-		if(txt.type == BattleTxtType.Text){
-			BattleTxtSpriteItem item = go.AddComponent<BattleTxtSpriteItem> ();
-			item.data = txt;
-		}else{
-			BattleTxtItem item = go.AddComponent<BattleTxtItem> ();
-			item.data = txt;
-		}
+      if (txt.type == BattleTxtType.Text) {
+        BattleTxtSpriteItem item = go.AddComponent<BattleTxtSpriteItem> ();
+        item.data = txt;
+      } else {
+        BattleTxtItem item = go.AddComponent<BattleTxtItem> ();
+        item.data = txt;
+      }
     }
 
     private void Show ()
     {
-			BattleTxtType[] types = new BattleTxtType[]{ BattleTxtType.Hurt, BattleTxtType.Text, BattleTxtType.Energy };
+      BattleTxtType[] types = new BattleTxtType[]{ BattleTxtType.Hurt, BattleTxtType.Text, BattleTxtType.Energy };
       int index = Random.Range (0, 3);
-			Debug.Log(index);
+      Debug.Log (index);
       BattleTxtType type = types [index];
       int hp = 100;
-	if (type != BattleTxtType.Text) {
+      if (type != BattleTxtType.Text) {
         hp = Random.Range (50, 200);
         if (hp < 100) {
           hp = -hp;
@@ -105,12 +114,12 @@ namespace TangGame
       txt.value = hp;
       txt.type = type;
       txt.crit = index > 50;
-			txt.self = Random.Range (0, 100) > 50;
-			txt.position = new Vector3(100 , 100,0);
+      txt.self = Random.Range (0, 100) > 50;
+      txt.position = new Vector3 (100, 100, 0);
       mediator.SendNotification (BattleCommand.BattleTxt, txt);
     }
 
-		/*void OnGUI(){
+    /*void OnGUI(){
 			if(GUI.Button(new Rect(50, 50, 50, 50), "T")){
 				Show();
 			}

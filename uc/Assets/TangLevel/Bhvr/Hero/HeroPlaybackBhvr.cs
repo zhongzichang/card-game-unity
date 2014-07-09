@@ -198,7 +198,7 @@ namespace TangLevel
         }
       }
 
-      if (nextSkillActionFrame != null && nextSkillActionFrame.index == frameIndex) {
+      if (nextSkillActionFrame != null && nextSkillActionFrame.index <= frameIndex) {
 
         // 攻击
         TP.SkillAction skillAction = nextSkillActionFrame.val;
