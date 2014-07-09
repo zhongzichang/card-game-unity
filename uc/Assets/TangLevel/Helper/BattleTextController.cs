@@ -8,6 +8,11 @@ namespace TangLevel
 {
   public class BattleTextController
   {
+
+    public delegate void BubblingHandler(TG.BattleTxt text);
+
+    public static BubblingHandler RaiseBubbing;
+
     /// <summary>
     /// 战斗冒字
     /// </summary>
@@ -25,6 +30,18 @@ namespace TangLevel
       battleTxt.self = self;
       battleTxt.position = screenPos;
       Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
+
+      if (RaiseBubbing != null) {
+        RaiseBubbing (battleTxt);
+      }
+
+    }
+
+    public static void Bubbling (TG.BattleTxt battleTxt){
+      Facade.Instance.SendNotification (TG.BattleCommand.BattleTxt, battleTxt);
+      if (RaiseBubbing != null) {
+        RaiseBubbing (battleTxt);
+      }
     }
   }
 }

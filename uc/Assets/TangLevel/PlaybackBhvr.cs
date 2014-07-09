@@ -95,13 +95,10 @@ namespace TangLevel
         defenseGobjs.Add (g);
       }
 
-      //Debug.Log ("Add Playback Components =======");
       foreach (GameObject gobj in attackGobjs) {
-        //Debug.Log ("0 =======");
         HeroBhvr hBhvr = gobj.GetComponent<HeroBhvr> ();
         HeroPlaybackBhvr hpBhvr = gobj.GetComponent<HeroPlaybackBhvr> ();
         if (hpBhvr == null) {
-          //Debug.Log ("1 =======");
           hpBhvr = gobj.AddComponent<HeroPlaybackBhvr> ();
         }
         hpBhvr.Anim = subLevelRecord.attackerAnims[hBhvr.hero.id];
@@ -109,16 +106,18 @@ namespace TangLevel
       }
 
       foreach (GameObject gobj in defenseGobjs) {
-        //Debug.Log ("2 =======");
         HeroBhvr hBhvr = gobj.GetComponent<HeroBhvr> ();
         HeroPlaybackBhvr hpBhvr = gobj.GetComponent<HeroPlaybackBhvr> ();
         if (hpBhvr == null) {
-          //Debug.Log ("3 =======");
           hpBhvr = gobj.AddComponent<HeroPlaybackBhvr> ();
         }
         hpBhvr.Anim = subLevelRecord.defenseAnims[hBhvr.hero.id];
         frameIndexChangeHandler += hpBhvr.OnFrameIndexChange;
       }
+
+      // 文字动画
+      TP.TextAnimationController.Anim = subLevelRecord.textAnimation;
+      frameIndexChangeHandler += TP.TextAnimationController.OnFrameIndexChange;
 
       playing = true;
 
@@ -144,7 +143,14 @@ namespace TangLevel
         frameIndexChangeHandler -= hpBhvr.OnFrameIndexChange;
       }
 
+
+      // 文字动画
+      TP.TextAnimationController.Anim = null;
+      frameIndexChangeHandler -= TP.TextAnimationController.OnFrameIndexChange;
+
     }
+
+
 
   }
 }
