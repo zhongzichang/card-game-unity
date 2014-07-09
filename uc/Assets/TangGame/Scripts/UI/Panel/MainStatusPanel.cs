@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TangUI;
 
 namespace TangGame.UI{
   public class MainStatusPanel : ViewPanel {
@@ -36,7 +37,7 @@ namespace TangGame.UI{
     }
 
     private void MoneyBtnClickHandler(GameObject go){
-
+      TangGame.UIContext.mgrCoC.LazyOpen(BuyMoneyPanel.NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.NONE);
     }
 
     private void IngotBtnClickHandler(GameObject go){
