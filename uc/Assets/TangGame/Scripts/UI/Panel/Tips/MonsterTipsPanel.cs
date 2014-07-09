@@ -17,10 +17,12 @@ namespace TangGame.UI{
 
 		/// TIPS高度，包含基本高度和文本高度
 		private int mHeight = 0;
+    private int renderQueueIndex = 10000;
 
 		// Use this for initialization
 		void Start () {
 			CalculateHeight();
+      renderQueueIndex = Global.GetTipsPanelRenderQueueIndex();
 		}
 
 		public int height{
@@ -42,7 +44,7 @@ namespace TangGame.UI{
     public void SetData(MonsterData data, bool isBoss){
       UIPanel mPanel = this.GetComponent<UIPanel>();
       mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
-      mPanel.startingRenderQueue = 10001;
+      mPanel.startingRenderQueue = renderQueueIndex;
       this.descLabel.text = data.desc;
       this.nameLabel.text = data.name;
       this.frame.spriteName = Global.GetHeroIconFrame(data.rank);

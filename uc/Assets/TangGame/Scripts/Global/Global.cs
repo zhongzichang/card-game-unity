@@ -11,6 +11,8 @@ namespace TangGame
 		/// UI显示的父对象
 		public static GameObject uiRoot;
 		public static bool isDebugBuild = true;
+    /// Tips面板使用的RenderQueue索引
+    private static int TipsPanelRenderQueueIndex = 10000;
 
 		public static void Log (object message)
 		{
@@ -32,6 +34,11 @@ namespace TangGame
 				Debug.LogError (message);
 			}
 		}
+
+    /// Tips面板使用的RenderQueue索引
+    public static int GetTipsPanelRenderQueueIndex(){
+      return TipsPanelRenderQueueIndex++;
+    }
 
 		/// 道具正常边框的Sprite名称
 		private static string[] PropsNormalFrame = new string[] {

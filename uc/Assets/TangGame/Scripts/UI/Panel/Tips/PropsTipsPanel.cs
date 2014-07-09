@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 namespace TangGame.UI{
@@ -20,9 +20,11 @@ namespace TangGame.UI{
 
 		/// TIPS高度，包含基本高度和文本高度
 		private int mHeight = 0;
+    private int renderQueueIndex = 10000;
 
 		// Use this for initialization
 		void Start () {
+      renderQueueIndex = Global.GetTipsPanelRenderQueueIndex();
 			CalculateHeight();
 		}
 
@@ -56,7 +58,7 @@ namespace TangGame.UI{
 		public void SetProp(Props props){
       UIPanel mPanel = this.GetComponent<UIPanel>();
       mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
-      mPanel.startingRenderQueue = 10000;
+      mPanel.startingRenderQueue = renderQueueIndex;
       this.effectLabel.text = "";
 			this.descLabel.text = "";
 			this.goldLabel.text = "";

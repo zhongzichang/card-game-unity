@@ -11,9 +11,11 @@ namespace TangGame.UI{
     public UILabel msgLabel;
 
     private string mMsg;
+    private int renderQueueIndex = 10000;
 
   	// Use this for initialization
   	void Start () {
+      renderQueueIndex = Global.GetTipsPanelRenderQueueIndex();
       this.started = true;
       this.UpdateMsg();
   	}
@@ -27,7 +29,7 @@ namespace TangGame.UI{
       if(!this.started){return;}
       UIPanel mPanel = this.GetComponent<UIPanel>();
       mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
-      mPanel.startingRenderQueue = 10002;
+      mPanel.startingRenderQueue = renderQueueIndex;
       this.msgLabel.text = mMsg;
 
       int width = this.msgLabel.width + 30;
