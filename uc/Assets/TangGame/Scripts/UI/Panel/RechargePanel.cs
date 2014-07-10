@@ -15,10 +15,46 @@ namespace TangGame.UI{
     public GameObject vipBuyContainer;
     public VipBuyItem vipBuyItem;
 
+    //=================================
+    public GameObject vipDescGroup;
+    public UILabel titleLabel;
+    public UIEventListener viewBtn1;
+    public UIEventListener viewBtn2;
+    public UILabel viewVipLabel1;
+    public UILabel viewVipLabel2;
+    public UIScrollView vipDescScrollView;
+    public GameObject vipDescContainer;
+    public UILabel viewLabel;
+    public GameObject viewGroup1;
+    public GameObject viewGroup2;
+    /// 用于定位介绍索引的
+    private int index = 0;
+    /// 移动标示
+    private bool isMove;
+    /// 移动目标坐标
+    private Vector3 movePosition;
+    /// 项总数
+    private int total = 3;
+
     void Start(){
+      movePosition = vipDescContainer.transform.localPosition;
       vipBuyItem.gameObject.SetActive(false);
       btn.onClick += BtnClickHandler;
+      viewBtn1.onClick += ViewBtn1Handler;
+      viewBtn2.onClick += ViewBtn2Handler;
       DisplayVipBuyItems();
+      UpdateVipDescScroll();
+    }
+
+    void Update(){
+      if(isMove){
+        Vector3 temp = vipDescContainer.transform.localPosition;
+        if( temp != movePosition){
+          vipDescContainer.transform.localPosition = Vector3.MoveTowards(temp, movePosition, 35);
+        }else{
+          isMove = false;
+        }
+      }
     }
 
 
@@ -42,6 +78,50 @@ namespace TangGame.UI{
     /// VIP购买项点击处理
     private void ItemClickHandler(GameObject go){
 
+    }
+
+    //==================================================================
+    private void ViewBtn1Handler(GameObject go){
+      index--;
+      UpdateVipDescScroll();
+    }
+
+    private void ViewBtn2Handler(GameObject go){
+      index++;
+      UpdateVipDescScroll();
+    }
+
+    /// 更新VIP介绍滚动
+    private void UpdateVipDescScroll(){
+      if(index >= 0){
+        isMove = true;
+      }else{
+        index = 0;
+      }
+
+      if(index == 0){
+        viewGroup1.SetActive(false);
+      }else{
+        viewGroup1.SetActive(true);
+      }
+
+      if(index < total){
+        isMove = true;
+      }else{
+        index = total - 1;
+      }
+
+      if(index == total - 1){
+        viewGroup2.SetActive(false);
+      }else{
+        viewGroup2.SetActive(true);
+      }
+
+      int cVip = index + 1;
+      viewVipLabel1.text = "VIP" + (cVip - 1);
+      viewVipLabel2.text = "VIP" + (cVip + 1);
+      titleLabel.text = string.Format("VIP{0}等级特权", cVip);
+      movePosition.x = index * -600;
     }
   }
 }
