@@ -20,6 +20,14 @@ namespace TangGame.UI{
     public UILabel vitalityInfoLabel;
     public UISprite background;
 
+    public UIPanel buyVitalityGroup;
+    public TweenScale buyVitalityTween;
+    public UILabel buyVitalityMsgLabel;
+    public UIEventListener okBtn;
+    public UIEventListener cancelBtn;
+    public UILabel okBtnLabel;
+    public UILabel cancelBtnLabel;
+
     private int renderQueueIndex = 10000;
 
     void Start(){
@@ -33,6 +41,13 @@ namespace TangGame.UI{
       vitalityAddBtn.onClick += VitalityAddBtnClickHandler;
       tween.eventReceiver = this.gameObject;
       tween.callWhenFinished = "TweenFinishedHandler";
+
+      //=====================
+      buyVitalityGroup.gameObject.SetActive(false);
+      okBtn.onClick += OkBtnClickHandler;
+      cancelBtn.onClick += CancelBtnClickHandler;
+      buyVitalityTween.eventReceiver = this.gameObject;
+      buyVitalityTween.callWhenFinished = "BuyVitalityTweenFinishedHandler";
     
     }
 
@@ -41,9 +56,16 @@ namespace TangGame.UI{
     }
 
     private void IngotBtnClickHandler(GameObject go){
-      
+      TangGame.UIContext.mgrCoC.LazyOpen(RechargePanel.NAME, UIPanelNode.OpenMode.ADDITIVE, UIPanelNode.BlockMode.NONE);
     }
 
+    /// 体力的+按钮点击事件处理
+    private void VitalityAddBtnClickHandler(GameObject go){
+      buyVitalityGroup.gameObject.SetActive(true);
+      buyVitalityTween.PlayForward();
+    }
+
+    //=================================================================
     private void VitalityBtnClickHandler(GameObject go, bool state){
       if(state){
         vitalityGroup.gameObject.SetActive(true);
@@ -52,10 +74,6 @@ namespace TangGame.UI{
       }else{
         tween.PlayReverse();
       }
-    }
-
-    private void VitalityAddBtnClickHandler(GameObject go){
-      
     }
 
     private void TweenFinishedHandler(UITweener tweener){
@@ -71,6 +89,20 @@ namespace TangGame.UI{
       UIUtils.SetY(vitalityGroup.gameObject, -(100 + height / 2));
     }
 
+    //=================================================================
+    private void OkBtnClickHandler(GameObject go){
+      
+    }
+
+    private void CancelBtnClickHandler(GameObject go){
+      buyVitalityTween.PlayReverse();
+    }
+
+    private void BuyVitalityTweenFinishedHandler(UITweener tweener){
+      if(buyVitalityGroup.transform.localScale.x < 0.01f){
+        buyVitalityGroup.gameObject.SetActive(false);
+      }
+    }
 
   }
 

@@ -6,8 +6,12 @@ namespace TangGame.UI{
   /// 充值界面
   /// </summary>
   public class RechargePanel : ViewPanel {
+    public const string NAME = "RechargePanel";
+
+
     public UIEventListener btn;
     public UILabel btnLabel;
+    public UIEventListener closeBtn;
 
     //=================================
     public GameObject vipBuyGroup;
@@ -35,6 +39,8 @@ namespace TangGame.UI{
     private Vector3 movePosition;
     /// 项总数
     private int total = 3;
+    /// 按钮状态
+    private int btnStatus = 1;
 
     void Start(){
       movePosition = vipDescContainer.transform.localPosition;
@@ -42,8 +48,11 @@ namespace TangGame.UI{
       btn.onClick += BtnClickHandler;
       viewBtn1.onClick += ViewBtn1Handler;
       viewBtn2.onClick += ViewBtn2Handler;
-      DisplayVipBuyItems();
-      UpdateVipDescScroll();
+      closeBtn.onClick += CloseBtnHandler;
+      vipBuyGroup.SetActive(false);
+      vipDescGroup.SetActive(false);
+
+      UpdateBtnStatus();
     }
 
     void Update(){
@@ -57,9 +66,32 @@ namespace TangGame.UI{
       }
     }
 
-
     private void BtnClickHandler(GameObject go){
+      if(btnStatus == 1){
+        btnStatus = 2;
+      }else{
+        btnStatus = 1;
+      }
+      UpdateBtnStatus();
+    }
 
+    private void CloseBtnHandler(GameObject go){
+      UIContext.mgrCoC.Back();
+    }
+
+    /// 更新按钮状态
+    private void UpdateBtnStatus(){
+      if(btnStatus == 1){
+        vipBuyGroup.SetActive(true);
+        vipDescGroup.SetActive(false);
+        btnLabel.text = "特权";
+        DisplayVipBuyItems();
+      }else if(btnStatus == 2){
+        vipBuyGroup.SetActive(false);
+        vipDescGroup.SetActive(true);
+        btnLabel.text = "充值";
+        UpdateVipDescScroll();
+      }
     }
 
     /// 显示VIP的购买项
