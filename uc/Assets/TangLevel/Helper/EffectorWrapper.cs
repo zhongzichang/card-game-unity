@@ -6,6 +6,7 @@ namespace TangLevel
   public class EffectorWrapper : SkillWrapper
   {
     public Effector effector;
+    public object param;
 
     public EffectorWrapper () : base()
     {

@@ -567,4 +567,31 @@
   <desc>张飞刚猛无匹，大幅提升护甲</desc>
   <desc_y>被动：提升[para1]点护甲。</desc_y>
  </value>
+ <value>
+  <id>10011</id>
+  <name>投石车投射</name>
+  <cool_time>4000</cool_time>
+  <type>1</type>
+  <boot_time>0</boot_time>
+  <after_time>0</after_time>
+  <play_loop>1</play_loop>
+  <isUltimate>0</isUltimate>
+  <cast_range>17</cast_range>
+  <skill_coefficient>10</skill_coefficient>
+  <up_add>10</up_add>
+  <target_type>2</target_type>
+  <range_type>1</range_type>
+  <effector_times>1</effector_times>
+  <effector_sequence>[]</effector_sequence>
+  <effector_ids>[10011]</effector_ids>
+  <being_interrupted_by_injuries>1</being_interrupted_by_injuries>
+  <is_attribute_addition>0</is_attribute_addition>
+  <code_coverage_skill_id>0</code_coverage_skill_id>
+  <after_animation>attack</after_animation>
+  <singing_effects>[]</singing_effects>
+  <play_effects>[]</play_effects>
+  <skill_icon>//</skill_icon>
+  <desc>投石车投射石头</desc>
+  <desc_y>//</desc_y>
+ </value>
 </root>
