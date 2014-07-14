@@ -45,6 +45,7 @@ namespace TangGame.UI{
       UIPanel mPanel = this.GetComponent<UIPanel>();
       mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
       mPanel.startingRenderQueue = renderQueueIndex;
+      mPanel.depth = renderQueueIndex;
       this.descLabel.text = data.desc;
       this.nameLabel.text = data.name;
       this.frame.spriteName = Global.GetHeroIconFrame(data.rank);
