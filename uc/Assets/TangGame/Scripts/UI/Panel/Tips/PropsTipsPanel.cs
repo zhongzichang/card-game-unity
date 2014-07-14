@@ -59,6 +59,7 @@ namespace TangGame.UI{
       UIPanel mPanel = this.GetComponent<UIPanel>();
       mPanel.renderQueue = UIPanel.RenderQueue.StartAt;
       mPanel.startingRenderQueue = renderQueueIndex;
+      mPanel.depth = renderQueueIndex;
       this.effectLabel.text = "";
 			this.descLabel.text = "";
 			this.goldLabel.text = "";
