@@ -84,7 +84,7 @@
   <dodge>0</dodge>
   <addition_treatment>0</addition_treatment>
   <model>hero_ht</model>
-  <avatar>hero_icon_4</avatar>
+  <avatar>head_1</avatar>
   <desc>加血者</desc>
  </value>
  <value>
@@ -113,7 +113,7 @@
   <dodge>0</dodge>
   <addition_treatment>0</addition_treatment>
   <model>hero_xc</model>
-  <avatar>hero_icon_2</avatar>
+  <avatar>head_2</avatar>
   <desc>我是胖娃</desc>
  </value>
  <value>
@@ -142,7 +142,7 @@
   <dodge>0</dodge>
   <addition_treatment>0</addition_treatment>
   <model>hero_zf</model>
-  <avatar>hero_icon_1</avatar>
+  <avatar>head_3</avatar>
   <desc>我是美女</desc>
  </value>
  <value>
@@ -171,7 +171,7 @@
   <dodge>0</dodge>
   <addition_treatment>0</addition_treatment>
   <model>hero_zhangfei</model>
-  <avatar>hero_icon_3</avatar>
+  <avatar>head_4</avatar>
   <desc>我乃阉人张以德也</desc>
  </value>
  <value>

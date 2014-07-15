@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 namespace TangLevel
 {
-  public class Jizhong : EffectorSpecialBhvr
+  public class BaozhaEffector : EffectorSpecialBhvr
   {
-    public static Vector3 OFFSET = new Vector3 (0, 4F, 0);
 
     private Transform myTransform;
 
@@ -18,11 +17,14 @@ namespace TangLevel
     void OnEnable ()
     {
 
-      if (w != null && w.target != null) {
+      if (w != null && w.target != null && w.param != null) {
 
-        // 定位到目标身上
-        myTransform.localPosition = w.target.transform.localPosition + OFFSET;
-        Hit ();
+        // 定位到爆炸位置上
+        Vector3 pos = (Vector3)w.param;
+        if (pos != null) {
+          myTransform.position = pos;
+        }
+        //Hit ();
 
       } else {
         StartRelease();
@@ -68,4 +70,3 @@ namespace TangLevel
     }
   }
 }
-

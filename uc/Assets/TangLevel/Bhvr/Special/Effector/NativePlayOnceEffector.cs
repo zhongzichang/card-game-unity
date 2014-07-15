@@ -5,37 +5,67 @@ namespace TangLevel
 {
   public class NativePlaceOnceEffector : EffectorSpecialBhvr
   {
-    // Use this for initialization
-    void Start ()
+
+    private Transform myTransform;
+
+    void Awake ()
     {
-	
+      myTransform = transform;
+      animator = GetComponent<Animator> ();
     }
 
-    // Update is called once per frame
-    void Update ()
+    void OnEnable ()
     {
-	
+
+      if (w != null && w.target != null) {
+
+        // 定位到目标身上
+        //myTransform.localPosition = w.target.transform.localPosition;
+        // 定位到自己身上
+        //myTransform.localPosition = w.source.transform.localPosition;
+        Hit ();
+
+      } else {
+        StartRelease();
+      }
+
+      // 关卡控制
+      LevelController.RaisePause += OnPause;
+      LevelController.RaiseResume += OnResume;
+
+
     }
 
-    void OnEnable(){
+    void OnDisable ()
+    {
+
+      // 关卡控制
+      LevelController.RaisePause -= OnPause;
+      LevelController.RaiseResume -= OnResume;
 
     }
 
+    private void OnAnimationEnd ()
+    {
+      StartRelease ();
+    }
 
     public override void Play ()
     {
       isPlay = true;
-      this.enabled = true;
+      StartPlayOnce ("isPlay");
     }
 
     public override void Pause ()
     {
       isPlay = false;
+      animator.speed = 0;
     }
 
     public override void Resume ()
     {
       isPlay = true;
+      animator.speed = 1;
     }
   }
 }
