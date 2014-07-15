@@ -34,8 +34,15 @@ namespace TangGame.UI{
     protected override void UpdateData (){
       if(!this.started){return;}
       int count = 5;
-      int height = 80 * Mathf.CeilToInt(count / 2f) + 20;
+      int height = 64 * Mathf.CeilToInt(count / 2f) + 20;
       propsGroup.height = height;
+
+      Vector3 tempPosition = simplePropsNameItem.transform.localPosition;
+      for(int i = 0; i < count; i++){
+        GameObject go = UIUtils.Duplicate(simplePropsNameItem.gameObject, propsGroup.transform);
+        go.transform.localPosition = tempPosition + new Vector3(250 * (i % 2), -(int)(i / 2) * 64, 0);
+      }
+
 
       UIUtils.SetY(bottomGroup, -82 - height - 35);
 
@@ -44,7 +51,7 @@ namespace TangGame.UI{
     }
 
     private void CloseBtnClickHandler(GameObject go){
-
+      UIContext.mgrCoC.Back();
     }
 
     private void OkBtnClickHandler(GameObject go){
