@@ -464,7 +464,7 @@
   <special_effect>fx_toushibaozha</special_effect>
   <effect_code>0</effect_code>
   <effect_params>[]</effect_params>
-  <sub_ids>[]</sub_ids>
+  <sub_ids>[1]</sub_ids>
   <desc>投石爆炸</desc>
  </value>
 </root>

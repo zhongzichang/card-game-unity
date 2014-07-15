@@ -9,12 +9,16 @@ namespace TangLevel
   /// </summary>
   public class ThrowEffector : EffectorSpecialBhvr
   {
+
+    public const float ANGLE_COMPUTE_PRECISE = 0.1F;
+
     //public Transform Target;
     public float firingAngle = 45.0f;
     public float gravity = 9.8f;
     public Vector3 offset = Vector3.zero;
 
     private Transform myTransform;
+    private Vector3 lastPosition = Vector3.zero; // 最进的位置
 
     void Awake ()
     {
@@ -67,18 +71,45 @@ namespace TangLevel
       //myTransform.rotation = Quaternion.LookRotation (tgtpos - srcpos);
       Quaternion quat = Quaternion.LookRotation (tgtpos - srcpos);
       TangUtils.TransformHelper.RotateWithoutChildren (myTransform, quat);
+      lastPosition = srcpos;
 
       float elapse_time = 0;
 
       while (elapse_time < flightDuration) {
         if (isPlay) {
+
           myTransform.Translate (0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
           elapse_time += Time.deltaTime;
+
+          Vector3 pos = myTransform.position;
+          Vector3 diff = pos - lastPosition;
+          diff = new Vector3 (diff.x, diff.y, 0);
+
+          if (lastPosition != Vector3.zero && 
+            (Mathf.Abs(diff.x) > ANGLE_COMPUTE_PRECISE ||
+              Mathf.Abs(diff.y) > ANGLE_COMPUTE_PRECISE)) {
+
+            quat = Quaternion.FromToRotation (Vector3.right, diff.normalized );
+            TangUtils.TransformHelper.RotateChildren (myTransform, quat);
+
+            lastPosition = pos;
+
+          }
+
         }
 
         yield return null;
       }
 
+      // 抛出子作用器 ---
+      SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
+      foreach (Effector e in w.effector.subEffectors) {
+        EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, null);
+        cw.param = myTransform.position; // 传递当前位置为爆炸位置
+        sourceSkillBhvr.Cast (cw);
+      }
+
+      // 释放资源
       StartRelease ();
     }
   }
