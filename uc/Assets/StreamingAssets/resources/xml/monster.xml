@@ -178,8 +178,8 @@
   <id>7</id>
   <name>投石车</name>
   <level>1</level>
-  <skill>[[1,1]]</skill>
-  <shot_order>[1]</shot_order>
+  <skill>[[10011,1]]</skill>
+  <shot_order>[10011]</shot_order>
   <evolve>1</evolve>
   <upgrade>1</upgrade>
   <strength>22</strength>
