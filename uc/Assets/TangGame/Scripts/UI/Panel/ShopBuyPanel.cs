@@ -44,7 +44,8 @@ namespace TangGame.UI{
 
     private void UpdateData(){
       if(!this.started){return;}
-      Goods goods = this.mParam as Goods;
+      ShopBuyPanelData shopBuyPanelData = this.mParam as ShopBuyPanelData;
+      Goods goods = shopBuyPanelData.goods;
 
       this.nameLabel.text = goods.data.name + " X " + goods.num;
       this.numLabel.text = string.Format("拥有 {0} 件", "100");

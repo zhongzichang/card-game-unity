@@ -7,13 +7,13 @@ namespace TangGame.UI{
   /// <summary>
   /// 商店面板
   /// </summary>
-  public class ShopPanel :ViewPanel {
+  public class ArenaShopPanel :ViewPanel {
 
-    public const string NAME = "ShopPanel";
+    public const string NAME = "ArenaShopPanel";
 
     public static string[] Strs = new string[]{"你的手指真灵活，我很喜欢","我会在每天9点，12点和18点更新商品","我是卖商品的","轻一点，点疼我了"};
 
-    public ShopItem shopItem;
+    public ArenaShopItem shopItem;
     public GameObject tips;
     public UILabel tipsLabel;
     public UILabel timeLabel;
@@ -21,7 +21,7 @@ namespace TangGame.UI{
     public UIEventListener tipsBtn;
     public UISprite tipsBackground;
 
-    public List<ShopItem> items = new List<ShopItem>();
+    public List<ArenaShopItem> items = new List<ArenaShopItem>();
 
     private object mParam;
     private float tipsTime;
@@ -60,7 +60,7 @@ namespace TangGame.UI{
         temp.x += (i % 3) * 278;
         temp.y -= (int)(i / 3) * 210;
         go.transform.localPosition = temp;
-        ShopItem item = go.GetComponent<ShopItem>();
+        ArenaShopItem item = go.GetComponent<ArenaShopItem>();
         UIEventListener.Get(go).onClick += ItemClickHandler;
         items.Add(item);
       }
@@ -95,7 +95,7 @@ namespace TangGame.UI{
 
     /// 刷新按钮点击处理
     private void RefreshBtnClickHandler(GameObject go){
-      Alert.Show("显示一批新货物需要消耗50钻石是够继续？（今日已刷新0次）", RefreshCallback, null);
+      Alert.Show("显示一批新货物需要消耗10角斗士硬币，是否继续？（今日已刷新0次）", RefreshCallback, null);
     }
 
     /// 刷新提示回调处理
@@ -112,11 +112,11 @@ namespace TangGame.UI{
     }
 
     private void ItemClickHandler(GameObject go){
-      ShopItem item = go.GetComponent<ShopItem>();
+      ArenaShopItem item = go.GetComponent<ArenaShopItem>();
       Goods goods = item.data as Goods;
       if(!goods.isSell){
         ShopBuyPanelData shopBuyPanelData = new ShopBuyPanelData();
-        shopBuyPanelData.type = ShopType.Shop;
+        shopBuyPanelData.type = ShopType.Arena;
         shopBuyPanelData.goods = goods;
         UIContext.mgrCoC.LazyOpen(ShopBuyPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, shopBuyPanelData);
       }
