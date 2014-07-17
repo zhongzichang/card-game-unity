@@ -6,6 +6,18 @@ namespace TangLevel
   public class NativePlaceOnceEffector : EffectorSpecialBhvr
   {
 
+
+    /// <summary>
+    /// 位置
+    /// </summary>
+    public enum Location {
+      self, target
+    }
+
+
+
+    public Location location = Location.self;
+
     private Transform myTransform;
 
     void Awake ()
@@ -19,10 +31,12 @@ namespace TangLevel
 
       if (w != null && w.target != null) {
 
-        // 定位到目标身上
-        //myTransform.localPosition = w.target.transform.localPosition;
-        // 定位到自己身上
-        //myTransform.localPosition = w.source.transform.localPosition;
+        if (location == Location.self) {
+          myTransform.position = w.source.transform.position;
+        } else {
+          myTransform.position = w.target.transform.position;
+        }
+
         Hit ();
 
       } else {

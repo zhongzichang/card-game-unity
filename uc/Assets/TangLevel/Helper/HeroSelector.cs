@@ -22,7 +22,7 @@ namespace TangLevel
     /// <summary>
     ///   找与指定英雄距离最近的友方目标
     /// </summary>
-    public static GameObject FindclosestFriend(HeroBhvr sourceHeroBhvr)
+    public static GameObject FindclosestFriend (HeroBhvr sourceHeroBhvr)
     {
       GameObject sgobj = sourceHeroBhvr.gameObject;
       List<GameObject> ol = sourceHeroBhvr.hero.battleDirection == BattleDirection.LEFT
@@ -48,7 +48,7 @@ namespace TangLevel
       float closestDistance = 0;
       foreach (GameObject gobj in ol) {
 
-        if( gobj == sgobj )
+        if (gobj == sgobj)
           continue;
 
         if (closestGobj == null) {
@@ -86,7 +86,8 @@ namespace TangLevel
     /// <summary>
     /// 以某一个点为中心，找出在宽度为 width ，高度不限制的英雄
     /// </summary>
-    public static List<T> FindHerosWithWidth<T> (List<GameObject> ol, Vector3 center, float width) where T : Component
+    public static List<T> FindHerosWithWidth<T> (List<GameObject> ol, Vector3 center, float width) 
+      where T : Component
     {
       float left = center.x - width / 2;
       float right = center.x + width / 2;
@@ -98,6 +99,49 @@ namespace TangLevel
         }
       }
       return ret;
+    }
+
+    /// <summary>
+    /// 找以为个点为中心，半径为 width 的敌人
+    /// </summary>
+    /// <returns>The enemies with width.</returns>
+    /// <param name="self">Self.</param>
+    /// <param name="center">Center.</param>
+    /// <param name="width">Width.</param>
+    public static List<GameObject> FindEnemiesWithWidth (GameObject self, Vector3 center, float width)
+    {
+
+      List<GameObject> ol = null;
+      HeroBhvr heroBhvr = self.GetComponent<HeroBhvr> ();
+      if (heroBhvr != null) {
+        if (heroBhvr.hero.battleDirection == BattleDirection.RIGHT) {
+          // 进攻方
+          ol = LevelContext.AliveDefenseGobjs;
+        } else {
+          // 防守方
+          ol = LevelContext.AliveSelfGobjs;
+        }
+        return FindTargetsWithWidth (ol, center, width);
+      }
+      return null;
+    }
+
+    public static List<T> FindEnemiesWithWidth<T> (GameObject self, Vector3 center, float width) 
+      where T : Component
+    {
+      List<GameObject> ol = null;
+      HeroBhvr heroBhvr = self.GetComponent<HeroBhvr> ();
+      if (heroBhvr != null) {
+        if (heroBhvr.hero.battleDirection == BattleDirection.RIGHT) {
+          // 进攻方
+          ol = LevelContext.AliveDefenseGobjs;
+        } else {
+          // 防守方
+          ol = LevelContext.AliveSelfGobjs;
+        }
+        return FindHerosWithWidth<T> (ol, center, width);
+      }
+      return null;
     }
 
     /// <summary>
@@ -151,12 +195,12 @@ namespace TangLevel
     /// <summary>
     ///   找指定英雄的己方队伍中最虚弱的英雄
     /// </summary>
-    public static GameObject FindSelfWeakest( Hero hero)
+    public static GameObject FindSelfWeakest (Hero hero)
     {
       List<GameObject> list = hero.battleDirection == BattleDirection.RIGHT ?
         LevelContext.AliveSelfGobjs : LevelContext.AliveDefenseGobjs;
       
-      return FindWeakest(list);
+      return FindWeakest (list);
         
     }
 
@@ -172,7 +216,7 @@ namespace TangLevel
       float minHpPercent = 1F;
       foreach (GameObject g in list) {
         Hero hero = g.GetComponent<HeroBhvr> ().hero;
-        float hpPercent = (float) hero.hp / (float) hero.maxHp;
+        float hpPercent = (float)hero.hp / (float)hero.maxHp;
         if (hpPercent <= minHpPercent && hpPercent > 0) {
           minHpPercent = hpPercent;
           ret = g;
