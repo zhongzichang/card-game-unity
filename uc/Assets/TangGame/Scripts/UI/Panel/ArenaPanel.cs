@@ -116,7 +116,7 @@ namespace TangGame.UI{
     }
 
     private void ExchangeBtnClickHandler(GameObject go){
-      
+      UIContext.mgrCoC.LazyOpen(ArenaShopPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.TEXTURE);
     }
 
     private void ChangeBtnClickHandler(GameObject go){
