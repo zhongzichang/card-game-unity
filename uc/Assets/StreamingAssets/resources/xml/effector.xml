@@ -444,7 +444,31 @@
   <desc>大喝</desc>
  </value>
  <value>
-  <id>10011</id>
+  <id>10021</id>
+  <times>1</times>
+  <loop_time>0</loop_time>
+  <probability>1</probability>
+  <type>1</type>
+  <special_effect>fx_arrow</special_effect>
+  <effect_code>0</effect_code>
+  <effect_params>[]</effect_params>
+  <sub_ids>[1]</sub_ids>
+  <desc>弓箭兵射箭</desc>
+ </value>
+ <value>
+  <id>10022</id>
+  <times>1</times>
+  <loop_time>0</loop_time>
+  <probability>1</probability>
+  <type>1</type>
+  <special_effect>fx_throwarrow</special_effect>
+  <effect_code>0</effect_code>
+  <effect_params>[]</effect_params>
+  <sub_ids>[1]</sub_ids>
+  <desc>弓箭兵投射箭</desc>
+ </value>
+ <value>
+  <id>10071</id>
   <times>1</times>
   <loop_time>0</loop_time>
   <probability>1</probability>
@@ -452,11 +476,11 @@
   <special_effect>fx_toushi2</special_effect>
   <effect_code>0</effect_code>
   <effect_params>[]</effect_params>
-  <sub_ids>[10012]</sub_ids>
+  <sub_ids>[10072]</sub_ids>
   <desc>投石车投射</desc>
  </value>
  <value>
-  <id>10012</id>
+  <id>10072</id>
   <times>1</times>
   <loop_time>0</loop_time>
   <probability>1</probability>
