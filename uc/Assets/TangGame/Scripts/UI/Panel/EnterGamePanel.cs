@@ -37,17 +37,17 @@ namespace TangGame.UI{
     public const string NAME = "EnterGamePanel";
 
     public GameObject loginGroup;
+    public GameObject serverGroup;
     public GameObject serverListGroup;
 
     //============================================
     public UILabel versionLabel;
     public UIEventListener enterBtn;
     public UILabel enterBtnLabel;
-    public GameObject serverGroup;
     public UILabel loginIdLabel;
     public UILabel loginNameLabel;
     public UILabel loginChangeLabel;
-    public UIEventListener loginChangeBtn;
+    public UIEventListener serverChangeBtn;
     //============================================
     public UILabel idLabel;
     public UILabel nameLabel;
@@ -58,6 +58,8 @@ namespace TangGame.UI{
     public UILabel allServerLabel;
     public ServerInfoItem serverInfoItem;
 
+    public UIEventListener loginBtn;
+    public UILabel loginBtnLabel;
     public UIInput usernameInput;
     public UIInput pwdInput;
 
@@ -69,13 +71,17 @@ namespace TangGame.UI{
 
     void Start(){
       serverInfoItem.gameObject.SetActive(false);
+      loginGroup.SetActive(false);
       serverListGroup.SetActive(false);
-      enterBtn.gameObject.SetActive(false);
+      serverGroup.SetActive(false);
       loginIdLabel.text = "";
       loginNameLabel.text = "";
-      loginChangeBtn.onClick += ChangeServerClickHandler;
+      serverChangeBtn.onClick += ServerChangeClickHandler;
       enterBtn.onClick += EnterBtnClickrHandler;
       selectedBtn.onClick += SelectedBtnClickrHandler;
+
+      loginBtn.onClick += LoginBtnClickrHandler;
+
       StartCoroutine(LoadText(GameCache.instance.serverListUrl, ServerListLoadCompleted));
 
       CreateServerList();
@@ -85,26 +91,28 @@ namespace TangGame.UI{
       Facade.Instance.RemoveMediator (WelcomeMediator.NAME);
     }
 
-    private void ChangeServerClickHandler(GameObject go){
+    private void ServerChangeClickHandler(GameObject go){
       serverListGroup.SetActive(true);
-      loginGroup.SetActive(false);
+      serverGroup.SetActive(false);
     }
 
     private void EnterBtnClickrHandler(GameObject go){
-      //Application.LoadLevel("Home");
+      Application.LoadLevel("Home");
+    }
+
+    private void LoginBtnClickrHandler(GameObject go){
       string username = usernameInput.value;
       string pwd = pwdInput.value;
       Debug.Log(username + "," + pwd);
-
     }
 
     private void SelectedBtnClickrHandler(GameObject go){
       serverListGroup.SetActive(false);
-      loginGroup.SetActive(true);
+      serverGroup.SetActive(true);
     }
 
     public void PreloadCompleted(){
-      enterBtn.gameObject.SetActive(true);
+      loginGroup.SetActive(true);
     }
 
     /// 服务器列表下载完成
