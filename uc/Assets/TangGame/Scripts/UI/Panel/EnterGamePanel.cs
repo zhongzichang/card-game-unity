@@ -58,6 +58,9 @@ namespace TangGame.UI{
     public UILabel allServerLabel;
     public ServerInfoItem serverInfoItem;
 
+    public UIInput usernameInput;
+    public UIInput pwdInput;
+
     private List<GameObject> items = new List<GameObject>();
 
     void Awake(){
@@ -88,7 +91,11 @@ namespace TangGame.UI{
     }
 
     private void EnterBtnClickrHandler(GameObject go){
-      Application.LoadLevel("Home");
+      //Application.LoadLevel("Home");
+      string username = usernameInput.value;
+      string pwd = pwdInput.value;
+      Debug.Log(username + "," + pwd);
+
     }
 
     private void SelectedBtnClickrHandler(GameObject go){
