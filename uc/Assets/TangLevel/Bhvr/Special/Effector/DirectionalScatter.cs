@@ -25,41 +25,44 @@ namespace TangLevel
     public override void Play ()
     {
 
-      // 计算方向
+      // source behaviours
       HeroBhvr sourceHeroBhvr = w.source.GetComponent<HeroBhvr> ();
       Directional sourceDirect = w.source.GetComponent<Directional> ();
 
-      Vector3 middleDirection = Vector3.zero;
-      if (sourceDirect.Direction == BattleDirection.RIGHT) {
-        middleDirection = Vector3.right;
-      } else {
+      // 计算中轴线
+      Vector3 middleDirection = Vector3.right;
+      if (sourceDirect.Direction == BattleDirection.LEFT) {
         middleDirection = Vector3.left;
       }
 
-
+      // 是否偶数
       bool isEven = false;
       if (particleCount % 2 == 0) {
         isEven = true;
       }
+
+      // 扇形中轴线的 rotation
       Quaternion middleQuat = Quaternion.LookRotation (middleDirection);
       Quaternion[] quats = new Quaternion[particleCount];
       if (isEven) {
         // 粒子的数量为偶数
-        for (int i = 0; i < particleCount; i += 2) {
-          quats [i] = middleQuat * Quaternion.AngleAxis (SEP_ANGLE * i + halfSepAngle, Vector3.forward);
-          quats [i + 1] = middleQuat * Quaternion.AngleAxis (-SEP_ANGLE * i + halfSepAngle, Vector3.forward);
+        // 中轴线上无发射物
+        int half = particleCount / 2;
+        for (int i = 0; i < half; i++) {
+          quats [i*2] = middleQuat * Quaternion.AngleAxis (SEP_ANGLE * i + halfSepAngle, Vector3.right);
+          quats [i*2+1] = middleQuat * Quaternion.AngleAxis (-((SEP_ANGLE * i) + halfSepAngle), Vector3.right);
         }
       } else {
         // 粒子的数量为奇数
+        // 中轴线上有发射物
         quats [0] = middleQuat;
-        for (int i = 1; i < particleCount; i++) {
-          if (i % 2 == 0) {
-            quats [i] = middleQuat * Quaternion.AngleAxis (SEP_ANGLE * i, Vector3.forward);
-          } else {
-            quats [i] = middleQuat * Quaternion.AngleAxis (-SEP_ANGLE * i, Vector3.forward);
-          }
+        int half = (particleCount - 1) / 2;
+        for (int i = 0; i < half; i++) {
+          quats [i*2+1] = middleQuat * Quaternion.AngleAxis (SEP_ANGLE * (i+1), Vector3.right);
+          quats [i*2+2] = middleQuat * Quaternion.AngleAxis (-SEP_ANGLE * (i+1), Vector3.right);
         }
       }
+
 
       if (quats.Length > 0) {
         // 抛出子作用器 ---

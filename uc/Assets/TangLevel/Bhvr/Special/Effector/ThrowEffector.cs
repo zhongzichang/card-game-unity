@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -16,6 +17,7 @@ namespace TangLevel
     public float firingAngle = 45.0f;
     public float gravity = 9.8f;
     public Vector3 offset = Vector3.zero;
+    public float hitDistance = 3F;
 
     private Transform myTransform;
     private Vector3 lastPosition = Vector3.zero; // 最进的位置
@@ -76,6 +78,7 @@ namespace TangLevel
       float elapse_time = 0;
 
       while (elapse_time < flightDuration) {
+
         if (isPlay) {
 
           myTransform.Translate (0, (Vy - (gravity * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
@@ -101,10 +104,19 @@ namespace TangLevel
         yield return null;
       }
 
+      // 获取命中的怪物
+      HeroBhvr sourceBhvrBhvr = w.source.GetComponent<HeroBhvr> ();
+      List<Transform> targetTransforms = 
+        HeroSelector.FindEnemiesWithWidth<Transform> (w.source, myTransform.position, 1);
+      GameObject newTarget = null;
+      if (targetTransforms != null && targetTransforms.Count > 0) {
+        newTarget = targetTransforms[0].gameObject;
+      }
+
       // 抛出子作用器 ---
       SkillBhvr sourceSkillBhvr = w.source.GetComponent<SkillBhvr> ();
       foreach (Effector e in w.effector.subEffectors) {
-        EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, null);
+        EffectorWrapper cw = EffectorWrapper.W (e, w.skill, w.source, newTarget);
         cw.param = myTransform.position; // 传递当前位置为爆炸位置
         sourceSkillBhvr.Cast (cw);
       }
