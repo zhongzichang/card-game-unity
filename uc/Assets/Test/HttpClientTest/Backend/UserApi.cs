@@ -35,7 +35,7 @@ namespace ClientDemoTest
 
   public class UserApi
 	{
-    public void getHeroes(string userId, System.Action<HeroResult> responseHandler){
+    public static void getHeroes(string userId, System.Action<HeroResult> responseHandler){
       System.Action<string> handler = delegate(string jsonData){
         HeroResult result = JsonConvert.DeserializeObject<HeroResult> (jsonData);
         responseHandler (result);

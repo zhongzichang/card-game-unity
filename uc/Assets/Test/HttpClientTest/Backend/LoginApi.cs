@@ -13,7 +13,7 @@ namespace ClientDemoTest
 
   public class LoginApi {
 
-    public void login(string username, string password, System.Action<LoginResult> responseHandler) {
+    public static void login(string username, string password, System.Action<LoginResult> responseHandler) {
       string endpoint = "echo";
       System.Action<string> handler = delegate(string jsonData){
         LoginResult result = JsonConvert.DeserializeObject<LoginResult>(jsonData);

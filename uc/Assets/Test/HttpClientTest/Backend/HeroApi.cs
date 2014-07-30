@@ -23,7 +23,7 @@ namespace ClientDemoTest
 
   public class HeroApi {
    
-    public void equipItem(string heroId, string equipId, System.Action<EquipItemResult> responseHandler) {
+    public static void equipItem(string heroId, string equipId, System.Action<EquipItemResult> responseHandler) {
       System.Action<string> handler = delegate(string jsonData){
         EquipItemResult result = JsonConvert.DeserializeObject<EquipItemResult> (jsonData);
         responseHandler (result);
@@ -35,7 +35,7 @@ namespace ClientDemoTest
       RestApi.Instance.HttpPost (path, param, handler);
     }
 
-    public void rankrank_color (string heroId, System.Action<rankrank_colorResult> responseHandler){ 
+    public static void rankrank_color (string heroId, System.Action<rankrank_colorResult> responseHandler){ 
       System.Action<string> handler = delegate(string jsonData){
         rankrank_colorResult result = JsonConvert.DeserializeObject<rankrank_colorResult> (jsonData);
         responseHandler (result);
@@ -46,7 +46,7 @@ namespace ClientDemoTest
       RestApi.Instance.HttpPost (path, param, handler);
     }
 
-    public void rankStar(string heroId, System.Action<rankStarResult> responseHandler){ 
+    public static void rankStar(string heroId, System.Action<rankStarResult> responseHandler){ 
       System.Action<string> handler = delegate(string jsonData){
         rankStarResult result = JsonConvert.DeserializeObject<rankStarResult> (jsonData);
         responseHandler (result);
@@ -57,7 +57,7 @@ namespace ClientDemoTest
       RestApi.Instance.HttpPost (path, param, handler);
     }
 
-    public void rankSkill(string heroId, string skillId, System.Action<rankSkillResult> responseHandler) {
+    public static void rankSkill(string heroId, string skillId, System.Action<rankSkillResult> responseHandler) {
       System.Action<string> handler = delegate(string jsonData){
         rankSkillResult result = JsonConvert.DeserializeObject<rankSkillResult> (jsonData);
         responseHandler (result);
