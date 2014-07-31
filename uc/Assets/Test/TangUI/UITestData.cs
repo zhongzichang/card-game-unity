@@ -2,7 +2,7 @@
 using System.Collections;
 using TangGame.Net;
 
-using ClientDemoTest;
+using Restful;
 
 public class UITestData : MonoBehaviour
 {

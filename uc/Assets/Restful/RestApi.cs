@@ -4,15 +4,10 @@ using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ClientDemoTest
+namespace Restful
 {
   public class RestApiParam
   {
-    private string appId = "appId";
-    private string appKey = "appKey";
-    private string accessToken = "accessToken";
-
-
 
     private WWWForm form = new WWWForm ();
 
@@ -23,9 +18,6 @@ namespace ClientDemoTest
     public RestApiParam ()
     {
       form.headers ["Content-Type"] = "application/json";
-      form.headers ["x-appid"] = appId;
-      form.headers ["x-appkey"] = appKey;
-      form.headers ["Authorization"] = accessToken;
     }
 
     public void AddField (string key, string val)
@@ -114,7 +106,7 @@ namespace ClientDemoTest
       yield return www;
 
 
-      if (!String.IsNullOrEmpty (www.error)) {
+      if (String.IsNullOrEmpty (www.error)) {
 
         // 保存 cookies
         String[] cookieSplits = Regex.Split(www.responseHeaders["SET-COOKIE"],";");
@@ -132,7 +124,7 @@ namespace ClientDemoTest
       } else {
 
 
-        Debug.LogError (www.error);
+        Debug.LogError ("fail to open "+ www.url + " with error " + www.error);
 
         // 显示重试对话框
 

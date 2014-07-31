@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using TangGame.Net;
+using Restful;
 
 namespace ClientDemoTest{
 
@@ -73,7 +73,7 @@ namespace ClientDemoTest{
 
     private void loginResponseHandler (LoginResult result)
     {
-      Debug.Log (result.userId);
+      Debug.Log (result.message);
     }
 
     private void getHeroesResponseHandler (HeroResult result)

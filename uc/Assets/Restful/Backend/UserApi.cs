@@ -4,7 +4,7 @@ using System.Collections;
 using TangGame.Net;
 using Newtonsoft.Json;
 
-namespace ClientDemoTest
+namespace Restful
 {
   public class HeroResult
   {

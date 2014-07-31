@@ -4,7 +4,7 @@ using System.Collections;
 using Newtonsoft.Json;
 using TangGame.Net;
 
-namespace ClientDemoTest
+namespace Restful
 {
   public class AuthResult
   {
@@ -13,12 +13,12 @@ namespace ClientDemoTest
 
   public class AuthApi {
 
-    public static void Check(System.Action<LoginResult> responseHandler) {
+    public static void Check(System.Action<AuthResult> responseHandler) {
 
       string path = "/check";
 
       System.Action<string> handler = delegate(string jsonData){
-        LoginResult result = JsonConvert.DeserializeObject<LoginResult>(jsonData);
+        AuthResult result = JsonConvert.DeserializeObject<AuthResult>(jsonData);
         responseHandler (result);
       };
 

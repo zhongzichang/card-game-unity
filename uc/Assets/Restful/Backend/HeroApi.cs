@@ -3,7 +3,7 @@ using System.Collections;
 
 using Newtonsoft.Json;
 
-namespace ClientDemoTest
+namespace Restful
 {
   public class EquipItemResult{
     public bool ok;

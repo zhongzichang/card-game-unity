@@ -4,11 +4,12 @@ using System.Collections;
 using Newtonsoft.Json;
 using TangGame.Net;
 
-namespace ClientDemoTest
+namespace Restful
 {
   public class LoginResult
   {
-    public string userId;
+    public bool success;
+    public string message;
   }
 
   public class LoginApi {
