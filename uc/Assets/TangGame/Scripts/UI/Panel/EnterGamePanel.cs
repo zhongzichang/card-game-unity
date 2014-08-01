@@ -112,7 +112,7 @@ namespace TangGame.UI{
     }
 
     public void PreloadCompleted(){
-      loginGroup.SetActive(true);
+      //loginGroup.SetActive(true);
     }
 
     /// 服务器列表下载完成

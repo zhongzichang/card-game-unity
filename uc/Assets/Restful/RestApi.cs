@@ -34,21 +34,33 @@ namespace Restful
   public class RestApi : MonoBehaviour
   {
 
+    public static readonly string COOKIE_KEY = "Cookie";
+    private static string host = "http://115.28.229.143";
     private static RestApi _instance;
+    private static Hashtable cookieTable = new Hashtable ();
 
     public static RestApi Instance {
       get {
         if (_instance == null) {
+
           var go = new GameObject ("RestApi");
           _instance = go.AddComponent<RestApi> ();
           DontDestroyOnLoad (go);
+
           baseUrl = host + prefix;
+
+          // init cookie table
+          if (PlayerPrefs.HasKey (COOKIE_KEY)) {
+            string[] items = PlayerPrefs.GetString(COOKIE_KEY).Split (new char[]{ ';' });
+            foreach (string item in items) {
+              string[] kv = item.Split (new char[]{ '=' });
+              cookieTable [kv [0]] = kv [1];
+            }
+          }
         }
         return _instance;
       }
     }
-
-    private static string host = "http://115.28.229.143";
 
     public string Host {
       get{ return host; }
@@ -67,7 +79,7 @@ namespace Restful
 
     public void HttpGet (string path, System.Action<string> responseHandler)
     {
-      header["Cookie"] = PlayerPrefs.GetString("cookies");
+      header[COOKIE_KEY] = PlayerPrefs.GetString(COOKIE_KEY);
       requestUrl = baseUrl + path;
       requestData = null;
       m_responseHandler = responseHandler;
@@ -77,7 +89,7 @@ namespace Restful
 
     public void HttpsGet (string path, System.Action<string> responseHandler)
     {
-      header["Cookie"] = PlayerPrefs.GetString("cookies");
+      header[COOKIE_KEY] = PlayerPrefs.GetString(COOKIE_KEY);
       requestUrl = baseUrl + path;
       requestData = null;
       m_responseHandler = responseHandler;
@@ -87,7 +99,7 @@ namespace Restful
 
     public void HttpPost (string path, RestApiParam param, System.Action<string> responseHandler)
     {
-      header["Cookie"] = PlayerPrefs.GetString("cookies");
+      header[COOKIE_KEY] = PlayerPrefs.GetString(COOKIE_KEY);
       requestUrl = baseUrl + path;
       requestData = param.Form.data;
       m_responseHandler = responseHandler;
@@ -111,13 +123,27 @@ namespace Restful
         // 保存 cookies
         String[] cookieSplits = Regex.Split(www.responseHeaders["SET-COOKIE"],";");
         if( cookieSplits != null && cookieSplits.Length > 0 ){
-          PlayerPrefs.SetString ("Cookie", cookieSplits[0]);
+
+          string[] kv = cookieSplits [0].Split (new char[]{ '=' });
+          cookieTable [kv [0]] = kv [1];
+
+          StringBuilder sb = new StringBuilder ();
+          IDictionaryEnumerator iter = cookieTable.GetEnumerator ();
+          while (iter.MoveNext ()) {
+            sb.Append (iter.Key).Append("=").Append(iter.Value).Append(";");
+          }
+
+          string cookie4save = sb.Remove (sb.Length - 1, 1).ToString ();
+          PlayerPrefs.SetString (COOKIE_KEY, cookie4save);
+
+          Debug.Log ("cookie4save : " + cookie4save);
         }
 
         // 处理
         onComplete (www.text);
-
+        Debug.Log ("www.text : " + www.text);
         www.Dispose ();
+
 
 
 
