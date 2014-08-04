@@ -14,7 +14,7 @@ namespace TangLevel
     void OnGUI ()
     {
 
-      if (GUI.Button (new Rect (300, 10, 150, 50), "Playback")) {
+      if (GUI.Button (new Rect (Screen.width - 200, Screen.height - 60, 100, 50), "Playback")) {
 
         int[] heroIds = new int[]{ 1, 2, 3, 4 };
         // LevelController.ChallengeLevel (1, Mocker.MockGroup (heroIds));

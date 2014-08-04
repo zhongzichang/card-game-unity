@@ -75,7 +75,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_2</avatar>
-  <portrait>pictorial_2</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_2</model>
  </value>
  <value>
@@ -114,7 +114,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_3</avatar>
-  <portrait>pictorial_3</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_3</model>
  </value>
  <value>
@@ -153,7 +153,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_4</avatar>
-  <portrait>pictorial_4</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_4</model>
  </value>
  <value>
@@ -192,7 +192,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_5</avatar>
-  <portrait>pictorial_5</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_5</model>
  </value>
  <value>
@@ -231,7 +231,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_6</avatar>
-  <portrait>pictorial_6</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_6</model>
  </value>
  <value>
@@ -270,7 +270,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_7</avatar>
-  <portrait>pictorial_7</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_7</model>
  </value>
  <value>
@@ -309,7 +309,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_8</avatar>
-  <portrait>pictorial_8</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_8</model>
  </value>
  <value>
@@ -348,7 +348,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_9</avatar>
-  <portrait>pictorial_9</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_9</model>
  </value>
  <value>
@@ -387,7 +387,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_10</avatar>
-  <portrait>pictorial_10</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_10</model>
  </value>
  <value>
@@ -426,7 +426,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_11</avatar>
-  <portrait>pictorial_11</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_11</model>
  </value>
  <value>
@@ -465,7 +465,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_12</avatar>
-  <portrait>pictorial_12</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_12</model>
  </value>
  <value>
@@ -504,7 +504,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_13</avatar>
-  <portrait>pictorial_13</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_13</model>
  </value>
  <value>
@@ -543,7 +543,7 @@
   <hero_info>后排治疗英雄，拥有强大的治疗能力。</hero_info>
   <hero_tip>传说中的医圣</hero_tip>
   <avatar>hero_icon_4</avatar>
-  <portrait>pictorial_14</portrait>
+  <portrait>pictorial_1</portrait>
   <model>hero_ht</model>
  </value>
  <value>
@@ -582,7 +582,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_15</avatar>
-  <portrait>pictorial_15</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_15</model>
  </value>
  <value>
@@ -621,7 +621,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_16</avatar>
-  <portrait>pictorial_16</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_16</model>
  </value>
  <value>
@@ -660,7 +660,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_17</avatar>
-  <portrait>pictorial_17</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_17</model>
  </value>
  <value>
@@ -699,7 +699,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_18</avatar>
-  <portrait>pictorial_18</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_18</model>
  </value>
  <value>
@@ -738,7 +738,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_19</avatar>
-  <portrait>pictorial_19</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_19</model>
  </value>
  <value>
@@ -777,7 +777,7 @@
   <hero_info>前排肉盾英雄，可以震晕敌人。</hero_info>
   <hero_tip>我是憨厚的闷墩儿</hero_tip>
   <avatar>hero_icon_2</avatar>
-  <portrait>pictorial_20</portrait>
+  <portrait>pictorial_1</portrait>
   <model>hero_xc</model>
  </value>
  <value>
@@ -816,7 +816,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_21</avatar>
-  <portrait>pictorial_21</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_21</model>
  </value>
  <value>
@@ -855,7 +855,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_22</avatar>
-  <portrait>pictorial_22</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_22</model>
  </value>
  <value>
@@ -894,7 +894,7 @@
   <hero_info>中排输出英雄。</hero_info>
   <hero_tip>我是美女我怕谁</hero_tip>
   <avatar>hero_icon_1</avatar>
-  <portrait>pictorial_23</portrait>
+  <portrait>pictorial_1</portrait>
   <model>hero_zf</model>
  </value>
  <value>
@@ -933,7 +933,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_24</avatar>
-  <portrait>pictorial_24</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_24</model>
  </value>
  <value>
@@ -972,7 +972,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_25</avatar>
-  <portrait>pictorial_25</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_25</model>
  </value>
  <value>
@@ -1011,7 +1011,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_26</avatar>
-  <portrait>pictorial_26</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_26</model>
  </value>
  <value>
@@ -1050,7 +1050,7 @@
   <hero_info>前排肉盾英雄，可以把敌人丢出去。</hero_info>
   <hero_tip>你是猴子请来的救兵吗？</hero_tip>
   <avatar>hero_icon_3</avatar>
-  <portrait>pictorial_27</portrait>
+  <portrait>pictorial_1</portrait>
   <model>hero_zhangfei</model>
  </value>
  <value>
@@ -1089,7 +1089,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_28</avatar>
-  <portrait>pictorial_28</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_28</model>
  </value>
  <value>
@@ -1128,7 +1128,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_29</avatar>
-  <portrait>pictorial_29</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_29</model>
  </value>
  <value>
@@ -1167,7 +1167,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_30</avatar>
-  <portrait>pictorial_30</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_30</model>
  </value>
  <value>
@@ -1206,7 +1206,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_31</avatar>
-  <portrait>pictorial_31</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_31</model>
  </value>
  <value>
@@ -1245,7 +1245,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_32</avatar>
-  <portrait>pictorial_32</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_32</model>
  </value>
  <value>
@@ -1284,7 +1284,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_33</avatar>
-  <portrait>pictorial_33</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_33</model>
  </value>
  <value>
@@ -1323,7 +1323,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_34</avatar>
-  <portrait>pictorial_34</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_34</model>
  </value>
  <value>
@@ -1362,7 +1362,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_35</avatar>
-  <portrait>pictorial_35</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_35</model>
  </value>
  <value>
@@ -1401,7 +1401,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_36</avatar>
-  <portrait>pictorial_36</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_36</model>
  </value>
  <value>
@@ -1440,7 +1440,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_37</avatar>
-  <portrait>pictorial_37</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_37</model>
  </value>
  <value>
@@ -1479,7 +1479,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_38</avatar>
-  <portrait>pictorial_38</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_38</model>
  </value>
  <value>
@@ -1518,7 +1518,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_39</avatar>
-  <portrait>pictorial_39</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_39</model>
  </value>
  <value>
@@ -1557,7 +1557,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_40</avatar>
-  <portrait>pictorial_40</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_40</model>
  </value>
  <value>
@@ -1596,7 +1596,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_41</avatar>
-  <portrait>pictorial_41</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_41</model>
  </value>
  <value>
@@ -1635,7 +1635,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_42</avatar>
-  <portrait>pictorial_42</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_42</model>
  </value>
  <value>
@@ -1674,7 +1674,7 @@
   <hero_info>XXXX</hero_info>
   <hero_tip>XXXX</hero_tip>
   <avatar>hero_icon_43</avatar>
-  <portrait>pictorial_43</portrait>
+  <portrait>pictorial_1</portrait>
   <model>model_43</model>
  </value>
 </root>
