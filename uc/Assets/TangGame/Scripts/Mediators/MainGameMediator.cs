@@ -43,7 +43,7 @@ namespace TangGame.View
     public MainGameMediator (GameObject gameObject) : base(NAME)
     {
       MainGameMediator.gameObject = gameObject;
-
+      /*
       handleTable.Add (TangNet.NtftNames.TN_EXCEPTION, HandleNetWorkExcption);
       handleTable.Add (TangNet.NtftNames.TN_CONNECTION_CLOSE, HandleNetWorkClose);
 
@@ -51,6 +51,7 @@ namespace TangGame.View
 
       handleTable.Add (TS.NtftNames.SCENE_LOAD_START, HandleSceneLoadStart);
       handleTable.Add (NtftNames.TG_LEADING_ACTOR_READY, HandleLeadingActorReady);
+      */
     }
     
     /// <summary>
@@ -59,6 +60,7 @@ namespace TangGame.View
     /// <returns></returns>
     public override IList<string> ListNotificationInterests ()
     {
+      /*
       if (interests.Count == 0) {
 
         interests.Add (NtftNames.ON_REGISTER_GESTURE_INPUT);
@@ -75,7 +77,7 @@ namespace TangGame.View
         interests.Add (TS.NtftNames.SCENE_LOAD_START);
         interests.Add (NtftNames.TG_LEADING_ACTOR_READY);
       }
-
+*/
       return interests;
     }
 
@@ -121,7 +123,7 @@ namespace TangGame.View
     
       // the notification from self
       // 注册场景手势输入
-      SendNotification (NtftNames.ON_REGISTER_GESTURE_INPUT);
+      //SendNotification (NtftNames.ON_REGISTER_GESTURE_INPUT);
       // TangScene
       
       // TangGame

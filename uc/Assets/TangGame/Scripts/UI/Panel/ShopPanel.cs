@@ -93,8 +93,14 @@ namespace TangGame.UI{
       }
     }
 
+    /// 刷新按钮点击处理
     private void RefreshBtnClickHandler(GameObject go){
+      Alert.Show("显示一批新货物需要消耗50钻石是够继续？（今日已刷新0次）", RefreshCallback, null);
+    }
 
+    /// 刷新提示回调处理
+    private void RefreshCallback(AlertType type, object param){
+      Global.Log(type);
     }
 
     private void TipsBtnClickHandler(GameObject go){
@@ -109,7 +115,10 @@ namespace TangGame.UI{
       ShopItem item = go.GetComponent<ShopItem>();
       Goods goods = item.data as Goods;
       if(!goods.isSell){
-        UIContext.mgrCoC.LazyOpen(ShopBuyPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, item.data);
+        ShopBuyPanelData shopBuyPanelData = new ShopBuyPanelData();
+        shopBuyPanelData.type = ShopType.Shop;
+        shopBuyPanelData.goods = goods;
+        UIContext.mgrCoC.LazyOpen(ShopBuyPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, shopBuyPanelData);
       }
     }
 

@@ -28,20 +28,20 @@ namespace TangLevel
 			level.id = 1;
 			level.name = "Test Level 1";
 
-      level.subLevels = new SubLevel[3];
-			for (int i = 1; i < 4; i++) {
+      level.subLevels = new List<SubLevel>();
+			for (int i = 0; i < 3; i++) {
 				SubLevel subLevel = new SubLevel ();
-				subLevel.id = i;
-				subLevel.index = i - 1;
-				if (i == 1) {
+				subLevel.id = i+1;
+				subLevel.index = i;
+				if (i == 0) {
 					subLevel.resName = "lbg_grass1";
-				} else if (i == 2) {
+				} else if (i == 1) {
 					subLevel.resName = "lbg_grass2";
-				} else if (i == 3) {
+				} else if (i == 2) {
 					subLevel.resName = "lbg_grass3";
 				}
 
-        level.subLevels [subLevel.index] = subLevel;
+        level.subLevels.Add(subLevel);
         subLevel.defenseGroup = MockGroup ();
 
 			}

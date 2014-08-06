@@ -16,9 +16,10 @@ namespace Tang
   /// </summary>
   public class Config
   {
+
     public const bool DEBUG = true;
     public static string resDirName = "Tang";
-    public const string U3D_PREFAB_DIR = "Prefabs";
+    public const string U3D_PREFAB_DIR = "prefabs";
     public static int fps = 10;
     public static ResourceStream resourceStream = ResourceStream.INNER;
     public const string DIR_SEP = "/";
@@ -35,7 +36,7 @@ namespace Tang
         return ResDir + "ab/"; 
       }
     }
-
+    
     public static string XmlDir {
       get {
         return ResDir + "xml/";
@@ -44,15 +45,34 @@ namespace Tang
 
     public static string ResDir {
       get {
-        if (Application.platform == RuntimePlatform.Android) {
-          if (resourceStream == ResourceStream.INNER) {
-            return System.IO.Path.Combine (Application.streamingAssetsPath, "resources/");
-          } else {
-            return "file:///sdcard/" + resDirName + "/resources/";
-          }
-        }else{
-          return "file://" + System.IO.Path.Combine (Application.streamingAssetsPath, "resources/");
+        string prefix = null;
+
+        // WindowsWeb OSXWeb IPhone
+        if (Application.platform == RuntimePlatform.WindowsWebPlayer || 
+          Application.platform == RuntimePlatform.OSXWebPlayer ||
+          Application.platform == RuntimePlatform.IPhonePlayer) {
+          prefix = Application.dataPath + "/resources/";
         }
+
+    // Android
+    else if (Application.platform == RuntimePlatform.Android) {
+          if (resourceStream == ResourceStream.INNER)
+            prefix = System.IO.Path.Combine (Application.streamingAssetsPath,
+             "resources/");
+          else
+            prefix = "file:///sdcard/" + resDirName + "/resources/";
+        }
+
+    // Editor and others
+    else {
+          if (resourceStream == ResourceStream.INNER) {
+            prefix = "file://" + Application.streamingAssetsPath + "/resources/";
+          } else {
+            prefix = "file://" + Application.dataPath + "/../../resources/";
+          }
+        }
+        return prefix;
+
       }
     }
   }

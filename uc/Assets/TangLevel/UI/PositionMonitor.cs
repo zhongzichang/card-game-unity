@@ -17,11 +17,13 @@ namespace TangLevel
 
     public void OnChange(Vector3 screenPosition){
 
-      Vector3 pos = UICamera.mainCamera.ScreenToWorldPoint (screenPosition );
-      myTransform.position = pos;
+      if (UICamera.mainCamera != null) {
+        Vector3 pos = UICamera.mainCamera.ScreenToWorldPoint (screenPosition);
+        myTransform.position = pos;
 
-      Vector3 localPos = myTransform.localPosition;
-      myTransform.localPosition = new Vector3(localPos.x, localPos.y, -10F) + offset;
+        Vector3 localPos = myTransform.localPosition;
+        myTransform.localPosition = new Vector3 (localPos.x, localPos.y, -10F) + offset;
+      }
     }
 
   }

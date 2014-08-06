@@ -22,7 +22,7 @@ namespace TangLevel
     /// <summary>
     /// 子关卡
     /// </summary>
-    public SubLevel[] subLevels;
+    public List<SubLevel> subLevels;
     /// <summary>
     /// 敌人的大招特写是否打开
     /// </summary>
@@ -43,7 +43,10 @@ namespace TangLevel
     // -- 场景属性 --
 
     #region Scene Attributes
-
+    /// <summary>
+    /// 攻方小组
+    /// </summary>
+    public Group attackGroup;
     #endregion
 
     #region Constructor
@@ -71,9 +74,9 @@ namespace TangLevel
     {
       Level other = (Level)this.MemberwiseClone ();
 
-      other.subLevels = new SubLevel[ subLevels.Length ];
-      for (int i = 0; i < other.subLevels.Length; i++) {
-        other.subLevels [i] = subLevels [i].DeepCopy ();
+      other.subLevels = new List<SubLevel>();
+      foreach (SubLevel subLevel in subLevels) {
+        other.subLevels.Add (subLevel.DeepCopy ());
       }
 
       return other;

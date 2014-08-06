@@ -31,7 +31,9 @@ public class UIRootBehaviour : MonoBehaviour {
     if(Application.isPlaying){
       if(uiWidget == null){
         GameObject go = new GameObject("UIAnchorContainer");
+        go.layer = LayerMask.NameToLayer ("UI");
         uiWidget = go.AddComponent<UIWidget>();
+
       }
       
       uiWidget.transform.parent = this.transform;

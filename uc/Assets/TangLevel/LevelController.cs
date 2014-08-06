@@ -26,6 +26,10 @@ namespace TangLevel
     /// </summary>
     public static event EventHandler RaiseEnterLevelSuccess;
     /// <summary>
+    /// 离开关卡
+    /// </summary>
+    public static event EventHandler RaiseLeftLevel;
+    /// <summary>
     /// 子关卡的怪物已被清除完毕
     /// </summary>
     public static event EventHandler RaiseSubLevelCleaned;
@@ -376,7 +380,6 @@ namespace TangLevel
 
       if (heroIds.Length > 0) {
 
-        PlaceController.Place = Place.level;
         Debug.Log ("TangLevel: Set levelId=1001 for debuging ");
         Debug.Log ("TangLevel: HeroIds = " + TU.TextUtil.Join (heroIds));
         LevelController.ChallengeLevel (1001, DomainHelper.GetInitGroup (heroIds));
@@ -391,6 +394,8 @@ namespace TangLevel
     /// <param name="group">我方小组</param>
     public static void ChallengeLevel (int levelId, Group group)
     {
+      PlaceController.Place = Place.level;
+      LevelContext.isPlayback = false;
 
       // 确保没有在挑战
       if (!LevelContext.InLevel) {
@@ -525,6 +530,10 @@ namespace TangLevel
         levelUIRoot.SetActive (false);
       }
 
+      if (RaiseLeftLevel != null) {
+        RaiseLeftLevel (null, EventArgs.Empty);
+      }
+
     }
 
     /// <summary>
@@ -532,7 +541,7 @@ namespace TangLevel
     /// </summary>
     public static void Pause ()
     {
-      Debug.Log ("Pause");
+      //Debug.Log ("Pause");
       if (!LevelContext.isPause) {
         LevelContext.isPause = true;
 
@@ -569,7 +578,7 @@ namespace TangLevel
     private static void OnSubLevelMapLoaded (object sender, LoadResultEventArgs args)
     {
 
-      Debug.Log ("OnSubLevelMapLoaded");
+      //Debug.Log ("OnSubLevelMapLoaded");
 
       if (args.Name == LevelContext.CurrentSubLevel.resName) {
 
@@ -662,7 +671,7 @@ namespace TangLevel
           if (LevelContext.AliveDefenseGobjs.Count == 0) {
 
 
-            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Length - 1) {
+            if (LevelContext.CurrentSubLevel.index == LevelContext.CurrentLevel.subLevels.Count - 1) {
 
               // 如果是最后一关 ---
 
@@ -710,9 +719,6 @@ namespace TangLevel
         // 英雄的位置超过设定的边际
         if (agent.myTransform.localPosition.x > Config.RIGHT_BOUND) {
 
-          // 离开当前子关卡
-          LeftSubLevel ();
-
           // 进入下一个子关卡
           ContinueNextSubLevel ();
 
@@ -733,10 +739,10 @@ namespace TangLevel
     private static void LoadCurrentSubLevelRes ()
     {
 
-      Debug.Log ("LoadTargetSubLevelRes");
+      //Debug.Log ("LoadTargetSubLevelRes");
 
       SubLevel subLevel = LevelContext.CurrentSubLevel;
-      Debug.Log ("subLevel.resName " + subLevel.resName);
+      //Debug.Log ("subLevel.resName " + subLevel.resName);
       GameObject bgGobj = GobjManager.FetchUnused (subLevel.resName);
       if (bgGobj == null) {
 
@@ -759,7 +765,7 @@ namespace TangLevel
     /// </summary>
     private static void LoadSubLevelHeroResources ()
     {
-      Debug.Log ("LoadSubLevelHeroResources");
+      //Debug.Log ("LoadSubLevelHeroResources");
 
       // -- 加载场景中的其他资源 --
 
@@ -801,7 +807,7 @@ namespace TangLevel
           requiredHeroGobjTable [kvp.Key] = need;
           HeroGobjManager.LazyLoad (kvp.Key, need);
         }
-        Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
+        //Debug.Log ("Has " + has + " " + kvp.Key + " , Need " + need + " " + kvp.Key);
       }
 
       // 加载作用器
@@ -814,7 +820,7 @@ namespace TangLevel
     /// </summary>
     private static void LoadSubLevelEffectorResources ()
     {
-      Debug.Log ("LoadSubLevelEffectorResources");
+      //Debug.Log ("LoadSubLevelEffectorResources");
 
       // -- 加载场景中的其他资源 --
 
@@ -876,7 +882,7 @@ namespace TangLevel
     private static void AllSubLevelResourceReady ()
     {
 
-      Debug.Log ("AllSubLevelResourceReady");
+      //Debug.Log ("AllSubLevelResourceReady");
 
 
       if (LevelContext.CurrentSubLevel.index == 0) {
@@ -910,6 +916,7 @@ namespace TangLevel
     {
 
       // 确保清场
+      LevelContext.heroGobjs.Clear ();
       LevelContext.defenseGobjs.Clear ();
       LevelContext.attackGobjs.Clear ();
 
@@ -917,7 +924,7 @@ namespace TangLevel
       GameObject bgGobj = GobjManager.FetchUnused (LevelContext.CurrentSubLevel.resName);
       if (bgGobj != null) {
         bgGobj.SetActive (true);
-        Debug.Log ("Background Created.");
+        //Debug.Log ("Background Created.");
         LevelContext.background = bgGobj;
       }
 
@@ -940,8 +947,10 @@ namespace TangLevel
           bmBhvr.auto = LevelContext.CurrentLevel.autoFight;
           // 加入我方队伍中
           LevelContext.attackGobjs.Add (g);
-          // 保存到当前子关卡开始时的英雄列表中
+          // 保存到当前子关卡开场时的英雄列表中
           LevelContext.SubLevelBeganGobjs.Add (g);
+          // 保存到场景所有英雄的表中
+          LevelContext.heroGobjs.Add (hero.id, g);
         }
       }
 
@@ -952,6 +961,8 @@ namespace TangLevel
         // 自动施放大招
         bmBhvr.auto = true;
         LevelContext.defenseGobjs.Add (g);
+        // 保存到场景所有英雄的表中
+        LevelContext.heroGobjs.Add (hero.id, g);
       }
 
       // 监听场景中的英雄

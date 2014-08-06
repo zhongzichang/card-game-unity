@@ -2,7 +2,7 @@
 using System.Collections;
 using TangGame.Net;
 
-using ClientDemoTest;
+using Restful;
 
 public class UITestData : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class UITestData : MonoBehaviour
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);
     string userId = "1";
-    userApi.getHeroes (userId, getHeroesResponseHandler);
+    UserApi.getHeroes (userId, getHeroesResponseHandler);
 	}
 	/// <summary>
 	/// Gets the heroes response handler.

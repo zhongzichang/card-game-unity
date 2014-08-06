@@ -70,7 +70,13 @@ namespace TangGame.UI{
       DailyItem item = go.GetComponent<DailyItem>();
       Daily daily = item.data as Daily;
 
-
+      if(daily.data.id == 1 ){
+        MsgTips.Show("任务尚未完成");
+      }else if(daily.data.id == 2){
+        TaskAwardPanelData taskAwardPanelData = new TaskAwardPanelData();
+        taskAwardPanelData.daily = daily;
+        UIContext.mgrCoC.LazyOpen(TaskAwardPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, taskAwardPanelData);
+      }
       Debug.Log(daily.data.id);
     }
 

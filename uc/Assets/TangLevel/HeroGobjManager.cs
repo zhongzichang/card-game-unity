@@ -24,7 +24,7 @@ namespace TangLevel
     /// <param name="count">Count.</param>
     public static void LazyLoad (string name, int count)
     {
-      Debug.Log ("HeroGobjManager.LazyLoad " + name + " " + count);
+      //Debug.Log ("HeroGobjManager.LazyLoad " + name + " " + count);
       TD.DbgoManager.LazyLoad (name, count);
     }
 

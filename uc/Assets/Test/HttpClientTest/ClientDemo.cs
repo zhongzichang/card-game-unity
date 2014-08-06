@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using TangGame.Net;
+using Restful;
 
 namespace ClientDemoTest{
 
   public class ClientDemo : MonoBehaviour {
 
-    private LoginApi loginApi = new LoginApi ();
-    private UserApi userApi = new UserApi ();
-    private HeroApi heroApi = new HeroApi ();
     private TestApi testApi = new TestApi();
 
     private string msg;
@@ -23,35 +20,35 @@ namespace ClientDemoTest{
 
       GUILayout.Label (msg);
       if (GUILayout.Button ("login")) {
-        loginApi.login("user", "pass", loginResponseHandler);
+        LoginApi.login("user", "pass", loginResponseHandler);
       }
       if (GUILayout.Button ("getHeroes")) {
         string userId = "1";
-        userApi.getHeroes (userId, getHeroesResponseHandler);
+        UserApi.getHeroes (userId, getHeroesResponseHandler);
       }
       if (GUILayout.Button ("equipItem")) {
         System.Action<EquipItemResult> equipItemResponseHandler = delegate(EquipItemResult result){
           Debug.Log(result.ok);
         };
-        heroApi.equipItem("heroId", "equipId", equipItemResponseHandler);
+        HeroApi.equipItem("heroId", "equipId", equipItemResponseHandler);
       }
       if (GUILayout.Button ("rankrank_color")) {
         System.Action<rankrank_colorResult> rankrank_colorResponseHandler = delegate(rankrank_colorResult result){
           Debug.Log(result.ok);
         };
-        heroApi.rankrank_color("heroId", rankrank_colorResponseHandler);
+        HeroApi.rankrank_color("heroId", rankrank_colorResponseHandler);
       }
       if (GUILayout.Button ("rankStar")) {
         System.Action<rankStarResult> rankStarResponseHandler = delegate(rankStarResult result){
           Debug.Log(result.ok);
         };
-        heroApi.rankStar("heroId", rankStarResponseHandler);
+        HeroApi.rankStar("heroId", rankStarResponseHandler);
       }
       if (GUILayout.Button ("rankSkill")) {
         System.Action<rankSkillResult> rankSkillResponseHandler = delegate(rankSkillResult result){
           Debug.Log(result.ok);
         };
-        heroApi.rankSkill("heroId", "skillId", rankSkillResponseHandler);
+        HeroApi.rankSkill("heroId", "skillId", rankSkillResponseHandler);
       }
 
       if (GUILayout.Button ("httpsGithub")) {
@@ -76,7 +73,7 @@ namespace ClientDemoTest{
 
     private void loginResponseHandler (LoginResult result)
     {
-      Debug.Log (result.userId);
+      Debug.Log (result.message);
     }
 
     private void getHeroesResponseHandler (HeroResult result)

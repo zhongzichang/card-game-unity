@@ -4,9 +4,9 @@
   <id>1001</id>
   <map_id>1</map_id>
   <repeat>0</repeat>
-  <lv1_monster_ids>[1,1,2]</lv1_monster_ids>
-  <lv2_monster_ids>[1,2,2]</lv2_monster_ids>
-  <lv3_monster_ids>[3,4,5,6,2]</lv3_monster_ids>
+  <lv1_monster_ids>[1,2]</lv1_monster_ids>
+  <lv2_monster_ids>[1,7]</lv2_monster_ids>
+  <lv3_monster_ids>[1,1,6]</lv3_monster_ids>
   <energy_consumption>6</energy_consumption>
   <team_exp>6</team_exp>
   <hero_exp>48</hero_exp>

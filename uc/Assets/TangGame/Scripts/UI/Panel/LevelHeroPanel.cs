@@ -23,7 +23,7 @@ namespace TangGame
       //LevelHeroPanelData data = new LevelHeroPanelData();
       //data.heroCount = 2;
       //this.mParam = data;
-      UpdateData ();
+      //UpdateData ();
     }
 
     /// 面板的参数对象

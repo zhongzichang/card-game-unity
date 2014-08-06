@@ -17,6 +17,11 @@ namespace TangLevel
   {
     #region Attributes
 
+    /// <summary>
+    /// 是否回放
+    /// </summary>
+    public static bool isPlayback = false;
+
     private static Level m_currentLevel = null;
 
     #endregion
@@ -70,11 +75,11 @@ namespace TangLevel
         if (m_currentLevel != null) {
           if (CurrentSubLevel != null) { // 挑战已经开始，不是第一个子关卡
             int nextIndex = CurrentSubLevel.index + 1;
-            if (m_currentLevel.subLevels.Length > nextIndex) {
+            if (m_currentLevel.subLevels.Count > nextIndex) {
               return m_currentLevel.subLevels [nextIndex];
             }
           } else { // 挑战还没开始，第一个子关卡
-            if (m_currentLevel.subLevels.Length > 0) {
+            if (m_currentLevel.subLevels.Count > 0) {
               return m_currentLevel.subLevels [0];
             }
           }
@@ -94,10 +99,11 @@ namespace TangLevel
     /// </summary>
     public static Group attackGroupBackup;
 
-    /// <summary>
-    /// 录像机
-    /// </summary>
-    public static TP.LevelRecorder recorder;
+
+    public static TP.LevelRecord CurrentLevelRecord {
+      get;
+      set;
+    }
 
     #endregion
 
@@ -117,10 +123,26 @@ namespace TangLevel
     /// 我方所有 GameObject
     /// </summary>
     public static List<GameObject> attackGobjs = new List<GameObject> ();
+
+    /// <summary>
+    /// 场景中的所有英雄
+    /// </summary>
+    public static Dictionary<int, GameObject> heroGobjs = new Dictionary<int, GameObject> ();
+
     /// <summary>
     /// 活着的敌方英雄
     /// </summary>
     private static List<GameObject> aliveDefenseGobjs = new List<GameObject> ();
+
+    /// <summary>
+    /// 活着的我方英雄
+    /// </summary>
+    private static List<GameObject> aliveSelfGobjs = new List<GameObject> ();
+
+    /// <summary>
+    /// 或者的英雄
+    /// </summary>
+    private static List<GameObject> aliveGobjs = new List<GameObject> ();
 
     public static List<GameObject> AliveDefenseGobjs {
       get {
@@ -138,11 +160,6 @@ namespace TangLevel
       }
     }
 
-    /// <summary>
-    /// 活着的我方英雄
-    /// </summary>
-    private static List<GameObject> aliveSelfGobjs = new List<GameObject> ();
-
     public static List<GameObject> AliveSelfGobjs {
       get {
         aliveSelfGobjs.Clear ();
@@ -156,6 +173,22 @@ namespace TangLevel
           }
         }
         return aliveSelfGobjs;
+      }
+    }
+
+    public static List<GameObject> AliveGobjs {
+      get {
+        aliveGobjs.Clear ();
+        if (heroGobjs.Count > 0) {
+          foreach (GameObject gobj in heroGobjs.Values) {
+            HeroBhvr heroBhvr = gobj.GetComponent<HeroBhvr> ();
+            if (heroBhvr != null) {
+              if (heroBhvr.hero.hp > 0)
+                aliveGobjs.Add (gobj);
+            }
+          }
+        }
+        return aliveGobjs;
       }
     }
 
@@ -188,22 +221,11 @@ namespace TangLevel
     {
 
       T t = null;
-      // find in attack group
-      foreach (GameObject gobj in attackGobjs) {
+      foreach (GameObject gobj in heroGobjs.Values) {
         HeroBhvr hb = gobj.GetComponent<HeroBhvr> ();
         if (hb != null && hb.hero.id == id) {
           t = gobj.GetComponent<T> ();
           break;
-        }
-      }
-      // find in defense group if h is null
-      if (t == null) {
-        foreach (GameObject gobj in defenseGobjs) {
-          HeroBhvr hb = gobj.GetComponent<HeroBhvr> ();
-          if (hb != null && hb.hero.id == id) {
-            t = gobj.GetComponent<T> ();
-            break;
-          }
         }
       }
       return t;

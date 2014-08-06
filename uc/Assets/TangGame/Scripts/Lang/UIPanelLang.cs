@@ -277,6 +277,8 @@ namespace TangGame.UI
 
     /// 任务
     public const string TASK = "任务";
+    /// 完成：{0}
+    public const string TASK_CPMPLETED = "完成：{0}";
 
     /// 每日活动
     public const string DAILY = "每日活动";

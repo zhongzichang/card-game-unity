@@ -18,8 +18,9 @@ namespace TangLevel
     /// </summary>
     public void Hit ()
     {
-
-      if (w.effector.effect != null) {
+      // 回放时不能修改英雄数据
+      if (w.effector.effect != null
+          && !LevelContext.isPlayback) {
         EffectEjector.Instance.Arise (w.effector.effect, w);
       }
 

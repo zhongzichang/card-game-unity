@@ -7,6 +7,7 @@ using TU = TangUtils;
 using UnityEngine;
 using Procurios.Public;
 using TGUI = TangGame.UI;
+using TangUtils;
 
 namespace TangLevel
 {
@@ -71,7 +72,6 @@ namespace TangLevel
 
         if (TG.Config.heroSortTable.ContainsKey (hero.configId)) {
           hero.sort = TG.Config.heroSortTable [hero.configId];
-          Debug.Log ("+++++++ " + hero.id + " - " + hero.configId + " - " + hero.sort);
         }
         hero.battleDirection = BattleDirection.RIGHT;
 
@@ -157,8 +157,12 @@ namespace TangLevel
       Level level = new Level ();
       level.id = data.id;
       // 子关卡
-      List<SubLevel> subLevels = BuildSubLevels (data);
-      level.subLevels = subLevels.ToArray ();
+      level.subLevels = BuildSubLevels (data);
+
+      if (level.subLevels.Count == 0) {
+        Debug.LogWarning ("Level.subLevels.Count == 0");
+      }
+
       return level;
     }
 
@@ -171,23 +175,31 @@ namespace TangLevel
     {
 
       List<SubLevel> subLevels = new List<SubLevel> ();
+
       if (!String.IsNullOrEmpty (data.lv1_bg) && !String.IsNullOrEmpty (data.lv1_monster_ids)) {
-        SubLevel lvl = BuildSubLevel (data.lv1_bg, data.lv1_monster_ids);
-        lvl.index = 0;
-        subLevels.Add (lvl);
+        ArrayList monsterIdList = JSON.JsonDecode (data.lv1_monster_ids) as ArrayList;
+        int[] monsterIds = TypeUtil.ToArray<ArrayList,int> (monsterIdList);
+        SubLevel slvl = BuildSubLevel (data.lv1_bg, monsterIds);
+        slvl.index = 0;
+        subLevels.Add (slvl);
       }
 
       if (!String.IsNullOrEmpty (data.lv2_bg) && !String.IsNullOrEmpty (data.lv2_monster_ids)) {
-        SubLevel lvl = BuildSubLevel (data.lv2_bg, data.lv2_monster_ids);
-        lvl.index = 1;
-        subLevels.Add (lvl);
+        ArrayList monsterIdList = JSON.JsonDecode (data.lv2_monster_ids) as ArrayList;
+        int[] monsterIds = TypeUtil.ToArray<ArrayList,int> (monsterIdList);
+        SubLevel slvl = BuildSubLevel (data.lv2_bg, monsterIds);
+        slvl.index = 1;
+        subLevels.Add (slvl);
       }
 
       if (!String.IsNullOrEmpty (data.lv3_bg) && !String.IsNullOrEmpty (data.lv3_monster_ids)) {
-        SubLevel lvl = BuildSubLevel (data.lv3_bg, data.lv3_monster_ids);
-        lvl.index = 2;
-        subLevels.Add (lvl);
+        ArrayList monsterIdList = JSON.JsonDecode (data.lv3_monster_ids) as ArrayList;
+        int[] monsterIds = TypeUtil.ToArray<ArrayList,int> (monsterIdList);
+        SubLevel slvl = BuildSubLevel (data.lv3_bg, monsterIds);
+        slvl.index = 2;
+        subLevels.Add (slvl);
       }
+
       return subLevels;
 
     }
@@ -198,18 +210,31 @@ namespace TangLevel
     /// <returns>The level.</returns>
     /// <param name="background">Background.</param>
     /// <param name="monsterIds">Monster identifiers.</param>
-    private static SubLevel BuildSubLevel (string background, string monsterIds)
+    private static SubLevel BuildSubLevel (string background, int[] monsterIds)
     {
       SubLevel l = new SubLevel ();
       l.resName = background;
+
+      Group g = BuildMonsterGroup (monsterIds);
+
+      if (g.heros == null || g.heros.Length == 0) {
+        Debug.LogError ("TangLevel: Failure to create group for level by monsterIds " + monsterIds);
+      }
+
+      l.defenseGroup = g;
+      return l;
+    }
+
+    public static Group BuildMonsterGroup (int[] monsterIds)
+    {
+
       Group g = new Group ();
 
-      ArrayList realIds = JSON.JsonDecode (monsterIds) as ArrayList;
-      if (realIds != null) {
+      if (monsterIds != null) {
         // group and heros
-        Hero[] heros = new Hero[realIds.Count];
-        for (int i = 0; i < realIds.Count; i++) {
-          int hId = (int)(realIds [i]);
+        Hero[] heros = new Hero[monsterIds.Length];
+        for (int i = 0; i < monsterIds.Length; i++) {
+          int hId = (int)(monsterIds [i]);
           Hero h = BuildMonster (hId);
           // 出场次序
           h.sort = i;
@@ -223,12 +248,7 @@ namespace TangLevel
         g.heros = heros;
       }
 
-      if (g.heros == null || g.heros.Length == 0) {
-        Debug.LogError ("TangLevel: Failure to create group for level by monsterIds " + monsterIds);
-      }
-
-      l.defenseGroup = g;
-      return l;
+      return g;
     }
 
     /// <summary>

@@ -26,6 +26,8 @@ namespace TangLevel
 
     public Hero hero;
     // 英雄数据
+    public Skill skill;
+    // 技能
     private DirectedNavigable navigable;
     // 导航
     private DirectedNavAgent agent;
@@ -42,13 +44,12 @@ namespace TangLevel
     // 技能
     private BigMoveBhvr bmBhvr;
     // 大招
-    private Skill skill;
-    // 技能
     private List<string> animationList;
     // DragonBone 动画列表
     private GameObject mTarget;
     // 当前目标
     private GroupBhvr groupBhvr;
+
     #endregion
 
     #region Properties
@@ -83,10 +84,12 @@ namespace TangLevel
 
     }
 
+
     void Update ()
     {
       if (hero.hp == 0 && statusBhvr.Status != HeroStatus.dead) {
-        statusBhvr.Status = HeroStatus.dead;
+        //statusBhvr.Status = HeroStatus.dead;
+        Die ();
       }
     }
 
@@ -362,6 +365,11 @@ namespace TangLevel
 
       case HeroStatus.dead: // 死亡 ----
 
+        // 发出死亡通知
+        if (RaiseDead != null) {
+          RaiseDead (this, EventArgs.Empty);
+        }
+
         //dbBhvr.Stop ();
         armature.Animation.GotoAndPlay (status.ToString (), -1, -1, 1);
         FadeOut ();
@@ -387,7 +395,8 @@ namespace TangLevel
     /// 战队状态回调
     /// </summary>
     /// <param name="status">Status.</param>
-    private void OnGroupStatusChanged(GroupStatus status){
+    private void OnGroupStatusChanged (GroupStatus status)
+    {
 
       switch (status) {
       case GroupStatus.relax:
@@ -487,7 +496,13 @@ namespace TangLevel
     /// <param name="target">Target.</param>
     public void Attack (GameObject target, Skill skill)
     {
-      if (statusBhvr.Status == HeroStatus.idle) {
+
+      if (statusBhvr.Status == HeroStatus.running) {
+        agent.ResetPath ();
+      }
+
+      if (statusBhvr.Status == HeroStatus.idle || statusBhvr.Status == HeroStatus.running
+          ) {
 
         skill.Reset ();
         this.target = target;
@@ -523,9 +538,6 @@ namespace TangLevel
       }
 
       statusBhvr.Status = HeroStatus.dead;
-      if (RaiseDead != null) {
-        RaiseDead (this, EventArgs.Empty);
-      }
     }
 
     /// <summary>

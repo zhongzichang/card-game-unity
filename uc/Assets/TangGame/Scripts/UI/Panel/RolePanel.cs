@@ -95,7 +95,7 @@ namespace TangGame.UI{
     }
 
     private void AvatarBtnClickHandler(GameObject go){
-      
+      UIContext.mgrCoC.LazyOpen(ChangeAvatarPanel.NAME, TangUI.UIPanelNode.OpenMode.ADDITIVE, TangUI.UIPanelNode.BlockMode.NONE, null);
     }
 
     private void SettingBtnClickHandler(GameObject go){
