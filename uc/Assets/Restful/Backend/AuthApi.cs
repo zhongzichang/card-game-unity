@@ -11,19 +11,13 @@ namespace Restful
     public bool logined;
   }
 
-  public class AuthApi {
+  public class AuthApi
+  {
 
-    public static void Check(System.Action<AuthResult> responseHandler) {
-
+    public static void Check (System.Action<AuthResult> responseHandler)
+    {
       string path = "/check";
-
-      System.Action<string> handler = delegate(string jsonData){
-        AuthResult result = JsonConvert.DeserializeObject<AuthResult>(jsonData);
-        responseHandler (result);
-      };
-
-
-      RestApi.Instance.HttpGet (path, handler);
+      RestApi.Instance.HttpGet (path, RestApi.Handle<AuthResult> (responseHandler));
     }
 
   }

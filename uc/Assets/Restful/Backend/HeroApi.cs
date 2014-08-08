@@ -1,10 +1,29 @@
 using UnityEngine;
 using System.Collections;
-
 using Newtonsoft.Json;
+using TangGame.Net;
 
 namespace Restful
 {
+
+  public class HeroResult
+  {
+    public HeroNetItem[] data;
+  }
+
+  public class HeroNetItem
+  {
+    public string id;
+
+    public HeroNet Data {
+      get { 
+        HeroNet hero = new HeroNet ();
+        hero.id = int.Parse (this.id);
+        return hero;
+      }
+    }
+  }
+
   public class EquipItemResult{
     public bool ok;
   }
@@ -22,6 +41,14 @@ namespace Restful
   }
 
   public class HeroApi {
+
+    public static void getHeroes (string userId, System.Action<HeroResult> responseHandler)
+    {
+
+      string endpoint = "heroList";
+      string path = "/hero/" + endpoint + "?userId=" + userId;
+      RestApi.Instance.HttpGet (path, RestApi.Handle<HeroResult>(responseHandler));
+    }
    
     public static void equipItem(string heroId, string equipId, System.Action<EquipItemResult> responseHandler) {
       System.Action<string> handler = delegate(string jsonData){

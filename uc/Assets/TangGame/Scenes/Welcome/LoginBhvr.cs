@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Restful;
+using TangGame.Net;
 
 namespace TangGame
 {
@@ -21,8 +22,7 @@ namespace TangGame
       AuthApi.Check (
         delegate(AuthResult result) {
           if (result.logined) {
-            serverGroup.SetActive (true);
-            loginGroup.SetActive (false);
+            UserApi.GetMe(meHandle());
           } else {
             serverGroup.SetActive (false);
             loginGroup.SetActive (true);
@@ -37,15 +37,23 @@ namespace TangGame
 
       string username = usernameInput.value;
       string password = passwordInput.value;
+
       LoginApi.login (username, password, delegate(LoginResult result) {
         if( result.success ){
-          serverGroup.SetActive (true);
-          loginGroup.SetActive (false);
+          UserApi.GetMe(meHandle());
         } else {
           Debug.Log(result.message);
         }
       });
 
+    }
+
+    private System.Action<UserNet> meHandle() {
+      return delegate(UserNet user) {
+        Debug.Log ("Hello " + user.nickname + " !");
+        serverGroup.SetActive (true);
+        loginGroup.SetActive (false);
+      };
     }
 
   }

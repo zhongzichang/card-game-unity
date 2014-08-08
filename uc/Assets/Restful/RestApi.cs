@@ -4,6 +4,7 @@ using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using Newtonsoft.Json;
 namespace Restful
 {
   public class RestApiParam
@@ -60,6 +61,16 @@ namespace Restful
         }
         return _instance;
       }
+    }
+
+    public static System.Action<string> Handle<T>(System.Action<T> responseHandler) 
+    {
+
+      System.Action<string> handler = delegate(string jsonData) {
+        T result = JsonConvert.DeserializeObject<T> (jsonData);
+        responseHandler (result);
+      };
+      return handler;
     }
 
     public string Host {
@@ -136,15 +147,12 @@ namespace Restful
           string cookie4save = sb.Remove (sb.Length - 1, 1).ToString ();
           PlayerPrefs.SetString (COOKIE_KEY, cookie4save);
 
-          Debug.Log ("cookie4save : " + cookie4save);
+          //Debug.Log ("cookie4save : " + cookie4save);
         }
 
         // 处理
         onComplete (www.text);
-        Debug.Log ("www.text : " + www.text);
         www.Dispose ();
-
-
 
 
       } else {
@@ -152,9 +160,7 @@ namespace Restful
 
         Debug.LogError ("fail to open "+ www.url + " with error " + www.error);
 
-        // 显示重试对话框
-
-
+        // TODO 显示重试对话框
 
       }
     }

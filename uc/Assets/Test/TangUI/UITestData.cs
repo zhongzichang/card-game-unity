@@ -20,7 +20,7 @@ public class UITestData : MonoBehaviour
 		this.SetPropsBase (1016,88);
 		this.SetPropsBase (1017,5);
     string userId = "1";
-    UserApi.getHeroes (userId, getHeroesResponseHandler);
+    HeroApi.getHeroes (userId, getHeroesResponseHandler);
 	}
 	/// <summary>
 	/// Gets the heroes response handler.

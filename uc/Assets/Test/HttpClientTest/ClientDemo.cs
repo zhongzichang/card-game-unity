@@ -24,7 +24,7 @@ namespace ClientDemoTest{
       }
       if (GUILayout.Button ("getHeroes")) {
         string userId = "1";
-        UserApi.getHeroes (userId, getHeroesResponseHandler);
+        HeroApi.getHeroes (userId, getHeroesResponseHandler);
       }
       if (GUILayout.Button ("equipItem")) {
         System.Action<EquipItemResult> equipItemResponseHandler = delegate(EquipItemResult result){
