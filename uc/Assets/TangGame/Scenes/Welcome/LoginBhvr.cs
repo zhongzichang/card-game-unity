@@ -2,6 +2,7 @@
 using System.Collections;
 using Restful;
 using TangGame.Net;
+using TangGame.UI;
 
 namespace TangGame
 {
@@ -53,6 +54,9 @@ namespace TangGame
         Debug.Log ("Hello " + user.nickname + " !");
         serverGroup.SetActive (true);
         loginGroup.SetActive (false);
+
+        Account.instance.SetData(user);
+
       };
     }
 

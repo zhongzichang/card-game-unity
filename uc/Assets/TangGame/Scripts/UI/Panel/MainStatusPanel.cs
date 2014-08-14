@@ -48,7 +48,7 @@ namespace TangGame.UI{
       cancelBtn.onClick += CancelBtnClickHandler;
       buyVitalityTween.eventReceiver = this.gameObject;
       buyVitalityTween.callWhenFinished = "BuyVitalityTweenFinishedHandler";
-    
+      UpdateDisplay();
     }
 
     private void MoneyBtnClickHandler(GameObject go){
@@ -64,6 +64,14 @@ namespace TangGame.UI{
       buyVitalityGroup.gameObject.SetActive(true);
       buyVitalityTween.PlayForward();
     }
+
+    /// 更新显示处理
+    private void UpdateDisplay(){
+      moneyLabel.text = GlobalUtils.MoneyFormat(Account.instance.money.ToString());
+      ingotLabel.text = GlobalUtils.MoneyFormat(Account.instance.ingot.ToString());
+      vitalityLabel.text = Account.instance.vitality + "/" + Account.instance.vitalityMax;
+    }
+
 
     //=================================================================
     private void VitalityBtnClickHandler(GameObject go, bool state){

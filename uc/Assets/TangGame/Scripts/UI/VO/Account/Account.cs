@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TangGame.Net;
 
 namespace TangGame.UI{
   /// <summary>
@@ -44,8 +45,6 @@ namespace TangGame.UI{
     public int expMax;
     
     private Account(){
-      id = 10001;
-      name = "调皮的小黄人";
       level = 23;
       money = 50000;
       ingot = 10000;
@@ -53,6 +52,11 @@ namespace TangGame.UI{
       vitalityMax = 210;
       exp = 100;
       expMax = 1500;
+    }
+
+    public void SetData(UserNet user){
+      this.name = user.nickname;
+      this.id = user.id;
     }
 
   }
