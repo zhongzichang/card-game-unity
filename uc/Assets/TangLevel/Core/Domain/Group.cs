@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace TangLevel
 {
@@ -78,6 +79,7 @@ namespace TangLevel
     public void EnableBigMoveCloseUp ()
     {
       foreach (Hero h in heros) {
+        Debug.Log ("==hero "+ h.id  + " skill count " +h.skills.Count);
         foreach (Skill s in h.skills.Values) {
           if (!s.bigMoveCloseUp) {
             s.bigMoveCloseUp = true;

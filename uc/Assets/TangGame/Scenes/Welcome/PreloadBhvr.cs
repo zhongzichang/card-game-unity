@@ -96,8 +96,10 @@ namespace TangGame
 
     private void PreloadCompleted ()
     {
-      OnPreloadCompleted();
 
+      SendMessage ("OnPreloadCompleted");
+
+      // OnPreloadCompleted();
       /*
       TsEffectRoot tsEffectRoot = null;
       object[] attributes = typeof(TsEffectRoot).GetCustomAttributes (typeof(XmlLateAttribute), false);

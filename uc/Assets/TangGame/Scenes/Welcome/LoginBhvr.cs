@@ -16,9 +16,12 @@ namespace TangGame
     public UIInput usernameInput;
     public UIInput passwordInput;
 
-    // Use this for initialization
-    void Start ()
-    {
+    public void OnPreloadCompleted(){
+      AuthCheck ();
+    }
+
+    public void AuthCheck(){
+
       // 检查用户是否已经登录
       AuthApi.Check (
         delegate(AuthResult result) {
@@ -30,8 +33,8 @@ namespace TangGame
           }
         }
       );
-
       loginButton.onClick += OnLogin;
+
     }
 
     private void OnLogin(GameObject loginButton){
