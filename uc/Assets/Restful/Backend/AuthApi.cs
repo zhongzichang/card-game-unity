@@ -16,7 +16,7 @@ namespace Restful
 
     public static void Check (System.Action<AuthResult> responseHandler)
     {
-      string path = "/check";
+      string path = "/auth/check";
       RestApi.Instance.HttpGet (path, RestApi.Handle<AuthResult> (responseHandler));
     }
 

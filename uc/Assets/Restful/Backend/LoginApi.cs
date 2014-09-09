@@ -14,13 +14,9 @@ namespace Restful
 
   public class LoginApi {
 
-    public static void login(string username, string password, System.Action<LoginResult> responseHandler) {
-      string endpoint = "echo";
-      string path = "/login";
-      RestApiParam param = new RestApiParam ();
-      param.AddField ("username", username);
-      param.AddField ("password", password);
-      RestApi.Instance.HttpPost (path, param, RestApi.Handle<LoginResult>(responseHandler));
+    public static void login(LoginRequest request, System.Action<UserNet> responseHandler) {
+      string path = "/auth/login";
+      RestApi.Instance.HttpPost (path, request, RestApi.Handle<UserNet>(responseHandler));
     }
 
   }

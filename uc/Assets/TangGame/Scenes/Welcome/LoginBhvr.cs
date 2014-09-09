@@ -42,11 +42,14 @@ namespace TangGame
       string username = usernameInput.value;
       string password = passwordInput.value;
 
-      LoginApi.login (username, password, delegate(LoginResult result) {
-        if( result.success ){
-          UserApi.GetMe(meHandle());
+      LoginApi.login (new LoginRequest(username, password), delegate(UserNet user) {
+        if( user != null ){
+          Debug.Log ("Hello " + user.nickname + " !");
+          serverGroup.SetActive (true);
+          loginGroup.SetActive (false);
+          Account.instance.SetData(user);
         } else {
-          Debug.Log(result.message);
+          Debug.Log(user);
         }
       });
 
@@ -54,10 +57,8 @@ namespace TangGame
 
     private System.Action<UserNet> meHandle() {
       return delegate(UserNet user) {
-        Debug.Log ("Hello " + user.nickname + " !");
         serverGroup.SetActive (true);
         loginGroup.SetActive (false);
-
         Account.instance.SetData(user);
 
       };

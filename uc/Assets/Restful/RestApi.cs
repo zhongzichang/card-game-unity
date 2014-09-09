@@ -18,7 +18,7 @@ namespace Restful
 
     public RestApiParam ()
     {
-      form.headers ["Content-Type"] = "application/json";
+      //form.headers ["Content-Type"] = "application/json";
     }
 
     public void AddField (string key, string val)
@@ -34,9 +34,10 @@ namespace Restful
 
   public class RestApi : MonoBehaviour
   {
-
+    public static readonly string SET_COOKIE_KEY = "SET-COOKIE";
     public static readonly string COOKIE_KEY = "Cookie";
-    private static string host = "http://115.28.229.143";
+    //private static string host = "http://115.28.229.143";
+    private static string host = "http://localhost:8080";
     private static RestApi _instance;
     private static Hashtable cookieTable = new Hashtable ();
 
@@ -58,6 +59,8 @@ namespace Restful
               cookieTable [kv [0]] = kv [1];
             }
           }
+          RestApi.header ["Accept"] = "application/json";
+          RestApi.header ["Content-Type"] = "application/json";
         }
         return _instance;
       }
@@ -78,7 +81,7 @@ namespace Restful
       set{ host = value; }
     }
 
-    private static string prefix = "/card-game";
+    private static string prefix = "/api";
 
     private static string baseUrl = null;
 
@@ -98,21 +101,21 @@ namespace Restful
         new WWW (requestUrl, requestData, header), m_responseHandler));
     }
 
-    public void HttpsGet (string path, System.Action<string> responseHandler)
+    public void HttpFormPost (string path, RestApiParam param, System.Action<string> responseHandler)
     {
       header[COOKIE_KEY] = PlayerPrefs.GetString(COOKIE_KEY);
       requestUrl = baseUrl + path;
-      requestData = null;
+      requestData = param.Form.data;
       m_responseHandler = responseHandler;
       StartCoroutine (RestApi.Instance.WaitForResponse (
         new WWW (requestUrl, requestData, header), m_responseHandler));
     }
 
-    public void HttpPost (string path, RestApiParam param, System.Action<string> responseHandler)
+    public void HttpPost (string path, object obj, System.Action<string> responseHandler)
     {
       header[COOKIE_KEY] = PlayerPrefs.GetString(COOKIE_KEY);
       requestUrl = baseUrl + path;
-      requestData = param.Form.data;
+      requestData = TangUtils.StringUtil.GetBytes(JsonConvert.SerializeObject(obj));
       m_responseHandler = responseHandler;
       StartCoroutine (RestApi.Instance.WaitForResponse (
         new WWW (requestUrl, requestData, header), m_responseHandler));
@@ -132,22 +135,24 @@ namespace Restful
       if (String.IsNullOrEmpty (www.error)) {
 
         // 保存 cookies
-        String[] cookieSplits = Regex.Split(www.responseHeaders["SET-COOKIE"],";");
-        if( cookieSplits != null && cookieSplits.Length > 0 ){
+        if (www.responseHeaders.ContainsKey (SET_COOKIE_KEY)) {
+          String[] cookieSplits = Regex.Split (www.responseHeaders ["SET-COOKIE"], ";");
+          if (cookieSplits != null && cookieSplits.Length > 0) {
 
-          string[] kv = cookieSplits [0].Split (new char[]{ '=' });
-          cookieTable [kv [0]] = kv [1];
+            string[] kv = cookieSplits [0].Split (new char[]{ '=' });
+            cookieTable [kv [0]] = kv [1];
 
-          StringBuilder sb = new StringBuilder ();
-          IDictionaryEnumerator iter = cookieTable.GetEnumerator ();
-          while (iter.MoveNext ()) {
-            sb.Append (iter.Key).Append("=").Append(iter.Value).Append(";");
+            StringBuilder sb = new StringBuilder ();
+            IDictionaryEnumerator iter = cookieTable.GetEnumerator ();
+            while (iter.MoveNext ()) {
+              sb.Append (iter.Key).Append ("=").Append (iter.Value).Append (";");
+            }
+
+            string cookie4save = sb.Remove (sb.Length - 1, 1).ToString ();
+            PlayerPrefs.SetString (COOKIE_KEY, cookie4save);
+
+            //Debug.Log ("cookie4save : " + cookie4save);
           }
-
-          string cookie4save = sb.Remove (sb.Length - 1, 1).ToString ();
-          PlayerPrefs.SetString (COOKIE_KEY, cookie4save);
-
-          //Debug.Log ("cookie4save : " + cookie4save);
         }
 
         // 处理
